@@ -1,0 +1,225 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="LuRen"><meta name="copyright" content="LuRen"><meta name="generator" content="Hexo 6.2.0"><meta name="theme" content="hexo-theme-yun"><title>Pikachu--暴力破解 | 圥忈的小站</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/star-markdown-css@0.3.3/dist/yun/yun-markdown.min.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/prism-theme-vars/base.css"><script src="https://fastly.jsdelivr.net/npm/@unocss/runtime/mini.global.js"></script><script src="https://fastly.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>function initScrollReveal() {
+  [".post-card",".markdown-body img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+}
+document.addEventListener("DOMContentLoaded", initScrollReveal);
+document.addEventListener("pjax:success", initScrollReveal);
+</script><script src="https://fastly.jsdelivr.net/npm/pjax@latest/pjax.min.js" defer></script><script src="/js/pjax.js" defer type="module"></script><script src="https://fastly.jsdelivr.net/npm/vue@2.6.14"></script><link rel="icon" type="image/svg+xml" href="/ghost-smile-line.svg"><link rel="mask-icon" href="/ghost-smile-line.svg" color="#0078E7"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fastly.jsdelivr.net/npm/" crossorigin><script id="yun-config">
+    window.Yun = {}
+    window.CONFIG = {"hostname":"weaving-dreams.github.io","root":"/","title":"圥忈的小站","version":"1.10.2","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"搜索...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）"},"anonymous_image":"https://cdn.yunyoujun.cn/img/avatar/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true},"local_search":{"path":"/search.xml"},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"fireworks":{"colors":["102, 167, 221","\t255,0,255","33, 78, 194","255,69,0"]},"waline":{"config":{"enable":true,"serverURL":"https://waline-1gafcjzkcbb7fe08-1310495826.ap-shanghai.app.tcloudbase.com/waline","comment":true,"visitor":true,"emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis@latest/bilibili/","https://cdn.jsdelivr.net/gh/walinejs/emojis@latest/weibo/","https://cdn.jsdelivr.net/gh/walinejs/emojis@latest/qq/"],"locale":{"placeholder":"来都来了，不说点什么吗","level0":"炼体","level1":"炼气","level2":"筑基","level3":"金丹","level4":"元婴","level5":"化神"},"el":"#waline","lang":"zh-CN"},"cdn":"https://fastly.jsdelivr.net/npm/@waline/client@v2/dist/waline.js","dark":"html.dark"},"vendors":{"darken":"https://fastly.jsdelivr.net/npm/darken@1.5.0"}};
+  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/hexo-theme-yun.js" type="module"></script><link rel="alternate" href="/atom.xml" title="圥忈的小站" type="application/atom+xml"><script src="//at.alicdn.com/t/font_3319107_f11xxoznd2e.js" async></script><meta name="description" content="Burte Force（暴力破解）概述“暴力破解”是一攻击具手段，在web攻击中，一般会使用这种手段对应用系统的认证信息进行获取。 其过程就是使用大量的认证信息在认证接口进行尝试登录，直到得到正确的结果。 为了提高效率，暴力破解一般会使用带有字典的工具来进行自动化操作。理论上来说，大多数系统都是可以被暴力破解的，只要攻击者有足够强大的计算能力和时间，所以断定一个系统是否存在暴力破解漏洞，其条件也不">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pikachu--暴力破解">
+<meta property="og:url" content="https://weaving-dreams.github.io/posts/95e7ce5d/index.html">
+<meta property="og:site_name" content="圥忈的小站">
+<meta property="og:description" content="Burte Force（暴力破解）概述“暴力破解”是一攻击具手段，在web攻击中，一般会使用这种手段对应用系统的认证信息进行获取。 其过程就是使用大量的认证信息在认证接口进行尝试登录，直到得到正确的结果。 为了提高效率，暴力破解一般会使用带有字典的工具来进行自动化操作。理论上来说，大多数系统都是可以被暴力破解的，只要攻击者有足够强大的计算能力和时间，所以断定一个系统是否存在暴力破解漏洞，其条件也不">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130956010.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130956440.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130956733.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130956489.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130956513.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130956322.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130957512.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130957762.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130957888.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130957508.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130957226.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130957598.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130957953.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130957264.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130958165.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130958346.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130958298.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130958682.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130958911.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130958645.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130958539.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130958791.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130959725.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130959447.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130959025.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130959755.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130959715.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130959202.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130959902.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130959475.png">
+<meta property="article:published_time" content="2022-04-05T11:40:20.000Z">
+<meta property="article:modified_time" content="2022-04-13T01:59:52.252Z">
+<meta property="article:author" content="LuRen">
+<meta property="article:tag" content="pikachu">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130956010.png"><script>(function() {
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+  const setting = localStorage.getItem('darken-mode') || 'auto'
+  if (setting === 'dark' || (prefersDark && setting !== 'light'))
+    document.documentElement.classList.toggle('dark', true)
+})()</script></head><body><script src="https://code.iconify.design/2/2.1.1/iconify.min.js"></script><script>// Define global variable
+IconifyProviders = {
+  // Empty prefix: overwrite default API provider configuration
+  '': {
+    // Use custom API first, use Iconify public API as backup
+    resources: [
+        'https://api.iconify.design',
+    ],
+    // Wait for 1 second before switching API hosts
+    rotate: 1000,
+  },
+};</script><script defer src="https://fastly.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js" type="module"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js" type="module"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><span class="icon iconify" data-icon="ri:list-ordered"></span></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><span class="icon iconify" data-icon="ri:passport-line"></span></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="LuRen"><img width="96" loading="lazy" src="/images/1.jpg" alt="LuRen"><span class="site-author-status" title="努力ing">🤡</span></a><div class="site-author-name"><a href="/about/">LuRen</a></div><a class="site-name" href="/about/site.html">圥忈的小站</a><sub class="site-subtitle">努力ing</sub><div class="site-description">一个自言自语的地方</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:home-4-line"></span></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:archive-line"></span></span><span class="site-state-item-count">33</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:folder-2-line"></span></span><span class="site-state-item-count">12</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="site-state-item-count">12</span></a></div><a class="site-state-item hty-icon-button" href="/about/#comment" title="留言板"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:clipboard-line"></span></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="/atom.xml" title="RSS" target="_blank" style="color:orange"><span class="icon iconify" data-icon="ri:rss-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/weaving-dreams" title="GitHub" target="_blank" style="color:#6e5494"><span class="icon iconify" data-icon="ri:github-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://weibo.com/u/6603251070" title="微博" target="_blank" style="color:#E6162D"><span class="icon iconify" data-icon="ri:weibo-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://music.163.com/#/user/home?id=1475793651" title="网易云音乐" target="_blank" style="color:#C20C0C"><span class="icon iconify" data-icon="ri:netease-cloud-music-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/499227133?share_medium=android&amp;share_plat=android&amp;share_session_id=f72830f6-8f5f-413a-86d2-6043b1bd69eb&amp;share_source=WEIXIN&amp;share_tag=s_i&amp;timestamp=1646642363&amp;unique_k=pDXLBN4" title="哔哩哔哩" target="_blank" style="color:#FF8EB3"><span class="icon iconify" data-icon="ri:bilibili-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="http://www.coolapk.com/u/4097869" title="酷安" target="_blank" style="color:#007722"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-kuancoolapk1"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="友联 links" style="color:dodgerblue"><span class="icon iconify" data-icon="ri:genderless-line"></span></a><a class="links-item hty-icon-button" href="/girls/" title="喜欢的女孩子" style="color:hotpink"><span class="icon iconify" data-icon="ri:women-line"></span></a><a class="links-item hty-icon-button" href="/albums/" title="相册集" style="color:#6e5494"><span class="icon iconify" data-icon="ri:gallery-line"></span></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><span class="icon iconify" data-icon="ri:contrast-2-line"></span></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Burte-Force%EF%BC%88%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3%EF%BC%89%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">Burte Force（暴力破解）概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E8%A1%A8%E5%8D%95%E7%9A%84%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3"><span class="toc-number">2.</span> <span class="toc-text">基于表单的暴力破解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81%E7%A0%81%E7%BB%95%E8%BF%87%EF%BC%88on-server%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">验证码绕过（on server）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81%E7%A0%81%E7%BB%95%E8%BF%87%EF%BC%88on-dilent%EF%BC%89"><span class="toc-number">4.</span> <span class="toc-text">验证码绕过（on dilent）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#token%E9%98%B2%E7%88%86%E7%A0%B4"><span class="toc-number">5.</span> <span class="toc-text">token防爆破</span></a></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article" style="--smc-primary:#0078E7;"><link itemprop="mainEntityOfPage" href="https://weaving-dreams.github.io/posts/95e7ce5d/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="LuRen"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="圥忈的小站"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">Pikachu--暴力破解</h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:calendar-line"></span></span> <time title="创建时间：2022-04-05 19:40:20" itemprop="dateCreated datePublished" datetime="2022-04-05T19:40:20+08:00">2022-04-05</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:calendar-2-line"></span></span> <time title="修改时间：2022-04-13 09:59:52" itemprop="dateModified" datetime="2022-04-13T09:59:52+08:00">2022-04-13</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="本文字数"><span class="icon iconify" data-icon="ri:file-word-line"></span></span> <span title="本文字数">1k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读时长"><span class="icon iconify" data-icon="ri:timer-line"></span></span> <span title="阅读时长">3m</span></span></span><span class="post-busuanzi"><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读次数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-eye-line"></use></svg> <span id="busuanzi_value_page_pv"></span></span></span><span class="leancloud_visitors" id="/posts/95e7ce5d/" data-flag-title="Pikachu--暴力破解"><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读次数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-eye-line"></use></svg> <span class="leancloud-visitors-count"></span></span></span><span class="post-meta-divider">-</span><a href="#comment"><span class="post-meta-item-icon" title="评论数"><span class="icon iconify" data-icon="ri:chat-3-line"></span> <span class="waline-comment-count" id="/posts/95e7ce5d/"></span></span></a><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><span class="icon iconify" data-icon="ri:folder-line"></span></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E5%AD%A6%E4%B9%A0/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">学习</span></a></span> > <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E5%AD%A6%E4%B9%A0/web%E5%AE%89%E5%85%A8/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">web安全</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/pikachu/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">pikachu</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body"><h2 id="Burte-Force（暴力破解）概述"><a href="#Burte-Force（暴力破解）概述" class="headerlink" title="Burte Force（暴力破解）概述"></a>Burte Force（暴力破解）概述</h2><p>“暴力破解”是一攻击具手段，在web攻击中，一般会使用这种手段对应用系统的认证信息进行获取。 其过程就是使用大量的认证信息在认证接口进行尝试登录，直到得到正确的结果。 为了提高效率，暴力破解一般会使用带有字典的工具来进行自动化操作。<br>理论上来说，大多数系统都是可以被暴力破解的，只要攻击者有足够强大的计算能力和时间，所以断定一个系统是否存在暴力破解漏洞，其条件也不是绝对的。 我们说一个web应用系统存在暴力破解漏洞，一般是指该web应用系统没有采用或者采用了比较弱的认证安全策略，导致其被暴力破解的“可能性”变的比较高。 这里的认证安全策略, 包括：<br>1.是否要求用户设置复杂的密码；<br>2.是否每次认证都使用安全的验证码（想想你买火车票时输的验证码～）或者手机otp；<br>3.是否对尝试登录的行为进行判断和限制（如：连续5次错误登录，进行账号锁定或IP地址锁定等）；<br>4.是否采用了双因素认证；<br>…等等。</p>
+<h2 id="基于表单的暴力破解"><a href="#基于表单的暴力破解" class="headerlink" title="基于表单的暴力破解"></a>基于表单的暴力破解</h2><ol>
+<li>设置代理（这里以谷歌浏览器为例）</li>
+</ol>
+<ul>
+<li>点击右上角的三个点，选择设置、高级、系统、打开您计算机的代理设置</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130956010.png" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130956440.png" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130956733.png" loading="lazy"></p>
+<ul>
+<li>在Internet选项里点击 连接、局域网设置、</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130956489.png" loading="lazy"></p>
+<ul>
+<li><p>设置为手动代理，填上127.0.0.1(这是本地IP)，端口8080(对应burpsuite的端口),点击确认</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130956513.png" loading="lazy"></p>
+</li>
+</ul>
+<ol start="2">
+<li><p>打开burpsuite开启拦截，让后在页面填入账号：admin ，密码：随便，然后点击login</p>
+<p> <img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130956322.png" loading="lazy"></p>
+</li>
+<li><p>burpsuite已抓到post包，右键选择发送给intruder</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130957512.png" loading="lazy"></p>
+</li>
+<li><p>然后在测试区中点击位置，在右边点击clear清除，然后选中password中的密码（add选中），即是我们要pj的账号密码)，攻击类型选择最后一个</p>
+</li>
+</ol>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130957762.png" loading="lazy"></p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/qO7CKP"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130957888.png" alt="qO7CKP.png" loading="lazy"></a></p>
+<ol start="5">
+<li>添加密码字典</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/qO7E5Q"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130957508.png" alt="qO7E5Q.png" loading="lazy"></a></p>
+<ol start="6">
+<li><p>开始破解</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/qO7ZCj"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130957226.png" alt="qO7ZCj.png" loading="lazy"></a></p>
+</li>
+<li><p>完成</p>
+<p> <a target="_blank" rel="noopener" href="https://imgtu.com/i/qO7QbT"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130957598.png" alt="qO7QbT.png" loading="lazy"></a></p>
+</li>
+</ol>
+<h2 id="验证码绕过（on-server）"><a href="#验证码绕过（on-server）" class="headerlink" title="验证码绕过（on server）"></a>验证码绕过（on server）</h2><ol>
+<li><p>和之前一样，设置代理，burpsuite拦截请求</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/qO73aF"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130957953.png" alt="qO73aF.png" loading="lazy"></a></p>
+</li>
+<li><p>发给Repeater(重发器)</p>
+<p> <a target="_blank" rel="noopener" href="https://imgtu.com/i/qO7854"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130957264.png" alt="qO7854.png" loading="lazy"></a></p>
+</li>
+<li><p>来到重发器，点击发送</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/qO7YG9"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130958165.png" alt="qO7YG9.png" loading="lazy"></a></p>
+</li>
+<li><p>把响应这边的拖动条拖到最后，可以看到用户名或密码错误，再发送一次同意是账号密码错误，接着我们把验证码修改了发送就可以看到验证码错误了（这这里有点问题显示□）</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/qO7Nx1"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130958346.png" alt="qO7Nx1.png" loading="lazy"></a></p>
+<p><code>这说明是验证码无条件不刷新，无条件不刷新是指在某一时间段内，无论登录失败多少次，只要不刷新页面，就可以无限次的使用同一个验证码来对一个或多个用户帐号进行暴力猜解.</code></p>
+</li>
+<li><p>接着我们回到代理这里，然后把内容发送测试器，像之前一样，在测试器里面把全部清楚了，再把密码处添加上，攻击类型第四个，把账号密码的文本加载进去，最后攻击。</p>
+</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/qO7wqK"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130958298.png" alt="qO7wqK.png" loading="lazy"></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/qO7yPH"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130958682.png" alt="qO7yPH.png" loading="lazy"></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/qO7cRA"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130958911.png" alt="qO7cRA.png" loading="lazy"></a></p>
+<ol start="6">
+<li>长度唯一确定密码</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/qO7gxI"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130958645.png" alt="qO7gxI.png" loading="lazy"></a></p>
+<h2 id="验证码绕过（on-dilent）"><a href="#验证码绕过（on-dilent）" class="headerlink" title="验证码绕过（on dilent）"></a>验证码绕过（on dilent）</h2><p>基本过程同上（抓包&gt;pj&gt;登录）</p>
+<h2 id="token防爆破"><a href="#token防爆破" class="headerlink" title="token防爆破"></a>token防爆破</h2><p><code>token由返回包确定，显然，每次我们登陆，token的值肯定会变化，token值错误无法验证账号密码的正确性，需要我们每一次发送请求包都要拿到上一个返回包的token值放在token包里面</code></p>
+<ol>
+<li>输入账号密码，开始抓包</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/qO7fqf"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130958539.png" alt="qO7fqf.png" loading="lazy"></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/qO74Z8"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130958791.png" alt="qO74Z8.png" loading="lazy"></a></p>
+<ol start="2">
+<li><p>像之前一样，在测试器里面把全部清楚了，再把密码和token处添加上</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/qO77Gj"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130959725.png" alt="qO77Gj.png" loading="lazy"></a></p>
+</li>
+<li><p>线程数设为1（只有获取上一个请求返回的taken值才能，做下一次请求，无法并发)）</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/qO7LMq"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130959447.png" alt="qO7LMq.png" loading="lazy"></a></p>
+</li>
+<li><p>在选项下面的Grep Extract点添加，获得回复，选中token的值复制然后确认</p>
+</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/qO7XLV"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130959025.png" alt="qO7XLV.png" loading="lazy"></a></p>
+<pre><code>    最下面选中总是
+</code></pre>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/qO7zoF"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130959755.png" alt="qO7zoF.png" loading="lazy"></a></p>
+<ol start="5">
+<li>在有效载荷中选择递归搜索，然后把值放在第一个请求的初始有效负载</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/qOHwSs"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130959715.png" alt="qOHwSs.png" loading="lazy"></a></p>
+<ol start="6">
+<li>加载字典后攻击</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/qOH2Y4"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130959202.png" alt="qOH2Y4.png" loading="lazy"></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/qOHRfJ"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130959902.png" alt="qOHRfJ.png" loading="lazy"></a></p>
+<ol start="7">
+<li>唯一的长度,成功</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/qOHfp9"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130959475.png" alt="qOHfp9.png" loading="lazy"></a></p>
+</div></section><div id="reward-container"><span class="hty-icon-button button-glow" id="reward-button" title="打赏" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === &quot;none&quot;) ? &quot;block&quot; : &quot;none&quot;;"><span class="icon iconify" data-icon="ri:hand-coin-line"></span></span><div id="reward-comment">I'm so cute. Please give me money.</div><div id="qr" style="display:none;"><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://s3.bmp.ovh/imgs/2022/03/a495286dcfde6bfa.bmp"><img loading="lazy" src="https://s3.bmp.ovh/imgs/2022/03/a495286dcfde6bfa.bmp" alt="支付宝" title="支付宝"></a><div><span style="color:#00A3EE"><span class="icon iconify" data-icon="ri:alipay-line"></span></span></div></div><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://s3.bmp.ovh/imgs/2022/03/1018089fdf3cd065.png"><img loading="lazy" src="https://s3.bmp.ovh/imgs/2022/03/1018089fdf3cd065.png" alt="QQ 支付" title="QQ 支付"></a><div><span style="color:#12B7F5"><span class="icon iconify" data-icon="ri:qq-line"></span></span></div></div><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://s3.bmp.ovh/imgs/2022/03/08ce21ed009e0f80.png"><img loading="lazy" src="https://s3.bmp.ovh/imgs/2022/03/08ce21ed009e0f80.png" alt="微信支付" title="微信支付"></a><div><span style="color:#2DC100"><span class="icon iconify" data-icon="ri:wechat-pay-line"></span></span></div></div></div></div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>LuRen</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="https://weaving-dreams.github.io/posts/95e7ce5d/" title="Pikachu--暴力破解">https://weaving-dreams.github.io/posts/95e7ce5d/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><span class="icon iconify" data-icon="ri:creative-commons-line"></span><span class="icon iconify" data-icon="ri:creative-commons-by-line"></span><span class="icon iconify" data-icon="ri:creative-commons-nc-line"></span><span class="icon iconify" data-icon="ri:creative-commons-sa-line"></span></a> 许可协议。</li></ul><script>document.addEventListener('copy', function (event) {
+  const clipboardData = event.clipboardData || window.clipboardData;
+  if (!clipboardData) { return; }
+  const text = window.getSelection().toString();
+  if (text) {
+    event.preventDefault();
+    clipboardData.setData('text/plain', text + '\n\n本文作者：LuRen\n本文链接：https://weaving-dreams.github.io/posts/95e7ce5d/\n版权声明：本博客所有文章除特别声明外，均默认采用 CC BY-NC-SA 4.0 许可协议。');
+  }
+});</script></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/posts/96f58941/" rel="prev" title="PiKachu--XSS"><span class="icon iconify" data-icon="ri:arrow-left-s-line"></span><span class="post-nav-text">PiKachu--XSS</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/posts/5b3b1c7f/" rel="next" title="hexo博客上使用waline评论系统"><span class="post-nav-text">hexo博客上使用waline评论系统</span><span class="icon iconify" data-icon="ri:arrow-right-s-line"></span></a></div></div></div><div class="hty-card" id="comment"><div class="comment-tooltip text-center"><span>不要与我交流，我什么都不会。</span><br><a class="hty-button hty-button--raised" id="github-discussions" target="_blank" rel="noopener" href="https://github.com/weaving-dreams/weaving-dreams.github.io/discussions/new">GitHub Discussions</a></div><div id="waline"></div><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@waline/client@v2/dist/waline.css"><script>window.CONFIG.waline.config.path = "/posts/95e7ce5d/"</script><div class="js-Pjax"><script src="/js/comments/waline.js" type="module" defer></script></div></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2022 </span><span class="with-love" id="animate"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></span><span class="author"> LuRen</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v6.2.0</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.10.2</span></div><div class="live-time"><span>本博客已萌萌哒地运行</span><span id="display_live_time"></span><span class="moe-text">(●'◡'●)</span><script>function blog_live_time() {
+  setTimeout(blog_live_time, 1000);
+  const start = new Date('2022-03-09T00:00:00');
+  const now = new Date();
+  const timeDiff = (now.getTime() - start.getTime());
+  const msPerMinute = 60 * 1000;
+  const msPerHour = 60 * msPerMinute;
+  const msPerDay = 24 * msPerHour;
+  const passDay = Math.floor(timeDiff / msPerDay);
+  const passHour = Math.floor((timeDiff % msPerDay) / 60 / 60 / 1000);
+  const passMinute = Math.floor((timeDiff % msPerHour) / 60 / 1000);
+  const passSecond = Math.floor((timeDiff % msPerMinute) / 1000);
+  display_live_time.innerHTML = ` ${passDay} 天 ${passHour} 小时 ${passMinute} 分 ${passSecond} 秒`;
+}
+blog_live_time();
+</script></div><div id="busuanzi"><span id="busuanzi_container_site_uv" title="总访客量"><span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-user-line"></use></svg></span><span id="busuanzi_value_site_uv"></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv" title="总访问量"><span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-eye-line"></use></svg></span><span id="busuanzi_value_site_pv"></span></span><script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></footer></div><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><span class="icon iconify" data-icon="ri:arrow-up-s-line"></span><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a><a class="popup-trigger hty-icon-button icon-search" id="search" href="javascript:;" title="搜索"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:search-line"></span></span></a><script>window.addEventListener("DOMContentLoaded", () => {
+  // Handle and trigger popup window
+  document.querySelector(".popup-trigger").addEventListener("click", () => {
+    document.querySelector(".popup").classList.add("show");
+    setTimeout(() => {
+      document.querySelector(".search-input").focus();
+    }, 100);
+  });
+
+  // Monitor main search box
+  const onPopupClose = () => {
+    document.querySelector(".popup").classList.remove("show");
+  };
+
+  document.querySelector(".popup-btn-close").addEventListener("click", () => {
+    onPopupClose();
+  });
+
+  window.addEventListener("keyup", event => {
+    if (event.key === "Escape") {
+      onPopupClose();
+    }
+  });
+});
+</script><script src="https://fastly.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js"></script><script src="/js/search/local-search.js" defer type="module"></script><div class="popup search-popup"><div class="search-header"><span class="popup-btn-close close-icon hty-icon-button"><span class="icon iconify" data-icon="ri:close-line"></span></span></div><div class="search-input-container"><input class="search-input" id="local-search-input" type="text" placeholder="搜索..." value=""></div><div class="search-result-container"></div></div><script>function initMourn() {
+  const date = new Date();
+  const today = (date.getMonth() + 1) + "-" + date.getDate()
+  const mourn_days = ["4-4","9-18"]
+  if (mourn_days.includes(today)) {
+    document.documentElement.style.filter = "grayscale(1)";
+  }
+}
+initMourn();</script></body></html>
