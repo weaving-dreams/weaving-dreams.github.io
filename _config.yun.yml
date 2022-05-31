@@ -1,0 +1,288 @@
+  # 模式自动
+mode: auto
+
+  # 网站图标（待修改）
+favicon: /ghost-smile-line.svg
+
+  # 头像（）
+avatar:
+  url: /images/1.jpg
+  status:
+    enable: true
+    emoji: 🤡
+    message: 努力ing
+
+  # 首页
+banner:
+  enable: true
+  title: 圥忈的小站
+  border: true
+  cloud:
+    enable: true
+    color: "white"
+  go_down:
+    enable: true
+    icon: icon-arrow-down-s-line
+
+
+    # 公告
+notice:
+  enable: true
+  content: Thanks for check out my blog
+
+  # 背景（）
+bg_image:
+  enable: true
+  url: https://s3.bmp.ovh/imgs/2022/03/46d47abde5b3b4aa.jpg
+  dark: https://s1.ax1x.com/2022/04/05/qXP6JI.png
+  # blur: 30px # 设置背景模糊程度
+  opacity: 0.6
+
+  # 烟花
+fireworks:
+  enable: true
+  colors:
+    - "102, 167, 221"
+    - "	255,0,255"
+    - "33, 78, 194"
+    - "255,69,0"
+
+    # 背景与标签
+sidebar:
+  bg_image: https://s1.ax1x.com/2022/03/31/qfDS9e.png
+  bg_position: bottom 3rem center
+  tagcloud:
+    enable: false
+    amount: 20
+  # 目录
+toc:
+  list_number: true
+  max_depth: 6
+  min_depth: 1
+  placeholder: 很遗憾，咱没写啥目录
+  collapse: true
+
+  # 信息
+post_meta:
+  item_text: false
+  created_at: true
+  updated_at: true
+  categories: true
+  tags: true
+  # 版权
+creative_commons:
+  license: by-nc-sa
+  post: true
+  language: deed.zh
+  clipboard: true
+
+  # 打赏
+reward:
+  enable: true
+  icon: icon-hand-coin-line
+  comment: I'm so cute. Please give me money.
+  # url: https://github.com/YunYouJun/yunyoujun.github.io/issues/96
+  methods:
+    - name: 支付宝
+      path: https://s3.bmp.ovh/imgs/2022/03/a495286dcfde6bfa.bmp
+      color: "#00A3EE"
+      icon: ri:alipay-line
+    - name: QQ 支付
+      path: https://s3.bmp.ovh/imgs/2022/03/1018089fdf3cd065.png
+      color: "#12B7F5"
+      icon: ri:qq-line
+    - name: 微信支付
+      path: https://s3.bmp.ovh/imgs/2022/03/08ce21ed009e0f80.png
+      color: "#2DC100"
+      icon: ri:wechat-pay-line 
+  # 驱动
+footer:
+  powered:
+    enable: true
+  # 页脚
+  live_time:
+    enable: true
+    prefix: 本博客已萌萌哒地运行
+    suffix: (●'◡'●)
+    start_time: "2022-03-09T00:00:00"
+  since: 2022
+  icon:
+    name: icon-cloud-line
+    animated: true
+    color: "#0078E7"
+ 
+
+  # 一言
+say:
+  enable: true
+  api: https://cdn.jsdelivr.net/gh/ElpsyCN/say@gh-pages/sentences.json
+  # https://developer.hitokoto.cn/sentence/
+  hitokoto:
+    enable: true
+    api: https://v1.hitokoto.cn
+
+    # 字数统计
+wordcount:
+  enable: true
+  count: true
+  time: true
+  # 标签云（词云）
+wordcloud:
+  enable: false
+  height: 350
+# 评论（已修改）
+github_discussions:
+  enable: true
+  username: weaving-dreams
+  repository: weaving-dreams.github.io
+comment:
+  candidates:
+    - waline
+    # - giscus 
+  tips:
+    - 不要与我交流，我什么都不会。
+  
+# 评论区
+waline:
+  enable: true
+  serverURL: https://waline-1gafcjzkcbb7fe08-1310495826.ap-shanghai.app.tcloudbase.com/waline
+  visitor: true
+  comment: true
+  emoji:
+    - https://cdn.jsdelivr.net/gh/walinejs/emojis@latest/bilibili/
+    - https://cdn.jsdelivr.net/gh/walinejs/emojis@latest/weibo/
+    - https://cdn.jsdelivr.net/gh/walinejs/emojis@latest/qq/
+  
+  locale:
+    placeholder: 来都来了，不说点什么吗
+    level0: '炼体'
+    level1: '炼气'
+    level2: '筑基'
+    level3: '金丹'
+    level4: '元婴'
+    level5: '化神'
+
+    
+# badge: css/leaves.js
+# vendors:
+#   waline:
+#     css: https://unpkg.com/@waline/client@v2/dist/waline.css     # Waline 不同版本的 CDN，见官方文档
+#     js:  https://unpkg.com/@waline/client@v2/dist/waline.js    # Waline 不同版本的 CDN，见官方文档
+
+
+
+  # 菜单
+menu:
+  custom:
+    title: 留言板
+    path: /about/#comment
+    icon: ri:clipboard-line 
+
+# 游标
+cursor:
+  enable: true
+
+
+  # 社交
+social:
+  - name: RSS
+    # set rss in your root config
+    # https://github.com/hexojs/hexo-generator-feed
+    link: /atom.xml # config.feed.path
+    icon: ri:rss-line
+    color: orange
+
+  - name: GitHub
+    link: https://github.com/weaving-dreams
+    icon: ri:github-line
+    color: "#6e5494"
+
+  - name: 微博
+    link: https://weibo.com/u/6603251070
+    icon: ri:weibo-line
+    color: "#E6162D"
+
+  - name: 网易云音乐
+    link: https://music.163.com/#/user/home?id=1475793651
+    icon: ri:netease-cloud-music-line
+    color: "#C20C0C"
+    
+  - name: 哔哩哔哩
+    link: https://space.bilibili.com/499227133?share_medium=android&share_plat=android&share_session_id=f72830f6-8f5f-413a-86d2-6043b1bd69eb&share_source=WEIXIN&share_tag=s_i&timestamp=1646642363&unique_k=pDXLBN4
+    icon: ri:bilibili-line
+    color: "#FF8EB3"
+
+  - name: 酷安
+    link: http://www.coolapk.com/u/4097869
+    icon: icon-kuancoolapk1
+    color: "#007722"
+
+
+
+  # 默哀
+mourn:
+  enable: true
+  days:
+    - "4-4"
+    - "9-18"
+
+  # busuanzi
+busuanzi:
+ enable: true
+ site_uv: true
+ site_uv_icon: icon-user-line
+ site_pv: true
+ site_pv_icon: icon-eye-line
+ page_pv: true
+ page_pv_icon: icon-eye-line
+
+# 一键复制
+ codeblock:
+  copy_btn: true
+
+
+
+# 相册集
+albums:
+  enable: true
+
+pages:
+  - name: 友联 links
+    url: /links/
+    icon: ri:genderless-line
+    color: dodgerblue
+  - name: 喜欢的女孩子
+    url: /girls/
+    icon: ri:women-line
+    color: hotpink
+  - name: 相册集
+    url: /albums/
+    icon: ri:gallery-line
+    color: "#6e5494"
+
+
+# girls:
+#   enable: false
+
+pjax:
+  enable: true
+  
+
+head:
+  js:
+    async:
+      # 这里是你从 iconfont 处获得的图标链接。
+      iconfont: //at.alicdn.com/t/font_3319107_f11xxoznd2e.js
+
+
+# 本地搜索 and 引擎搜索
+engine_search:
+  enable: false
+  href: "https://www.google.com/search?q=site:"
+  # href: "https://www.baidu.com/s?wd=site:"
+  # href: "https://www.bing.com/search?q=site:"
+  domain: weaving-dreams.github.io
+local_search:
+  enable: true
+
+
