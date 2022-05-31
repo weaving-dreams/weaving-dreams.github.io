@@ -84,64 +84,6 @@ Please make your choice from above [‘q’ to quit | ‘c’ to continue | ‘r
       </tags>
   </entry>
   <entry>
-    <title>Deepin检查更新失败</title>
-    <url>/posts/8b4f8dc5/</url>
-    <content><![CDATA[<p>我们更新deepin系统是总会出现检查更新失败,去终端输入命令发现是没有公钥无法验证下列签名</p>
-<pre class="language-none"><code class="language-none">root@123-PC:~$ sudo apt-get update
-获取:1 https:&#x2F;&#x2F;d.store.deepinos.org.cn  InRelease [1,524 B]
-命中:3 https:&#x2F;&#x2F;community-packages.deepin.com&#x2F;deepin apricot InRelease                                        
-命中:4 https:&#x2F;&#x2F;community-packages.deepin.com&#x2F;printer eagle InRelease                                
-获取:5 https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;edge stable InRelease [7,343 B]                         
-命中:2 https:&#x2F;&#x2F;home-store-img.uniontech.com&#x2F;appstore deepin InRelease
-错误:5 https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;edge stable InRelease
-  由于没有公钥，无法验证下列签名： NO_PUBKEY EB3E94ADDE1229DD
-正在读取软件包列表... 完成
-W: GPG 错误：https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;edge stable InRelease: 由于没有公钥，无法验证下列签名： NO_PUBKEY EB3E94ADDE1229DD
-E: 仓库 “https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;edge stable InRelease” 没有数字签名。
-N: 无法安全地用该源进行更新，所以默认禁用该源。
-N: 参见 apt-secure(8) 手册以了解仓库创建和用户配置方面的细节。
-</code></pre>
-
-<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>第三方应用商店商店（星火应用商店）的更新源与系统更新源冲突导致。</p>
-<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><h3 id="方法一：把星火应用商店的仓库禁用"><a href="#方法一：把星火应用商店的仓库禁用" class="headerlink" title="方法一：把星火应用商店的仓库禁用"></a>方法一：把星火应用商店的仓库禁用</h3><blockquote>
-<p>注：此做法不影响星火应用商店安装应用</p>
-</blockquote>
-<p>打开终端先执行</p>
-<p><code>cd /etc/apt/sources.list.d</code></p>
-<p>再执行</p>
-<p><code>sudo mv sparkstore.list sparkstore.list.bkup</code></p>
-<h3 id="方法二：更新公钥"><a href="#方法二：更新公钥" class="headerlink" title="方法二：更新公钥"></a>方法二：更新公钥</h3><p>打开终端输入</p>
-<p><code>sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys c #此处的EB3E94ADDE1229DD是报错时提示的key</code></p>
-<p>完成后显示</p>
-<pre class="language-xiao@xiao-PC:~$" data-language="xiao@xiao-PC:~$"><div class="caption"><span>sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EB3E94ADBE1229CF</span></div><code class="language-xiao@xiao-PC:~$">Executing: &#x2F;tmp&#x2F;apt-key-gpghome.CB8XSEEM1u&#x2F;gpg.1.sh --keyserver keyserver.ubuntu.com --recv-keys EB3E94ADDE1229DD
-gpg: 密钥 EB3E94ADDE1229DD：公钥 “Microsoft (Release signing) &lt;gpgsecurity@microsoft.com&gt;” 已导入
-gpg: 处理的总数：1
-gpg:               已导入：1</code></pre>
-
-<p>之后输入</p>
-<p><code>sudo apt-get update</code></p>
-<p>提示</p>
-<pre class="language-获取:1" data-language="获取:1"><div class="caption"><span>https://d.store.deepinos.org.cn  InRelease [1,524 B]</span></div><code class="language-获取:1">命中:3 https:&#x2F;&#x2F;community-packages.deepin.com&#x2F;deepin apricot InRelease                                        
-获取:4 https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;edge stable InRelease [7,343 B]                                  
-命中:5 https:&#x2F;&#x2F;community-packages.deepin.com&#x2F;printer eagle InRelease                                         
-命中:2 https:&#x2F;&#x2F;home-store-img.uniontech.com&#x2F;appstore deepin InRelease
-获取:6 https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;edge stable&#x2F;main amd64 Packages [11.4 kB]
-已下载 12.9 kB，耗时 1秒 (15.5 kB&#x2F;s)
-正在读取软件包列表... 完成</code></pre>
-
-
-
-<p>之后就可以去设置里更新系统了</p>
-]]></content>
-      <categories>
-        <category>教程</category>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>deepin</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>DVWA-SQL注入Medium and High</title>
     <url>/posts/50a54441/</url>
     <content><![CDATA[<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>SQL注入即是指web应用程序对用户输入数据的合法性没有判断或过滤不严，攻击者可以在web应用程序中事先定义好的查询语句的结尾上添加额外的SQL语句，在管理员不知情的情况下实现非法操作，以此来实现欺骗数据库服务器执行非授权的任意查询，从而进一步得到相应的数据信息。 </p>
@@ -317,6 +259,64 @@ select * from users where id&#x3D;1 and greatest(ascii(substr(database(),1,1)),6
       </categories>
       <tags>
         <tag>DVWA</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Deepin检查更新失败</title>
+    <url>/posts/8b4f8dc5/</url>
+    <content><![CDATA[<p>我们更新deepin系统是总会出现检查更新失败,去终端输入命令发现是没有公钥无法验证下列签名</p>
+<pre class="language-none"><code class="language-none">root@123-PC:~$ sudo apt-get update
+获取:1 https:&#x2F;&#x2F;d.store.deepinos.org.cn  InRelease [1,524 B]
+命中:3 https:&#x2F;&#x2F;community-packages.deepin.com&#x2F;deepin apricot InRelease                                        
+命中:4 https:&#x2F;&#x2F;community-packages.deepin.com&#x2F;printer eagle InRelease                                
+获取:5 https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;edge stable InRelease [7,343 B]                         
+命中:2 https:&#x2F;&#x2F;home-store-img.uniontech.com&#x2F;appstore deepin InRelease
+错误:5 https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;edge stable InRelease
+  由于没有公钥，无法验证下列签名： NO_PUBKEY EB3E94ADDE1229DD
+正在读取软件包列表... 完成
+W: GPG 错误：https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;edge stable InRelease: 由于没有公钥，无法验证下列签名： NO_PUBKEY EB3E94ADDE1229DD
+E: 仓库 “https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;edge stable InRelease” 没有数字签名。
+N: 无法安全地用该源进行更新，所以默认禁用该源。
+N: 参见 apt-secure(8) 手册以了解仓库创建和用户配置方面的细节。
+</code></pre>
+
+<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>第三方应用商店商店（星火应用商店）的更新源与系统更新源冲突导致。</p>
+<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><h3 id="方法一：把星火应用商店的仓库禁用"><a href="#方法一：把星火应用商店的仓库禁用" class="headerlink" title="方法一：把星火应用商店的仓库禁用"></a>方法一：把星火应用商店的仓库禁用</h3><blockquote>
+<p>注：此做法不影响星火应用商店安装应用</p>
+</blockquote>
+<p>打开终端先执行</p>
+<p><code>cd /etc/apt/sources.list.d</code></p>
+<p>再执行</p>
+<p><code>sudo mv sparkstore.list sparkstore.list.bkup</code></p>
+<h3 id="方法二：更新公钥"><a href="#方法二：更新公钥" class="headerlink" title="方法二：更新公钥"></a>方法二：更新公钥</h3><p>打开终端输入</p>
+<p><code>sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys c #此处的EB3E94ADDE1229DD是报错时提示的key</code></p>
+<p>完成后显示</p>
+<pre class="language-xiao@xiao-PC:~$" data-language="xiao@xiao-PC:~$"><div class="caption"><span>sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EB3E94ADBE1229CF</span></div><code class="language-xiao@xiao-PC:~$">Executing: &#x2F;tmp&#x2F;apt-key-gpghome.CB8XSEEM1u&#x2F;gpg.1.sh --keyserver keyserver.ubuntu.com --recv-keys EB3E94ADDE1229DD
+gpg: 密钥 EB3E94ADDE1229DD：公钥 “Microsoft (Release signing) &lt;gpgsecurity@microsoft.com&gt;” 已导入
+gpg: 处理的总数：1
+gpg:               已导入：1</code></pre>
+
+<p>之后输入</p>
+<p><code>sudo apt-get update</code></p>
+<p>提示</p>
+<pre class="language-获取:1" data-language="获取:1"><div class="caption"><span>https://d.store.deepinos.org.cn  InRelease [1,524 B]</span></div><code class="language-获取:1">命中:3 https:&#x2F;&#x2F;community-packages.deepin.com&#x2F;deepin apricot InRelease                                        
+获取:4 https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;edge stable InRelease [7,343 B]                                  
+命中:5 https:&#x2F;&#x2F;community-packages.deepin.com&#x2F;printer eagle InRelease                                         
+命中:2 https:&#x2F;&#x2F;home-store-img.uniontech.com&#x2F;appstore deepin InRelease
+获取:6 https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;edge stable&#x2F;main amd64 Packages [11.4 kB]
+已下载 12.9 kB，耗时 1秒 (15.5 kB&#x2F;s)
+正在读取软件包列表... 完成</code></pre>
+
+
+
+<p>之后就可以去设置里更新系统了</p>
+]]></content>
+      <categories>
+        <category>教程</category>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>deepin</tag>
       </tags>
   </entry>
   <entry>
@@ -1495,64 +1495,6 @@ cond(no)-&gt;op</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>dvwa--CSRF</title>
-    <url>/posts/4161e8ef/</url>
-    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>CSRF是一种攻击，它迫使最终用户在当前已通过身份验证的web应用程序上执行不想要的操作。借助一点社会工程的帮助(例如通过电子邮件&#x2F;聊天发送链接)，攻击者可能会迫使web应用程序的用户执行攻击者所选择的操作。</p>
-<p>一个成功的CSRF攻击可以在正常用户的情况下损害最终用户数据和操作。如果目标终端用户是管理员帐户，这可能会危及整个web应用程序。</p>
-<p>这种攻击也可以称为“XSRF”，类似于“跨站点脚本编写(XSS)”，它们经常一起使用。</p>
-<h2 id="CSRF与XSS区别"><a href="#CSRF与XSS区别" class="headerlink" title="CSRF与XSS区别"></a>CSRF与XSS区别</h2><p>CSRF是借助用户的权限完成攻击，攻击者并没有拿到用户的权限。目标构造修改个人信息的链接，利用lucy在登录状态下点击此链接达到修改信息的目的。<br>XSS直接盗取了用户的权限，然后实施破坏。攻击者利用XSS盗取了目标的Cookie，登录lucy的后台，再修改相关信息。</p>
-<h2 id="Low级"><a href="#Low级" class="headerlink" title="Low级"></a>Low级</h2><h3 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h3><pre class="language-php" data-language="php"><code class="language-php"><span class="token function">stripos</span><span class="token punctuation">(</span> <span class="token variable">$_SERVER</span><span class="token punctuation">[</span> <span class="token string single-quoted-string">'HTTP_REFERER'</span> <span class="token punctuation">]</span> <span class="token punctuation">,</span><span class="token variable">$_SERVER</span><span class="token punctuation">[</span> <span class="token string single-quoted-string">'SERVER_NAME'</span> <span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">!==</span> <span class="token constant boolean">false</span> <span class="token punctuation">)</span></code></pre>
-
-<p>stripos() ：数查找字符串在另一字符串中第一次出现的位置（不区分大小写）。</p>
-<p>HTTP Referer：是header的一部分，当浏览器向web服务器发送请求的时候，一般会带上Referer，告诉服务器该网页是从哪个页面链接过来的，服务器因此可以获得一些信息用于处理。</p>
-<p>SERVER_NAME：是要访问的主机名</p>
-<p>过滤规则为http包头的Referer参数的值中是否包含主机名</p>
-<h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3><p>伪造链接</p>
-<p><a href="http://192.168.224.135/dvwa/vulnerabilities/csrf/?password_new=password&amp;password_conf=password&amp;Change=Change#">http://192.168.224.135/dvwa/vulnerabilities/csrf/?password_new=password&amp;password_conf=password&amp;Change=Change#</a></p>
-<p>一旦用户点击链接，就会出现红字：提示密码改变了</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/CSRF--dvwa/20220414164025.png" alt="1" loading="lazy"></p>
-<p>这样我们就成功地将密码更改为password了<br>当然，我们可以将链接修饰一下，毕竟这样一看就能看出来。<br>比如我们可以在网上找一个短链接生成器</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/CSRF--dvwa/20220414164031.png" alt="2" loading="lazy"></p>
-<p>得到这个链接：<a href="http://5l8.cn/ffHx0">http://5l8.cn/ffHx0</a></p>
-<p>伪装一下：<a href="http://5l8.cn/ffHx0">Change</a></p>
-<p>也可以构造一个html界面</p>
-<pre class="language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://192.168.224.135/dvwa/vulnerabilities/csrf/?password_new=password&amp;password_conf=password&amp;Change=Change#<span class="token punctuation">"</span></span> <span class="token attr-name">border</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span><span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">display</span><span class="token punctuation">:</span>none<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">/></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>404<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">></span></span>file not found.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">></span></span></code></pre>
-
-
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/CSRF--dvwa/20220414164034.png" alt="3" loading="lazy"><em>看似是一个失效界面，实际已经改掉了密码。</em></p>
-<h2 id="Medium级"><a href="#Medium级" class="headerlink" title="Medium级"></a>Medium级</h2><h3 id="解析-1"><a href="#解析-1" class="headerlink" title="解析"></a>解析</h3><p>与low难度一样，没有token，这时候，我们可以看一下源代码比起low级多了</p>
-<pre class="language-php" data-language="php"><code class="language-php"><span class="token keyword">if</span><span class="token punctuation">(</span> <span class="token function">stripos</span><span class="token punctuation">(</span> <span class="token variable">$_SERVER</span><span class="token punctuation">[</span> <span class="token string single-quoted-string">'HTTP_REFERER'</span> <span class="token punctuation">]</span> <span class="token punctuation">,</span><span class="token variable">$_SERVER</span><span class="token punctuation">[</span> <span class="token string single-quoted-string">'SERVER_NAME'</span> <span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">!==</span> <span class="token constant boolean">false</span> <span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></code></pre>
-
-
-
-<p><code>stripos() </code>函数查找字符串在另一字符串中第一次出现的位置（不区分大小写）。<br><code>HTTP Referer</code>是header的一部分，当浏览器向web服务器发送请求的时候，一般会带上Referer，告诉服务器该网页是从哪个页面链接过来的，服务器因此可以获得一些信息用于处理。<br><code>SERVER_NAME</code>是要访问的主机名<br>过滤规则为http包头的Referer参数的值中是否包含主机名</p>
-<h3 id="过程-1"><a href="#过程-1" class="headerlink" title="过程"></a>过程</h3><p>抓包</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/CSRF--dvwa/20220414164039.png" alt="4" loading="lazy"></p>
-<p>会发现有一栏Referer，就是该页面的url</p>
-<p><code>	Referer: http://192.168.224.135/dvwa/vulnerabilities/csrf/	</code></p>
-<p>开启抓包拦截、接着使用此前构造的链接尝试会发现报文里没有REferer</p>
-<p><a href="http://192.168.224.135/dvwa/vulnerabilities/csrf/?password_new=password&amp;password_conf=password&amp;Change=Change#">http://192.168.224.135/dvwa/vulnerabilities/csrf/?password_new=password&amp;password_conf=password&amp;Change=Change#</a></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/CSRF--dvwa/20220414164042.png" alt="5" loading="lazy"></p>
-<p>我们在报文里加上，然后放行</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/CSRF--dvwa/20220414164044.png" alt="6" loading="lazy"></p>
-<p>提示密码修改成功</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/CSRF--dvwa/20220414164046.png" alt="7" loading="lazy"></p>
-<h2 id="High级-amp-Impossible级"><a href="#High级-amp-Impossible级" class="headerlink" title="High级&amp;Impossible级"></a>High级&amp;Impossible级</h2><p>略</p>
-<p>注：教程来自[<em><a href="https://www.iculture.cc/cybersecurity/pig=243">【DVWA全攻略】DVWA CSRF 实验-FancyPig’s blog </a></em></p>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>web安全</category>
-        <category>DVWA</category>
-      </categories>
-      <tags>
-        <tag>DVWA</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>centos7安装PHP5</title>
     <url>/posts/b394315b/</url>
     <content><![CDATA[<p>参考：<a href="https://www.cnblogs.com/xxdebug/p/14142266.html">centos7安装PHP5 - xiaoxiaoの - 博客园 </a></p>
@@ -1655,6 +1597,64 @@ PATH&#x3D;$PATH:&#x2F;usr&#x2F;local&#x2F;php&#x2F;bin环境变量生效 source 
       </categories>
       <tags>
         <tag>CentOS7</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>dvwa--CSRF</title>
+    <url>/posts/4161e8ef/</url>
+    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>CSRF是一种攻击，它迫使最终用户在当前已通过身份验证的web应用程序上执行不想要的操作。借助一点社会工程的帮助(例如通过电子邮件&#x2F;聊天发送链接)，攻击者可能会迫使web应用程序的用户执行攻击者所选择的操作。</p>
+<p>一个成功的CSRF攻击可以在正常用户的情况下损害最终用户数据和操作。如果目标终端用户是管理员帐户，这可能会危及整个web应用程序。</p>
+<p>这种攻击也可以称为“XSRF”，类似于“跨站点脚本编写(XSS)”，它们经常一起使用。</p>
+<h2 id="CSRF与XSS区别"><a href="#CSRF与XSS区别" class="headerlink" title="CSRF与XSS区别"></a>CSRF与XSS区别</h2><p>CSRF是借助用户的权限完成攻击，攻击者并没有拿到用户的权限。目标构造修改个人信息的链接，利用lucy在登录状态下点击此链接达到修改信息的目的。<br>XSS直接盗取了用户的权限，然后实施破坏。攻击者利用XSS盗取了目标的Cookie，登录lucy的后台，再修改相关信息。</p>
+<h2 id="Low级"><a href="#Low级" class="headerlink" title="Low级"></a>Low级</h2><h3 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h3><pre class="language-php" data-language="php"><code class="language-php"><span class="token function">stripos</span><span class="token punctuation">(</span> <span class="token variable">$_SERVER</span><span class="token punctuation">[</span> <span class="token string single-quoted-string">'HTTP_REFERER'</span> <span class="token punctuation">]</span> <span class="token punctuation">,</span><span class="token variable">$_SERVER</span><span class="token punctuation">[</span> <span class="token string single-quoted-string">'SERVER_NAME'</span> <span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">!==</span> <span class="token constant boolean">false</span> <span class="token punctuation">)</span></code></pre>
+
+<p>stripos() ：数查找字符串在另一字符串中第一次出现的位置（不区分大小写）。</p>
+<p>HTTP Referer：是header的一部分，当浏览器向web服务器发送请求的时候，一般会带上Referer，告诉服务器该网页是从哪个页面链接过来的，服务器因此可以获得一些信息用于处理。</p>
+<p>SERVER_NAME：是要访问的主机名</p>
+<p>过滤规则为http包头的Referer参数的值中是否包含主机名</p>
+<h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3><p>伪造链接</p>
+<p><a href="http://192.168.224.135/dvwa/vulnerabilities/csrf/?password_new=password&amp;password_conf=password&amp;Change=Change#">http://192.168.224.135/dvwa/vulnerabilities/csrf/?password_new=password&amp;password_conf=password&amp;Change=Change#</a></p>
+<p>一旦用户点击链接，就会出现红字：提示密码改变了</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/CSRF--dvwa/20220414164025.png" alt="1" loading="lazy"></p>
+<p>这样我们就成功地将密码更改为password了<br>当然，我们可以将链接修饰一下，毕竟这样一看就能看出来。<br>比如我们可以在网上找一个短链接生成器</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/CSRF--dvwa/20220414164031.png" alt="2" loading="lazy"></p>
+<p>得到这个链接：<a href="http://5l8.cn/ffHx0">http://5l8.cn/ffHx0</a></p>
+<p>伪装一下：<a href="http://5l8.cn/ffHx0">Change</a></p>
+<p>也可以构造一个html界面</p>
+<pre class="language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://192.168.224.135/dvwa/vulnerabilities/csrf/?password_new=password&amp;password_conf=password&amp;Change=Change#<span class="token punctuation">"</span></span> <span class="token attr-name">border</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span><span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">display</span><span class="token punctuation">:</span>none<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">/></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>404<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">></span></span>file not found.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">></span></span></code></pre>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/CSRF--dvwa/20220414164034.png" alt="3" loading="lazy"><em>看似是一个失效界面，实际已经改掉了密码。</em></p>
+<h2 id="Medium级"><a href="#Medium级" class="headerlink" title="Medium级"></a>Medium级</h2><h3 id="解析-1"><a href="#解析-1" class="headerlink" title="解析"></a>解析</h3><p>与low难度一样，没有token，这时候，我们可以看一下源代码比起low级多了</p>
+<pre class="language-php" data-language="php"><code class="language-php"><span class="token keyword">if</span><span class="token punctuation">(</span> <span class="token function">stripos</span><span class="token punctuation">(</span> <span class="token variable">$_SERVER</span><span class="token punctuation">[</span> <span class="token string single-quoted-string">'HTTP_REFERER'</span> <span class="token punctuation">]</span> <span class="token punctuation">,</span><span class="token variable">$_SERVER</span><span class="token punctuation">[</span> <span class="token string single-quoted-string">'SERVER_NAME'</span> <span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">!==</span> <span class="token constant boolean">false</span> <span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></code></pre>
+
+
+
+<p><code>stripos() </code>函数查找字符串在另一字符串中第一次出现的位置（不区分大小写）。<br><code>HTTP Referer</code>是header的一部分，当浏览器向web服务器发送请求的时候，一般会带上Referer，告诉服务器该网页是从哪个页面链接过来的，服务器因此可以获得一些信息用于处理。<br><code>SERVER_NAME</code>是要访问的主机名<br>过滤规则为http包头的Referer参数的值中是否包含主机名</p>
+<h3 id="过程-1"><a href="#过程-1" class="headerlink" title="过程"></a>过程</h3><p>抓包</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/CSRF--dvwa/20220414164039.png" alt="4" loading="lazy"></p>
+<p>会发现有一栏Referer，就是该页面的url</p>
+<p><code>	Referer: http://192.168.224.135/dvwa/vulnerabilities/csrf/	</code></p>
+<p>开启抓包拦截、接着使用此前构造的链接尝试会发现报文里没有REferer</p>
+<p><a href="http://192.168.224.135/dvwa/vulnerabilities/csrf/?password_new=password&amp;password_conf=password&amp;Change=Change#">http://192.168.224.135/dvwa/vulnerabilities/csrf/?password_new=password&amp;password_conf=password&amp;Change=Change#</a></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/CSRF--dvwa/20220414164042.png" alt="5" loading="lazy"></p>
+<p>我们在报文里加上，然后放行</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/CSRF--dvwa/20220414164044.png" alt="6" loading="lazy"></p>
+<p>提示密码修改成功</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/CSRF--dvwa/20220414164046.png" alt="7" loading="lazy"></p>
+<h2 id="High级-amp-Impossible级"><a href="#High级-amp-Impossible级" class="headerlink" title="High级&amp;Impossible级"></a>High级&amp;Impossible级</h2><p>略</p>
+<p>注：教程来自[<em><a href="https://www.iculture.cc/cybersecurity/pig=243">【DVWA全攻略】DVWA CSRF 实验-FancyPig’s blog </a></em></p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>web安全</category>
+        <category>DVWA</category>
+      </categories>
+      <tags>
+        <tag>DVWA</tag>
       </tags>
   </entry>
   <entry>
@@ -2118,10 +2118,127 @@ apt-get dist-upgrade		#根据依赖关系更新</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>个人博客的搭建</title>
+    <url>/posts/2f165d3c/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="为什么搭建自己的个人博客"><a href="#为什么搭建自己的个人博客" class="headerlink" title="为什么搭建自己的个人博客"></a>为什么搭建自己的个人博客</h3><p>  虽然现在市面上博客种类繁多，注册后可以直接在上面发表，用户交互也非常棒，写的文章也可以被各种搜索引擎搜索到，但是平台的各种限制以及烦人的广告最终让我萌生了搭建自己的个人博客的想法。</p>
+<span id="more"></span>
+
+<h3 id="个人博客的好处"><a href="#个人博客的好处" class="headerlink" title="个人博客的好处"></a>个人博客的好处</h3><ol>
+<li><p>更自由、更独立</p>
+<p>个人博客可以按照自己的喜好设计、任意管理，不用担心平台限制和各种广告</p>
+</li>
+<li><p>记录生活，反应成长</p>
+</li>
+<li><p>学习新技能</p>
+</li>
+<li><p>提升写作</p>
+</li>
+</ol>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><p>文中步骤按照yunyoujun的博客搭建</p>
+<p> <a href="https://www.yunyoujun.cn/share/how-to-build-your-site/">教你如何从零开始搭建一个属于自己的网站 | 云游君的小站 (yunyoujun.cn)</a></p>
+<h3 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h3><p>官网： [Node.js](<a href="https://nodejs.org/zh-cn/">Node.js (nodejs.org)</a>)   建议下载稳定版</p>
+<p>全部默认下一步进行安装</p>
+<p>安装后打开命令提示符输入： node -v：显示安装的nodejs版本、npm -v：显示安装的npm版本</p>
+<p>注:Node.js 安装成功也默认安装了npm，后续会用到<br>    npm 是随 Node.js 一起被安装的包管理工具，你可以理解成 Node.js 自带的应用商店。</p>
+<p>​	使用hexo搭建个人博客选装hexohexo-renderer-sass：国内使用npm会很慢<br>​	解决方法：改用淘宝镜像</p>
+<pre><code>$ npm install -g cnpm --registry=https://registry.npm.taobao.org
+$ npm config set registry https://registry.npm.taobao.org
+</code></pre>
+<p>再次安装：</p>
+<pre class="language-none"><code class="language-none">$ cnpm install hexo-renderer-sass --save</code></pre>
+
+<h3 id="Git和GitHub"><a href="#Git和GitHub" class="headerlink" title="Git和GitHub"></a>Git和GitHub</h3><h4 id="安装VS-Code（可省略）"><a href="#安装VS-Code（可省略）" class="headerlink" title="安装VS Code（可省略）"></a>安装VS Code（可省略）</h4><blockquote>
+<p>安装git可设置VS Code为默认编辑器而且功能强大</p>
+</blockquote>
+<p>官网：[VS Code](<a href="https://code.visualstudio.com/">Visual Studio Code - Code Editing.重新</a>)</p>
+<p>选择好安装位置和添加桌面快捷方式其他默认就好</p>
+<p>设置中文：打开VS Code ；按快捷键“Ctrl+Shift+P”后在顶部会出现一个搜索框输入<code>Chinese (Simplified) Language Pack for Visual Studio Code</code>；点击install进行安装；重启。</p>
+<h4 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h4><p>官网：[Git](<a href="https://git-scm.com/">Git (git-scm.com)</a>)</p>
+<p>安装时：</p>
+<blockquote>
+<p>安装组件时最后一个不选</p>
+<p>选择默认编辑器时若安装了VS Code则选择VS Code为默认编辑器为安装则默认</p>
+<p>其他界面均为默认</p>
+</blockquote>
+<p>安装完成后打开 Git Bash终端里输入 git –version 查看 git 版本</p>
+<h4 id="GitHub"><a href="#GitHub" class="headerlink" title="GitHub"></a>GitHub</h4><p>官网：<a href="%5BGitHub%5D(https://github.com/)">GitHub</a></p>
+<p>打开网站直接注册就行，如果看不懂打开浏览器翻译</p>
+<p>注册后登录GitHub点击右上角的+ -&gt; New repository新建仓库</p>
+<p><img src="https://s3.bmp.ovh/imgs/2022/03/20c1f342a9930bca.bmp" loading="lazy"></p>
+<p>仓库名称 你的用户名.github.io 用户名是英文；点击Create repository。</p>
+<h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><p>官网：<a href="%5BHexo%5D(https://hexo.io/zh-cn/)">Hexo</a></p>
+<p>官方文档:<a href="https://hexo.io/zh-cn/docs/index.html">文档 | Hexo</a></p>
+<p>在终端中输入以下命令：</p>
+<pre class="language-none"><code class="language-none">npm install hexo-cli -g
+# 如果安装失败，可能是没有权限，可以尝试头部加上 sudo 重新执行
+# sudo npm install hexo-cli -g</code></pre>
+
+<p>通过 cd 进入你本地电脑打算储存网站代码的目录</p>
+<p>例：</p>
+<pre class="language-none"><code class="language-none">cd c:\boke</code></pre>
+
+
+
+<p>接下来输入：</p>
+<pre class="language-none"><code class="language-none">hexo init 你的名字.github.io</code></pre>
+
+<p>进入你博客的文件夹：</p>
+<pre class="language-none"><code class="language-none"># 进入你的博客文件夹
+cd 你的名字.github.io
+# 默认安装所有 &#96;package.json&#96; 文件中提到的包
+npm install
+# 你也可以缩写成 hexo s
+hexo server</code></pre>
+
+<p>之后在浏览器地址栏输入<code> localhost:4000</code> 就可以看到初始本地网页了（此时你可以看到博客的默认主题）</p>
+<p>按Ctrl + C 中断服务器运行</p>
+<p>至此，基础模板搭建完成</p>
+<h3 id="使用主题"><a href="#使用主题" class="headerlink" title="使用主题"></a>使用主题</h3><p>略</p>
+<p>我使用的是yunyoujun的yun主题具体可参考<a href="https://yun.yunyoujun.cn/?_gl=1*87a412*_ga*MjEwMjQ0NTAuMTY0NjU0NDU4Mw..*_ga_1LL0D86CY9*MTY0NjgyMDc4Ni4zMy4xLjE2NDY4MjEwODcuMA..">主页 | Hexo-Theme-Yun (yunyoujun.cn)</a></p>
+<h3 id="编辑-Hexo-配置"><a href="#编辑-Hexo-配置" class="headerlink" title="编辑 Hexo 配置"></a>编辑 Hexo 配置</h3><p>略</p>
+<h3 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h3><p>配置完主题，就该放到线上了</p>
+<p>首先生成静态文件</p>
+<pre class="language-none"><code class="language-none"># 如果进行多次生成，为了避免受错误缓存影响，最好使用 hexo clean 先清除一遍。
+hexo generate
+# 缩写为 hexo g</code></pre>
+
+<h3 id="与远程仓库关联"><a href="#与远程仓库关联" class="headerlink" title="与远程仓库关联"></a>与远程仓库关联</h3><p>接下来我们将本地的仓库与此前在 GitHub 上建立的仓库建立关联。</p>
+<pre class="language-none"><code class="language-none">git init # 初始化 Git 仓库，只需要执行一次即可</code></pre>
+
+<h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><p>为了更方便的部署到 GitHub Pages，Hexo 提供了 <code>hexo-deployer-git</code> 插件。</p>
+<p>安装插件：</p>
+<pre class="language-none"><code class="language-none">npm install hexo-deployer-git</code></pre>
+
+<p>在 <code>_config.yml</code> 中配置。</p>
+<pre class="language-none"><code class="language-none">deploy:
+  type: git
+  repo: 你此前新建的仓库的链接 # 比如：	https:&#x2F;&#x2F;github.com&#x2F;YunYouJun&#x2F;yunyoujun.github.io
+  branch: master # 默认使用 master 分支
+  message: Update Hexo Static Content # 你可以自定义此次部署更新的说明</code></pre>
+
+<p>保存，部署！</p>
+<blockquote>
+<p>第一次部署需要输入自己GitHub用户名和密码</p>
+</blockquote>
+<pre class="language-none"><code class="language-none">hexo deploy</code></pre>
+
+<p>​	</p>
+<p>等待完成后，打开网址 <code>https://你的名字.github.io</code> 就能看到你的线上网站了。</p>
+<p>至此你的博客也就完成了</p>
+]]></content>
+      <categories>
+        <category>教程</category>
+        <category>博客</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>《天堂旅行团》摘抄</title>
     <url>/posts/7d0fc3d8/</url>
     <content><![CDATA[
-    <div id="aplayer-AcMvRqFP" class="aplayer aplayer-tag-marker meting-tag-marker"
+    <div id="aplayer-xqYisimQ" class="aplayer aplayer-tag-marker meting-tag-marker"
          data-id="1891034510" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#C20C0C"
     ></div>
 
@@ -2240,120 +2357,40 @@ apt-get dist-upgrade		#根据依赖关系更新</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>个人博客的搭建</title>
-    <url>/posts/2f165d3c/</url>
-    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="为什么搭建自己的个人博客"><a href="#为什么搭建自己的个人博客" class="headerlink" title="为什么搭建自己的个人博客"></a>为什么搭建自己的个人博客</h3><p>  虽然现在市面上博客种类繁多，注册后可以直接在上面发表，用户交互也非常棒，写的文章也可以被各种搜索引擎搜索到，但是平台的各种限制以及烦人的广告最终让我萌生了搭建自己的个人博客的想法。</p>
-<span id="more"></span>
-
-<h3 id="个人博客的好处"><a href="#个人博客的好处" class="headerlink" title="个人博客的好处"></a>个人博客的好处</h3><ol>
-<li><p>更自由、更独立</p>
-<p>个人博客可以按照自己的喜好设计、任意管理，不用担心平台限制和各种广告</p>
+    <title>卡里安装pycharm后创建快捷方式</title>
+    <url>/posts/1f1dc0da/</url>
+    <content><![CDATA[<ol>
+<li><p>kali的快捷方式都放在&#x2F;usr&#x2F;share&#x2F;applications里，首先在该目录下创建一个Pycharm.desktop</p>
 </li>
-<li><p>记录生活，反应成长</p>
+<li><p>终端输输入：</p>
+<pre class="language-none"><code class="language-none">dusudo vim &#x2F;usr&#x2F;share&#x2F;applications&#x2F;Pycharm.desktop</code></pre>
 </li>
-<li><p>学习新技能</p>
-</li>
-<li><p>提升写作</p>
+<li><p>粘贴模板zhi：</p>
 </li>
 </ol>
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><p>文中步骤按照yunyoujun的博客搭建</p>
-<p> <a href="https://www.yunyoujun.cn/share/how-to-build-your-site/">教你如何从零开始搭建一个属于自己的网站 | 云游君的小站 (yunyoujun.cn)</a></p>
-<h3 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h3><p>官网： [Node.js](<a href="https://nodejs.org/zh-cn/">Node.js (nodejs.org)</a>)   建议下载稳定版</p>
-<p>全部默认下一步进行安装</p>
-<p>安装后打开命令提示符输入： node -v：显示安装的nodejs版本、npm -v：显示安装的npm版本</p>
-<p>注:Node.js 安装成功也默认安装了npm，后续会用到<br>    npm 是随 Node.js 一起被安装的包管理工具，你可以理解成 Node.js 自带的应用商店。</p>
-<p>​	使用hexo搭建个人博客选装hexohexo-renderer-sass：国内使用npm会很慢<br>​	解决方法：改用淘宝镜像</p>
-<pre><code>$ npm install -g cnpm --registry=https://registry.npm.taobao.org
-$ npm config set registry https://registry.npm.taobao.org
-</code></pre>
-<p>再次安装：</p>
-<pre class="language-none"><code class="language-none">$ cnpm install hexo-renderer-sass --save</code></pre>
+<pre class="language-none"><code class="language-none">[Desktop Entry]
+Type&#x3D;Application
+Name&#x3D;Pycharm
+GenericName&#x3D;Pycharm3
+Comment&#x3D;Pycharm3:The Python IDE
+Exec&#x3D;sh &#x2F;opt&#x2F;pycharm&#x2F;bin&#x2F;pycharm.sh
+Icon&#x3D;&#x2F;opt&#x2F;pycharm&#x2F;bin&#x2F;pycharm.png
+Terminal&#x3D;pycharm
+Categories&#x3D;Pycharm;</code></pre>
 
-<h3 id="Git和GitHub"><a href="#Git和GitHub" class="headerlink" title="Git和GitHub"></a>Git和GitHub</h3><h4 id="安装VS-Code（可省略）"><a href="#安装VS-Code（可省略）" class="headerlink" title="安装VS Code（可省略）"></a>安装VS Code（可省略）</h4><blockquote>
-<p>安装git可设置VS Code为默认编辑器而且功能强大</p>
-</blockquote>
-<p>官网：[VS Code](<a href="https://code.visualstudio.com/">Visual Studio Code - Code Editing.重新</a>)</p>
-<p>选择好安装位置和添加桌面快捷方式其他默认就好</p>
-<p>设置中文：打开VS Code ；按快捷键“Ctrl+Shift+P”后在顶部会出现一个搜索框输入<code>Chinese (Simplified) Language Pack for Visual Studio Code</code>；点击install进行安装；重启。</p>
-<h4 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h4><p>官网：[Git](<a href="https://git-scm.com/">Git (git-scm.com)</a>)</p>
-<p>安装时：</p>
-<blockquote>
-<p>安装组件时最后一个不选</p>
-<p>选择默认编辑器时若安装了VS Code则选择VS Code为默认编辑器为安装则默认</p>
-<p>其他界面均为默认</p>
-</blockquote>
-<p>安装完成后打开 Git Bash终端里输入 git –version 查看 git 版本</p>
-<h4 id="GitHub"><a href="#GitHub" class="headerlink" title="GitHub"></a>GitHub</h4><p>官网：<a href="%5BGitHub%5D(https://github.com/)">GitHub</a></p>
-<p>打开网站直接注册就行，如果看不懂打开浏览器翻译</p>
-<p>注册后登录GitHub点击右上角的+ -&gt; New repository新建仓库</p>
-<p><img src="https://s3.bmp.ovh/imgs/2022/03/20c1f342a9930bca.bmp" loading="lazy"></p>
-<p>仓库名称 你的用户名.github.io 用户名是英文；点击Create repository。</p>
-<h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><p>官网：<a href="%5BHexo%5D(https://hexo.io/zh-cn/)">Hexo</a></p>
-<p>官方文档:<a href="https://hexo.io/zh-cn/docs/index.html">文档 | Hexo</a></p>
-<p>在终端中输入以下命令：</p>
-<pre class="language-none"><code class="language-none">npm install hexo-cli -g
-# 如果安装失败，可能是没有权限，可以尝试头部加上 sudo 重新执行
-# sudo npm install hexo-cli -g</code></pre>
-
-<p>通过 cd 进入你本地电脑打算储存网站代码的目录</p>
-<p>例：</p>
-<pre class="language-none"><code class="language-none">cd c:\boke</code></pre>
-
-
-
-<p>接下来输入：</p>
-<pre class="language-none"><code class="language-none">hexo init 你的名字.github.io</code></pre>
-
-<p>进入你博客的文件夹：</p>
-<pre class="language-none"><code class="language-none"># 进入你的博客文件夹
-cd 你的名字.github.io
-# 默认安装所有 &#96;package.json&#96; 文件中提到的包
-npm install
-# 你也可以缩写成 hexo s
-hexo server</code></pre>
-
-<p>之后在浏览器地址栏输入<code> localhost:4000</code> 就可以看到初始本地网页了（此时你可以看到博客的默认主题）</p>
-<p>按Ctrl + C 中断服务器运行</p>
-<p>至此，基础模板搭建完成</p>
-<h3 id="使用主题"><a href="#使用主题" class="headerlink" title="使用主题"></a>使用主题</h3><p>略</p>
-<p>我使用的是yunyoujun的yun主题具体可参考<a href="https://yun.yunyoujun.cn/?_gl=1*87a412*_ga*MjEwMjQ0NTAuMTY0NjU0NDU4Mw..*_ga_1LL0D86CY9*MTY0NjgyMDc4Ni4zMy4xLjE2NDY4MjEwODcuMA..">主页 | Hexo-Theme-Yun (yunyoujun.cn)</a></p>
-<h3 id="编辑-Hexo-配置"><a href="#编辑-Hexo-配置" class="headerlink" title="编辑 Hexo 配置"></a>编辑 Hexo 配置</h3><p>略</p>
-<h3 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h3><p>配置完主题，就该放到线上了</p>
-<p>首先生成静态文件</p>
-<pre class="language-none"><code class="language-none"># 如果进行多次生成，为了避免受错误缓存影响，最好使用 hexo clean 先清除一遍。
-hexo generate
-# 缩写为 hexo g</code></pre>
-
-<h3 id="与远程仓库关联"><a href="#与远程仓库关联" class="headerlink" title="与远程仓库关联"></a>与远程仓库关联</h3><p>接下来我们将本地的仓库与此前在 GitHub 上建立的仓库建立关联。</p>
-<pre class="language-none"><code class="language-none">git init # 初始化 Git 仓库，只需要执行一次即可</code></pre>
-
-<h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><p>为了更方便的部署到 GitHub Pages，Hexo 提供了 <code>hexo-deployer-git</code> 插件。</p>
-<p>安装插件：</p>
-<pre class="language-none"><code class="language-none">npm install hexo-deployer-git</code></pre>
-
-<p>在 <code>_config.yml</code> 中配置。</p>
-<pre class="language-none"><code class="language-none">deploy:
-  type: git
-  repo: 你此前新建的仓库的链接 # 比如：	https:&#x2F;&#x2F;github.com&#x2F;YunYouJun&#x2F;yunyoujun.github.io
-  branch: master # 默认使用 master 分支
-  message: Update Hexo Static Content # 你可以自定义此次部署更新的说明</code></pre>
-
-<p>保存，部署！</p>
-<blockquote>
-<p>第一次部署需要输入自己GitHub用户名和密码</p>
-</blockquote>
-<pre class="language-none"><code class="language-none">hexo deploy</code></pre>
-
-<p>​	</p>
-<p>等待完成后，打开网址 <code>https://你的名字.github.io</code> 就能看到你的线上网站了。</p>
-<p>至此你的博客也就完成了</p>
+<p>注：Exec 是执行文件位置；</p>
+<p>​		Icon是快捷图标位置</p>
+<p>附:</p>
+<pre class="language-none"><code class="language-none">sudo apt-get autoremove                            删除系统不再使用的孤立软件
+sudo apt-get autoclean                              清理旧版本的软件缓存
+dpkg -l |grep ^rc|awk &#39;&#123;print $2&#125;&#39; |sudo xargs dpkg -P       清除残余的配置文件</code></pre>
 ]]></content>
       <categories>
         <category>教程</category>
-        <category>博客</category>
+        <category>Linux</category>
       </categories>
       <tags>
-        <tag>Hexo</tag>
+        <tag>kali</tag>
       </tags>
   </entry>
   <entry>
@@ -2399,138 +2436,6 @@ hexo generate
       </categories>
       <tags>
         <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>卡里安装pycharm后创建快捷方式</title>
-    <url>/posts/1f1dc0da/</url>
-    <content><![CDATA[<ol>
-<li><p>kali的快捷方式都放在&#x2F;usr&#x2F;share&#x2F;applications里，首先在该目录下创建一个Pycharm.desktop</p>
-</li>
-<li><p>终端输输入：</p>
-<pre class="language-none"><code class="language-none">dusudo vim &#x2F;usr&#x2F;share&#x2F;applications&#x2F;Pycharm.desktop</code></pre>
-</li>
-<li><p>粘贴模板zhi：</p>
-</li>
-</ol>
-<pre class="language-none"><code class="language-none">[Desktop Entry]
-Type&#x3D;Application
-Name&#x3D;Pycharm
-GenericName&#x3D;Pycharm3
-Comment&#x3D;Pycharm3:The Python IDE
-Exec&#x3D;sh &#x2F;opt&#x2F;pycharm&#x2F;bin&#x2F;pycharm.sh
-Icon&#x3D;&#x2F;opt&#x2F;pycharm&#x2F;bin&#x2F;pycharm.png
-Terminal&#x3D;pycharm
-Categories&#x3D;Pycharm;</code></pre>
-
-<p>注：Exec 是执行文件位置；</p>
-<p>​		Icon是快捷图标位置</p>
-<p>附:</p>
-<pre class="language-none"><code class="language-none">sudo apt-get autoremove                            删除系统不再使用的孤立软件
-sudo apt-get autoclean                              清理旧版本的软件缓存
-dpkg -l |grep ^rc|awk &#39;&#123;print $2&#125;&#39; |sudo xargs dpkg -P       清除残余的配置文件</code></pre>
-]]></content>
-      <categories>
-        <category>教程</category>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>kali</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何彻底关闭Hyper-V</title>
-    <url>/posts/8dc48be7/</url>
-    <content><![CDATA[<p>许多第三方虚拟化应用程序无法与 Hyper-V同时工作。 受影响的应用程序包括 VMware Workstation 和 VirtualBox。 这些应用程序可能无法启动虚拟机，或者可能回退到较慢的模拟模式。</p>
-<p>这些症状是在虚拟机监控Hyper-V运行时引入的。 某些安全解决方案还依赖于虚拟机监控程序，例如：</p>
-<blockquote>
-<ul>
-<li>Device Guard</li>
-<li>Credential Guard</li>
-</ul>
-</blockquote>
-<p>鱼和熊掌不可兼得，所以有时候我们需要关闭他们</p>
-<span id="more"></span>
-
-<h2 id="网络搜到常用方式"><a href="#网络搜到常用方式" class="headerlink" title="网络搜到常用方式"></a>网络搜到常用方式</h2><h3 id="1-在启动或关闭Windows功能中关闭"><a href="#1-在启动或关闭Windows功能中关闭" class="headerlink" title="1. 在启动或关闭Windows功能中关闭"></a>1. 在启动或关闭Windows功能中关闭</h3><p>1） 进入控制面板，选择程序和功能</p>
-<img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204131001053.png" alt="图一" style="zoom: 80%;" / loading="lazy">
-
-<center><p>图一</p></center>
-
-<p>2）打开启动或关闭windows功能</p>
-<img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204131004260.png" alt="图二" style="zoom: 80%;" / loading="lazy">
-
-<center><p>图二</p></center>
-
-<p>3）hyper-v、Windows虚拟机监控平台、虚拟机平台取消勾选</p>
-<img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204131004929.png" style="zoom: 80%;" / loading="lazy">
-
-
-
-<center><p>图三</p></center>
-
-<p>4）重新启动</p>
-<h3 id="2-禁用服务"><a href="#2-禁用服务" class="headerlink" title="2.禁用服务"></a>2.禁用服务</h3><p>1）右键此电脑，管理</p>
-<img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204131003763.png" style="zoom: 80%;" / loading="lazy">
-
-<center><p>图四</p></center>
-
-<p>2）服务和应用程序–服务</p>
-<img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204131003939.png" style="zoom: 80%;" / loading="lazy">
-
-<center><p>图五</p></center>
-
-<p>3）找到Hyper-V虚拟机管理，双击，启动类型改为手动，确定</p>
-<img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204131002695.png" style="zoom: 80%;" / loading="lazy">
-
-<center><p>图六</p></center>
-
-<p>4）重启</p>
-<h3 id="3-cmd命令"><a href="#3-cmd命令" class="headerlink" title="3.cmd命令"></a>3.cmd命令</h3><p>以管理员身份运行命令提示符，执行命令  <code>bcdedit /set hypervisorlaunchtype off</code></p>
-<img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204131002461.png"  / loading="lazy">
-
-<center><p>图七</p></center>
-
-
-
-<h3 id="4-依然是cmd命令"><a href="#4-依然是cmd命令" class="headerlink" title="4. 依然是cmd命令"></a>4. 依然是cmd命令</h3><p>以管理员身份打开cmd，执行命令：</p>
-<p><code>bcdedit /copy &#123;current&#125; /d “Windows10 no Hyper-V</code></p>
-<p>会返回一个串字符串{xxx-xxx-xxx}，电脑不一样，返回发东西不一样，<br>然后再次执行命令：</p>
-<p><code>bcdedit /set &#123;XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX&#125; hypervisorlaunchtype OFF</code></p>
-<p>将刚才返回的字符串替换到上面的命令里执行。返回成功后，重启电脑即可。</p>
-<blockquote>
-<p><strong>结果发现统统不管用，最后终于在微软官方找到方法</strong></p>
-</blockquote>
-<h2 id="微软官方解决方法"><a href="#微软官方解决方法" class="headerlink" title="微软官方解决方法"></a>微软官方解决方法</h2><p>网址：<a href="https://docs.microsoft.com/zh-cn/windows/security/identity-protection/credential-guard/credential-guard-manage">管理Windows Defender Credential Guard （Windows） - Windows security | Microsoft Docs</a></p>
-<p>方法：</p>
-<p>1）管理员模式打开 CMD, 运行下面的命令</p>
-<pre class="language-none"><code class="language-none">
-mountvol X: &#x2F;s
-
-copy %WINDIR%\System32\SecConfig.efi X:\EFI\Microsoft\Boot\SecConfig.efi &#x2F;Y
-
-bcdedit &#x2F;create &#123;0cb3b571-2f2e-4343-a879-d86a476d7215&#125; &#x2F;d &quot;DebugTool&quot; &#x2F;application osloader
-
-bcdedit &#x2F;set &#123;0cb3b571-2f2e-4343-a879-d86a476d7215&#125; path &quot;\EFI\Microsoft\Boot\SecConfig.efi&quot;
-
-bcdedit &#x2F;set &#123;bootmgr&#125; bootsequence &#123;0cb3b571-2f2e-4343-a879-d86a476d7215&#125;
-
-bcdedit &#x2F;set &#123;0cb3b571-2f2e-4343-a879-d86a476d7215&#125; loadoptions DISABLE-LSA-ISO
-
-bcdedit &#x2F;set &#123;0cb3b571-2f2e-4343-a879-d86a476d7215&#125; device partition&#x3D;X:
-
-mountvol X: &#x2F;d</code></pre>
-
-<p>注：需逐行复制</p>
-<p>2）重启电脑</p>
-<p>3）接受禁用 Windows Defender Credential Guard 的提示。(根据提示按下WIN键或者F3)</p>
-]]></content>
-      <categories>
-        <category>教程</category>
-        <category>Windows</category>
-      </categories>
-      <tags>
-        <tag>windows</tag>
       </tags>
   </entry>
   <entry>
@@ -2646,6 +2551,121 @@ mountvol X: &#x2F;d</code></pre>
       <tags>
         <tag>Hexo</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>如何彻底关闭Hyper-V</title>
+    <url>/posts/8dc48be7/</url>
+    <content><![CDATA[<p>许多第三方虚拟化应用程序无法与 Hyper-V同时工作。 受影响的应用程序包括 VMware Workstation 和 VirtualBox。 这些应用程序可能无法启动虚拟机，或者可能回退到较慢的模拟模式。</p>
+<p>这些症状是在虚拟机监控Hyper-V运行时引入的。 某些安全解决方案还依赖于虚拟机监控程序，例如：</p>
+<blockquote>
+<ul>
+<li>Device Guard</li>
+<li>Credential Guard</li>
+</ul>
+</blockquote>
+<p>鱼和熊掌不可兼得，所以有时候我们需要关闭他们</p>
+<span id="more"></span>
+
+<h2 id="网络搜到常用方式"><a href="#网络搜到常用方式" class="headerlink" title="网络搜到常用方式"></a>网络搜到常用方式</h2><h3 id="1-在启动或关闭Windows功能中关闭"><a href="#1-在启动或关闭Windows功能中关闭" class="headerlink" title="1. 在启动或关闭Windows功能中关闭"></a>1. 在启动或关闭Windows功能中关闭</h3><p>1） 进入控制面板，选择程序和功能</p>
+<img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204131001053.png" alt="图一" style="zoom: 80%;" / loading="lazy">
+
+<center><p>图一</p></center>
+
+<p>2）打开启动或关闭windows功能</p>
+<img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204131004260.png" alt="图二" style="zoom: 80%;" / loading="lazy">
+
+<center><p>图二</p></center>
+
+<p>3）hyper-v、Windows虚拟机监控平台、虚拟机平台取消勾选</p>
+<img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204131004929.png" style="zoom: 80%;" / loading="lazy">
+
+
+
+<center><p>图三</p></center>
+
+<p>4）重新启动</p>
+<h3 id="2-禁用服务"><a href="#2-禁用服务" class="headerlink" title="2.禁用服务"></a>2.禁用服务</h3><p>1）右键此电脑，管理</p>
+<img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204131003763.png" style="zoom: 80%;" / loading="lazy">
+
+<center><p>图四</p></center>
+
+<p>2）服务和应用程序–服务</p>
+<img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204131003939.png" style="zoom: 80%;" / loading="lazy">
+
+<center><p>图五</p></center>
+
+<p>3）找到Hyper-V虚拟机管理，双击，启动类型改为手动，确定</p>
+<img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204131002695.png" style="zoom: 80%;" / loading="lazy">
+
+<center><p>图六</p></center>
+
+<p>4）重启</p>
+<h3 id="3-cmd命令"><a href="#3-cmd命令" class="headerlink" title="3.cmd命令"></a>3.cmd命令</h3><p>以管理员身份运行命令提示符，执行命令  <code>bcdedit /set hypervisorlaunchtype off</code></p>
+<img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204131002461.png"  / loading="lazy">
+
+<center><p>图七</p></center>
+
+
+
+<h3 id="4-依然是cmd命令"><a href="#4-依然是cmd命令" class="headerlink" title="4. 依然是cmd命令"></a>4. 依然是cmd命令</h3><p>以管理员身份打开cmd，执行命令：</p>
+<p><code>bcdedit /copy &#123;current&#125; /d “Windows10 no Hyper-V</code></p>
+<p>会返回一个串字符串{xxx-xxx-xxx}，电脑不一样，返回发东西不一样，<br>然后再次执行命令：</p>
+<p><code>bcdedit /set &#123;XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX&#125; hypervisorlaunchtype OFF</code></p>
+<p>将刚才返回的字符串替换到上面的命令里执行。返回成功后，重启电脑即可。</p>
+<blockquote>
+<p><strong>结果发现统统不管用，最后终于在微软官方找到方法</strong></p>
+</blockquote>
+<h2 id="微软官方解决方法"><a href="#微软官方解决方法" class="headerlink" title="微软官方解决方法"></a>微软官方解决方法</h2><p>网址：<a href="https://docs.microsoft.com/zh-cn/windows/security/identity-protection/credential-guard/credential-guard-manage">管理Windows Defender Credential Guard （Windows） - Windows security | Microsoft Docs</a></p>
+<p>方法：</p>
+<p>1）管理员模式打开 CMD, 运行下面的命令</p>
+<pre class="language-none"><code class="language-none">
+mountvol X: &#x2F;s
+
+copy %WINDIR%\System32\SecConfig.efi X:\EFI\Microsoft\Boot\SecConfig.efi &#x2F;Y
+
+bcdedit &#x2F;create &#123;0cb3b571-2f2e-4343-a879-d86a476d7215&#125; &#x2F;d &quot;DebugTool&quot; &#x2F;application osloader
+
+bcdedit &#x2F;set &#123;0cb3b571-2f2e-4343-a879-d86a476d7215&#125; path &quot;\EFI\Microsoft\Boot\SecConfig.efi&quot;
+
+bcdedit &#x2F;set &#123;bootmgr&#125; bootsequence &#123;0cb3b571-2f2e-4343-a879-d86a476d7215&#125;
+
+bcdedit &#x2F;set &#123;0cb3b571-2f2e-4343-a879-d86a476d7215&#125; loadoptions DISABLE-LSA-ISO
+
+bcdedit &#x2F;set &#123;0cb3b571-2f2e-4343-a879-d86a476d7215&#125; device partition&#x3D;X:
+
+mountvol X: &#x2F;d</code></pre>
+
+<p>注：需逐行复制</p>
+<p>2）重启电脑</p>
+<p>3）接受禁用 Windows Defender Credential Guard 的提示。(根据提示按下WIN键或者F3)</p>
+]]></content>
+      <categories>
+        <category>教程</category>
+        <category>Windows</category>
+      </categories>
+      <tags>
+        <tag>windows</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>我的博客插件</title>
+    <url>/posts/62d66f1a/</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="噢，这是一个无效的密码。请检查并再试一次。" data-whm="哦，这些解密的内容无法验证，但您仍然可以查看一下">
+  <script id="hbeData" type="hbeData" data-hmacdigest="b02044d288df99bb72804e4d7df91e40d9714433ee52bcacd97455b30de66f05">6d3d76a501cfea921ccc75e341572a63911b394e068dd3c52e59ee35dc83571add661649bd801caad2fa4cdf7b9d8864675187990ed125dfd059c8a0332c88f482555edb4dfe7c6eae46f3f0598c8585442b0eecb169b0b2bc67fc2e9b9ebf0451a8d6e79da34544831c1adf9188835afa81c9bf6bb9b26183d3a68a967f841f2cd3246a3dd771d886af5ad67c5bb2914a1521bf57fc952b0d6c068c7c48cd30a1fc8c3879f0c01fb1e1d4bac25343678f4e137eb4164790f3e8228e146ac13fff3d45aaa8fda6365eb98daf8ac969ed47a0f5e86b75e7132b1cbce0fd0643631c638c568a707ac5f4c124a81b5409c55ca59f316f44dde0c827996bd965f73f1db1a049e00854ff932682b6a92726646306e36a9b675568179e1d245196a033433014c6b8e5532890cc912f91326d9bf2eafef88105ca289059b0ae5da7f591132e11d55201c9af499a47dc1d9fc5166a84718ba0652437dd7cb090e352b0366beafac717602b306b13ef061bc1cbc175df08a953d5239b96dbfa484a262ce816c866c61df89049c3a9dc9b901b24f21e78b71dd4f7e78e07ceabcfff8649b685bbe3b720b3c76876447342b63e8f0c84fa2fb9034dff438a9306d5b838d956720d0770ba286e9808f4b2bd3c6138cf6638cc39317780e805c7022e42170bd2069708a6cbf7525bea9212072a13264d7200154aeda48fff12f94673dc8aae691076ea3a8b96e3f26cb9dbcbe2381cdbf84caa0da98088f1c50a480b008eeb8a0be15ab82c8c481c54b1c9929a6d8814a72b166436a844df492ef2de7b10afaf05f8c915013d35be9b3baeba8400d6eea4822a5e7a7e03aa5e142c7666586c6340bb05fc261175c6522c507bedcd2070c940e276f6b75f6a72dcec884b6386416c213b9881d1da0d7dbe851e335053d681d82ae0c8a10f3e2c228c16f518a863e812ed75aa8d731631178786d0145183fa61789b720c1759985d56149ecec4240141be37aa22f135c74b3993453ab28f44ecf71ad0f2e1e86fc49fef6069125da6b4c0411924955d727ce603966c907fff32bdbbd7de189fe7a23e8f0844490d6df01ef573d2ddf7475802f8135b856d8684c7eb2a017813b030daeec1a437dc868be3756f4bd53a4f8bea953bd679cf471d1dd0e6be68dcd6326f78f85f6090d5c232502206e8a2a3bb9fcda05410c1a7e6169288da34dd217f54d54f21de3cfc6cb02e2a29fe5edecacbd48c8f307ced7f217e58c75d469a5f4d578009dbb56cac01a6394a2c07497e8c6a20727866</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">请输入密码</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <categories>
+        <category>专栏</category>
+        <category>配置习惯</category>
+      </categories>
   </entry>
   <entry>
     <title>整理几个实用电脑软件</title>
