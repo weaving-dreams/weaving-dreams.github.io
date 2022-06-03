@@ -1,0 +1,203 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="LuRen"><meta name="copyright" content="LuRen"><meta name="generator" content="Hexo 6.2.0"><meta name="theme" content="hexo-theme-yun"><title>vlan基础实验 | 圥忈的小站</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/star-markdown-css@0.3.3/dist/yun/yun-markdown.min.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/prism-theme-vars/base.css"><script src="https://fastly.jsdelivr.net/npm/@unocss/runtime/mini.global.js"></script><script src="https://fastly.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>function initScrollReveal() {
+  [".post-card",".markdown-body img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+}
+document.addEventListener("DOMContentLoaded", initScrollReveal);
+document.addEventListener("pjax:success", initScrollReveal);
+</script><script src="https://fastly.jsdelivr.net/npm/pjax@latest/pjax.min.js" defer></script><script src="/js/pjax.js" defer type="module"></script><script src="https://fastly.jsdelivr.net/npm/vue@2.6.14"></script><link rel="icon" type="image/svg+xml" href="/ghost-smile-line.svg"><link rel="mask-icon" href="/ghost-smile-line.svg" color="#0078E7"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fastly.jsdelivr.net/npm/" crossorigin><script id="yun-config">
+    window.Yun = {}
+    window.CONFIG = {"hostname":"weaving-dreams.github.io","root":"/","title":"圥忈的小站","version":"1.10.2","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"搜索...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）"},"anonymous_image":"https://cdn.yunyoujun.cn/img/avatar/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true},"local_search":{"path":"/search.xml"},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"fireworks":{"colors":["102, 167, 221","\t255,0,255","33, 78, 194","255,69,0"]},"waline":{"config":{"enable":true,"serverURL":"https://waline-1gafcjzkcbb7fe08-1310495826.ap-shanghai.app.tcloudbase.com/waline","comment":true,"visitor":true,"emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis@latest/bilibili/","https://cdn.jsdelivr.net/gh/walinejs/emojis@latest/weibo/","https://cdn.jsdelivr.net/gh/walinejs/emojis@latest/qq/"],"locale":{"placeholder":"来都来了，不说点什么吗","level0":"炼体","level1":"炼气","level2":"筑基","level3":"金丹","level4":"元婴","level5":"化神"},"el":"#waline","lang":"zh-CN"},"cdn":"https://fastly.jsdelivr.net/npm/@waline/client@v2/dist/waline.js","dark":"html.dark"},"vendors":{"darken":"https://fastly.jsdelivr.net/npm/darken@1.5.0"}};
+  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/hexo-theme-yun.js" type="module"></script><link rel="alternate" href="/atom.xml" title="圥忈的小站" type="application/atom+xml"><script src="//at.alicdn.com/t/font_3319107_f11xxoznd2e.js" async></script><meta name="description" content="资料来源锐捷 非原创        VLAN 基础实验实验拓扑 实验需求1， SW 为公司某楼层交换机，该交换机上接入了财务部和销售部各 2 台电脑；2， 财务部使用的地址段为 192.168.1.0&#x2F;24，销售部使用的的地址段为 192.168.2.0&#x2F;24；3， 如图所示，要求财务部和销售部内部的电脑之间可以二层互通，但是财务部和销售部之间的电脑无法实现二层互通（S">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vlan基础实验">
+<meta property="og:url" content="https://weaving-dreams.github.io/posts/f33f0350/index.html">
+<meta property="og:site_name" content="圥忈的小站">
+<meta property="og:description" content="资料来源锐捷 非原创        VLAN 基础实验实验拓扑 实验需求1， SW 为公司某楼层交换机，该交换机上接入了财务部和销售部各 2 台电脑；2， 财务部使用的地址段为 192.168.1.0&#x2F;24，销售部使用的的地址段为 192.168.2.0&#x2F;24；3， 如图所示，要求财务部和销售部内部的电脑之间可以二层互通，但是财务部和销售部之间的电脑无法实现二层互通（S">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603163906.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603163909.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603164711.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603164713.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603164715.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603164717.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603164718.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603164721.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603164725.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603164729.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603164730.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603164732.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603164733.png">
+<meta property="article:published_time" content="2022-06-03T08:50:56.000Z">
+<meta property="article:modified_time" content="2022-06-03T08:55:37.282Z">
+<meta property="article:author" content="LuRen">
+<meta property="article:tag" content="锐捷">
+<meta property="article:tag" content="实验">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603163906.png"><script>(function() {
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+  const setting = localStorage.getItem('darken-mode') || 'auto'
+  if (setting === 'dark' || (prefersDark && setting !== 'light'))
+    document.documentElement.classList.toggle('dark', true)
+})()</script></head><body><script src="https://code.iconify.design/2/2.1.1/iconify.min.js"></script><script>// Define global variable
+IconifyProviders = {
+  // Empty prefix: overwrite default API provider configuration
+  '': {
+    // Use custom API first, use Iconify public API as backup
+    resources: [
+        'https://api.iconify.design',
+    ],
+    // Wait for 1 second before switching API hosts
+    rotate: 1000,
+  },
+};</script><script defer src="https://fastly.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js" type="module"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js" type="module"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><span class="icon iconify" data-icon="ri:list-ordered"></span></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><span class="icon iconify" data-icon="ri:passport-line"></span></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="LuRen"><img width="96" loading="lazy" src="/images/1.jpg" alt="LuRen"><span class="site-author-status" title="努力ing">🤡</span></a><div class="site-author-name"><a href="/about/">LuRen</a></div><a class="site-name" href="/about/site.html">圥忈的小站</a><sub class="site-subtitle">努力ing</sub><div class="site-description">一个自言自语的地方</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:home-4-line"></span></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:archive-line"></span></span><span class="site-state-item-count">39</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:folder-2-line"></span></span><span class="site-state-item-count">18</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="site-state-item-count">15</span></a></div><a class="site-state-item hty-icon-button" href="/about/#comment" title="留言板"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:clipboard-line"></span></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="/atom.xml" title="RSS" target="_blank" style="color:orange"><span class="icon iconify" data-icon="ri:rss-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/weaving-dreams" title="GitHub" target="_blank" style="color:#6e5494"><span class="icon iconify" data-icon="ri:github-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.yuque.com/yuqueyonghuvseqgc/wze6w2" title="语雀" target="_blank" style="color:#007722"><span class="icon iconify" data-icon="ant-design:yuque-outlined"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://weibo.com/u/6603251070" title="微博" target="_blank" style="color:#E6162D"><span class="icon iconify" data-icon="ri:weibo-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://music.163.com/#/user/home?id=1475793651" title="网易云音乐" target="_blank" style="color:#C20C0C"><span class="icon iconify" data-icon="ri:netease-cloud-music-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/499227133?share_medium=android&amp;share_plat=android&amp;share_session_id=f72830f6-8f5f-413a-86d2-6043b1bd69eb&amp;share_source=WEIXIN&amp;share_tag=s_i&amp;timestamp=1646642363&amp;unique_k=pDXLBN4" title="哔哩哔哩" target="_blank" style="color:#FF8EB3"><span class="icon iconify" data-icon="ri:bilibili-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="http://www.coolapk.com/u/4097869" title="酷安" target="_blank" style="color:#007722"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-kuancoolapk1"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="友联 links" style="color:dodgerblue"><span class="icon iconify" data-icon="ri:genderless-line"></span></a><a class="links-item hty-icon-button" href="/girls/" title="喜欢的女孩子" style="color:hotpink"><span class="icon iconify" data-icon="ri:women-line"></span></a><a class="links-item hty-icon-button" href="/albums/" title="相册集" style="color:#6e5494"><span class="icon iconify" data-icon="ri:gallery-line"></span></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><span class="icon iconify" data-icon="ri:contrast-2-line"></span></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#VLAN-%E5%9F%BA%E7%A1%80%E5%AE%9E%E9%AA%8C"><span class="toc-number">1.</span> <span class="toc-text">VLAN 基础实验</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E6%8B%93%E6%89%91"><span class="toc-number">2.</span> <span class="toc-text">实验拓扑</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E9%9C%80%E6%B1%82"><span class="toc-number">2.1.</span> <span class="toc-text">实验需求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%80%9D%E8%B7%AF"><span class="toc-number">2.2.</span> <span class="toc-text">配置思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%AD%A5%E9%AA%A4"><span class="toc-number">2.3.</span> <span class="toc-text">配置步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8-SW-%E4%B8%8A%E9%85%8D%E7%BD%AE-VLAN-10-%E5%92%8C-VLAN-20%EF%BC%8C%E5%B9%B6%E5%88%86%E5%88%AB%E5%91%BD%E5%90%8D%E4%B8%BA%E8%B4%A2%E5%8A%A1%E9%83%A8%E5%92%8C%E9%94%80%E5%94%AE%E9%83%A8"><span class="toc-number">2.3.1.</span> <span class="toc-text">在 SW 上配置 VLAN 10 和 VLAN 20，并分别命名为财务部和销售部</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8Bvlan%E9%85%8D%E7%BD%AE%E6%83%85%E5%86%B5"><span class="toc-number">2.3.2.</span> <span class="toc-text">查看vlan配置情况</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PC1-PC4-%E5%88%86%E5%88%AB%E9%85%8D%E7%BD%AE%E6%AD%A3%E7%A1%AE%E7%9A%84-IP-%E5%9C%B0%E5%9D%80"><span class="toc-number">2.3.3.</span> <span class="toc-text">PC1-PC4 分别配置正确的 IP 地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%93%E6%9E%9C%E9%AA%8C%E8%AF%81"><span class="toc-number">2.3.4.</span> <span class="toc-text">结果验证</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%A6%81%E7%82%B9"><span class="toc-number">2.4.</span> <span class="toc-text">实验要点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BD%91%E5%85%B3%E5%9C%B0%E5%9D%80"><span class="toc-number">2.4.1.</span> <span class="toc-text">网关地址</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VLAN-%E8%BF%9B%E9%98%B6%E5%AE%9E%E9%AA%8C%E6%8C%87"><span class="toc-number">3.</span> <span class="toc-text">VLAN 进阶实验指</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E6%8B%93%E6%89%91-1"><span class="toc-number">3.1.</span> <span class="toc-text">实验拓扑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E9%9C%80%E6%B1%82-1"><span class="toc-number">3.2.</span> <span class="toc-text">实验需求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%80%9D%E8%B7%AF-1"><span class="toc-number">3.3.</span> <span class="toc-text">配置思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%AD%A5%E9%AA%A4-1"><span class="toc-number">3.4.</span> <span class="toc-text">配置步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E6%9C%ACvlan%E5%88%92%E5%88%86"><span class="toc-number">3.4.1.</span> <span class="toc-text">基本vlan划分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SW1-%E5%92%8C-SW2-%E4%BA%92%E8%81%94%E6%8E%A5%E5%8F%A3%E6%A8%A1%E5%BC%8F%E9%85%8D%E7%BD%AE%E4%B8%BA-trunk%EF%BC%8C%E5%B9%B6%E6%8B%92%E7%BB%9D%E6%97%A0%E5%85%B3-VLAN-%E9%80%9A%E8%BF%87%E8%AF%A5%E9%93%BE%E8%B7%AF%EF%BC%88SW1-%E5%92%8C-SW2-%E9%85%8D%E7%BD%AE%E4%B8%80%E8%87%B4%EF%BC%89"><span class="toc-number">3.4.2.</span> <span class="toc-text">SW1 和 SW2 互联接口模式配置为 trunk，并拒绝无关 VLAN 通过该链路（SW1 和 SW2 配置一致）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%9C%E9%AA%8C%E8%AF%81-1"><span class="toc-number">3.5.</span> <span class="toc-text">结果验证</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E5%90%8C%E9%83%A8%E9%97%A8-PC-%E7%9A%84%E8%BF%9E%E9%80%9A%E6%80%A7%EF%BC%8C%E5%92%8C%E4%B8%8D%E5%90%8C%E9%83%A8%E9%97%A8-PC-%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BF%9E%E9%80%9A%E6%80%A7"><span class="toc-number">3.5.1.</span> <span class="toc-text">测试同部门 PC 的连通性，和不同部门 PC 之间的连通性</span></a></li></ol></li></ol></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article" style="--smc-primary:#0078E7;"><link itemprop="mainEntityOfPage" href="https://weaving-dreams.github.io/posts/f33f0350/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="LuRen"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="圥忈的小站"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">vlan基础实验</h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:calendar-line"></span></span> <time title="创建时间：2022-06-03 16:50:56" itemprop="dateCreated datePublished" datetime="2022-06-03T16:50:56+08:00">2022-06-03</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="本文字数"><span class="icon iconify" data-icon="ri:file-word-line"></span></span> <span title="本文字数">1k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读时长"><span class="icon iconify" data-icon="ri:timer-line"></span></span> <span title="阅读时长">4m</span></span></span><span class="post-busuanzi"><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读次数"><span class="icon iconify" data-icon="ri:eye-line"></span> <span id="busuanzi_value_page_pv"></span></span></span><span class="leancloud_visitors" id="/posts/f33f0350/" data-flag-title="vlan基础实验"><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读次数"><span class="icon iconify" data-icon="ri:eye-line"></span> <span class="leancloud-visitors-count"></span></span></span><span class="post-meta-divider">-</span><a href="#comment"><span class="post-meta-item-icon" title="评论数"><span class="icon iconify" data-icon="ri:chat-3-line"></span> <span class="waline-comment-count" id="/posts/f33f0350/"></span></span></a><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><span class="icon iconify" data-icon="ri:folder-line"></span></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E5%AD%A6%E4%B9%A0/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">学习</span></a></span> > <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E5%AD%A6%E4%B9%A0/%E9%94%90%E6%8D%B7/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">锐捷</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/%E9%94%90%E6%8D%B7/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">锐捷</span></a><a class="tag-item" href="/tags/%E5%AE%9E%E9%AA%8C/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">实验</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body"><div class="danger">
+
+<blockquote>
+<p> 资料来源<a target="_blank" rel="noopener" href="https://talent.ruijie.com.cn/certification/profession/">锐捷</a><br> 非原创</p>
+</blockquote>
+</div>
+
+
+
+
+
+<h2 id="VLAN-基础实验"><a href="#VLAN-基础实验" class="headerlink" title="VLAN 基础实验"></a>VLAN 基础实验</h2><h2 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h2><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603163906.png" alt="1" loading="lazy"></p>
+<h3 id="实验需求"><a href="#实验需求" class="headerlink" title="实验需求"></a>实验需求</h3><p>1， SW 为公司某楼层交换机，该交换机上接入了财务部和销售部各 2 台电脑；<br>2， 财务部使用的地址段为 192.168.1.0&#x2F;24，销售部使用的的地址段为 192.168.2.0&#x2F;24；<br>3， 如图所示，要求财务部和销售部内部的电脑之间可以二层互通，但是财务部和销售部之间<br>的电脑无法实现二层互通（SW 上没有配置网关地址）；<br>4， 通过 VLAN 技术实现该需求，财务部和销售部所使用的 VLAN 号可自行规划。</p>
+<h3 id="配置思路"><a href="#配置思路" class="headerlink" title="配置思路"></a>配置思路</h3><p>1， 为财务部和销售部规划不同的 VLAN，本案例中规划财务部和销售部分别位于 VLAN 10<br>和 VLAN 20，并将对应的接口划分到对应的 VLAN 中；<br>2， 财务部和销售部的电脑配置各自地址网段内的 IP 地址，财务部的 PC 其地址分别为<br>192.168.1.1&#x2F;24 和 192.168.1.2&#x2F;24，而销售部的 PC 其地址分别为 192.168.2.1&#x2F;24 和192.168.2.2&#x2F;24；</p>
+<h3 id="配置步骤"><a href="#配置步骤" class="headerlink" title="配置步骤"></a>配置步骤</h3><h4 id="在-SW-上配置-VLAN-10-和-VLAN-20，并分别命名为财务部和销售部"><a href="#在-SW-上配置-VLAN-10-和-VLAN-20，并分别命名为财务部和销售部" class="headerlink" title="在 SW 上配置 VLAN 10 和 VLAN 20，并分别命名为财务部和销售部"></a>在 SW 上配置 VLAN 10 和 VLAN 20，并分别命名为财务部和销售部</h4><pre class="language-none"><code class="language-none">vlan 10
+name 财务部
+exit
+vlan 20
+name 销售部
+exit
+interface range gigabitEthernet 0&#x2F;0-1
+switchport access vlan 10
+interface range gigabitEthernet 0&#x2F;2-3
+switchport access vlan 20</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603163909.png" alt="2" loading="lazy"></p>
+<h4 id="查看vlan配置情况"><a href="#查看vlan配置情况" class="headerlink" title="查看vlan配置情况"></a>查看vlan配置情况</h4><pre class="language-none"><code class="language-none">show vlan</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603164711.png" alt="3" loading="lazy"></p>
+<h4 id="PC1-PC4-分别配置正确的-IP-地址"><a href="#PC1-PC4-分别配置正确的-IP-地址" class="headerlink" title="PC1-PC4 分别配置正确的 IP 地址"></a>PC1-PC4 分别配置正确的 IP 地址</h4><p>（以下命令为模拟器中 PC 的 IP 地址配置方式，有别于 windows 系统 PC 的配置方式）<code>ip [address] [mask] [gateway]</code></p>
+<pre class="language-none"><code class="language-none">PC1&gt; ip 192.168.1.1 255.255.255.255.0 192.168.1.254
+PC2&gt; ip 192.168.1.2 255.255.255.255.0 192.168.1.254
+PC3&gt; ip 192.168.2.1 255.255.255.255.0 192.168.2.254
+PC4&gt; ip 192.168.2.2 255.255.255.255.0 192.168.2.254</code></pre>
+
+<h4 id="结果验证"><a href="#结果验证" class="headerlink" title="结果验证"></a>结果验证</h4><p>相同 VLAN 内通信（PC1 ping PC2、PC3 ping PC4，预期结果：可以互通</p>
+<p>PC1 ping PC2</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603164713.png" alt="4" loading="lazy"></p>
+<p>PC3 ping PC4</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603164715.png" alt="5" loading="lazy"></p>
+<p>不同 VLAN 内通信（PC1 ping PC3-4，或 PC2 ping PC3-4 预期结果：不可以互通</p>
+<p>PC1 ping PC3-4</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603164717.png" alt="6" loading="lazy"></p>
+<p> PC2 ping PC3-4 </p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603164718.png" alt="7" loading="lazy"></p>
+<h3 id="实验要点"><a href="#实验要点" class="headerlink" title="实验要点"></a>实验要点</h3><h4 id="网关地址"><a href="#网关地址" class="headerlink" title="网关地址"></a>网关地址</h4><p>本案例中，4 台 PC 配置了网关，但在本案例中网关地址实际并没有起作用，因为 SW 上并没<br>有配置对应的网关地址。<br>如果 SW 上配置各 VLAN 对应的网关地址后，不同 VLAN 之间的 PC 能互相 ping 通吗</p>
+<p> 首先在 SW 上分别为 VLAN 10 和 VLAN 20 配置网关地址</p>
+<pre class="language-none"><code class="language-none">interface vlan 10
+ip address 192.168.1.254 24
+interface vlan 20
+ip address 192.168.2.254 24</code></pre>
+
+
+
+<p>略</p>
+<h2 id="VLAN-进阶实验指"><a href="#VLAN-进阶实验指" class="headerlink" title="VLAN 进阶实验指"></a>VLAN 进阶实验指</h2><h3 id="实验拓扑-1"><a href="#实验拓扑-1" class="headerlink" title="实验拓扑"></a>实验拓扑</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603164721.png" alt="10" loading="lazy"></p>
+<h3 id="实验需求-1"><a href="#实验需求-1" class="headerlink" title="实验需求"></a>实验需求</h3><p>1，SW1 为一楼楼层交换机，SW2 为二楼楼层交换机，每台交换机上都分别接入了技术部、 销售部和财务部的 PC（分别是 VLAN 10、VLAN 20、VLAN 30）； </p>
+<p>2，技术部 IP 地址段为 192.168.1.0&#x2F;24、销售部 IP 地址段为 192.168.2.0&#x2F;24、财务部 IP 地 址段为 192.168.3.0&#x2F;24；</p>
+<p> 3，分属于不同楼层交换机的同部门的 PC 需要互相通信，请在 SW1 和 SW2 上完成合适配置， 使得三个部门的 PC 都可以跨交换机和同部门的 PC 通信； </p>
+<h3 id="配置思路-1"><a href="#配置思路-1" class="headerlink" title="配置思路"></a>配置思路</h3><p>1，SW1 和 SW2 划分 VLAN ，将不同部门的主机分配到各自的 VLAN 内 </p>
+<p>2，SW1 和 SW2 互联接口配置 trunk，并拒绝无关 VLAN 通过该链路。 </p>
+<h3 id="配置步骤-1"><a href="#配置步骤-1" class="headerlink" title="配置步骤"></a>配置步骤</h3><h4 id="基本vlan划分"><a href="#基本vlan划分" class="headerlink" title="基本vlan划分"></a>基本vlan划分</h4><pre class="language-none"><code class="language-none">vlan 10
+name 技术部
+vlan 20
+name 财务部
+exit
+vlan 30
+name 销售部
+exit
+interface range gigabitEthernet 0&#x2F;1
+switchport access vlan 10
+interface range gigabitEthernet 0&#x2F;2
+switchport access vlan 20
+interface range gigabitEthernet 0&#x2F;3
+switchport access vlan 30</code></pre>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603164725.png" alt="11" loading="lazy"></p>
+<h4 id="SW1-和-SW2-互联接口模式配置为-trunk，并拒绝无关-VLAN-通过该链路（SW1-和-SW2-配置一致）"><a href="#SW1-和-SW2-互联接口模式配置为-trunk，并拒绝无关-VLAN-通过该链路（SW1-和-SW2-配置一致）" class="headerlink" title="SW1 和 SW2 互联接口模式配置为 trunk，并拒绝无关 VLAN 通过该链路（SW1 和 SW2 配置一致）"></a>SW1 和 SW2 互联接口模式配置为 trunk，并拒绝无关 VLAN 通过该链路（SW1 和 SW2 配置一致）</h4><pre class="language-none"><code class="language-none">interface gigabitEthernet 0&#x2F;0
+switchport mode trunk
+switchport trunk allowed vlan only 10,20,30</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603164729.png" alt="12" loading="lazy"></p>
+<h3 id="结果验证-1"><a href="#结果验证-1" class="headerlink" title="结果验证"></a>结果验证</h3><p>接口模式配置完成后，在交换机上 show interfaces trunk 查看接口允许通过的 vlan 列表</p>
+ <pre class="language-none"><code class="language-none">show interfaces trunk</code></pre>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603164730.png" alt="13" loading="lazy"></p>
+<h4 id="测试同部门-PC-的连通性，和不同部门-PC-之间的连通性"><a href="#测试同部门-PC-的连通性，和不同部门-PC-之间的连通性" class="headerlink" title="测试同部门 PC 的连通性，和不同部门 PC 之间的连通性"></a>测试同部门 PC 的连通性，和不同部门 PC 之间的连通性</h4><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603164732.png" alt="14" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603164733.png" alt="15" loading="lazy"></p>
+</div></section><div id="reward-container"><span class="hty-icon-button button-glow" id="reward-button" title="打赏" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === &quot;none&quot;) ? &quot;block&quot; : &quot;none&quot;;"><span class="icon iconify" data-icon="ri:hand-coin-line"></span></span><div id="reward-comment">I'm so cute. Please give me money.</div><div id="qr" style="display:none;"><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://s3.bmp.ovh/imgs/2022/03/a495286dcfde6bfa.bmp"><img loading="lazy" src="https://s3.bmp.ovh/imgs/2022/03/a495286dcfde6bfa.bmp" alt="支付宝" title="支付宝"></a><div><span style="color:#00A3EE"><span class="icon iconify" data-icon="ri:alipay-line"></span></span></div></div><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://s3.bmp.ovh/imgs/2022/03/1018089fdf3cd065.png"><img loading="lazy" src="https://s3.bmp.ovh/imgs/2022/03/1018089fdf3cd065.png" alt="QQ 支付" title="QQ 支付"></a><div><span style="color:#12B7F5"><span class="icon iconify" data-icon="ri:qq-line"></span></span></div></div><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://s3.bmp.ovh/imgs/2022/03/08ce21ed009e0f80.png"><img loading="lazy" src="https://s3.bmp.ovh/imgs/2022/03/08ce21ed009e0f80.png" alt="微信支付" title="微信支付"></a><div><span style="color:#2DC100"><span class="icon iconify" data-icon="ri:wechat-pay-line"></span></span></div></div></div></div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>LuRen</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="https://weaving-dreams.github.io/posts/f33f0350/" title="vlan基础实验">https://weaving-dreams.github.io/posts/f33f0350/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><span class="icon iconify" data-icon="ri:creative-commons-line"></span><span class="icon iconify" data-icon="ri:creative-commons-by-line"></span><span class="icon iconify" data-icon="ri:creative-commons-nc-line"></span><span class="icon iconify" data-icon="ri:creative-commons-sa-line"></span></a> 许可协议。</li></ul><script>document.addEventListener('copy', function (event) {
+  const clipboardData = event.clipboardData || window.clipboardData;
+  if (!clipboardData) { return; }
+  const text = window.getSelection().toString();
+  if (text) {
+    event.preventDefault();
+    clipboardData.setData('text/plain', text + '\n\n本文作者：LuRen\n本文链接：https://weaving-dreams.github.io/posts/f33f0350/\n版权声明：本博客所有文章除特别声明外，均默认采用 CC BY-NC-SA 4.0 许可协议。');
+  }
+});</script></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/posts/bd3dc348/" rel="prev" title="IPv4编址及子网划分"><span class="icon iconify" data-icon="ri:arrow-left-s-line"></span><span class="post-nav-text">IPv4编址及子网划分</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/posts/63b0beec/" rel="next" title="如何判断两台主机IP是否在同一网段"><span class="post-nav-text">如何判断两台主机IP是否在同一网段</span><span class="icon iconify" data-icon="ri:arrow-right-s-line"></span></a></div></div></div><div class="hty-card" id="comment"><div class="comment-tooltip text-center"><span>不要与我交流，我什么都不会。</span><br><a class="hty-button hty-button--raised" id="github-discussions" target="_blank" rel="noopener" href="https://github.com/weaving-dreams/weaving-dreams.github.io/discussions/new">GitHub Discussions</a></div><div id="waline"></div><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@waline/client@v2/dist/waline.css"><script>window.CONFIG.waline.config.path = "/posts/f33f0350/"</script><div class="js-Pjax"><script src="/js/comments/waline.js" type="module" defer></script></div></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2022 </span><span class="with-love" id="animate"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></span><span class="author"> LuRen</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v6.2.0</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.10.2</span></div><div class="live-time"><span>本博客已萌萌哒地运行</span><span id="display_live_time"></span><span class="moe-text">(●'◡'●)</span><script>function blog_live_time() {
+  setTimeout(blog_live_time, 1000);
+  const start = new Date('2022-03-09T00:00:00');
+  const now = new Date();
+  const timeDiff = (now.getTime() - start.getTime());
+  const msPerMinute = 60 * 1000;
+  const msPerHour = 60 * msPerMinute;
+  const msPerDay = 24 * msPerHour;
+  const passDay = Math.floor(timeDiff / msPerDay);
+  const passHour = Math.floor((timeDiff % msPerDay) / 60 / 60 / 1000);
+  const passMinute = Math.floor((timeDiff % msPerHour) / 60 / 1000);
+  const passSecond = Math.floor((timeDiff % msPerMinute) / 1000);
+  display_live_time.innerHTML = ` ${passDay} 天 ${passHour} 小时 ${passMinute} 分 ${passSecond} 秒`;
+}
+blog_live_time();
+</script></div><div id="busuanzi"><span id="busuanzi_container_site_uv" title="总访客量"><span><span class="icon iconify" data-icon="ri:user-line"></span></span><span id="busuanzi_value_site_uv"></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv" title="总访问量"><span><span class="icon iconify" data-icon="ri:eye-line"></span></span><span id="busuanzi_value_site_pv"></span></span><script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></footer></div><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><span class="icon iconify" data-icon="ri:arrow-up-s-line"></span><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a><a class="popup-trigger hty-icon-button icon-search" id="search" href="javascript:;" title="搜索"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:search-line"></span></span></a><script>window.addEventListener("DOMContentLoaded", () => {
+  // Handle and trigger popup window
+  document.querySelector(".popup-trigger").addEventListener("click", () => {
+    document.querySelector(".popup").classList.add("show");
+    setTimeout(() => {
+      document.querySelector(".search-input").focus();
+    }, 100);
+  });
+
+  // Monitor main search box
+  const onPopupClose = () => {
+    document.querySelector(".popup").classList.remove("show");
+  };
+
+  document.querySelector(".popup-btn-close").addEventListener("click", () => {
+    onPopupClose();
+  });
+
+  window.addEventListener("keyup", event => {
+    if (event.key === "Escape") {
+      onPopupClose();
+    }
+  });
+});
+</script><script src="https://fastly.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js"></script><script src="/js/search/local-search.js" defer type="module"></script><div class="popup search-popup"><div class="search-header"><span class="popup-btn-close close-icon hty-icon-button"><span class="icon iconify" data-icon="ri:close-line"></span></span></div><div class="search-input-container"><input class="search-input" id="local-search-input" type="text" placeholder="搜索..." value=""></div><div class="search-result-container"></div></div><script>function initMourn() {
+  const date = new Date();
+  const today = (date.getMonth() + 1) + "-" + date.getDate()
+  const mourn_days = ["4-4","9-18"]
+  if (mourn_days.includes(today)) {
+    document.documentElement.style.filter = "grayscale(1)";
+  }
+}
+initMourn();</script><script src="https://fastly.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script><script>const images = [...document.querySelectorAll('.markdown-body img')]
+mediumZoom(images)</script><style>.medium-zoom-image {
+  z-index: 99;
+}</style></body></html>
