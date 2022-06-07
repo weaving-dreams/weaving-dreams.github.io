@@ -6,7 +6,7 @@
   <link href="https://weaving-dreams.github.io/atom.xml" rel="self"/>
   
   <link href="https://weaving-dreams.github.io/"/>
-  <updated>2022-06-03T08:55:48.768Z</updated>
+  <updated>2022-06-07T03:00:31.044Z</updated>
   <id>https://weaving-dreams.github.io/</id>
   
   <author>
@@ -15,6 +15,66 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ARP协议原理与应用</title>
+    <link href="https://weaving-dreams.github.io/posts/9f9ac9a/"/>
+    <id>https://weaving-dreams.github.io/posts/9f9ac9a/</id>
+    <published>2022-06-07T02:54:54.000Z</published>
+    <updated>2022-06-07T03:00:31.044Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;div class=&quot;danger&quot;&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt; 资料来源&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="https://weaving-dreams.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="锐捷" scheme="https://weaving-dreams.github.io/categories/%E5%AD%A6%E4%B9%A0/%E9%94%90%E6%8D%B7/"/>
+    
+    
+    <category term="锐捷" scheme="https://weaving-dreams.github.io/tags/%E9%94%90%E6%8D%B7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>DHCP协议原理与应用</title>
+    <link href="https://weaving-dreams.github.io/posts/ca4e8c36/"/>
+    <id>https://weaving-dreams.github.io/posts/ca4e8c36/</id>
+    <published>2022-06-07T02:54:31.000Z</published>
+    <updated>2022-06-07T03:00:31.060Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;div class=&quot;danger&quot;&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt; 资料来源&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="https://weaving-dreams.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="锐捷" scheme="https://weaving-dreams.github.io/categories/%E5%AD%A6%E4%B9%A0/%E9%94%90%E6%8D%B7/"/>
+    
+    
+    <category term="锐捷" scheme="https://weaving-dreams.github.io/tags/%E9%94%90%E6%8D%B7/"/>
+    
+  </entry>
   
   <entry>
     <title>IPv4编址及子网划分</title>
@@ -493,64 +553,6 @@
         
         
     <summary type="html">&lt;h2 id=&quot;概念&quot;&gt;&lt;a href=&quot;#概念&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="学习" scheme="https://weaving-dreams.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    <category term="web安全" scheme="https://weaving-dreams.github.io/categories/%E5%AD%A6%E4%B9%A0/web%E5%AE%89%E5%85%A8/"/>
-    
-    <category term="DVWA" scheme="https://weaving-dreams.github.io/categories/%E5%AD%A6%E4%B9%A0/web%E5%AE%89%E5%85%A8/DVWA/"/>
-    
-    
-    <category term="DVWA" scheme="https://weaving-dreams.github.io/tags/DVWA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>《天堂旅行团》摘抄</title>
-    <link href="https://weaving-dreams.github.io/posts/7d0fc3d8/"/>
-    <id>https://weaving-dreams.github.io/posts/7d0fc3d8/</id>
-    <published>2022-04-23T03:00:07.000Z</published>
-    <updated>2022-04-25T01:00:17.302Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">
-    &lt;div id=&quot;aplayer-sFdMdrnA&quot; class=&quot;aplayer aplayer-tag-marker meting-tag-marker&quot;
-        </summary>
-        
-      
-    
-    
-    
-    <category term="小说" scheme="https://weaving-dreams.github.io/categories/%E5%B0%8F%E8%AF%B4/"/>
-    
-    <category term="摘抄" scheme="https://weaving-dreams.github.io/categories/%E5%B0%8F%E8%AF%B4/%E6%91%98%E6%8A%84/"/>
-    
-    
-    <category term="小说摘抄" scheme="https://weaving-dreams.github.io/tags/%E5%B0%8F%E8%AF%B4%E6%91%98%E6%8A%84/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>dvwa--SQL注入(low)</title>
-    <link href="https://weaving-dreams.github.io/posts/cb7e67e1/"/>
-    <id>https://weaving-dreams.github.io/posts/cb7e67e1/</id>
-    <published>2022-04-21T01:14:11.000Z</published>
-    <updated>2022-05-28T02:57:43.065Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;dvwa–SQL注入（low）&quot;&gt;&lt;a href=&quot;#dvwa–SQL注入（low）&quot; class=&quot;headerlink&quot;</summary>
         
       
     

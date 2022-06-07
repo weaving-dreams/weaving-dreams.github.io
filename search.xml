@@ -1,6 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>ARP协议原理与应用</title>
+    <url>/posts/9f9ac9a/</url>
+    <content><![CDATA[<div class="danger">
+
+<blockquote>
+<p> 资料来源<a href="https://talent.ruijie.com.cn/certification/profession/">锐捷</a><br> 非原创</p>
+</blockquote>
+</div>
+
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
+<li>OSI模型把网络工作分为七层，IP地址在OSI模型的第三层，MAC地址在第二层，彼此不直接打交道。在 通过以太网发送IP数据包时，需要先封装第三层、第二层的包头，但由于发送时只知道目标IP地址，不知 道其MAC地址，又不能跨第二、三层，所以需要使用地址解析协议即ARP协议。</li>
+<li>ARP协议可根据网络层IP数据包包头中的IP地址信息解析出目标硬件地址（MAC地址）信息，以保证通信 的顺利进行。</li>
+</ul>
+<h2 id="ARP协议概述"><a href="#ARP协议概述" class="headerlink" title="ARP协议概述"></a>ARP协议概述</h2><ul>
+<li>数据要在以太网中传输，需要完成以太网封装，这项工作由网络层负责；</li>
+<li>要完成以太网的数据封装，需要知道目的设备的MAC地址；</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105555.png" alt="1" loading="lazy"></p>
+<ul>
+<li>ARP <ul>
+<li>Address Resolution Protocol 地址解析协 议</li>
+<li>作用：将 IP地址解析为 MAC地址</li>
+<li>注意：ARP报文不能穿越路由器，不能被转 发到其他广播域</li>
+</ul>
+</li>
+<li>ARP缓存表<ul>
+<li>用于存储IP地址及其经过解析的MAC地址的 对应关系</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105558.png" alt="2" loading="lazy"></p>
+<h2 id="ARP协议工作原理"><a href="#ARP协议工作原理" class="headerlink" title="ARP协议工作原理"></a>ARP协议工作原理</h2><p>ARP工作流程</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105601.png" alt="3" loading="lazy"></p>
+<p>ARP工作原理</p>
+<ul>
+<li>先查看ARP表，如果ARP表中没有目的IP地址对应的MAC表项，则发送ARP请求包；</li>
+<li>源主机广播发送ARP request 数据包，请求目的主机的MAC地址；</li>
+<li>同网段内的所有主机都能收到ARP request请求包，但只有目的主机才会回复ARP reply数据包；</li>
+<li>源主机收到ARP reply后，将目的主句的IP-MAC对应关系添加进ARP表中，完成数据的以太网封装，进行 数据交互</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105604.png" alt="4" loading="lazy"></p>
+<p>ARP缓存表</p>
+<ul>
+<li>动态表项<ul>
+<li>通过ARP协议学习，能被更新，缺省老化时间120s</li>
+</ul>
+</li>
+<li>静态表项<ul>
+<li>手工配置，不能被更新，无老化时间的限制</li>
+</ul>
+</li>
+</ul>
+<p>ARP协议分类</p>
+<p>免费ARP（Gratuitous ARP ）</p>
+<ul>
+<li>发送ARP请求，请求本机IP对应的MAC <ul>
+<li>免费ARP的作用：确定其它设备的 IP地址是否与本机 IP地址冲突 </li>
+<li>更改了地址，通知其他设备更新 ARP表项</li>
+</ul>
+</li>
+</ul>
+<p>代理ARP（Proxy ARP ）</p>
+<ul>
+<li>由启动了代理ARP功能的网关&#x2F;下一跳设备代为应答ARP请求，该ARP请求的是其他IP对应的MAC地址。</li>
+<li>回应ARP请求的条件<ul>
+<li>本地有去往目的IP的路由表 </li>
+<li>收到该ARP请求的接口与路由表下一跳不是同一个接口</li>
+</ul>
+</li>
+</ul>
+<p>RARP与IARP</p>
+<ul>
+<li>RARP  Reverse Address Resolution Protocol 反向地址解析协议 <ul>
+<li>把MAC地址解析为IP地址 </li>
+<li>应用场景：常用于无盘工作站</li>
+</ul>
+</li>
+<li>IARP <ul>
+<li>Inverse Address Resolution Protocol 逆向地址解析协议 </li>
+<li>在帧中继网络中解析对端IP地址和本地DLCL的映射关系</li>
+<li>应用场景：应用于帧中继网络</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>锐捷</category>
+      </categories>
+      <tags>
+        <tag>锐捷</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CentOS 7 安装教程</title>
     <url>/posts/c734c1de/</url>
     <content><![CDATA[<blockquote>
@@ -81,6 +175,166 @@ password_pbkdf2 root +刚刚复制的哈希密码&#96;&#96;&#96;</code></pre>
       </categories>
       <tags>
         <tag>CentOS7</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>DHCP协议原理与应用</title>
+    <url>/posts/ca4e8c36/</url>
+    <content><![CDATA[<div class="danger">
+
+<blockquote>
+<p> 资料来源<a href="https://talent.ruijie.com.cn/certification/profession/">锐捷</a><br> 非原创</p>
+</blockquote>
+</div>
+
+
+
+<h1 id="DHCP协议原理与应用"><a href="#DHCP协议原理与应用" class="headerlink" title="DHCP协议原理与应用"></a>DHCP协议原理与应用</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>DHCP（Dynamic Host Configuration Protocol，动态主机配置协议）通常被应用在大型的局域网络环 境中，主要作用是集中的管理、分配IP地址，使网络环境中的主机动态的获得IP地址、Gateway地址、 DNS服务器地址等信息，并能够提升地址的使用率。</p>
+<h2 id="DHCP协议概述"><a href="#DHCP协议概述" class="headerlink" title="DHCP协议概述"></a>DHCP协议概述</h2><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105615.png" alt="7" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105617.png" alt="8" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105619.png" alt="9" loading="lazy"></p>
+<h2 id="DHCP协议工作原理"><a href="#DHCP协议工作原理" class="headerlink" title="DHCP协议工作原理"></a>DHCP协议工作原理</h2><p>DHCP简介</p>
+<ul>
+<li>DHCP（Dynamic Host Configuration Protocol），动态主机配置协议</li>
+<li>定义在RFC2131中， C&#x2F;S架构，为终端设备提供TCP&#x2F;IP参数（IP地址、掩码、网关、DNS等）的自动配置。</li>
+<li>DHCP报文格式和BootP（RFC951、RFC1542）报文兼容，保证了互操作</li>
+</ul>
+<h2 id="DHCP协议名词解释"><a href="#DHCP协议名词解释" class="headerlink" title="DHCP协议名词解释"></a>DHCP协议名词解释</h2><ul>
+<li>DHCP Client <ul>
+<li>DHCP客户机，即用户终端设备，可以是手机、电脑、打印机等需要接入网络的终端设备</li>
+</ul>
+</li>
+<li>DHCP Server <ul>
+<li>DHCP服务器，为终端分配网络参数，管理地址池</li>
+</ul>
+</li>
+</ul>
+<p>DHCP服务器配置</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105621.png" alt="10" loading="lazy"></p>
+<p>PC的DHCP设置</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105624.png" alt="11" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105626.png" alt="12" loading="lazy"></p>
+<p>DHCP协议工作过程</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105627.png" alt="13" loading="lazy"></p>
+<p>DHCP协议报文及用途</p>
+<table>
+<thead>
+<tr>
+<th>报文类型</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DHCP discover</td>
+<td>客户端广播查找可用服务器</td>
+</tr>
+<tr>
+<td>DHCP offer</td>
+<td>服务器响应DHCP discover报文，分配相应配置参数</td>
+</tr>
+<tr>
+<td>DHCP request</td>
+<td>客户端请求配置参数、请求配置确认、续租约</td>
+</tr>
+<tr>
+<td>DHCP ack</td>
+<td>服务器确认DHCP request报文</td>
+</tr>
+<tr>
+<td>DHCP decline</td>
+<td>客户端发现地址被使用时，通知服务器</td>
+</tr>
+<tr>
+<td>DHCP release</td>
+<td>客户端释放地址时通知服务器的报文</td>
+</tr>
+<tr>
+<td>DHCP inform</td>
+<td>客户端已有IP地址，请求更详细配置参数</td>
+</tr>
+<tr>
+<td>DHCP nak</td>
+<td>服务器告诉客户端地址请求不正确或租期已过期</td>
+</tr>
+</tbody></table>
+<p>DHCP协议报文及用途</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105631.png" alt="14" loading="lazy"></p>
+<p>DHCP报文介绍 —— DHCP Offer</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105632.png" alt="15" loading="lazy"></p>
+<p>DHCP报文介绍 —— DHCP Request</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105633.png" alt="16" loading="lazy"></p>
+<p>DHCP报文介绍 —— DHCP Ack</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105635.png" alt="17" loading="lazy"></p>
+<p>DHCP协议的租约</p>
+<ul>
+<li>租约50%时刻<ul>
+<li>客户端主动向服务器发送DHCP request报文，请求更新租约时间； <ul>
+<li>若服务器可用，回复DHCP ack，更新租约； </li>
+<li>若服务器不可用，回复DHCP nak，不更新租约；</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>租约87.5%时刻 <ul>
+<li>客户端主动向服务器发送DHCP request报文，请求更新租约时间； <ul>
+<li>若服务器可用，回复DHCP ack，更新租约； </li>
+<li>若服务器不可用，回复DHCP nak，不更新租约；</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>待到租约时间过去，客户端会重新发送DHCP discover报文。</li>
+</ul>
+<h3 id="DHCP常见部署方式"><a href="#DHCP常见部署方式" class="headerlink" title="DHCP常见部署方式"></a>DHCP常见部署方式</h3><p>校园网中常见的DHCP服务部署方式</p>
+<ul>
+<li>方式一：网关交换机作为DHCP服务器 <ul>
+<li>优势：节省一台服务器资源 </li>
+<li>劣势：地址池配置分散在网络中多台汇聚网关交换机上，无法集中管理</li>
+</ul>
+</li>
+<li>方式二：网关交换机作为DHCP中继，在服务器区部署一台专用的DHCP服务器<ul>
+<li>优势：集中管理，不需要每一个网段都配置一个DHCP服务器，节约资源 </li>
+<li>劣势：需要占用一台服务器资源</li>
+</ul>
+</li>
+</ul>
+<p>方式一：网关交换机作为DHCP服务器</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105637.png" alt="18" loading="lazy"></p>
+<p>方式二：部署专用DHCP服务器</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105640.png" alt="19" loading="lazy"></p>
+<p>DHCP相关安全设计</p>
+<ul>
+<li>用户使用静态IP地址接入<ul>
+<li>部分用户手动配置IP地址，但DHCP服务器是不知道的，因此在为DHCP用户分配IP地址的时候，用户通过 DHCP获取到的IP地址，在网络中是已经使用的，导致了IP地址冲突。</li>
+</ul>
+</li>
+<li>用户架设非法DHCP服务器<ul>
+<li>在同一VLAN中，如果存在恶意用户私自架设了一台DHCP服务器，那么将会使该VLAN内的用户获取到错误 的IP地址，导致无法接入进校园网</li>
+</ul>
+</li>
+</ul>
+<p>使用IP source guard解决用户手动配置IP地址问题</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105643.png" alt="20" loading="lazy"></p>
+<p>使用DHCP Snooping实现防非法DHCP服务器问题（1）</p>
+<ul>
+<li><p>在接入交换机上使用DHCP Snooping相关功能，可以实现防止下联用户架设非法DHCP服务器 </p>
+</li>
+<li><p>以下为DHCP Snooping原理动画演示：</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105646.png" alt="21" loading="lazy"></p>
+</li>
+<li><p>在接入交换机上使用DHCP Snooping相关功能，可以实现防止下联用户架设非法DHCP服务器 </p>
+</li>
+<li><p>以下为DHCP Snooping配置步骤：</p>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105648.png" alt="22" loading="lazy"></p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>锐捷</category>
+      </categories>
+      <tags>
+        <tag>锐捷</tag>
       </tags>
   </entry>
   <entry>
@@ -262,6 +516,53 @@ select * from users where id&#x3D;1 and greatest(ascii(substr(database(),1,1)),6
       </tags>
   </entry>
   <entry>
+    <title>Hexo版本升级指南</title>
+    <url>/posts/3ba3be9/</url>
+    <content><![CDATA[<p>&#x2F;&#x2F;以下指令均在Hexo目录下操作，先定位到Hexo目录<br>&#x2F;&#x2F;查看当前版本，判断是否需要升级</p>
+<pre class="language-none"><code class="language-none">hexo version</code></pre>
+
+<p>&#x2F;&#x2F;全局升级hexo-cli</p>
+<pre class="language-none"><code class="language-none">npm i hexo-cli -g</code></pre>
+
+<p>&#x2F;&#x2F;再次查看版本，看hexo-cli是否升级成功</p>
+<pre class="language-none"><code class="language-none">hexo version</code></pre>
+
+<p>&#x2F;&#x2F;安装npm-check，若已安装可以跳过</p>
+<pre class="language-none"><code class="language-none">npm install -g npm-check</code></pre>
+
+<p>&#x2F;&#x2F;检查系统插件是否需要升级</p>
+<pre class="language-none"><code class="language-none">npm-check</code></pre>
+
+<p>&#x2F;&#x2F;安装npm-upgrade，若已安装可以跳过</p>
+<pre class="language-none"><code class="language-none">npm install -g npm-upgrade</code></pre>
+
+<p>&#x2F;&#x2F;更新package.json</p>
+<pre class="language-none"><code class="language-none">npm-upgrade</code></pre>
+
+<p>&#x2F;&#x2F;更新全局插件</p>
+<pre class="language-none"><code class="language-none">npm update -g</code></pre>
+
+<p>&#x2F;&#x2F;更新系统插件</p>
+<pre class="language-none"><code class="language-none">npm update --save</code></pre>
+
+<p>&#x2F;&#x2F;再次查看版本，判断是否升级成功</p>
+<pre class="language-none"><code class="language-none">hexo version</code></pre>
+
+
+
+<br>
+
+<p>文章转载自：<a href="https://novnan.github.io/Hexo/update_hexo/">Hexo版本升级指南</a></p>
+]]></content>
+      <categories>
+        <category>教程</category>
+        <category>博客</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Deepin检查更新失败</title>
     <url>/posts/8b4f8dc5/</url>
     <content><![CDATA[<p>我们更新deepin系统是总会出现检查更新失败,去终端输入命令发现是没有公钥无法验证下列签名</p>
@@ -317,53 +618,6 @@ gpg:               已导入：1</code></pre>
       </categories>
       <tags>
         <tag>deepin</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo版本升级指南</title>
-    <url>/posts/3ba3be9/</url>
-    <content><![CDATA[<p>&#x2F;&#x2F;以下指令均在Hexo目录下操作，先定位到Hexo目录<br>&#x2F;&#x2F;查看当前版本，判断是否需要升级</p>
-<pre class="language-none"><code class="language-none">hexo version</code></pre>
-
-<p>&#x2F;&#x2F;全局升级hexo-cli</p>
-<pre class="language-none"><code class="language-none">npm i hexo-cli -g</code></pre>
-
-<p>&#x2F;&#x2F;再次查看版本，看hexo-cli是否升级成功</p>
-<pre class="language-none"><code class="language-none">hexo version</code></pre>
-
-<p>&#x2F;&#x2F;安装npm-check，若已安装可以跳过</p>
-<pre class="language-none"><code class="language-none">npm install -g npm-check</code></pre>
-
-<p>&#x2F;&#x2F;检查系统插件是否需要升级</p>
-<pre class="language-none"><code class="language-none">npm-check</code></pre>
-
-<p>&#x2F;&#x2F;安装npm-upgrade，若已安装可以跳过</p>
-<pre class="language-none"><code class="language-none">npm install -g npm-upgrade</code></pre>
-
-<p>&#x2F;&#x2F;更新package.json</p>
-<pre class="language-none"><code class="language-none">npm-upgrade</code></pre>
-
-<p>&#x2F;&#x2F;更新全局插件</p>
-<pre class="language-none"><code class="language-none">npm update -g</code></pre>
-
-<p>&#x2F;&#x2F;更新系统插件</p>
-<pre class="language-none"><code class="language-none">npm update --save</code></pre>
-
-<p>&#x2F;&#x2F;再次查看版本，判断是否升级成功</p>
-<pre class="language-none"><code class="language-none">hexo version</code></pre>
-
-
-
-<br>
-
-<p>文章转载自：<a href="https://novnan.github.io/Hexo/update_hexo/">Hexo版本升级指南</a></p>
-]]></content>
-      <categories>
-        <category>教程</category>
-        <category>博客</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -1675,31 +1929,6 @@ gpg:               已导入：1</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>VScode简单配置</title>
-    <url>/posts/83ecd2a4/</url>
-    <content><![CDATA[<h2 id="汉化"><a href="#汉化" class="headerlink" title="汉化"></a>汉化</h2><p>点击左侧工具栏的extensions或者使用快捷键【Ctrl+Shift+X】，输入chinese，点击Install安装中文简体</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/VScode/20220510194438.png" alt="1" loading="lazy"></p>
-<p>使用快捷键【Ctrl+Shift+P】弹出查找命令框，输入language, 找到Configure Display Language，点击，选择locale属性为”zh-CN”</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/VScode/20220510194441.png" alt="2" loading="lazy"></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/VScode/20220510194443.png" alt="3" loading="lazy"></p>
-<h2 id="VSCode配置Python开发环境"><a href="#VSCode配置Python开发环境" class="headerlink" title="VSCode配置Python开发环境"></a>VSCode配置Python开发环境</h2><p>安装python环境</p>
-<p>（略）</p>
-<p>打开VSCode, 搜索插件Python并安装。</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/VScode/20220510194445.png" alt="4" loading="lazy"></p>
-<p>Ctrl+Shift+P  &gt; Command Palette，打开命令面板输入<code>Python: Select Interpreter</code></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/VScode/20220510194447.png" alt="5" loading="lazy"></p>
-<p>新建一个Python文件输入<code>print(&quot;helloword&quot;)</code>后运行</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/VScode/20220510194449.png" alt="7" loading="lazy"></p>
-]]></content>
-      <categories>
-        <category>教程</category>
-        <category>其他</category>
-      </categories>
-      <tags>
-        <tag>其他</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Typora基本用法</title>
     <url>/posts/1bd41834/</url>
     <content><![CDATA[<p>[toc]</p>
@@ -2013,6 +2242,31 @@ cond(no)-&gt;op</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>VScode简单配置</title>
+    <url>/posts/83ecd2a4/</url>
+    <content><![CDATA[<h2 id="汉化"><a href="#汉化" class="headerlink" title="汉化"></a>汉化</h2><p>点击左侧工具栏的extensions或者使用快捷键【Ctrl+Shift+X】，输入chinese，点击Install安装中文简体</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/VScode/20220510194438.png" alt="1" loading="lazy"></p>
+<p>使用快捷键【Ctrl+Shift+P】弹出查找命令框，输入language, 找到Configure Display Language，点击，选择locale属性为”zh-CN”</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/VScode/20220510194441.png" alt="2" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/VScode/20220510194443.png" alt="3" loading="lazy"></p>
+<h2 id="VSCode配置Python开发环境"><a href="#VSCode配置Python开发环境" class="headerlink" title="VSCode配置Python开发环境"></a>VSCode配置Python开发环境</h2><p>安装python环境</p>
+<p>（略）</p>
+<p>打开VSCode, 搜索插件Python并安装。</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/VScode/20220510194445.png" alt="4" loading="lazy"></p>
+<p>Ctrl+Shift+P  &gt; Command Palette，打开命令面板输入<code>Python: Select Interpreter</code></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/VScode/20220510194447.png" alt="5" loading="lazy"></p>
+<p>新建一个Python文件输入<code>print(&quot;helloword&quot;)</code>后运行</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/VScode/20220510194449.png" alt="7" loading="lazy"></p>
+]]></content>
+      <categories>
+        <category>教程</category>
+        <category>其他</category>
+      </categories>
+      <tags>
+        <tag>其他</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>centos7安装PHP5</title>
     <url>/posts/b394315b/</url>
     <content><![CDATA[<p>参考：<a href="https://www.cnblogs.com/xxdebug/p/14142266.html">centos7安装PHP5 - xiaoxiaoの - 博客园 </a></p>
@@ -2223,6 +2477,24 @@ PATH&#x3D;$PATH:&#x2F;usr&#x2F;local&#x2F;php&#x2F;bin环境变量生效 source 
       <tags>
         <tag>DVWA</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/posts/4a17b156/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span></code></pre>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="language-bash" data-language="bash"><code class="language-bash">$ hexo server</code></pre>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="language-bash" data-language="bash"><code class="language-bash">$ hexo generate</code></pre>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="language-bash" data-language="bash"><code class="language-bash">$ hexo deploy</code></pre>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
   </entry>
   <entry>
     <title>dvwa--盲注</title>
@@ -2455,24 +2727,6 @@ sqlmap -u &quot;192.168.224.135&#x2F;dvwa&#x2F;vulnerabilities&#x2F;sqli_blind&#
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/posts/4a17b156/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="language-bash" data-language="bash"><code class="language-bash">$ hexo server</code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="language-bash" data-language="bash"><code class="language-bash">$ hexo generate</code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="language-bash" data-language="bash"><code class="language-bash">$ hexo deploy</code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>hexo博客上使用waline评论系统</title>
     <url>/posts/5b3b1c7f/</url>
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Waline 是一款从 <a href="https://valine.js.org/">Valine</a> 衍生的带后端评论系统。部署简单使用方面，干净整洁，可匿名评论。</p>
@@ -2639,7 +2893,7 @@ apt-get dist-upgrade		#根据依赖关系更新</code></pre>
     <title>《天堂旅行团》摘抄</title>
     <url>/posts/7d0fc3d8/</url>
     <content><![CDATA[
-    <div id="aplayer-sFdMdrnA" class="aplayer aplayer-tag-marker meting-tag-marker"
+    <div id="aplayer-suEVsNqy" class="aplayer aplayer-tag-marker meting-tag-marker"
          data-id="1891034510" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#C20C0C"
     ></div>
 
@@ -3176,44 +3430,6 @@ switchport trunk allowed vlan only 10,20,30</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>如何判断两台主机IP是否在同一网段</title>
-    <url>/posts/63b0beec/</url>
-    <content><![CDATA[<h2 id="什么是子网掩码"><a href="#什么是子网掩码" class="headerlink" title="什么是子网掩码"></a>什么是子网掩码</h2><p>子网掩码也称为网络掩码，地址掩码和子网遮罩。 它用于指示IP地址的哪些位标识主机所在的子网，哪些位标识为主机的位掩码。 子网掩码不能单独存在，必须与IP地址一起使用。 子网掩码仅具有一项功能，即将IP地址分为两部分，即网络地址和主机地址。子网掩码是一个32位地址，用于屏蔽IP地址的一部分，以区分网络ID和主机ID，并指示IP地址是在局域网上还是在广域网上。</p>
-<h2 id="子网掩码的功能"><a href="#子网掩码的功能" class="headerlink" title="子网掩码的功能"></a>子网掩码的功能</h2><p>子网掩码是一个32位地址，这是一种与IP地址结合使用的技术。 它具有两个主要功能。 一种是屏蔽IP地址的一部分，以区分网络ID和主机ID，并指示IP地址是在局域网上还是在远程网络上。 第二个是将大型IP网络划分为若干个小型子网。</p>
-<p>子网的使用是为了减少IP的浪费。 因为随着Internet的发展，创建了越来越多的网络，有些网络多达数百个，而有些只有少数，这浪费了大量IP地址，因此必须划分子网。 使用子网可以提高网络应用程序的效率。</p>
-<p>通过计算机的子网掩码判断两台计算机是否属于同一网段的方法是将计算机的十进制IP地址和子网掩码转换为二进制形式，然后执行二进制AND计算（全1则得1，不全1则得0）。 如果结果相同，则两台计算机属于同一网段。</p>
-<h2 id="如何根据掩码来确定IP地址网段"><a href="#如何根据掩码来确定IP地址网段" class="headerlink" title="如何根据掩码来确定IP地址网段"></a>如何根据掩码来确定IP地址网段</h2><p>A主机：IP地址：192.168.1.10 	  	子网掩码：255.255.255.192 	(掩码位26)</p>
-<p>B主句：IP地址： 192.168.1.100		子网掩码：255.255.255.192 	(掩码位26)</p>
-<p>C主机：IP地址： 192.168.1.20		   子网掩码：255.255.255.192 	(掩码位26)</p>
-<p>首先将IP地址和子网掩码转为32位二进制数字</p>
-<p>然后在IP地址和子网掩码做与运算</p>
-<p>A主机：</p>
-<p>IP地址：					11000000  ：10101000  ：00000001  ：00001010</p>
-<p>子网掩码：				11111111  ：11111111  ：11111111  ：11000000</p>
-<p>与运算结果：		11000000  ：100101000  ：00000001 ：00000000</p>
-<p>B主机：</p>
-<p>IP地址：					11000000  ：10101000  ：00000001  :    01100100</p>
-<p>子网掩码：				11111111  ：11111111  ：11111111  ：11000000</p>
-<p>与运算结果：		11000000  ：100101000  ：00000001 ：01000000</p>
-<p>C主机：</p>
-<p>IP地址：					11000000  ： 10101000  ：00000001  ：00010100</p>
-<p>子网掩码：				11111111  ：11111111  ：11111111  ：11000000</p>
-<p>与运算结果：		11000000  ：100101000  ：00000001 ：00000000</p>
-<p>判断与运算结果是否相同</p>
-<p>A主机与运算结果	11000000  ：100101000  ：00000001 ：00000000</p>
-<p>B主机与运算结果	11000000  ：100101000  ：00000001 ：01000000</p>
-<p>C主机与运算结果	11000000  ：100101000  ：00000001 ：00000000</p>
-<p>A主机和C主机与运算结果相同，所以A主机C主机在同一网段，B主机没有与AC主机在同一网段</p>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>网络基础</category>
-      </categories>
-      <tags>
-        <tag>网络</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>如何彻底关闭Hyper-V</title>
     <url>/posts/8dc48be7/</url>
     <content><![CDATA[<p>许多第三方虚拟化应用程序无法与 Hyper-V同时工作。 受影响的应用程序包括 VMware Workstation 和 VirtualBox。 这些应用程序可能无法启动虚拟机，或者可能回退到较慢的模拟模式。</p>
@@ -3306,6 +3522,44 @@ mountvol X: &#x2F;d</code></pre>
       </categories>
       <tags>
         <tag>windows</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何判断两台主机IP是否在同一网段</title>
+    <url>/posts/63b0beec/</url>
+    <content><![CDATA[<h2 id="什么是子网掩码"><a href="#什么是子网掩码" class="headerlink" title="什么是子网掩码"></a>什么是子网掩码</h2><p>子网掩码也称为网络掩码，地址掩码和子网遮罩。 它用于指示IP地址的哪些位标识主机所在的子网，哪些位标识为主机的位掩码。 子网掩码不能单独存在，必须与IP地址一起使用。 子网掩码仅具有一项功能，即将IP地址分为两部分，即网络地址和主机地址。子网掩码是一个32位地址，用于屏蔽IP地址的一部分，以区分网络ID和主机ID，并指示IP地址是在局域网上还是在广域网上。</p>
+<h2 id="子网掩码的功能"><a href="#子网掩码的功能" class="headerlink" title="子网掩码的功能"></a>子网掩码的功能</h2><p>子网掩码是一个32位地址，这是一种与IP地址结合使用的技术。 它具有两个主要功能。 一种是屏蔽IP地址的一部分，以区分网络ID和主机ID，并指示IP地址是在局域网上还是在远程网络上。 第二个是将大型IP网络划分为若干个小型子网。</p>
+<p>子网的使用是为了减少IP的浪费。 因为随着Internet的发展，创建了越来越多的网络，有些网络多达数百个，而有些只有少数，这浪费了大量IP地址，因此必须划分子网。 使用子网可以提高网络应用程序的效率。</p>
+<p>通过计算机的子网掩码判断两台计算机是否属于同一网段的方法是将计算机的十进制IP地址和子网掩码转换为二进制形式，然后执行二进制AND计算（全1则得1，不全1则得0）。 如果结果相同，则两台计算机属于同一网段。</p>
+<h2 id="如何根据掩码来确定IP地址网段"><a href="#如何根据掩码来确定IP地址网段" class="headerlink" title="如何根据掩码来确定IP地址网段"></a>如何根据掩码来确定IP地址网段</h2><p>A主机：IP地址：192.168.1.10 	  	子网掩码：255.255.255.192 	(掩码位26)</p>
+<p>B主句：IP地址： 192.168.1.100		子网掩码：255.255.255.192 	(掩码位26)</p>
+<p>C主机：IP地址： 192.168.1.20		   子网掩码：255.255.255.192 	(掩码位26)</p>
+<p>首先将IP地址和子网掩码转为32位二进制数字</p>
+<p>然后在IP地址和子网掩码做与运算</p>
+<p>A主机：</p>
+<p>IP地址：					11000000  ：10101000  ：00000001  ：00001010</p>
+<p>子网掩码：				11111111  ：11111111  ：11111111  ：11000000</p>
+<p>与运算结果：		11000000  ：100101000  ：00000001 ：00000000</p>
+<p>B主机：</p>
+<p>IP地址：					11000000  ：10101000  ：00000001  :    01100100</p>
+<p>子网掩码：				11111111  ：11111111  ：11111111  ：11000000</p>
+<p>与运算结果：		11000000  ：100101000  ：00000001 ：01000000</p>
+<p>C主机：</p>
+<p>IP地址：					11000000  ： 10101000  ：00000001  ：00010100</p>
+<p>子网掩码：				11111111  ：11111111  ：11111111  ：11000000</p>
+<p>与运算结果：		11000000  ：100101000  ：00000001 ：00000000</p>
+<p>判断与运算结果是否相同</p>
+<p>A主机与运算结果	11000000  ：100101000  ：00000001 ：00000000</p>
+<p>B主机与运算结果	11000000  ：100101000  ：00000001 ：01000000</p>
+<p>C主机与运算结果	11000000  ：100101000  ：00000001 ：00000000</p>
+<p>A主机和C主机与运算结果相同，所以A主机C主机在同一网段，B主机没有与AC主机在同一网段</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>网络基础</category>
+      </categories>
+      <tags>
+        <tag>网络</tag>
       </tags>
   </entry>
   <entry>
