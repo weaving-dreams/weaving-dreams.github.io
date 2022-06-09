@@ -6,7 +6,7 @@
   <link href="https://weaving-dreams.github.io/atom.xml" rel="self"/>
   
   <link href="https://weaving-dreams.github.io/"/>
-  <updated>2022-06-08T09:28:45.055Z</updated>
+  <updated>2022-06-09T01:57:15.668Z</updated>
   <id>https://weaving-dreams.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>二层交换机工作原理</title>
+    <link href="https://weaving-dreams.github.io/posts/29adaa64/"/>
+    <id>https://weaving-dreams.github.io/posts/29adaa64/</id>
+    <published>2022-06-09T01:53:20.000Z</published>
+    <updated>2022-06-09T01:57:15.668Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt; 资料来源&lt;a href=&quot;https://talent.ruijie.com.cn/certification/profession/&quot;&gt;锐捷&lt;/a&gt;&lt;br&gt;</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="https://weaving-dreams.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="锐捷" scheme="https://weaving-dreams.github.io/categories/%E5%AD%A6%E4%B9%A0/%E9%94%90%E6%8D%B7/"/>
+    
+    
+    <category term="锐捷" scheme="https://weaving-dreams.github.io/tags/%E9%94%90%E6%8D%B7/"/>
+    
+  </entry>
   
   <entry>
     <title>RGOS日常管理操作</title>
@@ -540,33 +568,6 @@
     
     
     <category term="Hexo" scheme="https://weaving-dreams.github.io/tags/Hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>整理几个实用电脑软件</title>
-    <link href="https://weaving-dreams.github.io/posts/a442a205/"/>
-    <id>https://weaving-dreams.github.io/posts/a442a205/</id>
-    <published>2022-05-03T10:12:33.000Z</published>
-    <updated>2022-05-31T12:41:51.899Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;TrafficMonitor&quot;&gt;&lt;a href=&quot;#TrafficMonitor&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="其他" scheme="https://weaving-dreams.github.io/categories/%E5%85%B6%E4%BB%96/"/>
-    
-    <category term="杂谈" scheme="https://weaving-dreams.github.io/categories/%E5%85%B6%E4%BB%96/%E6%9D%82%E8%B0%88/"/>
-    
-    
-    <category term="杂谈" scheme="https://weaving-dreams.github.io/tags/%E6%9D%82%E8%B0%88/"/>
     
   </entry>
   
