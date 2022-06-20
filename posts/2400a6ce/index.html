@@ -1,0 +1,594 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="LuRen"><meta name="copyright" content="LuRen"><meta name="generator" content="Hexo 6.2.0"><meta name="theme" content="hexo-theme-yun"><title>OSPF基础 | 圥忈的小站</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/star-markdown-css@0.3.3/dist/yun/yun-markdown.min.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/prism-theme-vars/base.css"><script src="https://fastly.jsdelivr.net/npm/@unocss/runtime/mini.global.js"></script><script src="https://fastly.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>function initScrollReveal() {
+  [".post-card",".markdown-body img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+}
+document.addEventListener("DOMContentLoaded", initScrollReveal);
+document.addEventListener("pjax:success", initScrollReveal);
+</script><script src="https://fastly.jsdelivr.net/npm/pjax@latest/pjax.min.js" defer></script><script src="/js/pjax.js" defer type="module"></script><script src="https://fastly.jsdelivr.net/npm/vue@2.6.14"></script><link rel="icon" type="image/svg+xml" href="/ghost-smile-line.svg"><link rel="mask-icon" href="/ghost-smile-line.svg" color="#0078E7"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fastly.jsdelivr.net/npm/" crossorigin><script id="yun-config">
+    window.Yun = {}
+    window.CONFIG = {"hostname":"weaving-dreams.github.io","root":"/","title":"圥忈的小站","version":"1.10.2","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"搜索...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）"},"anonymous_image":"https://cdn.yunyoujun.cn/img/avatar/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true},"local_search":{"path":"/search.xml"},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"fireworks":{"colors":["102, 167, 221","\t255,0,255","33, 78, 194","255,69,0"]},"waline":{"config":{"enable":true,"serverURL":"https://waline-1gafcjzkcbb7fe08-1310495826.ap-shanghai.app.tcloudbase.com/waline","comment":true,"visitor":true,"emoji":["https://unpkg.com/@waline/emojis@1.0.1/bilibili","https://unpkg.com/@waline/emojis@1.0.1/qq","https://unpkg.com/@waline/emojis@1.0.1/weibo"],"locale":{"placeholder":"来都来了，不说点什么吗","level0":"炼体","level1":"炼气","level2":"筑基","level3":"金丹","level4":"元婴","level5":"化神"},"el":"#waline","lang":"zh-CN"},"cdn":"https://fastly.jsdelivr.net/npm/@waline/client@v2/dist/waline.js","dark":"html.dark"},"vendors":{"darken":"https://fastly.jsdelivr.net/npm/darken@1.5.0"}};
+  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/hexo-theme-yun.js" type="module"></script><link rel="alternate" href="/atom.xml" title="圥忈的小站" type="application/atom+xml"><script src="//at.alicdn.com/t/font_3319107_f11xxoznd2e.js" async></script><meta name="description" content="资料来源锐捷 非原创        OSPF协议，全称开放最短路径优先协议（ Open Shortest Path First ），它是IETF组织开发的一个基于 链路状态的内部网关路由协议（IGP）。因其的开放性以及丰富的功能特性，成为目前业内使用最广泛的 路由协议之一 OSPF的基本概念概念 专为TCP&#x2F;IP网络设计，支持VLSM、路由汇总、等价负载均衡、区域划分、认证  O">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OSPF基础">
+<meta property="og:url" content="https://weaving-dreams.github.io/posts/2400a6ce/index.html">
+<meta property="og:site_name" content="圥忈的小站">
+<meta property="og:description" content="资料来源锐捷 非原创        OSPF协议，全称开放最短路径优先协议（ Open Shortest Path First ），它是IETF组织开发的一个基于 链路状态的内部网关路由协议（IGP）。因其的开放性以及丰富的功能特性，成为目前业内使用最广泛的 路由协议之一 OSPF的基本概念概念 专为TCP&#x2F;IP网络设计，支持VLSM、路由汇总、等价负载均衡、区域划分、认证  O">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154540.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154547.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154600.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154604.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154616.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154621.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154626.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154631.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154635.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154642.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154646.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154653.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154659.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154704.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154708.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154713.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154717.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154721.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154725.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154728.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154736.png">
+<meta property="article:published_time" content="2022-06-20T07:48:36.000Z">
+<meta property="article:modified_time" content="2022-06-20T07:49:38.112Z">
+<meta property="article:author" content="LuRen">
+<meta property="article:tag" content="锐捷">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154540.png"><script>(function() {
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+  const setting = localStorage.getItem('darken-mode') || 'auto'
+  if (setting === 'dark' || (prefersDark && setting !== 'light'))
+    document.documentElement.classList.toggle('dark', true)
+})()</script></head><body><script src="https://code.iconify.design/2/2.1.1/iconify.min.js"></script><script>// Define global variable
+IconifyProviders = {
+  // Empty prefix: overwrite default API provider configuration
+  '': {
+    // Use custom API first, use Iconify public API as backup
+    resources: [
+        'https://api.iconify.design',
+    ],
+    // Wait for 1 second before switching API hosts
+    rotate: 1000,
+  },
+};</script><script defer src="https://fastly.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js" type="module"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js" type="module"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><span class="icon iconify" data-icon="ri:list-ordered"></span></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><span class="icon iconify" data-icon="ri:passport-line"></span></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="LuRen"><img width="96" loading="lazy" src="/images/1.jpg" alt="LuRen"><span class="site-author-status" title="努力ing">🤡</span></a><div class="site-author-name"><a href="/about/">LuRen</a></div><a class="site-name" href="/about/site.html">圥忈的小站</a><sub class="site-subtitle">努力ing</sub><div class="site-description">一个自言自语的地方</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:home-4-line"></span></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:archive-line"></span></span><span class="site-state-item-count">53</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:folder-2-line"></span></span><span class="site-state-item-count">21</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="site-state-item-count">18</span></a></div><a class="site-state-item hty-icon-button" href="/about/#comment" title="留言板"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:clipboard-line"></span></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="/atom.xml" title="RSS" target="_blank" style="color:orange"><span class="icon iconify" data-icon="ri:rss-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/weaving-dreams" title="GitHub" target="_blank" style="color:#6e5494"><span class="icon iconify" data-icon="ri:github-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.yuque.com/yuqueyonghuvseqgc/wze6w2" title="语雀" target="_blank" style="color:#007722"><span class="icon iconify" data-icon="ant-design:yuque-outlined"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://weibo.com/u/6603251070" title="微博" target="_blank" style="color:#E6162D"><span class="icon iconify" data-icon="ri:weibo-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://music.163.com/#/user/home?id=1475793651" title="网易云音乐" target="_blank" style="color:#C20C0C"><span class="icon iconify" data-icon="ri:netease-cloud-music-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/499227133?share_medium=android&amp;share_plat=android&amp;share_session_id=f72830f6-8f5f-413a-86d2-6043b1bd69eb&amp;share_source=WEIXIN&amp;share_tag=s_i&amp;timestamp=1646642363&amp;unique_k=pDXLBN4" title="哔哩哔哩" target="_blank" style="color:#FF8EB3"><span class="icon iconify" data-icon="ri:bilibili-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="http://www.coolapk.com/u/4097869" title="酷安" target="_blank" style="color:#007722"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-kuancoolapk1"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="友联 links" style="color:dodgerblue"><span class="icon iconify" data-icon="ri:genderless-line"></span></a><a class="links-item hty-icon-button" href="/girls/" title="喜欢的女孩子" style="color:hotpink"><span class="icon iconify" data-icon="ri:women-line"></span></a><a class="links-item hty-icon-button" href="/albums/" title="相册集" style="color:#6e5494"><span class="icon iconify" data-icon="ri:gallery-line"></span></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><span class="icon iconify" data-icon="ri:contrast-2-line"></span></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#OSPF%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">1.</span> <span class="toc-text">OSPF的基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-number">1.1.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OSPF%E7%9A%84Cost%E5%80%BC"><span class="toc-number">1.2.</span> <span class="toc-text">OSPF的Cost值</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OSPF%E9%82%BB%E5%B1%85%E5%BB%BA%E7%AB%8B%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">OSPF邻居建立的过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#OSPF%E7%9B%B8%E5%85%B3%E6%9C%AF%E8%AF%AD"><span class="toc-number">2.1.</span> <span class="toc-text">OSPF相关术语</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Router-ID"><span class="toc-number">2.2.</span> <span class="toc-text">Router ID</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OSPF%E7%9A%84%E4%BA%94%E7%A7%8D%E6%8A%A5%E6%96%87%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.3.</span> <span class="toc-text">OSPF的五种报文类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OSPF%E9%82%BB%E5%B1%85%E5%BB%BA%E7%AB%8B%E7%9A%84%E4%B8%89%E4%B8%AA%E9%98%B6%E6%AE%B5"><span class="toc-number">2.4.</span> <span class="toc-text">OSPF邻居建立的三个阶段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OSPF%E5%B8%B8%E7%94%A8%E7%9A%84%E4%B8%89%E5%BC%A0%E7%8A%B6%E6%80%81%E8%A1%A8"><span class="toc-number">2.5.</span> <span class="toc-text">OSPF常用的三张状态表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OSPF%E7%9A%84%E9%82%BB%E5%B1%85%E5%8F%91%E7%8E%B0%E8%BF%87%E7%A8%8B"><span class="toc-number">2.6.</span> <span class="toc-text">OSPF的邻居发现过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OSPF%E7%9A%84%E9%93%BE%E8%B7%AF%E7%8A%B6%E6%80%81%E6%91%98%E8%A6%81%E4%BA%A4%E6%8D%A2%E8%BF%87%E7%A8%8B"><span class="toc-number">2.7.</span> <span class="toc-text">OSPF的链路状态摘要交换过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OSPF%E7%9A%84%E8%AF%A6%E7%BB%86%E9%93%BE%E8%B7%AF%E7%8A%B6%E6%80%81%E4%BF%A1%E6%81%AF%E5%90%8C%E6%AD%A5%E8%BF%87%E7%A8%8B"><span class="toc-number">2.8.</span> <span class="toc-text">OSPF的详细链路状态信息同步过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OSPF%E7%9A%84%E8%B7%AF%E7%94%B1%E8%AE%A1%E7%AE%97%E4%B8%8E%E8%B7%AF%E7%94%B1%E8%A1%A8%E5%8A%A0%E8%BD%BD"><span class="toc-number">2.9.</span> <span class="toc-text">OSPF的路由计算与路由表加载</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OSPF%E7%9A%84%E7%BD%91%E7%BB%9C%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.</span> <span class="toc-text">OSPF的网络类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%BF%E6%92%AD%E5%9E%8B%E5%A4%9A%E8%B7%AF%E8%AE%BF%E9%97%AE%E7%BD%91%E7%BB%9C-Broadcast"><span class="toc-number">3.1.</span> <span class="toc-text">广播型多路访问网络-Broadcast</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OSPF%E7%9A%84DR%E3%80%81BDR%E6%9C%BA%E5%88%B6"><span class="toc-number">3.2.</span> <span class="toc-text">OSPF的DR、BDR机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OSPF%E7%9A%84DR%E3%80%81BDR%E7%9A%84%E9%80%89%E4%B8%BE"><span class="toc-number">3.3.</span> <span class="toc-text">OSPF的DR、BDR的选举</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DR-x2F-BDR%E7%9A%84%E9%80%89%E4%B8%BE%E7%A4%BA%E4%BE%8B%E4%B8%80"><span class="toc-number">3.4.</span> <span class="toc-text">DR&#x2F;BDR的选举示例一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DR-x2F-BDR%E7%9A%84%E9%80%89%E4%B8%BE%E7%A4%BA%E4%BE%8B%E4%BA%8C"><span class="toc-number">3.5.</span> <span class="toc-text">DR&#x2F;BDR的选举示例二</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OSPF%E7%9A%84%E5%8C%BA%E5%9F%9F%E4%B8%8E%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE"><span class="toc-number">4.</span> <span class="toc-text">OSPF的区域与基本配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#OSPF%E7%9A%84%E5%8D%95%E5%8C%BA%E5%9F%9F%E9%97%AE%E9%A2%98"><span class="toc-number">4.1.</span> <span class="toc-text">OSPF的单区域问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OSPF%E7%9A%84%E5%8D%95%E5%8C%BA%E5%9F%9F%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">4.2.</span> <span class="toc-text">OSPF的单区域问题解决方案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OSPF%E5%A4%9A%E5%8C%BA%E5%9F%9F%E5%B1%82%E6%AC%A1%E5%8C%96"><span class="toc-number">4.3.</span> <span class="toc-text">OSPF多区域层次化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OSPF%E5%A4%9A%E5%8C%BA%E5%9F%9F%E7%8E%AF%E5%A2%83%E8%B7%AF%E7%94%B1%E5%99%A8%E7%B1%BB%E5%9E%8B"><span class="toc-number">4.4.</span> <span class="toc-text">OSPF多区域环境路由器类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E5%8C%BA%E5%9F%9FOSPF%E6%A1%88%E4%BE%8B"><span class="toc-number">4.5.</span> <span class="toc-text">单区域OSPF案例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E5%8C%BA%E5%9F%9FOSPF%E6%A1%88%E4%BE%8B-%E2%80%94%E2%80%94-%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE"><span class="toc-number">4.6.</span> <span class="toc-text">单区域OSPF案例 —— 基础配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E5%8C%BA%E5%9F%9FOSPF%E6%A1%88%E4%BE%8B-%E2%80%94%E2%80%94-%E8%B7%AF%E7%94%B1%E8%A1%A8"><span class="toc-number">4.7.</span> <span class="toc-text">单区域OSPF案例 —— 路由表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E5%8C%BA%E5%9F%9FOSPF%E6%A1%88%E4%BE%8B-%E2%80%94%E2%80%94-%E8%BF%9E%E9%80%9A%E6%80%A7%E6%B5%8B%E8%AF%95"><span class="toc-number">4.8.</span> <span class="toc-text">单区域OSPF案例 —— 连通性测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E5%8C%BA%E5%9F%9FOSPF%E6%A1%88%E4%BE%8B-%E2%80%94%E2%80%94-%E7%8A%B6%E6%80%81%E6%9F%A5%E7%9C%8B"><span class="toc-number">4.9.</span> <span class="toc-text">单区域OSPF案例 —— 状态查看</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E5%8C%BA%E5%9F%9FOSPF%E6%A1%88%E4%BE%8B"><span class="toc-number">4.10.</span> <span class="toc-text">多区域OSPF案例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E5%8C%BA%E5%9F%9FOSPF%E6%A1%88%E4%BE%8B-%E2%80%94%E2%80%94-%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE"><span class="toc-number">4.11.</span> <span class="toc-text">多区域OSPF案例 —— 基本配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E5%8C%BA%E5%9F%9FOSPF%E6%A1%88%E4%BE%8B-%E2%80%94%E2%80%94-%E8%B7%AF%E7%94%B1%E8%A1%A8"><span class="toc-number">4.12.</span> <span class="toc-text">多区域OSPF案例 —— 路由表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E5%8C%BA%E5%9F%9FOSPF%E6%A1%88%E4%BE%8B-%E2%80%94%E2%80%94-%E8%BF%9E%E9%80%9A%E6%80%A7%E6%B5%8B%E8%AF%95"><span class="toc-number">4.13.</span> <span class="toc-text">多区域OSPF案例 —— 连通性测试</span></a></li></ol></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article" style="--smc-primary:#0078E7;"><link itemprop="mainEntityOfPage" href="https://weaving-dreams.github.io/posts/2400a6ce/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="LuRen"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="圥忈的小站"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">OSPF基础</h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:calendar-line"></span></span> <time title="创建时间：2022-06-20 15:48:36" itemprop="dateCreated datePublished" datetime="2022-06-20T15:48:36+08:00">2022-06-20</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="本文字数"><span class="icon iconify" data-icon="ri:file-word-line"></span></span> <span title="本文字数">4.4k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读时长"><span class="icon iconify" data-icon="ri:timer-line"></span></span> <span title="阅读时长">21m</span></span></span><span class="post-busuanzi"><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读次数"><span class="icon iconify" data-icon="ri:eye-line"></span> <span id="busuanzi_value_page_pv"></span></span></span><span class="leancloud_visitors" id="/posts/2400a6ce/" data-flag-title="OSPF基础"><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读次数"><span class="icon iconify" data-icon="ri:eye-line"></span> <span class="leancloud-visitors-count"></span></span></span><span class="post-meta-divider">-</span><a href="#comment"><span class="post-meta-item-icon" title="评论数"><span class="icon iconify" data-icon="ri:chat-3-line"></span> <span class="waline-comment-count" id="/posts/2400a6ce/"></span></span></a><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><span class="icon iconify" data-icon="ri:folder-line"></span></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E5%AD%A6%E4%B9%A0/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">学习</span></a></span> > <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E5%AD%A6%E4%B9%A0/%E9%94%90%E6%8D%B7/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">锐捷</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/%E9%94%90%E6%8D%B7/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">锐捷</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body"><div class="danger">
+
+<blockquote>
+<p> 资料来源<a target="_blank" rel="noopener" href="https://talent.ruijie.com.cn/certification/profession/">锐捷</a><br> 非原创</p>
+</blockquote>
+</div>
+
+
+
+
+
+<p>OSPF协议，全称开放最短路径优先协议（ Open Shortest Path First ），它是IETF组织开发的一个基于 链路状态的内部网关路由协议（IGP）。因其的开放性以及丰富的功能特性，成为目前业内使用最广泛的 路由协议之一</p>
+<h2 id="OSPF的基本概念"><a href="#OSPF的基本概念" class="headerlink" title="OSPF的基本概念"></a>OSPF的基本概念</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><ul>
+<li>专为TCP&#x2F;IP网络设计，支持VLSM、路由汇总、等价负载均衡、区域划分、认证 </li>
+<li>OSPF在RGOS平台上的管理距离（AD）是110 </li>
+<li>OSPF报文封装在IP报文中，IP协议号为89 </li>
+<li>OSPF具有无环路、收敛快、扩展性好，可适应大规模网络 </li>
+<li>OSPF目前应用中有两个版本： <ul>
+<li>V2：适用于IPv4 </li>
+<li>V3：扩展支持IPv6</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154540.png" alt="1" loading="lazy"></p>
+<h3 id="OSPF的Cost值"><a href="#OSPF的Cost值" class="headerlink" title="OSPF的Cost值"></a>OSPF的Cost值</h3><ul>
+<li><p>OSPF的接口开销（Cost）计算方式：基于物理链路的带宽来计算度量值 </p>
+<ul>
+<li>Cost&#x3D;默认计算基数&#x2F;物理链路带宽（Bit为单位），默认计算基数&#x3D; 108 bit&#x3D;100M<ul>
+<li>100M带宽的接口，Cost值就是1 </li>
+<li>10M带宽的接口，Cost值就是10</li>
+</ul>
+</li>
+<li>如结果出现小数，会舍弃小数部分取整（如果整数部分为0，则Cost值记为1）， 例如带宽是1000M的链路， Cost值也是1</li>
+</ul>
+</li>
+<li><p>OSPF路由条目的Cost值&#x3D;路由的原始Cost值和沿途入向接口Cost值的累</p>
+</li>
+<li><p>如图，当10.1.0.0&#x2F;24访问10.2.0.0&#x2F;24时，数据从F0&#x2F;1出去，这是一条次优路径！ </p>
+</li>
+<li><p>修改Cost值解决.</p>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154547.png" alt="2" loading="lazy"></p>
+<ul>
+<li>方案一：在OSPF进程中可以修改度量值计算基数来避免这种问题。命令中的1000代表默认计算基数1000M</li>
+</ul>
+  <pre class="language-none"><code class="language-none">Ruijie(config)#router ospf 10
+Ruijie(config-router)#auto-cost reference-bandwidth 1000</code></pre>
+
+<ul>
+<li>方案二：在接口下，使用该命令，直接修改Cost值为200，来影响OSPF路径计算结果</li>
+</ul>
+  <pre class="language-none"><code class="language-none">uijie(config)#int f0&#x2F;1
+Ruijie(config-if)#ip ospf cost 200</code></pre>
+
+<h2 id="OSPF邻居建立的过程"><a href="#OSPF邻居建立的过程" class="headerlink" title="OSPF邻居建立的过程"></a>OSPF邻居建立的过程</h2><h3 id="OSPF相关术语"><a href="#OSPF相关术语" class="headerlink" title="OSPF相关术语"></a>OSPF相关术语</h3><ul>
+<li>Router-ID：在AS中唯一标识一台运行OSPF的路由器的编号 <ul>
+<li>AS（自治系统 Autonomous System） ：使用同一种路由协议一组路由器所构成的一套系统 </li>
+<li>每个运行OSPF的路由器都必须有一个Router ID，同一个AS内，Router-ID不能重复 </li>
+<li>Router-ID可以手动命令配置，也可以系统自动选举</li>
+</ul>
+</li>
+<li>邻居（Neighbor）：两台运行OSPF协议的路由器，从它们相连的接口上会相互发出各自的OSPF参数， 如果双方的参数符合建立邻居的条件，就会形成邻居关系 </li>
+<li>邻接（Adjacency）：邻居不一定邻接。如果两台路由设备之间交换链路状态信息，并根据更新后的数据库计算 出OSPF路由，才能称为邻接关系</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154600.png" alt="3" loading="lazy"></p>
+<h3 id="Router-ID"><a href="#Router-ID" class="headerlink" title="Router ID"></a>Router ID</h3><ul>
+<li>在没有手工指定的情况下（手工指定，直接成为Route ID）<ul>
+<li>如果本地有激活的Loopback接口，则取Loopback接口IP最大值作为OSPF Router-ID </li>
+<li>如果没有Loopback接口，则取活跃的物理接口IP地址中的最大值</li>
+</ul>
+</li>
+<li>项目实施中，一般先创建loopback接口并配置IP地址，随后手工指定OSPF Router-ID为该接口地址</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154604.png" alt="4" loading="lazy"></p>
+<h3 id="OSPF的五种报文类型"><a href="#OSPF的五种报文类型" class="headerlink" title="OSPF的五种报文类型"></a>OSPF的五种报文类型</h3><ul>
+<li>有5种不同OSPF报文类型，这些报文类型用从1到5的类型号标识</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154616.png" alt="5" loading="lazy"></p>
+<h3 id="OSPF邻居建立的三个阶段"><a href="#OSPF邻居建立的三个阶段" class="headerlink" title="OSPF邻居建立的三个阶段"></a>OSPF邻居建立的三个阶段</h3><ul>
+<li>邻居发现，形成邻居：（成功的标志：2-Way状态） <ul>
+<li>通过Hello报文发现并形成邻居关系 </li>
+<li>形成邻居表</li>
+</ul>
+</li>
+<li>形成邻接，路由通告：（成功的标志：Full状态，LSDB同步） <ul>
+<li>邻接路由器之间通过LSU洪泛LSA，通告拓扑信息 </li>
+<li>通过DBD、LSR、LSACK辅助LSA的同步</li>
+<li>最终同一个区域内所有路由器LSDB完全相同</li>
+</ul>
+</li>
+<li>路由计算阶段： <ul>
+<li>LSDB同步后，每台路由器独立进行SPF运算</li>
+<li>把计算出的最佳路由信息放进路由表</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154621.png" alt="6" loading="lazy"></p>
+<h3 id="OSPF常用的三张状态表"><a href="#OSPF常用的三张状态表" class="headerlink" title="OSPF常用的三张状态表"></a>OSPF常用的三张状态表</h3><ul>
+<li>邻居表（Neighbor Table）： <ul>
+<li>通过Hello报文形成邻居	</li>
+<li>用邻居机制来维持路由 </li>
+<li>邻居表存储双向通信的OSPF路由器列表信息</li>
+</ul>
+</li>
+</ul>
+<pre class="language-none"><code class="language-none">R2#show ip ospf neighbor 
+Neighbor ID Pri State Dead Time Address Interface
+172.16.2.254 0 FULL&#x2F; - 00:00:33 10.1.0.1 Serial0&#x2F;1&#x2F;0
+10.3.0.254 1 FULL&#x2F;BDR 00:00:31 10.2.0.2 FastEthernet0&#x2F;0</code></pre>
+
+
+
+
+
+<ul>
+<li>链路状态数据库（LSDB）： <ul>
+<li>通过LSU报文更新LSDB </li>
+<li>描述拓扑信息的LSA存储在LSDB中</li>
+</ul>
+</li>
+</ul>
+<pre class="language-none"><code class="language-none">R2#show ip ospf database 
+OSPF Router with ID (10.2.0.1) (Process ID 10)
+Router Link States (Area 0)
+Link ID ADV Router Age Seq# Checksum Link count
+172.16.2.254 172.16.2.254 352 0x80000004 0x00097c 4
+10.2.0.1 10.2.0.1 310 0x80000004 0x005554 3
+10.3.0.254 10.3.0.254 310 0x80000003 0x006a97 2
+Net Link States (Area 0)
+Link ID ADV Router Age Seq# Checksum
+10.2.0.1 10.2.0.1 310 0x80000001 0x004303</code></pre>
+
+
+
+<ul>
+<li>路由表（RIB）： <ul>
+<li>OSPF计算出来的路由将会加载到路由表 </li>
+<li>路由优先级 O&gt;O IA&gt;[O E1&#x2F;N1]&gt;[O E2&#x2F;N2]</li>
+</ul>
+</li>
+</ul>
+<pre class="language-none"><code class="language-none">R2#show ip route 
+O 10.3.0.0 [110&#x2F;2] via 10.2.0.2, 00:06:42, FastEthernet0&#x2F;0
+O 172.16.1.0 [110&#x2F;65] via 10.1.0.1, 00:07:27, Serial0&#x2F;1&#x2F;0
+O 172.16.2.0 [110&#x2F;65] via 10.1.0.1, 00:07:27, Serial0&#x2F;1&#x2F;0</code></pre>
+
+
+
+<h3 id="OSPF的邻居发现过程"><a href="#OSPF的邻居发现过程" class="headerlink" title="OSPF的邻居发现过程"></a>OSPF的邻居发现过程</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154626.png" alt="7" loading="lazy"></p>
+<h3 id="OSPF的链路状态摘要交换过程"><a href="#OSPF的链路状态摘要交换过程" class="headerlink" title="OSPF的链路状态摘要交换过程"></a>OSPF的链路状态摘要交换过程</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154631.png" alt="8" loading="lazy"></p>
+<h3 id="OSPF的详细链路状态信息同步过程"><a href="#OSPF的详细链路状态信息同步过程" class="headerlink" title="OSPF的详细链路状态信息同步过程"></a>OSPF的详细链路状态信息同步过程</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154635.png" alt="9" loading="lazy"></p>
+<h3 id="OSPF的路由计算与路由表加载"><a href="#OSPF的路由计算与路由表加载" class="headerlink" title="OSPF的路由计算与路由表加载"></a>OSPF的路由计算与路由表加载</h3><ul>
+<li>每台OSPF路由器都会使用SPF算法，根据自己的LSDB独立地计算去往每个目的网络的最短路径 <ul>
+<li>同步后，同一区域的OSPF路由器，LSDB一定是相同的</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154642.png" alt="10" loading="lazy"></p>
+<h2 id="OSPF的网络类型"><a href="#OSPF的网络类型" class="headerlink" title="OSPF的网络类型"></a>OSPF的网络类型</h2><h3 id="广播型多路访问网络-Broadcast"><a href="#广播型多路访问网络-Broadcast" class="headerlink" title="广播型多路访问网络-Broadcast"></a>广播型多路访问网络-Broadcast</h3><ul>
+<li>以太网接口之下，默认的OSPF网络类型为Broadcast </li>
+<li>OSPF在广播多路访问的网络上，会进行DR（Designated Router指定路由器）与BDR（Backup Designated Router）的选举 <ul>
+<li>DR与BDR的能够与该链路上其他路由器（DR other）建立邻接关系，进入Full状态 </li>
+<li>DR other之间建立邻居，停留在2-way状态，不会交换LSA</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154646.png" alt="11" loading="lazy"></p>
+<h3 id="OSPF的DR、BDR机制"><a href="#OSPF的DR、BDR机制" class="headerlink" title="OSPF的DR、BDR机制"></a>OSPF的DR、BDR机制</h3><ul>
+<li>DR、BDR的机制减少了在同一广播域中邻接的数量，减少了广播网络中LSA的泛洪，节省带宽 </li>
+<li>例如下图的案例中<ul>
+<li>如果两两建立邻接需要15对邻接【排列组合，C（6，2）&#x3D;15】 </li>
+<li>如果DR机制，只需要8对邻接</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154653.png" alt="12" loading="lazy"></p>
+<h3 id="OSPF的DR、BDR的选举"><a href="#OSPF的DR、BDR的选举" class="headerlink" title="OSPF的DR、BDR的选举"></a>OSPF的DR、BDR的选举</h3><ul>
+<li><p>优先级高的成为DR，其次成为BDR </p>
+<ul>
+<li>Hello报文携带路由设备优先级，默认&#x3D;1 </li>
+<li>优先级为0的路由设备不具备选举资格，未来也不可能为DR或者BDR</li>
+</ul>
+</li>
+<li><p>优先级一致的情况下，Router ID更高的成为DR，第二高的成为BDR </p>
+<ul>
+<li>DR和BDR一旦选定，即使OSPF区域内新增优先级更高的路由设备，DR和BDR也不会重新选举，只有当DR和 BDR都失效后，才参与选举 </li>
+<li>优先级是基于接口的，修改命令如下</li>
+</ul>
+<pre class="language-none"><code class="language-none">(config)#int vlan 10
+(config-if-VLAN 10)#ip ospf priority 10</code></pre></li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154659.png" alt="13" loading="lazy"></p>
+<h3 id="DR-x2F-BDR的选举示例一"><a href="#DR-x2F-BDR的选举示例一" class="headerlink" title="DR&#x2F;BDR的选举示例一"></a>DR&#x2F;BDR的选举示例一</h3><ul>
+<li>R5后来加入网络，虽然它的Router ID比原有的DR和BDR都高，但是出于稳定性的考虑，只能成为 DRother路由器。</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154704.png" alt="14" loading="lazy"></p>
+<h3 id="DR-x2F-BDR的选举示例二"><a href="#DR-x2F-BDR的选举示例二" class="headerlink" title="DR&#x2F;BDR的选举示例二"></a>DR&#x2F;BDR的选举示例二</h3><ul>
+<li>当DR失效时，BDR立刻成为新的DR </li>
+<li>DRother路由器进行竞争，Router ID高成为新BDR</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154708.png" alt="15" loading="lazy"></p>
+<h2 id="OSPF的区域与基本配置"><a href="#OSPF的区域与基本配置" class="headerlink" title="OSPF的区域与基本配置"></a>OSPF的区域与基本配置</h2><h3 id="OSPF的单区域问题"><a href="#OSPF的单区域问题" class="headerlink" title="OSPF的单区域问题"></a>OSPF的单区域问题</h3><ul>
+<li>同一个区域内所有路由器为了LSDB保持完全相同，在链路发生变动的时候需要更新LSA <ul>
+<li>每台路由器都会收到的大量的LSA通告； </li>
+<li>内部某条链路动荡，都会触发全网路由器重新执行SPF算法，导致网络不稳定；</li>
+</ul>
+</li>
+<li>区域内路由无法汇总，需要维护的路由表越来越大，资源消耗过多，性能下降，影响数据转发</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154713.png" alt="16" loading="lazy"></p>
+<h3 id="OSPF的单区域问题解决方案"><a href="#OSPF的单区域问题解决方案" class="headerlink" title="OSPF的单区域问题解决方案"></a>OSPF的单区域问题解决方案</h3><ul>
+<li>把大型网络分隔为多个较小，可管理的单元 ：区域（area）： <ul>
+<li>控制LSA只在区域内洪泛，有效地把拓扑变化控制在区域内，拓扑的变化影响限制在本区域 </li>
+<li>提高了网络的稳定性和的扩展性，有利于组建大规模的网络</li>
+<li>在区域边界可以做路由汇总，减小了路由表</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154717.png" alt="17" loading="lazy"></p>
+<h3 id="OSPF多区域层次化"><a href="#OSPF多区域层次化" class="headerlink" title="OSPF多区域层次化"></a>OSPF多区域层次化</h3><ul>
+<li>OSPF区域可以分为骨干区域和非骨干区域<ul>
+<li>骨干区域：area 0，骨干区域在逻辑上不能被分割；</li>
+<li>非骨干区域：area 0以外的其他区域都是非骨干区域，非骨干区域必须和骨干区域相连</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154721.png" alt="18" loading="lazy"></p>
+<h3 id="OSPF多区域环境路由器类型"><a href="#OSPF多区域环境路由器类型" class="headerlink" title="OSPF多区域环境路由器类型"></a>OSPF多区域环境路由器类型</h3><ul>
+<li>内部路由器IR （ Internal Area Router）：<ul>
+<li>所有接口在同一个Area内 </li>
+<li>同一区域内的内部路由器，LSDB完全相同</li>
+</ul>
+</li>
+<li>区域边界路由器ABR（ Area Border Router）：<ul>
+<li>接口分属于两个或两个以上的区域，并且有一个活动接口属于area 0 </li>
+<li>ABR为它们所连接的每个区域分别维护单独的LSDB </li>
+<li>区域间路由信息必须通过ABR进行传递</li>
+</ul>
+</li>
+<li>自制系统边界路由器ASBR（Auto System Border Router） <ul>
+<li>自制系统边界的路由器，至少有一个接口属于OSPF之外的其他路由协议</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154725.png" alt="19" loading="lazy"></p>
+<h3 id="单区域OSPF案例"><a href="#单区域OSPF案例" class="headerlink" title="单区域OSPF案例"></a>单区域OSPF案例</h3><ul>
+<li>OSPF路由案例1需求 <ul>
+<li>在三台路由器上配置OSPF路由，配置OSPF进程号为10 </li>
+<li>配置OSPF区域全为0，使PC1和PC2能ping通PC3</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154728.png" alt="20" loading="lazy"></p>
+<h3 id="单区域OSPF案例-——-基础配置"><a href="#单区域OSPF案例-——-基础配置" class="headerlink" title="单区域OSPF案例 —— 基础配置"></a>单区域OSPF案例 —— 基础配置</h3><ul>
+<li>启动OSPF进程：<ul>
+<li>(config)# router ospf [process ID]</li>
+</ul>
+</li>
+<li>配置OSPF运行的接口以及接口的区域ID （建议使用精确宣告）：<ul>
+<li>(config-router)# network network mask area [area ID]</li>
+</ul>
+</li>
+</ul>
+<pre class="language-none"><code class="language-none">R1(config)#router ospf 10
+R1(config-router)#network 172.16.2.254 0.0.0.0 area 0
+R1(config-router)#network 172.16.1.254 0.0.0.0 area 0
+R1(config-router)#network 10.1.0.1 0.0.0.0 area 0</code></pre>
+
+<pre class="language-none"><code class="language-none">R2(config)#router ospf 10
+R2(config-router)#network 10.1.0.2 0.0.0.0 area 0
+R2(config-router)#network 10.2.0.1 0.0.0.0 area 0</code></pre>
+
+<pre class="language-none"><code class="language-none">R3(config)#router ospf 10
+R3(config-router)#network 10.2.0.2 0.0.0.0 area 0
+R3(config-router)#network 10.3.0.254 0.0.0.0 area 0</code></pre>
+
+
+
+<h3 id="单区域OSPF案例-——-路由表"><a href="#单区域OSPF案例-——-路由表" class="headerlink" title="单区域OSPF案例 —— 路由表"></a>单区域OSPF案例 —— 路由表</h3><ul>
+<li>查看R1、R2和R3的路由表 <ul>
+<li>使用特权用户模式命令show ip route，显示IP路由表</li>
+</ul>
+</li>
+</ul>
+<pre class="language-none"><code class="language-none">R1#show ip route
+C 10.1.0.0&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1
+C 10.1.0.1&#x2F;32 is local host. 
+O 10.2.0.0&#x2F;30 [110&#x2F;2] via 10.1.0.2, 00:00:48, GigabitEthernet 0&#x2F;1
+C 172.16.1.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;0
+C 172.16.1.254&#x2F;32 is local host. 
+C 172.16.2.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;2
+C 172.16.2.254&#x2F;32 is local host. 
+O 192.168.1.0&#x2F;24 [110&#x2F;3] via 10.1.0.2, 00:00:32, GigabitEthernet 0&#x2F;1</code></pre>
+
+<pre class="language-none"><code class="language-none">R2#show ip route
+C 10.1.0.0&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;0
+C 10.1.0.2&#x2F;32 is local host. 
+C 10.2.0.0&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1
+C 10.2.0.1&#x2F;32 is local host. 
+O 172.16.1.0&#x2F;24 [110&#x2F;2] via 10.1.0.1, 00:01:25, GigabitEthernet 0&#x2F;0
+O 172.16.2.0&#x2F;24 [110&#x2F;2] via 10.1.0.1, 00:01:25, GigabitEthernet 0&#x2F;0
+O 192.168.1.0&#x2F;24 [110&#x2F;2] via 10.2.0.2, 00:01:12, GigabitEthernet 0&#x2F;1</code></pre>
+
+<pre class="language-none"><code class="language-none">R3#show ip route
+O 10.1.0.0&#x2F;30 [110&#x2F;2] via 10.2.0.1, 00:01:29, GigabitEthernet 0&#x2F;0
+C 10.2.0.0&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;0
+C 10.2.0.2&#x2F;32 is local host. 
+O 172.16.1.0&#x2F;24 [110&#x2F;3] via 10.2.0.1, 00:01:29, GigabitEthernet 0&#x2F;0
+O 172.16.2.0&#x2F;24 [110&#x2F;3] via 10.2.0.1, 00:01:29, GigabitEthernet 0&#x2F;0
+C 192.168.1.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;1
+C 192.168.1.254&#x2F;32 is local host</code></pre>
+
+<h3 id="单区域OSPF案例-——-连通性测试"><a href="#单区域OSPF案例-——-连通性测试" class="headerlink" title="单区域OSPF案例 —— 连通性测试"></a>单区域OSPF案例 —— 连通性测试</h3><ul>
+<li>测试网络连通性 <ul>
+<li>PC1和PC2能ping通PC3</li>
+</ul>
+</li>
+</ul>
+<pre class="language-none"><code class="language-none">PC1&gt;ping 192.168.1.1
+Pinging 192.168.1.1 with 32 bytes of data:
+Reply from 192.168.1.1: bytes&#x3D;32 time&#x3D;2ms TTL&#x3D;125
+Reply from 192.168.1.1: bytes&#x3D;32 time&#x3D;1ms TTL&#x3D;125
+Reply from 192.168.1.1: bytes&#x3D;32 time&#x3D;3ms TTL&#x3D;125
+Reply from 192.168.1.1: bytes&#x3D;32 time&#x3D;3ms TTL&#x3D;125
+Ping statistics for 192.168.1.1:
+Packets: Sent &#x3D; 4, Received &#x3D; 4, Lost &#x3D; 0 (0% loss),
+Approximate round trip times in milli-seconds:
+Minimum &#x3D; 1ms, Maximum &#x3D; 3ms, Average &#x3D; 2ms</code></pre>
+
+<pre class="language-none"><code class="language-none">PC1&gt;ping 192.168.1.1
+Pinging 192.168.1.1 with 32 bytes of data:
+Reply from 192.168.1.1: bytes&#x3D;32 time&#x3D;2ms TTL&#x3D;125
+Reply from 192.168.1.1: bytes&#x3D;32 time&#x3D;1ms TTL&#x3D;125
+Reply from 192.168.1.1: bytes&#x3D;32 time&#x3D;3ms TTL&#x3D;125
+Reply from 192.168.1.1: bytes&#x3D;32 time&#x3D;3ms TTL&#x3D;125
+Ping statistics for 192.168.1.1:
+Packets: Sent &#x3D; 4, Received &#x3D; 4, Lost &#x3D; 0 (0% loss),
+Approximate round trip times in milli-seconds:
+Minimum &#x3D; 2ms, Maximum &#x3D; 3ms, Average &#x3D; 2ms</code></pre>
+
+<h3 id="单区域OSPF案例-——-状态查看"><a href="#单区域OSPF案例-——-状态查看" class="headerlink" title="单区域OSPF案例 —— 状态查看"></a>单区域OSPF案例 —— 状态查看</h3><ul>
+<li>查看OSPF 协议状态：show ip protocols <ul>
+<li>FULL&#x2F;BDR ：表示邻接状态已经建立，并且此时本路由器为BDR角色</li>
+</ul>
+</li>
+<li>查看OSPF邻居表：show ip ospf neighbor</li>
+</ul>
+<pre class="language-none"><code class="language-none">R2#show ip protocols 
+Routing Protocol is &quot;ospf 10&quot;
+Outgoing update filter list for all interfaces is not set
+Incoming update filter list for all interfaces is not set
+Router ID 10.2.0.1
+Memory Overflow is enabled
+Router is not in overflow state now
+Number of areas in this router is 1: 1 normal 0 stub 0 nssa
+Routing for Networks:
+10.1.0.2 0.0.0.0 area 0
+10.2.0.1 0.0.0.0 area 0
+Reference bandwidth unit is 100 mbps
+Distance: (default is 110)</code></pre>
+
+<pre class="language-none"><code class="language-none">R2#show ip ospf neighbor
+Neighbor ID Pri State BFD State Dead Time Address Interface
+172.16.2.254 1 Full&#x2F;DR - 00:00:37 10.1.0.1 GigabitEthernet 0&#x2F;0
+192.168.1.254 1 Full&#x2F;DR - 00:00:34 10.2.0.2 GigabitEthernet 0&#x2F;1</code></pre>
+
+<ul>
+<li>查看接口OSPF相关信息： Show ip ospf interface XX</li>
+</ul>
+<pre class="language-none"><code class="language-none">R2#Show ip ospf interface gigabitEthernet 0&#x2F;1
+GigabitEthernet 0&#x2F;1 is up, line protocol is up
+Internet Address 10.2.0.1&#x2F;30, Ifindex 2, Area 0.0.0.0, MTU 1500
+Matching network config: 10.2.0.1&#x2F;32
+Process ID 10, Router ID 10.2.0.1, Network Type BROADCAST, Cost: 1
+Transmit Delay is 1 sec, State BDR, Priority 1
+Designated Router (ID) 192.168.1.254, Interface Address 10.2.0.2
+Backup Designated Router (ID) 10.2.0.1, Interface Address 10.2.0.1
+Timer intervals configured, Hello 10, Dead 40, Wait 40, Retransmit 5
+Hello due in 00:00:08
+Neighbor Count is 1, Adjacent neighbor count is 1
+Crypt Sequence Number is 768
+Hello received 50 sent 55, DD received 3 sent 6
+LS-Req received 1 sent 1, LS-Upd received 4 sent 3
+LS-Ack received 2 sent 3, Discarded 0</code></pre>
+
+
+
+<h3 id="多区域OSPF案例"><a href="#多区域OSPF案例" class="headerlink" title="多区域OSPF案例"></a>多区域OSPF案例</h3><ul>
+<li>OSPF路由案例2需求： <ul>
+<li>在三台路由器上配置OSPF路由，配置OSPF进程号为10</li>
+<li>按照拓扑图配置OSPF区域，使PC1和PC2能ping通PC3</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154736.png" alt="21" loading="lazy"></p>
+<h3 id="多区域OSPF案例-——-基本配置"><a href="#多区域OSPF案例-——-基本配置" class="headerlink" title="多区域OSPF案例 —— 基本配置"></a>多区域OSPF案例 —— 基本配置</h3><ul>
+<li><p>启动OSPF进程： </p>
+<ul>
+<li>Router(config)# router ospf 进程号</li>
+</ul>
+</li>
+<li><p>配置OSPF运行的接口以及接口的区域ID ：</p>
+<ul>
+<li>Router (config-router)# network 网络号 反掩码 area 区域id</li>
+</ul>
+<pre class="language-none"><code class="language-none">R1(config)#router ospf 10
+R1(config-router)#network 172.16.2.254 0.0.0.0 area 1
+R1(config-router)#network 172.16.1.254 0.0.0.0 area 1
+R1(config-router)#network 10.1.0.1 0.0.0.0 area 1</code></pre>
+
+<pre class="language-none"><code class="language-none">R2(config)#router ospf 10
+R2(config-router)#network 10.1.0.2 0.0.0.0 area 1
+R2(config-router)#network 10.2.0.1 0.0.0.0 area 0</code></pre>
+
+<pre class="language-none"><code class="language-none">R3(config)#router ospf 10
+R3(config-router)#network 10.2.0.2 0.0.0.0 area 0
+R3(config-router)#network 10.3.0.254 0.0.0.0 area 0</code></pre>
+
+<h3 id="多区域OSPF案例-——-路由表"><a href="#多区域OSPF案例-——-路由表" class="headerlink" title="多区域OSPF案例 —— 路由表"></a>多区域OSPF案例 —— 路由表</h3></li>
+<li><p>使用特权用户模式命令show ip route，显示IP路由表</p>
+<ul>
+<li>“O”表示区域内部路由 </li>
+<li>“O IA”表示区域间路由</li>
+</ul>
+</li>
+<li><p>查看R1、R2和R3的路由表</p>
+</li>
+</ul>
+<pre class="language-none"><code class="language-none">R1#show ip route
+C 10.1.0.0&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1
+C 10.1.0.1&#x2F;32 is local host. 
+O IA 10.2.0.0&#x2F;30 [110&#x2F;2] via 10.1.0.2, 00:00:19, GigabitEthernet 0&#x2F;1
+C 172.16.1.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;0
+C 172.16.1.254&#x2F;32 is local host. 
+C 172.16.2.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;2
+C 172.16.2.254&#x2F;32 is local host. 
+O IA 192.168.1.0&#x2F;24 [110&#x2F;3] via 10.1.0.2, 00:00:19, GigabitEthernet 0&#x2F;1</code></pre>
+
+<pre class="language-none"><code class="language-none">R2#show ip route
+C 10.1.0.0&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;0
+C 10.1.0.2&#x2F;32 is local host. 
+C 10.2.0.0&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1
+C 10.2.0.1&#x2F;32 is local host. 
+O 172.16.1.0&#x2F;24 [110&#x2F;2] via 10.1.0.1, 00:01:07, GigabitEthernet 0&#x2F;0
+O 172.16.2.0&#x2F;24 [110&#x2F;2] via 10.1.0.1, 00:01:07, GigabitEthernet 0&#x2F;0
+O 192.168.1.0&#x2F;24 [110&#x2F;2] via 10.2.0.2, 00:15:52, GigabitEthernet 0&#x2F;1</code></pre>
+
+<pre class="language-none"><code class="language-none">R3#show ip route
+O IA 10.1.0.0&#x2F;30 [110&#x2F;2] via 10.2.0.1, 00:01:45, GigabitEthernet 0&#x2F;0
+C 10.2.0.0&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;0
+C 10.2.0.2&#x2F;32 is local host. 
+O IA 172.16.1.0&#x2F;24 [110&#x2F;3] via 10.2.0.1, 00:01:36, GigabitEthernet 0&#x2F;0
+O IA 172.16.2.0&#x2F;24 [110&#x2F;3] via 10.2.0.1, 00:01:36, GigabitEthernet 0&#x2F;0
+C 192.168.1.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;1
+C 192.168.1.254&#x2F;32 is local host.</code></pre>
+
+<h3 id="多区域OSPF案例-——-连通性测试"><a href="#多区域OSPF案例-——-连通性测试" class="headerlink" title="多区域OSPF案例 —— 连通性测试"></a>多区域OSPF案例 —— 连通性测试</h3><ul>
+<li>测试网络连通性 <ul>
+<li>PC1和PC2能ping通PC3</li>
+</ul>
+</li>
+</ul>
+<pre class="language-none"><code class="language-none">PC1&gt;ping 192.168.1.1
+Pinging 192.168.1.1 with 32 bytes of data:
+Reply from 192.168.1.1 : bytes&#x3D;32 time&#x3D;2ms TTL&#x3D;125
+Reply from 192.168.1.1 : bytes&#x3D;32 time&#x3D;1ms TTL&#x3D;125
+Reply from 192.168.1.1 : bytes&#x3D;32 time&#x3D;3ms TTL&#x3D;125
+Reply from 192.168.1.1 : bytes&#x3D;32 time&#x3D;3ms TTL&#x3D;125
+Ping statistics for 10.3.0.1:
+Packets: Sent &#x3D; 4, Received &#x3D; 4, Lost &#x3D; 0 (0% loss),
+Approximate round trip times in milli-seconds:
+Minimum &#x3D; 1ms, Maximum &#x3D; 3ms, Average &#x3D; 2ms</code></pre>
+
+<pre class="language-none"><code class="language-none">PC2&gt;ping 192.168.1.1
+Pinging 192.168.1.1 with 32 bytes of data:
+Reply from 192.168.1.1 : bytes&#x3D;32 time&#x3D;2ms TTL&#x3D;125
+Reply from 192.168.1.1 : bytes&#x3D;32 time&#x3D;1ms TTL&#x3D;125
+Reply from 192.168.1.1 : bytes&#x3D;32 time&#x3D;3ms TTL&#x3D;125
+Reply from 192.168.1.1 : bytes&#x3D;32 time&#x3D;3ms TTL&#x3D;125
+Ping statistics for 10.3.0.1:
+Packets: Sent &#x3D; 4, Received &#x3D; 4, Lost &#x3D; 0 (0% loss),
+Approximate round trip times in milli-seconds:
+Minimum &#x3D; 1ms, Maximum &#x3D; 3ms, Average &#x3D; 2ms</code></pre>
+</div></section><div id="reward-container"><span class="hty-icon-button button-glow" id="reward-button" title="打赏" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === &quot;none&quot;) ? &quot;block&quot; : &quot;none&quot;;"><span class="icon iconify" data-icon="ri:hand-coin-line"></span></span><div id="reward-comment">I'm so cute. Please give me money.</div><div id="qr" style="display:none;"><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://s3.bmp.ovh/imgs/2022/03/a495286dcfde6bfa.bmp"><img loading="lazy" src="https://s3.bmp.ovh/imgs/2022/03/a495286dcfde6bfa.bmp" alt="支付宝" title="支付宝"></a><div><span style="color:#00A3EE"><span class="icon iconify" data-icon="ri:alipay-line"></span></span></div></div><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://s3.bmp.ovh/imgs/2022/03/1018089fdf3cd065.png"><img loading="lazy" src="https://s3.bmp.ovh/imgs/2022/03/1018089fdf3cd065.png" alt="QQ 支付" title="QQ 支付"></a><div><span style="color:#12B7F5"><span class="icon iconify" data-icon="ri:qq-line"></span></span></div></div><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://s3.bmp.ovh/imgs/2022/03/08ce21ed009e0f80.png"><img loading="lazy" src="https://s3.bmp.ovh/imgs/2022/03/08ce21ed009e0f80.png" alt="微信支付" title="微信支付"></a><div><span style="color:#2DC100"><span class="icon iconify" data-icon="ri:wechat-pay-line"></span></span></div></div></div></div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>LuRen</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="https://weaving-dreams.github.io/posts/2400a6ce/" title="OSPF基础">https://weaving-dreams.github.io/posts/2400a6ce/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><span class="icon iconify" data-icon="ri:creative-commons-line"></span><span class="icon iconify" data-icon="ri:creative-commons-by-line"></span><span class="icon iconify" data-icon="ri:creative-commons-nc-line"></span><span class="icon iconify" data-icon="ri:creative-commons-sa-line"></span></a> 许可协议。</li></ul></article><div class="post-nav"><div class="post-nav-item"></div><div class="post-nav-item"><a class="post-nav-next" href="/posts/f2727247/" rel="next" title="路由技术介绍"><span class="post-nav-text">路由技术介绍</span><span class="icon iconify" data-icon="ri:arrow-right-s-line"></span></a></div></div></div><div class="hty-card" id="comment"><div class="comment-tooltip text-center"><span>不要与我交流，我什么都不会。</span><br><a class="hty-button hty-button--raised" id="github-discussions" target="_blank" rel="noopener" href="https://github.com/weaving-dreams/weaving-dreams.github.io/discussions/new">GitHub Discussions</a></div><div id="waline"></div><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@waline/client@v2/dist/waline.css"><script>window.CONFIG.waline.config.path = "/posts/2400a6ce/"</script><div class="js-Pjax"><script src="/js/comments/waline.js" type="module" defer></script></div></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2022 </span><span class="with-love" id="animate"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></span><span class="author"> LuRen</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v6.2.0</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.10.2</span></div><div class="live-time"><span>本博客已萌萌哒地运行</span><span id="display_live_time"></span><span class="moe-text">(●'◡'●)</span><script>function blog_live_time() {
+  setTimeout(blog_live_time, 1000);
+  const start = new Date('2022-03-09T00:00:00');
+  const now = new Date();
+  const timeDiff = (now.getTime() - start.getTime());
+  const msPerMinute = 60 * 1000;
+  const msPerHour = 60 * msPerMinute;
+  const msPerDay = 24 * msPerHour;
+  const passDay = Math.floor(timeDiff / msPerDay);
+  const passHour = Math.floor((timeDiff % msPerDay) / 60 / 60 / 1000);
+  const passMinute = Math.floor((timeDiff % msPerHour) / 60 / 1000);
+  const passSecond = Math.floor((timeDiff % msPerMinute) / 1000);
+  display_live_time.innerHTML = ` ${passDay} 天 ${passHour} 小时 ${passMinute} 分 ${passSecond} 秒`;
+}
+blog_live_time();
+</script></div><div id="busuanzi"><span id="busuanzi_container_site_uv" title="总访客量"><span><span class="icon iconify" data-icon="ri:user-line"></span></span><span id="busuanzi_value_site_uv"></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv" title="总访问量"><span><span class="icon iconify" data-icon="ri:eye-line"></span></span><span id="busuanzi_value_site_pv"></span></span><script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></footer></div><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><span class="icon iconify" data-icon="ri:arrow-up-s-line"></span><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a><a class="popup-trigger hty-icon-button icon-search" id="search" href="javascript:;" title="搜索"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:search-line"></span></span></a><script>window.addEventListener("DOMContentLoaded", () => {
+  // Handle and trigger popup window
+  document.querySelector(".popup-trigger").addEventListener("click", () => {
+    document.querySelector(".popup").classList.add("show");
+    setTimeout(() => {
+      document.querySelector(".search-input").focus();
+    }, 100);
+  });
+
+  // Monitor main search box
+  const onPopupClose = () => {
+    document.querySelector(".popup").classList.remove("show");
+  };
+
+  document.querySelector(".popup-btn-close").addEventListener("click", () => {
+    onPopupClose();
+  });
+
+  window.addEventListener("keyup", event => {
+    if (event.key === "Escape") {
+      onPopupClose();
+    }
+  });
+});
+</script><script src="https://fastly.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js"></script><script src="/js/search/local-search.js" defer type="module"></script><div class="popup search-popup"><div class="search-header"><span class="popup-btn-close close-icon hty-icon-button"><span class="icon iconify" data-icon="ri:close-line"></span></span></div><div class="search-input-container"><input class="search-input" id="local-search-input" type="text" placeholder="搜索..." value=""></div><div class="search-result-container"></div></div><script>function initMourn() {
+  const date = new Date();
+  const today = (date.getMonth() + 1) + "-" + date.getDate()
+  const mourn_days = ["4-4","9-18"]
+  if (mourn_days.includes(today)) {
+    document.documentElement.style.filter = "grayscale(1)";
+  }
+}
+initMourn();</script><script src="https://fastly.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script><script>const images = [...document.querySelectorAll('.markdown-body img')]
+mediumZoom(images)</script><style>.medium-zoom-image {
+  z-index: 99;
+}</style></body></html>
