@@ -3218,6 +3218,299 @@ Minimum &#x3D; 1ms, Maximum &#x3D; 3ms, Average &#x3D; 2ms</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>PPP协议原理与配置</title>
+    <url>/posts/cea6a88e/</url>
+    <content><![CDATA[<div class="danger">
+
+<blockquote>
+<p> 资料来源<a href="https://talent.ruijie.com.cn/certification/profession/">锐捷</a><br> 非原创</p>
+</blockquote>
+</div>
+
+
+
+
+
+
+
+<h2 id="PPP协议简介"><a href="#PPP协议简介" class="headerlink" title="PPP协议简介"></a>PPP协议简介</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul>
+<li>点对点协议（Point to Point Protocol，PPP）为在点对点连接上传输多协议数据包提供了一个标准方法。</li>
+<li>PPP 最初设计是为两个对等节点之间的 IP 流量传输提供一种封装协议。</li>
+</ul>
+<h3 id="PPP协议简介-1"><a href="#PPP协议简介-1" class="headerlink" title="PPP协议简介"></a>PPP协议简介</h3><ul>
+<li>广域网中的PPP协议： <ul>
+<li>通常使用在专线的点对点线路中，不需要使用MAC地址（MAC地址是以太网的内容） </li>
+<li>PPP与以太网一样工作在OSI模型的数据链路层，使用PPP协议封装数据</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622162312.png" alt="1" loading="lazy"></p>
+<h3 id="PPP协议层次介绍"><a href="#PPP协议层次介绍" class="headerlink" title="PPP协议层次介绍"></a>PPP协议层次介绍</h3><ul>
+<li>PPP协议层介绍：<ul>
+<li>PPP协议包含两个子协议：链路层控制协议LCP、网络层控制协议NCP </li>
+<li>PPP协议的NCP部分上跨到了OSI参考模型的第三层，因此PPP还具有部分网络层的功能</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622162314.png" alt="2" loading="lazy"></p>
+<h2 id="PPP协议工作原理"><a href="#PPP协议工作原理" class="headerlink" title="PPP协议工作原理"></a>PPP协议工作原理</h2><ul>
+<li>PPP会话建立：<ul>
+<li>LCP链路建立协商阶段</li>
+<li>认证阶段（可选）：PAP和CHAP两种认证方式 </li>
+<li>NCP网络层协议协商阶段</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622162319.png" alt="3" loading="lazy"></p>
+<h3 id="PPP会话建立协商过程"><a href="#PPP会话建立协商过程" class="headerlink" title="PPP会话建立协商过程"></a>PPP会话建立协商过程</h3><ul>
+<li>阶段1：LCP协商阶段</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622162324.png" alt="4" loading="lazy"></p>
+<ul>
+<li>阶段2：身份认证阶段（可选）</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622162328.png" alt="5" loading="lazy"></p>
+<ul>
+<li>阶段3：IPCP协商阶段</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622162332.png" alt="6" loading="lazy"></p>
+<h3 id="课程小结"><a href="#课程小结" class="headerlink" title="课程小结"></a>课程小结</h3><ul>
+<li>PPP协议通常工作在广域网的点对点链路中，PPP的通信无需MAC地址 </li>
+<li>PPP工作在OSI参考模型中的数据链路层，包含2个子协议，分别是LCP和NCP</li>
+<li>PPP会话建立有三个阶段，分别是LCP协商阶段、身份认证阶段（可选）、NCP协商阶段</li>
+</ul>
+<h2 id="PPP协议基础配置"><a href="#PPP协议基础配置" class="headerlink" title="PPP协议基础配置"></a>PPP协议基础配置</h2><h3 id="PPP基础命令"><a href="#PPP基础命令" class="headerlink" title="PPP基础命令"></a>PPP基础命令</h3><ul>
+<li>双方接口封装PPP</li>
+</ul>
+<pre class="language-none"><code class="language-none">Router(config-if)# encapsulation ppp</code></pre>
+
+<ul>
+<li>认证方配置对端的用户名和密码</li>
+</ul>
+<pre class="language-none"><code class="language-none">Router(config)# username name password password</code></pre>
+
+<ul>
+<li>认证方配置PPP认证方式（启用PAP或者CHAP认证）</li>
+</ul>
+<pre class="language-none"><code class="language-none">Router(config-if)# ppp authentication &#123;chap | chap pap | pap chap | pap&#125;</code></pre>
+
+<h3 id="PPP典型配置案例（PAP单向认证）"><a href="#PPP典型配置案例（PAP单向认证）" class="headerlink" title="PPP典型配置案例（PAP单向认证）"></a>PPP典型配置案例（PAP单向认证）</h3><ul>
+<li>ppp authentication pap命令指定本地为验证方，验证方需要配置被验证方的用户名密码列表。</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622162337.png" alt="7" loading="lazy"></p>
+<ul>
+<li>PAP认证，接口状态验证</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622162342.png" alt="8" loading="lazy"></p>
+<h3 id="PPP典型配置案例（PAP双向认证）"><a href="#PPP典型配置案例（PAP双向认证）" class="headerlink" title="PPP典型配置案例（PAP双向认证）"></a>PPP典型配置案例（PAP双向认证）</h3><ul>
+<li>ppp authentication pap命令指定本地为验证方，验证方需要配置被验证方的用户名密码列表。</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622162347.png" alt="9" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">username ruijie2 password 0 ruijie2
+interface Serial1&#x2F;0
+ip address 1.1.1.1 255.255.255.0
+encapsulation ppp
+ppp authentication pap
+ppp pap sent-username ruijie1 password 0 ruijie1</code></pre>
+
+<pre class="language-none"><code class="language-none">username ruijie1 password 0 ruijie1
+interface Serial2&#x2F;0
+encapsulation ppp
+ppp authentication pap
+ip address 1.1.1.2 255.255.255.0
+ppp pap sent-username ruijie2 password 0 ruijie2</code></pre>
+
+
+
+<ul>
+<li>接口状态信息验证</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622162351.png" alt="10" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">R1#show interface serial 1&#x2F;0
+Index(dec):35 (hex):23
+Serial 1&#x2F;0 is UP , line protocol is UP
+Hardware is Serial
+Interface address is: 1.1.1.1&#x2F;24
+MTU 1500 bytes, BW 2000 Kbit
+Encapsulation protocol is PPP, loopback not set
+Keepalive interval is 10 sec ,retries 10.
+Carrier delay is 2 sec
+Rxload is 1&#x2F;255, Txload is 1&#x2F;255
+LCP Open
+Queueing strategy: FIFO
+Output queue 0&#x2F;40, 0 drops;
+Input queue 0&#x2F;75, 0 drops
+5 minutes input rate 0 bits&#x2F;sec, 0 packets&#x2F;sec
+5 minutes output rate 0 bits&#x2F;sec, 0 packets&#x2F;sec
+38021 packets input, 5656110 bytes, 0 no buffer, 0 dropped
+Received 23488 broadcasts, 0 runts, 0 giants
+0 input errors, 0 CRC, 0 frame, 0 overrun, 0 abort
+38097packets output, 2135697bytes, 0 underruns , 0 dropped</code></pre>
+
+<pre class="language-none"><code class="language-none">R1#show interface serial 2&#x2F;0
+Index(dec):35 (hex):23
+Serial 2&#x2F;0 is UP , line protocol is UP
+Hardware is Serial
+Interface address is: 1.1.1.2&#x2F;24
+MTU 1500 bytes, BW 2000 Kbit
+Encapsulation protocol is PPP, loopback not set
+Keepalive interval is 10 sec ,retries 10.
+Carrier delay is 2 sec
+Rxload is 1&#x2F;255, Txload is 1&#x2F;255
+LCP Open
+Queueing strategy: FIFO
+Output queue 0&#x2F;40, 0 drops;
+Input queue 0&#x2F;75, 0 drops
+5 minutes input rate 0 bits&#x2F;sec, 0 packets&#x2F;sec
+5 minutes output rate 0 bits&#x2F;sec, 0 packets&#x2F;sec
+38325 packets input, 5655320 bytes, 0 no buffer, 0 dropped
+Received 23358 broadcasts, 0 runts, 0 giants
+0 input errors, 0 CRC, 0 frame, 0 overrun, 0 abort
+38235packets output, 2135895bytes, 0 underruns , 0 dropped</code></pre>
+
+<h3 id="PPP典型配置案例（CHAP单向认证）"><a href="#PPP典型配置案例（CHAP单向认证）" class="headerlink" title="PPP典型配置案例（CHAP单向认证）"></a>PPP典型配置案例（CHAP单向认证）</h3><ul>
+<li>ppp authentication chap命令指定本地为验证方，验证方需要配置被验证方的用户名密码列表。</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622162356.png" alt="11" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">interface Serial1&#x2F;0
+ip address 1.1.1.1 255.255.255.0
+encapsulation ppp
+ppp chap hostname ruijie1
+ppp chap password 0 ruijie1</code></pre>
+
+<pre class="language-none"><code class="language-none">username ruijie1 password 0 ruijie1
+interface Serial2&#x2F;0
+encapsulation ppp
+ip address 1.1.1.2 255.255.255.0
+ppp authentication chap</code></pre>
+
+
+
+
+
+<ul>
+<li>接口状态信息验证</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622162401.png" alt="12" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">R1#show interface serial 1&#x2F;0
+Index(dec):35 (hex):23
+Serial 1&#x2F;0 is UP , line protocol is UP
+Hardware is Serial
+Interface address is: 1.1.1.1&#x2F;24
+MTU 1500 bytes, BW 2000 Kbit
+Encapsulation protocol is PPP, loopback not set
+Keepalive interval is 10 sec ,retries 10.
+Carrier delay is 2 sec
+Rxload is 1&#x2F;255, Txload is 1&#x2F;255
+LCP Open
+Queueing strategy: FIFO
+Output queue 0&#x2F;40, 0 drops;
+Input queue 0&#x2F;75, 0 drops
+5 minutes input rate 0 bits&#x2F;sec, 0 packets&#x2F;sec
+5 minutes output rate 0 bits&#x2F;sec, 0 packets&#x2F;sec
+38021 packets input, 5656110 bytes, 0 no buffer, 0 dropped
+Received 23488 broadcasts, 0 runts, 0 giants
+0 input errors, 0 CRC, 0 frame, 0 overrun, 0 abort
+38097packets output, 2135697bytes, 0 underruns , 0 dropped</code></pre>
+
+<pre class="language-none"><code class="language-none">R1#show interface serial 2&#x2F;0
+Index(dec):35 (hex):23
+Serial 2&#x2F;0 is UP , line protocol is UP
+Hardware is Serial
+Interface address is: 1.1.1.2&#x2F;24
+MTU 1500 bytes, BW 2000 Kbit
+Encapsulation protocol is PPP, loopback not set
+Keepalive interval is 10 sec ,retries 10.
+Carrier delay is 2 sec
+Rxload is 1&#x2F;255, Txload is 1&#x2F;255
+LCP Open
+Queueing strategy: FIFO
+Output queue 0&#x2F;40, 0 drops;
+Input queue 0&#x2F;75, 0 drops
+5 minutes input rate 0 bits&#x2F;sec, 0 packets&#x2F;sec
+5 minutes output rate 0 bits&#x2F;sec, 0 packets&#x2F;sec
+38325 packets input, 5655320 bytes, 0 no buffer, 0 dropped
+Received 23358 broadcasts, 0 runts, 0 giants
+0 input errors, 0 CRC, 0 frame, 0 overrun, 0 abort
+38235packets output, 2135895bytes, 0 underruns , 0 dropped</code></pre>
+
+<h3 id="PPP典型配置案例（CHAP双向认证）"><a href="#PPP典型配置案例（CHAP双向认证）" class="headerlink" title="PPP典型配置案例（CHAP双向认证）"></a>PPP典型配置案例（CHAP双向认证）</h3><ul>
+<li>ppp authentication chap命令指定本地为验证方，验证方需要配置被验证方的用户名密码列表。</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622162408.png" alt="13" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">username ruijie2 password 0 ruijie2
+interface Serial1&#x2F;0
+ip address 1.1.1.1 255.255.255.0
+encapsulation ppp
+ppp authentication chap
+ppp chap hostname ruijie1
+ppp chap password 0 ruijie1</code></pre>
+
+
+
+<pre class="language-none"><code class="language-none">username ruijie1 password 0 ruijie1
+interface Serial2&#x2F;0
+ip address 1.1.1.2 255.255.255.0
+encapsulation ppp
+ppp authentication chap
+ppp chap hostname ruijie2
+ppp chap password 0 ruijie2</code></pre>
+
+<ul>
+<li>接口状态信息验证</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622162411.png" alt="14" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">R1#show interface serial 1&#x2F;0
+Index(dec):35 (hex):23
+Serial 1&#x2F;0 is UP , line protocol is UP
+Hardware is Serial
+Interface address is: 1.1.1.1&#x2F;24
+MTU 1500 bytes, BW 2000 Kbit
+Encapsulation protocol is PPP, loopback not set
+Keepalive interval is 10 sec ,retries 10.
+Carrier delay is 2 sec
+Rxload is 1&#x2F;255, Txload is 1&#x2F;255
+LCP Open
+Queueing strategy: FIFO
+Output queue 0&#x2F;40, 0 drops;
+Input queue 0&#x2F;75, 0 drops
+5 minutes input rate 0 bits&#x2F;sec, 0 packets&#x2F;sec
+5 minutes output rate 0 bits&#x2F;sec, 0 packets&#x2F;sec
+38021 packets input, 5656110 bytes, 0 no buffer, 0 dropped
+Received 23488 broadcasts, 0 runts, 0 giants
+0 input errors, 0 CRC, 0 frame, 0 overrun, 0 abort
+38097packets output, 2135697bytes, 0 underruns , 0 dropped</code></pre>
+
+<pre class="language-none"><code class="language-none">R1#show interface serial 2&#x2F;0
+Index(dec):35 (hex):23
+Serial 2&#x2F;0 is UP , line protocol is UP
+Hardware is Serial
+Interface address is: 1.1.1.2&#x2F;24
+MTU 1500 bytes, BW 2000 Kbit
+Encapsulation protocol is PPP, loopback not set
+Keepalive interval is 10 sec ,retries 10.
+Carrier delay is 2 sec
+Rxload is 1&#x2F;255, Txload is 1&#x2F;255
+LCP Open
+Queueing strategy: FIFO
+Output queue 0&#x2F;40, 0 drops;
+Input queue 0&#x2F;75, 0 drops
+5 minutes input rate 0 bits&#x2F;sec, 0 packets&#x2F;sec
+5 minutes output rate 0 bits&#x2F;sec, 0 packets&#x2F;sec
+38325 packets input, 5655320 bytes, 0 no buffer, 0 dropped
+Received 23358 broadcasts, 0 runts, 0 giants
+0 input errors, 0 CRC, 0 frame, 0 overrun, 0 abort
+38235packets output, 2135895bytes, 0 underruns , 0 dropped</code></pre>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>锐捷</category>
+      </categories>
+      <tags>
+        <tag>锐捷</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>PiKachu--XSS</title>
     <url>/posts/96f58941/</url>
     <content><![CDATA[<h2 id="XSS（跨站脚本）概述"><a href="#XSS（跨站脚本）概述" class="headerlink" title="XSS（跨站脚本）概述"></a>XSS（跨站脚本）概述</h2><p>Cross-Site Scripting 简称为“CSS”，为避免与前端叠成样式表的缩写”CSS”冲突，故又称XSS。一般XSS可以分为如下几种常见类型：<br>    1.反射性XSS;<br>    2.存储型XSS;<br>    3.DOM型XSS;</p>
@@ -3376,64 +3669,6 @@ Minimum &#x3D; 1ms, Maximum &#x3D; 3ms, Average &#x3D; 2ms</code></pre>
 <p>这个漏洞的输出点是在JS中，通过用户的输入动态生成了JS代码</p>
 <p>JS有个特点，它不会对实体编码进行解释，如果想要用htmlspecialchars对我们的输入做实体编码处理的话, 在JS中不会把它解释会去，虽然这样解决了XSS问题，但不能构成合法的JS</p>
 <p>所以在JS的输出点应该对应该使用 \ 对特殊字符进行转义。</p>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>web安全</category>
-        <category>Pikachu</category>
-      </categories>
-      <tags>
-        <tag>pikachu</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Pikachu--CSRF</title>
-    <url>/posts/546fe1af/</url>
-    <content><![CDATA[<h1 id="Pikachu——CSRF"><a href="#Pikachu——CSRF" class="headerlink" title="Pikachu——CSRF"></a>Pikachu——CSRF</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><strong>跨站请求伪造</strong>（英语：Cross-site request forgery），也被称为 <strong>one-click attack</strong> 或者 <strong>session riding</strong>，通常缩写为 <strong>CSRF</strong> 或者 <strong>XSRF</strong>， 是一种挟制用户在当前已登录的Web应用程序执行非本意的操作的攻击方法。跟跨网站脚本（XSS）相比，<strong>XSS</strong> 利用的是用户对指定网站的信任，CSRF 利用的是网站]对用户网页浏览器的信任。</p>
-<p>来自:<a href="https://baike.baidu.com/item/%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0/13777878?fromtitle=CSRF&fromid=2735433&fr=aladdin">百度百科 </a></p>
-<h2 id="CSRF与XSS区别"><a href="#CSRF与XSS区别" class="headerlink" title="CSRF与XSS区别"></a>CSRF与XSS区别</h2><p>CSRF是借助用户的权限完成攻击，攻击者并没有拿到用户的权限。目标构造修改个人信息的链接，利用lucy在登录状态下点击此链接达到修改信息的目的。<br>XSS直接盗取了用户的权限，然后实施破坏。攻击者利用XSS盗取了目标的Cookie，登录lucy的后台，再修改相关信息。</p>
-<h2 id="一、CSRF-get"><a href="#一、CSRF-get" class="headerlink" title="一、CSRF(get)"></a>一、CSRF(get)</h2><p>登陆后点击修改信息</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004817.png" alt="1" loading="lazy"></p>
-<p>然后浏览器上代理，用burpsuite抓包</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004869.png" alt="2" loading="lazy"></p>
-<p>上面是get请求的内容，我们把phonenum的值修改为123456，然后forword，发现账号kobe的信息发生了变化，结果如下图：</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004468.png" alt="3" loading="lazy"></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004134.png" alt="4" loading="lazy"><em>修改成功</em></p>
-<p>也可以直接构造一个url:</p>
-<p><code> http://192.168.224.135/pikachu/vul/csrf/csrfget/csrf_get_edit.php?sex=hack&amp;phonenum=hack&amp;add=123456&amp;email=kobe%40pikachu.com&amp;submit=submit</code> </p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004797.png" alt="5" loading="lazy"><em>修改成功</em></p>
-<h2 id="二、CSRF（POST）"><a href="#二、CSRF（POST）" class="headerlink" title="二、CSRF（POST）"></a>二、CSRF（POST）</h2><p>也是先登录，这是必要的，然后抓取提交修改的流量，是POST方式。</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004132.png" alt="6" loading="lazy"></p>
-<p>直接在包中修改信息</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005813.png" alt="7" loading="lazy"></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005429.png" alt="8" loading="lazy"></p>
-<p>也可以自己建一个表单，让被攻击者点恶意站点表单的URL。通过表单的URL去向存在CSRF漏洞的页面去提交POST请求。</p>
-<p>表单代码:</p>
-<pre class="language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span>
-  <span class="token comment">&lt;!-- CSRF PoC - generated by Burp Suite Professional --></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://192.168.224.135/pikachu/vul/csrf/csrfpost/csrf_post_edit.php<span class="token punctuation">"</span></span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>POST<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>sex<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>61<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>phonenum<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>132<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>add<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>852741<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>kobe<span class="token entity" title="&#64;">&amp;#64;</span>pikachu<span class="token entity" title="&#46;">&amp;#46;</span>com<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Submit request<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span>
-</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005169.png" alt="9" loading="lazy"></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005882.png" alt="10" loading="lazy"></p>
-<h2 id="三、CSRF（token）"><a href="#三、CSRF（token）" class="headerlink" title="三、CSRF（token）"></a>三、CSRF（token）</h2><p>同样的过程，get方式修改信息，但是还带了一个token参数。</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005304.png" alt="11" loading="lazy"></p>
-<p>由于这个token是随机不可预测的并且是隐藏看不见的，并且每次刷新，后台发送过来的token都不一样，起到了防止伪造的作用.对于token，暂时还没有什么办法通过</p>
-<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><p>提示:使用未定义的常量 MYSQL_ASSOC. 如图所示: </p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005922.png" alt="12" loading="lazy"></p>
-<p>解决办法:</p>
-<p>切换PHP版本\刷新网页</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005830.png" alt="13" loading="lazy"></p>
 ]]></content>
       <categories>
         <category>学习</category>
@@ -3696,6 +3931,64 @@ Minimum &#x3D; 1ms, Maximum &#x3D; 3ms, Average &#x3D; 2ms</code></pre>
 <p>参考链接： </p>
 <p>无垠安全：<a href="https://www.wuyini.cn/952.html">https://www.wuyini.cn/952.html</a></p>
 <p>Pikachu靶场通关之SQL注入 - FreeBuf网络安全行业门户：<a href="https://www.freebuf.com/articles/web/254079.html">https://www.freebuf.com/articles/web/254079.html</a></p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>web安全</category>
+        <category>Pikachu</category>
+      </categories>
+      <tags>
+        <tag>pikachu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Pikachu--CSRF</title>
+    <url>/posts/546fe1af/</url>
+    <content><![CDATA[<h1 id="Pikachu——CSRF"><a href="#Pikachu——CSRF" class="headerlink" title="Pikachu——CSRF"></a>Pikachu——CSRF</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><strong>跨站请求伪造</strong>（英语：Cross-site request forgery），也被称为 <strong>one-click attack</strong> 或者 <strong>session riding</strong>，通常缩写为 <strong>CSRF</strong> 或者 <strong>XSRF</strong>， 是一种挟制用户在当前已登录的Web应用程序执行非本意的操作的攻击方法。跟跨网站脚本（XSS）相比，<strong>XSS</strong> 利用的是用户对指定网站的信任，CSRF 利用的是网站]对用户网页浏览器的信任。</p>
+<p>来自:<a href="https://baike.baidu.com/item/%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0/13777878?fromtitle=CSRF&fromid=2735433&fr=aladdin">百度百科 </a></p>
+<h2 id="CSRF与XSS区别"><a href="#CSRF与XSS区别" class="headerlink" title="CSRF与XSS区别"></a>CSRF与XSS区别</h2><p>CSRF是借助用户的权限完成攻击，攻击者并没有拿到用户的权限。目标构造修改个人信息的链接，利用lucy在登录状态下点击此链接达到修改信息的目的。<br>XSS直接盗取了用户的权限，然后实施破坏。攻击者利用XSS盗取了目标的Cookie，登录lucy的后台，再修改相关信息。</p>
+<h2 id="一、CSRF-get"><a href="#一、CSRF-get" class="headerlink" title="一、CSRF(get)"></a>一、CSRF(get)</h2><p>登陆后点击修改信息</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004817.png" alt="1" loading="lazy"></p>
+<p>然后浏览器上代理，用burpsuite抓包</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004869.png" alt="2" loading="lazy"></p>
+<p>上面是get请求的内容，我们把phonenum的值修改为123456，然后forword，发现账号kobe的信息发生了变化，结果如下图：</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004468.png" alt="3" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004134.png" alt="4" loading="lazy"><em>修改成功</em></p>
+<p>也可以直接构造一个url:</p>
+<p><code> http://192.168.224.135/pikachu/vul/csrf/csrfget/csrf_get_edit.php?sex=hack&amp;phonenum=hack&amp;add=123456&amp;email=kobe%40pikachu.com&amp;submit=submit</code> </p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004797.png" alt="5" loading="lazy"><em>修改成功</em></p>
+<h2 id="二、CSRF（POST）"><a href="#二、CSRF（POST）" class="headerlink" title="二、CSRF（POST）"></a>二、CSRF（POST）</h2><p>也是先登录，这是必要的，然后抓取提交修改的流量，是POST方式。</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004132.png" alt="6" loading="lazy"></p>
+<p>直接在包中修改信息</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005813.png" alt="7" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005429.png" alt="8" loading="lazy"></p>
+<p>也可以自己建一个表单，让被攻击者点恶意站点表单的URL。通过表单的URL去向存在CSRF漏洞的页面去提交POST请求。</p>
+<p>表单代码:</p>
+<pre class="language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span>
+  <span class="token comment">&lt;!-- CSRF PoC - generated by Burp Suite Professional --></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://192.168.224.135/pikachu/vul/csrf/csrfpost/csrf_post_edit.php<span class="token punctuation">"</span></span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>POST<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>sex<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>61<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>phonenum<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>132<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>add<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>852741<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>kobe<span class="token entity" title="&#64;">&amp;#64;</span>pikachu<span class="token entity" title="&#46;">&amp;#46;</span>com<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Submit request<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span>
+</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005169.png" alt="9" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005882.png" alt="10" loading="lazy"></p>
+<h2 id="三、CSRF（token）"><a href="#三、CSRF（token）" class="headerlink" title="三、CSRF（token）"></a>三、CSRF（token）</h2><p>同样的过程，get方式修改信息，但是还带了一个token参数。</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005304.png" alt="11" loading="lazy"></p>
+<p>由于这个token是随机不可预测的并且是隐藏看不见的，并且每次刷新，后台发送过来的token都不一样，起到了防止伪造的作用.对于token，暂时还没有什么办法通过</p>
+<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><p>提示:使用未定义的常量 MYSQL_ASSOC. 如图所示: </p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005922.png" alt="12" loading="lazy"></p>
+<p>解决办法:</p>
+<p>切换PHP版本\刷新网页</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005830.png" alt="13" loading="lazy"></p>
 ]]></content>
       <categories>
         <category>学习</category>
@@ -5557,22 +5850,6 @@ PATH&#x3D;$PATH:&#x2F;usr&#x2F;local&#x2F;php&#x2F;bin环境变量生效 source 
       </tags>
   </entry>
   <entry>
-    <title>fiddler汉化</title>
-    <url>/posts/29ab9ab2/</url>
-    <content><![CDATA[<p>fiddler及汉化补丁下载链接：<a href="https://pan.baidu.com/s/17qtgvvG8wjtcbAUdR4gJsw?pwd=9f3w">https://pan.baidu.com/s/17qtgvvG8wjtcbAUdR4gJsw?pwd=9f3w</a><br>提取码：9f3w</p>
-<p>fiddler官网：<a href="https://www.telerik.com/fiddler">https://www.telerik.com/fiddler</a></p>
-<p>汉化过程：<br>1.安装Fiddler，比如我的Fiddler安装在：D:\Programs\Fiddler<br>2.将FiddlerTexts.txt复制到D:\Programs\Fiddler<br>3.将FdToChinese.dll复制到D:\Programs\Fiddler\Scripts<br>4.重启Fiddler，菜单栏常用功能菜单已被汉化</p>
-]]></content>
-      <categories>
-        <category>教程</category>
-        <category>工具汉化</category>
-      </categories>
-      <tags>
-        <tag>汉化</tag>
-        <tag>工具</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>dvwa--盲注</title>
     <url>/posts/75e4ecec/</url>
     <content><![CDATA[<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>一般的注入攻击者可以直接从页面上看到注入语句的执行结果，而盲注时攻击者通常是无法从显示页面上获取执行结果，甚至连注入语句是否执行都无从得知，因此盲注的难度要比一般注入高。目前网络上现存的SQL注入漏洞大多是SQL盲注。</p>
@@ -5800,6 +6077,22 @@ sqlmap -u &quot;192.168.224.135&#x2F;dvwa&#x2F;vulnerabilities&#x2F;sqli_blind&#
       </categories>
       <tags>
         <tag>DVWA</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>fiddler汉化</title>
+    <url>/posts/29ab9ab2/</url>
+    <content><![CDATA[<p>fiddler及汉化补丁下载链接：<a href="https://pan.baidu.com/s/17qtgvvG8wjtcbAUdR4gJsw?pwd=9f3w">https://pan.baidu.com/s/17qtgvvG8wjtcbAUdR4gJsw?pwd=9f3w</a><br>提取码：9f3w</p>
+<p>fiddler官网：<a href="https://www.telerik.com/fiddler">https://www.telerik.com/fiddler</a></p>
+<p>汉化过程：<br>1.安装Fiddler，比如我的Fiddler安装在：D:\Programs\Fiddler<br>2.将FiddlerTexts.txt复制到D:\Programs\Fiddler<br>3.将FdToChinese.dll复制到D:\Programs\Fiddler\Scripts<br>4.重启Fiddler，菜单栏常用功能菜单已被汉化</p>
+]]></content>
+      <categories>
+        <category>教程</category>
+        <category>工具汉化</category>
+      </categories>
+      <tags>
+        <tag>汉化</tag>
+        <tag>工具</tag>
       </tags>
   </entry>
   <entry>
@@ -6238,7 +6531,7 @@ apt-get dist-upgrade		#根据依赖关系更新</code></pre>
     <title>《天堂旅行团》摘抄</title>
     <url>/posts/7d0fc3d8/</url>
     <content><![CDATA[
-    <div id="aplayer-DQucRdCV" class="aplayer aplayer-tag-marker meting-tag-marker"
+    <div id="aplayer-uktauYjR" class="aplayer aplayer-tag-marker meting-tag-marker"
          data-id="1891034510" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#C20C0C"
     ></div>
 
@@ -7142,6 +7435,128 @@ mountvol X: &#x2F;d</code></pre>
       </categories>
       <tags>
         <tag>windows</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>广域网基础</title>
+    <url>/posts/8f06ed5e/</url>
+    <content><![CDATA[<div class="danger">
+
+<blockquote>
+<p> 资料来源<a href="https://talent.ruijie.com.cn/certification/profession/">锐捷</a><br> 非原创</p>
+</blockquote>
+</div>
+
+
+
+
+
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
+<li>广域网是连接不同地区局域网或城域网计算机通信的远程网。 </li>
+<li>通常跨接很大的物理范围，所覆盖的范围从几十公里到几千公里，它能连接多个地区、城市和国家，或横 跨几个洲并能提供远距离通信，形成国际性的远程网络。</li>
+</ul>
+<h2 id="广域网简介"><a href="#广域网简介" class="headerlink" title="广域网简介"></a>广域网简介</h2><h3 id="为何需要WAN？"><a href="#为何需要WAN？" class="headerlink" title="为何需要WAN？"></a>为何需要WAN？</h3><ul>
+<li>分支机构与总部机构需要跨越运营商实现数据互通</li>
+<li>出差在外的员工需要通过互联网远程拨入公司，访问公司内网的数据资源  广域网并不等同于互联网</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622105102.png" alt="1" loading="lazy"></p>
+<h3 id="WAN技术概念"><a href="#WAN技术概念" class="headerlink" title="WAN技术概念"></a>WAN技术概念</h3><ul>
+<li>WAN技术主要集中在OSI参考模型中的第1层（物理层）和第2层（数据链路层）</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622105101.png" alt="2" loading="lazy"></p>
+<h3 id="WAN物理层概念"><a href="#WAN物理层概念" class="headerlink" title="WAN物理层概念"></a>WAN物理层概念</h3><ul>
+<li>WAN 物理层协议描述连接 WAN 服务所需的电气、机械、操作和功能特性（类似有线局域网的10M、 100M、1000M网线） </li>
+<li>WAN 物理层还描述了 DTE 和 DCE 之间的接口<ul>
+<li>DTE：数据终端设备，Data Terminal Equipment </li>
+<li>DCE：数据通信设备，Data Communicate Equipment</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622105106.png" alt="3" loading="lazy"></p>
+<h3 id="WAN数据链路层概念"><a href="#WAN数据链路层概念" class="headerlink" title="WAN数据链路层概念"></a>WAN数据链路层概念</h3><ul>
+<li>数据链路层（OSI 第 2 层）协议定义如何封装传向远程位置的数据以及最终数据帧的传输机制（类似以太 网中的MAC地址） <ul>
+<li>PPP、HDLC、 Frame Relay </li>
+<li>帧中继网络现在基本已经淘汰</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622105111.png" alt="4" loading="lazy"></p>
+<h2 id="广域网链路介绍"><a href="#广域网链路介绍" class="headerlink" title="广域网链路介绍"></a>广域网链路介绍</h2><h3 id="广域网链路类型分类"><a href="#广域网链路类型分类" class="headerlink" title="广域网链路类型分类"></a>广域网链路类型分类</h3><ul>
+<li>广域网链路类型：<ul>
+<li>电路交换 </li>
+<li>分组交换 </li>
+<li>VPN </li>
+<li>专线</li>
+</ul>
+</li>
+</ul>
+<h3 id="电路交换"><a href="#电路交换" class="headerlink" title="电路交换"></a>电路交换</h3><ul>
+<li>在用户通信之前在节点和终端之间建立专用电路（或信道）的网络，常见的比如ISDN，PSTN等 </li>
+<li>传输介质主要是电话线，也可以是光纤 </li>
+<li>由于用户独占分配的固定带宽，因此使用交换电路传输数据的成本通常很高</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622105117.png" alt="5" loading="lazy"></p>
+<h3 id="分组交换（包交换）"><a href="#分组交换（包交换）" class="headerlink" title="分组交换（包交换）"></a>分组交换（包交换）</h3><ul>
+<li>分组交换将流量数据分割成数据包，在共享网络上路由 </li>
+<li>分为PVC(永久虚电路）和SVC(交换虚电路）：其中PVC为永久建立的虚链路；SVC为按需建立的虚链路 </li>
+<li>常见的分组交换技术包含X.25、帧中继以及ATM</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622105121.png" alt="6" loading="lazy"></p>
+<h3 id="VPN"><a href="#VPN" class="headerlink" title="VPN"></a>VPN</h3><ul>
+<li>运营商管理型VPN：2层MPLS_VPN、3层MPLS_VPN </li>
+<li>由运营商承建并维护</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622105126.png" alt="7" loading="lazy"></p>
+<ul>
+<li>企业管理型VPN：IPSEC VPN、GRE VPN、L2TP VPN </li>
+<li>利用运营商网络，由企业内部承建并维护</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622105130.png" alt="8" loading="lazy"></p>
+<h3 id="专线"><a href="#专线" class="headerlink" title="专线"></a>专线</h3><ul>
+<li>由运营商为企业远程节点之间的通信提供的点到点专有线路，用户独占一条速率固定的专用线路，并独享 带宽 </li>
+<li>常见的专线技术包含DDN、SDH（如E1、T1、POS、ATM专线）、以太网专线（如MSTP、裸光纤</li>
+</ul>
+<h3 id="专线：DDN线路"><a href="#专线：DDN线路" class="headerlink" title="专线：DDN线路"></a>专线：DDN线路</h3><ul>
+<li>早期的数据通信使用的是电话交换网络，使用模拟信道传输数据。20 世纪九十年代由当时的邮电部在全国 范围内建设了一张专用的数据传输网络——ChinaDDN(china Digital Data Network，中国公用数字数据 网) </li>
+<li>从运营商的DDN 业务网中为客户提供的数字信道连接，带宽一般为n*64Kpbs，n 为1-32（即64Kpbs— 2.048Mbps）</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622105135.png" alt="9" loading="lazy"></p>
+<h3 id="专线：SDH专线"><a href="#专线：SDH专线" class="headerlink" title="专线：SDH专线"></a>专线：SDH专线</h3><ul>
+<li>SDH（Synchronous Digital Hierarchy，同步数字体系）是一种传输技术，将同步复接、线路传输及交换 功能融为一体. 速率标准从64K 到10G。 </li>
+<li>常见的SDH 专线包括E1（2.048M）、E3（34.368M）、POS(155M、622M 、2.5G、10G)、CPOS等</li>
+</ul>
+<h3 id="专线：SDH（-E1专线）"><a href="#专线：SDH（-E1专线）" class="headerlink" title="专线：SDH（ E1专线）"></a>专线：SDH（ E1专线）</h3><ul>
+<li>E1 是从运营商的SDH&#x2F;PDH传输网中为客户提供的数字信道连接，速率为2.048Mbps </li>
+<li>在欧洲和中国等大部分国家使用，主要用于金融、政府行业的分支接入</li>
+<li>常见接入线缆为V.35、RJ48以及BNC线缆</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622105140.png" alt="10" loading="lazy"></p>
+<h3 id="专线：SDH-POS专线"><a href="#专线：SDH-POS专线" class="headerlink" title="专线：SDH-POS专线"></a>专线：SDH-POS专线</h3><ul>
+<li>从运营商的SDH&#x2F;PDH 传输网中为客户提供的数字信道连接，标准速率为155M（STM-1，OC3）、 622M（STM-4，OC12）、2.5G（STM-16，OC48）、10G（STM-64，OC192） </li>
+<li>主要用于金融、政府行业汇聚端接入 </li>
+<li>常见接入线缆为光纤</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622105145.png" alt="11" loading="lazy"></p>
+<h3 id="专线：SDH-CPOS专线"><a href="#专线：SDH-CPOS专线" class="headerlink" title="专线：SDH-CPOS专线"></a>专线：SDH-CPOS专线</h3><ul>
+<li>CPOS 接口可以理解为一个多通道的 E1接口</li>
+<li>可最大支持 63个 E1 线路，或者再细分成 N×64K 时隙的CE1链路 </li>
+<li>主要用于金融、政府行业汇聚端接入 </li>
+<li>常见接入线缆为光纤</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622105149.png" alt="12" loading="lazy"></p>
+<h3 id="专线：SDH-MSTP专线"><a href="#专线：SDH-MSTP专线" class="headerlink" title="专线：SDH-MSTP专线"></a>专线：SDH-MSTP专线</h3><ul>
+<li>MSTP从运营商的SDH传输网中为客户提供的数字信道连接，通过SDH传输网边缘的MSTP传输设备连接 用户，用户的边界设备只要提供以太网的光口或者电。 </li>
+<li>主要用于金融、政府以及企业端接入 </li>
+<li>常见接入线缆为网线和光纤</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622105153.png" alt="13" loading="lazy"></p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>锐捷</category>
+      </categories>
+      <tags>
+        <tag>锐捷</tag>
       </tags>
   </entry>
   <entry>

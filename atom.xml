@@ -6,7 +6,7 @@
   <link href="https://weaving-dreams.github.io/atom.xml" rel="self"/>
   
   <link href="https://weaving-dreams.github.io/"/>
-  <updated>2022-06-21T10:10:06.325Z</updated>
+  <updated>2022-06-22T09:11:45.048Z</updated>
   <id>https://weaving-dreams.github.io/</id>
   
   <author>
@@ -17,11 +17,71 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>PPP协议原理与配置</title>
+    <link href="https://weaving-dreams.github.io/posts/cea6a88e/"/>
+    <id>https://weaving-dreams.github.io/posts/cea6a88e/</id>
+    <published>2022-06-22T09:09:10.000Z</published>
+    <updated>2022-06-22T09:11:45.048Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;div class=&quot;danger&quot;&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt; 资料来源&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="https://weaving-dreams.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="锐捷" scheme="https://weaving-dreams.github.io/categories/%E5%AD%A6%E4%B9%A0/%E9%94%90%E6%8D%B7/"/>
+    
+    
+    <category term="锐捷" scheme="https://weaving-dreams.github.io/tags/%E9%94%90%E6%8D%B7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>广域网基础</title>
+    <link href="https://weaving-dreams.github.io/posts/8f06ed5e/"/>
+    <id>https://weaving-dreams.github.io/posts/8f06ed5e/</id>
+    <published>2022-06-22T09:09:03.000Z</published>
+    <updated>2022-06-22T09:11:45.048Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;div class=&quot;danger&quot;&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt; 资料来源&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="https://weaving-dreams.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="锐捷" scheme="https://weaving-dreams.github.io/categories/%E5%AD%A6%E4%B9%A0/%E9%94%90%E6%8D%B7/"/>
+    
+    
+    <category term="锐捷" scheme="https://weaving-dreams.github.io/tags/%E9%94%90%E6%8D%B7/"/>
+    
+  </entry>
+  
+  <entry>
     <title>NAT技术介绍</title>
     <link href="https://weaving-dreams.github.io/posts/59d20ca5/"/>
     <id>https://weaving-dreams.github.io/posts/59d20ca5/</id>
     <published>2022-06-21T10:07:23.000Z</published>
-    <updated>2022-06-21T10:10:06.325Z</updated>
+    <updated>2022-06-21T10:10:23.200Z</updated>
     
     
       
@@ -553,63 +613,6 @@
     <category term="锐捷" scheme="https://weaving-dreams.github.io/tags/%E9%94%90%E6%8D%B7/"/>
     
     <category term="实验" scheme="https://weaving-dreams.github.io/tags/%E5%AE%9E%E9%AA%8C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>如何判断两台主机IP是否在同一网段</title>
-    <link href="https://weaving-dreams.github.io/posts/63b0beec/"/>
-    <id>https://weaving-dreams.github.io/posts/63b0beec/</id>
-    <published>2022-06-02T13:51:33.000Z</published>
-    <updated>2022-06-02T13:57:03.295Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;什么是子网掩码&quot;&gt;&lt;a href=&quot;#什么是子网掩码&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="学习" scheme="https://weaving-dreams.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    <category term="网络基础" scheme="https://weaving-dreams.github.io/categories/%E5%AD%A6%E4%B9%A0/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/"/>
-    
-    
-    <category term="网络" scheme="https://weaving-dreams.github.io/tags/%E7%BD%91%E7%BB%9C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>OSI参考模型及TCP/IP协议栈</title>
-    <link href="https://weaving-dreams.github.io/posts/7e4a66b0/"/>
-    <id>https://weaving-dreams.github.io/posts/7e4a66b0/</id>
-    <published>2022-06-02T04:05:16.000Z</published>
-    <updated>2022-06-02T04:22:16.654Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;div class=&quot;danger&quot;&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt; 资料来源&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="学习" scheme="https://weaving-dreams.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    <category term="锐捷" scheme="https://weaving-dreams.github.io/categories/%E5%AD%A6%E4%B9%A0/%E9%94%90%E6%8D%B7/"/>
-    
-    
-    <category term="锐捷" scheme="https://weaving-dreams.github.io/tags/%E9%94%90%E6%8D%B7/"/>
     
   </entry>
   
