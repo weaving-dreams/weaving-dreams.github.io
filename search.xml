@@ -1,6 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>ARP协议原理与应用</title>
+    <url>/posts/9f9ac9a/</url>
+    <content><![CDATA[<div class="danger">
+
+<blockquote>
+<p> 资料来源<a href="https://talent.ruijie.com.cn/certification/profession/">锐捷</a><br> 非原创</p>
+</blockquote>
+</div>
+
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
+<li>OSI模型把网络工作分为七层，IP地址在OSI模型的第三层，MAC地址在第二层，彼此不直接打交道。在 通过以太网发送IP数据包时，需要先封装第三层、第二层的包头，但由于发送时只知道目标IP地址，不知 道其MAC地址，又不能跨第二、三层，所以需要使用地址解析协议即ARP协议。</li>
+<li>ARP协议可根据网络层IP数据包包头中的IP地址信息解析出目标硬件地址（MAC地址）信息，以保证通信 的顺利进行。</li>
+</ul>
+<h2 id="ARP协议概述"><a href="#ARP协议概述" class="headerlink" title="ARP协议概述"></a>ARP协议概述</h2><ul>
+<li>数据要在以太网中传输，需要完成以太网封装，这项工作由网络层负责；</li>
+<li>要完成以太网的数据封装，需要知道目的设备的MAC地址；</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105555.png" alt="1" loading="lazy"></p>
+<ul>
+<li>ARP <ul>
+<li>Address Resolution Protocol 地址解析协 议</li>
+<li>作用：将 IP地址解析为 MAC地址</li>
+<li>注意：ARP报文不能穿越路由器，不能被转 发到其他广播域</li>
+</ul>
+</li>
+<li>ARP缓存表<ul>
+<li>用于存储IP地址及其经过解析的MAC地址的 对应关系</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105558.png" alt="2" loading="lazy"></p>
+<h2 id="ARP协议工作原理"><a href="#ARP协议工作原理" class="headerlink" title="ARP协议工作原理"></a>ARP协议工作原理</h2><p>ARP工作流程</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105601.png" alt="3" loading="lazy"></p>
+<p>ARP工作原理</p>
+<ul>
+<li>先查看ARP表，如果ARP表中没有目的IP地址对应的MAC表项，则发送ARP请求包；</li>
+<li>源主机广播发送ARP request 数据包，请求目的主机的MAC地址；</li>
+<li>同网段内的所有主机都能收到ARP request请求包，但只有目的主机才会回复ARP reply数据包；</li>
+<li>源主机收到ARP reply后，将目的主句的IP-MAC对应关系添加进ARP表中，完成数据的以太网封装，进行 数据交互</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105604.png" alt="4" loading="lazy"></p>
+<p>ARP缓存表</p>
+<ul>
+<li>动态表项<ul>
+<li>通过ARP协议学习，能被更新，缺省老化时间120s</li>
+</ul>
+</li>
+<li>静态表项<ul>
+<li>手工配置，不能被更新，无老化时间的限制</li>
+</ul>
+</li>
+</ul>
+<p>ARP协议分类</p>
+<p>免费ARP（Gratuitous ARP ）</p>
+<ul>
+<li>发送ARP请求，请求本机IP对应的MAC <ul>
+<li>免费ARP的作用：确定其它设备的 IP地址是否与本机 IP地址冲突 </li>
+<li>更改了地址，通知其他设备更新 ARP表项</li>
+</ul>
+</li>
+</ul>
+<p>代理ARP（Proxy ARP ）</p>
+<ul>
+<li>由启动了代理ARP功能的网关&#x2F;下一跳设备代为应答ARP请求，该ARP请求的是其他IP对应的MAC地址。</li>
+<li>回应ARP请求的条件<ul>
+<li>本地有去往目的IP的路由表 </li>
+<li>收到该ARP请求的接口与路由表下一跳不是同一个接口</li>
+</ul>
+</li>
+</ul>
+<p>RARP与IARP</p>
+<ul>
+<li>RARP  Reverse Address Resolution Protocol 反向地址解析协议 <ul>
+<li>把MAC地址解析为IP地址 </li>
+<li>应用场景：常用于无盘工作站</li>
+</ul>
+</li>
+<li>IARP <ul>
+<li>Inverse Address Resolution Protocol 逆向地址解析协议 </li>
+<li>在帧中继网络中解析对端IP地址和本地DLCL的映射关系</li>
+<li>应用场景：应用于帧中继网络</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>锐捷</category>
+      </categories>
+      <tags>
+        <tag>锐捷</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>AC双热机备份</title>
     <url>/posts/50b45d5b/</url>
     <content><![CDATA[<h2 id="拓扑"><a href="#拓扑" class="headerlink" title="拓扑"></a>拓扑</h2><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220615151950.png" alt="image-20220615151949929" loading="lazy"></p>
@@ -555,100 +649,6 @@ option 43 sub-option 3 ascii 10.1.201.3
       </categories>
       <tags>
         <tag>eNSP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ARP协议原理与应用</title>
-    <url>/posts/9f9ac9a/</url>
-    <content><![CDATA[<div class="danger">
-
-<blockquote>
-<p> 资料来源<a href="https://talent.ruijie.com.cn/certification/profession/">锐捷</a><br> 非原创</p>
-</blockquote>
-</div>
-
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
-<li>OSI模型把网络工作分为七层，IP地址在OSI模型的第三层，MAC地址在第二层，彼此不直接打交道。在 通过以太网发送IP数据包时，需要先封装第三层、第二层的包头，但由于发送时只知道目标IP地址，不知 道其MAC地址，又不能跨第二、三层，所以需要使用地址解析协议即ARP协议。</li>
-<li>ARP协议可根据网络层IP数据包包头中的IP地址信息解析出目标硬件地址（MAC地址）信息，以保证通信 的顺利进行。</li>
-</ul>
-<h2 id="ARP协议概述"><a href="#ARP协议概述" class="headerlink" title="ARP协议概述"></a>ARP协议概述</h2><ul>
-<li>数据要在以太网中传输，需要完成以太网封装，这项工作由网络层负责；</li>
-<li>要完成以太网的数据封装，需要知道目的设备的MAC地址；</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105555.png" alt="1" loading="lazy"></p>
-<ul>
-<li>ARP <ul>
-<li>Address Resolution Protocol 地址解析协 议</li>
-<li>作用：将 IP地址解析为 MAC地址</li>
-<li>注意：ARP报文不能穿越路由器，不能被转 发到其他广播域</li>
-</ul>
-</li>
-<li>ARP缓存表<ul>
-<li>用于存储IP地址及其经过解析的MAC地址的 对应关系</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105558.png" alt="2" loading="lazy"></p>
-<h2 id="ARP协议工作原理"><a href="#ARP协议工作原理" class="headerlink" title="ARP协议工作原理"></a>ARP协议工作原理</h2><p>ARP工作流程</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105601.png" alt="3" loading="lazy"></p>
-<p>ARP工作原理</p>
-<ul>
-<li>先查看ARP表，如果ARP表中没有目的IP地址对应的MAC表项，则发送ARP请求包；</li>
-<li>源主机广播发送ARP request 数据包，请求目的主机的MAC地址；</li>
-<li>同网段内的所有主机都能收到ARP request请求包，但只有目的主机才会回复ARP reply数据包；</li>
-<li>源主机收到ARP reply后，将目的主句的IP-MAC对应关系添加进ARP表中，完成数据的以太网封装，进行 数据交互</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105604.png" alt="4" loading="lazy"></p>
-<p>ARP缓存表</p>
-<ul>
-<li>动态表项<ul>
-<li>通过ARP协议学习，能被更新，缺省老化时间120s</li>
-</ul>
-</li>
-<li>静态表项<ul>
-<li>手工配置，不能被更新，无老化时间的限制</li>
-</ul>
-</li>
-</ul>
-<p>ARP协议分类</p>
-<p>免费ARP（Gratuitous ARP ）</p>
-<ul>
-<li>发送ARP请求，请求本机IP对应的MAC <ul>
-<li>免费ARP的作用：确定其它设备的 IP地址是否与本机 IP地址冲突 </li>
-<li>更改了地址，通知其他设备更新 ARP表项</li>
-</ul>
-</li>
-</ul>
-<p>代理ARP（Proxy ARP ）</p>
-<ul>
-<li>由启动了代理ARP功能的网关&#x2F;下一跳设备代为应答ARP请求，该ARP请求的是其他IP对应的MAC地址。</li>
-<li>回应ARP请求的条件<ul>
-<li>本地有去往目的IP的路由表 </li>
-<li>收到该ARP请求的接口与路由表下一跳不是同一个接口</li>
-</ul>
-</li>
-</ul>
-<p>RARP与IARP</p>
-<ul>
-<li>RARP  Reverse Address Resolution Protocol 反向地址解析协议 <ul>
-<li>把MAC地址解析为IP地址 </li>
-<li>应用场景：常用于无盘工作站</li>
-</ul>
-</li>
-<li>IARP <ul>
-<li>Inverse Address Resolution Protocol 逆向地址解析协议 </li>
-<li>在帧中继网络中解析对端IP地址和本地DLCL的映射关系</li>
-<li>应用场景：应用于帧中继网络</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>锐捷</category>
-      </categories>
-      <tags>
-        <tag>锐捷</tag>
       </tags>
   </entry>
   <entry>
@@ -3680,6 +3680,64 @@ Received 23358 broadcasts, 0 runts, 0 giants
       </tags>
   </entry>
   <entry>
+    <title>Pikachu--CSRF</title>
+    <url>/posts/546fe1af/</url>
+    <content><![CDATA[<h1 id="Pikachu——CSRF"><a href="#Pikachu——CSRF" class="headerlink" title="Pikachu——CSRF"></a>Pikachu——CSRF</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><strong>跨站请求伪造</strong>（英语：Cross-site request forgery），也被称为 <strong>one-click attack</strong> 或者 <strong>session riding</strong>，通常缩写为 <strong>CSRF</strong> 或者 <strong>XSRF</strong>， 是一种挟制用户在当前已登录的Web应用程序执行非本意的操作的攻击方法。跟跨网站脚本（XSS）相比，<strong>XSS</strong> 利用的是用户对指定网站的信任，CSRF 利用的是网站]对用户网页浏览器的信任。</p>
+<p>来自:<a href="https://baike.baidu.com/item/%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0/13777878?fromtitle=CSRF&fromid=2735433&fr=aladdin">百度百科 </a></p>
+<h2 id="CSRF与XSS区别"><a href="#CSRF与XSS区别" class="headerlink" title="CSRF与XSS区别"></a>CSRF与XSS区别</h2><p>CSRF是借助用户的权限完成攻击，攻击者并没有拿到用户的权限。目标构造修改个人信息的链接，利用lucy在登录状态下点击此链接达到修改信息的目的。<br>XSS直接盗取了用户的权限，然后实施破坏。攻击者利用XSS盗取了目标的Cookie，登录lucy的后台，再修改相关信息。</p>
+<h2 id="一、CSRF-get"><a href="#一、CSRF-get" class="headerlink" title="一、CSRF(get)"></a>一、CSRF(get)</h2><p>登陆后点击修改信息</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004817.png" alt="1" loading="lazy"></p>
+<p>然后浏览器上代理，用burpsuite抓包</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004869.png" alt="2" loading="lazy"></p>
+<p>上面是get请求的内容，我们把phonenum的值修改为123456，然后forword，发现账号kobe的信息发生了变化，结果如下图：</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004468.png" alt="3" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004134.png" alt="4" loading="lazy"><em>修改成功</em></p>
+<p>也可以直接构造一个url:</p>
+<p><code> http://192.168.224.135/pikachu/vul/csrf/csrfget/csrf_get_edit.php?sex=hack&amp;phonenum=hack&amp;add=123456&amp;email=kobe%40pikachu.com&amp;submit=submit</code> </p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004797.png" alt="5" loading="lazy"><em>修改成功</em></p>
+<h2 id="二、CSRF（POST）"><a href="#二、CSRF（POST）" class="headerlink" title="二、CSRF（POST）"></a>二、CSRF（POST）</h2><p>也是先登录，这是必要的，然后抓取提交修改的流量，是POST方式。</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004132.png" alt="6" loading="lazy"></p>
+<p>直接在包中修改信息</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005813.png" alt="7" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005429.png" alt="8" loading="lazy"></p>
+<p>也可以自己建一个表单，让被攻击者点恶意站点表单的URL。通过表单的URL去向存在CSRF漏洞的页面去提交POST请求。</p>
+<p>表单代码:</p>
+<pre class="language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span>
+  <span class="token comment">&lt;!-- CSRF PoC - generated by Burp Suite Professional --></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://192.168.224.135/pikachu/vul/csrf/csrfpost/csrf_post_edit.php<span class="token punctuation">"</span></span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>POST<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>sex<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>61<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>phonenum<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>132<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>add<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>852741<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>kobe<span class="token entity" title="&#64;">&amp;#64;</span>pikachu<span class="token entity" title="&#46;">&amp;#46;</span>com<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Submit request<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span>
+</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005169.png" alt="9" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005882.png" alt="10" loading="lazy"></p>
+<h2 id="三、CSRF（token）"><a href="#三、CSRF（token）" class="headerlink" title="三、CSRF（token）"></a>三、CSRF（token）</h2><p>同样的过程，get方式修改信息，但是还带了一个token参数。</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005304.png" alt="11" loading="lazy"></p>
+<p>由于这个token是随机不可预测的并且是隐藏看不见的，并且每次刷新，后台发送过来的token都不一样，起到了防止伪造的作用.对于token，暂时还没有什么办法通过</p>
+<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><p>提示:使用未定义的常量 MYSQL_ASSOC. 如图所示: </p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005922.png" alt="12" loading="lazy"></p>
+<p>解决办法:</p>
+<p>切换PHP版本\刷新网页</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005830.png" alt="13" loading="lazy"></p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>web安全</category>
+        <category>Pikachu</category>
+      </categories>
+      <tags>
+        <tag>pikachu</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Pikachu--SQL注入(一)</title>
     <url>/posts/22ddbd5a/</url>
     <content><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><blockquote>
@@ -3931,64 +3989,6 @@ Received 23358 broadcasts, 0 runts, 0 giants
 <p>参考链接： </p>
 <p>无垠安全：<a href="https://www.wuyini.cn/952.html">https://www.wuyini.cn/952.html</a></p>
 <p>Pikachu靶场通关之SQL注入 - FreeBuf网络安全行业门户：<a href="https://www.freebuf.com/articles/web/254079.html">https://www.freebuf.com/articles/web/254079.html</a></p>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>web安全</category>
-        <category>Pikachu</category>
-      </categories>
-      <tags>
-        <tag>pikachu</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Pikachu--CSRF</title>
-    <url>/posts/546fe1af/</url>
-    <content><![CDATA[<h1 id="Pikachu——CSRF"><a href="#Pikachu——CSRF" class="headerlink" title="Pikachu——CSRF"></a>Pikachu——CSRF</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><strong>跨站请求伪造</strong>（英语：Cross-site request forgery），也被称为 <strong>one-click attack</strong> 或者 <strong>session riding</strong>，通常缩写为 <strong>CSRF</strong> 或者 <strong>XSRF</strong>， 是一种挟制用户在当前已登录的Web应用程序执行非本意的操作的攻击方法。跟跨网站脚本（XSS）相比，<strong>XSS</strong> 利用的是用户对指定网站的信任，CSRF 利用的是网站]对用户网页浏览器的信任。</p>
-<p>来自:<a href="https://baike.baidu.com/item/%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0/13777878?fromtitle=CSRF&fromid=2735433&fr=aladdin">百度百科 </a></p>
-<h2 id="CSRF与XSS区别"><a href="#CSRF与XSS区别" class="headerlink" title="CSRF与XSS区别"></a>CSRF与XSS区别</h2><p>CSRF是借助用户的权限完成攻击，攻击者并没有拿到用户的权限。目标构造修改个人信息的链接，利用lucy在登录状态下点击此链接达到修改信息的目的。<br>XSS直接盗取了用户的权限，然后实施破坏。攻击者利用XSS盗取了目标的Cookie，登录lucy的后台，再修改相关信息。</p>
-<h2 id="一、CSRF-get"><a href="#一、CSRF-get" class="headerlink" title="一、CSRF(get)"></a>一、CSRF(get)</h2><p>登陆后点击修改信息</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004817.png" alt="1" loading="lazy"></p>
-<p>然后浏览器上代理，用burpsuite抓包</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004869.png" alt="2" loading="lazy"></p>
-<p>上面是get请求的内容，我们把phonenum的值修改为123456，然后forword，发现账号kobe的信息发生了变化，结果如下图：</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004468.png" alt="3" loading="lazy"></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004134.png" alt="4" loading="lazy"><em>修改成功</em></p>
-<p>也可以直接构造一个url:</p>
-<p><code> http://192.168.224.135/pikachu/vul/csrf/csrfget/csrf_get_edit.php?sex=hack&amp;phonenum=hack&amp;add=123456&amp;email=kobe%40pikachu.com&amp;submit=submit</code> </p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004797.png" alt="5" loading="lazy"><em>修改成功</em></p>
-<h2 id="二、CSRF（POST）"><a href="#二、CSRF（POST）" class="headerlink" title="二、CSRF（POST）"></a>二、CSRF（POST）</h2><p>也是先登录，这是必要的，然后抓取提交修改的流量，是POST方式。</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004132.png" alt="6" loading="lazy"></p>
-<p>直接在包中修改信息</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005813.png" alt="7" loading="lazy"></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005429.png" alt="8" loading="lazy"></p>
-<p>也可以自己建一个表单，让被攻击者点恶意站点表单的URL。通过表单的URL去向存在CSRF漏洞的页面去提交POST请求。</p>
-<p>表单代码:</p>
-<pre class="language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span>
-  <span class="token comment">&lt;!-- CSRF PoC - generated by Burp Suite Professional --></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://192.168.224.135/pikachu/vul/csrf/csrfpost/csrf_post_edit.php<span class="token punctuation">"</span></span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>POST<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>sex<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>61<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>phonenum<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>132<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>add<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>852741<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>kobe<span class="token entity" title="&#64;">&amp;#64;</span>pikachu<span class="token entity" title="&#46;">&amp;#46;</span>com<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Submit request<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span>
-</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005169.png" alt="9" loading="lazy"></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005882.png" alt="10" loading="lazy"></p>
-<h2 id="三、CSRF（token）"><a href="#三、CSRF（token）" class="headerlink" title="三、CSRF（token）"></a>三、CSRF（token）</h2><p>同样的过程，get方式修改信息，但是还带了一个token参数。</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005304.png" alt="11" loading="lazy"></p>
-<p>由于这个token是随机不可预测的并且是隐藏看不见的，并且每次刷新，后台发送过来的token都不一样，起到了防止伪造的作用.对于token，暂时还没有什么办法通过</p>
-<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><p>提示:使用未定义的常量 MYSQL_ASSOC. 如图所示: </p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005922.png" alt="12" loading="lazy"></p>
-<p>解决办法:</p>
-<p>切换PHP版本\刷新网页</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005830.png" alt="13" loading="lazy"></p>
 ]]></content>
       <categories>
         <category>学习</category>
@@ -4703,319 +4703,6 @@ Ruijie#terminal monitor </code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Typora基本用法</title>
-    <url>/posts/1bd41834/</url>
-    <content><![CDATA[<p>[toc]</p>
-<h2 id="Typore简介"><a href="#Typore简介" class="headerlink" title="Typore简介"></a>Typore简介</h2><p>Typora是一款轻便简洁的Markdown编辑器，支持即时渲染技术，这也是与其他Markdown编辑器最显著的区别。即时渲染使得你写Markdown就想是写Word文档一样流畅自如，不像其他编辑器的有编辑栏和显示栏。</p>
-<h2 id="Markdown介绍"><a href="#Markdown介绍" class="headerlink" title="Markdown介绍"></a>Markdown介绍</h2><p>Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档。<br>Markdown 语言在 2004 由约翰·格鲁伯（英语：John Gruber）创建。<br>Markdown 编写的文档可以导出 HTML 、Word、图像、PDF、Epub 等多种格式的文档。<br>Markdown 编写的文档后缀为 .md, .markdown。</p>
-<h2 id="常用快捷键"><a href="#常用快捷键" class="headerlink" title="常用快捷键"></a>常用快捷键</h2><p>加粗： Ctrl + B			字体倾斜：Ctrl+I			      下划线 ：Ctrl+U</p>
-<p>插入链接：Ctrl + K 		   	创建表格：Ctrl+T</p>
-<p>行内代码：Ctrl + Shift + K	  插入图片：Ctrl + Shift + I	   	     插入图片：Ctrl+Shift+M</p>
-<p>选中某句话：Ctrl+L 		  选中某个单词： Ctrl+D	        搜索：Ctrl+F </p>
-<p>搜索并替换：Ctrl+H		选中相同格式的文字：Ctrl+E        删除线：Alt+Shift+5 </p>
-<p>撤销： Ctrl + Z			返回Typora顶部：Ctrl+Home     返回Typora底部：Ctrl+End    </p>
-<p>公式块：Ctrl+Shift+I  		     引用：Ctrl+Shift+Q          </p>
-<p>标题： Ctrl + 1（一级标题）；Ctrl + 2（二级标题） – 以此类推</p>
-<h2 id="引用文字"><a href="#引用文字" class="headerlink" title="引用文字"></a>引用文字</h2><p>Markdown 使用电子邮件样式&gt;字符进行块引用。它们表示为：</p>
-<pre class="language-none"><code class="language-none">&gt; 这是一个有两段的块引用。这是第一段。
-&gt;
-&gt; 这是第二段。Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.
-
-
-
-&gt; 这是另一个只有一个段落的块引用。有三个空行分隔两个块引用。</code></pre>
-
-<p>在typora中，只需输入’&gt;’后跟引用内容即可生成块引用。Typora将为您插入正确的“&gt;”或换行符。通过添加额外级别的“&gt;”允许在块引用内嵌入另一个块引用。</p>
-<h2 id="元素列表"><a href="#元素列表" class="headerlink" title="元素列表"></a>元素列表</h2><h3 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h3><p>使用 *   +   -  都可以创建一个无序列表</p>
-<pre class="language-none"><code class="language-none">* AAA
-+ BBB
-- CCC</code></pre>
-
-<h3 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h3><p>使用 1. 2. 3. 创建有序列表</p>
-<pre class="language-none"><code class="language-none">1. AAA
-2. BBB
-3. CCC</code></pre>
-
-<h3 id="任务列表"><a href="#任务列表" class="headerlink" title="任务列表"></a>任务列表</h3><p>任务列表是标记为[ ]或[x]（未完成或完成）的项目的列表。例如：</p>
-<pre class="language-none"><code class="language-none">- [ ] 这是一个任务列表项
-- [ ] 需要在前面使用列表的语法
-- [ ] normal **formatting**, @mentions, #1234 refs
-- [ ] 未完成
-- [x] 完成</code></pre>
-
-<p>您可以通过单击项目前面的复选框来更改完成&#x2F;未完成状态。</p>
-<h2 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h2><p>在Typora中插入程序代码的方式有两种：使用反引号 &#96;（~ 键）、使用缩进（Tab）。</p>
-<ul>
-<li><p>插入行内代码，即插入一个单词或者一句代码的情况，使用 <code>code</code> 这样的形式插入。</p>
-</li>
-<li><p>插入多行代码输入3个反引号（&#96;） + 回车，并在后面选择一个语言名称即可实现语法高亮。</p>
-</li>
-</ul>
-<pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"hell oword"</span><span class="token punctuation">)</span></code></pre>
-
-<h2 id="数学公式块"><a href="#数学公式块" class="headerlink" title="数学公式块"></a>数学公式块</h2><p>您可以使用 MathJax 渲染 LaTeX 数学表达式。</p>
-<p>输入 $$, 然后按“return”键将触发一个接受Tex &#x2F; LaTex源代码的输入区域。以下是一个例子： </p>
-<p><img src="https://s3.bmp.ovh/imgs/2022/03/33ed0e61febfaa79.png" loading="lazy"></p>
-<p>在 markdown 源文件中，数学公式块是由’$$’标记包装的 LaTeX 表达式：</p>
-<pre class="language-none"><code class="language-none">$$
-\mathbf&#123;V&#125;_1 \times \mathbf&#123;V&#125;_2 &#x3D;  \begin&#123;vmatrix&#125; 
-\mathbf&#123;i&#125; &amp; \mathbf&#123;j&#125; &amp; \mathbf&#123;k&#125; \\
-\frac&#123;\partial X&#125;&#123;\partial u&#125; &amp;  \frac&#123;\partial Y&#125;&#123;\partial u&#125; &amp; 0 \\
-\frac&#123;\partial X&#125;&#123;\partial v&#125; &amp;  \frac&#123;\partial Y&#125;&#123;\partial v&#125; &amp; 0 \\
-\end&#123;vmatrix&#125;
-$$</code></pre>
-
-<p>LeTeX表达式参考连接：<a href="https://blog.csdn.net/ViatorSun/article/details/82826664#:~:text=%E7%9A%84LaTex%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%BA%20%24x_i%5E2%24%20%E3%80%82.%20LaTex%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%AD%E7%9A%84%E4%B8%8A%E4%B8%8B%E6%A0%87%E5%8F%AF%E4%BB%A5%E5%8F%A0%E5%8A%A0%E7%9A%84%EF%BC%8C%E5%B0%B1%E6%AF%94%E5%A6%82.%20x%20%20y%20,x_%20%7B2i%7D%5E%20%7B2%2Bb%7D.%20x2i2%2Bb.%20%E2%80%8B.%20%E7%9A%84LaTex%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%BA%24x_%20%7B2i%7D%5E%20%7B2%2Bb%7D%24%E3%80%82.">超详细 LaTex数学公式</a>   <a href="https://blog.csdn.net/weixin_39679367/article/details/84729452">LaTeX：公式常用字符和表达式</a></p>
-<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><p>输入 <code>| First Header | Second Header |</code> 并按下 <code>return</code> 键将创建一个包含两列的表。</p>
-<p>创建表后，焦点在该表上将弹出一个表格工具栏，您可以在其中调整表格，对齐或删除表格。您还可以使用上下文菜单来复制和添加&#x2F;删除列&#x2F;行。</p>
-<p>可以跳过以下描述，因为表格的 markdown 源代码是由typora自动生成的。</p>
-<p>在 markdown 源代码中，它们看起来像这样：</p>
-<pre class="language-none"><code class="language-none">| First Header  | Second Header |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |</code></pre>
-
-<p>您还可以在表格中包括内联 Markdown 语法，例如链接，粗体，斜体或删除线。</p>
-<ul>
-<li>不管是哪种方式，第一行为表头，第二行为分割表头和主体部分，第三行开始每一行为一个表格行</li>
-<li>列与列之间用管道符号<code>|</code> 隔开</li>
-<li>还可设置对齐方式(表头与内容之间)，如果不使用对齐标记，内容默认左对齐，表头居中对齐<ul>
-<li>左对齐 ：|</li>
-<li>右对齐 |：</li>
-<li>中对齐 ：|：</li>
-</ul>
-</li>
-<li>为了美观，可以使用空格对齐不同行的单元格，并在左右两侧都使用 | 来标记单元格边界</li>
-<li>为了使 Markdown 更清晰，| 和 - 两侧需要至少有一个空格（最左侧和最右侧的 | 外就不需要了）</li>
-</ul>
-<h2 id="脚注"><a href="#脚注" class="headerlink" title="脚注"></a>脚注</h2><pre class="language-none"><code class="language-none">您可以像这样创建脚注[^footnote].
-
-[^footnote]: Here is the *text* of the **footnote**.</code></pre>
-
-<p>将产生：</p>
-<p>您可以像这样创建脚注<a href="https://support.typoraio.cn/zh/Markdown-Reference/#fn:footnote">1</a>.</p>
-<p>鼠标移动到‘footnote’上标中查看脚注的内容。</p>
-<h2 id="水平线"><a href="#水平线" class="headerlink" title="水平线"></a>水平线</h2><p>输入 <code>***</code> 或 <code>---</code> 在空行上按 <code>return</code> 键将绘制一条水平线。</p>
-<h2 id="目录-TOC"><a href="#目录-TOC" class="headerlink" title="目录 (TOC)"></a>目录 (TOC)</h2><p>输入 <code>[toc]</code> 然后按 <code>Return</code> 键将创建一个“目录”部分，自动从文档内容中提取所有标题，其内容会自动更新。</p>
-<h2 id="上下标"><a href="#上下标" class="headerlink" title="上下标"></a>上下标</h2><h3 id="上标"><a href="#上标" class="headerlink" title="上标"></a>上标</h3><p>可以使用<code>&lt;sup&gt;文本&lt;/sup&gt;</code>实现上标。</p>
-<p>(需在设置中打开该功能)</p>
-<p>X<sup>2</sup></p>
-<h3 id="下标"><a href="#下标" class="headerlink" title="下标"></a>下标</h3><p>可以使用 <code>&lt;sub&gt;文本&lt;/sub&gt;</code>实现下标。</p>
-<p>(需在设置中打开该功能)</p>
-<p>H<sub>2</sub>O</p>
-<h2 id="文本居中"><a href="#文本居中" class="headerlink" title="文本居中"></a>文本居中</h2><p>使用 <code>&lt;center&gt;这是要居中的内容&lt;/center&gt;</code>可以使文本居中</p>
-<center>这是要居中的文本内容</center>
-
-
-
-<h2 id="Span-元素"><a href="#Span-元素" class="headerlink" title="Span 元素"></a>Span 元素</h2><p>在您输入后Span元素会被立即解析并呈现。在这些span元素上移动光标会将这些元素扩展为markdown源代码。以下将解释这些span元素的语法。</p>
-<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p>Markdown 支持两种类型的链接：内联和引用。</p>
-<p>在这两种样式中，链接文本都写在[方括号]内。</p>
-<p>要创建内联链接，请在链接文本的结束方括号后立即使用一组常规括号。在常规括号内，输入URL地址，以及可选的用引号括起来的链接标题。例如：</p>
-<pre class="language-none"><code class="language-none">This is [an example](http:&#x2F;&#x2F;example.com&#x2F; &quot;Title&quot;) inline link.
-
-[This link](http:&#x2F;&#x2F;example.net&#x2F;) has no title attribute.</code></pre>
-
-<p>将产生：</p>
-<p>This is <a href="http://example.com/%22Title%22">an example</a> inline link. (<code>&lt;p&gt;This is &lt;a href=&quot;http://example.com/&quot; title=&quot;Title&quot;&gt;</code>)</p>
-<p><a href="http://example.net/">This link</a> has no title attribute. (<code>&lt;p&gt;&lt;a href=&quot;http://example.net/&quot;&gt;This link&lt;/a&gt; has no</code>)</p>
-<h4 id="内部链接"><a href="#内部链接" class="headerlink" title="内部链接"></a>内部链接</h4><p><strong>您可以将常规括号内的 href 设置为文档内的某一个标题</strong>，这将创建一个书签，允许您在单击后跳转到该部分。例如：</p>
-<p>Command(在Windows上：Ctrl) + 单击 <a href="https://support.typoraio.cn/zh/Markdown-Reference/#%E5%9D%97%E5%85%83%E7%B4%A0">此链接</a> 将跳转到标题 <code>块元素</code>处。 要查看如何编写，请移动光标或按住 <code>⌘</code> 键单击以将元素展开为 Markdown 源代码。</p>
-<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p>参考样式链接使用第二组方括号，在其中放置您选择的标签以标识链接：</p>
-<pre class="language-none"><code class="language-none">This is [an example][id] reference-style link.
-
-然后，在文档中的任何位置，您可以单独定义链接标签，如下所示：
-
-[id]: http:&#x2F;&#x2F;example.com&#x2F;  &quot;Optional Title Here&quot;</code></pre>
-
-<p>在typora中，它们将呈现为：</p>
-<p>This is <a href="http://example.com/">an example</a> reference-style link.</p>
-<p>隐式链接名称快捷方式允许您省略链接的名称，在这种情况下，链接文本本身将用作名称。只需使用一组空的方括号，例如，将“Google”一词链接到google.com网站，您只需写下：</p>
-<pre class="language-none"><code class="language-none">[Google][]
-然后定义链接：
-
-[Google]: http:&#x2F;&#x2F;google.com&#x2F;</code></pre>
-
-<p>在typora中单击链接将其展开以进行编辑，command + 单击将在 Web 浏览器中打开超链接。</p>
-<h3 id="URL网址"><a href="#URL网址" class="headerlink" title="URL网址"></a>URL网址</h3><p>Typora允许您将 URL 作为链接插入，用 <code>&lt;</code>括号括起来<code>&gt;</code>。</p>
-<p><code>&lt;i@typora.io&gt;</code> 成为 <a href="mailto:i@typora.io">i@typora.io</a>.</p>
-<p>Typora也将自动链接标准URL。例如： <a href="http://www.google.com/">www.google.com</a>.</p>
-<h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><p>图像与链接类似， 但在链接语法之前需要添加额外的 <code>!</code> 字符。 图像语法如下所示：</p>
-<pre class="language-none"><code class="language-none">![替代文字](&#x2F;path&#x2F;to&#x2F;img.jpg)
-
-![替代文字](&#x2F;path&#x2F;to&#x2F;img.jpg &quot;可选标题&quot;)</code></pre>
-
-<p>您可以使用拖放操作从图像文件或浏览器来插入图像。并通过单击图像修改 markdown 源代码。如果图像在拖放时与当前编辑文档位于同一目录或子目录中，则将使用相对路径。</p>
-<h3 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h3><p>教程来自知乎：<a href="https://zhuanlan.zhihu.com/p/40810821">https://zhuanlan.zhihu.com/p/40810821</a></p>
-<p>Typora可以直接在markdown中画流程图，而且语法简洁易懂</p>
-<ul>
-<li>sequence</li>
-</ul>
-<p>语言选择sequence即可生成流程图</p>
-<pre class="language-none"><code class="language-none">李雷 -&gt; 韩梅梅: Hello 梅梅, How are you?
-Note right of 韩梅梅: 韩梅梅心想
-韩梅梅 --&gt; 李雷: I&#39;m fine, thanks, and you?</code></pre>
-
-<svg width="460.78125" height="247.416" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="overflow: hidden; position: relative; left: -0.0336056px; top: -0.972681px; max-width: 100%; height: auto;" version="1.1">
- <desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël 2.2.0</desc>
- <defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-  <path style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" id="raphael-marker-block" d="m5,0l-5,2.5l5,2.5l0,-5z" stroke-linecap="round"/>
-  <marker style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" refY="2.5" refX="2.5" orient="auto" markerWidth="5" markerHeight="5" id="raphael-marker-endblock55-objehh4q">
-   <use id="svg_1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="currentColor" transform="rotate(180 2.5,2.5) scale(1) " xlink:href="#raphael-marker-block"/>
-  </marker>
-  <marker style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" refY="2.5" refX="2.5" orient="auto" markerWidth="5" markerHeight="5" id="raphael-marker-endblock55-objo2myt">
-   <use id="svg_2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="currentColor" transform="rotate(180 2.5,2.5) scale(1) " xlink:href="#raphael-marker-block"/>
-  </marker>
- </defs>
- <g>
-  <title>background</title>
-  <rect fill="none" id="canvas_background" height="619" width="1292" y="-1" x="-1"/>
- </g>
- <g>
-  <title>Layer 1</title>
-  <rect id="svg_3" stroke-width="2" stroke="currentColor" fill="none" height="35.484375" width="52.28125" y="20" x="10"/>
-  <rect id="svg_4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" height="15.484375" width="32.28125" y="30" x="20"/>
-  <text id="svg_5" fill="currentColor" font-size="16px" font-family="Andale Mono, monospace" text-anchor="middle" y="37.742188" x="36.140625">
-   <tspan id="svg_6" dy="5.71875">李雷</tspan>
-  </text>
-  <rect id="svg_7" stroke-width="2" stroke="currentColor" fill="none" height="35.484375" width="52.28125" y="191.9375" x="10"/>
-  <rect id="svg_8" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" height="15.484375" width="32.28125" y="201.9375" x="20"/>
-  <text id="svg_9" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: "Andale Mono", monospace; font-size: 16px;" fill="currentColor" font-size="16px" font-family="Andale Mono, monospace" text-anchor="middle" y="209.679688" x="36.140625">
-   <tspan id="svg_10" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.71875">李雷</tspan>
-  </text>
-  <path id="svg_11" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" stroke-width="2" d="m36.14063,55.48438l0,136.45312" stroke="currentColor" fill="var(--bg-color)"/>
-  <rect id="svg_12" stroke-width="2" stroke="currentColor" fill="none" height="35.484375" width="68.40625" y="20" x="231.6875"/>
-  <rect id="svg_13" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" height="15.484375" width="48.40625" y="30" x="241.6875"/>
-  <text id="svg_14" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: "Andale Mono", monospace; font-size: 16px;" fill="currentColor" font-size="16px" font-family="Andale Mono, monospace" text-anchor="middle" y="37.742188" x="265.890625">
-   <tspan id="svg_15" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.71875">韩梅梅</tspan>
-  </text>
-  <rect id="svg_16" stroke-width="2" stroke="currentColor" fill="none" height="35.484375" width="68.40625" y="191.9375" x="231.6875"/>
-  <rect id="svg_17" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" height="15.484375" width="48.40625" y="201.9375" x="241.6875"/>
-  <text id="svg_18" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: "Andale Mono", monospace; font-size: 16px;" fill="currentColor" font-size="16px" font-family="Andale Mono, monospace" text-anchor="middle" y="209.679688" x="265.890625">
-   <tspan id="svg_19" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.71875">韩梅梅</tspan>
-  </text>
-  <path id="svg_20" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" stroke-width="2" d="m265.89063,55.48438l0,136.45312" stroke="currentColor" fill="var(--bg-color)"/>
-  <rect id="svg_21" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" height="15.484375" width="193.625" y="72.734375" x="54.203125"/>
-  <text id="svg_22" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: "Andale Mono", monospace; font-size: 16px;" fill="currentColor" font-size="16px" font-family="Andale Mono, monospace" text-anchor="middle" y="80.484375" x="151.015625">
-   <tspan id="svg_23" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.710938">Hello 梅梅, How are you?</tspan>
-  </text>
-  <path id="svg_24" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" marker-end="url(#raphael-marker-endblock55-objehh4q)" stroke-width="2" d="m36.14063,90.96875c0,0 191.19018,0 224.75115,0" stroke="currentColor" fill="var(--bg-color)"/>
-  <rect id="svg_25" stroke-width="2" stroke="currentColor" fill="none" height="25.484375" width="90.6875" y="110.96875" x="285.890625"/>
-  <rect id="svg_26" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" height="15.484375" width="80.6875" y="115.96875" x="290.890625"/>
-  <text id="svg_27" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: "Andale Mono", monospace; font-size: 16px;" fill="currentColor" font-size="16px" font-family="Andale Mono, monospace" text-anchor="middle" y="123.710938" x="331.234375">
-   <tspan id="svg_28" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.71875">韩梅梅心想</tspan>
-  </text>
-  <rect id="svg_29" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" height="15.484375" width="209.75" y="153.703125" x="46.140625"/>
-  <text id="svg_30" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: "Andale Mono", monospace; font-size: 16px;" fill="currentColor" font-size="16px" font-family="Andale Mono, monospace" text-anchor="middle" y="161.453125" x="151.015625">
-   <tspan id="svg_31" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.710938">I'm fine, thanks, and you?</tspan>
-  </text>
-  <path id="svg_32" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" stroke-dasharray="6,2" marker-end="url(#raphael-marker-endblock55-objo2myt)" stroke-width="2" d="m265.89063,171.9375c0,0 -191.19019,0 -224.75116,0" stroke="currentColor" fill="var(--bg-color)"/>
- </g>
-</svg>
-
-
-<ul>
-<li>flowchart</li>
-</ul>
-<p>对于Flowchart,语法选择flow</p>
-<pre class="language-none"><code class="language-none">st&#x3D;&gt;start: 闹钟响起
-op&#x3D;&gt;operation: 与床板分离
-cond&#x3D;&gt;condition: 分离成功?
-e&#x3D;&gt;end: 快乐的一天
-
-st-&gt;op-&gt;cond
-cond(yes)-&gt;e
-cond(no)-&gt;op</code></pre>
-
-
-<svg width="175.8203125" height="408.509765625" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet" style="overflow: hidden; position: relative; left: -0.0378136px; top: -0.976878px;" version="1.1">
- <desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël 2.2.0</desc>
- <defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-  <path style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" id="raphael-marker-block" d="m5,0l-5,2.5l5,2.5l0,-5z" stroke-linecap="round"/>
-  <marker style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" refY="1.5" refX="1.5" orient="auto" markerWidth="3" markerHeight="3" id="raphael-marker-endblock33-objrngqv">
-   <use id="svg_1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="currentColor" stroke-width="1.6667" transform="rotate(180 1.5,1.5) scale(0.6000000238418579) " xlink:href="#raphael-marker-block"/>
-  </marker>
-  <marker style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" refY="1.5" refX="1.5" orient="auto" markerWidth="3" markerHeight="3" id="raphael-marker-endblock33-objfsd5j">
-   <use id="svg_2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="currentColor" stroke-width="1.6667" transform="rotate(180 1.5,1.5) scale(0.6000000238418579) " xlink:href="#raphael-marker-block"/>
-  </marker>
-  <marker style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" refY="1.5" refX="1.5" orient="auto" markerWidth="3" markerHeight="3" id="raphael-marker-endblock33-obj05jvn">
-   <use id="svg_3" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="currentColor" stroke-width="1.6667" transform="rotate(180 1.5,1.5) scale(0.6000000238418579) " xlink:href="#raphael-marker-block"/>
-  </marker>
-  <marker style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" refY="1.5" refX="1.5" orient="auto" markerWidth="3" markerHeight="3" id="raphael-marker-endblock33-objyoquh">
-   <use id="svg_4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="currentColor" stroke-width="1.6667" transform="rotate(180 1.5,1.5) scale(0.6000000238418579) " xlink:href="#raphael-marker-block"/>
-  </marker>
- </defs>
- <g>
-  <title>background</title>
-  <rect fill="none" id="canvas_background" height="618" width="517" y="-1" x="-1"/>
- </g>
- <g>
-  <title>Layer 1</title>
-  <rect transform="matrix(1,0,0,1,38.668,23.377) " id="st" class="flowchart" stroke-width="3" stroke="currentColor" fill="none" ry="20" rx="20" height="36.15625" width="76.484375" y="0" x="0"/>
-  <text transform="matrix(1,0,0,1,38.668,23.377) " class="flowchartt" id="stt" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 14px;" fill="currentColor" font-size="14px" font-family=""Arial"" text-anchor="start" y="18.078125" x="10">
-   <tspan id="svg_5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.703125">闹钟响起</tspan>
-  </text>
-  <rect transform="matrix(1,0,0,1,31.6133,132.9102) " id="op" class="flowchart" stroke-width="3" stroke="currentColor" fill="none" height="36.15625" width="90.59375" y="0" x="0"/>
-  <text transform="matrix(1,0,0,1,31.6133,132.9102) " class="flowchartt" id="opt" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 14px;" fill="currentColor" font-size="14px" font-family=""Arial"" text-anchor="start" y="18.078125" x="10">
-   <tspan id="svg_6" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.703125">与床板分离</tspan>
-  </text>
-  <path class="flowchart" id="cond" stroke-width="3" d="m41.45508,242.79394l-35.45508,17.72754l70.91016,35.45508l70.91015,-35.45508l-70.91015,-35.45508l-70.91016,35.45508" stroke="currentColor" fill="none"/>
-  <text transform="matrix(1,0,0,1,6,225.0664) " class="flowchartt" id="condt" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 14px;" fill="currentColor" font-size="14px" font-family=""Arial"" text-anchor="start" y="35.455078" x="40.455078">
-   <tspan id="svg_7" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.705078">分离成功?</tspan>
-  </text>
-  <rect transform="matrix(1,0,0,1,31.6133,369.3535) " id="e" class="flowchart" stroke-width="3" stroke="currentColor" fill="none" ry="20" rx="20" height="36.15625" width="90.59375" y="0" x="0"/>
-  <text transform="matrix(1,0,0,1,31.6133,369.3535) " class="flowchartt" id="et" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 14px;" fill="currentColor" font-size="14px" font-family=""Arial"" text-anchor="start" y="18.078125" x="10">
-   <tspan id="svg_8" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.703125">快乐的一天</tspan>
-  </text>
-  <path id="svg_9" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" marker-end="url(#raphael-marker-endblock33-objrngqv)" stroke-width="3" d="m76.91016,59.5332c0,0 0,52.90527 0,68.86985" stroke="currentColor" fill="none"/>
-  <path id="svg_10" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" marker-end="url(#raphael-marker-endblock33-objfsd5j)" stroke-width="3" d="m76.91016,169.06641c0,0 0,38.20077 0,51.50016" stroke="currentColor" fill="none"/>
-  <path id="svg_11" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" marker-end="url(#raphael-marker-endblock33-obj05jvn)" stroke-width="3" d="m76.91016,295.97656c0,0 0,52.90527 0,68.86985" stroke="currentColor" fill="none"/>
-  <text id="svg_12" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 14px;" fill="currentColor" font-size="14px" font-family=""Arial"" text-anchor="start" y="305.976563" x="81.910156">
-   <tspan id="svg_13" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.703125">yes</tspan>
-  </text>
-  <path id="svg_14" marker-end="url(#raphael-marker-endblock33-objyoquh)" stroke-width="3" d="m147.82031,260.52148c0,0 25,-10 25,-10c0,0 0,-152.61132 0,-152.61132c0,0 -95.91015,0 -95.91015,0c0,0 0,21.04307 0,30.49601" stroke="currentColor" fill="none"/>
-  <text id="svg_15" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 14px;" fill="currentColor" font-size="14px" font-family=""Arial"" text-anchor="start" y="250.521484" x="152.820313">
-   <tspan id="svg_16" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.708984">no</tspan>
-  </text>
- </g>
-</svg>
-
-
-
-
-<ul>
-<li>gantt</li>
-</ul>
-<p>除了Sequence和Flowchart两类图之外，Mermaid还提供一种叫做gantt的图。插入下面的代码，然后语法选mermaid就会自动渲染成gantt图了。</p>
-<pre class="language-none"><code class="language-none">gantt
-        dateFormat  YYYY-MM-DD
-        title 快乐的生活
-        section 吃一把鸡就学习
-        学习            :done,    des1, 2014-01-06,2014-01-09
-        疯狂学习               :active,  des2, 2014-01-09, 3d
-        继续疯狂学习               :         des3, after des2, 5d
-        吃鸡！               :         des4, after des3, 4d
-        section 具体内容
-        学习Python :crit, done, 2014-01-06,72h
-        学习C++          :crit, done, after des1, 2d
-        学习Lisp             :crit, active, 3d
-        学习图形学        :crit, 4d
-        跳伞           :2d
-        打枪                      :2d
-</code></pre>
-
-<p><svg id="mermaidChart0" width="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 624 340" height="340" style="max-width: 624px;"><style>#mermaidChart0{font-family:sans-serif;font-size:16px;fill:#333;}#mermaidChart0 .error-icon{fill:#552222;}#mermaidChart0 .error-text{fill:#552222;stroke:#552222;}#mermaidChart0 .edge-thickness-normal{stroke-width:2px;}#mermaidChart0 .edge-thickness-thick{stroke-width:3.5px;}#mermaidChart0 .edge-pattern-solid{stroke-dasharray:0;}#mermaidChart0 .edge-pattern-dashed{stroke-dasharray:3;}#mermaidChart0 .edge-pattern-dotted{stroke-dasharray:2;}#mermaidChart0 .marker{fill:#333333;}#mermaidChart0 .marker.cross{stroke:#333333;}#mermaidChart0 svg{font-family:sans-serif;font-size:16px;}#mermaidChart0 .mermaid-main-font{font-family:”trebuchet ms”,verdana,arial;font-family:var(–mermaid-font-family);}#mermaidChart0 .section{stroke:none;opacity:0.2;}#mermaidChart0 .section0{fill:rgba(102,102,255,0.49);}#mermaidChart0 .section2{fill:#fff400;}#mermaidChart0 .section1,#mermaidChart0 .section3{fill:white;opacity:0.2;}#mermaidChart0 .sectionTitle0{fill:#333;}#mermaidChart0 .sectionTitle1{fill:#333;}#mermaidChart0 .sectionTitle2{fill:#333;}#mermaidChart0 .sectionTitle3{fill:#333;}#mermaidChart0 .sectionTitle{text-anchor:start;font-size:11px;text-height:14px;font-family:’trebuchet ms’,verdana,arial;font-family:var(–mermaid-font-family);}#mermaidChart0 .grid .tick{stroke:lightgrey;opacity:0.8;shape-rendering:crispEdges;}#mermaidChart0 .grid .tick text{font-family:sans-serif;fill:#333;}#mermaidChart0 .grid path{stroke-width:0;}#mermaidChart0 .today{fill:none;stroke:red;stroke-width:2px;}#mermaidChart0 .task{stroke-width:2;}#mermaidChart0 .taskText{text-anchor:middle;font-family:’trebuchet ms’,verdana,arial;font-family:var(–mermaid-font-family);}#mermaidChart0 .taskText:not([font-size]){font-size:11px;}#mermaidChart0 .taskTextOutsideRight{fill:black;text-anchor:start;font-size:11px;font-family:’trebuchet ms’,verdana,arial;font-family:var(–mermaid-font-family);}#mermaidChart0 .taskTextOutsideLeft{fill:black;text-anchor:end;font-size:11px;}#mermaidChart0 .task.clickable{cursor:pointer;}#mermaidChart0 .taskText.clickable{cursor:pointer;fill:#003163 !important;font-weight:bold;}#mermaidChart0 .taskTextOutsideLeft.clickable{cursor:pointer;fill:#003163 !important;font-weight:bold;}#mermaidChart0 .taskTextOutsideRight.clickable{cursor:pointer;fill:#003163 !important;font-weight:bold;}#mermaidChart0 .taskText0,#mermaidChart0 .taskText1,#mermaidChart0 .taskText2,#mermaidChart0 .taskText3{fill:white;}#mermaidChart0 .task0,#mermaidChart0 .task1,#mermaidChart0 .task2,#mermaidChart0 .task3{fill:#8a90dd;stroke:#534fbc;}#mermaidChart0 .taskTextOutside0,#mermaidChart0 .taskTextOutside2{fill:black;}#mermaidChart0 .taskTextOutside1,#mermaidChart0 .taskTextOutside3{fill:black;}#mermaidChart0 .active0,#mermaidChart0 .active1,#mermaidChart0 .active2,#mermaidChart0 .active3{fill:#bfc7ff;stroke:#534fbc;}#mermaidChart0 .activeText0,#mermaidChart0 .activeText1,#mermaidChart0 .activeText2,#mermaidChart0 .activeText3{fill:black !important;}#mermaidChart0 .done0,#mermaidChart0 .done1,#mermaidChart0 .done2,#mermaidChart0 .done3{stroke:grey;fill:lightgrey;stroke-width:2;}#mermaidChart0 .doneText0,#mermaidChart0 .doneText1,#mermaidChart0 .doneText2,#mermaidChart0 .doneText3{fill:black !important;}#mermaidChart0 .crit0,#mermaidChart0 .crit1,#mermaidChart0 .crit2,#mermaidChart0 .crit3{stroke:#ff8888;fill:red;stroke-width:2;}#mermaidChart0 .activeCrit0,#mermaidChart0 .activeCrit1,#mermaidChart0 .activeCrit2,#mermaidChart0 .activeCrit3{stroke:#ff8888;fill:#bfc7ff;stroke-width:2;}#mermaidChart0 .doneCrit0,#mermaidChart0 .doneCrit1,#mermaidChart0 .doneCrit2,#mermaidChart0 .doneCrit3{stroke:#ff8888;fill:lightgrey;stroke-width:2;cursor:pointer;shape-rendering:crispEdges;}#mermaidChart0 .milestone{-webkit-transform:rotate(45deg) scale(0.8,0.8);-ms-transform:rotate(45deg) scale(0.8,0.8);transform:rotate(45deg) scale(0.8,0.8);}#mermaidChart0 .milestoneText{font-style:italic;}#mermaidChart0 .doneCritText0,#mermaidChart0 .doneCritText1,#mermaidChart0 .doneCritText2,#mermaidChart0 .doneCritText3{fill:black !important;}#mermaidChart0 .activeCritText0,#mermaidChart0 .activeCritText1,#mermaidChart0 .activeCritText2,#mermaidChart0 .activeCritText3{fill:black !important;}#mermaidChart0 .titleText{text-anchor:middle;font-size:18px;fill:var(–text-color);font-family:’trebuchet ms’,verdana,arial;font-family:var(–mermaid-font-family);}#mermaidChart0:root{–mermaid-font-family:sans-serif;}#mermaidChart0:root{–mermaid-alt-font-family:sans-serif;}#mermaidChart0 gantt{fill:apa;}</style><g></g><g class="grid" transform="translate(75, 290)" fill="none" font-size="10" font-family="sans-serif" text-anchor="middle"><path class="domain" stroke="currentColor" d="M0.5,-255V0.5H529.5V-255"></path><g class="tick" opacity="1" transform="translate(33.5,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">2014-01-07</text></g><g class="tick" opacity="1" transform="translate(99.5,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">2014-01-09</text></g><g class="tick" opacity="1" transform="translate(165.5,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">2014-01-11</text></g><g class="tick" opacity="1" transform="translate(231.5,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">2014-01-13</text></g><g class="tick" opacity="1" transform="translate(298.5,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">2014-01-15</text></g><g class="tick" opacity="1" transform="translate(364.5,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">2014-01-17</text></g><g class="tick" opacity="1" transform="translate(430.5,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">2014-01-19</text></g><g class="tick" opacity="1" transform="translate(496.5,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">2014-01-21</text></g></g><g><rect x="0" y="48" width="614" height="24" class="section section0"></rect><rect x="0" y="144" width="614" height="24" class="section section1"></rect><rect x="0" y="72" width="614" height="24" class="section section0"></rect><rect x="0" y="168" width="614" height="24" class="section section1"></rect><rect x="0" y="192" width="614" height="24" class="section section1"></rect><rect x="0" y="96" width="614" height="24" class="section section0"></rect><rect x="0" y="216" width="614" height="24" class="section section1"></rect><rect x="0" y="120" width="614" height="24" class="section section0"></rect><rect x="0" y="240" width="614" height="24" class="section section1"></rect><rect x="0" y="264" width="614" height="24" class="section section1"></rect></g><g><rect id="des1" rx="3" ry="3" x="75" y="50" width="99" height="20" transform-origin="124.5px 60px" class="task done0 "></rect><rect id="task1" rx="3" ry="3" x="75" y="146" width="99" height="20" transform-origin="124.5px 84px" class="task doneCrit1 "></rect><rect id="des2" rx="3" ry="3" x="174" y="74" width="99" height="20" transform-origin="223.5px 108px" class="task active0 "></rect><rect id="task2" rx="3" ry="3" x="174" y="170" width="66" height="20" transform-origin="207px 132px" class="task doneCrit1 "></rect><rect id="task3" rx="3" ry="3" x="240" y="194" width="100" height="20" transform-origin="290px 156px" class="task activeCrit1 "></rect><rect id="des3" rx="3" ry="3" x="273" y="98" width="166" height="20" transform-origin="356px 180px" class="task task0 "></rect><rect id="task4" rx="3" ry="3" x="340" y="218" width="132" height="20" transform-origin="406px 204px" class="task crit1 "></rect><rect id="des4" rx="3" ry="3" x="439" y="122" width="132" height="20" transform-origin="505px 228px" class="task task0 "></rect><rect id="task5" rx="3" ry="3" x="472" y="242" width="66" height="20" transform-origin="505px 252px" class="task task1 "></rect><rect id="task6" rx="3" ry="3" x="538" y="266" width="66" height="20" transform-origin="571px 276px" class="task task1 "></rect><text id="des1-text" font-size="11" x="124.5" y="63.5" text-height="20" class=" taskText taskText0  doneText0 width-21.515625">学习            </text><text id="task1-text" font-size="11" x="124.5" y="159.5" text-height="20" class=" taskText taskText1  doneCritText1 width-57.8125">学习Python </text><text id="des2-text" font-size="11" x="223.5" y="87.5" text-height="20" class=" taskText taskText0 activeText0 width-43.015625">疯狂学习               </text><text id="task2-text" font-size="11" x="207" y="183.5" text-height="20" class=" taskText taskText1  doneCritText1 width-45.03125">学习C++          </text><text id="task3-text" font-size="11" x="290" y="207.5" text-height="20" class=" taskText taskText1 activeCritText1 critText1 width-41">学习Lisp             </text><text id="des3-text" font-size="11" x="356" y="111.5" text-height="20" class=" taskText taskText0  width-64.53125">继续疯狂学习               </text><text id="task4-text" font-size="11" x="406" y="231.5" text-height="20" class=" taskText taskText1  critText1 width-53.78125">学习图形学        </text><text id="des4-text" font-size="11" x="505" y="135.5" text-height="20" class=" taskText taskText0  width-32.265625">吃鸡！               </text><text id="task5-text" font-size="11" x="505" y="255.5" text-height="20" class=" taskText taskText1  width-21.515625">跳伞           </text><text id="task6-text" font-size="11" x="571" y="279.5" text-height="20" class=" taskText taskText1  width-21.515625">打枪                      </text></g><g><text dy="0em" x="10" y="98" class="sectionTitle sectionTitle0"><tspan alignment-baseline="central" x="10">吃一把鸡就学习</tspan></text><text dy="0em" x="10" y="218" class="sectionTitle sectionTitle1"><tspan alignment-baseline="central" x="10">具体内容</tspan></text></g><g class="today"><line x1="100579" x2="100579" y1="25" y2="315" class="today"></line></g><text x="312" y="25" class="titleText">快乐的生活</text></svg></p>
-<h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><p>您可以使用HTML来设置纯 Markdown 不支持的内容，例如， <code>&lt;span style=&quot;color:red&quot;&gt;this text is red&lt;/span&gt;</code> 用于添加红色文本。</p>
-]]></content>
-      <categories>
-        <category>教程</category>
-        <category>博客</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>VLAN原理及VLAN间通信</title>
     <url>/posts/ad13b3a0/</url>
     <content><![CDATA[<div class="danger">
@@ -5430,6 +5117,712 @@ http server enable
       </categories>
       <tags>
         <tag>eNSP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>WLAN基础知识</title>
+    <url>/posts/d674dcfe/</url>
+    <content><![CDATA[<div class="danger">
+
+<blockquote>
+<p> 资料来源<a href="https://talent.ruijie.com.cn/certification/profession/">锐捷</a><br> 非原创</p>
+</blockquote>
+</div>
+
+
+
+
+
+
+
+
+
+<h2 id="WLAN基础"><a href="#WLAN基础" class="headerlink" title="WLAN基础"></a>WLAN基础</h2><h3 id="无线局域网的概述"><a href="#无线局域网的概述" class="headerlink" title="无线局域网的概述"></a>无线局域网的概述</h3><ul>
+<li>无线局域网 （Wireless Local Area Network，WLAN），指使用无线通信技术，将网络互联起来，构成 可以相互通信和实现资源共享的无线网络体系。 </li>
+<li>WLAN是计算机网络技术与无线通信技术相结合的产物，其本质特点是：计算机与网络不通过通信电缆连 接，而是通过无线方式连接。 </li>
+<li>早期各个厂商开发WLAN技术，只能提供1Mbit&#x2F;s~ 2Mbit&#x2F;s的带宽。尽管如此，无线技术还是得到了一 定程度的应用，如零售业使用无线射频设备扫描条形码，对物品进行信息收集和统计；医院中使用无线射 频设备对病人信息进行收集。</li>
+</ul>
+<h3 id="WLAN相关组织和标准"><a href="#WLAN相关组织和标准" class="headerlink" title="WLAN相关组织和标准"></a>WLAN相关组织和标准</h3><ul>
+<li>IEEE <ul>
+<li>美国电气与电子工程师学会，自1997年以来先后公告802.11、802.11b、802.11a、 802.11g、802.11ac等多个802.11协议相关标准</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220624130542.png" alt="1" loading="lazy"></p>
+<ul>
+<li>IETF <ul>
+<li>国际互联网工程任务组，是一个公开性质的大型民间国际团体，汇集了与互联网架 构和互联网顺利运作相关的网络设计者、运营者、投资人和研究人员 </li>
+<li>RFC由IETF发布</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220624130540.png" alt="2" loading="lazy"></p>
+<ul>
+<li><p>Wi-Fi联盟 </p>
+<ul>
+<li>1991年，无线通信厂商联合成立无线以太网兼容性联盟（Wireless Ethernet  Compatibility Alliance，WECA），后来更名为Wi-Fi联盟，和IEEE组织一起成为 WLAN技术的标准制定推动者。</li>
+</ul>
+</li>
+<li><p>WAPI联盟</p>
+<ul>
+<li>制定并推广中国无线网络产品国标中的安全机制标准WAPI，其包括无线局域网鉴 别（WAI）和保密基础结构（WPI）两部分</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220624130541.png" alt="3" loading="lazy"></p>
+<h3 id="WLAN工作组件"><a href="#WLAN工作组件" class="headerlink" title="WLAN工作组件"></a>WLAN工作组件</h3><ul>
+<li>Station（工作站）：	<ul>
+<li>支持802.11的终端设备，比如安装无线网卡的PC，支持WLAN的手机，支持WLAN的PDA等，都属于 Station范畴，简称STA</li>
+</ul>
+</li>
+<li>Access Point（AP，接入点）： <ul>
+<li>为STA提供基于802.11的无线接入服务，同时将无线的802.11 mac帧格式转换为有线网络的帧，相当于有线 网络的无线延伸。</li>
+</ul>
+</li>
+<li>Wireless Medium（无线媒介）： <ul>
+<li>802.11标准定义了2类物理层：射频物理层（2.4GHz和5GHz）和红外物理层。目前广泛应用的是射频方式</li>
+</ul>
+</li>
+<li>Distribution System（DS，分布式系统）：<ul>
+<li>即将各个接入点连接起来的骨干网络，通常是以太网。</li>
+</ul>
+</li>
+</ul>
+<h3 id="WLAN网络类型-独立型"><a href="#WLAN网络类型-独立型" class="headerlink" title="WLAN网络类型-独立型"></a>WLAN网络类型-独立型</h3><ul>
+<li>一般是由几个STA组成的暂时性网络，所有STA地位平等，无需设置任何的中心控制结点；</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220624130546.png" alt="4" loading="lazy"></p>
+<h3 id="WLAN网络类型-基础结构型"><a href="#WLAN网络类型-基础结构型" class="headerlink" title="WLAN网络类型-基础结构型"></a>WLAN网络类型-基础结构型</h3><ul>
+<li>需要AP提供接入服务，所有STA关联到AP上，访问外部以及STA之间交互的数据均由AP负责转发。</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220624130551.png" alt="5" loading="lazy"></p>
+<h3 id="服务集"><a href="#服务集" class="headerlink" title="服务集"></a>服务集</h3><ul>
+<li><p>BSS（Basic Service Set，基本服务集），是802.11网络提供服务的基本单元。在一个BSS的服务区域内 （即射频信号覆盖的范围内），STA之间能够相互通信（AP1、STA1和STA2就是一个BSS）。 </p>
+</li>
+<li><p>ESS（Extend Service Set，扩展服务集），由多个由多个使用相同SSID的BSS组成。  SSID (service set identifier,服务集标识符)，用来标识BSS和ESS。</p>
+<ul>
+<li>BSSID：基本服务集标识符，AP的MAC地址，不可修改；</li>
+<li>ESSID：扩展服务集标识符，通过AP广播出去，可修改。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220624130605.png" alt="6" loading="lazy"></p>
+<h3 id="无线漫游"><a href="#无线漫游" class="headerlink" title="无线漫游"></a>无线漫游</h3><ul>
+<li>单个AP的信号覆盖范围是有限的，用户在移动过程中，往往会出现从一个AP覆盖范围跨越到另一个AP覆 盖范围的情况。</li>
+<li>无线漫游技术可以保证用户在不同的AP之间切换时，网络不中断。</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220624130609.png" alt="7" loading="lazy"></p>
+<h3 id="课程小结"><a href="#课程小结" class="headerlink" title="课程小结"></a>课程小结</h3><ul>
+<li>WLAN是通过无线技术，实现了终端之间的信息共享和互联互通，摆脱了终端对于通信线缆的束缚，便利 性大大增强；</li>
+<li>WLAN主要的标准和组织：IEEE、IETF、Wi-Fi联盟、WAPI联盟 </li>
+<li>WLAN的工作组件：STA、AP、媒介、分布式系统 </li>
+<li>WLAN的服务集，包含BSS和ESS，以及标识各自特征的BSSID和ESSID </li>
+<li>无线漫游，保证用户在不同AP的覆盖范围之间切换时，网络不中断。</li>
+</ul>
+<h2 id="射频基础"><a href="#射频基础" class="headerlink" title="射频基础"></a>射频基础</h2><h3 id="波的基本概念"><a href="#波的基本概念" class="headerlink" title="波的基本概念"></a>波的基本概念</h3><ul>
+<li>射频：即射频信号， 又称RF（Radio Frequency） ，表示可以辐射到空间的拥有一定发射频率的电磁波， 依照波长的长短、频率以及波源的不同，电磁波谱可大致分为：无线电波、红外线、可见光、紫外线、X 射线（伦琴射线）、γ射线。</li>
+<li>波长：波长是指相邻两个有相同相位的点的距离，通常是相邻的波峰或波谷的距离； </li>
+<li>振幅：在波动中距离平衡位置的最大位移，即波峰或波谷到平衡位置的最大位移（标量，非负值）； </li>
+<li>频率：1秒钟波形重复的数量，单位为赫兹；  相位：相对术语，两个同频波之间的关系</li>
+<li>电磁波波长与频率的关系：光速&#x3D;波长*频率 <ul>
+<li>光速恒定，那么波长越长频率越小，反之亦然 </li>
+<li>频率越高，波长越小，通过不同物理介质衰减越快,  </li>
+<li>5G比2.4G信号的覆盖范围更小</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220624130614.png" alt="8" loading="lazy"></p>
+<h3 id="无线电磁波传输"><a href="#无线电磁波传输" class="headerlink" title="无线电磁波传输"></a>无线电磁波传输</h3><ul>
+<li>使用无线传输数据时，需要通过调制，将数字信号调制为电磁波信号，在空间中传输 </li>
+<li>接收方同样通过解调数据后，将信息组合为数据帧，这些都由物理层负责</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220624130617.png" alt="9" loading="lazy"></p>
+<h3 id="无线电磁波传播模型"><a href="#无线电磁波传播模型" class="headerlink" title="无线电磁波传播模型"></a>无线电磁波传播模型</h3><ul>
+<li>无线电磁波在传播过程中，能量不断减小，信号不断衰减</li>
+<li>就像声音一样，离说话的人越近，听得越清楚，离说话的人越远，听得越模糊</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220624130621.png" alt="10" loading="lazy"></p>
+<h3 id="电磁波传播行为损耗"><a href="#电磁波传播行为损耗" class="headerlink" title="电磁波传播行为损耗"></a>电磁波传播行为损耗</h3><ul>
+<li>空间传播损耗  吸收（穿透损耗）：吸收是导致衰减的主要原因<ul>
+<li>反射：反射是导致802.11a&#x2F;b&#x2F;g无线局域网性能下降的罪魁祸首</li>
+<li>散射：入射到粗糙表面的主信号被分解为多路反射信号，这将导致主信号的质量下降，甚至破坏接收信号</li>
+<li>折射：在室外，射频信号通常会轻微向地球表面折射，然而大气的变化也可能导致信号远离地球</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220624130625.png" alt="11" loading="lazy"></p>
+<h3 id="穿透损耗（吸收）"><a href="#穿透损耗（吸收）" class="headerlink" title="穿透损耗（吸收）"></a>穿透损耗（吸收）</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220624130629.png" alt="12" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220624130632.png" alt="13" loading="lazy"></p>
+<h3 id="信号穿透损耗估测"><a href="#信号穿透损耗估测" class="headerlink" title="信号穿透损耗估测"></a>信号穿透损耗估测</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220624130636.png" alt="14" loading="lazy"></p>
+<h3 id="反射损耗"><a href="#反射损耗" class="headerlink" title="反射损耗"></a>反射损耗</h3><ul>
+<li>当波撞击到一个比波自身更大的光滑物体时，波可能会往另一个方向传递，这种行为就是反射(Reflection) </li>
+<li>反射是最重要的射频传播行为之一 <ul>
+<li>室内的信号遇到金属家具、文件柜和金属门、墙体会造成反射； </li>
+<li>室外的信号遇到水面和大气层会发生反射。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220624130641.png" alt="15" loading="lazy"></p>
+<h3 id="多径现象"><a href="#多径现象" class="headerlink" title="多径现象"></a>多径现象</h3><ul>
+<li>信号在传播链路中发生反射、散射、衍射</li>
+<li>到达接收端的信号往往是多个幅度和相位各不相同的信号的耦合，接收信号与原始信号相比出现随机变化</li>
+<li>多径现象是导致无线局域网性能下降的主要原因</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220624130645.png" alt="16" loading="lazy"></p>
+<h3 id="折射损耗"><a href="#折射损耗" class="headerlink" title="折射损耗"></a>折射损耗</h3><ul>
+<li>射频信号还会发生弯曲，即折射(Refraction) </li>
+<li>折射的直接定义就是射频信号在穿越不同密度媒介时发生弯曲，致使波传播方向发生变化 </li>
+<li>由于大气影响的结果，射频折射现象经常发生，对室外项目影响较大</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220624130648.png" alt="17" loading="lazy"></p>
+<h3 id="功率的概念以及单位"><a href="#功率的概念以及单位" class="headerlink" title="功率的概念以及单位"></a>功率的概念以及单位</h3><ul>
+<li>单位时间内辐射出的能量定义为功率 ，单位是W <ul>
+<li>AP220-E设备标称功率为100mW，是指AP通过天线可以每秒辐射出100mW的能量。 </li>
+<li>在无线应用中，我们经常听到的功率单位是dBm而不是W或者mW。</li>
+</ul>
+</li>
+<li>dB (Decibel，分贝) 是一个纯计数单位，本意是表示两个量的比值大小，没有单位。 <ul>
+<li>dB&#x3D; 10*lg(A&#x2F;B)  dbm即为对于1mw功率的比值大小。100mW的功率，按dBm单位进行折算后的值应为： </li>
+<li>10lg（100mW&#x2F;1mw)&#x3D;10lg（100）&#x3D;20dBm。 *</li>
+</ul>
+</li>
+<li>一些常见的dB值 <ul>
+<li>3db&#x3D;2，5db&#x3D;3，7db&#x3D;5，10db&#x3D;10，0db&#x3D;1</li>
+</ul>
+</li>
+<li>dB的加运算即等于普通数的乘运算。<ul>
+<li>500mw&#x3D;5<em>10</em>10*1mw&#x3D;7+10+10+0dbm&#x3D;27dbm </li>
+<li>30mw&#x3D;3<em>10</em>1mw&#x3D;5+10+0dbm&#x3D;15dbm</li>
+</ul>
+</li>
+</ul>
+<h3 id="mW与dBm的换算"><a href="#mW与dBm的换算" class="headerlink" title="mW与dBm的换算"></a>mW与dBm的换算</h3><ul>
+<li>为什么要用dB来描述功率呢？ <ul>
+<li>原因是dB能把一个很大（后面跟一长串0的）或者很小（前面有一长串0的）的数比较简短地表示出来。 <ul>
+<li>X &#x3D; 1000000000000000（多少个0了？）&#x3D; 10logX &#x3D; 150 dB </li>
+<li>X &#x3D; 0.000000000000001 （多少个0 了？）&#x3D; 10logX &#x3D; -150 dB</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>-75dbm等于多少mW? <ul>
+<li>-75dbm&#x3D;(0-5-10-10-10-10-10-10-10)dBm&#x3D;1&#x2F;3&#x2F;10&#x2F;10&#x2F;10&#x2F;10&#x2F;10&#x2F;10&#x2F;10&#x3D;0.3×10<sup>-7</sup></li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220624130653.png" alt="18" loading="lazy"></p>
+<h3 id="接收灵敏度"><a href="#接收灵敏度" class="headerlink" title="接收灵敏度"></a>接收灵敏度</h3><ul>
+<li>无线传输的接收灵敏度类似于人们沟通交谈时的听力， 即STA或AP解调出信号所要求的最低信号强度。 </li>
+<li>一般来说AP的接收灵敏度为-85dBm，甚至达到-105dBm，而STA的接收灵敏度一般在-75dBm </li>
+<li>WLAN的底噪（环境噪声）为-95dBm，因此信号强度如果低于-95dBm的话，这样的信号就等同于噪声 </li>
+<li>RSSI （Received Signal Strength Indicator）用来衡量接受灵敏度的指标。 <ul>
+<li>RSSI&#x3D;X+（-95dBm） </li>
+<li>RSSI&#x3D;30，意味着接受灵敏度为为-65dBm</li>
+</ul>
+</li>
+</ul>
+<h3 id="WLAN产品辐射"><a href="#WLAN产品辐射" class="headerlink" title="WLAN产品辐射"></a>WLAN产品辐射</h3><ul>
+<li>很多的研究已经证明，WLAN产品可以在家庭及商业中使用，对人体来说是安全 </li>
+<li>典型的WLAN产品输出功率为100mw，对于网卡来说，通常只有10mw至50mw <ul>
+<li>手机的发射功率在通话时可以超过1W，而无线对讲机甚至可以达到5W</li>
+<li>太阳常数，1370W</li>
+</ul>
+</li>
+<li>政府有相关的法令对发射功率进行严格的限制，因此通过政府相关部门认证过的无线设备对人体是无害的</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220624130658.png" alt="19" loading="lazy"></p>
+<h2 id="天线基础"><a href="#天线基础" class="headerlink" title="天线基础"></a>天线基础</h2><h3 id="天线基本概念"><a href="#天线基本概念" class="headerlink" title="天线基本概念"></a>天线基本概念</h3><ul>
+<li>在无线电设备中用来发射或接收电磁波的部件<ul>
+<li>把从导线上传输过来的电信号转为无线电波发射到空间 </li>
+<li>收集无线电波，并产生电信号</li>
+</ul>
+</li>
+<li>一般天线都具有可逆性，即同一副天线既可用作发射天线，也可用作接收天线</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220624130704.png" alt="20" loading="lazy"></p>
+<h3 id="天线的方向性和方向图"><a href="#天线的方向性和方向图" class="headerlink" title="天线的方向性和方向图"></a>天线的方向性和方向图</h3><ul>
+<li>天线的方向性<ul>
+<li>天线辐射电磁波是有方向性的<ul>
+<li>在天线的发送端，方向性指天线向一定方向辐射电磁波的能力 </li>
+<li>对于接收端而言，则表示天线对来自不同方向的电磁波的接收能力。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>天线的方向图 <ul>
+<li>通常用垂直平面和水平平面上表示不同方向辐射（或接收）电磁波功率大小的曲线来描述天线的方向性，并 称为天线辐射的方向图。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220624130709.png" alt="21" loading="lazy"></p>
+<h3 id="全向天线及方向图"><a href="#全向天线及方向图" class="headerlink" title="全向天线及方向图"></a>全向天线及方向图</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220624130713.png" alt="22" loading="lazy"></p>
+<h3 id="定向天线及方向图"><a href="#定向天线及方向图" class="headerlink" title="定向天线及方向图"></a>定向天线及方向图</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220624130717.png" alt="23" loading="lazy"></p>
+<h3 id="天线增益"><a href="#天线增益" class="headerlink" title="天线增益"></a>天线增益</h3><ul>
+<li>增益是指在输入功率相等的条件下，实际天线（有天线）与理想的辐射单元（无天线）在空间同一点处所 产生的信号的功率（能量）密度之比 </li>
+<li>天线为无源器件，本身无法产生能量，只是对信号的辐射形状和方向进行压缩整形，所以加上天线后，在 相同一点会有信号增强的效果</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220624130721.png" alt="24" loading="lazy"></p>
+<h3 id="室内吸顶天线"><a href="#室内吸顶天线" class="headerlink" title="室内吸顶天线"></a>室内吸顶天线</h3><ul>
+<li><p>室内吸顶天线 </p>
+<ul>
+<li>结构轻巧、外型美观、安装方便等优点 </li>
+<li>用于建筑物内全向无线覆盖 </li>
+<li>室内吸顶增益一般为2dBi  </li>
+<li>吸顶天线在上部安装了一块反射板，控制向上辐射的电磁波并使其向下辐射减少吸顶天线对上一楼层的无线 干扰，还可以增强下方空间的无线覆盖效果</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220624130726.png" alt="25" loading="lazy"></p>
+<h3 id="室内壁挂天线"><a href="#室内壁挂天线" class="headerlink" title="室内壁挂天线"></a>室内壁挂天线</h3><ul>
+<li>室内壁挂天线<ul>
+<li>结构轻巧、外型美观、安装方便等优点。 </li>
+<li>室内壁挂天线属于定向天线, 其增益约为7dBi。 </li>
+<li>室内壁挂天线在防水、防潮等方面没有做特殊处理，切勿将其安装在室外环境。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220624130730.png" alt="26" loading="lazy"></p>
+<h3 id="室外柱状天线"><a href="#室外柱状天线" class="headerlink" title="室外柱状天线"></a>室外柱状天线</h3><ul>
+<li>室外柱状天线 <ul>
+<li>被称为杆状天线或鞭状天线。 </li>
+<li>一般采用玻璃钢外壳封装，具有增益高、安装方便，并具有良好的抗风、防潮、防腐等特点</li>
+<li>属于全向天线，其主要应用于室外大面积无线覆盖。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220624130734.png" alt="27" loading="lazy"></p>
+<h3 id="室外板状天线"><a href="#室外板状天线" class="headerlink" title="室外板状天线"></a>室外板状天线</h3><ul>
+<li>室外板状天线<ul>
+<li>称为扇区天线或扇型天线。 </li>
+<li>具有增益高、结构牢靠、安装方便，以及良好的防振动冲击和防水防腐能力等特点。 </li>
+<li>要应用于室外定向覆盖，也可作为WLAN工程中点到多点桥接的中心点天线。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220624130738.png" alt="28" loading="lazy"></p>
+<h3 id="室外抛物面天线"><a href="#室外抛物面天线" class="headerlink" title="室外抛物面天线"></a>室外抛物面天线</h3><ul>
+<li>栅状抛物面天线 <ul>
+<li>具有良好的聚焦作用，天线集射能力强，特别适用于点对点的通信，例如它常被选为WLAN点到点远距离通 讯天线 </li>
+<li>栅状结构，一是为了减轻天线的重量，二是为了减少风的阻力</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220624130742.png" alt="29" loading="lazy"></p>
+<h2 id="802-11协议标准"><a href="#802-11协议标准" class="headerlink" title="802.11协议标准"></a>802.11协议标准</h2><h3 id="WLAN基本概念"><a href="#WLAN基本概念" class="headerlink" title="WLAN基本概念"></a>WLAN基本概念</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220624130745.png" alt="30" loading="lazy"></p>
+<h3 id="802-11协议频段"><a href="#802-11协议频段" class="headerlink" title="802.11协议频段"></a>802.11协议频段</h3><ul>
+<li>WLAN使用ISM频段 2.4G Hz和5.8G Hz两个频段 <ul>
+<li>ISM频段  Industrial Scientific Medical，保留给工业、科学或者医疗设备。</li>
+<li>使用此频段不需要申请许可证。</li>
+<li>ISM有三段频段，分别是902-928MHz，2.4~2.4835GHz（802.11协议中的2.4G），5.725-5.875GHz</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220624130750.png" alt="31" loading="lazy"></p>
+<h3 id="IEEE-802-11协议"><a href="#IEEE-802-11协议" class="headerlink" title="IEEE 802.11协议"></a>IEEE 802.11协议</h3><ul>
+<li>IEEE制定的关于无线局域网的标准</li>
+<li>所有其他的802.11标准都是在此基础上进行的修改</li>
+<li>IEEE802.11协议族，有很多协议标准； <ul>
+<li>常见协议：802.11a，802.11b，802.11g，802.11n,802.11ac、802.11ax等；</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>802.11a</th>
+<th>802.11b</th>
+<th>802.11g</th>
+<th>802.11n</th>
+<th>802.11ac</th>
+<th>802.11ax</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>工作频段</td>
+<td>5GHz</td>
+<td>2.4GHz</td>
+<td>2.4GHz</td>
+<td>2.4GHz和5GHz</td>
+<td>5GHz</td>
+<td>2.4GHz和5GHz</td>
+</tr>
+<tr>
+<td>信道数</td>
+<td>13</td>
+<td>3</td>
+<td>3</td>
+<td>3+13</td>
+<td>13</td>
+<td>3+13</td>
+</tr>
+<tr>
+<td>调制技术</td>
+<td>OFDM</td>
+<td>DSSS</td>
+<td>DSSS&#x2F;OFDM</td>
+<td>MIMO-OFDM</td>
+<td>OFDM&#x2F; MU-MIMO</td>
+<td>MIMO-OFDMA</td>
+</tr>
+<tr>
+<td>数据传输速率</td>
+<td>＜54Mbps</td>
+<td>＜11Mbps</td>
+<td>＜11Mbps</td>
+<td>最高可达 600Mbps</td>
+<td>可达6.9Gbps</td>
+<td>可达10Gbps</td>
+</tr>
+<tr>
+<td>发布时间</td>
+<td>1999.7</td>
+<td>1999.7</td>
+<td>2003.6</td>
+<td>2009.9</td>
+<td>2013.12</td>
+<td>2017.9</td>
+</tr>
+</tbody></table>
+<h3 id="2-4GHz-信道"><a href="#2-4GHz-信道" class="headerlink" title="2.4GHz 信道"></a>2.4GHz 信道</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220624130754.png" alt="32" loading="lazy"></p>
+<ul>
+<li>工作的频率范围是2.4GHz~2.4835GHz。在此频率范围内又划分出14个信 道。每个信道的中心频率相隔5MHz，每个信道可供占用的带宽为20MHz </li>
+<li>如上图示channel 1的中心频率为2.412GHz，channel 6的中心频率为 2.437GHz，channel 11的中心频率为2.462GHz。3个信道理论上是不相干 扰的信道</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220624130758.png" alt="33" loading="lazy"></p>
+<h3 id="5-8-GHz信道"><a href="#5-8-GHz信道" class="headerlink" title="5.8 GHz信道"></a>5.8 GHz信道</h3><ul>
+<li>信道间隔20MHz信道宽度20MHz，从中心频率左右扩展10MHz </li>
+<li>国内WIFI设备在5GHz频段除了可配置149、153、157、161、165 5个信道外，目前也已经开放了36、 40、44、48、52、56、60、64 8个信道，故5GHz频段总共13个不重叠20M频宽的信道。</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220624130801.png" alt="34" loading="lazy"></p>
+<h3 id="课程总结"><a href="#课程总结" class="headerlink" title="课程总结"></a>课程总结</h3><ul>
+<li>无线信号是电磁波的一种，电磁波使用波长、振幅、频率等参数来描述其特征，而无线通常使用功率和信 噪比等参数来描述 </li>
+<li>无线信号在不同介质中传播会有不同程度的衰减，在无线部署时需要考虑不同介质对无线信号的衰减影响 </li>
+<li>天线是无线的重要组件，按照信号传播方向分为定向天线和全向天线，按照安装位置则分别有室内天线和 室外天线 </li>
+<li>802.11a&#x2F;b&#x2F;g&#x2F;n&#x2F;ac&#x2F;ax协议是无线的协议标准，不同的标准有着不同的频段、信道、调制技术以及传输速 率 </li>
+<li>2.4G频段共有14个信道，我们通常使用的是1、6、11这三个互不干扰的信道，而5.8G则有一共13个互不 干扰的信道。</li>
+</ul>
+<p>.</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>锐捷</category>
+      </categories>
+      <tags>
+        <tag>锐捷</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Typora基本用法</title>
+    <url>/posts/1bd41834/</url>
+    <content><![CDATA[<p>[toc]</p>
+<h2 id="Typore简介"><a href="#Typore简介" class="headerlink" title="Typore简介"></a>Typore简介</h2><p>Typora是一款轻便简洁的Markdown编辑器，支持即时渲染技术，这也是与其他Markdown编辑器最显著的区别。即时渲染使得你写Markdown就想是写Word文档一样流畅自如，不像其他编辑器的有编辑栏和显示栏。</p>
+<h2 id="Markdown介绍"><a href="#Markdown介绍" class="headerlink" title="Markdown介绍"></a>Markdown介绍</h2><p>Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档。<br>Markdown 语言在 2004 由约翰·格鲁伯（英语：John Gruber）创建。<br>Markdown 编写的文档可以导出 HTML 、Word、图像、PDF、Epub 等多种格式的文档。<br>Markdown 编写的文档后缀为 .md, .markdown。</p>
+<h2 id="常用快捷键"><a href="#常用快捷键" class="headerlink" title="常用快捷键"></a>常用快捷键</h2><p>加粗： Ctrl + B			字体倾斜：Ctrl+I			      下划线 ：Ctrl+U</p>
+<p>插入链接：Ctrl + K 		   	创建表格：Ctrl+T</p>
+<p>行内代码：Ctrl + Shift + K	  插入图片：Ctrl + Shift + I	   	     插入图片：Ctrl+Shift+M</p>
+<p>选中某句话：Ctrl+L 		  选中某个单词： Ctrl+D	        搜索：Ctrl+F </p>
+<p>搜索并替换：Ctrl+H		选中相同格式的文字：Ctrl+E        删除线：Alt+Shift+5 </p>
+<p>撤销： Ctrl + Z			返回Typora顶部：Ctrl+Home     返回Typora底部：Ctrl+End    </p>
+<p>公式块：Ctrl+Shift+I  		     引用：Ctrl+Shift+Q          </p>
+<p>标题： Ctrl + 1（一级标题）；Ctrl + 2（二级标题） – 以此类推</p>
+<h2 id="引用文字"><a href="#引用文字" class="headerlink" title="引用文字"></a>引用文字</h2><p>Markdown 使用电子邮件样式&gt;字符进行块引用。它们表示为：</p>
+<pre class="language-none"><code class="language-none">&gt; 这是一个有两段的块引用。这是第一段。
+&gt;
+&gt; 这是第二段。Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.
+
+
+
+&gt; 这是另一个只有一个段落的块引用。有三个空行分隔两个块引用。</code></pre>
+
+<p>在typora中，只需输入’&gt;’后跟引用内容即可生成块引用。Typora将为您插入正确的“&gt;”或换行符。通过添加额外级别的“&gt;”允许在块引用内嵌入另一个块引用。</p>
+<h2 id="元素列表"><a href="#元素列表" class="headerlink" title="元素列表"></a>元素列表</h2><h3 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h3><p>使用 *   +   -  都可以创建一个无序列表</p>
+<pre class="language-none"><code class="language-none">* AAA
++ BBB
+- CCC</code></pre>
+
+<h3 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h3><p>使用 1. 2. 3. 创建有序列表</p>
+<pre class="language-none"><code class="language-none">1. AAA
+2. BBB
+3. CCC</code></pre>
+
+<h3 id="任务列表"><a href="#任务列表" class="headerlink" title="任务列表"></a>任务列表</h3><p>任务列表是标记为[ ]或[x]（未完成或完成）的项目的列表。例如：</p>
+<pre class="language-none"><code class="language-none">- [ ] 这是一个任务列表项
+- [ ] 需要在前面使用列表的语法
+- [ ] normal **formatting**, @mentions, #1234 refs
+- [ ] 未完成
+- [x] 完成</code></pre>
+
+<p>您可以通过单击项目前面的复选框来更改完成&#x2F;未完成状态。</p>
+<h2 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h2><p>在Typora中插入程序代码的方式有两种：使用反引号 &#96;（~ 键）、使用缩进（Tab）。</p>
+<ul>
+<li><p>插入行内代码，即插入一个单词或者一句代码的情况，使用 <code>code</code> 这样的形式插入。</p>
+</li>
+<li><p>插入多行代码输入3个反引号（&#96;） + 回车，并在后面选择一个语言名称即可实现语法高亮。</p>
+</li>
+</ul>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"hell oword"</span><span class="token punctuation">)</span></code></pre>
+
+<h2 id="数学公式块"><a href="#数学公式块" class="headerlink" title="数学公式块"></a>数学公式块</h2><p>您可以使用 MathJax 渲染 LaTeX 数学表达式。</p>
+<p>输入 $$, 然后按“return”键将触发一个接受Tex &#x2F; LaTex源代码的输入区域。以下是一个例子： </p>
+<p><img src="https://s3.bmp.ovh/imgs/2022/03/33ed0e61febfaa79.png" loading="lazy"></p>
+<p>在 markdown 源文件中，数学公式块是由’$$’标记包装的 LaTeX 表达式：</p>
+<pre class="language-none"><code class="language-none">$$
+\mathbf&#123;V&#125;_1 \times \mathbf&#123;V&#125;_2 &#x3D;  \begin&#123;vmatrix&#125; 
+\mathbf&#123;i&#125; &amp; \mathbf&#123;j&#125; &amp; \mathbf&#123;k&#125; \\
+\frac&#123;\partial X&#125;&#123;\partial u&#125; &amp;  \frac&#123;\partial Y&#125;&#123;\partial u&#125; &amp; 0 \\
+\frac&#123;\partial X&#125;&#123;\partial v&#125; &amp;  \frac&#123;\partial Y&#125;&#123;\partial v&#125; &amp; 0 \\
+\end&#123;vmatrix&#125;
+$$</code></pre>
+
+<p>LeTeX表达式参考连接：<a href="https://blog.csdn.net/ViatorSun/article/details/82826664#:~:text=%E7%9A%84LaTex%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%BA%20%24x_i%5E2%24%20%E3%80%82.%20LaTex%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%AD%E7%9A%84%E4%B8%8A%E4%B8%8B%E6%A0%87%E5%8F%AF%E4%BB%A5%E5%8F%A0%E5%8A%A0%E7%9A%84%EF%BC%8C%E5%B0%B1%E6%AF%94%E5%A6%82.%20x%20%20y%20,x_%20%7B2i%7D%5E%20%7B2%2Bb%7D.%20x2i2%2Bb.%20%E2%80%8B.%20%E7%9A%84LaTex%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%BA%24x_%20%7B2i%7D%5E%20%7B2%2Bb%7D%24%E3%80%82.">超详细 LaTex数学公式</a>   <a href="https://blog.csdn.net/weixin_39679367/article/details/84729452">LaTeX：公式常用字符和表达式</a></p>
+<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><p>输入 <code>| First Header | Second Header |</code> 并按下 <code>return</code> 键将创建一个包含两列的表。</p>
+<p>创建表后，焦点在该表上将弹出一个表格工具栏，您可以在其中调整表格，对齐或删除表格。您还可以使用上下文菜单来复制和添加&#x2F;删除列&#x2F;行。</p>
+<p>可以跳过以下描述，因为表格的 markdown 源代码是由typora自动生成的。</p>
+<p>在 markdown 源代码中，它们看起来像这样：</p>
+<pre class="language-none"><code class="language-none">| First Header  | Second Header |
+| ------------- | ------------- |
+| Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  |</code></pre>
+
+<p>您还可以在表格中包括内联 Markdown 语法，例如链接，粗体，斜体或删除线。</p>
+<ul>
+<li>不管是哪种方式，第一行为表头，第二行为分割表头和主体部分，第三行开始每一行为一个表格行</li>
+<li>列与列之间用管道符号<code>|</code> 隔开</li>
+<li>还可设置对齐方式(表头与内容之间)，如果不使用对齐标记，内容默认左对齐，表头居中对齐<ul>
+<li>左对齐 ：|</li>
+<li>右对齐 |：</li>
+<li>中对齐 ：|：</li>
+</ul>
+</li>
+<li>为了美观，可以使用空格对齐不同行的单元格，并在左右两侧都使用 | 来标记单元格边界</li>
+<li>为了使 Markdown 更清晰，| 和 - 两侧需要至少有一个空格（最左侧和最右侧的 | 外就不需要了）</li>
+</ul>
+<h2 id="脚注"><a href="#脚注" class="headerlink" title="脚注"></a>脚注</h2><pre class="language-none"><code class="language-none">您可以像这样创建脚注[^footnote].
+
+[^footnote]: Here is the *text* of the **footnote**.</code></pre>
+
+<p>将产生：</p>
+<p>您可以像这样创建脚注<a href="https://support.typoraio.cn/zh/Markdown-Reference/#fn:footnote">1</a>.</p>
+<p>鼠标移动到‘footnote’上标中查看脚注的内容。</p>
+<h2 id="水平线"><a href="#水平线" class="headerlink" title="水平线"></a>水平线</h2><p>输入 <code>***</code> 或 <code>---</code> 在空行上按 <code>return</code> 键将绘制一条水平线。</p>
+<h2 id="目录-TOC"><a href="#目录-TOC" class="headerlink" title="目录 (TOC)"></a>目录 (TOC)</h2><p>输入 <code>[toc]</code> 然后按 <code>Return</code> 键将创建一个“目录”部分，自动从文档内容中提取所有标题，其内容会自动更新。</p>
+<h2 id="上下标"><a href="#上下标" class="headerlink" title="上下标"></a>上下标</h2><h3 id="上标"><a href="#上标" class="headerlink" title="上标"></a>上标</h3><p>可以使用<code>&lt;sup&gt;文本&lt;/sup&gt;</code>实现上标。</p>
+<p>(需在设置中打开该功能)</p>
+<p>X<sup>2</sup></p>
+<h3 id="下标"><a href="#下标" class="headerlink" title="下标"></a>下标</h3><p>可以使用 <code>&lt;sub&gt;文本&lt;/sub&gt;</code>实现下标。</p>
+<p>(需在设置中打开该功能)</p>
+<p>H<sub>2</sub>O</p>
+<h2 id="文本居中"><a href="#文本居中" class="headerlink" title="文本居中"></a>文本居中</h2><p>使用 <code>&lt;center&gt;这是要居中的内容&lt;/center&gt;</code>可以使文本居中</p>
+<center>这是要居中的文本内容</center>
+
+
+
+<h2 id="Span-元素"><a href="#Span-元素" class="headerlink" title="Span 元素"></a>Span 元素</h2><p>在您输入后Span元素会被立即解析并呈现。在这些span元素上移动光标会将这些元素扩展为markdown源代码。以下将解释这些span元素的语法。</p>
+<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p>Markdown 支持两种类型的链接：内联和引用。</p>
+<p>在这两种样式中，链接文本都写在[方括号]内。</p>
+<p>要创建内联链接，请在链接文本的结束方括号后立即使用一组常规括号。在常规括号内，输入URL地址，以及可选的用引号括起来的链接标题。例如：</p>
+<pre class="language-none"><code class="language-none">This is [an example](http:&#x2F;&#x2F;example.com&#x2F; &quot;Title&quot;) inline link.
+
+[This link](http:&#x2F;&#x2F;example.net&#x2F;) has no title attribute.</code></pre>
+
+<p>将产生：</p>
+<p>This is <a href="http://example.com/%22Title%22">an example</a> inline link. (<code>&lt;p&gt;This is &lt;a href=&quot;http://example.com/&quot; title=&quot;Title&quot;&gt;</code>)</p>
+<p><a href="http://example.net/">This link</a> has no title attribute. (<code>&lt;p&gt;&lt;a href=&quot;http://example.net/&quot;&gt;This link&lt;/a&gt; has no</code>)</p>
+<h4 id="内部链接"><a href="#内部链接" class="headerlink" title="内部链接"></a>内部链接</h4><p><strong>您可以将常规括号内的 href 设置为文档内的某一个标题</strong>，这将创建一个书签，允许您在单击后跳转到该部分。例如：</p>
+<p>Command(在Windows上：Ctrl) + 单击 <a href="https://support.typoraio.cn/zh/Markdown-Reference/#%E5%9D%97%E5%85%83%E7%B4%A0">此链接</a> 将跳转到标题 <code>块元素</code>处。 要查看如何编写，请移动光标或按住 <code>⌘</code> 键单击以将元素展开为 Markdown 源代码。</p>
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p>参考样式链接使用第二组方括号，在其中放置您选择的标签以标识链接：</p>
+<pre class="language-none"><code class="language-none">This is [an example][id] reference-style link.
+
+然后，在文档中的任何位置，您可以单独定义链接标签，如下所示：
+
+[id]: http:&#x2F;&#x2F;example.com&#x2F;  &quot;Optional Title Here&quot;</code></pre>
+
+<p>在typora中，它们将呈现为：</p>
+<p>This is <a href="http://example.com/">an example</a> reference-style link.</p>
+<p>隐式链接名称快捷方式允许您省略链接的名称，在这种情况下，链接文本本身将用作名称。只需使用一组空的方括号，例如，将“Google”一词链接到google.com网站，您只需写下：</p>
+<pre class="language-none"><code class="language-none">[Google][]
+然后定义链接：
+
+[Google]: http:&#x2F;&#x2F;google.com&#x2F;</code></pre>
+
+<p>在typora中单击链接将其展开以进行编辑，command + 单击将在 Web 浏览器中打开超链接。</p>
+<h3 id="URL网址"><a href="#URL网址" class="headerlink" title="URL网址"></a>URL网址</h3><p>Typora允许您将 URL 作为链接插入，用 <code>&lt;</code>括号括起来<code>&gt;</code>。</p>
+<p><code>&lt;i@typora.io&gt;</code> 成为 <a href="mailto:i@typora.io">i@typora.io</a>.</p>
+<p>Typora也将自动链接标准URL。例如： <a href="http://www.google.com/">www.google.com</a>.</p>
+<h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><p>图像与链接类似， 但在链接语法之前需要添加额外的 <code>!</code> 字符。 图像语法如下所示：</p>
+<pre class="language-none"><code class="language-none">![替代文字](&#x2F;path&#x2F;to&#x2F;img.jpg)
+
+![替代文字](&#x2F;path&#x2F;to&#x2F;img.jpg &quot;可选标题&quot;)</code></pre>
+
+<p>您可以使用拖放操作从图像文件或浏览器来插入图像。并通过单击图像修改 markdown 源代码。如果图像在拖放时与当前编辑文档位于同一目录或子目录中，则将使用相对路径。</p>
+<h3 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h3><p>教程来自知乎：<a href="https://zhuanlan.zhihu.com/p/40810821">https://zhuanlan.zhihu.com/p/40810821</a></p>
+<p>Typora可以直接在markdown中画流程图，而且语法简洁易懂</p>
+<ul>
+<li>sequence</li>
+</ul>
+<p>语言选择sequence即可生成流程图</p>
+<pre class="language-none"><code class="language-none">李雷 -&gt; 韩梅梅: Hello 梅梅, How are you?
+Note right of 韩梅梅: 韩梅梅心想
+韩梅梅 --&gt; 李雷: I&#39;m fine, thanks, and you?</code></pre>
+
+<svg width="460.78125" height="247.416" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="overflow: hidden; position: relative; left: -0.0336056px; top: -0.972681px; max-width: 100%; height: auto;" version="1.1">
+ <desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël 2.2.0</desc>
+ <defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+  <path style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" id="raphael-marker-block" d="m5,0l-5,2.5l5,2.5l0,-5z" stroke-linecap="round"/>
+  <marker style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" refY="2.5" refX="2.5" orient="auto" markerWidth="5" markerHeight="5" id="raphael-marker-endblock55-objehh4q">
+   <use id="svg_1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="currentColor" transform="rotate(180 2.5,2.5) scale(1) " xlink:href="#raphael-marker-block"/>
+  </marker>
+  <marker style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" refY="2.5" refX="2.5" orient="auto" markerWidth="5" markerHeight="5" id="raphael-marker-endblock55-objo2myt">
+   <use id="svg_2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="currentColor" transform="rotate(180 2.5,2.5) scale(1) " xlink:href="#raphael-marker-block"/>
+  </marker>
+ </defs>
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="619" width="1292" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <rect id="svg_3" stroke-width="2" stroke="currentColor" fill="none" height="35.484375" width="52.28125" y="20" x="10"/>
+  <rect id="svg_4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" height="15.484375" width="32.28125" y="30" x="20"/>
+  <text id="svg_5" fill="currentColor" font-size="16px" font-family="Andale Mono, monospace" text-anchor="middle" y="37.742188" x="36.140625">
+   <tspan id="svg_6" dy="5.71875">李雷</tspan>
+  </text>
+  <rect id="svg_7" stroke-width="2" stroke="currentColor" fill="none" height="35.484375" width="52.28125" y="191.9375" x="10"/>
+  <rect id="svg_8" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" height="15.484375" width="32.28125" y="201.9375" x="20"/>
+  <text id="svg_9" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: "Andale Mono", monospace; font-size: 16px;" fill="currentColor" font-size="16px" font-family="Andale Mono, monospace" text-anchor="middle" y="209.679688" x="36.140625">
+   <tspan id="svg_10" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.71875">李雷</tspan>
+  </text>
+  <path id="svg_11" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" stroke-width="2" d="m36.14063,55.48438l0,136.45312" stroke="currentColor" fill="var(--bg-color)"/>
+  <rect id="svg_12" stroke-width="2" stroke="currentColor" fill="none" height="35.484375" width="68.40625" y="20" x="231.6875"/>
+  <rect id="svg_13" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" height="15.484375" width="48.40625" y="30" x="241.6875"/>
+  <text id="svg_14" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: "Andale Mono", monospace; font-size: 16px;" fill="currentColor" font-size="16px" font-family="Andale Mono, monospace" text-anchor="middle" y="37.742188" x="265.890625">
+   <tspan id="svg_15" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.71875">韩梅梅</tspan>
+  </text>
+  <rect id="svg_16" stroke-width="2" stroke="currentColor" fill="none" height="35.484375" width="68.40625" y="191.9375" x="231.6875"/>
+  <rect id="svg_17" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" height="15.484375" width="48.40625" y="201.9375" x="241.6875"/>
+  <text id="svg_18" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: "Andale Mono", monospace; font-size: 16px;" fill="currentColor" font-size="16px" font-family="Andale Mono, monospace" text-anchor="middle" y="209.679688" x="265.890625">
+   <tspan id="svg_19" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.71875">韩梅梅</tspan>
+  </text>
+  <path id="svg_20" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" stroke-width="2" d="m265.89063,55.48438l0,136.45312" stroke="currentColor" fill="var(--bg-color)"/>
+  <rect id="svg_21" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" height="15.484375" width="193.625" y="72.734375" x="54.203125"/>
+  <text id="svg_22" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: "Andale Mono", monospace; font-size: 16px;" fill="currentColor" font-size="16px" font-family="Andale Mono, monospace" text-anchor="middle" y="80.484375" x="151.015625">
+   <tspan id="svg_23" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.710938">Hello 梅梅, How are you?</tspan>
+  </text>
+  <path id="svg_24" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" marker-end="url(#raphael-marker-endblock55-objehh4q)" stroke-width="2" d="m36.14063,90.96875c0,0 191.19018,0 224.75115,0" stroke="currentColor" fill="var(--bg-color)"/>
+  <rect id="svg_25" stroke-width="2" stroke="currentColor" fill="none" height="25.484375" width="90.6875" y="110.96875" x="285.890625"/>
+  <rect id="svg_26" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" height="15.484375" width="80.6875" y="115.96875" x="290.890625"/>
+  <text id="svg_27" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: "Andale Mono", monospace; font-size: 16px;" fill="currentColor" font-size="16px" font-family="Andale Mono, monospace" text-anchor="middle" y="123.710938" x="331.234375">
+   <tspan id="svg_28" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.71875">韩梅梅心想</tspan>
+  </text>
+  <rect id="svg_29" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" height="15.484375" width="209.75" y="153.703125" x="46.140625"/>
+  <text id="svg_30" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: "Andale Mono", monospace; font-size: 16px;" fill="currentColor" font-size="16px" font-family="Andale Mono, monospace" text-anchor="middle" y="161.453125" x="151.015625">
+   <tspan id="svg_31" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.710938">I'm fine, thanks, and you?</tspan>
+  </text>
+  <path id="svg_32" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" stroke-dasharray="6,2" marker-end="url(#raphael-marker-endblock55-objo2myt)" stroke-width="2" d="m265.89063,171.9375c0,0 -191.19019,0 -224.75116,0" stroke="currentColor" fill="var(--bg-color)"/>
+ </g>
+</svg>
+
+
+<ul>
+<li>flowchart</li>
+</ul>
+<p>对于Flowchart,语法选择flow</p>
+<pre class="language-none"><code class="language-none">st&#x3D;&gt;start: 闹钟响起
+op&#x3D;&gt;operation: 与床板分离
+cond&#x3D;&gt;condition: 分离成功?
+e&#x3D;&gt;end: 快乐的一天
+
+st-&gt;op-&gt;cond
+cond(yes)-&gt;e
+cond(no)-&gt;op</code></pre>
+
+
+<svg width="175.8203125" height="408.509765625" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet" style="overflow: hidden; position: relative; left: -0.0378136px; top: -0.976878px;" version="1.1">
+ <desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël 2.2.0</desc>
+ <defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+  <path style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" id="raphael-marker-block" d="m5,0l-5,2.5l5,2.5l0,-5z" stroke-linecap="round"/>
+  <marker style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" refY="1.5" refX="1.5" orient="auto" markerWidth="3" markerHeight="3" id="raphael-marker-endblock33-objrngqv">
+   <use id="svg_1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="currentColor" stroke-width="1.6667" transform="rotate(180 1.5,1.5) scale(0.6000000238418579) " xlink:href="#raphael-marker-block"/>
+  </marker>
+  <marker style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" refY="1.5" refX="1.5" orient="auto" markerWidth="3" markerHeight="3" id="raphael-marker-endblock33-objfsd5j">
+   <use id="svg_2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="currentColor" stroke-width="1.6667" transform="rotate(180 1.5,1.5) scale(0.6000000238418579) " xlink:href="#raphael-marker-block"/>
+  </marker>
+  <marker style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" refY="1.5" refX="1.5" orient="auto" markerWidth="3" markerHeight="3" id="raphael-marker-endblock33-obj05jvn">
+   <use id="svg_3" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="currentColor" stroke-width="1.6667" transform="rotate(180 1.5,1.5) scale(0.6000000238418579) " xlink:href="#raphael-marker-block"/>
+  </marker>
+  <marker style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" refY="1.5" refX="1.5" orient="auto" markerWidth="3" markerHeight="3" id="raphael-marker-endblock33-objyoquh">
+   <use id="svg_4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="currentColor" stroke-width="1.6667" transform="rotate(180 1.5,1.5) scale(0.6000000238418579) " xlink:href="#raphael-marker-block"/>
+  </marker>
+ </defs>
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="618" width="517" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <rect transform="matrix(1,0,0,1,38.668,23.377) " id="st" class="flowchart" stroke-width="3" stroke="currentColor" fill="none" ry="20" rx="20" height="36.15625" width="76.484375" y="0" x="0"/>
+  <text transform="matrix(1,0,0,1,38.668,23.377) " class="flowchartt" id="stt" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 14px;" fill="currentColor" font-size="14px" font-family=""Arial"" text-anchor="start" y="18.078125" x="10">
+   <tspan id="svg_5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.703125">闹钟响起</tspan>
+  </text>
+  <rect transform="matrix(1,0,0,1,31.6133,132.9102) " id="op" class="flowchart" stroke-width="3" stroke="currentColor" fill="none" height="36.15625" width="90.59375" y="0" x="0"/>
+  <text transform="matrix(1,0,0,1,31.6133,132.9102) " class="flowchartt" id="opt" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 14px;" fill="currentColor" font-size="14px" font-family=""Arial"" text-anchor="start" y="18.078125" x="10">
+   <tspan id="svg_6" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.703125">与床板分离</tspan>
+  </text>
+  <path class="flowchart" id="cond" stroke-width="3" d="m41.45508,242.79394l-35.45508,17.72754l70.91016,35.45508l70.91015,-35.45508l-70.91015,-35.45508l-70.91016,35.45508" stroke="currentColor" fill="none"/>
+  <text transform="matrix(1,0,0,1,6,225.0664) " class="flowchartt" id="condt" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 14px;" fill="currentColor" font-size="14px" font-family=""Arial"" text-anchor="start" y="35.455078" x="40.455078">
+   <tspan id="svg_7" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.705078">分离成功?</tspan>
+  </text>
+  <rect transform="matrix(1,0,0,1,31.6133,369.3535) " id="e" class="flowchart" stroke-width="3" stroke="currentColor" fill="none" ry="20" rx="20" height="36.15625" width="90.59375" y="0" x="0"/>
+  <text transform="matrix(1,0,0,1,31.6133,369.3535) " class="flowchartt" id="et" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 14px;" fill="currentColor" font-size="14px" font-family=""Arial"" text-anchor="start" y="18.078125" x="10">
+   <tspan id="svg_8" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.703125">快乐的一天</tspan>
+  </text>
+  <path id="svg_9" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" marker-end="url(#raphael-marker-endblock33-objrngqv)" stroke-width="3" d="m76.91016,59.5332c0,0 0,52.90527 0,68.86985" stroke="currentColor" fill="none"/>
+  <path id="svg_10" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" marker-end="url(#raphael-marker-endblock33-objfsd5j)" stroke-width="3" d="m76.91016,169.06641c0,0 0,38.20077 0,51.50016" stroke="currentColor" fill="none"/>
+  <path id="svg_11" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" marker-end="url(#raphael-marker-endblock33-obj05jvn)" stroke-width="3" d="m76.91016,295.97656c0,0 0,52.90527 0,68.86985" stroke="currentColor" fill="none"/>
+  <text id="svg_12" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 14px;" fill="currentColor" font-size="14px" font-family=""Arial"" text-anchor="start" y="305.976563" x="81.910156">
+   <tspan id="svg_13" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.703125">yes</tspan>
+  </text>
+  <path id="svg_14" marker-end="url(#raphael-marker-endblock33-objyoquh)" stroke-width="3" d="m147.82031,260.52148c0,0 25,-10 25,-10c0,0 0,-152.61132 0,-152.61132c0,0 -95.91015,0 -95.91015,0c0,0 0,21.04307 0,30.49601" stroke="currentColor" fill="none"/>
+  <text id="svg_15" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 14px;" fill="currentColor" font-size="14px" font-family=""Arial"" text-anchor="start" y="250.521484" x="152.820313">
+   <tspan id="svg_16" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.708984">no</tspan>
+  </text>
+ </g>
+</svg>
+
+
+
+
+<ul>
+<li>gantt</li>
+</ul>
+<p>除了Sequence和Flowchart两类图之外，Mermaid还提供一种叫做gantt的图。插入下面的代码，然后语法选mermaid就会自动渲染成gantt图了。</p>
+<pre class="language-none"><code class="language-none">gantt
+        dateFormat  YYYY-MM-DD
+        title 快乐的生活
+        section 吃一把鸡就学习
+        学习            :done,    des1, 2014-01-06,2014-01-09
+        疯狂学习               :active,  des2, 2014-01-09, 3d
+        继续疯狂学习               :         des3, after des2, 5d
+        吃鸡！               :         des4, after des3, 4d
+        section 具体内容
+        学习Python :crit, done, 2014-01-06,72h
+        学习C++          :crit, done, after des1, 2d
+        学习Lisp             :crit, active, 3d
+        学习图形学        :crit, 4d
+        跳伞           :2d
+        打枪                      :2d
+</code></pre>
+
+<p><svg id="mermaidChart0" width="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 624 340" height="340" style="max-width: 624px;"><style>#mermaidChart0{font-family:sans-serif;font-size:16px;fill:#333;}#mermaidChart0 .error-icon{fill:#552222;}#mermaidChart0 .error-text{fill:#552222;stroke:#552222;}#mermaidChart0 .edge-thickness-normal{stroke-width:2px;}#mermaidChart0 .edge-thickness-thick{stroke-width:3.5px;}#mermaidChart0 .edge-pattern-solid{stroke-dasharray:0;}#mermaidChart0 .edge-pattern-dashed{stroke-dasharray:3;}#mermaidChart0 .edge-pattern-dotted{stroke-dasharray:2;}#mermaidChart0 .marker{fill:#333333;}#mermaidChart0 .marker.cross{stroke:#333333;}#mermaidChart0 svg{font-family:sans-serif;font-size:16px;}#mermaidChart0 .mermaid-main-font{font-family:”trebuchet ms”,verdana,arial;font-family:var(–mermaid-font-family);}#mermaidChart0 .section{stroke:none;opacity:0.2;}#mermaidChart0 .section0{fill:rgba(102,102,255,0.49);}#mermaidChart0 .section2{fill:#fff400;}#mermaidChart0 .section1,#mermaidChart0 .section3{fill:white;opacity:0.2;}#mermaidChart0 .sectionTitle0{fill:#333;}#mermaidChart0 .sectionTitle1{fill:#333;}#mermaidChart0 .sectionTitle2{fill:#333;}#mermaidChart0 .sectionTitle3{fill:#333;}#mermaidChart0 .sectionTitle{text-anchor:start;font-size:11px;text-height:14px;font-family:’trebuchet ms’,verdana,arial;font-family:var(–mermaid-font-family);}#mermaidChart0 .grid .tick{stroke:lightgrey;opacity:0.8;shape-rendering:crispEdges;}#mermaidChart0 .grid .tick text{font-family:sans-serif;fill:#333;}#mermaidChart0 .grid path{stroke-width:0;}#mermaidChart0 .today{fill:none;stroke:red;stroke-width:2px;}#mermaidChart0 .task{stroke-width:2;}#mermaidChart0 .taskText{text-anchor:middle;font-family:’trebuchet ms’,verdana,arial;font-family:var(–mermaid-font-family);}#mermaidChart0 .taskText:not([font-size]){font-size:11px;}#mermaidChart0 .taskTextOutsideRight{fill:black;text-anchor:start;font-size:11px;font-family:’trebuchet ms’,verdana,arial;font-family:var(–mermaid-font-family);}#mermaidChart0 .taskTextOutsideLeft{fill:black;text-anchor:end;font-size:11px;}#mermaidChart0 .task.clickable{cursor:pointer;}#mermaidChart0 .taskText.clickable{cursor:pointer;fill:#003163 !important;font-weight:bold;}#mermaidChart0 .taskTextOutsideLeft.clickable{cursor:pointer;fill:#003163 !important;font-weight:bold;}#mermaidChart0 .taskTextOutsideRight.clickable{cursor:pointer;fill:#003163 !important;font-weight:bold;}#mermaidChart0 .taskText0,#mermaidChart0 .taskText1,#mermaidChart0 .taskText2,#mermaidChart0 .taskText3{fill:white;}#mermaidChart0 .task0,#mermaidChart0 .task1,#mermaidChart0 .task2,#mermaidChart0 .task3{fill:#8a90dd;stroke:#534fbc;}#mermaidChart0 .taskTextOutside0,#mermaidChart0 .taskTextOutside2{fill:black;}#mermaidChart0 .taskTextOutside1,#mermaidChart0 .taskTextOutside3{fill:black;}#mermaidChart0 .active0,#mermaidChart0 .active1,#mermaidChart0 .active2,#mermaidChart0 .active3{fill:#bfc7ff;stroke:#534fbc;}#mermaidChart0 .activeText0,#mermaidChart0 .activeText1,#mermaidChart0 .activeText2,#mermaidChart0 .activeText3{fill:black !important;}#mermaidChart0 .done0,#mermaidChart0 .done1,#mermaidChart0 .done2,#mermaidChart0 .done3{stroke:grey;fill:lightgrey;stroke-width:2;}#mermaidChart0 .doneText0,#mermaidChart0 .doneText1,#mermaidChart0 .doneText2,#mermaidChart0 .doneText3{fill:black !important;}#mermaidChart0 .crit0,#mermaidChart0 .crit1,#mermaidChart0 .crit2,#mermaidChart0 .crit3{stroke:#ff8888;fill:red;stroke-width:2;}#mermaidChart0 .activeCrit0,#mermaidChart0 .activeCrit1,#mermaidChart0 .activeCrit2,#mermaidChart0 .activeCrit3{stroke:#ff8888;fill:#bfc7ff;stroke-width:2;}#mermaidChart0 .doneCrit0,#mermaidChart0 .doneCrit1,#mermaidChart0 .doneCrit2,#mermaidChart0 .doneCrit3{stroke:#ff8888;fill:lightgrey;stroke-width:2;cursor:pointer;shape-rendering:crispEdges;}#mermaidChart0 .milestone{-webkit-transform:rotate(45deg) scale(0.8,0.8);-ms-transform:rotate(45deg) scale(0.8,0.8);transform:rotate(45deg) scale(0.8,0.8);}#mermaidChart0 .milestoneText{font-style:italic;}#mermaidChart0 .doneCritText0,#mermaidChart0 .doneCritText1,#mermaidChart0 .doneCritText2,#mermaidChart0 .doneCritText3{fill:black !important;}#mermaidChart0 .activeCritText0,#mermaidChart0 .activeCritText1,#mermaidChart0 .activeCritText2,#mermaidChart0 .activeCritText3{fill:black !important;}#mermaidChart0 .titleText{text-anchor:middle;font-size:18px;fill:var(–text-color);font-family:’trebuchet ms’,verdana,arial;font-family:var(–mermaid-font-family);}#mermaidChart0:root{–mermaid-font-family:sans-serif;}#mermaidChart0:root{–mermaid-alt-font-family:sans-serif;}#mermaidChart0 gantt{fill:apa;}</style><g></g><g class="grid" transform="translate(75, 290)" fill="none" font-size="10" font-family="sans-serif" text-anchor="middle"><path class="domain" stroke="currentColor" d="M0.5,-255V0.5H529.5V-255"></path><g class="tick" opacity="1" transform="translate(33.5,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">2014-01-07</text></g><g class="tick" opacity="1" transform="translate(99.5,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">2014-01-09</text></g><g class="tick" opacity="1" transform="translate(165.5,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">2014-01-11</text></g><g class="tick" opacity="1" transform="translate(231.5,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">2014-01-13</text></g><g class="tick" opacity="1" transform="translate(298.5,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">2014-01-15</text></g><g class="tick" opacity="1" transform="translate(364.5,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">2014-01-17</text></g><g class="tick" opacity="1" transform="translate(430.5,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">2014-01-19</text></g><g class="tick" opacity="1" transform="translate(496.5,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">2014-01-21</text></g></g><g><rect x="0" y="48" width="614" height="24" class="section section0"></rect><rect x="0" y="144" width="614" height="24" class="section section1"></rect><rect x="0" y="72" width="614" height="24" class="section section0"></rect><rect x="0" y="168" width="614" height="24" class="section section1"></rect><rect x="0" y="192" width="614" height="24" class="section section1"></rect><rect x="0" y="96" width="614" height="24" class="section section0"></rect><rect x="0" y="216" width="614" height="24" class="section section1"></rect><rect x="0" y="120" width="614" height="24" class="section section0"></rect><rect x="0" y="240" width="614" height="24" class="section section1"></rect><rect x="0" y="264" width="614" height="24" class="section section1"></rect></g><g><rect id="des1" rx="3" ry="3" x="75" y="50" width="99" height="20" transform-origin="124.5px 60px" class="task done0 "></rect><rect id="task1" rx="3" ry="3" x="75" y="146" width="99" height="20" transform-origin="124.5px 84px" class="task doneCrit1 "></rect><rect id="des2" rx="3" ry="3" x="174" y="74" width="99" height="20" transform-origin="223.5px 108px" class="task active0 "></rect><rect id="task2" rx="3" ry="3" x="174" y="170" width="66" height="20" transform-origin="207px 132px" class="task doneCrit1 "></rect><rect id="task3" rx="3" ry="3" x="240" y="194" width="100" height="20" transform-origin="290px 156px" class="task activeCrit1 "></rect><rect id="des3" rx="3" ry="3" x="273" y="98" width="166" height="20" transform-origin="356px 180px" class="task task0 "></rect><rect id="task4" rx="3" ry="3" x="340" y="218" width="132" height="20" transform-origin="406px 204px" class="task crit1 "></rect><rect id="des4" rx="3" ry="3" x="439" y="122" width="132" height="20" transform-origin="505px 228px" class="task task0 "></rect><rect id="task5" rx="3" ry="3" x="472" y="242" width="66" height="20" transform-origin="505px 252px" class="task task1 "></rect><rect id="task6" rx="3" ry="3" x="538" y="266" width="66" height="20" transform-origin="571px 276px" class="task task1 "></rect><text id="des1-text" font-size="11" x="124.5" y="63.5" text-height="20" class=" taskText taskText0  doneText0 width-21.515625">学习            </text><text id="task1-text" font-size="11" x="124.5" y="159.5" text-height="20" class=" taskText taskText1  doneCritText1 width-57.8125">学习Python </text><text id="des2-text" font-size="11" x="223.5" y="87.5" text-height="20" class=" taskText taskText0 activeText0 width-43.015625">疯狂学习               </text><text id="task2-text" font-size="11" x="207" y="183.5" text-height="20" class=" taskText taskText1  doneCritText1 width-45.03125">学习C++          </text><text id="task3-text" font-size="11" x="290" y="207.5" text-height="20" class=" taskText taskText1 activeCritText1 critText1 width-41">学习Lisp             </text><text id="des3-text" font-size="11" x="356" y="111.5" text-height="20" class=" taskText taskText0  width-64.53125">继续疯狂学习               </text><text id="task4-text" font-size="11" x="406" y="231.5" text-height="20" class=" taskText taskText1  critText1 width-53.78125">学习图形学        </text><text id="des4-text" font-size="11" x="505" y="135.5" text-height="20" class=" taskText taskText0  width-32.265625">吃鸡！               </text><text id="task5-text" font-size="11" x="505" y="255.5" text-height="20" class=" taskText taskText1  width-21.515625">跳伞           </text><text id="task6-text" font-size="11" x="571" y="279.5" text-height="20" class=" taskText taskText1  width-21.515625">打枪                      </text></g><g><text dy="0em" x="10" y="98" class="sectionTitle sectionTitle0"><tspan alignment-baseline="central" x="10">吃一把鸡就学习</tspan></text><text dy="0em" x="10" y="218" class="sectionTitle sectionTitle1"><tspan alignment-baseline="central" x="10">具体内容</tspan></text></g><g class="today"><line x1="100579" x2="100579" y1="25" y2="315" class="today"></line></g><text x="312" y="25" class="titleText">快乐的生活</text></svg></p>
+<h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><p>您可以使用HTML来设置纯 Markdown 不支持的内容，例如， <code>&lt;span style=&quot;color:red&quot;&gt;this text is red&lt;/span&gt;</code> 用于添加红色文本。</p>
+]]></content>
+      <categories>
+        <category>教程</category>
+        <category>博客</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -6277,6 +6670,128 @@ apt-get dist-upgrade		#根据依赖关系更新</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>《天堂旅行团》摘抄</title>
+    <url>/posts/7d0fc3d8/</url>
+    <content><![CDATA[
+    <div id="aplayer-RobPRyVf" class="aplayer aplayer-tag-marker meting-tag-marker"
+         data-id="1891034510" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#C20C0C"
+    ></div>
+
+
+
+<h2 id="内容简介"><a href="#内容简介" class="headerlink" title="内容简介"></a>内容简介</h2><p>该书讲述了一个默默无闻的小人物平凡却惊心动魄的人生。几乎要被生活碾压成泥的主人公宋一鲤，意外踏上一场有关生命意义与救赎的治愈之旅。</p>
+<p>宋一鲤的不理想人生，大概要从五岁时，父母婚姻不睦、父亲离家出走算起。刚强的母亲，独自承担起抚养儿子的责任。直至十岁，老家传来父亲病故的噩耗，少年宋一鲤的心里才开始真正地恨上了父亲——那个永远将自己丢在人间的男人。</p>
+<p>随着年龄的增长，宋一鲤像其他普通人一样生活学习，并与大学同学林艺结了婚。可在母亲病倒后，一切都变了。宋一鲤搞不清，这个弯是在哪儿拐的？他与妻子接手了家里的小饭馆，不仅无法照顾母亲，妻子也因不甘心这样生活而提出离婚。宋一鲤一下子被生活打懵了，不知道自己错在哪儿？除了借酒浇愁，做什么都打不起精神。宋一鲤觉得自己没有尽到做儿子、丈夫的责任，没法给母亲、妻子创造更好的生活。</p>
+<p>癌症女孩小聚，就像位天使，降临到了宋一鲤的“人间”。她不仅保护了宋一鲤，还赋予了他重新面对生活的勇气。因为小聚嚷着要去看演唱会，宋一鲤不得不开着他那辆破烂面包车，带着小聚从南京出发，去了武汉，去昆明，再去南昌，一路上遇见了很多人，打了好几场架，管了不少闲事。旅途中，宋一鲤的世界忽然开阔了，不再纠缠于自己在夜里数也数不清的伤痕。他亲眼看见了他人的痛苦与勇敢，看见了他人的责任与担当</p>
+<p>来自：<a href="https://baike.baidu.com/item/%E5%A4%A9%E5%A0%82%E6%97%85%E8%A1%8C%E5%9B%A2/58293831?fr=aladdin">百度百科</a></p>
+<h2 id="摘抄"><a href="#摘抄" class="headerlink" title="摘抄"></a>摘抄</h2><blockquote>
+<p>遇见你，就像跋山涉水遇见一轮明月，以后天黑心伤，就问那天借一点月光。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>月亮在远方坠落，浪潮在堤岸破碎，统统不能回到原点。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>月亮永远都在，悬挂于时间长河之中。我从前一天来，要找的人是你。你往后一天去，不是我要找的人了。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>她突然的来，突然的走。我慢慢明白，人与人之间没有突然，她想好了才会来，想清了才会走。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>世界是有尽头的，在南方洋流的末端，冰山漂浮，云和水一起冻结。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>时间治愈不了一切，她只会把泥泞日复一日的堆积。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>我从前一天来，要找的人是你。你往后一天去，不是我要找的人了。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>一个人内心有裂痕的时候，都是静悄悄的，这个世界没人能察觉，只有当他砰的一声碎开，大家才会听到。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>你这个人就是棵荒草，别人稍微爱你一下，就恨不得把心都掏出来。但你是棵荒草啊，能掏出什么来，最多最多，把自己点着了，让人家暖一下手。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>孤独来自于生命中那些重要的人，他们的影子扎根在旧时光，笑容不知道去了何方。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>世界上的一万种苦难，不为谁单独降临，也不为谁网开一面。可我想，窒息之前，总要有一口属于我的空气。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>那些过不去的日子，从天而降，连绵不绝，像一条无穷无尽的隧道。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>没有去过四海，穿过四季，谁也不想困在出生就挣扎的原地。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>一无所有的时候，说明你该拥有的，还没到来。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>命运怎么安排那是它的事，我有我的安排。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>月亮在远方堕落，浪潮在堤岸破碎，统统不能倒回原点。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>他们还可以向前走，水迹会被阳光晒干，种子随风飘往四方，努努力，幸福触手可及。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>愿我余生可以淋漓尽致，即使他们说，消灭痛苦最有效的方式，是降低期待，减少敏感。我依然愿意充满渴求，矢志不渝，并认真感受，无一遗漏。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>天堂没有旅行团，我在世界尽头张望，等你回来，全人类睡得正香。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>生命的终章，我踏上了一段旅途。开着破烂的面包车，穿越几十座城市，撕开雨天，潜入他乡，尽头是天堂。<br>浅蓝的天光，泛紫的云层，路灯嵌进夕阳。山间道路弥漫着一万吨水汽，密林卷来风声，我闯进无止境的夜里。<br>她说，天总会亮的。那么，我们一起记录下，凌晨前的人生。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>小说</category>
+        <category>摘抄</category>
+      </categories>
+      <tags>
+        <tag>小说摘抄</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>sqlmap简单用法</title>
     <url>/posts/15042a92/</url>
     <content><![CDATA[<h2 id="sqlmap介绍"><a href="#sqlmap介绍" class="headerlink" title="sqlmap介绍"></a>sqlmap介绍</h2><p>sqlmap是一个开源的渗透测试工具，可以自动检测和利用SQL注入缺陷并接管数据库服务器。它具有强大的检测引擎，许多用于终极渗透测试仪的利基功能，以及广泛的开关，包括数据库指纹识别，从数据库获取数据，访问底层文件系统以及通过带外连接在操作系统上执行命令。</p>
@@ -6525,128 +7040,6 @@ apt-get dist-upgrade		#根据依赖关系更新</code></pre>
       <tags>
         <tag>工具</tag>
         <tag>sqlmap</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>《天堂旅行团》摘抄</title>
-    <url>/posts/7d0fc3d8/</url>
-    <content><![CDATA[
-    <div id="aplayer-uktauYjR" class="aplayer aplayer-tag-marker meting-tag-marker"
-         data-id="1891034510" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#C20C0C"
-    ></div>
-
-
-
-<h2 id="内容简介"><a href="#内容简介" class="headerlink" title="内容简介"></a>内容简介</h2><p>该书讲述了一个默默无闻的小人物平凡却惊心动魄的人生。几乎要被生活碾压成泥的主人公宋一鲤，意外踏上一场有关生命意义与救赎的治愈之旅。</p>
-<p>宋一鲤的不理想人生，大概要从五岁时，父母婚姻不睦、父亲离家出走算起。刚强的母亲，独自承担起抚养儿子的责任。直至十岁，老家传来父亲病故的噩耗，少年宋一鲤的心里才开始真正地恨上了父亲——那个永远将自己丢在人间的男人。</p>
-<p>随着年龄的增长，宋一鲤像其他普通人一样生活学习，并与大学同学林艺结了婚。可在母亲病倒后，一切都变了。宋一鲤搞不清，这个弯是在哪儿拐的？他与妻子接手了家里的小饭馆，不仅无法照顾母亲，妻子也因不甘心这样生活而提出离婚。宋一鲤一下子被生活打懵了，不知道自己错在哪儿？除了借酒浇愁，做什么都打不起精神。宋一鲤觉得自己没有尽到做儿子、丈夫的责任，没法给母亲、妻子创造更好的生活。</p>
-<p>癌症女孩小聚，就像位天使，降临到了宋一鲤的“人间”。她不仅保护了宋一鲤，还赋予了他重新面对生活的勇气。因为小聚嚷着要去看演唱会，宋一鲤不得不开着他那辆破烂面包车，带着小聚从南京出发，去了武汉，去昆明，再去南昌，一路上遇见了很多人，打了好几场架，管了不少闲事。旅途中，宋一鲤的世界忽然开阔了，不再纠缠于自己在夜里数也数不清的伤痕。他亲眼看见了他人的痛苦与勇敢，看见了他人的责任与担当</p>
-<p>来自：<a href="https://baike.baidu.com/item/%E5%A4%A9%E5%A0%82%E6%97%85%E8%A1%8C%E5%9B%A2/58293831?fr=aladdin">百度百科</a></p>
-<h2 id="摘抄"><a href="#摘抄" class="headerlink" title="摘抄"></a>摘抄</h2><blockquote>
-<p>遇见你，就像跋山涉水遇见一轮明月，以后天黑心伤，就问那天借一点月光。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>月亮在远方坠落，浪潮在堤岸破碎，统统不能回到原点。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>月亮永远都在，悬挂于时间长河之中。我从前一天来，要找的人是你。你往后一天去，不是我要找的人了。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>她突然的来，突然的走。我慢慢明白，人与人之间没有突然，她想好了才会来，想清了才会走。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>世界是有尽头的，在南方洋流的末端，冰山漂浮，云和水一起冻结。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>时间治愈不了一切，她只会把泥泞日复一日的堆积。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>我从前一天来，要找的人是你。你往后一天去，不是我要找的人了。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>一个人内心有裂痕的时候，都是静悄悄的，这个世界没人能察觉，只有当他砰的一声碎开，大家才会听到。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>你这个人就是棵荒草，别人稍微爱你一下，就恨不得把心都掏出来。但你是棵荒草啊，能掏出什么来，最多最多，把自己点着了，让人家暖一下手。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>孤独来自于生命中那些重要的人，他们的影子扎根在旧时光，笑容不知道去了何方。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>世界上的一万种苦难，不为谁单独降临，也不为谁网开一面。可我想，窒息之前，总要有一口属于我的空气。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>那些过不去的日子，从天而降，连绵不绝，像一条无穷无尽的隧道。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>没有去过四海，穿过四季，谁也不想困在出生就挣扎的原地。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>一无所有的时候，说明你该拥有的，还没到来。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>命运怎么安排那是它的事，我有我的安排。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>月亮在远方堕落，浪潮在堤岸破碎，统统不能倒回原点。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>他们还可以向前走，水迹会被阳光晒干，种子随风飘往四方，努努力，幸福触手可及。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>愿我余生可以淋漓尽致，即使他们说，消灭痛苦最有效的方式，是降低期待，减少敏感。我依然愿意充满渴求，矢志不渝，并认真感受，无一遗漏。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>天堂没有旅行团，我在世界尽头张望，等你回来，全人类睡得正香。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>生命的终章，我踏上了一段旅途。开着破烂的面包车，穿越几十座城市，撕开雨天，潜入他乡，尽头是天堂。<br>浅蓝的天光，泛紫的云层，路灯嵌进夕阳。山间道路弥漫着一万吨水汽，密林卷来风声，我闯进无止境的夜里。<br>她说，天总会亮的。那么，我们一起记录下，凌晨前的人生。</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>小说</category>
-        <category>摘抄</category>
-      </categories>
-      <tags>
-        <tag>小说摘抄</tag>
       </tags>
   </entry>
   <entry>
@@ -7305,44 +7698,6 @@ switchport trunk allowed vlan only 10,20,30</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>如何判断两台主机IP是否在同一网段</title>
-    <url>/posts/63b0beec/</url>
-    <content><![CDATA[<h2 id="什么是子网掩码"><a href="#什么是子网掩码" class="headerlink" title="什么是子网掩码"></a>什么是子网掩码</h2><p>子网掩码也称为网络掩码，地址掩码和子网遮罩。 它用于指示IP地址的哪些位标识主机所在的子网，哪些位标识为主机的位掩码。 子网掩码不能单独存在，必须与IP地址一起使用。 子网掩码仅具有一项功能，即将IP地址分为两部分，即网络地址和主机地址。子网掩码是一个32位地址，用于屏蔽IP地址的一部分，以区分网络ID和主机ID，并指示IP地址是在局域网上还是在广域网上。</p>
-<h2 id="子网掩码的功能"><a href="#子网掩码的功能" class="headerlink" title="子网掩码的功能"></a>子网掩码的功能</h2><p>子网掩码是一个32位地址，这是一种与IP地址结合使用的技术。 它具有两个主要功能。 一种是屏蔽IP地址的一部分，以区分网络ID和主机ID，并指示IP地址是在局域网上还是在远程网络上。 第二个是将大型IP网络划分为若干个小型子网。</p>
-<p>子网的使用是为了减少IP的浪费。 因为随着Internet的发展，创建了越来越多的网络，有些网络多达数百个，而有些只有少数，这浪费了大量IP地址，因此必须划分子网。 使用子网可以提高网络应用程序的效率。</p>
-<p>通过计算机的子网掩码判断两台计算机是否属于同一网段的方法是将计算机的十进制IP地址和子网掩码转换为二进制形式，然后执行二进制AND计算（全1则得1，不全1则得0）。 如果结果相同，则两台计算机属于同一网段。</p>
-<h2 id="如何根据掩码来确定IP地址网段"><a href="#如何根据掩码来确定IP地址网段" class="headerlink" title="如何根据掩码来确定IP地址网段"></a>如何根据掩码来确定IP地址网段</h2><p>A主机：IP地址：192.168.1.10 	  	子网掩码：255.255.255.192 	(掩码位26)</p>
-<p>B主句：IP地址： 192.168.1.100		子网掩码：255.255.255.192 	(掩码位26)</p>
-<p>C主机：IP地址： 192.168.1.20		   子网掩码：255.255.255.192 	(掩码位26)</p>
-<p>首先将IP地址和子网掩码转为32位二进制数字</p>
-<p>然后在IP地址和子网掩码做与运算</p>
-<p>A主机：</p>
-<p>IP地址：					11000000  ：10101000  ：00000001  ：00001010</p>
-<p>子网掩码：				11111111  ：11111111  ：11111111  ：11000000</p>
-<p>与运算结果：		11000000  ：100101000  ：00000001 ：00000000</p>
-<p>B主机：</p>
-<p>IP地址：					11000000  ：10101000  ：00000001  :    01100100</p>
-<p>子网掩码：				11111111  ：11111111  ：11111111  ：11000000</p>
-<p>与运算结果：		11000000  ：100101000  ：00000001 ：01000000</p>
-<p>C主机：</p>
-<p>IP地址：					11000000  ： 10101000  ：00000001  ：00010100</p>
-<p>子网掩码：				11111111  ：11111111  ：11111111  ：11000000</p>
-<p>与运算结果：		11000000  ：100101000  ：00000001 ：00000000</p>
-<p>判断与运算结果是否相同</p>
-<p>A主机与运算结果	11000000  ：100101000  ：00000001 ：00000000</p>
-<p>B主机与运算结果	11000000  ：100101000  ：00000001 ：01000000</p>
-<p>C主机与运算结果	11000000  ：100101000  ：00000001 ：00000000</p>
-<p>A主机和C主机与运算结果相同，所以A主机C主机在同一网段，B主机没有与AC主机在同一网段</p>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>网络基础</category>
-      </categories>
-      <tags>
-        <tag>网络</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>如何彻底关闭Hyper-V</title>
     <url>/posts/8dc48be7/</url>
     <content><![CDATA[<p>许多第三方虚拟化应用程序无法与 Hyper-V同时工作。 受影响的应用程序包括 VMware Workstation 和 VirtualBox。 这些应用程序可能无法启动虚拟机，或者可能回退到较慢的模拟模式。</p>
@@ -7435,6 +7790,44 @@ mountvol X: &#x2F;d</code></pre>
       </categories>
       <tags>
         <tag>windows</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何判断两台主机IP是否在同一网段</title>
+    <url>/posts/63b0beec/</url>
+    <content><![CDATA[<h2 id="什么是子网掩码"><a href="#什么是子网掩码" class="headerlink" title="什么是子网掩码"></a>什么是子网掩码</h2><p>子网掩码也称为网络掩码，地址掩码和子网遮罩。 它用于指示IP地址的哪些位标识主机所在的子网，哪些位标识为主机的位掩码。 子网掩码不能单独存在，必须与IP地址一起使用。 子网掩码仅具有一项功能，即将IP地址分为两部分，即网络地址和主机地址。子网掩码是一个32位地址，用于屏蔽IP地址的一部分，以区分网络ID和主机ID，并指示IP地址是在局域网上还是在广域网上。</p>
+<h2 id="子网掩码的功能"><a href="#子网掩码的功能" class="headerlink" title="子网掩码的功能"></a>子网掩码的功能</h2><p>子网掩码是一个32位地址，这是一种与IP地址结合使用的技术。 它具有两个主要功能。 一种是屏蔽IP地址的一部分，以区分网络ID和主机ID，并指示IP地址是在局域网上还是在远程网络上。 第二个是将大型IP网络划分为若干个小型子网。</p>
+<p>子网的使用是为了减少IP的浪费。 因为随着Internet的发展，创建了越来越多的网络，有些网络多达数百个，而有些只有少数，这浪费了大量IP地址，因此必须划分子网。 使用子网可以提高网络应用程序的效率。</p>
+<p>通过计算机的子网掩码判断两台计算机是否属于同一网段的方法是将计算机的十进制IP地址和子网掩码转换为二进制形式，然后执行二进制AND计算（全1则得1，不全1则得0）。 如果结果相同，则两台计算机属于同一网段。</p>
+<h2 id="如何根据掩码来确定IP地址网段"><a href="#如何根据掩码来确定IP地址网段" class="headerlink" title="如何根据掩码来确定IP地址网段"></a>如何根据掩码来确定IP地址网段</h2><p>A主机：IP地址：192.168.1.10 	  	子网掩码：255.255.255.192 	(掩码位26)</p>
+<p>B主句：IP地址： 192.168.1.100		子网掩码：255.255.255.192 	(掩码位26)</p>
+<p>C主机：IP地址： 192.168.1.20		   子网掩码：255.255.255.192 	(掩码位26)</p>
+<p>首先将IP地址和子网掩码转为32位二进制数字</p>
+<p>然后在IP地址和子网掩码做与运算</p>
+<p>A主机：</p>
+<p>IP地址：					11000000  ：10101000  ：00000001  ：00001010</p>
+<p>子网掩码：				11111111  ：11111111  ：11111111  ：11000000</p>
+<p>与运算结果：		11000000  ：100101000  ：00000001 ：00000000</p>
+<p>B主机：</p>
+<p>IP地址：					11000000  ：10101000  ：00000001  :    01100100</p>
+<p>子网掩码：				11111111  ：11111111  ：11111111  ：11000000</p>
+<p>与运算结果：		11000000  ：100101000  ：00000001 ：01000000</p>
+<p>C主机：</p>
+<p>IP地址：					11000000  ： 10101000  ：00000001  ：00010100</p>
+<p>子网掩码：				11111111  ：11111111  ：11111111  ：11000000</p>
+<p>与运算结果：		11000000  ：100101000  ：00000001 ：00000000</p>
+<p>判断与运算结果是否相同</p>
+<p>A主机与运算结果	11000000  ：100101000  ：00000001 ：00000000</p>
+<p>B主机与运算结果	11000000  ：100101000  ：00000001 ：01000000</p>
+<p>C主机与运算结果	11000000  ：100101000  ：00000001 ：00000000</p>
+<p>A主机和C主机与运算结果相同，所以A主机C主机在同一网段，B主机没有与AC主机在同一网段</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>网络基础</category>
+      </categories>
+      <tags>
+        <tag>网络</tag>
       </tags>
   </entry>
   <entry>

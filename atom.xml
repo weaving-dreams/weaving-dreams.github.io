@@ -6,7 +6,7 @@
   <link href="https://weaving-dreams.github.io/atom.xml" rel="self"/>
   
   <link href="https://weaving-dreams.github.io/"/>
-  <updated>2022-06-22T09:11:45.048Z</updated>
+  <updated>2022-06-24T05:12:04.455Z</updated>
   <id>https://weaving-dreams.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>WLAN基础知识</title>
+    <link href="https://weaving-dreams.github.io/posts/d674dcfe/"/>
+    <id>https://weaving-dreams.github.io/posts/d674dcfe/</id>
+    <published>2022-06-24T05:09:58.000Z</published>
+    <updated>2022-06-24T05:12:04.455Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;div class=&quot;danger&quot;&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt; 资料来源&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="https://weaving-dreams.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="锐捷" scheme="https://weaving-dreams.github.io/categories/%E5%AD%A6%E4%B9%A0/%E9%94%90%E6%8D%B7/"/>
+    
+    
+    <category term="锐捷" scheme="https://weaving-dreams.github.io/tags/%E9%94%90%E6%8D%B7/"/>
+    
+  </entry>
   
   <entry>
     <title>PPP协议原理与配置</title>
@@ -581,38 +611,6 @@
     
     
     <category term="锐捷" scheme="https://weaving-dreams.github.io/tags/%E9%94%90%E6%8D%B7/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>vlan基础实验</title>
-    <link href="https://weaving-dreams.github.io/posts/f33f0350/"/>
-    <id>https://weaving-dreams.github.io/posts/f33f0350/</id>
-    <published>2022-06-03T08:50:56.000Z</published>
-    <updated>2022-06-03T08:55:37.282Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;div class=&quot;danger&quot;&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt; 资料来源&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="学习" scheme="https://weaving-dreams.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    <category term="锐捷" scheme="https://weaving-dreams.github.io/categories/%E5%AD%A6%E4%B9%A0/%E9%94%90%E6%8D%B7/"/>
-    
-    
-    <category term="锐捷" scheme="https://weaving-dreams.github.io/tags/%E9%94%90%E6%8D%B7/"/>
-    
-    <category term="实验" scheme="https://weaving-dreams.github.io/tags/%E5%AE%9E%E9%AA%8C/"/>
     
   </entry>
   
