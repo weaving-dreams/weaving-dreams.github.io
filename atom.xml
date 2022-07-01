@@ -6,7 +6,7 @@
   <link href="https://weaving-dreams.github.io/atom.xml" rel="self"/>
   
   <link href="https://weaving-dreams.github.io/"/>
-  <updated>2022-06-25T07:15:57.098Z</updated>
+  <updated>2022-07-01T02:45:47.849Z</updated>
   <id>https://weaving-dreams.github.io/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>VS Code C语言开发环境配置</title>
+    <link href="https://weaving-dreams.github.io/posts/bfe43f2e/"/>
+    <id>https://weaving-dreams.github.io/posts/bfe43f2e/</id>
+    <published>2022-07-01T02:43:12.000Z</published>
+    <updated>2022-07-01T02:45:47.849Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;安装VS-code&quot;&gt;&lt;a href=&quot;#安装VS-code&quot; class=&quot;headerlink&quot; title=&quot;安装VS code&quot;&gt;&lt;/a&gt;安装VS</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="https://weaving-dreams.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="C语言" scheme="https://weaving-dreams.github.io/categories/%E5%AD%A6%E4%B9%A0/C%E8%AF%AD%E8%A8%80/"/>
+    
+    
+    <category term="C语言" scheme="https://weaving-dreams.github.io/tags/C%E8%AF%AD%E8%A8%80/"/>
+    
+  </entry>
+  
+  <entry>
     <title>胖瘦AP组网方案</title>
     <link href="https://weaving-dreams.github.io/posts/82dddbd2/"/>
     <id>https://weaving-dreams.github.io/posts/82dddbd2/</id>
     <published>2022-06-25T07:15:16.000Z</published>
-    <updated>2022-06-25T07:15:57.098Z</updated>
+    <updated>2022-06-25T07:16:08.102Z</updated>
     
     
       
@@ -560,36 +587,6 @@
     <id>https://weaving-dreams.github.io/posts/9f9ac9a/</id>
     <published>2022-06-07T02:54:54.000Z</published>
     <updated>2022-06-07T03:00:31.044Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;div class=&quot;danger&quot;&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt; 资料来源&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="学习" scheme="https://weaving-dreams.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    <category term="锐捷" scheme="https://weaving-dreams.github.io/categories/%E5%AD%A6%E4%B9%A0/%E9%94%90%E6%8D%B7/"/>
-    
-    
-    <category term="锐捷" scheme="https://weaving-dreams.github.io/tags/%E9%94%90%E6%8D%B7/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>DHCP协议原理与应用</title>
-    <link href="https://weaving-dreams.github.io/posts/ca4e8c36/"/>
-    <id>https://weaving-dreams.github.io/posts/ca4e8c36/</id>
-    <published>2022-06-07T02:54:31.000Z</published>
-    <updated>2022-06-07T03:00:31.060Z</updated>
     
     
       

