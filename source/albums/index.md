@@ -9,7 +9,6 @@ albums:
 
 ---
 
-   <img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/wallpaper/20220414173447.jpg"	style="display:none;">
 
 
 <meta name="referrer" content="strict-origin-when-cross-origin" />
@@ -18,9 +17,7 @@ albums:
 
 相册页：还没想好放什么，暂时放点壁纸
 
-为啥搞个相册页？
 
-一时脑残
 
 ---
 

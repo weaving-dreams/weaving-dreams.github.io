@@ -1,15 +1,18 @@
 ---
-layout: burp
 title: Suite汉化教程
-date: 2022-05-28 10:53:00
 tags:
   - 汉化
+  - 工具
 categories:
   - 教程
   - 工具汉化
+abbrlink: d334592a
+date: 2022-05-28 10:53:00
 ---
 
-# 
+
+
+
 
 
 
@@ -87,7 +90,7 @@ java环境（推荐下载11.0.1）：https://repo.huaweicloud.com/java/jdk/
 
 成功（虽然不是所有汉化，也够用了）
 
-![8](Burp%20Suite%E6%B1%89%E5%8C%96%E6%95%99%E7%A8%8B/8.png)
+![8](https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602185201.png)
 
 6. 添加快捷方式（每次进目录点汉化工具太麻烦了）
 

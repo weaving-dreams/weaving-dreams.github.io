@@ -4,7 +4,7 @@ aplayer: true
 date: 2022-03-09 09:48:53····
 ---
 
-{% meting "1814116265" "netease" "song" "theme:#C20C0C" %}
+{% meting "1297750769" "netease" "song" "theme:#C20C0C" %}
 
 
 
@@ -21,6 +21,16 @@ date: 2022-03-09 09:48:53····
 ## 小站历史
 
 <details open>
+    <summary style="font-size:125%">2022-07 </summary>
+    <h2>2022-07-07</h2>
+    <p>评论区由腾讯云开发部署转到了Vercel 部署 </p>
+    <p>原因：一方面是部署后的默认域名无法访问，需要自己购买域名备案后使用自己的域名才能继续访问<br>另一方面是腾讯云开发业务调整，需要花钱了</p>
+</details>
+
+
+
+
+<details>
     <summary style="font-size:125%">2022-05 </summary>
     <h2>2022-05-04</h2>
     <p>修复增加防盗链后相册页图片不能显示的问题</p>
@@ -30,6 +40,7 @@ date: 2022-03-09 09:48:53····
   <h2>2022-05-02    </h2>
   <p>增加跳转页面喜欢的女孩子（可是我还没有girlfriend的啊😭）</p>
  <p> 对友联界面进行修改（<span class="heimu">虽然这里仅有自己</span>）</p></details>
+
 
 
 

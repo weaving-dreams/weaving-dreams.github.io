@@ -74,7 +74,7 @@ creative_commons:
   license: by-nc-sa
   post: true
   language: deed.zh
-  clipboard: true
+  clipboard: false  #true
 
   # 打赏
 reward:
@@ -145,16 +145,17 @@ comment:
 # 评论区
 waline:
   enable: true
-  serverURL: https://waline-1gafcjzkcbb7fe08-1310495826.ap-shanghai.app.tcloudbase.com/waline
+  serverURL: https://waline-g166-f1ag5xjlk-weaving-dreams.vercel.app
   visitor: true
   comment: true
   emoji:
-    - https://cdn.jsdelivr.net/gh/walinejs/emojis@latest/bilibili/
-    - https://cdn.jsdelivr.net/gh/walinejs/emojis@latest/weibo/
-    - https://cdn.jsdelivr.net/gh/walinejs/emojis@latest/qq/
+    - https://unpkg.com/@waline/emojis@1.0.1/bilibili
+    - https://unpkg.com/@waline/emojis@1.0.1/qq
+    - https://unpkg.com/@waline/emojis@1.0.1/weibo
+
   
   locale:
-    placeholder: 来都来了，不说点什么吗
+    placeholder: 来都来了，说点什么吧
     level0: '炼体'
     level1: '炼气'
     level2: '筑基'
@@ -182,6 +183,8 @@ menu:
 cursor:
   enable: true
 
+# Medium Zoom 放大预览图片
+medium_zoom: true
 
   # 社交
 social:
@@ -196,6 +199,11 @@ social:
     link: https://github.com/weaving-dreams
     icon: ri:github-line
     color: "#6e5494"
+
+  - name: 语雀
+    link: https://www.yuque.com/yuqueyonghuvseqgc/wze6w2
+    icon: ant-design:yuque-outlined
+    color: "#007722"
 
   - name: 微博
     link: https://weibo.com/u/6603251070
@@ -228,16 +236,16 @@ mourn:
 
   # busuanzi
 busuanzi:
- enable: true
- site_uv: true
- site_uv_icon: icon-user-line
- site_pv: true
- site_pv_icon: icon-eye-line
- page_pv: true
- page_pv_icon: icon-eye-line
+  enable: true
+  site_uv: true
+  site_uv_icon: ri:user-line
+  site_pv: true
+  site_pv_icon: ri:eye-line
+  page_pv: true
+  page_pv_icon: ri:eye-line
 
-# 一键复制
- codeblock:
+  # 一键复制
+codeblock:
   copy_btn: true
 
 
