@@ -4211,6 +4211,68 @@ Received 23358 broadcasts, 0 runts, 0 giants
       </tags>
   </entry>
   <entry>
+    <title>Suite汉化教程</title>
+    <url>/posts/d334592a/</url>
+    <content><![CDATA[<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>下载所需安装包</p>
+<p>Burp Suite官网：<a href="https://portswigger.net/burp">https://portswigger.net/burp</a></p>
+<p>java环境（推荐下载11.0.1）：<a href="https://repo.huaweicloud.com/java/jdk/">https://repo.huaweicloud.com/java/jdk/</a></p>
+<p>汉化补丁（百度网盘含Java环境）：<a href="https://pan.baidu.com/s/1m_7QAVbN9QCvQV9xMh3avg?pwd=2yfo">https://pan.baidu.com/s/1m_7QAVbN9QCvQV9xMh3avg?pwd=2yfo</a> 	</p>
+<p>提取码：2yfo</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105115.png" alt="0.5" loading="lazy"></p>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><ol>
+<li>.双击下载的文件，选择安装路径（例如我的安装位置是：D:\jdk）</li>
+</ol>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105117.png" alt="1.1" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105119.png" alt="1" loading="lazy"></p>
+<ol start="2">
+<li>配置环境变量（设置–系统–关于–高级系统设置–环境变量）</li>
+</ol>
+<p>在系统环境变量中添加新的环境变量	<code>JAVA_HOME</code>		<code>D:\jdk</code></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105120.png" alt="2" loading="lazy"></p>
+<p>在系统环境变量中<code>Path</code>中添加:<code>%JAVA_HOME%\bin</code></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105122.png" alt="3" loading="lazy"></p>
+<ol start="3">
+<li><p>验证是否安装成功</p>
+<pre class="language-none"><code class="language-none">jave -version</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105123.png" alt="4" loading="lazy"></p>
+</li>
+<li><p>burp安装</p>
+</li>
+</ol>
+<p>双击下载的exe可执行文件，选择安装路径。（D:\BurpSuiteCommunity）</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105125.png" alt="5.5" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105126.png" alt="5" loading="lazy"></p>
+<ol start="5">
+<li>汉化</li>
+</ol>
+<p>把下载的汉化工具移动到burp安装的路径下。</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105128.png" alt="6" loading="lazy"></p>
+<p>双击汉化工具，勾选<code>cn</code>后点击<code>run</code>即可</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105129.png" alt="7" loading="lazy"></p>
+<p>成功（虽然不是所有汉化，也够用了）</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602185201.png" alt="8" loading="lazy"></p>
+<ol start="6">
+<li>添加快捷方式（每次进目录点汉化工具太麻烦了）</li>
+</ol>
+<p>右键汉化工具-发送到-桌面桌面快捷方式</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105131.png" alt="9" loading="lazy"></p>
+<p>发送到桌面的快捷方式看起来很不合适，可以对该快捷方式右键属性更改图标</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105132.png" alt="10" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105134.png" alt="11" loading="lazy"></p>
+<p>搞定</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105136.png" alt="12" loading="lazy"></p>
+]]></content>
+      <categories>
+        <category>教程</category>
+        <category>工具汉化</category>
+      </categories>
+      <tags>
+        <tag>汉化</tag>
+        <tag>工具</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>RGOS日常管理操作</title>
     <url>/posts/e25b2882/</url>
     <content><![CDATA[<div class="danger">
@@ -4641,68 +4703,6 @@ Ruijie#terminal monitor </code></pre>
       </tags>
   </entry>
   <entry>
-    <title>Suite汉化教程</title>
-    <url>/posts/d334592a/</url>
-    <content><![CDATA[<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>下载所需安装包</p>
-<p>Burp Suite官网：<a href="https://portswigger.net/burp">https://portswigger.net/burp</a></p>
-<p>java环境（推荐下载11.0.1）：<a href="https://repo.huaweicloud.com/java/jdk/">https://repo.huaweicloud.com/java/jdk/</a></p>
-<p>汉化补丁（百度网盘含Java环境）：<a href="https://pan.baidu.com/s/1m_7QAVbN9QCvQV9xMh3avg?pwd=2yfo">https://pan.baidu.com/s/1m_7QAVbN9QCvQV9xMh3avg?pwd=2yfo</a> 	</p>
-<p>提取码：2yfo</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105115.png" alt="0.5" loading="lazy"></p>
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><ol>
-<li>.双击下载的文件，选择安装路径（例如我的安装位置是：D:\jdk）</li>
-</ol>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105117.png" alt="1.1" loading="lazy"></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105119.png" alt="1" loading="lazy"></p>
-<ol start="2">
-<li>配置环境变量（设置–系统–关于–高级系统设置–环境变量）</li>
-</ol>
-<p>在系统环境变量中添加新的环境变量	<code>JAVA_HOME</code>		<code>D:\jdk</code></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105120.png" alt="2" loading="lazy"></p>
-<p>在系统环境变量中<code>Path</code>中添加:<code>%JAVA_HOME%\bin</code></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105122.png" alt="3" loading="lazy"></p>
-<ol start="3">
-<li><p>验证是否安装成功</p>
-<pre class="language-none"><code class="language-none">jave -version</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105123.png" alt="4" loading="lazy"></p>
-</li>
-<li><p>burp安装</p>
-</li>
-</ol>
-<p>双击下载的exe可执行文件，选择安装路径。（D:\BurpSuiteCommunity）</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105125.png" alt="5.5" loading="lazy"></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105126.png" alt="5" loading="lazy"></p>
-<ol start="5">
-<li>汉化</li>
-</ol>
-<p>把下载的汉化工具移动到burp安装的路径下。</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105128.png" alt="6" loading="lazy"></p>
-<p>双击汉化工具，勾选<code>cn</code>后点击<code>run</code>即可</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105129.png" alt="7" loading="lazy"></p>
-<p>成功（虽然不是所有汉化，也够用了）</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220602185201.png" alt="8" loading="lazy"></p>
-<ol start="6">
-<li>添加快捷方式（每次进目录点汉化工具太麻烦了）</li>
-</ol>
-<p>右键汉化工具-发送到-桌面桌面快捷方式</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105131.png" alt="9" loading="lazy"></p>
-<p>发送到桌面的快捷方式看起来很不合适，可以对该快捷方式右键属性更改图标</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105132.png" alt="10" loading="lazy"></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105134.png" alt="11" loading="lazy"></p>
-<p>搞定</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/burp/20220528105136.png" alt="12" loading="lazy"></p>
-]]></content>
-      <categories>
-        <category>教程</category>
-        <category>工具汉化</category>
-      </categories>
-      <tags>
-        <tag>汉化</tag>
-        <tag>工具</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Typora基本用法</title>
     <url>/posts/1bd41834/</url>
     <content><![CDATA[<p>[toc]</p>
@@ -5019,7 +5019,7 @@ cond(no)-&gt;op</code></pre>
     <title>Typora破解</title>
     <url>/posts/97fee53e/</url>
     <content><![CDATA[<p>链接：<a href="https://pan.baidu.com/s/1lBwPXa4DG_3EQbH_Jhd8cg?pwd=nl4a">https://pan.baidu.com/s/1lBwPXa4DG_3EQbH_Jhd8cg?pwd=nl4a</a><br>提取码：nl4a</p>
-<h3 id="安装后"><a href="#安装后" class="headerlink" title="安装后"></a>安装后</h3><p>1、覆盖文件<br>将 app.asar.txt 文件名中的“.txt”去掉，并覆盖至安装路径的“resources”文件夹内，参考路径：<br>C:\Program Files\Typora\resources<br>2、输入序列号<br>打开 typora ，点击“输入序列号”<br>邮箱一栏中任意填写（但须保证邮箱地址格式正确），输入序列号，点击“激活”。<br>邮箱地址例如：<a href="mailto:&#x31;&#64;&#x31;&#46;&#99;&#x6f;&#109;">&#x31;&#64;&#x31;&#46;&#99;&#x6f;&#109;</a><br>激活码：<br>● DZTX2H-6MCQZT-QL4GCT-5EBWFX<br>● G7LPKN-HP4NLD-FA3BGF-6JDQ5R<br>● 3MH4Y8-YJWT37-G5JL9Y-UHNQDJ<br>● 85ZPHY-ELQ9FQ-94J3VP-D92YLU<br>● VEZ7NV-USYN3G-8TL2N3-DADUG4</p>
+<h3 id="安装后"><a href="#安装后" class="headerlink" title="安装后"></a>安装后</h3><p>1、覆盖文件<br>将 app.asar.txt 文件名中的“.txt”去掉，并覆盖至安装路径的“resources”文件夹内，参考路径：<br>C:\Program Files\Typora\resources<br>2、输入序列号<br>打开 typora ，点击“输入序列号”<br>邮箱一栏中任意填写（但须保证邮箱地址格式正确），输入序列号，点击“激活”。<br>邮箱地址例如：<a href="mailto:&#x31;&#x40;&#x31;&#x2e;&#x63;&#x6f;&#109;">&#x31;&#x40;&#x31;&#x2e;&#x63;&#x6f;&#109;</a><br>激活码：<br>● DZTX2H-6MCQZT-QL4GCT-5EBWFX<br>● G7LPKN-HP4NLD-FA3BGF-6JDQ5R<br>● 3MH4Y8-YJWT37-G5JL9Y-UHNQDJ<br>● 85ZPHY-ELQ9FQ-94J3VP-D92YLU<br>● VEZ7NV-USYN3G-8TL2N3-DADUG4</p>
 <p>填写完成后激活成功</p>
 ]]></content>
       <categories>
@@ -6012,8 +6012,8 @@ http server enable
     <title>Waline评论区又换地方部署了</title>
     <url>/posts/4366275/</url>
     <content><![CDATA[<p>近期对于使用Waline评论插件的我来说，是一个非常困扰的时期。先是腾讯云云开发不再提供免费额度，改为个人基础套餐价按量计费；转为Vercel 部署后不久，服务商 LeanCloud 发布国内提供的服务，从8月份起需要绑定自有案例域名才能正常运行；又过几天 Vercel (Waline 官方提供的免费部署方案，也是大部用户的选择)旗下的 <code>vercel.app</code> 域名又遭受 DNS 污染攻击，在国内无法直接访问此域名，然后我的评论区就又挂了。</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/1.png_%E8%85%BE%E8%AE%AF%E4%BA%91%E5%BC%80%E5%8F%91%E5%85%AC%E5%91%8A" loading="lazy"></p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2.bmp_LeanCloud%E5%85%AC%E5%91%8A" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/1.png%22%E8%85%BE%E8%AE%AF%E4%BA%91%E5%BC%80%E5%8F%91%E5%85%AC%E5%91%8A%22" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2.bmp%22LeanCloud%E5%85%AC%E5%91%8A%22" loading="lazy"></p>
 <p>好在官网还有免费部署的方法，所以我的评论区又换data部署了；评论区终于又可以访问了。</p>
 <p>’免费的东西总是最能折腾的的‘，当然  ‘办法总比困难多’</p>
 ]]></content>
@@ -6023,111 +6023,6 @@ http server enable
       </categories>
       <tags>
         <tag>杂谈</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>centos7安装PHP5</title>
-    <url>/posts/b394315b/</url>
-    <content><![CDATA[<p>参考：<a href="https://www.cnblogs.com/xxdebug/p/14142266.html">centos7安装PHP5 - xiaoxiaoの - 博客园 </a></p>
-<ol>
-<li>创建文件夹</li>
-</ol>
-<pre class="language-none"><code class="language-none">mkdir &#x2F;usr&#x2F;local&#x2F;src&#x2F;php 
-
-cd &#x2F;usr&#x2F;local&#x2F;src&#x2F;php</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130813652.png" alt="1" loading="lazy"></p>
-<ol start="2">
-<li>安装依赖</li>
-</ol>
-<pre class="language-none"><code class="language-none">yum install -y gcc gcc-c++ autoconf libjpeg libjpeg-devel libpng libpng-devel freetype freetype-devel libpng libpng-devel libxml2 libxml2-devel zlib zlib-devel glibc glibc-devel glib2 glib2-devel bzip2 bzip2-devel ncurses curl openssl-devel gdbm-devel db4-devel libXpm-devel libX11-devel gd-devel gmp-devel readline-devel libxslt-devel expat-devel xmlrpc-c xmlrpc-c-devel</code></pre>
-
-
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130813996.png" alt="2" loading="lazy"></p>
-<ol start="3">
-<li>解压下载的php源码包</li>
-</ol>
-<pre class="language-none"><code class="language-none">tar -xzvf +你的包名.tar.gz</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130814770.png" alt="3" loading="lazy"></p>
-<ol start="4">
-<li><p>将解压的文件复制到&#x2F;usr&#x2F;local&#x2F;src&#x2F;php&#x2F;下</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130814486.png" alt="4" loading="lazy"></p>
-</li>
-<li><p>进入&#x2F;usr&#x2F;local&#x2F;src&#x2F;php&#x2F;php-5.5.25这个文件夹后在终端输入如下命令</p>
-</li>
-</ol>
-<pre class="language-none"><code class="language-none">cd &#x2F;usr&#x2F;local&#x2F;src&#x2F;php&#x2F;php-5.5.25</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130814634.png" alt="5" loading="lazy"></p>
-<pre class="language-none"><code class="language-none">.&#x2F;configure --prefix&#x3D;&#x2F;usr&#x2F;local&#x2F;php --with-config-file-path&#x3D;&#x2F;usr&#x2F;local&#x2F;php&#x2F;etc --enable-fpm --enable-sysvsem --enable-sockets --enable-pcntl --enable-mbstring --enable-mysqlnd --enable-opcache --enable-shmop --enable-zip --enable-ftp --enable-gd-native-ttf --enable-wddx --enable-soap</code></pre>
-
-
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130814784.png" alt="6" loading="lazy"></p>
-<pre class="language-none"><code class="language-none">make</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130814067.png" alt="7" loading="lazy"></p>
-<ol start="6">
-<li>安装</li>
-</ol>
-<pre class="language-none"><code class="language-none">make install
-
-cp &#x2F;usr&#x2F;local&#x2F;php&#x2F;etc&#x2F;php-fpm.conf.default php-fpm.conf
-
-cp &#x2F;usr&#x2F;local&#x2F;src&#x2F;php&#x2F;php-5.3.28&#x2F;php.ini-development &#x2F;usr&#x2F;local&#x2F;php&#x2F;etc&#x2F;php.ini-development
-
-cp &#x2F;usr&#x2F;local&#x2F;php&#x2F;etc&#x2F;php.ini-development &#x2F;usr&#x2F;local&#x2F;php&#x2F;etc&#x2F;php.ini
-
-cp &#x2F;usr&#x2F;local&#x2F;src&#x2F;php&#x2F;php-5.3.28&#x2F;sapi&#x2F;fpm&#x2F;init.d.php-fpm &#x2F;etc&#x2F;init.d&#x2F;php-fpm</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130814525.png" alt="8" loading="lazy"></p>
-<ol start="7">
-<li>添加权限</li>
-</ol>
-<pre class="language-none"><code class="language-none">chmod +x &#x2F;etc&#x2F;init.d&#x2F;php-fpm</code></pre>
-
-<ol start="8">
-<li>添加开机启动</li>
-</ol>
-<pre class="language-none"><code class="language-none">chkconfig --add php-fpm</code></pre>
-
-<ol start="9">
-<li>设置启动等级</li>
-</ol>
-<pre class="language-none"><code class="language-none">chkconfig --level 35 php-fpm on
-
-cp &#x2F;usr&#x2F;local&#x2F;php&#x2F;etc&#x2F;php-fpm.conf.default &#x2F;usr&#x2F;local&#x2F;php&#x2F;etc&#x2F;php-fpm.conf
-
-vim &#x2F;usr&#x2F;local&#x2F;php&#x2F;etc&#x2F;php-fpm.conf 
-
-找到 ;pid &#x3D; run&#x2F;php-fpm.pid 去掉前面的分号</code></pre>
-
-<ol start="10">
-<li>启动</li>
-</ol>
-<pre class="language-none"><code class="language-none">service php-fpm start</code></pre>
-
-<ol start="11">
-<li>设置环境变量</li>
-</ol>
-<pre class="language-none"><code class="language-none">vim &#x2F;etc&#x2F;profile 
-
-底部添加
-PATH&#x3D;$PATH:&#x2F;usr&#x2F;local&#x2F;php&#x2F;bin环境变量生效 source &#x2F;etc&#x2F;profile</code></pre>
-
-<ol start="12">
-<li>查看安装版本</li>
-</ol>
-<pre class="language-none"><code class="language-none">php -v</code></pre>
-]]></content>
-      <categories>
-        <category>教程</category>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>CentOS7</tag>
       </tags>
   </entry>
   <entry>
@@ -6333,6 +6228,111 @@ PATH&#x3D;$PATH:&#x2F;usr&#x2F;local&#x2F;php&#x2F;bin环境变量生效 source 
       </categories>
       <tags>
         <tag>锐捷</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>centos7安装PHP5</title>
+    <url>/posts/b394315b/</url>
+    <content><![CDATA[<p>参考：<a href="https://www.cnblogs.com/xxdebug/p/14142266.html">centos7安装PHP5 - xiaoxiaoの - 博客园 </a></p>
+<ol>
+<li>创建文件夹</li>
+</ol>
+<pre class="language-none"><code class="language-none">mkdir &#x2F;usr&#x2F;local&#x2F;src&#x2F;php 
+
+cd &#x2F;usr&#x2F;local&#x2F;src&#x2F;php</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130813652.png" alt="1" loading="lazy"></p>
+<ol start="2">
+<li>安装依赖</li>
+</ol>
+<pre class="language-none"><code class="language-none">yum install -y gcc gcc-c++ autoconf libjpeg libjpeg-devel libpng libpng-devel freetype freetype-devel libpng libpng-devel libxml2 libxml2-devel zlib zlib-devel glibc glibc-devel glib2 glib2-devel bzip2 bzip2-devel ncurses curl openssl-devel gdbm-devel db4-devel libXpm-devel libX11-devel gd-devel gmp-devel readline-devel libxslt-devel expat-devel xmlrpc-c xmlrpc-c-devel</code></pre>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130813996.png" alt="2" loading="lazy"></p>
+<ol start="3">
+<li>解压下载的php源码包</li>
+</ol>
+<pre class="language-none"><code class="language-none">tar -xzvf +你的包名.tar.gz</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130814770.png" alt="3" loading="lazy"></p>
+<ol start="4">
+<li><p>将解压的文件复制到&#x2F;usr&#x2F;local&#x2F;src&#x2F;php&#x2F;下</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130814486.png" alt="4" loading="lazy"></p>
+</li>
+<li><p>进入&#x2F;usr&#x2F;local&#x2F;src&#x2F;php&#x2F;php-5.5.25这个文件夹后在终端输入如下命令</p>
+</li>
+</ol>
+<pre class="language-none"><code class="language-none">cd &#x2F;usr&#x2F;local&#x2F;src&#x2F;php&#x2F;php-5.5.25</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130814634.png" alt="5" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">.&#x2F;configure --prefix&#x3D;&#x2F;usr&#x2F;local&#x2F;php --with-config-file-path&#x3D;&#x2F;usr&#x2F;local&#x2F;php&#x2F;etc --enable-fpm --enable-sysvsem --enable-sockets --enable-pcntl --enable-mbstring --enable-mysqlnd --enable-opcache --enable-shmop --enable-zip --enable-ftp --enable-gd-native-ttf --enable-wddx --enable-soap</code></pre>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130814784.png" alt="6" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">make</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130814067.png" alt="7" loading="lazy"></p>
+<ol start="6">
+<li>安装</li>
+</ol>
+<pre class="language-none"><code class="language-none">make install
+
+cp &#x2F;usr&#x2F;local&#x2F;php&#x2F;etc&#x2F;php-fpm.conf.default php-fpm.conf
+
+cp &#x2F;usr&#x2F;local&#x2F;src&#x2F;php&#x2F;php-5.3.28&#x2F;php.ini-development &#x2F;usr&#x2F;local&#x2F;php&#x2F;etc&#x2F;php.ini-development
+
+cp &#x2F;usr&#x2F;local&#x2F;php&#x2F;etc&#x2F;php.ini-development &#x2F;usr&#x2F;local&#x2F;php&#x2F;etc&#x2F;php.ini
+
+cp &#x2F;usr&#x2F;local&#x2F;src&#x2F;php&#x2F;php-5.3.28&#x2F;sapi&#x2F;fpm&#x2F;init.d.php-fpm &#x2F;etc&#x2F;init.d&#x2F;php-fpm</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130814525.png" alt="8" loading="lazy"></p>
+<ol start="7">
+<li>添加权限</li>
+</ol>
+<pre class="language-none"><code class="language-none">chmod +x &#x2F;etc&#x2F;init.d&#x2F;php-fpm</code></pre>
+
+<ol start="8">
+<li>添加开机启动</li>
+</ol>
+<pre class="language-none"><code class="language-none">chkconfig --add php-fpm</code></pre>
+
+<ol start="9">
+<li>设置启动等级</li>
+</ol>
+<pre class="language-none"><code class="language-none">chkconfig --level 35 php-fpm on
+
+cp &#x2F;usr&#x2F;local&#x2F;php&#x2F;etc&#x2F;php-fpm.conf.default &#x2F;usr&#x2F;local&#x2F;php&#x2F;etc&#x2F;php-fpm.conf
+
+vim &#x2F;usr&#x2F;local&#x2F;php&#x2F;etc&#x2F;php-fpm.conf 
+
+找到 ;pid &#x3D; run&#x2F;php-fpm.pid 去掉前面的分号</code></pre>
+
+<ol start="10">
+<li>启动</li>
+</ol>
+<pre class="language-none"><code class="language-none">service php-fpm start</code></pre>
+
+<ol start="11">
+<li>设置环境变量</li>
+</ol>
+<pre class="language-none"><code class="language-none">vim &#x2F;etc&#x2F;profile 
+
+底部添加
+PATH&#x3D;$PATH:&#x2F;usr&#x2F;local&#x2F;php&#x2F;bin环境变量生效 source &#x2F;etc&#x2F;profile</code></pre>
+
+<ol start="12">
+<li>查看安装版本</li>
+</ol>
+<pre class="language-none"><code class="language-none">php -v</code></pre>
+]]></content>
+      <categories>
+        <category>教程</category>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>CentOS7</tag>
       </tags>
   </entry>
   <entry>
@@ -6870,6 +6870,232 @@ apt-get dist-upgrade		#根据依赖关系更新</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>《云边有个小卖部》摘抄</title>
+    <url>/posts/4b648fc6/</url>
+    <content><![CDATA[
+    <div id="aplayer-eJkLWSzw" class="aplayer aplayer-tag-marker meting-tag-marker"
+         data-id="1298779845" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#C20C0C"
+    ></div>
+
+
+
+<h2 id="内容简介"><a href="#内容简介" class="headerlink" title="内容简介"></a>内容简介</h2><p>从小与外婆相依为命的刘十三，因为妈妈留言让他好好读书考上名牌大学，找个好姑娘结婚，好好生活，于是笨拙不聪明的刘十三努力学习，废寝忘食，最后悲哀地发现“原来世界上有很多事情，不是你有计划、有毅力就能做到的”。追寻着远方和梦想，刘十三背起行囊，离开了故乡，在大城市里摸爬滚打、失恋又失业、被情敌嘲笑，喝得酩酊大醉后被外婆开着老旧拖拉机，奔波一天一夜“绑架”回到了他的故乡。</p>
+<p>刘十三就这样稀里糊涂地回到故乡，与童年时认识的女孩程霜重逢。程霜热情地为刘十三一年要卖出1001份保险出谋划策；和他带着小女孩球球假装一家三口一起玩耍；与他见证了牛大田和秦小贞的爱情故事。同时，他们自己的爱情也逐渐升温。</p>
+<p>可刘十三的命运总是如此曲折：原来外婆早在半年前就知道自己患癌症，已是晚期，最多只有半年时间，如今再也撑不住了。在邻里和程霜的帮忙下，刘十三办好外婆的后事，在除夕夜顶风冒雪8个小时把指引亡魂的灯笼挂到高高的山顶。紧接着，程霜也要离开他，到医院动手术，临走前她对刘十三许下一生的承诺。外婆带着对外孙的爱走了，程霜带着对他的期待走了，他带着希望，坚强地活着。</p>
+<p>来自：<a href="https://baike.baidu.com/item/%E4%BA%91%E8%BE%B9%E6%9C%89%E4%B8%AA%E5%B0%8F%E5%8D%96%E9%83%A8/22693709">百度百科 </a></p>
+<h2 id="摘抄"><a href="#摘抄" class="headerlink" title="摘抄"></a>摘抄</h2><blockquote>
+<p>为别人活着，也要为自己活着。希望和悲伤，都是一缕光。总有一天，我们会再相遇。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>有朵盛开的云，缓缓滑过山顶，随风飘向天边 ，我们慢慢明白，有些告别，就是最后一面。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p> 山风微微，像月光下晃动的海浪， 温和而柔软，停留在时光的背后， 变成小时候听过的故事。 在遥远的城市，陌生的地方， 有他未曾见过的山和海。</p>
+</blockquote>
+<p><br>　</p>
+<blockquote>
+<p>人和人之间舒服的关系，是可以一直不说话，也可以随时说话。　</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>生命是有光的。 在我熄灭以前，能够照亮你一点，就是我所有能做的了。 我爱你，你要记得我。　　</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>有些人刻苦铭心， 没几年会遗忘。 有些人不论生死， 都陪在身旁。</p>
+</blockquote>
+<p><br>　</p>
+<blockquote>
+<p>云边有个小卖部，货架堆着岁月和夕阳，背后就是山。老人靠着躺椅假装睡着，小孩子偷走了一块糖。泪水几点钟落地，飞鸟要去向何方。人们聚和离，云朵来又往。讲故事的人，总有一个故事不愿讲。时光飞逝，悄悄话变成纸张。　　</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>夏夜的歌声，冬至的歌声， 都从水面掠过，皱起一层波纹， 像天空坠落的泪水，又归于天空。 人们随口说的一些话，跌落墙角， 风吹不走，阳光烧不掉，独自沉眠。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>这世上大部分抒情，都会被认作是无病呻吟。能理解你得了什么病，基本上就是知己。</p>
+</blockquote>
+<br>
+
+
+
+<blockquote>
+<p> 山这边是刘十三的童年，山那边是外婆的海。山风微微，像月光下晃动的海浪，有的，没的，温和而柔软，停留在时光的背后，变成小时候听过的故事。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p> 有些人刻骨铭心，没几年就遗忘。有些人不论生死，都陪在你身旁。</p>
+</blockquote>
+<p><br>　　</p>
+<blockquote>
+<p>再习惯等待，等不来依旧难过，那种难过，书上说叫做失望。直到长大后，他才明白，还有更大的难过，叫做绝望。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>那么热的夏天，少年的后背被女孩的悲伤烫出一个洞，一直贯穿到心脏，无数个季节的风穿越过这条通道，有一只萤火虫在风里飞舞，忽明忽暗。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>云朵来又往。讲故事的人，总有一个故事不愿讲。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>他一无所知，无法描绘所有人创造的未来世界里，如何创造一个家。他孜孜不倦地承诺和分享，只是把扎根他每个细胞的小镇生涯，换了本日历，成为他反复的描绘。</p>
+</blockquote>
+<br>
+
+
+
+
+
+<blockquote>
+<p>为别人活着，也要为自己活着，希望和悲伤都是一缕光。总有一天，我们会再相遇。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>小说</category>
+        <category>摘抄</category>
+      </categories>
+      <tags>
+        <tag>小说摘抄</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>《天堂旅行团》摘抄</title>
+    <url>/posts/7d0fc3d8/</url>
+    <content><![CDATA[
+    <div id="aplayer-upmBGevP" class="aplayer aplayer-tag-marker meting-tag-marker"
+         data-id="1891034510" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#C20C0C"
+    ></div>
+
+
+
+<h2 id="内容简介"><a href="#内容简介" class="headerlink" title="内容简介"></a>内容简介</h2><p>该书讲述了一个默默无闻的小人物平凡却惊心动魄的人生。几乎要被生活碾压成泥的主人公宋一鲤，意外踏上一场有关生命意义与救赎的治愈之旅。</p>
+<p>宋一鲤的不理想人生，大概要从五岁时，父母婚姻不睦、父亲离家出走算起。刚强的母亲，独自承担起抚养儿子的责任。直至十岁，老家传来父亲病故的噩耗，少年宋一鲤的心里才开始真正地恨上了父亲——那个永远将自己丢在人间的男人。</p>
+<p>随着年龄的增长，宋一鲤像其他普通人一样生活学习，并与大学同学林艺结了婚。可在母亲病倒后，一切都变了。宋一鲤搞不清，这个弯是在哪儿拐的？他与妻子接手了家里的小饭馆，不仅无法照顾母亲，妻子也因不甘心这样生活而提出离婚。宋一鲤一下子被生活打懵了，不知道自己错在哪儿？除了借酒浇愁，做什么都打不起精神。宋一鲤觉得自己没有尽到做儿子、丈夫的责任，没法给母亲、妻子创造更好的生活。</p>
+<p>癌症女孩小聚，就像位天使，降临到了宋一鲤的“人间”。她不仅保护了宋一鲤，还赋予了他重新面对生活的勇气。因为小聚嚷着要去看演唱会，宋一鲤不得不开着他那辆破烂面包车，带着小聚从南京出发，去了武汉，去昆明，再去南昌，一路上遇见了很多人，打了好几场架，管了不少闲事。旅途中，宋一鲤的世界忽然开阔了，不再纠缠于自己在夜里数也数不清的伤痕。他亲眼看见了他人的痛苦与勇敢，看见了他人的责任与担当</p>
+<p>来自：<a href="https://baike.baidu.com/item/%E5%A4%A9%E5%A0%82%E6%97%85%E8%A1%8C%E5%9B%A2/58293831?fr=aladdin">百度百科</a></p>
+<h2 id="摘抄"><a href="#摘抄" class="headerlink" title="摘抄"></a>摘抄</h2><blockquote>
+<p>遇见你，就像跋山涉水遇见一轮明月，以后天黑心伤，就问那天借一点月光。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>月亮在远方坠落，浪潮在堤岸破碎，统统不能回到原点。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>月亮永远都在，悬挂于时间长河之中。我从前一天来，要找的人是你。你往后一天去，不是我要找的人了。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>她突然的来，突然的走。我慢慢明白，人与人之间没有突然，她想好了才会来，想清了才会走。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>世界是有尽头的，在南方洋流的末端，冰山漂浮，云和水一起冻结。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>时间治愈不了一切，她只会把泥泞日复一日的堆积。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>我从前一天来，要找的人是你。你往后一天去，不是我要找的人了。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>一个人内心有裂痕的时候，都是静悄悄的，这个世界没人能察觉，只有当他砰的一声碎开，大家才会听到。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>你这个人就是棵荒草，别人稍微爱你一下，就恨不得把心都掏出来。但你是棵荒草啊，能掏出什么来，最多最多，把自己点着了，让人家暖一下手。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>孤独来自于生命中那些重要的人，他们的影子扎根在旧时光，笑容不知道去了何方。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>世界上的一万种苦难，不为谁单独降临，也不为谁网开一面。可我想，窒息之前，总要有一口属于我的空气。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>那些过不去的日子，从天而降，连绵不绝，像一条无穷无尽的隧道。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>没有去过四海，穿过四季，谁也不想困在出生就挣扎的原地。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>一无所有的时候，说明你该拥有的，还没到来。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>命运怎么安排那是它的事，我有我的安排。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>月亮在远方堕落，浪潮在堤岸破碎，统统不能倒回原点。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>他们还可以向前走，水迹会被阳光晒干，种子随风飘往四方，努努力，幸福触手可及。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>愿我余生可以淋漓尽致，即使他们说，消灭痛苦最有效的方式，是降低期待，减少敏感。我依然愿意充满渴求，矢志不渝，并认真感受，无一遗漏。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>天堂没有旅行团，我在世界尽头张望，等你回来，全人类睡得正香。</p>
+</blockquote>
+<br>
+
+<blockquote>
+<p>生命的终章，我踏上了一段旅途。开着破烂的面包车，穿越几十座城市，撕开雨天，潜入他乡，尽头是天堂。<br>浅蓝的天光，泛紫的云层，路灯嵌进夕阳。山间道路弥漫着一万吨水汽，密林卷来风声，我闯进无止境的夜里。<br>她说，天总会亮的。那么，我们一起记录下，凌晨前的人生。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>小说</category>
+        <category>摘抄</category>
+      </categories>
+      <tags>
+        <tag>小说摘抄</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>sqlmap简单用法</title>
     <url>/posts/15042a92/</url>
     <content><![CDATA[<h2 id="sqlmap介绍"><a href="#sqlmap介绍" class="headerlink" title="sqlmap介绍"></a>sqlmap介绍</h2><p>sqlmap是一个开源的渗透测试工具，可以自动检测和利用SQL注入缺陷并接管数据库服务器。它具有强大的检测引擎，许多用于终极渗透测试仪的利基功能，以及广泛的开关，包括数据库指纹识别，从数据库获取数据，访问底层文件系统以及通过带外连接在操作系统上执行命令。</p>
@@ -7121,349 +7347,6 @@ apt-get dist-upgrade		#根据依赖关系更新</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>《云边有个小卖部》摘抄</title>
-    <url>/posts/4b648fc6/</url>
-    <content><![CDATA[
-    <div id="aplayer-VDCWYXUz" class="aplayer aplayer-tag-marker meting-tag-marker"
-         data-id="1298779845" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#C20C0C"
-    ></div>
-
-
-
-<h2 id="内容简介"><a href="#内容简介" class="headerlink" title="内容简介"></a>内容简介</h2><p>从小与外婆相依为命的刘十三，因为妈妈留言让他好好读书考上名牌大学，找个好姑娘结婚，好好生活，于是笨拙不聪明的刘十三努力学习，废寝忘食，最后悲哀地发现“原来世界上有很多事情，不是你有计划、有毅力就能做到的”。追寻着远方和梦想，刘十三背起行囊，离开了故乡，在大城市里摸爬滚打、失恋又失业、被情敌嘲笑，喝得酩酊大醉后被外婆开着老旧拖拉机，奔波一天一夜“绑架”回到了他的故乡。</p>
-<p>刘十三就这样稀里糊涂地回到故乡，与童年时认识的女孩程霜重逢。程霜热情地为刘十三一年要卖出1001份保险出谋划策；和他带着小女孩球球假装一家三口一起玩耍；与他见证了牛大田和秦小贞的爱情故事。同时，他们自己的爱情也逐渐升温。</p>
-<p>可刘十三的命运总是如此曲折：原来外婆早在半年前就知道自己患癌症，已是晚期，最多只有半年时间，如今再也撑不住了。在邻里和程霜的帮忙下，刘十三办好外婆的后事，在除夕夜顶风冒雪8个小时把指引亡魂的灯笼挂到高高的山顶。紧接着，程霜也要离开他，到医院动手术，临走前她对刘十三许下一生的承诺。外婆带着对外孙的爱走了，程霜带着对他的期待走了，他带着希望，坚强地活着。</p>
-<p>来自：<a href="https://baike.baidu.com/item/%E4%BA%91%E8%BE%B9%E6%9C%89%E4%B8%AA%E5%B0%8F%E5%8D%96%E9%83%A8/22693709">百度百科 </a></p>
-<h2 id="摘抄"><a href="#摘抄" class="headerlink" title="摘抄"></a>摘抄</h2><blockquote>
-<p>为别人活着，也要为自己活着。希望和悲伤，都是一缕光。总有一天，我们会再相遇。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>有朵盛开的云，缓缓滑过山顶，随风飘向天边 ，我们慢慢明白，有些告别，就是最后一面。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p> 山风微微，像月光下晃动的海浪， 温和而柔软，停留在时光的背后， 变成小时候听过的故事。 在遥远的城市，陌生的地方， 有他未曾见过的山和海。</p>
-</blockquote>
-<p><br>　</p>
-<blockquote>
-<p>人和人之间舒服的关系，是可以一直不说话，也可以随时说话。　</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>生命是有光的。 在我熄灭以前，能够照亮你一点，就是我所有能做的了。 我爱你，你要记得我。　　</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>有些人刻苦铭心， 没几年会遗忘。 有些人不论生死， 都陪在身旁。</p>
-</blockquote>
-<p><br>　</p>
-<blockquote>
-<p>云边有个小卖部，货架堆着岁月和夕阳，背后就是山。老人靠着躺椅假装睡着，小孩子偷走了一块糖。泪水几点钟落地，飞鸟要去向何方。人们聚和离，云朵来又往。讲故事的人，总有一个故事不愿讲。时光飞逝，悄悄话变成纸张。　　</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>夏夜的歌声，冬至的歌声， 都从水面掠过，皱起一层波纹， 像天空坠落的泪水，又归于天空。 人们随口说的一些话，跌落墙角， 风吹不走，阳光烧不掉，独自沉眠。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>这世上大部分抒情，都会被认作是无病呻吟。能理解你得了什么病，基本上就是知己。</p>
-</blockquote>
-<br>
-
-
-
-<blockquote>
-<p> 山这边是刘十三的童年，山那边是外婆的海。山风微微，像月光下晃动的海浪，有的，没的，温和而柔软，停留在时光的背后，变成小时候听过的故事。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p> 有些人刻骨铭心，没几年就遗忘。有些人不论生死，都陪在你身旁。</p>
-</blockquote>
-<p><br>　　</p>
-<blockquote>
-<p>再习惯等待，等不来依旧难过，那种难过，书上说叫做失望。直到长大后，他才明白，还有更大的难过，叫做绝望。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>那么热的夏天，少年的后背被女孩的悲伤烫出一个洞，一直贯穿到心脏，无数个季节的风穿越过这条通道，有一只萤火虫在风里飞舞，忽明忽暗。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>云朵来又往。讲故事的人，总有一个故事不愿讲。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>他一无所知，无法描绘所有人创造的未来世界里，如何创造一个家。他孜孜不倦地承诺和分享，只是把扎根他每个细胞的小镇生涯，换了本日历，成为他反复的描绘。</p>
-</blockquote>
-<br>
-
-
-
-
-
-<blockquote>
-<p>为别人活着，也要为自己活着，希望和悲伤都是一缕光。总有一天，我们会再相遇。</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>小说</category>
-        <category>摘抄</category>
-      </categories>
-      <tags>
-        <tag>小说摘抄</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>《天堂旅行团》摘抄</title>
-    <url>/posts/7d0fc3d8/</url>
-    <content><![CDATA[
-    <div id="aplayer-ckljQNvf" class="aplayer aplayer-tag-marker meting-tag-marker"
-         data-id="1891034510" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#C20C0C"
-    ></div>
-
-
-
-<h2 id="内容简介"><a href="#内容简介" class="headerlink" title="内容简介"></a>内容简介</h2><p>该书讲述了一个默默无闻的小人物平凡却惊心动魄的人生。几乎要被生活碾压成泥的主人公宋一鲤，意外踏上一场有关生命意义与救赎的治愈之旅。</p>
-<p>宋一鲤的不理想人生，大概要从五岁时，父母婚姻不睦、父亲离家出走算起。刚强的母亲，独自承担起抚养儿子的责任。直至十岁，老家传来父亲病故的噩耗，少年宋一鲤的心里才开始真正地恨上了父亲——那个永远将自己丢在人间的男人。</p>
-<p>随着年龄的增长，宋一鲤像其他普通人一样生活学习，并与大学同学林艺结了婚。可在母亲病倒后，一切都变了。宋一鲤搞不清，这个弯是在哪儿拐的？他与妻子接手了家里的小饭馆，不仅无法照顾母亲，妻子也因不甘心这样生活而提出离婚。宋一鲤一下子被生活打懵了，不知道自己错在哪儿？除了借酒浇愁，做什么都打不起精神。宋一鲤觉得自己没有尽到做儿子、丈夫的责任，没法给母亲、妻子创造更好的生活。</p>
-<p>癌症女孩小聚，就像位天使，降临到了宋一鲤的“人间”。她不仅保护了宋一鲤，还赋予了他重新面对生活的勇气。因为小聚嚷着要去看演唱会，宋一鲤不得不开着他那辆破烂面包车，带着小聚从南京出发，去了武汉，去昆明，再去南昌，一路上遇见了很多人，打了好几场架，管了不少闲事。旅途中，宋一鲤的世界忽然开阔了，不再纠缠于自己在夜里数也数不清的伤痕。他亲眼看见了他人的痛苦与勇敢，看见了他人的责任与担当</p>
-<p>来自：<a href="https://baike.baidu.com/item/%E5%A4%A9%E5%A0%82%E6%97%85%E8%A1%8C%E5%9B%A2/58293831?fr=aladdin">百度百科</a></p>
-<h2 id="摘抄"><a href="#摘抄" class="headerlink" title="摘抄"></a>摘抄</h2><blockquote>
-<p>遇见你，就像跋山涉水遇见一轮明月，以后天黑心伤，就问那天借一点月光。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>月亮在远方坠落，浪潮在堤岸破碎，统统不能回到原点。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>月亮永远都在，悬挂于时间长河之中。我从前一天来，要找的人是你。你往后一天去，不是我要找的人了。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>她突然的来，突然的走。我慢慢明白，人与人之间没有突然，她想好了才会来，想清了才会走。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>世界是有尽头的，在南方洋流的末端，冰山漂浮，云和水一起冻结。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>时间治愈不了一切，她只会把泥泞日复一日的堆积。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>我从前一天来，要找的人是你。你往后一天去，不是我要找的人了。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>一个人内心有裂痕的时候，都是静悄悄的，这个世界没人能察觉，只有当他砰的一声碎开，大家才会听到。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>你这个人就是棵荒草，别人稍微爱你一下，就恨不得把心都掏出来。但你是棵荒草啊，能掏出什么来，最多最多，把自己点着了，让人家暖一下手。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>孤独来自于生命中那些重要的人，他们的影子扎根在旧时光，笑容不知道去了何方。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>世界上的一万种苦难，不为谁单独降临，也不为谁网开一面。可我想，窒息之前，总要有一口属于我的空气。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>那些过不去的日子，从天而降，连绵不绝，像一条无穷无尽的隧道。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>没有去过四海，穿过四季，谁也不想困在出生就挣扎的原地。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>一无所有的时候，说明你该拥有的，还没到来。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>命运怎么安排那是它的事，我有我的安排。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>月亮在远方堕落，浪潮在堤岸破碎，统统不能倒回原点。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>他们还可以向前走，水迹会被阳光晒干，种子随风飘往四方，努努力，幸福触手可及。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>愿我余生可以淋漓尽致，即使他们说，消灭痛苦最有效的方式，是降低期待，减少敏感。我依然愿意充满渴求，矢志不渝，并认真感受，无一遗漏。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>天堂没有旅行团，我在世界尽头张望，等你回来，全人类睡得正香。</p>
-</blockquote>
-<br>
-
-<blockquote>
-<p>生命的终章，我踏上了一段旅途。开着破烂的面包车，穿越几十座城市，撕开雨天，潜入他乡，尽头是天堂。<br>浅蓝的天光，泛紫的云层，路灯嵌进夕阳。山间道路弥漫着一万吨水汽，密林卷来风声，我闯进无止境的夜里。<br>她说，天总会亮的。那么，我们一起记录下，凌晨前的人生。</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>小说</category>
-        <category>摘抄</category>
-      </categories>
-      <tags>
-        <tag>小说摘抄</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>个人博客的搭建</title>
-    <url>/posts/2f165d3c/</url>
-    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="为什么搭建自己的个人博客"><a href="#为什么搭建自己的个人博客" class="headerlink" title="为什么搭建自己的个人博客"></a>为什么搭建自己的个人博客</h3><p>  虽然现在市面上博客种类繁多，注册后可以直接在上面发表，用户交互也非常棒，写的文章也可以被各种搜索引擎搜索到，但是平台的各种限制以及烦人的广告最终让我萌生了搭建自己的个人博客的想法。</p>
-<span id="more"></span>
-
-<h3 id="个人博客的好处"><a href="#个人博客的好处" class="headerlink" title="个人博客的好处"></a>个人博客的好处</h3><ol>
-<li><p>更自由、更独立</p>
-<p>个人博客可以按照自己的喜好设计、任意管理，不用担心平台限制和各种广告</p>
-</li>
-<li><p>记录生活，反应成长</p>
-</li>
-<li><p>学习新技能</p>
-</li>
-<li><p>提升写作</p>
-</li>
-</ol>
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><p>文中步骤按照yunyoujun的博客搭建</p>
-<p> <a href="https://www.yunyoujun.cn/share/how-to-build-your-site/">教你如何从零开始搭建一个属于自己的网站 | 云游君的小站 (yunyoujun.cn)</a></p>
-<h3 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h3><p>官网： [Node.js](<a href="https://nodejs.org/zh-cn/">Node.js (nodejs.org)</a>)   建议下载稳定版</p>
-<p>全部默认下一步进行安装</p>
-<p>安装后打开命令提示符输入： node -v：显示安装的nodejs版本、npm -v：显示安装的npm版本</p>
-<p>注:Node.js 安装成功也默认安装了npm，后续会用到<br>    npm 是随 Node.js 一起被安装的包管理工具，你可以理解成 Node.js 自带的应用商店。</p>
-<p>​	使用hexo搭建个人博客选装hexohexo-renderer-sass：国内使用npm会很慢<br>​	解决方法：改用淘宝镜像</p>
-<pre><code>$ npm install -g cnpm --registry=https://registry.npm.taobao.org
-$ npm config set registry https://registry.npm.taobao.org
-</code></pre>
-<p>再次安装：</p>
-<pre class="language-none"><code class="language-none">$ cnpm install hexo-renderer-sass --save</code></pre>
-
-<h3 id="Git和GitHub"><a href="#Git和GitHub" class="headerlink" title="Git和GitHub"></a>Git和GitHub</h3><h4 id="安装VS-Code（可省略）"><a href="#安装VS-Code（可省略）" class="headerlink" title="安装VS Code（可省略）"></a>安装VS Code（可省略）</h4><blockquote>
-<p>安装git可设置VS Code为默认编辑器而且功能强大</p>
-</blockquote>
-<p>官网：[VS Code](<a href="https://code.visualstudio.com/">Visual Studio Code - Code Editing.重新</a>)</p>
-<p>选择好安装位置和添加桌面快捷方式其他默认就好</p>
-<p>设置中文：打开VS Code ；按快捷键“Ctrl+Shift+P”后在顶部会出现一个搜索框输入<code>Chinese (Simplified) Language Pack for Visual Studio Code</code>；点击install进行安装；重启。</p>
-<h4 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h4><p>官网：[Git](<a href="https://git-scm.com/">Git (git-scm.com)</a>)</p>
-<p>安装时：</p>
-<blockquote>
-<p>安装组件时最后一个不选</p>
-<p>选择默认编辑器时若安装了VS Code则选择VS Code为默认编辑器为安装则默认</p>
-<p>其他界面均为默认</p>
-</blockquote>
-<p>安装完成后打开 Git Bash终端里输入 git –version 查看 git 版本</p>
-<h4 id="GitHub"><a href="#GitHub" class="headerlink" title="GitHub"></a>GitHub</h4><p>官网：<a href="%5BGitHub%5D(https://github.com/)">GitHub</a></p>
-<p>打开网站直接注册就行，如果看不懂打开浏览器翻译</p>
-<p>注册后登录GitHub点击右上角的+ -&gt; New repository新建仓库</p>
-<p><img src="https://s3.bmp.ovh/imgs/2022/03/20c1f342a9930bca.bmp" loading="lazy"></p>
-<p>仓库名称 你的用户名.github.io 用户名是英文；点击Create repository。</p>
-<h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><p>官网：<a href="%5BHexo%5D(https://hexo.io/zh-cn/)">Hexo</a></p>
-<p>官方文档:<a href="https://hexo.io/zh-cn/docs/index.html">文档 | Hexo</a></p>
-<p>在终端中输入以下命令：</p>
-<pre class="language-none"><code class="language-none">npm install hexo-cli -g
-# 如果安装失败，可能是没有权限，可以尝试头部加上 sudo 重新执行
-# sudo npm install hexo-cli -g</code></pre>
-
-<p>通过 cd 进入你本地电脑打算储存网站代码的目录</p>
-<p>例：</p>
-<pre class="language-none"><code class="language-none">cd c:\boke</code></pre>
-
-
-
-<p>接下来输入：</p>
-<pre class="language-none"><code class="language-none">hexo init 你的名字.github.io</code></pre>
-
-<p>进入你博客的文件夹：</p>
-<pre class="language-none"><code class="language-none"># 进入你的博客文件夹
-cd 你的名字.github.io
-# 默认安装所有 &#96;package.json&#96; 文件中提到的包
-npm install
-# 你也可以缩写成 hexo s
-hexo server</code></pre>
-
-<p>之后在浏览器地址栏输入<code> localhost:4000</code> 就可以看到初始本地网页了（此时你可以看到博客的默认主题）</p>
-<p>按Ctrl + C 中断服务器运行</p>
-<p>至此，基础模板搭建完成</p>
-<h3 id="使用主题"><a href="#使用主题" class="headerlink" title="使用主题"></a>使用主题</h3><p>略</p>
-<p>我使用的是yunyoujun的yun主题具体可参考<a href="https://yun.yunyoujun.cn/?_gl=1*87a412*_ga*MjEwMjQ0NTAuMTY0NjU0NDU4Mw..*_ga_1LL0D86CY9*MTY0NjgyMDc4Ni4zMy4xLjE2NDY4MjEwODcuMA..">主页 | Hexo-Theme-Yun (yunyoujun.cn)</a></p>
-<h3 id="编辑-Hexo-配置"><a href="#编辑-Hexo-配置" class="headerlink" title="编辑 Hexo 配置"></a>编辑 Hexo 配置</h3><p>略</p>
-<h3 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h3><p>配置完主题，就该放到线上了</p>
-<p>首先生成静态文件</p>
-<pre class="language-none"><code class="language-none"># 如果进行多次生成，为了避免受错误缓存影响，最好使用 hexo clean 先清除一遍。
-hexo generate
-# 缩写为 hexo g</code></pre>
-
-<h3 id="与远程仓库关联"><a href="#与远程仓库关联" class="headerlink" title="与远程仓库关联"></a>与远程仓库关联</h3><p>接下来我们将本地的仓库与此前在 GitHub 上建立的仓库建立关联。</p>
-<pre class="language-none"><code class="language-none">git init # 初始化 Git 仓库，只需要执行一次即可</code></pre>
-
-<h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><p>为了更方便的部署到 GitHub Pages，Hexo 提供了 <code>hexo-deployer-git</code> 插件。</p>
-<p>安装插件：</p>
-<pre class="language-none"><code class="language-none">npm install hexo-deployer-git</code></pre>
-
-<p>在 <code>_config.yml</code> 中配置。</p>
-<pre class="language-none"><code class="language-none">deploy:
-  type: git
-  repo: 你此前新建的仓库的链接 # 比如：	https:&#x2F;&#x2F;github.com&#x2F;YunYouJun&#x2F;yunyoujun.github.io
-  branch: master # 默认使用 master 分支
-  message: Update Hexo Static Content # 你可以自定义此次部署更新的说明</code></pre>
-
-<p>保存，部署！</p>
-<blockquote>
-<p>第一次部署需要输入自己GitHub用户名和密码</p>
-</blockquote>
-<pre class="language-none"><code class="language-none">hexo deploy</code></pre>
-
-<p>​	</p>
-<p>等待完成后，打开网址 <code>https://你的名字.github.io</code> 就能看到你的线上网站了。</p>
-<p>至此你的博客也就完成了</p>
-]]></content>
-      <categories>
-        <category>教程</category>
-        <category>博客</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>二层交换机工作原理</title>
     <url>/posts/29adaa64/</url>
     <content><![CDATA[<div class="danger">
@@ -7698,6 +7581,123 @@ hexo generate
       </categories>
       <tags>
         <tag>锐捷</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>个人博客的搭建</title>
+    <url>/posts/2f165d3c/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="为什么搭建自己的个人博客"><a href="#为什么搭建自己的个人博客" class="headerlink" title="为什么搭建自己的个人博客"></a>为什么搭建自己的个人博客</h3><p>  虽然现在市面上博客种类繁多，注册后可以直接在上面发表，用户交互也非常棒，写的文章也可以被各种搜索引擎搜索到，但是平台的各种限制以及烦人的广告最终让我萌生了搭建自己的个人博客的想法。</p>
+<span id="more"></span>
+
+<h3 id="个人博客的好处"><a href="#个人博客的好处" class="headerlink" title="个人博客的好处"></a>个人博客的好处</h3><ol>
+<li><p>更自由、更独立</p>
+<p>个人博客可以按照自己的喜好设计、任意管理，不用担心平台限制和各种广告</p>
+</li>
+<li><p>记录生活，反应成长</p>
+</li>
+<li><p>学习新技能</p>
+</li>
+<li><p>提升写作</p>
+</li>
+</ol>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><p>文中步骤按照yunyoujun的博客搭建</p>
+<p> <a href="https://www.yunyoujun.cn/share/how-to-build-your-site/">教你如何从零开始搭建一个属于自己的网站 | 云游君的小站 (yunyoujun.cn)</a></p>
+<h3 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h3><p>官网： [Node.js](<a href="https://nodejs.org/zh-cn/">Node.js (nodejs.org)</a>)   建议下载稳定版</p>
+<p>全部默认下一步进行安装</p>
+<p>安装后打开命令提示符输入： node -v：显示安装的nodejs版本、npm -v：显示安装的npm版本</p>
+<p>注:Node.js 安装成功也默认安装了npm，后续会用到<br>    npm 是随 Node.js 一起被安装的包管理工具，你可以理解成 Node.js 自带的应用商店。</p>
+<p>​	使用hexo搭建个人博客选装hexohexo-renderer-sass：国内使用npm会很慢<br>​	解决方法：改用淘宝镜像</p>
+<pre><code>$ npm install -g cnpm --registry=https://registry.npm.taobao.org
+$ npm config set registry https://registry.npm.taobao.org
+</code></pre>
+<p>再次安装：</p>
+<pre class="language-none"><code class="language-none">$ cnpm install hexo-renderer-sass --save</code></pre>
+
+<h3 id="Git和GitHub"><a href="#Git和GitHub" class="headerlink" title="Git和GitHub"></a>Git和GitHub</h3><h4 id="安装VS-Code（可省略）"><a href="#安装VS-Code（可省略）" class="headerlink" title="安装VS Code（可省略）"></a>安装VS Code（可省略）</h4><blockquote>
+<p>安装git可设置VS Code为默认编辑器而且功能强大</p>
+</blockquote>
+<p>官网：[VS Code](<a href="https://code.visualstudio.com/">Visual Studio Code - Code Editing.重新</a>)</p>
+<p>选择好安装位置和添加桌面快捷方式其他默认就好</p>
+<p>设置中文：打开VS Code ；按快捷键“Ctrl+Shift+P”后在顶部会出现一个搜索框输入<code>Chinese (Simplified) Language Pack for Visual Studio Code</code>；点击install进行安装；重启。</p>
+<h4 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h4><p>官网：[Git](<a href="https://git-scm.com/">Git (git-scm.com)</a>)</p>
+<p>安装时：</p>
+<blockquote>
+<p>安装组件时最后一个不选</p>
+<p>选择默认编辑器时若安装了VS Code则选择VS Code为默认编辑器为安装则默认</p>
+<p>其他界面均为默认</p>
+</blockquote>
+<p>安装完成后打开 Git Bash终端里输入 git –version 查看 git 版本</p>
+<h4 id="GitHub"><a href="#GitHub" class="headerlink" title="GitHub"></a>GitHub</h4><p>官网：<a href="%5BGitHub%5D(https://github.com/)">GitHub</a></p>
+<p>打开网站直接注册就行，如果看不懂打开浏览器翻译</p>
+<p>注册后登录GitHub点击右上角的+ -&gt; New repository新建仓库</p>
+<p><img src="https://s3.bmp.ovh/imgs/2022/03/20c1f342a9930bca.bmp" loading="lazy"></p>
+<p>仓库名称 你的用户名.github.io 用户名是英文；点击Create repository。</p>
+<h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><p>官网：<a href="%5BHexo%5D(https://hexo.io/zh-cn/)">Hexo</a></p>
+<p>官方文档:<a href="https://hexo.io/zh-cn/docs/index.html">文档 | Hexo</a></p>
+<p>在终端中输入以下命令：</p>
+<pre class="language-none"><code class="language-none">npm install hexo-cli -g
+# 如果安装失败，可能是没有权限，可以尝试头部加上 sudo 重新执行
+# sudo npm install hexo-cli -g</code></pre>
+
+<p>通过 cd 进入你本地电脑打算储存网站代码的目录</p>
+<p>例：</p>
+<pre class="language-none"><code class="language-none">cd c:\boke</code></pre>
+
+
+
+<p>接下来输入：</p>
+<pre class="language-none"><code class="language-none">hexo init 你的名字.github.io</code></pre>
+
+<p>进入你博客的文件夹：</p>
+<pre class="language-none"><code class="language-none"># 进入你的博客文件夹
+cd 你的名字.github.io
+# 默认安装所有 &#96;package.json&#96; 文件中提到的包
+npm install
+# 你也可以缩写成 hexo s
+hexo server</code></pre>
+
+<p>之后在浏览器地址栏输入<code> localhost:4000</code> 就可以看到初始本地网页了（此时你可以看到博客的默认主题）</p>
+<p>按Ctrl + C 中断服务器运行</p>
+<p>至此，基础模板搭建完成</p>
+<h3 id="使用主题"><a href="#使用主题" class="headerlink" title="使用主题"></a>使用主题</h3><p>略</p>
+<p>我使用的是yunyoujun的yun主题具体可参考<a href="https://yun.yunyoujun.cn/?_gl=1*87a412*_ga*MjEwMjQ0NTAuMTY0NjU0NDU4Mw..*_ga_1LL0D86CY9*MTY0NjgyMDc4Ni4zMy4xLjE2NDY4MjEwODcuMA..">主页 | Hexo-Theme-Yun (yunyoujun.cn)</a></p>
+<h3 id="编辑-Hexo-配置"><a href="#编辑-Hexo-配置" class="headerlink" title="编辑 Hexo 配置"></a>编辑 Hexo 配置</h3><p>略</p>
+<h3 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h3><p>配置完主题，就该放到线上了</p>
+<p>首先生成静态文件</p>
+<pre class="language-none"><code class="language-none"># 如果进行多次生成，为了避免受错误缓存影响，最好使用 hexo clean 先清除一遍。
+hexo generate
+# 缩写为 hexo g</code></pre>
+
+<h3 id="与远程仓库关联"><a href="#与远程仓库关联" class="headerlink" title="与远程仓库关联"></a>与远程仓库关联</h3><p>接下来我们将本地的仓库与此前在 GitHub 上建立的仓库建立关联。</p>
+<pre class="language-none"><code class="language-none">git init # 初始化 Git 仓库，只需要执行一次即可</code></pre>
+
+<h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><p>为了更方便的部署到 GitHub Pages，Hexo 提供了 <code>hexo-deployer-git</code> 插件。</p>
+<p>安装插件：</p>
+<pre class="language-none"><code class="language-none">npm install hexo-deployer-git</code></pre>
+
+<p>在 <code>_config.yml</code> 中配置。</p>
+<pre class="language-none"><code class="language-none">deploy:
+  type: git
+  repo: 你此前新建的仓库的链接 # 比如：	https:&#x2F;&#x2F;github.com&#x2F;YunYouJun&#x2F;yunyoujun.github.io
+  branch: master # 默认使用 master 分支
+  message: Update Hexo Static Content # 你可以自定义此次部署更新的说明</code></pre>
+
+<p>保存，部署！</p>
+<blockquote>
+<p>第一次部署需要输入自己GitHub用户名和密码</p>
+</blockquote>
+<pre class="language-none"><code class="language-none">hexo deploy</code></pre>
+
+<p>​	</p>
+<p>等待完成后，打开网址 <code>https://你的名字.github.io</code> 就能看到你的线上网站了。</p>
+<p>至此你的博客也就完成了</p>
+]]></content>
+      <categories>
+        <category>教程</category>
+        <category>博客</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
