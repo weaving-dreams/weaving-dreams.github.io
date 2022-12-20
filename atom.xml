@@ -6,7 +6,7 @@
   <link href="https://weaving-dreams.github.io/atom.xml" rel="self"/>
   
   <link href="https://weaving-dreams.github.io/"/>
-  <updated>2022-10-02T08:23:53.459Z</updated>
+  <updated>2022-12-20T06:43:11.034Z</updated>
   <id>https://weaving-dreams.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>微机原理三</title>
+    <link href="https://weaving-dreams.github.io/posts/24269dc7/"/>
+    <id>https://weaving-dreams.github.io/posts/24269dc7/</id>
+    <published>2022-12-19T09:17:10.000Z</published>
+    <updated>2022-12-20T06:43:11.034Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;微机原理四&quot;&gt;&lt;a href=&quot;#微机原理四&quot; class=&quot;headerlink&quot; title=&quot;微机原理四&quot;&gt;&lt;/a&gt;微机原理四&lt;/h1&gt;&lt;h2 id=&quot;字符编码&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="https://weaving-dreams.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="微机原理" scheme="https://weaving-dreams.github.io/categories/%E5%AD%A6%E4%B9%A0/%E5%BE%AE%E6%9C%BA%E5%8E%9F%E7%90%86/"/>
+    
+    
+    <category term="微机原理" scheme="https://weaving-dreams.github.io/tags/%E5%BE%AE%E6%9C%BA%E5%8E%9F%E7%90%86/"/>
+    
+  </entry>
   
   <entry>
     <title>Waline评论区又换地方部署了</title>
@@ -56,7 +83,7 @@
         
         
     <summary type="html">
-    &lt;div id=&quot;aplayer-acTbZBEQ&quot; class=&quot;aplayer aplayer-tag-marker meting-tag-marker&quot;
+    &lt;div id=&quot;aplayer-PAPVAHYa&quot; class=&quot;aplayer aplayer-tag-marker meting-tag-marker&quot;
         </summary>
         
       
@@ -131,14 +158,14 @@
     <link href="https://weaving-dreams.github.io/posts/ac776871/"/>
     <id>https://weaving-dreams.github.io/posts/ac776871/</id>
     <published>2022-07-10T03:59:10.000Z</published>
-    <updated>2022-06-15T08:19:10.736Z</updated>
+    <updated>2022-12-19T09:15:57.075Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h2 id=&quot;计算机中的编码，数制及转换&quot;&gt;&lt;a href=&quot;#计算机中的编码，数制及转换&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;h1 id=&quot;计算机中的编码，数制及转换&quot;&gt;&lt;a href=&quot;#计算机中的编码，数制及转换&quot; class=&quot;headerlink&quot;</summary>
         
       
     
@@ -538,35 +565,6 @@
     <id>https://weaving-dreams.github.io/posts/50b45d5b/</id>
     <published>2022-06-15T07:20:40.000Z</published>
     <updated>2022-06-15T07:23:08.586Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;拓扑&quot;&gt;&lt;a href=&quot;#拓扑&quot; class=&quot;headerlink&quot; title=&quot;拓扑&quot;&gt;&lt;/a&gt;拓扑&lt;/h2&gt;&lt;p&gt;&lt;img</summary>
-        
-      
-    
-    
-    
-    <category term="学习" scheme="https://weaving-dreams.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    <category term="eNSP" scheme="https://weaving-dreams.github.io/categories/%E5%AD%A6%E4%B9%A0/eNSP/"/>
-    
-    <category term="WLAN和安全" scheme="https://weaving-dreams.github.io/categories/%E5%AD%A6%E4%B9%A0/eNSP/WLAN%E5%92%8C%E5%AE%89%E5%85%A8/"/>
-    
-    
-    <category term="eNSP" scheme="https://weaving-dreams.github.io/tags/eNSP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>WLAN漫游</title>
-    <link href="https://weaving-dreams.github.io/posts/ba6ef991/"/>
-    <id>https://weaving-dreams.github.io/posts/ba6ef991/</id>
-    <published>2022-06-15T07:06:21.000Z</published>
-    <updated>2022-06-15T07:08:44.843Z</updated>
     
     
       
