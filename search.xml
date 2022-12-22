@@ -10576,4 +10576,27 @@ docker exec -it qinglong task test.js conc</code></pre>
         <tag>教程</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Windows安全中心打不开点击没反应</title>
+    <url>/posts/713fab12/</url>
+    <content><![CDATA[<p>以管理员权限打开“Windows PowerShell”依次执行以下命令：</p>
+<pre class="language-none"><code class="language-none">Dism &#x2F;Online &#x2F;Cleanup-Image &#x2F;ScanHealth</code></pre>
+
+<pre class="language-none"><code class="language-none">Dism &#x2F;Online &#x2F;Cleanup-Image &#x2F;CheckHealth</code></pre>
+
+<pre class="language-none"><code class="language-none">DISM &#x2F;Online &#x2F;Cleanup-image &#x2F;RestoreHealth</code></pre>
+
+<pre class="language-none"><code class="language-none">sfc &#x2F;SCANNOW</code></pre>
+
+<p>执行完毕后重启电脑</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/20221222221203.png" loading="lazy"></p>
+]]></content>
+      <categories>
+        <category>教程</category>
+        <category>Windows</category>
+      </categories>
+      <tags>
+        <tag>windows</tag>
+      </tags>
+  </entry>
 </search>

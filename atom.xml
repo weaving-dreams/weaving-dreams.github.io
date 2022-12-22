@@ -6,7 +6,7 @@
   <link href="https://weaving-dreams.github.io/atom.xml" rel="self"/>
   
   <link href="https://weaving-dreams.github.io/"/>
-  <updated>2022-12-21T14:26:40.770Z</updated>
+  <updated>2022-12-22T14:18:41.223Z</updated>
   <id>https://weaving-dreams.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Windows安全中心打不开点击没反应</title>
+    <link href="https://weaving-dreams.github.io/posts/713fab12/"/>
+    <id>https://weaving-dreams.github.io/posts/713fab12/</id>
+    <published>2022-12-22T14:13:50.000Z</published>
+    <updated>2022-12-22T14:18:41.223Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;以管理员权限打开“Windows PowerShell”依次执行以下命令：&lt;/p&gt;
+&lt;pre class=&quot;language-none&quot;&gt;&lt;code</summary>
+        
+      
+    
+    
+    
+    <category term="教程" scheme="https://weaving-dreams.github.io/categories/%E6%95%99%E7%A8%8B/"/>
+    
+    <category term="Windows" scheme="https://weaving-dreams.github.io/categories/%E6%95%99%E7%A8%8B/Windows/"/>
+    
+    
+    <category term="windows" scheme="https://weaving-dreams.github.io/tags/windows/"/>
+    
+  </entry>
   
   <entry>
     <title>微处理器一</title>
@@ -553,33 +581,6 @@
     
     
     <category term="锐捷" scheme="https://weaving-dreams.github.io/tags/%E9%94%90%E6%8D%B7/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>GRE隧道</title>
-    <link href="https://weaving-dreams.github.io/posts/ca260099/"/>
-    <id>https://weaving-dreams.github.io/posts/ca260099/</id>
-    <published>2022-06-18T11:41:35.000Z</published>
-    <updated>2022-06-18T11:46:28.026Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;GRE隧道&quot;&gt;&lt;a href=&quot;#GRE隧道&quot; class=&quot;headerlink&quot; title=&quot;GRE隧道&quot;&gt;&lt;/a&gt;GRE隧道&lt;/h1&gt;&lt;h2 id=&quot;拓扑&quot;&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="学习" scheme="https://weaving-dreams.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    <category term="eNSP" scheme="https://weaving-dreams.github.io/categories/%E5%AD%A6%E4%B9%A0/eNSP/"/>
-    
-    
-    <category term="eNSP" scheme="https://weaving-dreams.github.io/tags/eNSP/"/>
     
   </entry>
   
