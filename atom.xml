@@ -6,7 +6,7 @@
   <link href="http://weaving-dreams.eu.org/atom.xml" rel="self"/>
   
   <link href="http://weaving-dreams.eu.org/"/>
-  <updated>2023-02-16T06:05:54.535Z</updated>
+  <updated>2023-02-17T15:53:31.807Z</updated>
   <id>http://weaving-dreams.eu.org/</id>
   
   <author>
@@ -15,6 +15,60 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>LaTex数学公式大全</title>
+    <link href="http://weaving-dreams.eu.org/posts/f40349ac/"/>
+    <id>http://weaving-dreams.eu.org/posts/f40349ac/</id>
+    <published>2023-02-17T15:51:07.000Z</published>
+    <updated>2023-02-17T15:53:31.807Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;数学公式的插入&quot;&gt;&lt;a href=&quot;#数学公式的插入&quot; class=&quot;headerlink&quot; title=&quot;数学公式的插入&quot;&gt;&lt;/a&gt;数学公式的插入&lt;/h3&gt;&lt;p&gt;将数学公式写在</summary>
+        
+      
+    
+    
+    
+    <category term="教程" scheme="http://weaving-dreams.eu.org/categories/%E6%95%99%E7%A8%8B/"/>
+    
+    <category term="博客" scheme="http://weaving-dreams.eu.org/categories/%E6%95%99%E7%A8%8B/%E5%8D%9A%E5%AE%A2/"/>
+    
+    
+    <category term="LaTex" scheme="http://weaving-dreams.eu.org/tags/LaTex/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>C语言练习-2</title>
+    <link href="http://weaving-dreams.eu.org/posts/1c5b0de3/"/>
+    <id>http://weaving-dreams.eu.org/posts/1c5b0de3/</id>
+    <published>2023-02-17T14:57:40.000Z</published>
+    <updated>2023-02-17T14:59:18.250Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;求二阶矩阵所有靠外侧的各元素之和&quot;&gt;&lt;a href=&quot;#求二阶矩阵所有靠外侧的各元素之和&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="C语言" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/C%E8%AF%AD%E8%A8%80/"/>
+    
+    
+    <category term="C语言" scheme="http://weaving-dreams.eu.org/tags/C%E8%AF%AD%E8%A8%80/"/>
+    
+  </entry>
   
   <entry>
     <title>C语言运算符优先级表详解</title>
@@ -480,66 +534,6 @@
     <id>http://weaving-dreams.eu.org/posts/82dddbd2/</id>
     <published>2022-06-25T07:15:16.000Z</published>
     <updated>2022-06-25T07:16:08.102Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;div class=&quot;danger&quot;&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt; 资料来源&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="学习" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    <category term="锐捷" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/%E9%94%90%E6%8D%B7/"/>
-    
-    
-    <category term="锐捷" scheme="http://weaving-dreams.eu.org/tags/%E9%94%90%E6%8D%B7/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>WLAN基础知识</title>
-    <link href="http://weaving-dreams.eu.org/posts/d674dcfe/"/>
-    <id>http://weaving-dreams.eu.org/posts/d674dcfe/</id>
-    <published>2022-06-24T05:09:58.000Z</published>
-    <updated>2022-06-24T05:12:30.159Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;div class=&quot;danger&quot;&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt; 资料来源&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="学习" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    <category term="锐捷" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/%E9%94%90%E6%8D%B7/"/>
-    
-    
-    <category term="锐捷" scheme="http://weaving-dreams.eu.org/tags/%E9%94%90%E6%8D%B7/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>PPP协议原理与配置</title>
-    <link href="http://weaving-dreams.eu.org/posts/cea6a88e/"/>
-    <id>http://weaving-dreams.eu.org/posts/cea6a88e/</id>
-    <published>2022-06-22T09:09:10.000Z</published>
-    <updated>2022-06-22T09:11:45.048Z</updated>
     
     
       
