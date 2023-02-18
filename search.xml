@@ -11094,7 +11094,28 @@ docker exec -it qinglong task test.js conc</code></pre>
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span></code></pre>
 
-<h1 id="找出大于输入整数且紧随这个整数的素数并作为函数返回"><a href="#找出大于输入整数且紧随这个整数的素数并作为函数返回" class="headerlink" title="找出大于输入整数且紧随这个整数的素数并作为函数返回"></a>找出大于输入整数且紧随这个整数的素数并作为函数返回</h1><pre class="language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"stdio.h"</span></span>
+<h1 id="找出大于输入整数且紧随这个整数的素数并作为函数返回"><a href="#找出大于输入整数且紧随这个整数的素数并作为函数返回" class="headerlink" title="找出大于输入整数且紧随这个整数的素数并作为函数返回"></a>找出大于输入整数且紧随这个整数的素数并作为函数返回</h1><pre class="language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+	<span class="token keyword">int</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token keyword">int</span> s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">int</span> s<span class="token punctuation">;</span>									<span class="token comment">//定义一个整数S。</span>
+	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"请输入一个整数：\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">scanf_s</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>						<span class="token comment">//将接收的数据赋值给S</span>
+	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"紧随整数%d的素数为：%d"</span><span class="token punctuation">,</span> s<span class="token punctuation">,</span><span class="token function">f</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">int</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token keyword">int</span> s<span class="token punctuation">)</span> 
+<span class="token punctuation">&#123;</span>
+	<span class="token keyword">int</span> i<span class="token punctuation">,</span> j<span class="token punctuation">,</span> k<span class="token punctuation">;</span>
+	<span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> s <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>				<span class="token comment">//从定义的整数向后依次加</span>
+		<span class="token keyword">for</span> <span class="token punctuation">(</span>j <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> i<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span>			<span class="token comment">//依次循环被除数</span>
+			<span class="token keyword">if</span> <span class="token punctuation">(</span>i <span class="token operator">%</span> j <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token keyword">break</span><span class="token punctuation">;</span>		<span class="token comment">//如果i取余j==0,退出本轮循环</span>
+		<span class="token keyword">if</span> <span class="token punctuation">(</span>i <span class="token operator">==</span> j<span class="token punctuation">)</span><span class="token keyword">return</span> i<span class="token punctuation">;</span>			<span class="token comment">//如果i=j返回i</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+
+
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"stdio.h"</span></span>
 <span class="token keyword">int</span> <span class="token function">fun</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
 	<span class="token keyword">int</span> i<span class="token punctuation">;</span>							<span class="token comment">//定义整型变量i</span>
 	<span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>						<span class="token comment">//while循环</span>
