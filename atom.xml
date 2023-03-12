@@ -6,7 +6,7 @@
   <link href="http://weaving-dreams.eu.org/atom.xml" rel="self"/>
   
   <link href="http://weaving-dreams.eu.org/"/>
-  <updated>2023-03-11T12:07:31.745Z</updated>
+  <updated>2023-03-12T02:15:09.074Z</updated>
   <id>http://weaving-dreams.eu.org/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>微机原理简答题一</title>
+    <link href="http://weaving-dreams.eu.org/posts/2b3dbb70/"/>
+    <id>http://weaving-dreams.eu.org/posts/2b3dbb70/</id>
+    <published>2023-03-12T02:14:07.000Z</published>
+    <updated>2023-03-12T02:15:09.074Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;8086系统中的存储器分为几个逻辑段？各段之间的关系如何？每个段寄存器的作用是什么？&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="微机原理" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/%E5%BE%AE%E6%9C%BA%E5%8E%9F%E7%90%86/"/>
+    
+    
+    <category term="微机原理" scheme="http://weaving-dreams.eu.org/tags/%E5%BE%AE%E6%9C%BA%E5%8E%9F%E7%90%86/"/>
+    
+  </entry>
   
   <entry>
     <title>雨莲天尊</title>
@@ -513,33 +540,6 @@
     
     
     <category term="小说摘抄" scheme="http://weaving-dreams.eu.org/tags/%E5%B0%8F%E8%AF%B4%E6%91%98%E6%8A%84/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>青龙面板安装教程</title>
-    <link href="http://weaving-dreams.eu.org/posts/89cdd3f5/"/>
-    <id>http://weaving-dreams.eu.org/posts/89cdd3f5/</id>
-    <published>2022-07-26T06:41:56.000Z</published>
-    <updated>2022-07-26T06:48:14.820Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;青龙面板安装教程&quot;&gt;&lt;a href=&quot;#青龙面板安装教程&quot; class=&quot;headerlink&quot; title=&quot;青龙面板安装教程&quot;&gt;&lt;/a&gt;青龙面板安装教程&lt;/h1&gt;&lt;h2</summary>
-        
-      
-    
-    
-    
-    <category term="教程" scheme="http://weaving-dreams.eu.org/categories/%E6%95%99%E7%A8%8B/"/>
-    
-    <category term="Linux" scheme="http://weaving-dreams.eu.org/categories/%E6%95%99%E7%A8%8B/Linux/"/>
-    
-    
-    <category term="教程" scheme="http://weaving-dreams.eu.org/tags/%E6%95%99%E7%A8%8B/"/>
     
   </entry>
   
