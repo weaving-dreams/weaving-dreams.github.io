@@ -15149,4 +15149,40 @@ docker exec -it qinglong task test.js conc</code></pre>
         <tag>知乎</tag>
       </tags>
   </entry>
+  <entry>
+    <title>第一章 函数极限、连续</title>
+    <url>/posts/c9fdf34f/</url>
+    <content><![CDATA[<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E5%87%BD%E6%95%B0%E6%9E%81%E9%99%90%E3%80%81%E8%BF%9E%E7%BB%AD_33022.jpg" alt="第一章 函数极限、连续_33022" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/image-20230321220712992.png" alt="image-20230321220712992" loading="lazy"></p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>第九章  线性代数</title>
+    <url>/posts/49fcf5b4/</url>
+    <content><![CDATA[<h1 id="行列式、主要对角行列式性质（上三角、下三角、对角线）"><a href="#行列式、主要对角行列式性质（上三角、下三角、对角线）" class="headerlink" title="行列式、主要对角行列式性质（上三角、下三角、对角线）"></a>行列式、主要对角行列式性质（上三角、下三角、对角线）</h1><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/image-20230321221501708.png" alt="image-20230321221501708" loading="lazy"></p>
+<h1 id="行列式展开、克莱姆法则"><a href="#行列式展开、克莱姆法则" class="headerlink" title="行列式展开、克莱姆法则"></a>行列式展开、克莱姆法则</h1><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/image-20230321222401860.png" alt="image-20230321222401860" loading="lazy"></p>
+<h1 id="矩阵的概念、矩阵的运算"><a href="#矩阵的概念、矩阵的运算" class="headerlink" title="矩阵的概念、矩阵的运算"></a>矩阵的概念、矩阵的运算</h1><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/image-20230321221225643.png" alt="image-20230321221225643" loading="lazy"></p>
+<h1 id="矩阵的转置、方阵的行列式、逆矩阵"><a href="#矩阵的转置、方阵的行列式、逆矩阵" class="headerlink" title="矩阵的转置、方阵的行列式、逆矩阵"></a>矩阵的转置、方阵的行列式、逆矩阵</h1><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/image-20230321222003718.png" alt="image-20230321222003718" loading="lazy"></p>
+<h1 id="逆矩阵运算律、矩阵的初等变换和初等矩阵、矩阵方程"><a href="#逆矩阵运算律、矩阵的初等变换和初等矩阵、矩阵方程" class="headerlink" title="逆矩阵运算律、矩阵的初等变换和初等矩阵、矩阵方程"></a>逆矩阵运算律、矩阵的初等变换和初等矩阵、矩阵方程</h1><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/image-20230321222142951.png" alt="image-20230321222142951" loading="lazy"></p>
+<h1 id="矩阵的秩"><a href="#矩阵的秩" class="headerlink" title="矩阵的秩"></a>矩阵的秩</h1><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/image-20230321221809651.png" alt="image-20230321221809651" loading="lazy"></p>
+<h1 id="向量的概念、线性相关与线性无关、向量的极大无关组、向量组的秩与矩阵秩的关系"><a href="#向量的概念、线性相关与线性无关、向量的极大无关组、向量组的秩与矩阵秩的关系" class="headerlink" title="向量的概念、线性相关与线性无关、向量的极大无关组、向量组的秩与矩阵秩的关系"></a>向量的概念、线性相关与线性无关、向量的极大无关组、向量组的秩与矩阵秩的关系</h1><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/image-20230321221617830.png" alt="image-20230321221617830" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/image-20230321222647529.png" alt="image-20230321222647529" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/image-20230321221705426.png" alt="image-20230321221705426" loading="lazy"></p>
+<h1 id="线性方程组（齐次线性方程组的解法、非齐次线性方程组解法）"><a href="#线性方程组（齐次线性方程组的解法、非齐次线性方程组解法）" class="headerlink" title="线性方程组（齐次线性方程组的解法、非齐次线性方程组解法）"></a>线性方程组（齐次线性方程组的解法、非齐次线性方程组解法）</h1><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/image-20230321221429381.png" alt="image-20230321221429381" loading="lazy"></p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+      </tags>
+  </entry>
 </search>
