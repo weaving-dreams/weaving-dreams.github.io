@@ -6,7 +6,7 @@
   <link href="http://weaving-dreams.eu.org/atom.xml" rel="self"/>
   
   <link href="http://weaving-dreams.eu.org/"/>
-  <updated>2023-03-21T14:43:50.549Z</updated>
+  <updated>2023-03-24T03:32:21.825Z</updated>
   <id>http://weaving-dreams.eu.org/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>微机原理第3~4章简答题</title>
+    <link href="http://weaving-dreams.eu.org/posts/11e33926/"/>
+    <id>http://weaving-dreams.eu.org/posts/11e33926/</id>
+    <published>2023-03-24T03:28:05.000Z</published>
+    <updated>2023-03-24T03:32:21.825Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;第三章：8086-x2F-8088指令系统&quot;&gt;&lt;a href=&quot;#第三章：8086-x2F-8088指令系统&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="微机原理" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/%E5%BE%AE%E6%9C%BA%E5%8E%9F%E7%90%86/"/>
+    
+    
+    <category term="微机原理" scheme="http://weaving-dreams.eu.org/tags/%E5%BE%AE%E6%9C%BA%E5%8E%9F%E7%90%86/"/>
+    
+  </entry>
   
   <entry>
     <title>第九章  线性代数</title>
@@ -94,14 +121,14 @@
     <link href="http://weaving-dreams.eu.org/posts/1980576a/"/>
     <id>http://weaving-dreams.eu.org/posts/1980576a/</id>
     <published>2023-03-20T14:51:25.000Z</published>
-    <updated>2023-03-20T14:58:46.166Z</updated>
+    <updated>2023-03-24T03:31:47.204Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;第一章&quot;&gt;&lt;a href=&quot;#第一章&quot; class=&quot;headerlink&quot; title=&quot;第一章&quot;&gt;&lt;/a&gt;第一章&lt;/h1&gt;&lt;h2</summary>
+    <summary type="html">&lt;h1 id=&quot;第一章：微型计算机基础概论&quot;&gt;&lt;a href=&quot;#第一章：微型计算机基础概论&quot; class=&quot;headerlink&quot;</summary>
         
       
     
@@ -492,33 +519,6 @@
         
         
     <summary type="html">&lt;h2 id=&quot;微处理器介绍&quot;&gt;&lt;a href=&quot;#微处理器介绍&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="学习" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    <category term="微机原理" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/%E5%BE%AE%E6%9C%BA%E5%8E%9F%E7%90%86/"/>
-    
-    
-    <category term="微机原理" scheme="http://weaving-dreams.eu.org/tags/%E5%BE%AE%E6%9C%BA%E5%8E%9F%E7%90%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>微机原理基础四</title>
-    <link href="http://weaving-dreams.eu.org/posts/bf1bf027/"/>
-    <id>http://weaving-dreams.eu.org/posts/bf1bf027/</id>
-    <published>2022-12-21T10:57:06.000Z</published>
-    <updated>2022-12-21T14:28:52.410Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;运算中的溢出&quot;&gt;&lt;a href=&quot;#运算中的溢出&quot; class=&quot;headerlink&quot;</summary>
         
       
     
