@@ -6,7 +6,7 @@
   <link href="http://weaving-dreams.eu.org/atom.xml" rel="self"/>
   
   <link href="http://weaving-dreams.eu.org/"/>
-  <updated>2023-03-27T14:46:39.608Z</updated>
+  <updated>2023-03-29T12:20:08.444Z</updated>
   <id>http://weaving-dreams.eu.org/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>微机原理第五章简答题</title>
+    <link href="http://weaving-dreams.eu.org/posts/828edb5f/"/>
+    <id>http://weaving-dreams.eu.org/posts/828edb5f/</id>
+    <published>2023-03-29T12:05:19.000Z</published>
+    <updated>2023-03-29T12:20:08.444Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;简述半导体存储器的主要分类？说明它们的用途和区别。&quot;&gt;&lt;a href=&quot;#简述半导体存储器的主要分类？说明它们的用途和区别。&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="微机原理" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/%E5%BE%AE%E6%9C%BA%E5%8E%9F%E7%90%86/"/>
+    
+    
+    <category term="微机原理" scheme="http://weaving-dreams.eu.org/tags/%E5%BE%AE%E6%9C%BA%E5%8E%9F%E7%90%86/"/>
+    
+  </entry>
+  
+  <entry>
     <title>不要相信那个魔术师</title>
     <link href="http://weaving-dreams.eu.org/posts/83ad47c1/"/>
     <id>http://weaving-dreams.eu.org/posts/83ad47c1/</id>
     <published>2023-03-27T14:45:39.000Z</published>
-    <updated>2023-03-27T14:46:39.608Z</updated>
+    <updated>2023-03-27T14:49:01.727Z</updated>
     
     
     <summary type="html">&lt;p&gt;我的魔术师男友死了。&lt;/p&gt;
@@ -488,33 +515,6 @@
         
         
     <summary type="html">&lt;p&gt;&lt;img src=&quot;https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/20230106112853.png&quot; alt=&quot;1&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="学习" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    <category term="微机原理" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/%E5%BE%AE%E6%9C%BA%E5%8E%9F%E7%90%86/"/>
-    
-    
-    <category term="微机原理" scheme="http://weaving-dreams.eu.org/tags/%E5%BE%AE%E6%9C%BA%E5%8E%9F%E7%90%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>微处理器二</title>
-    <link href="http://weaving-dreams.eu.org/posts/40c3081d/"/>
-    <id>http://weaving-dreams.eu.org/posts/40c3081d/</id>
-    <published>2022-12-22T15:34:22.000Z</published>
-    <updated>2022-12-22T15:35:35.250Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;标志位&quot;&gt;&lt;a href=&quot;#标志位&quot; class=&quot;headerlink&quot; title=&quot;标志位&quot;&gt;&lt;/a&gt;标志位&lt;/h1&gt;&lt;h2 id=&quot;FLAGS&quot;&gt;&lt;a</summary>
         
       
     
