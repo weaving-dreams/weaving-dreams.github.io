@@ -6,7 +6,7 @@
   <link href="http://weaving-dreams.eu.org/atom.xml" rel="self"/>
   
   <link href="http://weaving-dreams.eu.org/"/>
-  <updated>2023-03-29T12:20:08.444Z</updated>
+  <updated>2023-03-29T14:37:09.175Z</updated>
   <id>http://weaving-dreams.eu.org/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>第三章一元函数积分学</title>
+    <link href="http://weaving-dreams.eu.org/posts/9317a53e/"/>
+    <id>http://weaving-dreams.eu.org/posts/9317a53e/</id>
+    <published>2023-03-29T14:30:55.000Z</published>
+    <updated>2023-03-29T14:37:09.175Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;不定积分&quot;&gt;&lt;a href=&quot;#不定积分&quot; class=&quot;headerlink&quot; title=&quot;不定积分&quot;&gt;&lt;/a&gt;不定积分&lt;/h1&gt;&lt;h2 id=&quot;不定积分定义、性质&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="数学" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6/"/>
+    
+    
+    <category term="数学" scheme="http://weaving-dreams.eu.org/tags/%E6%95%B0%E5%AD%A6/"/>
+    
+  </entry>
+  
+  <entry>
     <title>微机原理第五章简答题</title>
     <link href="http://weaving-dreams.eu.org/posts/828edb5f/"/>
     <id>http://weaving-dreams.eu.org/posts/828edb5f/</id>
     <published>2023-03-29T12:05:19.000Z</published>
-    <updated>2023-03-29T12:20:08.444Z</updated>
+    <updated>2023-03-29T12:20:25.756Z</updated>
     
     
       
@@ -499,33 +526,6 @@
     
     
     <category term="年度总结" scheme="http://weaving-dreams.eu.org/tags/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>输入输出与中断</title>
-    <link href="http://weaving-dreams.eu.org/posts/51b8a12a/"/>
-    <id>http://weaving-dreams.eu.org/posts/51b8a12a/</id>
-    <published>2023-01-06T03:32:06.000Z</published>
-    <updated>2023-01-06T03:33:34.034Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/20230106112853.png&quot; alt=&quot;1&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="学习" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    <category term="微机原理" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/%E5%BE%AE%E6%9C%BA%E5%8E%9F%E7%90%86/"/>
-    
-    
-    <category term="微机原理" scheme="http://weaving-dreams.eu.org/tags/%E5%BE%AE%E6%9C%BA%E5%8E%9F%E7%90%86/"/>
     
   </entry>
   

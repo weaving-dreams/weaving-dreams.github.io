@@ -15739,4 +15739,26 @@ docker exec -it qinglong task test.js conc</code></pre>
         <tag>微机原理</tag>
       </tags>
   </entry>
+  <entry>
+    <title>第三章一元函数积分学</title>
+    <url>/posts/9317a53e/</url>
+    <content><![CDATA[<h1 id="不定积分"><a href="#不定积分" class="headerlink" title="不定积分"></a>不定积分</h1><h2 id="不定积分定义、性质"><a href="#不定积分定义、性质" class="headerlink" title="不定积分定义、性质"></a>不定积分定义、性质</h2><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/image-20230329220942189.png" alt="image-20230329220942189" loading="lazy"></p>
+<h2 id="凑微分、换元积分"><a href="#凑微分、换元积分" class="headerlink" title="凑微分、换元积分"></a>凑微分、换元积分</h2><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/image-20230329221424846.png" alt="image-20230329221424846" loading="lazy"></p>
+<h2 id="分部积分"><a href="#分部积分" class="headerlink" title="分部积分"></a>分部积分</h2><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/image-20230329222303429.png" alt="image-20230329222303429" loading="lazy"></p>
+<h2 id="三种特殊函数积分"><a href="#三种特殊函数积分" class="headerlink" title="三种特殊函数积分"></a>三种特殊函数积分</h2><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/image-20230329223622582.png" alt="image-20230329223622582" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/image-20230329222910779.png" alt="image-20230329222910779" loading="lazy"></p>
+<h1 id="定积分"><a href="#定积分" class="headerlink" title="定积分"></a>定积分</h1><h2 id="定义、性质、计算"><a href="#定义、性质、计算" class="headerlink" title="定义、性质、计算"></a>定义、性质、计算</h2><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/image-20230329221654798.png" alt="image-20230329221654798" loading="lazy"></p>
+<h2 id="分部积分、变限积分求导、无穷区间广义积分"><a href="#分部积分、变限积分求导、无穷区间广义积分" class="headerlink" title="分部积分、变限积分求导、无穷区间广义积分"></a>分部积分、变限积分求导、无穷区间广义积分</h2><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/image-20230329221224258.png" alt="image-20230329221224258" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/image-20230329222525301.png" alt="image-20230329222525301" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/image-20230329222157787.png" alt="image-20230329222157787" loading="lazy"></p>
+<h2 id="定积分应用"><a href="#定积分应用" class="headerlink" title="定积分应用"></a>定积分应用</h2><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/image-20230329222023177.png" alt="image-20230329222023177" loading="lazy"></p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+      </tags>
+  </entry>
 </search>
