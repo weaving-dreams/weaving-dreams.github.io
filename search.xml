@@ -15761,4 +15761,38 @@ docker exec -it qinglong task test.js conc</code></pre>
         <tag>数学</tag>
       </tags>
   </entry>
+  <entry>
+    <title>第七章无穷极数</title>
+    <url>/posts/31632a35/</url>
+    <content><![CDATA[<h2 id="概念性质、三个结论（调和级数、p极数、q极数）正向极数比较判别法"><a href="#概念性质、三个结论（调和级数、p极数、q极数）正向极数比较判别法" class="headerlink" title="概念性质、三个结论（调和级数、p极数、q极数）正向极数比较判别法"></a>概念性质、三个结论（调和级数、p极数、q极数）正向极数比较判别法</h2><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/image-20230331214504570.png" alt="image-20230331214504570" loading="lazy"></p>
+<h2 id="幂级数及其收敛性"><a href="#幂级数及其收敛性" class="headerlink" title="幂级数及其收敛性"></a>幂级数及其收敛性</h2><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/image-20230331214909958.png" alt="image-20230331214909958" loading="lazy"></p>
+<h2 id="幂级数求和"><a href="#幂级数求和" class="headerlink" title="幂级数求和"></a>幂级数求和</h2><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/image-20230331214407240.png" alt="image-20230331214407240" loading="lazy"></p>
+<h2 id="交错级数，条件收敛、绝对收敛"><a href="#交错级数，条件收敛、绝对收敛" class="headerlink" title="交错级数，条件收敛、绝对收敛"></a>交错级数，条件收敛、绝对收敛</h2><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/image-20230331214236784.png" alt="image-20230331214236784" loading="lazy"></p>
+<h2 id="幂级数展开"><a href="#幂级数展开" class="headerlink" title="幂级数展开"></a>幂级数展开</h2><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/image-20230331214139951.png" alt="image-20230331214139951" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/%E7%AC%AC%E4%B8%83%E7%AB%A0%20%E6%97%A0%E7%A9%B7%E7%BA%A7%E6%95%B0_47169.png" alt="第七章 无穷级数_47169" loading="lazy"></p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>第八章常微分方程</title>
+    <url>/posts/822e84da/</url>
+    <content><![CDATA[<h1 id="常微分方程基本概念"><a href="#常微分方程基本概念" class="headerlink" title="常微分方程基本概念"></a>常微分方程基本概念</h1><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/image-20230331215252268.png" alt="image-20230331215252268" loading="lazy"></p>
+<h1 id="一阶微分方程"><a href="#一阶微分方程" class="headerlink" title="一阶微分方程"></a>一阶微分方程</h1><h2 id="可分离变量方程、一阶线性方程"><a href="#可分离变量方程、一阶线性方程" class="headerlink" title="可分离变量方程、一阶线性方程"></a>可分离变量方程、一阶线性方程</h2><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/image-20230331215344238.png" alt="image-20230331215344238" loading="lazy"></p>
+<h2 id="二阶齐次线性方程"><a href="#二阶齐次线性方程" class="headerlink" title="二阶齐次线性方程"></a>二阶齐次线性方程</h2><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/image-20230401215108752.png" alt="image-20230401215108752" loading="lazy"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/image-20230401215143703.png" alt="image-20230401215143703" loading="lazy"></p>
+<h2 id="二阶非齐次方程"><a href="#二阶非齐次方程" class="headerlink" title="二阶非齐次方程"></a>二阶非齐次方程</h2><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/image-20230401215517519.png" alt="image-20230401215517519" loading="lazy"></p>
+]]></content>
+      <categories>
+        <category>学习</category>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+      </tags>
+  </entry>
 </search>
