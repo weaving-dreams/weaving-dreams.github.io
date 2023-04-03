@@ -6,7 +6,7 @@
   <link href="http://weaving-dreams.eu.org/atom.xml" rel="self"/>
   
   <link href="http://weaving-dreams.eu.org/"/>
-  <updated>2023-04-01T14:01:30.594Z</updated>
+  <updated>2023-04-03T15:54:22.913Z</updated>
   <id>http://weaving-dreams.eu.org/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>微机原理第六章简答题</title>
+    <link href="http://weaving-dreams.eu.org/posts/46db1732/"/>
+    <id>http://weaving-dreams.eu.org/posts/46db1732/</id>
+    <published>2023-04-03T15:53:52.000Z</published>
+    <updated>2023-04-03T15:54:22.913Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;什么是中断？中断技术给计算机系统带来了什么作用？&quot;&gt;&lt;a href=&quot;#什么是中断？中断技术给计算机系统带来了什么作用？&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="微机原理" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/%E5%BE%AE%E6%9C%BA%E5%8E%9F%E7%90%86/"/>
+    
+    
+    <category term="微机原理" scheme="http://weaving-dreams.eu.org/tags/%E5%BE%AE%E6%9C%BA%E5%8E%9F%E7%90%86/"/>
+    
+  </entry>
+  
+  <entry>
     <title>第八章常微分方程</title>
     <link href="http://weaving-dreams.eu.org/posts/822e84da/"/>
     <id>http://weaving-dreams.eu.org/posts/822e84da/</id>
     <published>2023-04-01T13:58:45.000Z</published>
-    <updated>2023-04-01T14:01:30.594Z</updated>
+    <updated>2023-04-01T14:01:39.777Z</updated>
     
     
       
@@ -48,7 +75,7 @@
     <link href="http://weaving-dreams.eu.org/posts/31632a35/"/>
     <id>http://weaving-dreams.eu.org/posts/31632a35/</id>
     <published>2023-04-01T13:58:31.000Z</published>
-    <updated>2023-04-01T14:01:20.539Z</updated>
+    <updated>2023-04-01T14:01:39.777Z</updated>
     
     
       
@@ -503,35 +530,6 @@
     
     
     <category term="LaTex" scheme="http://weaving-dreams.eu.org/tags/LaTex/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>C语言运算符优先级表详解</title>
-    <link href="http://weaving-dreams.eu.org/posts/228717dc/"/>
-    <id>http://weaving-dreams.eu.org/posts/228717dc/</id>
-    <published>2023-02-16T06:05:54.534Z</published>
-    <updated>2023-02-16T06:05:54.535Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;总优先级：算术运算&amp;gt;关系运算&amp;gt;逻辑运算&lt;/p&gt;
-&lt;p&gt;①算术运算（加+  减-  乘*  除&amp;#x2F;   取余%）&lt;/p&gt;
-&lt;p&gt;  </summary>
-        
-      
-    
-    
-    
-    <category term="学习" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    <category term="C语言" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/C%E8%AF%AD%E8%A8%80/"/>
-    
-    
-    <category term="C语言" scheme="http://weaving-dreams.eu.org/tags/C%E8%AF%AD%E8%A8%80/"/>
     
   </entry>
   
