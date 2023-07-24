@@ -6,7 +6,7 @@
   <link href="http://weaving-dreams.eu.org/atom.xml" rel="self"/>
   
   <link href="http://weaving-dreams.eu.org/"/>
-  <updated>2023-04-10T14:18:54.026Z</updated>
+  <updated>2023-02-27T14:53:36.534Z</updated>
   <id>http://weaving-dreams.eu.org/</id>
   
   <author>
@@ -15,6 +15,170 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>C语言的自动类型转换</title>
+    <link href="http://weaving-dreams.eu.org/posts/42614cd0/"/>
+    <id>http://weaving-dreams.eu.org/posts/42614cd0/</id>
+    <published>2023-07-24T08:36:00.000Z</published>
+    <updated>2023-02-27T14:53:36.534Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;自动转换遵循以下规则：&quot;&gt;&lt;a href=&quot;#自动转换遵循以下规则：&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="C语言" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/C%E8%AF%AD%E8%A8%80/"/>
+    
+    
+    <category term="C语言" scheme="http://weaving-dreams.eu.org/tags/C%E8%AF%AD%E8%A8%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>C语言简单练习</title>
+    <link href="http://weaving-dreams.eu.org/posts/c67a5273/"/>
+    <id>http://weaving-dreams.eu.org/posts/c67a5273/</id>
+    <published>2023-07-24T08:36:00.000Z</published>
+    <updated>2023-02-16T06:26:36.502Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;列出1–1000间所有素数&quot;&gt;&lt;a href=&quot;#列出1–1000间所有素数&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="C语言" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/C%E8%AF%AD%E8%A8%80/"/>
+    
+    
+    <category term="C语言" scheme="http://weaving-dreams.eu.org/tags/C%E8%AF%AD%E8%A8%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>C语言运算符优先级表详解</title>
+    <link href="http://weaving-dreams.eu.org/posts/228717dc/"/>
+    <id>http://weaving-dreams.eu.org/posts/228717dc/</id>
+    <published>2023-07-24T08:36:00.000Z</published>
+    <updated>2023-02-16T06:05:54.535Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;总优先级：算术运算&amp;gt;关系运算&amp;gt;逻辑运算&lt;/p&gt;
+&lt;p&gt;①算术运算（加+  减-  乘*  除&amp;#x2F;   取余%）&lt;/p&gt;
+&lt;p&gt;  </summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="C语言" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/C%E8%AF%AD%E8%A8%80/"/>
+    
+    
+    <category term="C语言" scheme="http://weaving-dreams.eu.org/tags/C%E8%AF%AD%E8%A8%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>群晖安装青龙面板</title>
+    <link href="http://weaving-dreams.eu.org/posts/ec07b845/"/>
+    <id>http://weaving-dreams.eu.org/posts/ec07b845/</id>
+    <published>2023-07-24T08:19:09.000Z</published>
+    <updated>2023-07-24T08:26:28.331Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;在docker目录下新建文件夹，名为QL，并在文件夹内新增如下子文件夹&quot;&gt;&lt;a href=&quot;#在docker目录下新建文件夹，名为QL，并在文件夹内新增如下子文件夹&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="教程" scheme="http://weaving-dreams.eu.org/categories/%E6%95%99%E7%A8%8B/"/>
+    
+    <category term="群晖" scheme="http://weaving-dreams.eu.org/categories/%E6%95%99%E7%A8%8B/%E7%BE%A4%E6%99%96/"/>
+    
+    
+    <category term="群晖" scheme="http://weaving-dreams.eu.org/tags/%E7%BE%A4%E6%99%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>C语言打卡练习</title>
+    <link href="http://weaving-dreams.eu.org/posts/62cd3fe2/"/>
+    <id>http://weaving-dreams.eu.org/posts/62cd3fe2/</id>
+    <published>2023-04-20T07:57:52.000Z</published>
+    <updated>2023-04-20T08:22:10.263Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;通过键盘输入若干整数（个数少于50），其值在0-4的范围，用-1作为输入结束的标志，统计每个数字的个数并输出。&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="C语言" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/C%E8%AF%AD%E8%A8%80/"/>
+    
+    
+    <category term="C语言" scheme="http://weaving-dreams.eu.org/tags/C%E8%AF%AD%E8%A8%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>C语言2016-2022程序设计题</title>
+    <link href="http://weaving-dreams.eu.org/posts/bcabe79d/"/>
+    <id>http://weaving-dreams.eu.org/posts/bcabe79d/</id>
+    <published>2023-04-19T09:40:07.000Z</published>
+    <updated>2023-04-19T09:53:43.112Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;2016&quot;&gt;&lt;a href=&quot;#2016&quot; class=&quot;headerlink&quot; title=&quot;2016&quot;&gt;&lt;/a&gt;2016&lt;/h1&gt;&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="C语言" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/C%E8%AF%AD%E8%A8%80/"/>
+    
+    
+    <category term="C语言" scheme="http://weaving-dreams.eu.org/tags/C%E8%AF%AD%E8%A8%80/"/>
+    
+  </entry>
   
   <entry>
     <title>微机原理简答题-模拟卷</title>
@@ -373,162 +537,6 @@
     
     
     <summary type="html">&lt;p&gt; 我用小木板刻了个圆圈，涂成黄色，顶在头上，站到村口。&lt;br&gt; 从那天起，路过的外乡人对我唯命是从。&lt;br&gt; 我们村儿没啥特别，总共才住了十来户，不到十口人。人太少，村子连个名都没有。&lt;br&gt; 不过，来来往往的人都管这里叫「辛守村」。 &lt;/p&gt;</summary>
-    
-    
-    
-    <category term="知乎" scheme="http://weaving-dreams.eu.org/categories/%E7%9F%A5%E4%B9%8E/"/>
-    
-    
-    <category term="知乎" scheme="http://weaving-dreams.eu.org/tags/%E7%9F%A5%E4%B9%8E/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>微机原理第1~2章简答题</title>
-    <link href="http://weaving-dreams.eu.org/posts/1980576a/"/>
-    <id>http://weaving-dreams.eu.org/posts/1980576a/</id>
-    <published>2023-03-20T14:51:25.000Z</published>
-    <updated>2023-03-24T03:31:47.204Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;第一章：微型计算机基础概论&quot;&gt;&lt;a href=&quot;#第一章：微型计算机基础概论&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="学习" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    <category term="微机原理" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/%E5%BE%AE%E6%9C%BA%E5%8E%9F%E7%90%86/"/>
-    
-    
-    <category term="微机原理" scheme="http://weaving-dreams.eu.org/tags/%E5%BE%AE%E6%9C%BA%E5%8E%9F%E7%90%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>微机原理简答题一</title>
-    <link href="http://weaving-dreams.eu.org/posts/2b3dbb70/"/>
-    <id>http://weaving-dreams.eu.org/posts/2b3dbb70/</id>
-    <published>2023-03-12T02:14:07.000Z</published>
-    <updated>2023-03-12T02:15:36.787Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;8086系统中的存储器分为几个逻辑段？各段之间的关系如何？每个段寄存器的作用是什么？&quot;&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="学习" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    <category term="微机原理" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/%E5%BE%AE%E6%9C%BA%E5%8E%9F%E7%90%86/"/>
-    
-    
-    <category term="微机原理" scheme="http://weaving-dreams.eu.org/tags/%E5%BE%AE%E6%9C%BA%E5%8E%9F%E7%90%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>雨莲天尊</title>
-    <link href="http://weaving-dreams.eu.org/posts/2b291a94/"/>
-    <id>http://weaving-dreams.eu.org/posts/2b291a94/</id>
-    <published>2023-03-11T12:04:22.000Z</published>
-    <updated>2023-03-11T12:07:31.745Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;我开了一个算命直播间，连线的第一个客户就惹上了案件。&lt;/p&gt;
-&lt;p&gt;红点一闪而过。&lt;/p&gt;
-&lt;p&gt;我怒吼：「不好！你现在立刻把房门锁上！！你只有 10 秒的时间！！！」&lt;/p&gt;
-&lt;p&gt;弹幕疯狂地刷新！&lt;/p&gt;
-&lt;p&gt;「是摄像头！！！」&lt;/p&gt;
-&lt;p&gt;此时，视频对面传来了一阵急促的脚步声……&lt;/p&gt;
-&lt;p&gt;客户浑身战栗，满眼惊恐盯着房门：「我房间的锁前几天忽然坏掉了……」&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="知乎" scheme="http://weaving-dreams.eu.org/categories/%E7%9F%A5%E4%B9%8E/"/>
-    
-    
-    <category term="知乎" scheme="http://weaving-dreams.eu.org/tags/%E7%9F%A5%E4%B9%8E/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>送米人</title>
-    <link href="http://weaving-dreams.eu.org/posts/bf92c8b4/"/>
-    <id>http://weaving-dreams.eu.org/posts/bf92c8b4/</id>
-    <published>2023-03-11T12:03:09.000Z</published>
-    <updated>2023-03-11T12:07:18.233Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;我考上大学的时候，因为继父对我不好，不肯出钱让我读大学，我只好自己去挣钱。&lt;/p&gt;
-&lt;p&gt;但我身体虚弱，去打工没人要我，后来村里的富人听说我急缺钱，给我介绍了一份工作。&lt;/p&gt;
-&lt;p&gt;工作其实很简单，就是帮他送饭。&lt;/p&gt;
-&lt;p&gt;说是送饭，其实也奇怪。&lt;/p&gt;
-&lt;p&gt;因为这饭就真的是饭，一点菜也没有，用两个碗装着，送到山上的一处老屋。&lt;/p&gt;
-&lt;p&gt;那老屋我偶尔也有路过，就是传统的农村木宅，很多地方都腐烂了，压根没发现里面有住人。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="知乎" scheme="http://weaving-dreams.eu.org/categories/%E7%9F%A5%E4%B9%8E/"/>
-    
-    
-    <category term="知乎" scheme="http://weaving-dreams.eu.org/tags/%E7%9F%A5%E4%B9%8E/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>C语言练习-2</title>
-    <link href="http://weaving-dreams.eu.org/posts/1c5b0de3/"/>
-    <id>http://weaving-dreams.eu.org/posts/1c5b0de3/</id>
-    <published>2023-03-05T14:00:43.000Z</published>
-    <updated>2023-03-05T14:04:09.480Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;求二阶矩阵所有靠外侧的各元素之和&quot;&gt;&lt;a href=&quot;#求二阶矩阵所有靠外侧的各元素之和&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="学习" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    <category term="C语言" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/C%E8%AF%AD%E8%A8%80/"/>
-    
-    
-    <category term="C语言" scheme="http://weaving-dreams.eu.org/tags/C%E8%AF%AD%E8%A8%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>血之花</title>
-    <link href="http://weaving-dreams.eu.org/posts/f9b74ab5/"/>
-    <id>http://weaving-dreams.eu.org/posts/f9b74ab5/</id>
-    <published>2023-02-27T15:01:04.000Z</published>
-    <updated>2023-02-27T15:03:30.923Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;我是被一个带着猪面具的男人杀死的。&lt;/p&gt;
-&lt;p&gt;他把整个班的人都抓来，绑在了一起，每天杀一个，剥皮，烫死，溺水，各种死法，而我是最后一个死的。&lt;/p&gt;
-&lt;p&gt;他把我肢解了，切成无数片的肉块，每天吃一片，像个疯子。&lt;/p&gt;
-&lt;p&gt;我再睁眼，就回到了我的高中时期，那时的我娇纵，明艳，也冷心冷血。&lt;/p&gt;
-&lt;p&gt;教室后的人又被打了，他们用脚踹他，用拖把涮他的头，用烟头烫他。&lt;/p&gt;
-&lt;p&gt;而他始终躺着，一言不发，厚重的眼镜，长相说不上好看，也说不上不好看，平平无奇。&lt;/p&gt;
-&lt;p&gt;我撑着头朝他们说，「差不多得了。」&lt;/p&gt;
-&lt;p&gt;他普通，平凡，阴郁，和人说话总是低着头，脾气又倔又臭，没有一处讨人喜欢，但大小姐爱他。&lt;/p&gt;</summary>
     
     
     
