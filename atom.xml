@@ -6,7 +6,7 @@
   <link href="http://weaving-dreams.eu.org/atom.xml" rel="self"/>
   
   <link href="http://weaving-dreams.eu.org/"/>
-  <updated>2023-02-27T14:53:36.534Z</updated>
+  <updated>2023-07-27T02:10:22.009Z</updated>
   <id>http://weaving-dreams.eu.org/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>群晖套件安装Jellyfin</title>
+    <link href="http://weaving-dreams.eu.org/posts/9b939317/"/>
+    <id>http://weaving-dreams.eu.org/posts/9b939317/</id>
+    <published>2023-07-27T02:08:51.000Z</published>
+    <updated>2023-07-27T02:10:22.009Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;1，社区套件搜索jellyfin，选择中间那个版本（有独显选右边那个独显版本）&lt;/p&gt;
+&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    <category term="教程" scheme="http://weaving-dreams.eu.org/categories/%E6%95%99%E7%A8%8B/"/>
+    
+    <category term="群晖" scheme="http://weaving-dreams.eu.org/categories/%E6%95%99%E7%A8%8B/%E7%BE%A4%E6%99%96/"/>
+    
+    
+    <category term="群晖" scheme="http://weaving-dreams.eu.org/tags/%E7%BE%A4%E6%99%96/"/>
+    
+  </entry>
   
   <entry>
     <title>C语言的自动类型转换</title>
@@ -525,25 +553,6 @@
     
     
     <category term="数学" scheme="http://weaving-dreams.eu.org/tags/%E6%95%B0%E5%AD%A6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>辛守村那些事</title>
-    <link href="http://weaving-dreams.eu.org/posts/46a8dea7/"/>
-    <id>http://weaving-dreams.eu.org/posts/46a8dea7/</id>
-    <published>2023-03-20T14:53:28.000Z</published>
-    <updated>2023-03-20T15:00:12.326Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt; 我用小木板刻了个圆圈，涂成黄色，顶在头上，站到村口。&lt;br&gt; 从那天起，路过的外乡人对我唯命是从。&lt;br&gt; 我们村儿没啥特别，总共才住了十来户，不到十口人。人太少，村子连个名都没有。&lt;br&gt; 不过，来来往往的人都管这里叫「辛守村」。 &lt;/p&gt;</summary>
-    
-    
-    
-    <category term="知乎" scheme="http://weaving-dreams.eu.org/categories/%E7%9F%A5%E4%B9%8E/"/>
-    
-    
-    <category term="知乎" scheme="http://weaving-dreams.eu.org/tags/%E7%9F%A5%E4%B9%8E/"/>
     
   </entry>
   

@@ -18104,4 +18104,80 @@ docker exec -it qinglong task test.js conc</code></pre>
         <tag>教程</tag>
       </tags>
   </entry>
+  <entry>
+    <title>群晖套件安装Jellyfin</title>
+    <url>/posts/9b939317/</url>
+    <content><![CDATA[<p>1，社区套件搜索jellyfin，选择中间那个版本（有独显选右边那个独显版本）</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2023%2F07%2F27%2F20230727100458.png" alt="1" loading="lazy"></p>
+<p>2.下载点击同意第三方套件安装，选择安装位置后点击下一步后完成安装</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2023%2F07%2F27%2F20230727100501.png" alt="2" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2023%2F07%2F27%2F20230727100502.png" alt="3" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2023%2F07%2F27%2F20230727100504.png" alt="4" loading="lazy"></p>
+<p>3.安装后打开jellyfin开始设置</p>
+<ul>
+<li>选择语言，设置为中文后点击下一步</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2023%2F07%2F27%2F20230727100506.png" alt="5" loading="lazy"></p>
+<ul>
+<li>设置登用户名及密码</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2023%2F07%2F27%2F20230727100511.png" alt="6" loading="lazy"></p>
+<ul>
+<li>添加媒体库</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2023%2F07%2F27%2F20230727100515.png" alt="7" loading="lazy"></p>
+<ul>
+<li>设置媒体库</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2023%2F07%2F27%2F20230727100518.png" alt="8" loading="lazy"></p>
+<ul>
+<li>设置元数据语言</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2023%2F07%2F27%2F20230727100520.png" alt="9" loading="lazy"></p>
+<ul>
+<li>设置远程访问</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2023%2F07%2F27%2F20230727100522.png" alt="10" loading="lazy"></p>
+<ul>
+<li>完成</li>
+</ul>
+<p>4.设置完成后登录</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2023%2F07%2F27%2F20230727100525.png" alt="11" loading="lazy"></p>
+<p>5.设置硬件解码</p>
+<ul>
+<li>依次点击菜单-控制台-播放，硬件加速根据硬件配置选择</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2023%2F07%2F27%2F20230727100527.png" alt="12" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2023%2F07%2F27%2F20230727100530.png" alt="13" loading="lazy"></p>
+<p>6.设置远程连接</p>
+<ul>
+<li><p>依次点击菜单-控制台-联网，启动https </p>
+</li>
+<li><p>hettps设置里开启强制https并添加证书和密码</p>
+</li>
+</ul>
+<ol start="7">
+<li><p>启用ipv6</p>
+</li>
+<li><p>设置反向代理服务器</p>
+</li>
+</ol>
+<ul>
+<li><p>打开群晖控制面板，依次点击设置-登录门户-高级-反向代理服务器</p>
+</li>
+<li><p>点击新增设置来源和目的地</p>
+</li>
+</ul>
+<ol start="9">
+<li>远程访问成功</li>
+</ol>
+]]></content>
+      <categories>
+        <category>教程</category>
+        <category>群晖</category>
+      </categories>
+      <tags>
+        <tag>群晖</tag>
+      </tags>
+  </entry>
 </search>
