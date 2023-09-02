@@ -2,11 +2,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>圥忈的小站</title>
   <icon>http://weaving-dreams.eu.org/icon.png</icon>
-  <subtitle>梦之所梦，想之所想</subtitle>
+  <subtitle>不断地寻找同类，最后变成孤独的人</subtitle>
   <link href="http://weaving-dreams.eu.org/atom.xml" rel="self"/>
   
   <link href="http://weaving-dreams.eu.org/"/>
-  <updated>2023-08-12T07:22:21.998Z</updated>
+  <updated>2023-09-02T05:46:14.765Z</updated>
   <id>http://weaving-dreams.eu.org/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>免费安装hevc拓展</title>
+    <link href="http://weaving-dreams.eu.org/posts/db22bfb1/"/>
+    <id>http://weaving-dreams.eu.org/posts/db22bfb1/</id>
+    <published>2023-09-02T05:42:24.000Z</published>
+    <updated>2023-09-02T05:46:14.765Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;步骤-1：在应用商店Microsoft查找应用-URL&quot;&gt;&lt;a href=&quot;#步骤-1：在应用商店Microsoft查找应用-URL&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="教程" scheme="http://weaving-dreams.eu.org/categories/%E6%95%99%E7%A8%8B/"/>
+    
+    <category term="Windows" scheme="http://weaving-dreams.eu.org/categories/%E6%95%99%E7%A8%8B/Windows/"/>
+    
+    
+    <category term="windows" scheme="http://weaving-dreams.eu.org/tags/windows/"/>
+    
+  </entry>
+  
+  <entry>
     <title>整天泡网吧打游戏的人，他们的经济来源是什么？</title>
     <link href="http://weaving-dreams.eu.org/posts/2923e863/"/>
     <id>http://weaving-dreams.eu.org/posts/2923e863/</id>
     <published>2023-08-12T07:21:09.000Z</published>
-    <updated>2023-08-12T07:22:21.998Z</updated>
+    <updated>2023-08-12T07:22:37.181Z</updated>
     
     
       
@@ -524,33 +551,6 @@
     
     
     <category term="微机原理" scheme="http://weaving-dreams.eu.org/tags/%E5%BE%AE%E6%9C%BA%E5%8E%9F%E7%90%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>第九章  线性代数</title>
-    <link href="http://weaving-dreams.eu.org/posts/49fcf5b4/"/>
-    <id>http://weaving-dreams.eu.org/posts/49fcf5b4/</id>
-    <published>2023-03-21T14:41:58.000Z</published>
-    <updated>2023-03-21T14:43:50.549Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;行列式、主要对角行列式性质（上三角、下三角、对角线）&quot;&gt;&lt;a href=&quot;#行列式、主要对角行列式性质（上三角、下三角、对角线）&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="学习" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    <category term="数学" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6/"/>
-    
-    
-    <category term="数学" scheme="http://weaving-dreams.eu.org/tags/%E6%95%B0%E5%AD%A6/"/>
     
   </entry>
   
