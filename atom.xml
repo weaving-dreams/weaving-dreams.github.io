@@ -6,7 +6,7 @@
   <link href="http://weaving-dreams.eu.org/atom.xml" rel="self"/>
   
   <link href="http://weaving-dreams.eu.org/"/>
-  <updated>2023-09-02T05:46:14.765Z</updated>
+  <updated>2023-12-30T11:11:23.822Z</updated>
   <id>http://weaving-dreams.eu.org/</id>
   
   <author>
@@ -15,6 +15,91 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Ubuntu环境下安装部署Nginx</title>
+    <link href="http://weaving-dreams.eu.org/posts/b314a8d9/"/>
+    <id>http://weaving-dreams.eu.org/posts/b314a8d9/</id>
+    <published>2023-12-30T11:00:10.000Z</published>
+    <updated>2023-12-30T11:11:23.822Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;使用apt-get命令安装nginx&quot;&gt;&lt;a href=&quot;#使用apt-get命令安装nginx&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="教程" scheme="http://weaving-dreams.eu.org/categories/%E6%95%99%E7%A8%8B/"/>
+    
+    <category term="Linux" scheme="http://weaving-dreams.eu.org/categories/%E6%95%99%E7%A8%8B/Linux/"/>
+    
+    
+    <category term="Linux" scheme="http://weaving-dreams.eu.org/tags/Linux/"/>
+    
+    <category term="Ubuntu" scheme="http://weaving-dreams.eu.org/tags/Ubuntu/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ubuntu安装Typecho博客</title>
+    <link href="http://weaving-dreams.eu.org/posts/7fa7a97b/"/>
+    <id>http://weaving-dreams.eu.org/posts/7fa7a97b/</id>
+    <published>2023-12-30T10:59:57.000Z</published>
+    <updated>2023-12-30T11:11:23.806Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Ubuntu安装Typecho博客&quot;&gt;&lt;a href=&quot;#Ubuntu安装Typecho博客&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="教程" scheme="http://weaving-dreams.eu.org/categories/%E6%95%99%E7%A8%8B/"/>
+    
+    <category term="Linux" scheme="http://weaving-dreams.eu.org/categories/%E6%95%99%E7%A8%8B/Linux/"/>
+    
+    
+    <category term="Linux" scheme="http://weaving-dreams.eu.org/tags/Linux/"/>
+    
+    <category term="Ubuntu" scheme="http://weaving-dreams.eu.org/tags/Ubuntu/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>linux修改ssh默认端口</title>
+    <link href="http://weaving-dreams.eu.org/posts/65134606/"/>
+    <id>http://weaving-dreams.eu.org/posts/65134606/</id>
+    <published>2023-12-30T10:59:23.000Z</published>
+    <updated>2023-12-30T11:11:23.822Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;修改-x2F-etc-x2F-ssh-x2F-sshd-config，修改ssh端口。&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="教程" scheme="http://weaving-dreams.eu.org/categories/%E6%95%99%E7%A8%8B/"/>
+    
+    <category term="Linux" scheme="http://weaving-dreams.eu.org/categories/%E6%95%99%E7%A8%8B/Linux/"/>
+    
+    
+    <category term="Linux" scheme="http://weaving-dreams.eu.org/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>免费安装hevc拓展</title>
@@ -462,84 +547,6 @@
         
         
     <summary type="html">&lt;h1 id=&quot;简述半导体存储器的主要分类？说明它们的用途和区别。&quot;&gt;&lt;a href=&quot;#简述半导体存储器的主要分类？说明它们的用途和区别。&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="学习" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    <category term="微机原理" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/%E5%BE%AE%E6%9C%BA%E5%8E%9F%E7%90%86/"/>
-    
-    
-    <category term="微机原理" scheme="http://weaving-dreams.eu.org/tags/%E5%BE%AE%E6%9C%BA%E5%8E%9F%E7%90%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>不要相信那个魔术师</title>
-    <link href="http://weaving-dreams.eu.org/posts/83ad47c1/"/>
-    <id>http://weaving-dreams.eu.org/posts/83ad47c1/</id>
-    <published>2023-03-27T14:45:39.000Z</published>
-    <updated>2023-03-27T14:49:01.727Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;我的魔术师男友死了。&lt;/p&gt;
-&lt;p&gt;他在表演人体分尸时，众目睽睽下，被肢解成了无数片。&lt;/p&gt;
-&lt;p&gt;帮他入殓时，我在他胃里发现一张纸条。&lt;/p&gt;
-&lt;p&gt;里头写着:&lt;/p&gt;
-&lt;p&gt;「宝贝，21 世纪最伟大的魔术已经开始，敬请期待。」&lt;/p&gt;
-&lt;p&gt;「众神陨落那天，将是我重生之时。」&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="知乎" scheme="http://weaving-dreams.eu.org/categories/%E7%9F%A5%E4%B9%8E/"/>
-    
-    
-    <category term="知乎" scheme="http://weaving-dreams.eu.org/tags/%E7%9F%A5%E4%B9%8E/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>第二章一元函数微分学</title>
-    <link href="http://weaving-dreams.eu.org/posts/331e3d96/"/>
-    <id>http://weaving-dreams.eu.org/posts/331e3d96/</id>
-    <published>2023-03-27T14:39:35.000Z</published>
-    <updated>2023-03-27T14:43:39.909Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;导数定义&quot;&gt;&lt;a href=&quot;#导数定义&quot; class=&quot;headerlink&quot; title=&quot;导数定义&quot;&gt;&lt;/a&gt;导数定义&lt;/h1&gt;&lt;p&gt;&lt;img</summary>
-        
-      
-    
-    
-    
-    <category term="学习" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    <category term="数学" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6/"/>
-    
-    
-    <category term="数学" scheme="http://weaving-dreams.eu.org/tags/%E6%95%B0%E5%AD%A6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>微机原理第3~4章简答题</title>
-    <link href="http://weaving-dreams.eu.org/posts/11e33926/"/>
-    <id>http://weaving-dreams.eu.org/posts/11e33926/</id>
-    <published>2023-03-24T03:28:05.000Z</published>
-    <updated>2023-03-24T03:32:58.938Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;第三章：8086-x2F-8088指令系统&quot;&gt;&lt;a href=&quot;#第三章：8086-x2F-8088指令系统&quot; class=&quot;headerlink&quot;</summary>
         
       
     
