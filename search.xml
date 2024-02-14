@@ -13613,4 +13613,37 @@ docker exec -it qinglong task test.js conc</code></pre>
         <tag>教程</tag>
       </tags>
   </entry>
+  <entry>
+    <title>AdGuard Home基本配置</title>
+    <url>/posts/c7183004/</url>
+    <content><![CDATA[<p>DNS黑名单</p>
+<pre class="language-none"><code class="language-none">名称 ：GOODBYEADS
+网址： https:&#x2F;&#x2F;mirror.ghproxy.com&#x2F;raw.githubusercontent.com&#x2F;8680&#x2F;GOODBYEADS&#x2F;master&#x2F;rules.txt
+</code></pre>
+
+<p>DNS白名单</p>
+<pre class="language-none"><code class="language-none">名称： GOODBYEADS
+网址： https:&#x2F;&#x2F;mirror.ghproxy.com&#x2F;raw.githubusercontent.com&#x2F;8680&#x2F;GOODBYEADS&#x2F;master&#x2F;allow.txt</code></pre>
+
+<p>上游 DNS 服务器</p>
+<pre class="language-none"><code class="language-none">https:&#x2F;&#x2F;sm2.doh.pub&#x2F;dns-query
+https:&#x2F;&#x2F;dns.alidns.com&#x2F;dns-query
+114.114.114.114
+8.8.8.8
+119.29.29.29
+202.99.160.68
+202.99.166.4</code></pre>
+
+
+
+<p>去广告规则:<a href="https://github.com/8680/GOODBYEADS">https://github.com/8680/GOODBYEADS</a></p>
+]]></content>
+      <categories>
+        <category>教程</category>
+        <category>群晖</category>
+      </categories>
+      <tags>
+        <tag>群晖</tag>
+      </tags>
+  </entry>
 </search>

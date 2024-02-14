@@ -6,7 +6,7 @@
   <link href="http://weaving-dreams.eu.org/atom.xml" rel="self"/>
   
   <link href="http://weaving-dreams.eu.org/"/>
-  <updated>2023-12-30T11:11:23.822Z</updated>
+  <updated>2024-02-14T08:46:21.388Z</updated>
   <id>http://weaving-dreams.eu.org/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>AdGuard Home基本配置</title>
+    <link href="http://weaving-dreams.eu.org/posts/c7183004/"/>
+    <id>http://weaving-dreams.eu.org/posts/c7183004/</id>
+    <published>2024-02-14T08:43:37.000Z</published>
+    <updated>2024-02-14T08:46:21.388Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;DNS黑名单&lt;/p&gt;
+&lt;pre class=&quot;language-none&quot;&gt;&lt;code class=&quot;language-none&quot;&gt;名称 ：GOODBYEADS
+网址：</summary>
+        
+      
+    
+    
+    
+    <category term="教程" scheme="http://weaving-dreams.eu.org/categories/%E6%95%99%E7%A8%8B/"/>
+    
+    <category term="群晖" scheme="http://weaving-dreams.eu.org/categories/%E6%95%99%E7%A8%8B/%E7%BE%A4%E6%99%96/"/>
+    
+    
+    <category term="群晖" scheme="http://weaving-dreams.eu.org/tags/%E7%BE%A4%E6%99%96/"/>
+    
+  </entry>
   
   <entry>
     <title>Ubuntu环境下安装部署Nginx</title>
@@ -531,33 +560,6 @@
     
     
     <category term="数学" scheme="http://weaving-dreams.eu.org/tags/%E6%95%B0%E5%AD%A6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>微机原理第五章简答题</title>
-    <link href="http://weaving-dreams.eu.org/posts/828edb5f/"/>
-    <id>http://weaving-dreams.eu.org/posts/828edb5f/</id>
-    <published>2023-03-29T12:05:19.000Z</published>
-    <updated>2023-03-29T12:20:25.756Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;简述半导体存储器的主要分类？说明它们的用途和区别。&quot;&gt;&lt;a href=&quot;#简述半导体存储器的主要分类？说明它们的用途和区别。&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="学习" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    <category term="微机原理" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/%E5%BE%AE%E6%9C%BA%E5%8E%9F%E7%90%86/"/>
-    
-    
-    <category term="微机原理" scheme="http://weaving-dreams.eu.org/tags/%E5%BE%AE%E6%9C%BA%E5%8E%9F%E7%90%86/"/>
     
   </entry>
   
