@@ -13669,4 +13669,206 @@ docker exec -it qinglong task test.js conc</code></pre>
         <tag>教程</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Ubuntu基于Nginx部署WordPress</title>
+    <url>/posts/c93a9c5d/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>WordPress是基于PHP和MySQL的免费开源内容管理系统（CMS）。 它是全球使用最广泛的CMS软件，截至2019年5月，它为排名前1000万个网站中[提供了超过30％的支持，并拥有在使用CMS构建的所有网站中，估计有60％的市场份额。</p>
+<p>WordPress始于2003年，最开始仅为一款简单的博客系统，但现已发展成为具有数千款插件，小工具和主题功能完整的CMS系统。它是根据开源协议通用公共许可证（GPLv2或更高版本）进行授权。</p>
+<h1 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h1><ul>
+<li>准备全新的 Ubuntu  系统</li>
+<li>做好系统的备份以防安装出错可以回滚系统</li>
+</ul>
+<h3 id="检查更新-Ubuntu-系统"><a href="#检查更新-Ubuntu-系统" class="headerlink" title="检查更新 Ubuntu 系统"></a>检查更新 Ubuntu 系统</h3><pre class="language-none"><code class="language-none">sudo apt-get update
+sudo apt-get upgrade -y</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F02%2F18%2F20240218150228.png" alt="1" loading="lazy"></p>
+<p>检查系统版本</p>
+<pre class="language-none"><code class="language-none">lsb_release -a</code></pre>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F02%2F18%2F20240218150232.png" alt="2" loading="lazy"></p>
+<h3 id="安装-Nginx"><a href="#安装-Nginx" class="headerlink" title="安装 Nginx"></a>安装 Nginx</h3><pre class="language-none"><code class="language-none">sudo apt-get install nginx -y</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F02%2F18%2F20240218150233.png" alt="3" loading="lazy"></p>
+<p>查看 Nginx 运行状态</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> systemctl status nginx</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F02%2F18%2F20240218150235.png" alt="4" loading="lazy"></p>
+<p>启动 Nginx、配置 Nginx 开机自启动</p>
+<pre class="language-none"><code class="language-none">sudo systemctl start nginx
+
+sudo systemctl enable nginx</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F02%2F18%2F20240218150238.png" alt="5" loading="lazy"></p>
+<h1 id="安装数据库-MariaDB"><a href="#安装数据库-MariaDB" class="headerlink" title="安装数据库 MariaDB"></a>安装数据库 MariaDB</h1><pre class="language-none"><code class="language-none">sudo apt-get install mariadb-server -y
+sudo systemctl start mariadb
+sudo systemctl enable mariadb</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F02%2F18%2F20240218150240.png" alt="6" loading="lazy"></p>
+<p><img src="/7.png" alt="7" loading="lazy"></p>
+<p>查看MeriaDB是否运行</p>
+<pre class="language-none"><code class="language-none">service mysql status</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F02%2F18%2F20240218150242.png" alt="8" loading="lazy"></p>
+<p>安装脚本：mysql_secure_installation提高数据库服务器的安全性。</p>
+<pre class="language-none"><code class="language-none">sudo mysql_secure_installation </code></pre>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F02%2F18%2F20240218150244.png" alt="9" loading="lazy"></p>
+<h1 id="安装-PHP-7-4"><a href="#安装-PHP-7-4" class="headerlink" title="安装 PHP 7.4"></a>安装 PHP 7.4</h1><pre class="language-none"><code class="language-none">sudo apt-get install php7.4 php7.4-cli php7.4-fpm php7.4-mysql php7.4-json php7.4-opcache php7.4-mbstring php7.4-xml php7.4-gd php7.4-curl -y</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F02%2F18%2F20240218150246.png" alt="10" loading="lazy"></p>
+<p>查看 PHP 版本</p>
+<pre class="language-none"><code class="language-none">php -verson</code></pre>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F02%2F18%2F20240218150249.png" alt="11" loading="lazy"></p>
+<h3 id="创建-WordPress-数据库"><a href="#创建-WordPress-数据库" class="headerlink" title="创建 WordPress 数据库"></a>创建 WordPress 数据库</h3><p>使用以下命令以 root 身份登录 MariaDB shell。</p>
+<pre class="language-none"><code class="language-none">sudo mysql -u root -p</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F02%2F18%2F20240218150251.png" alt="12" loading="lazy"></p>
+<p>登录后，使用以下命令为 WordPress 创建数据库。</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">CREATE DATABASE wordpress_db<span class="token punctuation">;</span></code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F02%2F18%2F20240218150253.png" alt="13" loading="lazy"></p>
+<p>然后输入以下命令为 WordPress 创建数据库用户。此命令还向用户授予 WordPress 数据库的所有权限。将 <strong>用户名</strong>和<strong>密码</strong> 替换为你自己要设置的用户名和密码。</p>
+<pre class="language-none"><code class="language-none">GRANT ALL ON wordpress_db.* TO &#39;用户名&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;密码&#39; WITH GRANT OPTION;</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F02%2F18%2F20240218150256.png" alt="14" loading="lazy"></p>
+<p>刷新权限表以使更改生效，然后退出 MariaDB shell。</p>
+<pre class="language-none"><code class="language-none">flush privileges;
+exit;</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F02%2F18%2F20240218150258.png" alt="15" loading="lazy"></p>
+<h1 id="编辑-Nginx-相关文件"><a href="#编辑-Nginx-相关文件" class="headerlink" title="编辑 Nginx 相关文件"></a>编辑 Nginx 相关文件</h1><p>创建 WordPress 根目录。</p>
+<pre class="language-none"><code class="language-none">sudo mkdir &#x2F;home&#x2F;wordpress</code></pre>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F02%2F18%2F20240218150301.png" alt="16" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">server &#123;             
+            listen 80;                                    
+            server_name SUBDOMAIN.DOMAIN.TLD ;     
+            root &#x2F;www&#x2F;wwwroot&#x2F;wordpress;  
+
+            access_log &#x2F;var&#x2F;log&#x2F;nginx&#x2F;www.access.log;             
+            location &#x2F; &#123;    
+            index index.php index.html index.htm;
+            	        autoindex on;
+     		 autoindex_exact_size off;
+     		 autoindex_localtime on;                        
+                 try_files $uri $uri&#x2F; &#x2F;index.php?$args;
+            &#125;
+	 location ~ \.php$ &#123;
+   	 #NOTE: You should have &quot;cgi.fix_pathinfo &#x3D; 0;&quot; in php.ini
+   		 include fastcgi_params;
+  		  fastcgi_intercept_errors on;
+   		 fastcgi_pass unix:&#x2F;var&#x2F;run&#x2F;php&#x2F;php7.4-fpm.sock;
+   		 fastcgi_param SCRIPT_FILENAME $document_root&#x2F;$fastcgi_script_name;
+&#125;
+
+         
+            location ~ &#x2F;\.ht &#123;                            
+                 deny all;             
+            &#125;             
+            location &#x3D; &#x2F;favicon.ico &#123;                            
+                 log_not_found off;                            
+                 access_log off;             
+            &#125;             
+            location &#x3D; &#x2F;robots.txt &#123;                            
+                 allow all;                            
+                 log_not_found off;                            
+                 access_log off;             
+            &#125;             
+            location ~* \.(js|css|png|jpg|jpeg|gif|ico)$ &#123;                            
+                 expires max;                            
+                 log_not_found off;             
+            &#125;  
+&#125;</code></pre>
+
+
+
+<p>*替换 SUBDOMAIN.DOMAIN.TLD 为你的域名</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F02%2F18%2F20240218150304.png" alt="17" loading="lazy"></p>
+<p>检查上述配置文件的正确性</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">nginx -t</code></pre>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F02%2F18%2F20240218150307.png" alt="18" loading="lazy"></p>
+<p>创建链接</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> /etc/nginx/sites-enabled  
+<span class="token function">sudo</span> <span class="token function">ln</span> -s <span class="token punctuation">..</span>/sites-available/wordpress.conf <span class="token builtin class-name">.</span></code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F02%2F18%2F20240218150309.png" alt="19" loading="lazy"></p>
+<p>重新加载 Nginx 以应用更改的设置</p>
+<pre class="language-none"><code class="language-none">sudo systemctl reload nginx</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F02%2F18%2F20240218150310.png" alt="20" loading="lazy"></p>
+<h3 id="下载和配置-WordPress"><a href="#下载和配置-WordPress" class="headerlink" title="下载和配置 WordPress"></a>下载和配置 WordPress</h3><pre class="language-none"><code class="language-none">cd &#x2F;home&#x2F;wordpress</code></pre>
+
+<pre class="language-none"><code class="language-none">sudo wget https:&#x2F;&#x2F;cn.wordpress.org&#x2F;latest-zh_CN.tar.gz  </code></pre>
+
+<pre class="language-none"><code class="language-none">sudo tar -zxvf latest-zh_CN.tar.gz  </code></pre>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F02%2F18%2F20240218150312.png" alt="21" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">sudo mv wordpress&#x2F;* .  </code></pre>
+
+<pre class="language-none"><code class="language-none">sudo rm -rf wordpress latest-zh_CN.tar.gz</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F02%2F18%2F20240218150314.png" alt="22" loading="lazy"></p>
+<p>更改文件所有权并且应用权限给 WordPress 所有文件</p>
+<pre class="language-none"><code class="language-none">sudo chown -R www-data:www-data * 
+sudo chmod -R 755 *</code></pre>
+
+
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F02%2F18%2F20240218150316.png" alt="23" loading="lazy"></p>
+<p>配置 <code>wp-config.php</code> 文件</p>
+<pre class="language-none"><code class="language-none">cd &#x2F;www&#x2F;wwwroot&#x2F;wordpress  
+sudo mv wp-config-sample.php wp-config.php  
+sudo nano wp-config.php</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F02%2F18%2F20240218150318.png" alt="24" loading="lazy"></p>
+<pre class="language-none"><code class="language-none">&#x2F;** 在wp-config.php文件中找出并更改以下内容 *&#x2F; 
+...  
+...  
+define(&#39;DB_NAME&#39;, &#39;wordpress_db&#39;);  
+define(&#39;DB_USER&#39;, &#39;wpuser&#39;);  
+define(&#39;DB_PASSWORD&#39;, &#39;Passw0rd!&#39;);  
+...  
+... 
+define( &#39;AUTH_KEY&#39;, &#39;put your unique phrase here&#39; ); 
+define( &#39;SECURE_AUTH_KEY&#39;, &#39;put your unique phrase here&#39; ); 
+define( &#39;LOGGED_IN_KEY&#39;, &#39;put your unique phrase here&#39; ); 
+define( &#39;NONCE_KEY&#39;, &#39;put your unique phrase here&#39; ); 
+define( &#39;AUTH_SALT&#39;, &#39;put your unique phrase here&#39; ); 
+define( &#39;SECURE_AUTH_SALT&#39;, &#39;put your unique phrase here&#39; ); 
+define( &#39;LOGGED_IN_SALT&#39;, &#39;put your unique phrase here&#39; ); 
+define( &#39;NONCE_SALT&#39;, &#39;put your unique phrase here&#39; ); 
+... 
+...</code></pre>
+
+<p>为了保证 WordPress 网站的安全，在上面的 WordPress 配置文件中，在数据库配置选项之后，通过 <a href="https://api.wordpress.org/secret-key/1.1/salt/">https://api.wordpress.org/secret-key/1.1/salt/</a> 生成安全密钥，粘贴在配置中。</p>
+<h3 id="安装-WordPress"><a href="#安装-WordPress" class="headerlink" title="安装 WordPress"></a>安装 WordPress</h3><p>在浏览器中访问你的域名，根据 WordPress 设置指引完成最后的配置。</p>
+<p>WordPress 安装完成。</p>
+<hr>
+<p>参考：<a href="https://www.kingsonho.com/install-wordpress-with-nginx-on-ubuntu/">Ubuntu 20.04 基于 Nginx 部署 WordPress – 我的it技术 (kingsonho.com)</a></p>
+]]></content>
+      <categories>
+        <category>教程</category>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>Ubuntu</tag>
+      </tags>
+  </entry>
 </search>
