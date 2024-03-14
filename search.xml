@@ -5398,11 +5398,11 @@ PATH&#x3D;$PATH:&#x2F;usr&#x2F;local&#x2F;php&#x2F;bin环境变量生效 source 
 <p>免费的东西总是最能折腾的，但是   办法总比困难多</p>
 ]]></content>
       <categories>
-        <category>其他</category>
-        <category>杂谈</category>
+        <category>教程</category>
+        <category>博客</category>
       </categories>
       <tags>
-        <tag>杂谈</tag>
+        <tag>waline</tag>
       </tags>
   </entry>
   <entry>
@@ -13869,6 +13869,59 @@ docker exec -it qinglong task test.js conc</code></pre>
       </categories>
       <tags>
         <tag>知乎</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>记录一次电脑拆机换键盘过程</title>
+    <url>/posts/b65bf92/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近电脑键盘有几个键没有反应了，初步判断是因为之前电脑进水导致线路接触不良，本着自己动手原则，所以在淘宝自己购买了一个键盘自己动手更换。</p>
+<h1 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h1><h2 id="准备工具"><a href="#准备工具" class="headerlink" title="准备工具"></a>准备工具</h2><p>键盘、螺丝刀、静电手环、翘片、小毛刷、工具盒、电烙铁、热熔胶、镊子……</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F03%2F14%2F20240314194643.jpg" alt="IMG_20240203_195358" loading="lazy"></p>
+<h2 id="拆机过程"><a href="#拆机过程" class="headerlink" title="拆机过程"></a>拆机过程</h2><ol>
+<li>拆后盖</li>
+</ol>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F03%2F14%2F20240314194647.jpg" alt="IMG_20240203_200354" loading="lazy"></p>
+<p>注：拆开后盖后第一件事要断开电池的排线</p>
+<ol start="2">
+<li>拆电池</li>
+</ol>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F03%2F14%2F20240314194649.jpg" alt="IMG_20240203_200729" loading="lazy"></p>
+<ol start="3">
+<li>拆机械硬盘及扬声器</li>
+</ol>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F03%2F14%2F20240314194651.jpg" alt="IMG_20240203_200839" loading="lazy"></p>
+<ol start="4">
+<li>拆机械硬盘及WiFi模块</li>
+</ol>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F03%2F14%2F20240314194654.jpg" alt="IMG_20240203_201917" loading="lazy"></p>
+<ol start="5">
+<li>拆散热风扇及usb小板</li>
+</ol>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F03%2F14%2F20240314194702.jpg" alt="IMG_20240203_202232" loading="lazy"></p>
+<ol start="6">
+<li>卸掉主板螺丝后取出主板</li>
+</ol>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F03%2F14%2F20240314194704.jpg" alt="IMG_20240203_202922" loading="lazy"></p>
+<ol start="7">
+<li>卸触摸板</li>
+<li>用壁纸刀削掉键盘的塑料锚点</li>
+<li>取出旧的键盘换上新键盘</li>
+<li>用热熔胶在之前塑料锚点处固定</li>
+<li>将各个部件依次装回</li>
+</ol>
+<blockquote>
+<p> 7-11图片略</p>
+</blockquote>
+<h2 id="开机测试"><a href="#开机测试" class="headerlink" title="开机测试"></a>开机测试</h2><p>一切正常，更换成功</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F03%2F14%2F20240314194728.jpg" alt="IMG_20240204_173033" loading="lazy"></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>拆机之前不知道此机器键盘为塑料锚点固定，导致拆开后还需购买热熔胶及电烙铁等工具，耽误维修进度，以及需要二次拆机固定键盘。对于以确定故障，拆机之前需要查找资料，避免二次拆机。</p>
+]]></content>
+      <categories>
+        <category>其他</category>
+        <category>闲暇记录</category>
+      </categories>
+      <tags>
+        <tag>闲暇记录</tag>
       </tags>
   </entry>
 </search>
