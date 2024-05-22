@@ -6,7 +6,7 @@
   <link href="http://weaving-dreams.eu.org/atom.xml" rel="self"/>
   
   <link href="http://weaving-dreams.eu.org/"/>
-  <updated>2024-03-14T12:01:46.195Z</updated>
+  <updated>2024-05-22T01:08:02.461Z</updated>
   <id>http://weaving-dreams.eu.org/</id>
   
   <author>
@@ -17,11 +17,39 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Docker管理工具Portainer忘记admin登录密码怎么办?</title>
+    <link href="http://weaving-dreams.eu.org/posts/aac2bef8/"/>
+    <id>http://weaving-dreams.eu.org/posts/aac2bef8/</id>
+    <published>2024-05-22T01:00:51.000Z</published>
+    <updated>2024-05-22T01:08:02.461Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;1.查看所有容器,包括未运行的&lt;/p&gt;
+&lt;pre class=&quot;language-none&quot;&gt;&lt;code class=&quot;language-none&quot;&gt;docker ps</summary>
+        
+      
+    
+    
+    
+    <category term="教程" scheme="http://weaving-dreams.eu.org/categories/%E6%95%99%E7%A8%8B/"/>
+    
+    <category term="群晖" scheme="http://weaving-dreams.eu.org/categories/%E6%95%99%E7%A8%8B/%E7%BE%A4%E6%99%96/"/>
+    
+    
+    <category term="群晖" scheme="http://weaving-dreams.eu.org/tags/%E7%BE%A4%E6%99%96/"/>
+    
+  </entry>
+  
+  <entry>
     <title>记录一次电脑拆机换键盘过程</title>
     <link href="http://weaving-dreams.eu.org/posts/b65bf92/"/>
     <id>http://weaving-dreams.eu.org/posts/b65bf92/</id>
     <published>2024-03-14T11:53:59.000Z</published>
-    <updated>2024-03-14T12:01:46.195Z</updated>
+    <updated>2024-03-14T12:01:58.603Z</updated>
     
     
       
@@ -529,33 +557,6 @@
     
     
     <category term="C语言" scheme="http://weaving-dreams.eu.org/tags/C%E8%AF%AD%E8%A8%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>微机原理第六章简答题</title>
-    <link href="http://weaving-dreams.eu.org/posts/46db1732/"/>
-    <id>http://weaving-dreams.eu.org/posts/46db1732/</id>
-    <published>2023-04-03T15:53:52.000Z</published>
-    <updated>2023-04-03T15:54:33.625Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;什么是中断？中断技术给计算机系统带来了什么作用？&quot;&gt;&lt;a href=&quot;#什么是中断？中断技术给计算机系统带来了什么作用？&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="学习" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    <category term="微机原理" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/%E5%BE%AE%E6%9C%BA%E5%8E%9F%E7%90%86/"/>
-    
-    
-    <category term="微机原理" scheme="http://weaving-dreams.eu.org/tags/%E5%BE%AE%E6%9C%BA%E5%8E%9F%E7%90%86/"/>
     
   </entry>
   

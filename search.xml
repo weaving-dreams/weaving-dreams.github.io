@@ -13924,4 +13924,46 @@ docker exec -it qinglong task test.js conc</code></pre>
         <tag>闲暇记录</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Docker管理工具Portainer忘记admin登录密码怎么办?</title>
+    <url>/posts/aac2bef8/</url>
+    <content><![CDATA[<p>1.查看所有容器,包括未运行的</p>
+<pre class="language-none"><code class="language-none">docker ps -a</code></pre>
+
+<p>2.找到Portainer对应信息</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F05%2F22%2F20240522090727.png" alt="1" loading="lazy"></p>
+<p>3.停止Portainer容器</p>
+<pre class="language-none"><code class="language-none">docker stop portainerid
+我这里就应该是
+docker stop 507566f70861</code></pre>
+
+<p>4.找到Portainer容器挂载信息</p>
+<pre class="language-none"><code class="language-none">docker inspect  portainerid
+我这里就应该是
+docker inspect 507566f70861</code></pre>
+
+<p>找到这个信息</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F05%2F22%2F20240522090744.png" alt="2" loading="lazy"></p>
+<p>5.执行命令重置密码</p>
+<pre class="language-none"><code class="language-none">docker run --rm -v &#x2F;dockerpath:&#x2F;data portainer&#x2F;helper-reset-password
+我这里应该是
+sudo docker run --rm -v portainer-ce_portainer_data:&#x2F;data portainer&#x2F;helper-reset-password</code></pre>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F05%2F22%2F20240522090747.png" alt="3" loading="lazy"></p>
+<p>现在admin登录的密码就为：4~!15SlshwmY#89FpcRE06u{HL2(_Z:</p>
+<p>6.启动容器,输入用户名密码就可以登录喽</p>
+<pre class="language-none"><code class="language-none">docker start  portainerid
+我这里就应该是
+docker start 507566f7086e</code></pre>
+
+<p>7.进入Portainer修改登录密码</p>
+]]></content>
+      <categories>
+        <category>教程</category>
+        <category>群晖</category>
+      </categories>
+      <tags>
+        <tag>群晖</tag>
+      </tags>
+  </entry>
 </search>
