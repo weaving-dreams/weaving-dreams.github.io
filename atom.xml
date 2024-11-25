@@ -6,7 +6,7 @@
   <link href="http://weaving-dreams.eu.org/atom.xml" rel="self"/>
   
   <link href="http://weaving-dreams.eu.org/"/>
-  <updated>2024-11-07T03:14:44.257Z</updated>
+  <updated>2024-11-25T11:33:04.080Z</updated>
   <id>http://weaving-dreams.eu.org/</id>
   
   <author>
@@ -17,11 +17,92 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>blender基础教程第三章--材质篇</title>
+    <title>blender基础教程第六章——动画篇</title>
+    <link href="http://weaving-dreams.eu.org/posts/711b5e75/"/>
+    <id>http://weaving-dreams.eu.org/posts/711b5e75/</id>
+    <published>2024-11-25T11:21:24.000Z</published>
+    <updated>2024-11-25T11:33:04.080Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;第一节：时间轴动画基础&quot;&gt;&lt;a href=&quot;#第一节：时间轴动画基础&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="blender" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/blender/"/>
+    
+    
+    <category term="blender" scheme="http://weaving-dreams.eu.org/tags/blender/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>blender基础教程第五章——场景灯光篇</title>
+    <link href="http://weaving-dreams.eu.org/posts/65bc2d57/"/>
+    <id>http://weaving-dreams.eu.org/posts/65bc2d57/</id>
+    <published>2024-11-25T11:17:08.000Z</published>
+    <updated>2024-11-25T11:22:56.671Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;第一节：新手小白基础教程&quot;&gt;&lt;a href=&quot;#第一节：新手小白基础教程&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="blender" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/blender/"/>
+    
+    
+    <category term="blender" scheme="http://weaving-dreams.eu.org/tags/blender/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>blender基础教程第四章——粒子篇</title>
+    <link href="http://weaving-dreams.eu.org/posts/c23831ab/"/>
+    <id>http://weaving-dreams.eu.org/posts/c23831ab/</id>
+    <published>2024-11-25T11:11:45.000Z</published>
+    <updated>2024-11-25T11:15:50.527Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;第一节：发射体粒子&quot;&gt;&lt;a href=&quot;#第一节：发射体粒子&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="blender" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/blender/"/>
+    
+    
+    <category term="blender" scheme="http://weaving-dreams.eu.org/tags/blender/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>blender基础教程第三章——材质篇</title>
     <link href="http://weaving-dreams.eu.org/posts/260750c1/"/>
     <id>http://weaving-dreams.eu.org/posts/260750c1/</id>
     <published>2024-11-07T03:08:18.000Z</published>
-    <updated>2024-11-07T03:14:44.257Z</updated>
+    <updated>2024-11-25T11:33:37.582Z</updated>
     
     
       
@@ -465,87 +546,6 @@
     <summary type="html">&lt;p&gt;总优先级：算术运算&amp;gt;关系运算&amp;gt;逻辑运算&lt;/p&gt;
 &lt;p&gt;①算术运算（加+  减-  乘*  除&amp;#x2F;   取余%）&lt;/p&gt;
 &lt;p&gt;  </summary>
-        
-      
-    
-    
-    
-    <category term="学习" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    <category term="C语言" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/C%E8%AF%AD%E8%A8%80/"/>
-    
-    
-    <category term="C语言" scheme="http://weaving-dreams.eu.org/tags/C%E8%AF%AD%E8%A8%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>群晖安装青龙面板</title>
-    <link href="http://weaving-dreams.eu.org/posts/ec07b845/"/>
-    <id>http://weaving-dreams.eu.org/posts/ec07b845/</id>
-    <published>2023-07-24T08:19:09.000Z</published>
-    <updated>2023-07-24T08:26:28.331Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;在docker目录下新建文件夹，名为QL，并在文件夹内新增如下子文件夹&quot;&gt;&lt;a href=&quot;#在docker目录下新建文件夹，名为QL，并在文件夹内新增如下子文件夹&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="教程" scheme="http://weaving-dreams.eu.org/categories/%E6%95%99%E7%A8%8B/"/>
-    
-    <category term="群晖" scheme="http://weaving-dreams.eu.org/categories/%E6%95%99%E7%A8%8B/%E7%BE%A4%E6%99%96/"/>
-    
-    
-    <category term="群晖" scheme="http://weaving-dreams.eu.org/tags/%E7%BE%A4%E6%99%96/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>C语言打卡练习</title>
-    <link href="http://weaving-dreams.eu.org/posts/62cd3fe2/"/>
-    <id>http://weaving-dreams.eu.org/posts/62cd3fe2/</id>
-    <published>2023-04-20T07:57:52.000Z</published>
-    <updated>2023-04-20T08:22:10.263Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;通过键盘输入若干整数（个数少于50），其值在0-4的范围，用-1作为输入结束的标志，统计每个数字的个数并输出。&quot;&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="学习" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    <category term="C语言" scheme="http://weaving-dreams.eu.org/categories/%E5%AD%A6%E4%B9%A0/C%E8%AF%AD%E8%A8%80/"/>
-    
-    
-    <category term="C语言" scheme="http://weaving-dreams.eu.org/tags/C%E8%AF%AD%E8%A8%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>C语言2016-2022程序设计题</title>
-    <link href="http://weaving-dreams.eu.org/posts/bcabe79d/"/>
-    <id>http://weaving-dreams.eu.org/posts/bcabe79d/</id>
-    <published>2023-04-19T09:40:07.000Z</published>
-    <updated>2023-04-19T09:53:43.112Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;2016&quot;&gt;&lt;a href=&quot;#2016&quot; class=&quot;headerlink&quot; title=&quot;2016&quot;&gt;&lt;/a&gt;2016&lt;/h1&gt;&lt;h2</summary>
         
       
     
