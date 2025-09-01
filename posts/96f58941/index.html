@@ -1,0 +1,286 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="LuRen"><meta name="copyright" content="LuRen"><meta name="generator" content="Hexo 7.3.0"><meta name="theme" content="hexo-theme-yun"><title>PiKachu--XSS | 圥忈的小站</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/star-markdown-css@0.4.1/dist/yun/yun-markdown.min.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/prism-theme-vars/base.css"><script src="https://fastly.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>function initScrollReveal() {
+  [".post-card",".markdown-body img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+}
+document.addEventListener("DOMContentLoaded", initScrollReveal);
+document.addEventListener("pjax:success", initScrollReveal);
+</script><script src="https://fastly.jsdelivr.net/npm/pjax@latest/pjax.min.js" defer></script><script src="/js/pjax.js" defer type="module"></script><script src="https://fastly.jsdelivr.net/npm/vue@2.6.14"></script><link rel="icon" type="image/svg+xml" href="/ghost-smile-line.svg"><link rel="mask-icon" href="/ghost-smile-line.svg" color="#0078E7"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fastly.jsdelivr.net/npm/" crossorigin><script id="yun-config">
+    window.Yun = {}
+    window.CONFIG = {"hostname":"hexo.zhiyun.fun","root":"/","title":"圥忈的小站","version":"1.10.11","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"搜索...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）"},"anonymous_image":"https://cdn.yunyoujun.cn/img/avatar/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true},"local_search":{"path":"/search.xml"},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"fireworks":{"colors":["102, 167, 221","\t255,0,255","33, 78, 194","255,69,0"]},"waline":{"config":{"enable":true,"serverURL":"waline-1-w1489767.deta.app","comment":true,"visitor":true,"emoji":["https://unpkg.com/@waline/emojis@1.0.1/bilibili","https://unpkg.com/@waline/emojis@1.0.1/qq","https://unpkg.com/@waline/emojis@1.0.1/weibo"],"search":true,"locale":{"placeholder":"来都来了，说点什么吧","level0":"炼体","level1":"炼气","level2":"筑基","level3":"金丹","level4":"元婴","level5":"化神"},"el":"#waline","lang":"zh-CN"},"cdn":"https://fastly.jsdelivr.net/npm/@waline/client@v2/dist/waline.js","dark":"html.dark"},"vendors":{"host":"https://fastly.jsdelivr.net/npm/","darken":"https://fastly.jsdelivr.net/npm/darken@1.5.0"}};
+  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/hexo-theme-yun.js" type="module"></script><link rel="alternate" href="/atom.xml" title="圥忈的小站" type="application/atom+xml"><script src="//at.alicdn.com/t/font_3319107_f11xxoznd2e.js" async></script><meta name="description" content="XSS（跨站脚本）概述Cross-Site Scripting 简称为“CSS”，为避免与前端叠成样式表的缩写”CSS”冲突，故又称XSS。一般XSS可以分为如下几种常见类型：    1.反射性XSS;    2.存储型XSS;    3.DOM型XSS; XSS漏洞一直被评估为web漏洞中危害较大的漏洞，在OWASP TOP10的排名中一直属于前三的江湖地位。XSS是一种发生在前端浏览器端的漏洞">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PiKachu--XSS">
+<meta property="og:url" content="http://hexo.zhiyun.fun/posts/96f58941/index.html">
+<meta property="og:site_name" content="圥忈的小站">
+<meta property="og:description" content="XSS（跨站脚本）概述Cross-Site Scripting 简称为“CSS”，为避免与前端叠成样式表的缩写”CSS”冲突，故又称XSS。一般XSS可以分为如下几种常见类型：    1.反射性XSS;    2.存储型XSS;    3.DOM型XSS; XSS漏洞一直被评估为web漏洞中危害较大的漏洞，在OWASP TOP10的排名中一直属于前三的江湖地位。XSS是一种发生在前端浏览器端的漏洞">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130937338.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130938499.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130938479.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130938660.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130938235.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130939496.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130939187.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130939293.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130939342.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130939974.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130939967.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130940199.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130940154.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130940784.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130940220.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130940638.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130940838.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130940549.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130940400.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130940778.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130940472.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130941394.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130941569.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130941144.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130941405.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130942641.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130942343.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130942399.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130942084.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130942567.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130942647.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130942338.png">
+<meta property="article:published_time" content="2022-04-07T07:14:07.000Z">
+<meta property="article:modified_time" content="2022-05-28T02:58:15.391Z">
+<meta property="article:author" content="LuRen">
+<meta property="article:tag" content="pikachu">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130937338.png"><script>(function() {
+  if (CONFIG.mode !== 'auto') return
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+  const setting = localStorage.getItem('darken-mode') || 'auto'
+  if (setting === 'dark' || (prefersDark && setting !== 'light'))
+    document.documentElement.classList.toggle('dark', true)
+})()</script></head><body><script src="https://code.iconify.design/2/2.1.1/iconify.min.js"></script><script>// Define global variable
+IconifyProviders = {
+  // Empty prefix: overwrite default API provider configuration
+  '': {
+    // Use custom API first, use Iconify public API as backup
+    resources: [
+        'https://api.iconify.design',
+    ],
+    // Wait for 1 second before switching API hosts
+    rotate: 1000,
+  },
+};</script><script defer src="https://fastly.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js" type="module"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js" type="module"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><span class="icon iconify" data-icon="ri:list-ordered"></span></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><span class="icon iconify" data-icon="ri:passport-line"></span></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="LuRen"><img width="96" loading="lazy" src="/images/1.jpg" alt="LuRen"><span class="site-author-status" title="努力ing">🤡</span></a><div class="site-author-name"><a href="/about/">LuRen</a></div><a class="site-name" href="/about/site.html">圥忈的小站</a><sub class="site-subtitle">不断地寻找同类，最后变成孤独的人</sub><div class="site-description">一个自言自语的地方</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:home-4-line"></span></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:archive-line"></span></span><span class="site-state-item-count">104</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:folder-2-line"></span></span><span class="site-state-item-count">29</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="site-state-item-count">28</span></a></div><a class="site-state-item hty-icon-button" href="/about/#comment" title="留言板"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:clipboard-line"></span></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="/atom.xml" title="RSS" target="_blank" style="color:orange"><span class="icon iconify" data-icon="ri:rss-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/weaving-dreams" title="GitHub" target="_blank" style="color:#6e5494"><span class="icon iconify" data-icon="ri:github-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.yuque.com/yuqueyonghuvseqgc/wze6w2" title="语雀" target="_blank" style="color:#007722"><span class="icon iconify" data-icon="ant-design:yuque-outlined"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://weibo.com/u/6603251070" title="微博" target="_blank" style="color:#E6162D"><span class="icon iconify" data-icon="ri:weibo-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://music.163.com/#/user/home?id=1475793651" title="网易云音乐" target="_blank" style="color:#C20C0C"><span class="icon iconify" data-icon="ri:netease-cloud-music-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/499227133?share_medium=android&amp;share_plat=android&amp;share_session_id=f72830f6-8f5f-413a-86d2-6043b1bd69eb&amp;share_source=WEIXIN&amp;share_tag=s_i&amp;timestamp=1646642363&amp;unique_k=pDXLBN4" title="哔哩哔哩" target="_blank" style="color:#FF8EB3"><span class="icon iconify" data-icon="ri:bilibili-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="http://www.coolapk.com/u/4097869" title="酷安" target="_blank" style="color:#007722"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-kuancoolapk1"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="友联 links" style="color:dodgerblue"><span class="icon iconify" data-icon="ri:genderless-line"></span></a><a class="links-item hty-icon-button" href="/girls/" title="喜欢的女孩子" style="color:hotpink"><span class="icon iconify" data-icon="ri:women-line"></span></a><a class="links-item hty-icon-button" href="/albums/" title="相册集" style="color:#6e5494"><span class="icon iconify" data-icon="ri:gallery-line"></span></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><span class="icon iconify" data-icon="ri:contrast-2-line"></span></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#XSS%EF%BC%88%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%EF%BC%89%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">XSS（跨站脚本）概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%8F%8D%E5%B0%84%E5%9E%8BXSS"><span class="toc-number">2.</span> <span class="toc-text">一、反射型XSS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E5%B0%84%E5%9E%8BXSS-Get"><span class="toc-number">2.1.</span> <span class="toc-text">反射型XSS (Get)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E5%B0%84%E5%9E%8BXSS-Post"><span class="toc-number">2.2.</span> <span class="toc-text">反射型XSS (Post)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AD%98%E5%82%A8%E5%9E%8BXSS"><span class="toc-number">3.</span> <span class="toc-text">二、存储型XSS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81DOM%E5%9E%8BXSS"><span class="toc-number">4.</span> <span class="toc-text">三、DOM型XSS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM%E5%9E%8BXSS"><span class="toc-number">4.1.</span> <span class="toc-text">DOM型XSS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM%E5%9E%8BXSS-x"><span class="toc-number">4.2.</span> <span class="toc-text">DOM型XSS_x</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81XSS%E7%9B%B2%E6%89%93"><span class="toc-number">5.</span> <span class="toc-text">四、XSS盲打</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81XSS%E4%B9%8B%E8%BF%87%E6%BB%A4"><span class="toc-number">6.</span> <span class="toc-text">五、XSS之过滤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81XSS%E4%B9%8Bhtmlspecialchars"><span class="toc-number">7.</span> <span class="toc-text">六、XSS之htmlspecialchars</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81XSS%E4%B9%8Bhref%E8%BE%93%E5%87%BA"><span class="toc-number">8.</span> <span class="toc-text">七、XSS之href输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81XSS%E4%B9%8Bjs%E8%BE%93%E5%87%BA"><span class="toc-number">9.</span> <span class="toc-text">八、XSS之js输出</span></a></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article" style="--smc-primary:#0078E7;"><link itemprop="mainEntityOfPage" href="http://hexo.zhiyun.fun/posts/96f58941/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="LuRen"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="圥忈的小站"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">PiKachu--XSS</h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:calendar-line"></span></span> <time title="创建时间：2022-04-07 15:14:07" itemprop="dateCreated datePublished" datetime="2022-04-07T15:14:07+08:00">2022-04-07</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:calendar-2-line"></span></span> <time title="修改时间：2022-05-28 10:58:15" itemprop="dateModified" datetime="2022-05-28T10:58:15+08:00">2022-05-28</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="本文字数"><span class="icon iconify" data-icon="ri:file-word-line"></span></span> <span title="本文字数">2k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读时长"><span class="icon iconify" data-icon="ri:timer-line"></span></span> <span title="阅读时长">7m</span></span></span><span class="post-busuanzi"><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读次数"><span class="icon iconify" data-icon="ri:eye-line"></span> <span id="busuanzi_value_page_pv"></span></span></span><span class="leancloud_visitors" id="/posts/96f58941/" data-flag-title="PiKachu--XSS"><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读次数"><span class="icon iconify" data-icon="ri:eye-line"></span> <span class="leancloud-visitors-count"></span></span></span><span class="post-meta-divider">-</span><a href="#comment"><span class="post-meta-item-icon" title="评论数"><span class="icon iconify" data-icon="ri:chat-3-line"></span> <span class="waline-comment-count" id="/posts/96f58941/"></span></span></a><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><span class="icon iconify" data-icon="ri:folder-line"></span></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E5%AD%A6%E4%B9%A0/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">学习</span></a></span> > <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E5%AD%A6%E4%B9%A0/web%E5%AE%89%E5%85%A8/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">web安全</span></a></span> > <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E5%AD%A6%E4%B9%A0/web%E5%AE%89%E5%85%A8/Pikachu/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">Pikachu</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/pikachu/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">pikachu</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body"><h2 id="XSS（跨站脚本）概述"><a href="#XSS（跨站脚本）概述" class="headerlink" title="XSS（跨站脚本）概述"></a>XSS（跨站脚本）概述</h2><p>Cross-Site Scripting 简称为“CSS”，为避免与前端叠成样式表的缩写”CSS”冲突，故又称XSS。一般XSS可以分为如下几种常见类型：<br>    1.反射性XSS;<br>    2.存储型XSS;<br>    3.DOM型XSS;</p>
+<p>XSS漏洞一直被评估为web漏洞中危害较大的漏洞，在OWASP TOP10的排名中一直属于前三的江湖地位。<br>XSS是一种发生在前端浏览器端的漏洞，所以其危害的对象也是前端用户。<br>形成XSS漏洞的主要原因是程序对输入和输出没有做合适的处理，导致“精心构造”的字符输出在前端时被浏览器当作有效代码解析执行从而产生危害。<br>因此在XSS漏洞的防范上，一般会采用“对输入进行过滤”和“输出进行转义”的方式进行处理:<br>  输入过滤：对输入进行过滤，不允许可能导致XSS攻击的字符输入;<br>  输出转义：根据输出点的位置对输出到前端的内容进行适当转义;</p>
+<h2 id="一、反射型XSS"><a href="#一、反射型XSS" class="headerlink" title="一、反射型XSS"></a>一、反射型XSS</h2><blockquote>
+<p>通过构造url地址，地址中暗藏xss平台地址，当有受害者点击此连接，会访问两个网址，一个是受害者原本想访问的网站，另一个是xss平台，受害者原本想访问的网站的cookie会被记录在XSS平台</p>
+</blockquote>
+<h3 id="反射型XSS-Get"><a href="#反射型XSS-Get" class="headerlink" title="反射型XSS (Get)"></a>反射型XSS (Get)</h3><blockquote>
+<p><strong>有关 GET 请求的其他一些注释：</strong>（注释来自：<a target="_blank" rel="noopener" href="https://www.runoob.com/tags/html-httpmethods.html"> 菜鸟教程 </a>）</p>
+<ul>
+<li>GET 请求可被缓存</li>
+<li>GET 请求保留在浏览器历史记录中</li>
+<li>GET 请求可被收藏为书签</li>
+<li>GET 请求不应在处理敏感数据时使用</li>
+<li>GET 请求有长度限制</li>
+<li>GET 请求只应当用于取回数据</li>
+</ul>
+</blockquote>
+<ol>
+<li>输入<code> &lt;script&gt;alert(&#39;xss&#39;)&lt;/script&gt;</code>发现输入长度有限制，</li>
+</ol>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130937338.png" loading="lazy"></p>
+<ol start="2">
+<li>解决方法，修改input标签里的maxlength值</li>
+</ol>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130938499.png" loading="lazy"></p>
+<ol start="3">
+<li>修改后可输入完整长度</li>
+</ol>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130938479.png" loading="lazy"></p>
+<ol start="4">
+<li>点击submit执行，成功</li>
+</ol>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130938660.png" loading="lazy"></p>
+<h3 id="反射型XSS-Post"><a href="#反射型XSS-Post" class="headerlink" title="反射型XSS (Post)"></a>反射型XSS (Post)</h3><blockquote>
+<p><strong>有关 POST 请求的其他一些注释：</strong>(注释来自：<a target="_blank" rel="noopener" href="https://www.runoob.com/tags/html-httpmethods.html"> 菜鸟教程</a>)</p>
+<ul>
+<li>POST 请求不会被缓存</li>
+<li>POST 请求不会保留在浏览器历史记录中</li>
+<li>POST 不能被收藏为书签</li>
+<li>POST 请求对数据长度没有要求</li>
+</ul>
+</blockquote>
+<p>登录</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130938235.png" loading="lazy"></p>
+<p>输入<code>&lt;script&gt;alert(&#39;xss&#39;)&lt;/script&gt;</code></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130939496.png" loading="lazy"></p>
+<p>点击submit执行，成功</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130939187.png" loading="lazy"></p>
+<details>
+  <summary>附：GET方法与POST方法的区别</summary>
+    <p><li>在浏览器进行回退操作时，GET 请求是无害的，而 POST 请求则会重新请求一次</li></p>
+    <p><li>GET 请求参数是连接在 URL 后面的,而POST请求参数是存放在消息主体（Requestbody）内</li></p>
+    <p><li>GET 请求因为浏览器对 url 长度有限制（不同浏览器长度限制不一样）对传参数量有限制，而 post 请求因为参数存放 Requestbody 内所以参数数量没有限制</li> </p>
+    <p><li>因为 GET 请求参数暴露在URL上,所以安全方面 POST 比 GET 更加安全</li></p>
+    <p><li>GET 请求浏览器会主动缓存（Cache），POST 并不会，除非主动设置</li></p>
+    <p><li>GET 请求参数会保存在浏览器历史记录内，POST 请求并不会</li></p>
+    <p><li>GET 请求只能进行 URL 编码，而 POST 请求可以支持多种编码方式</li></p>
+    <p><li>GET 请求产生1个 Tcp 数据包，POST 请求产生2个 Tcp 数据包</li></p>
+    <p><li>浏览器在发送 GET 请求时会将请求头（Header）和数据（Data）一起发送给服务器，服务器返回200状态码，而在发送 POST 请求时，会先将 Header 发送给服务器，服务器返回100，之后再将 Data 发送给服务器，服务器返回200</li></p>
+ <p>
+注：GET方法与POST方法的区别来自：<a target="_blank" rel="noopener" href="https://www.w3cschool.cn/article/31105654.html">W3School</a>
+</p>
+</details>
+
+
+
+
+
+
+
+
+<h2 id="二、存储型XSS"><a href="#二、存储型XSS" class="headerlink" title="二、存储型XSS"></a>二、存储型XSS</h2><blockquote>
+<p>一般会存入网站数据库，比如留言板，网站后台日志啥的，等受害者或管理员查看点击链接时，发生访问xss平台并被记录cookie的情形</p>
+</blockquote>
+<p>输入<code>&lt;script&gt;alert(&#39;xss&#39;)&lt;/script&gt;</code></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130939293.png" loading="lazy"></p>
+<p>点击submit执行，成功</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/qzQhWt"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130939342.png" alt="qzQhWt.png" loading="lazy"></a></p>
+<p><code>留言板将输入的内容写入到网页中, 并且存储到网站数据库, 假如遭受到恶意代码攻击, 那么受到的攻击将是持久化的</code></p>
+<h2 id="三、DOM型XSS"><a href="#三、DOM型XSS" class="headerlink" title="三、DOM型XSS"></a>三、DOM型XSS</h2><h3 id="DOM型XSS"><a href="#DOM型XSS" class="headerlink" title="DOM型XSS"></a>DOM型XSS</h3><blockquote>
+<p>DOM型XSS的核心是运用DOM函数去执行访问xss平台的目的，在本靶场中，我们通过DOM函数改变HTML的结构，使浏览器加载页面的同时访问了xss平台，记录了使用者的cookie。</p>
+</blockquote>
+<p>随便输入一个数字，点击click时出现链接，点击链接实现跳转，在网页源代码可以看到点击click生成了<a>标签。</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/qzQTOS"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130939974.png" alt="qzQTOS.png" loading="lazy"></a></p>
+<p>方法一: 利用JavaScript伪协议</p>
+<p>输入<code>javascript:alert(&quot;xss&quot;)</code></p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/qzQXYn"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130939967.png" alt="qzQXYn.png" loading="lazy"></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/qzQxS0"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130940199.png" alt="qzQxS0.png" loading="lazy"></a></p>
+<p>方法二：代码闭合</p>
+<p>输入<code>&#39;onclick=&quot;alert(&#39;xss&#39;)&quot;&gt;</code>   &#x2F;&#x2F; a标签内部加属性</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/qzlSyT"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130940154.png" alt="qzlSyT.png" loading="lazy"></a><br><a target="_blank" rel="noopener" href="https://imgtu.com/i/qzQzlV"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130940784.png" alt="qzQzlV.png" loading="lazy"></a></p>
+<p>输入<code>&#39;&gt; &lt;img src=&quot;&quot; onerror=alert(&#39;xss&#39;)&gt;</code>&#x2F;&#x2F; 闭合出a标签, 将img标签嵌入上一级div执行</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/qzlZSx"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130940220.png" alt="qzlZSx.png" loading="lazy"></a><br><a target="_blank" rel="noopener" href="https://imgtu.com/i/qzlel6"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130940638.png" alt="qzlel6.png" loading="lazy"></a></p>
+<h3 id="DOM型XSS-x"><a href="#DOM型XSS-x" class="headerlink" title="DOM型XSS_x"></a>DOM型XSS_x</h3><p>输入<code>  &#39; onfocus=alert(&#39;xss&#39;)&gt;</code></p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/qzlM0e"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130940838.png" alt="qzlM0e.png" loading="lazy"></a><br><a target="_blank" rel="noopener" href="https://imgtu.com/i/qzlKmD"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130940549.png" alt="qzlKmD.png" loading="lazy"></a></p>
+<h2 id="四、XSS盲打"><a href="#四、XSS盲打" class="headerlink" title="四、XSS盲打"></a>四、XSS盲打</h2><blockquote>
+<p>XSS盲打简单来说，盲打就是在一切可能的地方尽可能多的提交xss语句，然后看哪一条会被执行，就能获取管理员的cooike，就是不知道后台不知道有没有xss存在的情况下，不顾一切的输入xss代码在留言啊，反馈啊之类的地方，尽可能多的尝试xss的语句与语句的存在方式，就叫盲打</p>
+</blockquote>
+<p>注：XSS盲打不是一种XSS漏洞的类型，它其实是一种XSS一种的攻击场景。</p>
+<p>输入<code>&lt;script&gt;alert(&#39;xss&#39;)&lt;/script&gt;</code></p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/qzl1kd"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130940400.png" alt="qzl1kd.png" loading="lazy"></a></p>
+<p>管理员进入后台访问并受到攻击</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/qzlJpt"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130940778.png" alt="qzlJpt.png" loading="lazy"></a></p>
+<h2 id="五、XSS之过滤"><a href="#五、XSS之过滤" class="headerlink" title="五、XSS之过滤"></a>五、XSS之过滤</h2><blockquote>
+<p>很多网站为了避免XSS的攻击，对用户的输入都采取了过滤，最常见的就是对&lt;&gt;转换成&lt;以及&gt;，经过转换以后&lt;&gt;虽然可在正确显示在页面上，但是已经不能构成代码语句了。这个貌似很彻底，因为一旦&lt;&gt;被转换掉，什么<code>&lt;script src=1.js&gt;&lt;/script&gt;</code>就会转换成<code>“&amp;lt;script src=1.js&amp;gt;&amp;lt;/script&amp;gt;”</code>，不能执行，因此，很多人认为只要用户的输入没有构成&lt;&gt;，就不能闭合前后的标签，其语句当然也不会有害。</p>
+</blockquote>
+<p>输入<code>&lt;ScRiPt&gt;alert(&#39;xss&#39;)&lt;/ScRipt&gt;</code> &#x2F;&#x2F; 大小写混合绕过</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/qzld0g"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130940472.png" alt="qzld0g.png" loading="lazy"></a><br><a target="_blank" rel="noopener" href="https://imgtu.com/i/qzlanS"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130941394.png" alt="qzlanS.png" loading="lazy"></a></p>
+<p>输入<code>&lt;img src=&quot;&quot; onerror=alert(&#39;xss&#39;)&gt;  </code>&#x2F;&#x2F; img标签</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/qzl610"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130941569.png" alt="qzl610.png" loading="lazy"></a><br><a target="_blank" rel="noopener" href="https://imgtu.com/i/qzlypq"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130941144.png" alt="qzlypq.png" loading="lazy"></a></p>
+<h2 id="六、XSS之htmlspecialchars"><a href="#六、XSS之htmlspecialchars" class="headerlink" title="六、XSS之htmlspecialchars"></a>六、XSS之htmlspecialchars</h2><blockquote>
+<p>htmlspecialchars — 将特殊字符转换为 HTML 实体</p>
+</blockquote>
+<p>预定义的字符是：</p>
+<blockquote>
+<ul>
+<li><p>&amp; （和号） 成为 &amp;</p>
+</li>
+<li><p>“ （双引号） 成为 &quot;</p>
+</li>
+<li><p>‘ （单引号） 成为 &#039;</p>
+</li>
+<li><p>&lt; （小于） 成为 &lt;</p>
+</li>
+<li><p>&gt; （大于） 成为 &gt;</p>
+</li>
+</ul>
+</blockquote>
+<p>可用引号类型</p>
+<blockquote>
+<ul>
+<li>ENT_COMPAT：默认，仅编码双引号</li>
+<li>ENT_QUOTES：编码双引号和单引号</li>
+<li>ENT_NOQUOTES：不编码任何引号</li>
+</ul>
+</blockquote>
+<p>输入<code>hack&#39; onfocus=&#39;alert(&quot;xss&quot;) </code> <em>&#x2F;&#x2F; 单引号闭合+事件标签</em></p>
+<p>[<img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130941405.png" alt="qzl4AJ.png" loading="lazy"><br><a target="_blank" rel="noopener" href="https://imgtu.com/i/qzlf74"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130942641.png" alt="qzlf74.png" loading="lazy"></a></p>
+<p>输入<code>javascript:alert(&quot;xss&quot;)  </code><em>&#x2F;&#x2F; JavaScript伪协议</em></p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/qz3QJA"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130942343.png" alt="qz3QJA.png" loading="lazy"></a><br><a target="_blank" rel="noopener" href="https://imgtu.com/i/qz3Mid"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130942399.png" alt="qz3Mid.png" loading="lazy"></a></p>
+<h2 id="七、XSS之href输出"><a href="#七、XSS之href输出" class="headerlink" title="七、XSS之href输出"></a>七、XSS之href输出</h2><blockquote>
+<p><strong>herf输出做防御的两个逻辑</strong></p>
+<ul>
+<li>输入的时候只允许 http 或 https 开头的协议，才允许输出</li>
+<li>再进行htmlspecialchars处理，把特殊字符给处理掉</li>
+</ul>
+</blockquote>
+<p>输入<code>javascript:alert(/xss/)</code></p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/qz14r8"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130942084.png" alt="qz14r8.png" loading="lazy"></a><br><a target="_blank" rel="noopener" href="https://imgtu.com/i/qz1hKf"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130942567.png" alt="qz1hKf.png" loading="lazy"></a></p>
+<h2 id="八、XSS之js输出"><a href="#八、XSS之js输出" class="headerlink" title="八、XSS之js输出"></a>八、XSS之js输出</h2><blockquote>
+<p>js输出漏洞：<br>输出点是在javaScript，通过用户的输入动态的生成JavaScript代码<br>javaScript里面是不会对tag和字符实体进行解释的,所以正常的输入得不到正常的输出，这不是我们需要的，所以，如果需要进行处理，就进行JavaScript转义处理，也就是用\ 对特殊字符进行处理。</p>
+</blockquote>
+<p>输入<code>&lt;/script&gt;&lt;script&gt;alert(&#39;xss~&#39;)&lt;/script&gt;</code></p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/qz1qGn"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130942647.png" alt="qz1qGn.png" loading="lazy"></a><br><a target="_blank" rel="noopener" href="https://imgtu.com/i/qz1bPs"><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/202204130942338.png" alt="qz1bPs.png" loading="lazy"></a></p>
+<p>这个漏洞的输出点是在JS中，通过用户的输入动态生成了JS代码</p>
+<p>JS有个特点，它不会对实体编码进行解释，如果想要用htmlspecialchars对我们的输入做实体编码处理的话, 在JS中不会把它解释会去，虽然这样解决了XSS问题，但不能构成合法的JS</p>
+<p>所以在JS的输出点应该对应该使用 \ 对特殊字符进行转义。</p>
+</div></section><div id="reward-container"><span class="hty-icon-button button-glow" id="reward-button" title="打赏" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === &quot;none&quot;) ? &quot;block&quot; : &quot;none&quot;;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-hand-coin-line"></use></svg></span><div id="reward-comment">I'm so cute. Please give me money.</div><div id="qr" style="display:none;"><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F02%2F18%2F20240218151158.jpg"><img loading="lazy" src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F02%2F18%2F20240218151158.jpg" alt="支付宝" title="支付宝"></a><div><span style="color:#00A3EE"><span class="icon iconify" data-icon="ri:alipay-line"></span></span></div></div><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://s3.bmp.ovh/imgs/2022/03/1018089fdf3cd065.png"><img loading="lazy" src="https://s3.bmp.ovh/imgs/2022/03/1018089fdf3cd065.png" alt="QQ 支付" title="QQ 支付"></a><div><span style="color:#12B7F5"><span class="icon iconify" data-icon="ri:qq-line"></span></span></div></div><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://s3.bmp.ovh/imgs/2022/03/08ce21ed009e0f80.png"><img loading="lazy" src="https://s3.bmp.ovh/imgs/2022/03/08ce21ed009e0f80.png" alt="微信支付" title="微信支付"></a><div><span style="color:#2DC100"><span class="icon iconify" data-icon="ri:wechat-pay-line"></span></span></div></div></div></div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>LuRen</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="http://hexo.zhiyun.fun/posts/96f58941/" title="PiKachu--XSS">http://hexo.zhiyun.fun/posts/96f58941/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><span class="icon iconify" data-icon="ri:creative-commons-line"></span><span class="icon iconify" data-icon="ri:creative-commons-by-line"></span><span class="icon iconify" data-icon="ri:creative-commons-nc-line"></span><span class="icon iconify" data-icon="ri:creative-commons-sa-line"></span></a> 许可协议。</li></ul><script>document.addEventListener('copy', function (event) {
+  const clipboardData = event.clipboardData || window.clipboardData;
+  if (!clipboardData) { return; }
+  const text = window.getSelection().toString();
+  if (text) {
+    event.preventDefault();
+    clipboardData.setData('text/plain', text + '\n\n本文作者：LuRen\n本文链接：http://hexo.zhiyun.fun/posts/96f58941/\n版权声明：本博客所有文章除特别声明外，均默认采用 CC BY-NC-SA 4.0 许可协议。');
+  }
+});</script></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/posts/71556fb/" rel="prev" title="CentOS7加密grub"><span class="icon iconify" data-icon="ri:arrow-left-s-line"></span><span class="post-nav-text">CentOS7加密grub</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/posts/95e7ce5d/" rel="next" title="Pikachu--暴力破解"><span class="post-nav-text">Pikachu--暴力破解</span><span class="icon iconify" data-icon="ri:arrow-right-s-line"></span></a></div></div></div><div class="hty-card" id="comment"><div class="comment-tooltip text-center"><span>不要与我交流，我什么都不会。</span><br><a class="hty-button hty-button--raised" id="github-discussions" target="_blank" rel="noopener" href="https://github.com/weaving-dreams/hexo.zhiyun.fun/discussions/new">GitHub Discussions</a></div><div id="waline"></div><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@waline/client@v2/dist/waline.css"><script>window.CONFIG.waline.config.path = "/posts/96f58941/"</script><div class="js-Pjax"><script src="/js/comments/waline.js" type="module" defer></script></div></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2022 – 2025 </span><span class="with-love" id="animate"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></span><span class="author"> LuRen</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v7.3.0</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.10.11</span></div><div class="live-time"><span>本博客已萌萌哒地运行</span><span id="display_live_time"></span><span class="moe-text">(●'◡'●)</span><script>function blog_live_time() {
+  setTimeout(blog_live_time, 1000);
+  const start = new Date('2022-03-09T00:00:00');
+  const now = new Date();
+  const timeDiff = (now.getTime() - start.getTime());
+  const msPerMinute = 60 * 1000;
+  const msPerHour = 60 * msPerMinute;
+  const msPerDay = 24 * msPerHour;
+  const passDay = Math.floor(timeDiff / msPerDay);
+  const passHour = Math.floor((timeDiff % msPerDay) / 60 / 60 / 1000);
+  const passMinute = Math.floor((timeDiff % msPerHour) / 60 / 1000);
+  const passSecond = Math.floor((timeDiff % msPerMinute) / 1000);
+  display_live_time.innerHTML = ` ${passDay} 天 ${passHour} 小时 ${passMinute} 分 ${passSecond} 秒`;
+}
+blog_live_time();
+</script></div><div id="busuanzi"><span id="busuanzi_container_site_uv" title="总访客量"><span><span class="icon iconify" data-icon="ri:user-line"></span></span><span id="busuanzi_value_site_uv"></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv" title="总访问量"><span><span class="icon iconify" data-icon="ri:eye-line"></span></span><span id="busuanzi_value_site_pv"></span></span><script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></footer></div><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><span class="icon iconify" data-icon="ri:arrow-up-s-line"></span><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a><a class="popup-trigger hty-icon-button icon-search" id="search" href="javascript:;" title="搜索"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:search-line"></span></span></a><script>window.addEventListener("DOMContentLoaded", () => {
+  // Handle and trigger popup window
+  document.querySelector(".popup-trigger").addEventListener("click", () => {
+    document.querySelector(".popup").classList.add("show");
+    setTimeout(() => {
+      document.querySelector(".search-input").focus();
+    }, 100);
+  });
+
+  // Monitor main search box
+  const onPopupClose = () => {
+    document.querySelector(".popup").classList.remove("show");
+  };
+
+  document.querySelector(".popup-btn-close").addEventListener("click", () => {
+    onPopupClose();
+  });
+
+  window.addEventListener("keyup", event => {
+    if (event.key === "Escape") {
+      onPopupClose();
+    }
+  });
+});
+</script><script src="https://fastly.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js"></script><script src="/js/search/local-search.js" defer type="module"></script><div class="popup search-popup"><div class="search-header"><span class="popup-btn-close close-icon hty-icon-button"><span class="icon iconify" data-icon="ri:close-line"></span></span></div><div class="search-input-container"><input class="search-input" id="local-search-input" type="text" placeholder="搜索..." value=""></div><div class="search-result-container"></div></div><script>function initMourn() {
+  const date = new Date();
+  const today = (date.getMonth() + 1) + "-" + date.getDate()
+  const mourn_days = ["4-4","9-18"]
+  if (mourn_days.includes(today)) {
+    document.documentElement.style.filter = "grayscale(1)";
+  }
+}
+initMourn();</script><script src="https://fastly.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script><script>const images = [...document.querySelectorAll('.markdown-body img')]
+mediumZoom(images)</script><style>.medium-zoom-image {
+  z-index: 99;
+}</style></body></html>

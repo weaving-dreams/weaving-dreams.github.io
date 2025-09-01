@@ -1,0 +1,297 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="LuRen"><meta name="copyright" content="LuRen"><meta name="generator" content="Hexo 7.3.0"><meta name="theme" content="hexo-theme-yun"><title>blender基础教程第三章——材质篇 | 圥忈的小站</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/star-markdown-css@0.4.1/dist/yun/yun-markdown.min.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/prism-theme-vars/base.css"><script src="https://fastly.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>function initScrollReveal() {
+  [".post-card",".markdown-body img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+}
+document.addEventListener("DOMContentLoaded", initScrollReveal);
+document.addEventListener("pjax:success", initScrollReveal);
+</script><script src="https://fastly.jsdelivr.net/npm/pjax@latest/pjax.min.js" defer></script><script src="/js/pjax.js" defer type="module"></script><script src="https://fastly.jsdelivr.net/npm/vue@2.6.14"></script><link rel="icon" type="image/svg+xml" href="/ghost-smile-line.svg"><link rel="mask-icon" href="/ghost-smile-line.svg" color="#0078E7"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fastly.jsdelivr.net/npm/" crossorigin><script id="yun-config">
+    window.Yun = {}
+    window.CONFIG = {"hostname":"hexo.zhiyun.fun","root":"/","title":"圥忈的小站","version":"1.10.11","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"搜索...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）"},"anonymous_image":"https://cdn.yunyoujun.cn/img/avatar/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true},"local_search":{"path":"/search.xml"},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"fireworks":{"colors":["102, 167, 221","\t255,0,255","33, 78, 194","255,69,0"]},"waline":{"config":{"enable":true,"serverURL":"waline-1-w1489767.deta.app","comment":true,"visitor":true,"emoji":["https://unpkg.com/@waline/emojis@1.0.1/bilibili","https://unpkg.com/@waline/emojis@1.0.1/qq","https://unpkg.com/@waline/emojis@1.0.1/weibo"],"search":true,"locale":{"placeholder":"来都来了，说点什么吧","level0":"炼体","level1":"炼气","level2":"筑基","level3":"金丹","level4":"元婴","level5":"化神"},"el":"#waline","lang":"zh-CN"},"cdn":"https://fastly.jsdelivr.net/npm/@waline/client@v2/dist/waline.js","dark":"html.dark"},"vendors":{"host":"https://fastly.jsdelivr.net/npm/","darken":"https://fastly.jsdelivr.net/npm/darken@1.5.0"}};
+  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/hexo-theme-yun.js" type="module"></script><link rel="alternate" href="/atom.xml" title="圥忈的小站" type="application/atom+xml"><script src="//at.alicdn.com/t/font_3319107_f11xxoznd2e.js" async></script><meta name="description" content="第一节：blender材质基础–原理话BSDF属性**GGX：**一种微表面反射光照模型，有比较好的渲染效果 **多重散射GGX:**比这个GGX会多计算有一些微平面的光线反弹和散射 **随机游走：**这是一种模拟次表面的渲染方式，不支持EEEVEE渲染器 输入参数**基础色：**模型的颜色，也可以接一个颜色贴图，一般不要纯黑纯白 **金属度：**0代表非金属，1代表金属，一般要么0要么1 **糙">
+<meta property="og:type" content="article">
+<meta property="og:title" content="blender基础教程第三章——材质篇">
+<meta property="og:url" content="http://hexo.zhiyun.fun/posts/260750c1/index.html">
+<meta property="og:site_name" content="圥忈的小站">
+<meta property="og:description" content="第一节：blender材质基础–原理话BSDF属性**GGX：**一种微表面反射光照模型，有比较好的渲染效果 **多重散射GGX:**比这个GGX会多计算有一些微平面的光线反弹和散射 **随机游走：**这是一种模拟次表面的渲染方式，不支持EEEVEE渲染器 输入参数**基础色：**模型的颜色，也可以接一个颜色贴图，一般不要纯黑纯白 **金属度：**0代表非金属，1代表金属，一般要么0要么1 **糙">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F11%2F07%2F20241107111051.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F11%2F07%2F20241107111053.png">
+<meta property="article:published_time" content="2024-11-07T03:08:18.000Z">
+<meta property="article:modified_time" content="2024-11-25T11:33:37.581Z">
+<meta property="article:author" content="LuRen">
+<meta property="article:tag" content="blender">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F11%2F07%2F20241107111051.png"><script>(function() {
+  if (CONFIG.mode !== 'auto') return
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+  const setting = localStorage.getItem('darken-mode') || 'auto'
+  if (setting === 'dark' || (prefersDark && setting !== 'light'))
+    document.documentElement.classList.toggle('dark', true)
+})()</script></head><body><script src="https://code.iconify.design/2/2.1.1/iconify.min.js"></script><script>// Define global variable
+IconifyProviders = {
+  // Empty prefix: overwrite default API provider configuration
+  '': {
+    // Use custom API first, use Iconify public API as backup
+    resources: [
+        'https://api.iconify.design',
+    ],
+    // Wait for 1 second before switching API hosts
+    rotate: 1000,
+  },
+};</script><script defer src="https://fastly.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js" type="module"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js" type="module"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><span class="icon iconify" data-icon="ri:list-ordered"></span></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><span class="icon iconify" data-icon="ri:passport-line"></span></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="LuRen"><img width="96" loading="lazy" src="/images/1.jpg" alt="LuRen"><span class="site-author-status" title="努力ing">🤡</span></a><div class="site-author-name"><a href="/about/">LuRen</a></div><a class="site-name" href="/about/site.html">圥忈的小站</a><sub class="site-subtitle">不断地寻找同类，最后变成孤独的人</sub><div class="site-description">一个自言自语的地方</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:home-4-line"></span></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:archive-line"></span></span><span class="site-state-item-count">104</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:folder-2-line"></span></span><span class="site-state-item-count">29</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="site-state-item-count">28</span></a></div><a class="site-state-item hty-icon-button" href="/about/#comment" title="留言板"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:clipboard-line"></span></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="/atom.xml" title="RSS" target="_blank" style="color:orange"><span class="icon iconify" data-icon="ri:rss-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/weaving-dreams" title="GitHub" target="_blank" style="color:#6e5494"><span class="icon iconify" data-icon="ri:github-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.yuque.com/yuqueyonghuvseqgc/wze6w2" title="语雀" target="_blank" style="color:#007722"><span class="icon iconify" data-icon="ant-design:yuque-outlined"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://weibo.com/u/6603251070" title="微博" target="_blank" style="color:#E6162D"><span class="icon iconify" data-icon="ri:weibo-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://music.163.com/#/user/home?id=1475793651" title="网易云音乐" target="_blank" style="color:#C20C0C"><span class="icon iconify" data-icon="ri:netease-cloud-music-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/499227133?share_medium=android&amp;share_plat=android&amp;share_session_id=f72830f6-8f5f-413a-86d2-6043b1bd69eb&amp;share_source=WEIXIN&amp;share_tag=s_i&amp;timestamp=1646642363&amp;unique_k=pDXLBN4" title="哔哩哔哩" target="_blank" style="color:#FF8EB3"><span class="icon iconify" data-icon="ri:bilibili-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="http://www.coolapk.com/u/4097869" title="酷安" target="_blank" style="color:#007722"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-kuancoolapk1"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="友联 links" style="color:dodgerblue"><span class="icon iconify" data-icon="ri:genderless-line"></span></a><a class="links-item hty-icon-button" href="/girls/" title="喜欢的女孩子" style="color:hotpink"><span class="icon iconify" data-icon="ri:women-line"></span></a><a class="links-item hty-icon-button" href="/albums/" title="相册集" style="color:#6e5494"><span class="icon iconify" data-icon="ri:gallery-line"></span></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><span class="icon iconify" data-icon="ri:contrast-2-line"></span></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E8%8A%82%EF%BC%9Ablender%E6%9D%90%E8%B4%A8%E5%9F%BA%E7%A1%80%E2%80%93%E5%8E%9F%E7%90%86%E8%AF%9DBSDF"><span class="toc-number">1.</span> <span class="toc-text">第一节：blender材质基础–原理话BSDF</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7"><span class="toc-number">1.1.</span> <span class="toc-text">属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E5%8F%82%E6%95%B0"><span class="toc-number">1.2.</span> <span class="toc-text">输入参数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E8%8A%82%EF%BC%9A%E6%B7%BB%E5%8A%A0%E6%9C%89%E7%BA%B9%E7%90%86%E7%9A%84%E6%9D%90%E8%B4%A8-%E7%BA%B9%E7%90%86%E5%9D%90%E6%A0%87%E3%80%81%E6%98%A0%E5%B0%84%E3%80%81%E9%A2%9C%E8%89%B2%E6%B8%90%E5%8F%98"><span class="toc-number">2.</span> <span class="toc-text">第二节：添加有纹理的材质-纹理坐标、映射、颜色渐变</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%94%E4%B8%AA%E8%8A%82%E7%82%B9"><span class="toc-number">2.1.</span> <span class="toc-text">五个节点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9D%90%E6%A0%87%E7%B3%BB"><span class="toc-number">2.2.</span> <span class="toc-text">坐标系</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BA%B9%E7%90%86%E5%9D%90%E6%A0%87"><span class="toc-number">2.3.</span> <span class="toc-text">纹理坐标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%98%A0%E5%B0%84"><span class="toc-number">2.4.</span> <span class="toc-text">映射</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E8%8A%82%EF%BC%9A%E7%94%A8%E8%92%99%E7%89%88%E5%81%9A%E7%BA%B9%E7%90%86%E7%9A%84%E5%8F%A0%E5%8A%A0"><span class="toc-number">3.</span> <span class="toc-text">第三节：用蒙版做纹理的叠加</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B8%90%E5%8F%98"><span class="toc-number">3.1.</span> <span class="toc-text">渐变</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%92%99%E7%89%88%E6%B7%BB%E5%8A%A0%E7%BA%B9%E7%90%86"><span class="toc-number">3.2.</span> <span class="toc-text">蒙版添加纹理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E8%8A%82%EF%BC%9A%E5%87%B9%E5%87%B8%E8%B4%A8%E6%84%9F%E5%92%8C%E7%BD%AE%E6%8D%A2%E5%BD%A2%E5%8F%98"><span class="toc-number">4.</span> <span class="toc-text">第四节：凹凸质感和置换形变</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#01-%E6%80%8E%E4%B9%88%E5%81%9A%E5%87%BA%E5%87%B9%E5%87%B8%E6%84%9F"><span class="toc-number">4.1.</span> <span class="toc-text">01  怎么做出凹凸感</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#02-%E4%B8%BA%E4%BB%80%E4%B9%88%E6%B3%95%E7%9B%B8%E8%B4%B4%E5%9B%BE%E6%98%AF%E8%93%9D%E7%B4%AB%E8%89%B2"><span class="toc-number">4.2.</span> <span class="toc-text">02  为什么法相贴图是蓝紫色</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#03-%E7%BA%B9%E7%90%86%E7%B4%A0%E6%9D%90%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">4.3.</span> <span class="toc-text">03  纹理素材的使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#04-%E7%BD%AE%E6%8D%A2"><span class="toc-number">4.4.</span> <span class="toc-text">04  置换</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E8%8A%82%EF%BC%9A%E6%B7%B7%E5%90%88%E6%9D%90%E8%B4%A8%E8%8A%82%E7%82%B9%E5%92%8Cnode-wrangle%E4%BA%94%E5%A4%A7%E7%94%A8%E6%B3%95"><span class="toc-number">5.</span> <span class="toc-text">第五节：混合材质节点和node wrangle五大用法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E8%8A%82%EF%BC%9A%E7%AE%80%E5%8D%95%E7%9A%84%E7%BA%B9%E7%90%86%E7%BB%98%E5%88%B6"><span class="toc-number">6.</span> <span class="toc-text">第六节：简单的纹理绘制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%83%E8%8A%82%EF%BC%9A%E7%BB%83%E4%B9%A0%E2%80%93%E7%BB%99%E6%A8%A1%E5%9E%8B%E4%B8%8A%E6%9D%90%E8%B4%A8"><span class="toc-number">7.</span> <span class="toc-text">第七节：练习–给模型上材质</span></a></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article" style="--smc-primary:#0078E7;"><link itemprop="mainEntityOfPage" href="http://hexo.zhiyun.fun/posts/260750c1/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="LuRen"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="圥忈的小站"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">blender基础教程第三章——材质篇</h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:calendar-line"></span></span> <time title="创建时间：2024-11-07 11:08:18" itemprop="dateCreated datePublished" datetime="2024-11-07T11:08:18+08:00">2024-11-07</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:calendar-2-line"></span></span> <time title="修改时间：2024-11-25 19:33:37" itemprop="dateModified" datetime="2024-11-25T19:33:37+08:00">2024-11-25</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="本文字数"><span class="icon iconify" data-icon="ri:file-word-line"></span></span> <span title="本文字数">2.3k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读时长"><span class="icon iconify" data-icon="ri:timer-line"></span></span> <span title="阅读时长">8m</span></span></span><span class="post-busuanzi"><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读次数"><span class="icon iconify" data-icon="ri:eye-line"></span> <span id="busuanzi_value_page_pv"></span></span></span><span class="leancloud_visitors" id="/posts/260750c1/" data-flag-title="blender基础教程第三章——材质篇"><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读次数"><span class="icon iconify" data-icon="ri:eye-line"></span> <span class="leancloud-visitors-count"></span></span></span><span class="post-meta-divider">-</span><a href="#comment"><span class="post-meta-item-icon" title="评论数"><span class="icon iconify" data-icon="ri:chat-3-line"></span> <span class="waline-comment-count" id="/posts/260750c1/"></span></span></a><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><span class="icon iconify" data-icon="ri:folder-line"></span></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E5%AD%A6%E4%B9%A0/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">学习</span></a></span> > <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E5%AD%A6%E4%B9%A0/blender/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">blender</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/blender/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">blender</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body"><h3 id="第一节：blender材质基础–原理话BSDF"><a href="#第一节：blender材质基础–原理话BSDF" class="headerlink" title="第一节：blender材质基础–原理话BSDF"></a>第一节：blender材质基础–原理话BSDF</h3><h4 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h4><p>**GGX：**一种微表面反射光照模型，有比较好的渲染效果</p>
+<p>**多重散射GGX:**比这个GGX会多计算有一些微平面的光线反弹和散射</p>
+<p>**随机游走：**这是一种模拟次表面的渲染方式，不支持EEEVEE渲染器</p>
+<h4 id="输入参数"><a href="#输入参数" class="headerlink" title="输入参数"></a>输入参数</h4><p>**基础色：**模型的颜色，也可以接一个颜色贴图，一般不要纯黑纯白</p>
+<p>**金属度：**0代表非金属，1代表金属，一般要么0要么1</p>
+<p>**糙度：**0代表越平滑，1代表越粗糙，确定漫反射和镜面反射物体表面的粗糙度</p>
+<p>**次表面：**决定你模型是不是透光的，比如皮肤、窗帘等，窗帘的通透度一般不会太大没有那么通透的东西</p>
+<p>**次表面半径：**决定半透光散射的距离，三个值分别代表RGB三个通道的散射半径</p>
+<p>**次表面颜色：**次表面颜色决定透过去的颜色是什么样的最终显示的是跟次表面半径相乘的效果，所以要是想完全显示次表面颜色，那半径就全设置为1</p>
+<p>**次表面IOR：**次表面的折射率，仅支持cycles</p>
+<p>**次表面各向异性：**次表面的折射方向，仅支持cycles</p>
+<p>**高光：**代表物体的菲尼尔效应的反射率成都，数值越大高光越大，高光反射量越大高光月亮。因为所有物体都是有一些菲尼尔反射的所以高光值不设为零，多少给一点，默认为0.5。</p>
+<p>**高光染色：**默认不设置的时候，物理默认的高光是白色。但是你把高光染色调为1时，就会被物体本身的颜色和谐，一般金属高光会染色，并非金属高光不会染色</p>
+<p>**各向异性过滤：**调大此数值的时候可以把一点高光转换成沿着切线方向的细长高光，仅支持cycles</p>
+<p>**各向异性旋转：**比较常使用的是金属部分，它可以控制你的金属高光分布方向，仅支持cycles</p>
+<p>**光泽：**用于布料部分，调到1有天鹅绒的效果，控制的是褶皱反光的反射数量，数值越大越明显</p>
+<p>**光泽染色：**会把材质颜色和白色光色混合</p>
+<p>**清漆：**这个类似于给你的材质加了一层包光，多一层白色高光常用于制作车漆材质</p>
+<p>**清漆粗糙度:**就是你加这层清漆的粗糙度</p>
+<p>**IOR折射率:**透明材质常用的光折射率,可以在网上搜索各种材质的IOR</p>
+<p>**投射:**让你模型透明,只有打开这个,IOR折射率和投射粗糙才起作用</p>
+<p>**投射粗糙度:**物体内部的粗糙度,可以用来做毛玻璃</p>
+<p>**自发光:**可以发光,霓虹灯</p>
+<p>**alpha:**默认是1,当是0的时候,物体完全消失不见</p>
+<p>**法相:**通常这个会链接PBR的normal map法线贴图</p>
+<p>**清漆法线:**类似于汽车清漆的法线,可以接法线贴图</p>
+<p>**切向:**这个就是各项异性这种金属高光的方向,可以作为切向贴图接口</p>
+<h3 id="第二节：添加有纹理的材质-纹理坐标、映射、颜色渐变"><a href="#第二节：添加有纹理的材质-纹理坐标、映射、颜色渐变" class="headerlink" title="第二节：添加有纹理的材质-纹理坐标、映射、颜色渐变"></a>第二节：添加有纹理的材质-纹理坐标、映射、颜色渐变</h3><h4 id="五个节点"><a href="#五个节点" class="headerlink" title="五个节点"></a>五个节点</h4><ol>
+<li>材质输出：负责输出最终结果</li>
+<li>着色器：负责调整材质属性</li>
+<li>载入图像纹理：可以改变图像的投射方式</li>
+<li>映射：负责调整材质的位置旋转缩放</li>
+<li>纹理坐标：负责告诉计算机用什么坐标系映射</li>
+</ol>
+<h4 id="坐标系"><a href="#坐标系" class="headerlink" title="坐标系"></a>坐标系</h4><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F11%2F07%2F20241107111051.png" alt="2" loading="lazy"></p>
+<h4 id="纹理坐标"><a href="#纹理坐标" class="headerlink" title="纹理坐标"></a>纹理坐标</h4><ul>
+<li>生成：基于全局坐标系，以世界坐标的中心点为坐标0</li>
+<li>物体：基于局部坐标系以物体本身的原点为坐标0，也可以指定另一个物体为坐标0</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F11%2F07%2F20241107111053.png" alt="1" loading="lazy"></p>
+<ul>
+<li>UV：计算机会把3D的模块先转换为一个2D平面图然后在做对应映射（选中模型－ｔａｂ，可在“UV编辑器”窗口调整）</li>
+</ul>
+<h4 id="映射"><a href="#映射" class="headerlink" title="映射"></a>映射</h4><p>改变纹理的位置，旋转、缩放</p>
+<ul>
+<li>**点：**改变的是坐标轴，所以图案会往反方向移动</li>
+<li>**纹理：**改变的是纹理本身，所以图案会相同方向移动，更直观</li>
+</ul>
+<h3 id="第三节：用蒙版做纹理的叠加"><a href="#第三节：用蒙版做纹理的叠加" class="headerlink" title="第三节：用蒙版做纹理的叠加"></a>第三节：用蒙版做纹理的叠加</h3><h4 id="渐变"><a href="#渐变" class="headerlink" title="渐变"></a>渐变</h4><ul>
+<li>node wrangler插件：选中要加的节点，CTRL+T自动添加：图像纹理、映射、纹理坐标</li>
+<li>用分离xyz节点控制渐变方向</li>
+</ul>
+<h4 id="蒙版添加纹理"><a href="#蒙版添加纹理" class="headerlink" title="蒙版添加纹理"></a>蒙版添加纹理</h4><ul>
+<li>混合节点：系数为0显示A的颜色，1为B的颜色。（利用蒙版原理黑为0白为1，用黑白图片素材作为<strong>混合</strong>节点的系数，达到一张图片多种颜色贴图效果）</li>
+<li>颜色渐变转化器：”颜色渐变“可达到类似效果，图案单一的时候，用颜色渐变，叠加多个纹理时“混合”节点较好</li>
+<li>“混合”节点添加多个纹理：：混合节点比颜色渐变的优势在于可以接收图片作为系数输入</li>
+</ul>
+<h3 id="第四节：凹凸质感和置换形变"><a href="#第四节：凹凸质感和置换形变" class="headerlink" title="第四节：凹凸质感和置换形变"></a>第四节：凹凸质感和置换形变</h3><h4 id="01-怎么做出凹凸感"><a href="#01-怎么做出凹凸感" class="headerlink" title="01  怎么做出凹凸感"></a><strong>01  怎么做出凹凸感</strong></h4><ul>
+<li><p>一个<strong>纹理</strong>（一般为黑白色）</p>
+<pre><code>       “噪波纹理”&lt;颜色&gt;  --  &lt;系数&gt;“颜色渐变”&lt;颜色&gt;  --  &lt;高度&gt;“凹凸”&lt;法向&gt;  --  &lt;法向&gt;“原理化BSDF”
+</code></pre>
+</li>
+<li><p>一个<strong>凹凸节点</strong></p>
+<pre><code>       “高度” 接受一个从0到1的值，大于0.5时为凸起，小于0.5时为凹陷
+</code></pre>
+</li>
+<li><p>一个<strong>纹理坐标 映射</strong></p>
+</li>
+</ul>
+<p>*node wrangler 插件 ：ctrl+shift+鼠标左键单击某一节点，可快速把一个节点连接到输出上预览</p>
+<p>（自记：“凹凸”  通过改变物体表面法向的参数，来调整表面对光线的反应，从而达到模拟凹凸感的效果，并不是真正的形变）</p>
+<h4 id="02-为什么法相贴图是蓝紫色"><a href="#02-为什么法相贴图是蓝紫色" class="headerlink" title="02  为什么法相贴图是蓝紫色"></a><strong>02  为什么法相贴图是蓝紫色</strong></h4><p>法向是矢量，用红绿蓝RGB来对应xyz轴</p>
+<h4 id="03-纹理素材的使用"><a href="#03-纹理素材的使用" class="headerlink" title="03  纹理素材的使用"></a><strong>03  纹理素材的使用</strong></h4><ul>
+<li><p>素材网站：</p>
+<pre><code>     https://ambientcg.com/
+     
+     https://polyhaven.com/
+</code></pre>
+</li>
+</ul>
+<h4 id="04-置换"><a href="#04-置换" class="headerlink" title="04  置换"></a><strong>04</strong>  <strong>置换</strong></h4><ul>
+<li><p><strong>修改器</strong>：</p>
+<pre><code>   增加细分 -- 置换修改器（添加贴图，调整数据）
+</code></pre>
+</li>
+</ul>
+<p>*eevee&amp;cycle都可用</p>
+<ul>
+<li><p><strong>节点</strong>：</p>
+<pre><code>    右侧“材质” -- 设置 -- 表（曲）面 -- 置换（下拉栏） -- 置换与凹凸
+  
+    新建“纹理”节点 -- 打开“displacement”图片 -- 左侧与“映射”节点相连，右侧链“置换” -- “置换”节点右侧直接链“输出”
+</code></pre>
+<p>  快速添加：点击“原理化BSDF”，ctrl+shift+t  跳出载入窗口，选择“colour”“displacement”“roughness”“NormalGL”四张图</p>
+</li>
+</ul>
+<h3 id="第五节：混合材质节点和node-wrangle五大用法"><a href="#第五节：混合材质节点和node-wrangle五大用法" class="headerlink" title="第五节：混合材质节点和node wrangle五大用法"></a>第五节：混合材质节点和node wrangle五大用法</h3><p><strong>01  混合材质</strong></p>
+<ul>
+<li>混合着色器</li>
+<li>ctrl+j 编组</li>
+</ul>
+<p><strong>02 node wrangler 插件的五个常用快捷键</strong></p>
+<ul>
+<li>CTRL+T：快速自动加上纹理坐标和映射</li>
+<li>CTRL+SHIFT+T:快速链接PBR材质</li>
+<li>CTRL＋SHIFT＋单击一个节点可以快速预览材质</li>
+<li>CTRL＋SHIFT＋右键链接两个可以快速添加一个BSDF节点</li>
+<li>ALT＋S：可以快速切换混合节点上下顺序</li>
+</ul>
+<p><strong>拓展</strong></p>
+<p>Albedo 反照贴图</p>
+<p>Metalness 金属度</p>
+<p>Roughness 粗糙度</p>
+<p>Specular 镜面反射</p>
+<p>Diffuse 弥漫的</p>
+<p>Gloss 光泽</p>
+<p>Displacement 法线贴图</p>
+<p>Normal 正常的</p>
+<p>Normal Bump 法线贴图</p>
+<p>Normal Object 法线对象</p>
+<p>Bump 碰撞</p>
+<h3 id="第六节：简单的纹理绘制"><a href="#第六节：简单的纹理绘制" class="headerlink" title="第六节：简单的纹理绘制"></a>第六节：简单的纹理绘制</h3><p><strong>01  什么是UV</strong></p>
+<ul>
+<li>3d模型的2d展开图。</li>
+</ul>
+<p><strong>02  查看UV展开图</strong></p>
+<ul>
+<li>“uv编辑”模式</li>
+<li>拉一个窗口，选择“UV编辑器”；全选物体，tab 编辑模式</li>
+</ul>
+<p><strong>03  UV纹理绘制的三个步骤</strong></p>
+<pre><code>  1.添加一个带图像纹理的材质
+
+  2.新建一个图像纹理贴图做底：
+
+              · 图像纹理节点新建一个底图
+
+              · UV编辑器窗口载入刚刚新建的图
+
+  3.绘制
+
+              · 纹理绘制模式
+</code></pre>
+<p><strong>04  练习：小狐狸</strong></p>
+<ul>
+<li><p>试图着色方式“渲染”，“场景灯光”和“场景世界”勾选去掉（方便观察）</p>
+</li>
+<li><p>选中物体，tab编辑模式，a全选， 检查是否有uv</p>
+</li>
+<li><p>模型如果有编辑器，应用掉，或者物体右键 “转换到&gt;网格”</p>
+</li>
+<li><p>重新拆uv：（编辑模式下）</p>
+<pre><code>         · 一种方式： a 全选 -- u &gt; 智能uv投射
+
+        · 另一种方式：线模式，alt 选中一圈需要拆分的线  --  u &gt; 标记缝合边
+</code></pre>
+</li>
+<li><p>a 全选 – u &gt; 展开，把uv挪到图片素材中间位置</p>
+</li>
+<li><p>新建纹理材质</p>
+<pre><code>        尺寸：2048
+          
+        颜色：C66234
+          
+        改名字：head
+</code></pre>
+</li>
+<li><p>在uv编辑器载入刚刚新建head的图</p>
+</li>
+<li><p>模型切换到“纹理模式”绘制</p>
+</li>
+<li><p>绘制局部：“编辑模式”下选中需要绘制的面，tab+滑动鼠标 “纹理绘制”，点击左上角的“绘制遮罩”</p>
+</li>
+<li><p>尾巴拉直后再绘制，新建纹理，uv太满可稍微缩小一些，避免出现接缝</p>
+</li>
+<li><p>保存，贴图也要全部保存！</p>
+</li>
+</ul>
+<h3 id="第七节：练习–给模型上材质"><a href="#第七节：练习–给模型上材质" class="headerlink" title="第七节：练习–给模型上材质"></a>第七节：练习–给模型上材质</h3><p><strong>01  树桩树干苔藓</strong></p>
+<ul>
+<li>蒙版叠加</li>
+</ul>
+<p><strong>02 龟背竹棕榈树</strong></p>
+<ul>
+<li>渐变材质</li>
+</ul>
+<p><strong>03 花花</strong></p>
+<p>一个物体多种材质</p>
+<ul>
+<li>ctrl+j 合并</li>
+<li>tab，选中一个面，L</li>
+<li>新建材质 “指定”</li>
+</ul>
+<p><strong>04 蒙皮树</strong></p>
+<ul>
+<li>载入PBR材质</li>
+</ul>
+</div></section><div id="reward-container"><span class="hty-icon-button button-glow" id="reward-button" title="打赏" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === &quot;none&quot;) ? &quot;block&quot; : &quot;none&quot;;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-hand-coin-line"></use></svg></span><div id="reward-comment">I'm so cute. Please give me money.</div><div id="qr" style="display:none;"><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F02%2F18%2F20240218151158.jpg"><img loading="lazy" src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F02%2F18%2F20240218151158.jpg" alt="支付宝" title="支付宝"></a><div><span style="color:#00A3EE"><span class="icon iconify" data-icon="ri:alipay-line"></span></span></div></div><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://s3.bmp.ovh/imgs/2022/03/1018089fdf3cd065.png"><img loading="lazy" src="https://s3.bmp.ovh/imgs/2022/03/1018089fdf3cd065.png" alt="QQ 支付" title="QQ 支付"></a><div><span style="color:#12B7F5"><span class="icon iconify" data-icon="ri:qq-line"></span></span></div></div><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://s3.bmp.ovh/imgs/2022/03/08ce21ed009e0f80.png"><img loading="lazy" src="https://s3.bmp.ovh/imgs/2022/03/08ce21ed009e0f80.png" alt="微信支付" title="微信支付"></a><div><span style="color:#2DC100"><span class="icon iconify" data-icon="ri:wechat-pay-line"></span></span></div></div></div></div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>LuRen</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="http://hexo.zhiyun.fun/posts/260750c1/" title="blender基础教程第三章——材质篇">http://hexo.zhiyun.fun/posts/260750c1/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><span class="icon iconify" data-icon="ri:creative-commons-line"></span><span class="icon iconify" data-icon="ri:creative-commons-by-line"></span><span class="icon iconify" data-icon="ri:creative-commons-nc-line"></span><span class="icon iconify" data-icon="ri:creative-commons-sa-line"></span></a> 许可协议。</li></ul><script>document.addEventListener('copy', function (event) {
+  const clipboardData = event.clipboardData || window.clipboardData;
+  if (!clipboardData) { return; }
+  const text = window.getSelection().toString();
+  if (text) {
+    event.preventDefault();
+    clipboardData.setData('text/plain', text + '\n\n本文作者：LuRen\n本文链接：http://hexo.zhiyun.fun/posts/260750c1/\n版权声明：本博客所有文章除特别声明外，均默认采用 CC BY-NC-SA 4.0 许可协议。');
+  }
+});</script></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/posts/c23831ab/" rel="prev" title="blender基础教程第四章——粒子篇"><span class="icon iconify" data-icon="ri:arrow-left-s-line"></span><span class="post-nav-text">blender基础教程第四章——粒子篇</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/posts/88c07ffd/" rel="next" title="blender基础教程第二章-建模篇"><span class="post-nav-text">blender基础教程第二章-建模篇</span><span class="icon iconify" data-icon="ri:arrow-right-s-line"></span></a></div></div></div><div class="hty-card" id="comment"><div class="comment-tooltip text-center"><span>不要与我交流，我什么都不会。</span><br><a class="hty-button hty-button--raised" id="github-discussions" target="_blank" rel="noopener" href="https://github.com/weaving-dreams/hexo.zhiyun.fun/discussions/new">GitHub Discussions</a></div><div id="waline"></div><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@waline/client@v2/dist/waline.css"><script>window.CONFIG.waline.config.path = "/posts/260750c1/"</script><div class="js-Pjax"><script src="/js/comments/waline.js" type="module" defer></script></div></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2022 – 2025 </span><span class="with-love" id="animate"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></span><span class="author"> LuRen</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v7.3.0</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.10.11</span></div><div class="live-time"><span>本博客已萌萌哒地运行</span><span id="display_live_time"></span><span class="moe-text">(●'◡'●)</span><script>function blog_live_time() {
+  setTimeout(blog_live_time, 1000);
+  const start = new Date('2022-03-09T00:00:00');
+  const now = new Date();
+  const timeDiff = (now.getTime() - start.getTime());
+  const msPerMinute = 60 * 1000;
+  const msPerHour = 60 * msPerMinute;
+  const msPerDay = 24 * msPerHour;
+  const passDay = Math.floor(timeDiff / msPerDay);
+  const passHour = Math.floor((timeDiff % msPerDay) / 60 / 60 / 1000);
+  const passMinute = Math.floor((timeDiff % msPerHour) / 60 / 1000);
+  const passSecond = Math.floor((timeDiff % msPerMinute) / 1000);
+  display_live_time.innerHTML = ` ${passDay} 天 ${passHour} 小时 ${passMinute} 分 ${passSecond} 秒`;
+}
+blog_live_time();
+</script></div><div id="busuanzi"><span id="busuanzi_container_site_uv" title="总访客量"><span><span class="icon iconify" data-icon="ri:user-line"></span></span><span id="busuanzi_value_site_uv"></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv" title="总访问量"><span><span class="icon iconify" data-icon="ri:eye-line"></span></span><span id="busuanzi_value_site_pv"></span></span><script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></footer></div><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><span class="icon iconify" data-icon="ri:arrow-up-s-line"></span><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a><a class="popup-trigger hty-icon-button icon-search" id="search" href="javascript:;" title="搜索"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:search-line"></span></span></a><script>window.addEventListener("DOMContentLoaded", () => {
+  // Handle and trigger popup window
+  document.querySelector(".popup-trigger").addEventListener("click", () => {
+    document.querySelector(".popup").classList.add("show");
+    setTimeout(() => {
+      document.querySelector(".search-input").focus();
+    }, 100);
+  });
+
+  // Monitor main search box
+  const onPopupClose = () => {
+    document.querySelector(".popup").classList.remove("show");
+  };
+
+  document.querySelector(".popup-btn-close").addEventListener("click", () => {
+    onPopupClose();
+  });
+
+  window.addEventListener("keyup", event => {
+    if (event.key === "Escape") {
+      onPopupClose();
+    }
+  });
+});
+</script><script src="https://fastly.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js"></script><script src="/js/search/local-search.js" defer type="module"></script><div class="popup search-popup"><div class="search-header"><span class="popup-btn-close close-icon hty-icon-button"><span class="icon iconify" data-icon="ri:close-line"></span></span></div><div class="search-input-container"><input class="search-input" id="local-search-input" type="text" placeholder="搜索..." value=""></div><div class="search-result-container"></div></div><script>function initMourn() {
+  const date = new Date();
+  const today = (date.getMonth() + 1) + "-" + date.getDate()
+  const mourn_days = ["4-4","9-18"]
+  if (mourn_days.includes(today)) {
+    document.documentElement.style.filter = "grayscale(1)";
+  }
+}
+initMourn();</script><script src="https://fastly.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script><script>const images = [...document.querySelectorAll('.markdown-body img')]
+mediumZoom(images)</script><style>.medium-zoom-image {
+  z-index: 99;
+}</style></body></html>

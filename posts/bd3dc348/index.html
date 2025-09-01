@@ -1,0 +1,282 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="LuRen"><meta name="copyright" content="LuRen"><meta name="generator" content="Hexo 7.3.0"><meta name="theme" content="hexo-theme-yun"><title>IPv4编址及子网划分 | 圥忈的小站</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/star-markdown-css@0.4.1/dist/yun/yun-markdown.min.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/prism-theme-vars/base.css"><script src="https://fastly.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>function initScrollReveal() {
+  [".post-card",".markdown-body img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+}
+document.addEventListener("DOMContentLoaded", initScrollReveal);
+document.addEventListener("pjax:success", initScrollReveal);
+</script><script src="https://fastly.jsdelivr.net/npm/pjax@latest/pjax.min.js" defer></script><script src="/js/pjax.js" defer type="module"></script><script src="https://fastly.jsdelivr.net/npm/vue@2.6.14"></script><link rel="icon" type="image/svg+xml" href="/ghost-smile-line.svg"><link rel="mask-icon" href="/ghost-smile-line.svg" color="#0078E7"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fastly.jsdelivr.net/npm/" crossorigin><script id="yun-config">
+    window.Yun = {}
+    window.CONFIG = {"hostname":"hexo.zhiyun.fun","root":"/","title":"圥忈的小站","version":"1.10.11","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"搜索...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）"},"anonymous_image":"https://cdn.yunyoujun.cn/img/avatar/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true},"local_search":{"path":"/search.xml"},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"fireworks":{"colors":["102, 167, 221","\t255,0,255","33, 78, 194","255,69,0"]},"waline":{"config":{"enable":true,"serverURL":"waline-1-w1489767.deta.app","comment":true,"visitor":true,"emoji":["https://unpkg.com/@waline/emojis@1.0.1/bilibili","https://unpkg.com/@waline/emojis@1.0.1/qq","https://unpkg.com/@waline/emojis@1.0.1/weibo"],"search":true,"locale":{"placeholder":"来都来了，说点什么吧","level0":"炼体","level1":"炼气","level2":"筑基","level3":"金丹","level4":"元婴","level5":"化神"},"el":"#waline","lang":"zh-CN"},"cdn":"https://fastly.jsdelivr.net/npm/@waline/client@v2/dist/waline.js","dark":"html.dark"},"vendors":{"host":"https://fastly.jsdelivr.net/npm/","darken":"https://fastly.jsdelivr.net/npm/darken@1.5.0"}};
+  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/hexo-theme-yun.js" type="module"></script><link rel="alternate" href="/atom.xml" title="圥忈的小站" type="application/atom+xml"><script src="//at.alicdn.com/t/font_3319107_f11xxoznd2e.js" async></script><meta name="description" content="资料来源锐捷 非原创        IPv4地址概述及分类IPV4地址的作用用于标识一个节点的网络地址 IPv4报文结构版本：目前的IP协议版本号为4  服务类型：用于IP报文的标记，多用于QoS 生存时间：IP报文所允许通过的路由器的最大数量 协议：指出IP报文携带的数据使用的协议 源IP地址：标识IP数据报的源端设备 目的IP地址：标识IP数据报的目的地址  IPv4地址概述IP地址结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IPv4编址及子网划分">
+<meta property="og:url" content="http://hexo.zhiyun.fun/posts/bd3dc348/index.html">
+<meta property="og:site_name" content="圥忈的小站">
+<meta property="og:description" content="资料来源锐捷 非原创        IPv4地址概述及分类IPV4地址的作用用于标识一个节点的网络地址 IPv4报文结构版本：目前的IP协议版本号为4  服务类型：用于IP报文的标记，多用于QoS 生存时间：IP报文所允许通过的路由器的最大数量 协议：指出IP报文携带的数据使用的协议 源IP地址：标识IP数据报的源端设备 目的IP地址：标识IP数据报的目的地址  IPv4地址概述IP地址结">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603165120.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603165120.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603165117.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603165120.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603165121.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603165125.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603165127.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603165129.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603165131.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603165132.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603165134.png">
+<meta property="og:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603165136.png">
+<meta property="article:published_time" content="2022-06-03T08:54:31.000Z">
+<meta property="article:modified_time" content="2023-12-30T11:15:38.142Z">
+<meta property="article:author" content="LuRen">
+<meta property="article:tag" content="网络">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603165120.png"><script>(function() {
+  if (CONFIG.mode !== 'auto') return
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+  const setting = localStorage.getItem('darken-mode') || 'auto'
+  if (setting === 'dark' || (prefersDark && setting !== 'light'))
+    document.documentElement.classList.toggle('dark', true)
+})()</script></head><body><script src="https://code.iconify.design/2/2.1.1/iconify.min.js"></script><script>// Define global variable
+IconifyProviders = {
+  // Empty prefix: overwrite default API provider configuration
+  '': {
+    // Use custom API first, use Iconify public API as backup
+    resources: [
+        'https://api.iconify.design',
+    ],
+    // Wait for 1 second before switching API hosts
+    rotate: 1000,
+  },
+};</script><script defer src="https://fastly.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js" type="module"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js" type="module"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><span class="icon iconify" data-icon="ri:list-ordered"></span></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><span class="icon iconify" data-icon="ri:passport-line"></span></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="LuRen"><img width="96" loading="lazy" src="/images/1.jpg" alt="LuRen"><span class="site-author-status" title="努力ing">🤡</span></a><div class="site-author-name"><a href="/about/">LuRen</a></div><a class="site-name" href="/about/site.html">圥忈的小站</a><sub class="site-subtitle">不断地寻找同类，最后变成孤独的人</sub><div class="site-description">一个自言自语的地方</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:home-4-line"></span></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:archive-line"></span></span><span class="site-state-item-count">104</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:folder-2-line"></span></span><span class="site-state-item-count">29</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="site-state-item-count">28</span></a></div><a class="site-state-item hty-icon-button" href="/about/#comment" title="留言板"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:clipboard-line"></span></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="/atom.xml" title="RSS" target="_blank" style="color:orange"><span class="icon iconify" data-icon="ri:rss-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/weaving-dreams" title="GitHub" target="_blank" style="color:#6e5494"><span class="icon iconify" data-icon="ri:github-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.yuque.com/yuqueyonghuvseqgc/wze6w2" title="语雀" target="_blank" style="color:#007722"><span class="icon iconify" data-icon="ant-design:yuque-outlined"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://weibo.com/u/6603251070" title="微博" target="_blank" style="color:#E6162D"><span class="icon iconify" data-icon="ri:weibo-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://music.163.com/#/user/home?id=1475793651" title="网易云音乐" target="_blank" style="color:#C20C0C"><span class="icon iconify" data-icon="ri:netease-cloud-music-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/499227133?share_medium=android&amp;share_plat=android&amp;share_session_id=f72830f6-8f5f-413a-86d2-6043b1bd69eb&amp;share_source=WEIXIN&amp;share_tag=s_i&amp;timestamp=1646642363&amp;unique_k=pDXLBN4" title="哔哩哔哩" target="_blank" style="color:#FF8EB3"><span class="icon iconify" data-icon="ri:bilibili-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="http://www.coolapk.com/u/4097869" title="酷安" target="_blank" style="color:#007722"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-kuancoolapk1"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="友联 links" style="color:dodgerblue"><span class="icon iconify" data-icon="ri:genderless-line"></span></a><a class="links-item hty-icon-button" href="/girls/" title="喜欢的女孩子" style="color:hotpink"><span class="icon iconify" data-icon="ri:women-line"></span></a><a class="links-item hty-icon-button" href="/albums/" title="相册集" style="color:#6e5494"><span class="icon iconify" data-icon="ri:gallery-line"></span></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><span class="icon iconify" data-icon="ri:contrast-2-line"></span></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#IPv4%E5%9C%B0%E5%9D%80%E6%A6%82%E8%BF%B0%E5%8F%8A%E5%88%86%E7%B1%BB"><span class="toc-number">1.</span> <span class="toc-text">IPv4地址概述及分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#IPV4%E5%9C%B0%E5%9D%80%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">1.0.1.</span> <span class="toc-text">IPV4地址的作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IPv4%E6%8A%A5%E6%96%87%E7%BB%93%E6%9E%84"><span class="toc-number">1.0.2.</span> <span class="toc-text">IPv4报文结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IPv4%E5%9C%B0%E5%9D%80%E6%A6%82%E8%BF%B0"><span class="toc-number">1.0.3.</span> <span class="toc-text">IPv4地址概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IPv4%E5%9C%B0%E5%9D%80%E6%A6%82%E8%BF%B0-1"><span class="toc-number">1.0.4.</span> <span class="toc-text">IPv4地址概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IPv4%E5%9C%B0%E5%9D%80%E5%88%86%E7%B1%BB"><span class="toc-number">1.0.5.</span> <span class="toc-text">IPv4地址分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A7%81%E6%9C%89IP%E5%9C%B0%E5%9D%80"><span class="toc-number">1.0.6.</span> <span class="toc-text">私有IP地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E6%AE%8A%E5%9C%B0%E5%9D%80"><span class="toc-number">1.0.7.</span> <span class="toc-text">特殊地址</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86"><span class="toc-number">1.1.</span> <span class="toc-text">子网划分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81"><span class="toc-number">1.1.1.</span> <span class="toc-text">子网掩码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86-1"><span class="toc-number">1.1.2.</span> <span class="toc-text">子网划分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86%E7%A4%BA%E4%BE%8B"><span class="toc-number">1.1.3.</span> <span class="toc-text">子网划分示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CIDR-%E5%AD%90%E7%BD%91%E8%81%9A%E5%90%88"><span class="toc-number">1.1.4.</span> <span class="toc-text">CIDR 子网聚合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CIDR-%E5%AD%90%E7%BD%91%E8%81%9A%E5%90%88%E6%A1%88%E4%BE%8B"><span class="toc-number">1.1.5.</span> <span class="toc-text">CIDR 子网聚合案例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E8%81%9A%E5%90%88%E7%9A%84%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95"><span class="toc-number">1.1.6.</span> <span class="toc-text">路由聚合的计算方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%AD%E5%8C%BA%E7%BD%91%E7%BB%9CIP%E5%9C%B0%E5%9D%80%E8%A7%84%E5%88%92"><span class="toc-number">1.2.</span> <span class="toc-text">园区网络IP地址规划</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#IP%E5%9C%B0%E5%9D%80%E8%A7%84%E5%88%92%E5%8E%9F%E5%88%99"><span class="toc-number">1.2.1.</span> <span class="toc-text">IP地址规划原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8A%82%E7%BA%A6IP%E5%9C%B0%E5%9D%80%E7%9A%84%E6%8A%80%E5%B7%A7"><span class="toc-number">1.2.2.</span> <span class="toc-text">节约IP地址的技巧</span></a></li></ol></li></ol></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article" style="--smc-primary:#0078E7;"><link itemprop="mainEntityOfPage" href="http://hexo.zhiyun.fun/posts/bd3dc348/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="LuRen"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="圥忈的小站"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">IPv4编址及子网划分</h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:calendar-line"></span></span> <time title="创建时间：2022-06-03 16:54:31" itemprop="dateCreated datePublished" datetime="2022-06-03T16:54:31+08:00">2022-06-03</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:calendar-2-line"></span></span> <time title="修改时间：2023-12-30 19:15:38" itemprop="dateModified" datetime="2023-12-30T19:15:38+08:00">2023-12-30</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="本文字数"><span class="icon iconify" data-icon="ri:file-word-line"></span></span> <span title="本文字数">1.5k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读时长"><span class="icon iconify" data-icon="ri:timer-line"></span></span> <span title="阅读时长">5m</span></span></span><span class="post-busuanzi"><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读次数"><span class="icon iconify" data-icon="ri:eye-line"></span> <span id="busuanzi_value_page_pv"></span></span></span><span class="leancloud_visitors" id="/posts/bd3dc348/" data-flag-title="IPv4编址及子网划分"><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读次数"><span class="icon iconify" data-icon="ri:eye-line"></span> <span class="leancloud-visitors-count"></span></span></span><span class="post-meta-divider">-</span><a href="#comment"><span class="post-meta-item-icon" title="评论数"><span class="icon iconify" data-icon="ri:chat-3-line"></span> <span class="waline-comment-count" id="/posts/bd3dc348/"></span></span></a><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><span class="icon iconify" data-icon="ri:folder-line"></span></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E5%AD%A6%E4%B9%A0/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">学习</span></a></span> > <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E5%AD%A6%E4%B9%A0/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">网络基础</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/%E7%BD%91%E7%BB%9C/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">网络</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body"><div class="danger">
+
+<blockquote>
+<p> 资料来源<a target="_blank" rel="noopener" href="https://talent.ruijie.com.cn/certification/profession/">锐捷</a><br> 非原创</p>
+</blockquote>
+</div>
+
+
+
+
+
+<h1 id="IPv4地址概述及分类"><a href="#IPv4地址概述及分类" class="headerlink" title="IPv4地址概述及分类"></a>IPv4地址概述及分类</h1><h3 id="IPV4地址的作用"><a href="#IPV4地址的作用" class="headerlink" title="IPV4地址的作用"></a>IPV4地址的作用</h3><p>用于标识一个节点的网络地址</p>
+<h3 id="IPv4报文结构"><a href="#IPv4报文结构" class="headerlink" title="IPv4报文结构"></a>IPv4报文结构</h3><p>版本：目前的IP协议版本号为4 </p>
+<p>服务类型：用于IP报文的标记，多用于QoS</p>
+<p>生存时间：IP报文所允许通过的路由器的最大数量</p>
+<p>协议：指出IP报文携带的数据使用的协议</p>
+<p>源IP地址：标识IP数据报的源端设备</p>
+<p>目的IP地址：标识IP数据报的目的地址</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603165120.png" alt="1" loading="lazy"></p>
+<h3 id="IPv4地址概述"><a href="#IPv4地址概述" class="headerlink" title="IPv4地址概述"></a>IPv4地址概述</h3><p>IP地址结构：IP地址长度为32位，包括主机位和网络位两部分</p>
+<p>网络位是为了标识这个IP所属的网段</p>
+<p>主机为是为了标识这个IP地址所在网段中具体节点</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603165120.png" alt="2" loading="lazy"></p>
+<h3 id="IPv4地址概述-1"><a href="#IPv4地址概述-1" class="headerlink" title="IPv4地址概述"></a>IPv4地址概述</h3><ul>
+<li><p>为了方便书写和表达，我们将IPv4地址分为4段，称为“点分十进制” </p>
+</li>
+<li><p>每段从0开始到255结束，最小的IP是0.0.0.0，最大的IP是255.255.255.255</p>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603165117.png" alt="3" loading="lazy"></p>
+<ul>
+<li><p>IP地址结构</p>
+<ul>
+<li>IP地址举例：172.16.122.204、</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603165120.png" alt="4" loading="lazy"></p>
+<h3 id="IPv4地址分类"><a href="#IPv4地址分类" class="headerlink" title="IPv4地址分类"></a>IPv4地址分类</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603165121.png" alt="5" loading="lazy"></p>
+<ul>
+<li>A类IP地址范围：1.0.0.0~126.255.255.255；<ul>
+<li>前8位为网络位，第一位为0，其余的7位可以分配，A类地址共分为2 7块，每一块网络号不同</li>
+<li>A类地址网络号全为0和网络位全为1的地址保留</li>
+<li>每个A类网络可以分配的主机号的数量为2 24 -2&#x3D;16777214（主机号全为0和全为1的两个地址保留）</li>
+</ul>
+</li>
+<li>B类IP地址范围：128.0.0.0~191.255.255.255<ul>
+<li>前16位为网络位，前两位为10，其余的14位可以分配，B类地址共分为2 14块</li>
+<li>B类网络可以分配的主机号的数量为2 16 -2&#x3D;65534（主机号全为0和全为1的两个地址保留）</li>
+</ul>
+</li>
+<li>C类IP地址：192.0.0.0~223.255.255.255<ul>
+<li>前24位为网络位，前三位为110，其余的21位可以分配，C类地址共分为2 21块</li>
+<li>C类网络可以分配的主机号的数量为2 8 -2&#x3D;254（主机号全为0和全为1的两个地址保留）</li>
+</ul>
+</li>
+<li>D类IP地址：224.0.0.0~239.255.255.255<ul>
+<li>D类地址不标识网络，用于组播地址</li>
+</ul>
+</li>
+<li>E类IP地址：240.0.0.0~247.255.255.255<ul>
+<li>E类IP地址：240.0.0.0~247.255.255.255</li>
+</ul>
+</li>
+</ul>
+<h3 id="私有IP地址"><a href="#私有IP地址" class="headerlink" title="私有IP地址"></a>私有IP地址</h3><ul>
+<li><p>为了节省IP地址，将IP地址分为 </p>
+<ul>
+<li><p>公有地址 </p>
+</li>
+<li><p>私有地址</p>
+</li>
+</ul>
+</li>
+<li><p>私有地址 </p>
+<ul>
+<li>A类:10.0.0.0至10.255.255.255 </li>
+<li>B类:172.16.0.0至172.31.255.255</li>
+<li>C类:192.168.0.0至192.168.255.255</li>
+</ul>
+</li>
+<li><p>私有地址只能应用于企业内网 </p>
+<ul>
+<li>在企业边界通过NAT把数据的私有地址转换为公有地址</li>
+</ul>
+</li>
+</ul>
+<h3 id="特殊地址"><a href="#特殊地址" class="headerlink" title="特殊地址"></a>特殊地址</h3><ul>
+<li>本地回环地址（测试）<ul>
+<li>127.X.X.X</li>
+</ul>
+</li>
+<li>网络号：主机位全为0 <ul>
+<li>例：192.168.1.0&#x2F;24</li>
+</ul>
+</li>
+<li>子网广播地址：主机位全为1 <ul>
+<li>例：192.168.1.255&#x2F;24</li>
+</ul>
+</li>
+<li>本地广播地址 <ul>
+<li>255.255.255.255</li>
+</ul>
+</li>
+<li>未知地址：网络位和主机位全为0 <ul>
+<li>0.0.0.0</li>
+</ul>
+</li>
+</ul>
+<h2 id="子网划分"><a href="#子网划分" class="headerlink" title="子网划分"></a>子网划分</h2><h3 id="子网掩码"><a href="#子网掩码" class="headerlink" title="子网掩码"></a>子网掩码</h3><p>子网掩码用来区分IP地址中的网络位和主机位</p>
+<p>子网掩码由连续的1和0组成：1表示对应IP地址的网络位，0表示对应IP地址的主机位 </p>
+<p>IP地址和子网掩码本质均是由32位二进制数字组成</p>
+<p>为了书写方便，使用“&#x2F;数字”法表示子网掩码</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603165125.png" alt="6" loading="lazy"></p>
+<h3 id="子网划分-1"><a href="#子网划分-1" class="headerlink" title="子网划分"></a>子网划分</h3><p>改变子网掩码，把一个大的网络划分为若干个小的网络 </p>
+<p> 提高IP地址的使用率 </p>
+<p>子网的个数：2 𝑋 (x 代表子网的位数)</p>
+<p>每个子网内有效主机个数： 2 y -2(y 代表主机位数</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603165127.png" alt="7" loading="lazy"></p>
+<h3 id="子网划分示例"><a href="#子网划分示例" class="headerlink" title="子网划分示例"></a>子网划分示例</h3><p>一个C类网段：192.168.10.0&#x2F;24 </p>
+<p> 默认掩码 &#x2F;24（255.255.255.0） </p>
+<p>总共IP ，2的8次方&#x3D;256个 </p>
+<p>掩码就像一把“刀”，将网段进行“切割”</p>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603165129.png" alt="8" loading="lazy"></p>
+<h3 id="CIDR-子网聚合"><a href="#CIDR-子网聚合" class="headerlink" title="CIDR 子网聚合"></a>CIDR 子网聚合</h3><ul>
+<li>CIDR（Classless Inter-Domain Routing，无类域间路由) <ul>
+<li>将多个“有类”的子网合并成一个，以减少路由表中的路由条目 、</li>
+<li>不受制于A B C类地址空间，消除了自然分类地址和子网划分的界限</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603165131.png" alt="9" loading="lazy"></p>
+<h3 id="CIDR-子网聚合案例"><a href="#CIDR-子网聚合案例" class="headerlink" title="CIDR 子网聚合案例"></a>CIDR 子网聚合案例</h3><p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603165132.png" alt="10" loading="lazy"></p>
+<h3 id="路由聚合的计算方法"><a href="#路由聚合的计算方法" class="headerlink" title="路由聚合的计算方法"></a>路由聚合的计算方法</h3><ul>
+<li>第一步：将地址转换为二进制格式，并将它们对齐 </li>
+<li>第二步：找到所有地址中都相同的最后一位。在它后面划一条竖线。</li>
+<li>第三步：竖线左边的位数为子网掩码位数。</li>
+<li>第四步：竖线右边全设为零，竖线左边保持不变，即可形成路由汇总网络地址</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603165134.png" alt="11" loading="lazy"></p>
+<h2 id="园区网络IP地址规划"><a href="#园区网络IP地址规划" class="headerlink" title="园区网络IP地址规划"></a>园区网络IP地址规划</h2><h3 id="IP地址规划原则"><a href="#IP地址规划原则" class="headerlink" title="IP地址规划原则"></a>IP地址规划原则</h3><ul>
+<li>IP地址规划的好坏，将会直接给网络带来影响：<ul>
+<li>网络路由协议算法的效率 </li>
+<li>网络的性能 </li>
+<li>网络的扩展 </li>
+<li>网络的管理</li>
+</ul>
+</li>
+<li>P地址规划主要遵从四个原则：<ul>
+<li>唯一性：一个IP网络中不能有两个主机使用相同的IP地址</li>
+<li>可扩展性：在IP地址分配时，要有一定的余量，以满足网络扩展时的需要 </li>
+<li>连续性：分配的连续的IP地址要有利于管理和地址汇总，连续的IP地址易于汇总，减小路由表，提高路由效率</li>
+<li>实意性：分配IP地址时尽量使所分配的IP地址具有一定实际意义<ul>
+<li>例如：使人一看到该IP地址就可以知道此IP地址分配给了哪个部门或哪个地区</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="节约IP地址的技巧"><a href="#节约IP地址的技巧" class="headerlink" title="节约IP地址的技巧"></a>节约IP地址的技巧</h3><ul>
+<li>在分配IP地址时，如需要节约IP地址，注意以下几点：<ul>
+<li>配置Loopback地址时，使用的子网掩码为32</li>
+<li>配置互联地址时，使用的子网掩码为&#x2F;30 </li>
+<li>对各业务网关进行统一设定<ul>
+<li>比如：将所有的网关统一设置成X.X.X.254</li>
+</ul>
+</li>
+<li>在完成IP地址规划之后，公司既可以配置静态IP地址，也可以使用DHCP服务器动态分配IP地址</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/Ruijie/20220603165136.png" alt="12" loading="lazy"></p>
+</div></section><div id="reward-container"><span class="hty-icon-button button-glow" id="reward-button" title="打赏" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === &quot;none&quot;) ? &quot;block&quot; : &quot;none&quot;;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-hand-coin-line"></use></svg></span><div id="reward-comment">I'm so cute. Please give me money.</div><div id="qr" style="display:none;"><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F02%2F18%2F20240218151158.jpg"><img loading="lazy" src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F02%2F18%2F20240218151158.jpg" alt="支付宝" title="支付宝"></a><div><span style="color:#00A3EE"><span class="icon iconify" data-icon="ri:alipay-line"></span></span></div></div><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://s3.bmp.ovh/imgs/2022/03/1018089fdf3cd065.png"><img loading="lazy" src="https://s3.bmp.ovh/imgs/2022/03/1018089fdf3cd065.png" alt="QQ 支付" title="QQ 支付"></a><div><span style="color:#12B7F5"><span class="icon iconify" data-icon="ri:qq-line"></span></span></div></div><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://s3.bmp.ovh/imgs/2022/03/08ce21ed009e0f80.png"><img loading="lazy" src="https://s3.bmp.ovh/imgs/2022/03/08ce21ed009e0f80.png" alt="微信支付" title="微信支付"></a><div><span style="color:#2DC100"><span class="icon iconify" data-icon="ri:wechat-pay-line"></span></span></div></div></div></div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>LuRen</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="http://hexo.zhiyun.fun/posts/bd3dc348/" title="IPv4编址及子网划分">http://hexo.zhiyun.fun/posts/bd3dc348/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><span class="icon iconify" data-icon="ri:creative-commons-line"></span><span class="icon iconify" data-icon="ri:creative-commons-by-line"></span><span class="icon iconify" data-icon="ri:creative-commons-nc-line"></span><span class="icon iconify" data-icon="ri:creative-commons-sa-line"></span></a> 许可协议。</li></ul><script>document.addEventListener('copy', function (event) {
+  const clipboardData = event.clipboardData || window.clipboardData;
+  if (!clipboardData) { return; }
+  const text = window.getSelection().toString();
+  if (text) {
+    event.preventDefault();
+    clipboardData.setData('text/plain', text + '\n\n本文作者：LuRen\n本文链接：http://hexo.zhiyun.fun/posts/bd3dc348/\n版权声明：本博客所有文章除特别声明外，均默认采用 CC BY-NC-SA 4.0 许可协议。');
+  }
+});</script></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/posts/13c75e65/" rel="prev" title="Windows常用网络命令"><span class="icon iconify" data-icon="ri:arrow-left-s-line"></span><span class="post-nav-text">Windows常用网络命令</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/posts/63b0beec/" rel="next" title="如何判断两台主机IP是否在同一网段"><span class="post-nav-text">如何判断两台主机IP是否在同一网段</span><span class="icon iconify" data-icon="ri:arrow-right-s-line"></span></a></div></div></div><div class="hty-card" id="comment"><div class="comment-tooltip text-center"><span>不要与我交流，我什么都不会。</span><br><a class="hty-button hty-button--raised" id="github-discussions" target="_blank" rel="noopener" href="https://github.com/weaving-dreams/hexo.zhiyun.fun/discussions/new">GitHub Discussions</a></div><div id="waline"></div><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@waline/client@v2/dist/waline.css"><script>window.CONFIG.waline.config.path = "/posts/bd3dc348/"</script><div class="js-Pjax"><script src="/js/comments/waline.js" type="module" defer></script></div></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2022 – 2025 </span><span class="with-love" id="animate"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></span><span class="author"> LuRen</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v7.3.0</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.10.11</span></div><div class="live-time"><span>本博客已萌萌哒地运行</span><span id="display_live_time"></span><span class="moe-text">(●'◡'●)</span><script>function blog_live_time() {
+  setTimeout(blog_live_time, 1000);
+  const start = new Date('2022-03-09T00:00:00');
+  const now = new Date();
+  const timeDiff = (now.getTime() - start.getTime());
+  const msPerMinute = 60 * 1000;
+  const msPerHour = 60 * msPerMinute;
+  const msPerDay = 24 * msPerHour;
+  const passDay = Math.floor(timeDiff / msPerDay);
+  const passHour = Math.floor((timeDiff % msPerDay) / 60 / 60 / 1000);
+  const passMinute = Math.floor((timeDiff % msPerHour) / 60 / 1000);
+  const passSecond = Math.floor((timeDiff % msPerMinute) / 1000);
+  display_live_time.innerHTML = ` ${passDay} 天 ${passHour} 小时 ${passMinute} 分 ${passSecond} 秒`;
+}
+blog_live_time();
+</script></div><div id="busuanzi"><span id="busuanzi_container_site_uv" title="总访客量"><span><span class="icon iconify" data-icon="ri:user-line"></span></span><span id="busuanzi_value_site_uv"></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv" title="总访问量"><span><span class="icon iconify" data-icon="ri:eye-line"></span></span><span id="busuanzi_value_site_pv"></span></span><script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></footer></div><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><span class="icon iconify" data-icon="ri:arrow-up-s-line"></span><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a><a class="popup-trigger hty-icon-button icon-search" id="search" href="javascript:;" title="搜索"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:search-line"></span></span></a><script>window.addEventListener("DOMContentLoaded", () => {
+  // Handle and trigger popup window
+  document.querySelector(".popup-trigger").addEventListener("click", () => {
+    document.querySelector(".popup").classList.add("show");
+    setTimeout(() => {
+      document.querySelector(".search-input").focus();
+    }, 100);
+  });
+
+  // Monitor main search box
+  const onPopupClose = () => {
+    document.querySelector(".popup").classList.remove("show");
+  };
+
+  document.querySelector(".popup-btn-close").addEventListener("click", () => {
+    onPopupClose();
+  });
+
+  window.addEventListener("keyup", event => {
+    if (event.key === "Escape") {
+      onPopupClose();
+    }
+  });
+});
+</script><script src="https://fastly.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js"></script><script src="/js/search/local-search.js" defer type="module"></script><div class="popup search-popup"><div class="search-header"><span class="popup-btn-close close-icon hty-icon-button"><span class="icon iconify" data-icon="ri:close-line"></span></span></div><div class="search-input-container"><input class="search-input" id="local-search-input" type="text" placeholder="搜索..." value=""></div><div class="search-result-container"></div></div><script>function initMourn() {
+  const date = new Date();
+  const today = (date.getMonth() + 1) + "-" + date.getDate()
+  const mourn_days = ["4-4","9-18"]
+  if (mourn_days.includes(today)) {
+    document.documentElement.style.filter = "grayscale(1)";
+  }
+}
+initMourn();</script><script src="https://fastly.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script><script>const images = [...document.querySelectorAll('.markdown-body img')]
+mediumZoom(images)</script><style>.medium-zoom-image {
+  z-index: 99;
+}</style></body></html>

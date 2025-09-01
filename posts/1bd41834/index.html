@@ -1,0 +1,340 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="LuRen"><meta name="copyright" content="LuRen"><meta name="generator" content="Hexo 7.3.0"><meta name="theme" content="hexo-theme-yun"><title>Typora基本用法 | 圥忈的小站</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/star-markdown-css@0.4.1/dist/yun/yun-markdown.min.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/prism-theme-vars/base.css"><script src="https://fastly.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>function initScrollReveal() {
+  [".post-card",".markdown-body img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+}
+document.addEventListener("DOMContentLoaded", initScrollReveal);
+document.addEventListener("pjax:success", initScrollReveal);
+</script><script src="https://fastly.jsdelivr.net/npm/pjax@latest/pjax.min.js" defer></script><script src="/js/pjax.js" defer type="module"></script><script src="https://fastly.jsdelivr.net/npm/vue@2.6.14"></script><link rel="icon" type="image/svg+xml" href="/ghost-smile-line.svg"><link rel="mask-icon" href="/ghost-smile-line.svg" color="#0078E7"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fastly.jsdelivr.net/npm/" crossorigin><script id="yun-config">
+    window.Yun = {}
+    window.CONFIG = {"hostname":"hexo.zhiyun.fun","root":"/","title":"圥忈的小站","version":"1.10.11","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"搜索...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）"},"anonymous_image":"https://cdn.yunyoujun.cn/img/avatar/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true},"local_search":{"path":"/search.xml"},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"fireworks":{"colors":["102, 167, 221","\t255,0,255","33, 78, 194","255,69,0"]},"waline":{"config":{"enable":true,"serverURL":"waline-1-w1489767.deta.app","comment":true,"visitor":true,"emoji":["https://unpkg.com/@waline/emojis@1.0.1/bilibili","https://unpkg.com/@waline/emojis@1.0.1/qq","https://unpkg.com/@waline/emojis@1.0.1/weibo"],"search":true,"locale":{"placeholder":"来都来了，说点什么吧","level0":"炼体","level1":"炼气","level2":"筑基","level3":"金丹","level4":"元婴","level5":"化神"},"el":"#waline","lang":"zh-CN"},"cdn":"https://fastly.jsdelivr.net/npm/@waline/client@v2/dist/waline.js","dark":"html.dark"},"vendors":{"host":"https://fastly.jsdelivr.net/npm/","darken":"https://fastly.jsdelivr.net/npm/darken@1.5.0"}};
+  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/hexo-theme-yun.js" type="module"></script><link rel="alternate" href="/atom.xml" title="圥忈的小站" type="application/atom+xml"><script src="//at.alicdn.com/t/font_3319107_f11xxoznd2e.js" async></script><meta name="description" content="[toc] Typore简介Typora是一款轻便简洁的Markdown编辑器，支持即时渲染技术，这也是与其他Markdown编辑器最显著的区别。即时渲染使得你写Markdown就想是写Word文档一样流畅自如，不像其他编辑器的有编辑栏和显示栏。 Markdown介绍Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档。Markdown 语言在 2004 由约翰·格鲁">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Typora基本用法">
+<meta property="og:url" content="http://hexo.zhiyun.fun/posts/1bd41834/index.html">
+<meta property="og:site_name" content="圥忈的小站">
+<meta property="og:description" content="[toc] Typore简介Typora是一款轻便简洁的Markdown编辑器，支持即时渲染技术，这也是与其他Markdown编辑器最显著的区别。即时渲染使得你写Markdown就想是写Word文档一样流畅自如，不像其他编辑器的有编辑栏和显示栏。 Markdown介绍Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档。Markdown 语言在 2004 由约翰·格鲁">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2022/03/33ed0e61febfaa79.png">
+<meta property="article:published_time" content="2022-03-09T01:48:53.000Z">
+<meta property="article:modified_time" content="2022-05-03T12:09:53.127Z">
+<meta property="article:author" content="LuRen">
+<meta property="article:tag" content="Hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s3.bmp.ovh/imgs/2022/03/33ed0e61febfaa79.png"><script>(function() {
+  if (CONFIG.mode !== 'auto') return
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+  const setting = localStorage.getItem('darken-mode') || 'auto'
+  if (setting === 'dark' || (prefersDark && setting !== 'light'))
+    document.documentElement.classList.toggle('dark', true)
+})()</script></head><body><script src="https://code.iconify.design/2/2.1.1/iconify.min.js"></script><script>// Define global variable
+IconifyProviders = {
+  // Empty prefix: overwrite default API provider configuration
+  '': {
+    // Use custom API first, use Iconify public API as backup
+    resources: [
+        'https://api.iconify.design',
+    ],
+    // Wait for 1 second before switching API hosts
+    rotate: 1000,
+  },
+};</script><script defer src="https://fastly.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js" type="module"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js" type="module"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><span class="icon iconify" data-icon="ri:list-ordered"></span></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><span class="icon iconify" data-icon="ri:passport-line"></span></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="LuRen"><img width="96" loading="lazy" src="/images/1.jpg" alt="LuRen"><span class="site-author-status" title="努力ing">🤡</span></a><div class="site-author-name"><a href="/about/">LuRen</a></div><a class="site-name" href="/about/site.html">圥忈的小站</a><sub class="site-subtitle">不断地寻找同类，最后变成孤独的人</sub><div class="site-description">一个自言自语的地方</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:home-4-line"></span></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:archive-line"></span></span><span class="site-state-item-count">104</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:folder-2-line"></span></span><span class="site-state-item-count">29</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="site-state-item-count">28</span></a></div><a class="site-state-item hty-icon-button" href="/about/#comment" title="留言板"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:clipboard-line"></span></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="/atom.xml" title="RSS" target="_blank" style="color:orange"><span class="icon iconify" data-icon="ri:rss-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/weaving-dreams" title="GitHub" target="_blank" style="color:#6e5494"><span class="icon iconify" data-icon="ri:github-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.yuque.com/yuqueyonghuvseqgc/wze6w2" title="语雀" target="_blank" style="color:#007722"><span class="icon iconify" data-icon="ant-design:yuque-outlined"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://weibo.com/u/6603251070" title="微博" target="_blank" style="color:#E6162D"><span class="icon iconify" data-icon="ri:weibo-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://music.163.com/#/user/home?id=1475793651" title="网易云音乐" target="_blank" style="color:#C20C0C"><span class="icon iconify" data-icon="ri:netease-cloud-music-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/499227133?share_medium=android&amp;share_plat=android&amp;share_session_id=f72830f6-8f5f-413a-86d2-6043b1bd69eb&amp;share_source=WEIXIN&amp;share_tag=s_i&amp;timestamp=1646642363&amp;unique_k=pDXLBN4" title="哔哩哔哩" target="_blank" style="color:#FF8EB3"><span class="icon iconify" data-icon="ri:bilibili-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="http://www.coolapk.com/u/4097869" title="酷安" target="_blank" style="color:#007722"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-kuancoolapk1"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="友联 links" style="color:dodgerblue"><span class="icon iconify" data-icon="ri:genderless-line"></span></a><a class="links-item hty-icon-button" href="/girls/" title="喜欢的女孩子" style="color:hotpink"><span class="icon iconify" data-icon="ri:women-line"></span></a><a class="links-item hty-icon-button" href="/albums/" title="相册集" style="color:#6e5494"><span class="icon iconify" data-icon="ri:gallery-line"></span></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><span class="icon iconify" data-icon="ri:contrast-2-line"></span></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Typore%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">Typore简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Markdown%E4%BB%8B%E7%BB%8D"><span class="toc-number">2.</span> <span class="toc-text">Markdown介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="toc-number">3.</span> <span class="toc-text">常用快捷键</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E7%94%A8%E6%96%87%E5%AD%97"><span class="toc-number">4.</span> <span class="toc-text">引用文字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%83%E7%B4%A0%E5%88%97%E8%A1%A8"><span class="toc-number">5.</span> <span class="toc-text">元素列表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A0%E5%BA%8F%E5%88%97%E8%A1%A8"><span class="toc-number">5.1.</span> <span class="toc-text">无序列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E5%BA%8F%E5%88%97%E8%A1%A8"><span class="toc-number">5.2.</span> <span class="toc-text">有序列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E5%88%97%E8%A1%A8"><span class="toc-number">5.3.</span> <span class="toc-text">任务列表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%9D%97"><span class="toc-number">6.</span> <span class="toc-text">代码块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E5%9D%97"><span class="toc-number">7.</span> <span class="toc-text">数学公式块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E6%A0%BC"><span class="toc-number">8.</span> <span class="toc-text">表格</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%84%9A%E6%B3%A8"><span class="toc-number">9.</span> <span class="toc-text">脚注</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B0%B4%E5%B9%B3%E7%BA%BF"><span class="toc-number">10.</span> <span class="toc-text">水平线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95-TOC"><span class="toc-number">11.</span> <span class="toc-text">目录 (TOC)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8A%E4%B8%8B%E6%A0%87"><span class="toc-number">12.</span> <span class="toc-text">上下标</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8A%E6%A0%87"><span class="toc-number">12.1.</span> <span class="toc-text">上标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E6%A0%87"><span class="toc-number">12.2.</span> <span class="toc-text">下标</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E5%B1%85%E4%B8%AD"><span class="toc-number">13.</span> <span class="toc-text">文本居中</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Span-%E5%85%83%E7%B4%A0"><span class="toc-number">14.</span> <span class="toc-text">Span 元素</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5"><span class="toc-number">14.1.</span> <span class="toc-text">链接</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E9%83%A8%E9%93%BE%E6%8E%A5"><span class="toc-number">14.1.1.</span> <span class="toc-text">内部链接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="toc-number">14.1.2.</span> <span class="toc-text">参考链接</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#URL%E7%BD%91%E5%9D%80"><span class="toc-number">14.2.</span> <span class="toc-text">URL网址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E7%89%87"><span class="toc-number">14.3.</span> <span class="toc-text">图片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="toc-number">14.4.</span> <span class="toc-text">流程图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML"><span class="toc-number">15.</span> <span class="toc-text">HTML</span></a></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article" style="--smc-primary:#0078E7;"><link itemprop="mainEntityOfPage" href="http://hexo.zhiyun.fun/posts/1bd41834/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="LuRen"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="圥忈的小站"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">Typora基本用法</h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:calendar-line"></span></span> <time title="创建时间：2022-03-09 09:48:53" itemprop="dateCreated datePublished" datetime="2022-03-09T09:48:53+08:00">2022-03-09</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:calendar-2-line"></span></span> <time title="修改时间：2022-05-03 20:09:53" itemprop="dateModified" datetime="2022-05-03T20:09:53+08:00">2022-05-03</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="本文字数"><span class="icon iconify" data-icon="ri:file-word-line"></span></span> <span title="本文字数">3.1k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读时长"><span class="icon iconify" data-icon="ri:timer-line"></span></span> <span title="阅读时长">13m</span></span></span><span class="post-busuanzi"><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读次数"><span class="icon iconify" data-icon="ri:eye-line"></span> <span id="busuanzi_value_page_pv"></span></span></span><span class="leancloud_visitors" id="/posts/1bd41834/" data-flag-title="Typora基本用法"><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读次数"><span class="icon iconify" data-icon="ri:eye-line"></span> <span class="leancloud-visitors-count"></span></span></span><span class="post-meta-divider">-</span><a href="#comment"><span class="post-meta-item-icon" title="评论数"><span class="icon iconify" data-icon="ri:chat-3-line"></span> <span class="waline-comment-count" id="/posts/1bd41834/"></span></span></a><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><span class="icon iconify" data-icon="ri:folder-line"></span></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E6%95%99%E7%A8%8B/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">教程</span></a></span> > <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E6%95%99%E7%A8%8B/%E5%8D%9A%E5%AE%A2/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">博客</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/Hexo/" style="--text-color:#0E83CD"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">Hexo</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body"><p>[toc]</p>
+<h2 id="Typore简介"><a href="#Typore简介" class="headerlink" title="Typore简介"></a>Typore简介</h2><p>Typora是一款轻便简洁的Markdown编辑器，支持即时渲染技术，这也是与其他Markdown编辑器最显著的区别。即时渲染使得你写Markdown就想是写Word文档一样流畅自如，不像其他编辑器的有编辑栏和显示栏。</p>
+<h2 id="Markdown介绍"><a href="#Markdown介绍" class="headerlink" title="Markdown介绍"></a>Markdown介绍</h2><p>Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档。<br>Markdown 语言在 2004 由约翰·格鲁伯（英语：John Gruber）创建。<br>Markdown 编写的文档可以导出 HTML 、Word、图像、PDF、Epub 等多种格式的文档。<br>Markdown 编写的文档后缀为 .md, .markdown。</p>
+<h2 id="常用快捷键"><a href="#常用快捷键" class="headerlink" title="常用快捷键"></a>常用快捷键</h2><p>加粗： Ctrl + B			字体倾斜：Ctrl+I			      下划线 ：Ctrl+U</p>
+<p>插入链接：Ctrl + K 		   	创建表格：Ctrl+T</p>
+<p>行内代码：Ctrl + Shift + K	  插入图片：Ctrl + Shift + I	   	     插入图片：Ctrl+Shift+M</p>
+<p>选中某句话：Ctrl+L 		  选中某个单词： Ctrl+D	        搜索：Ctrl+F </p>
+<p>搜索并替换：Ctrl+H		选中相同格式的文字：Ctrl+E        删除线：Alt+Shift+5 </p>
+<p>撤销： Ctrl + Z			返回Typora顶部：Ctrl+Home     返回Typora底部：Ctrl+End    </p>
+<p>公式块：Ctrl+Shift+I  		     引用：Ctrl+Shift+Q          </p>
+<p>标题： Ctrl + 1（一级标题）；Ctrl + 2（二级标题） – 以此类推</p>
+<h2 id="引用文字"><a href="#引用文字" class="headerlink" title="引用文字"></a>引用文字</h2><p>Markdown 使用电子邮件样式&gt;字符进行块引用。它们表示为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; 这是一个有两段的块引用。这是第一段。</span><br><span class="line">&gt;</span><br><span class="line">&gt; 这是第二段。Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&gt; 这是另一个只有一个段落的块引用。有三个空行分隔两个块引用。</span><br></pre></td></tr></table></figure>
+
+<p>在typora中，只需输入’&gt;’后跟引用内容即可生成块引用。Typora将为您插入正确的“&gt;”或换行符。通过添加额外级别的“&gt;”允许在块引用内嵌入另一个块引用。</p>
+<h2 id="元素列表"><a href="#元素列表" class="headerlink" title="元素列表"></a>元素列表</h2><h3 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h3><p>使用 *   +   -  都可以创建一个无序列表</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* AAA</span><br><span class="line">+ BBB</span><br><span class="line">- CCC</span><br></pre></td></tr></table></figure>
+
+<h3 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h3><p>使用 1. 2. 3. 创建有序列表</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. AAA</span><br><span class="line">2. BBB</span><br><span class="line">3. CCC</span><br></pre></td></tr></table></figure>
+
+<h3 id="任务列表"><a href="#任务列表" class="headerlink" title="任务列表"></a>任务列表</h3><p>任务列表是标记为[ ]或[x]（未完成或完成）的项目的列表。例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- [ ] 这是一个任务列表项</span><br><span class="line">- [ ] 需要在前面使用列表的语法</span><br><span class="line">- [ ] normal **formatting**, @mentions, #1234 refs</span><br><span class="line">- [ ] 未完成</span><br><span class="line">- [x] 完成</span><br></pre></td></tr></table></figure>
+
+<p>您可以通过单击项目前面的复选框来更改完成&#x2F;未完成状态。</p>
+<h2 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h2><p>在Typora中插入程序代码的方式有两种：使用反引号 &#96;（~ 键）、使用缩进（Tab）。</p>
+<ul>
+<li><p>插入行内代码，即插入一个单词或者一句代码的情况，使用 <code>code</code> 这样的形式插入。</p>
+</li>
+<li><p>插入多行代码输入3个反引号（&#96;） + 回车，并在后面选择一个语言名称即可实现语法高亮。</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;hell oword&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="数学公式块"><a href="#数学公式块" class="headerlink" title="数学公式块"></a>数学公式块</h2><p>您可以使用 MathJax 渲染 LaTeX 数学表达式。</p>
+<p>输入 $$, 然后按“return”键将触发一个接受Tex &#x2F; LaTex源代码的输入区域。以下是一个例子： </p>
+<p><img src="https://s3.bmp.ovh/imgs/2022/03/33ed0e61febfaa79.png" loading="lazy"></p>
+<p>在 markdown 源文件中，数学公式块是由’$$’标记包装的 LaTeX 表达式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">\mathbf&#123;V&#125;_1 \times \mathbf&#123;V&#125;_2 =  \begin&#123;vmatrix&#125; </span><br><span class="line">\mathbf&#123;i&#125; &amp; \mathbf&#123;j&#125; &amp; \mathbf&#123;k&#125; \\</span><br><span class="line">\frac&#123;\partial X&#125;&#123;\partial u&#125; &amp;  \frac&#123;\partial Y&#125;&#123;\partial u&#125; &amp; 0 \\</span><br><span class="line">\frac&#123;\partial X&#125;&#123;\partial v&#125; &amp;  \frac&#123;\partial Y&#125;&#123;\partial v&#125; &amp; 0 \\</span><br><span class="line">\end&#123;vmatrix&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+
+<p>LeTeX表达式参考连接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/ViatorSun/article/details/82826664#:~:text=%E7%9A%84LaTex%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%BA%20%24x_i%5E2%24%20%E3%80%82.%20LaTex%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%AD%E7%9A%84%E4%B8%8A%E4%B8%8B%E6%A0%87%E5%8F%AF%E4%BB%A5%E5%8F%A0%E5%8A%A0%E7%9A%84%EF%BC%8C%E5%B0%B1%E6%AF%94%E5%A6%82.%20x%20%20y%20,x_%20%7B2i%7D%5E%20%7B2%2Bb%7D.%20x2i2%2Bb.%20%E2%80%8B.%20%E7%9A%84LaTex%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%BA%24x_%20%7B2i%7D%5E%20%7B2%2Bb%7D%24%E3%80%82.">超详细 LaTex数学公式</a>   <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39679367/article/details/84729452">LaTeX：公式常用字符和表达式</a></p>
+<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><p>输入 <code>| First Header | Second Header |</code> 并按下 <code>return</code> 键将创建一个包含两列的表。</p>
+<p>创建表后，焦点在该表上将弹出一个表格工具栏，您可以在其中调整表格，对齐或删除表格。您还可以使用上下文菜单来复制和添加&#x2F;删除列&#x2F;行。</p>
+<p>可以跳过以下描述，因为表格的 markdown 源代码是由typora自动生成的。</p>
+<p>在 markdown 源代码中，它们看起来像这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">| First Header  | Second Header |</span><br><span class="line">| ------------- | ------------- |</span><br><span class="line">| Content Cell  | Content Cell  |</span><br><span class="line">| Content Cell  | Content Cell  |</span><br></pre></td></tr></table></figure>
+
+<p>您还可以在表格中包括内联 Markdown 语法，例如链接，粗体，斜体或删除线。</p>
+<ul>
+<li>不管是哪种方式，第一行为表头，第二行为分割表头和主体部分，第三行开始每一行为一个表格行</li>
+<li>列与列之间用管道符号<code>|</code> 隔开</li>
+<li>还可设置对齐方式(表头与内容之间)，如果不使用对齐标记，内容默认左对齐，表头居中对齐<ul>
+<li>左对齐 ：|</li>
+<li>右对齐 |：</li>
+<li>中对齐 ：|：</li>
+</ul>
+</li>
+<li>为了美观，可以使用空格对齐不同行的单元格，并在左右两侧都使用 | 来标记单元格边界</li>
+<li>为了使 Markdown 更清晰，| 和 - 两侧需要至少有一个空格（最左侧和最右侧的 | 外就不需要了）</li>
+</ul>
+<h2 id="脚注"><a href="#脚注" class="headerlink" title="脚注"></a>脚注</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">您可以像这样创建脚注[^footnote].</span><br><span class="line"></span><br><span class="line">[^footnote]: Here is the *text* of the **footnote**.</span><br></pre></td></tr></table></figure>
+
+<p>将产生：</p>
+<p>您可以像这样创建脚注<a target="_blank" rel="noopener" href="https://support.typoraio.cn/zh/Markdown-Reference/#fn:footnote">1</a>.</p>
+<p>鼠标移动到‘footnote’上标中查看脚注的内容。</p>
+<h2 id="水平线"><a href="#水平线" class="headerlink" title="水平线"></a>水平线</h2><p>输入 <code>***</code> 或 <code>---</code> 在空行上按 <code>return</code> 键将绘制一条水平线。</p>
+<h2 id="目录-TOC"><a href="#目录-TOC" class="headerlink" title="目录 (TOC)"></a>目录 (TOC)</h2><p>输入 <code>[toc]</code> 然后按 <code>Return</code> 键将创建一个“目录”部分，自动从文档内容中提取所有标题，其内容会自动更新。</p>
+<h2 id="上下标"><a href="#上下标" class="headerlink" title="上下标"></a>上下标</h2><h3 id="上标"><a href="#上标" class="headerlink" title="上标"></a>上标</h3><p>可以使用<code>&lt;sup&gt;文本&lt;/sup&gt;</code>实现上标。</p>
+<p>(需在设置中打开该功能)</p>
+<p>X<sup>2</sup></p>
+<h3 id="下标"><a href="#下标" class="headerlink" title="下标"></a>下标</h3><p>可以使用 <code>&lt;sub&gt;文本&lt;/sub&gt;</code>实现下标。</p>
+<p>(需在设置中打开该功能)</p>
+<p>H<sub>2</sub>O</p>
+<h2 id="文本居中"><a href="#文本居中" class="headerlink" title="文本居中"></a>文本居中</h2><p>使用 <code>&lt;center&gt;这是要居中的内容&lt;/center&gt;</code>可以使文本居中</p>
+<center>这是要居中的文本内容</center>
+
+
+
+<h2 id="Span-元素"><a href="#Span-元素" class="headerlink" title="Span 元素"></a>Span 元素</h2><p>在您输入后Span元素会被立即解析并呈现。在这些span元素上移动光标会将这些元素扩展为markdown源代码。以下将解释这些span元素的语法。</p>
+<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p>Markdown 支持两种类型的链接：内联和引用。</p>
+<p>在这两种样式中，链接文本都写在[方括号]内。</p>
+<p>要创建内联链接，请在链接文本的结束方括号后立即使用一组常规括号。在常规括号内，输入URL地址，以及可选的用引号括起来的链接标题。例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">This is [an example](http://example.com/ &quot;Title&quot;) inline link.</span><br><span class="line"></span><br><span class="line">[This link](http://example.net/) has no title attribute.</span><br></pre></td></tr></table></figure>
+
+<p>将产生：</p>
+<p>This is <a target="_blank" rel="noopener" href="http://example.com/%22Title%22">an example</a> inline link. (<code>&lt;p&gt;This is &lt;a href=&quot;http://example.com/&quot; title=&quot;Title&quot;&gt;</code>)</p>
+<p><a target="_blank" rel="noopener" href="http://example.net/">This link</a> has no title attribute. (<code>&lt;p&gt;&lt;a href=&quot;http://example.net/&quot;&gt;This link&lt;/a&gt; has no</code>)</p>
+<h4 id="内部链接"><a href="#内部链接" class="headerlink" title="内部链接"></a>内部链接</h4><p><strong>您可以将常规括号内的 href 设置为文档内的某一个标题</strong>，这将创建一个书签，允许您在单击后跳转到该部分。例如：</p>
+<p>Command(在Windows上：Ctrl) + 单击 <a target="_blank" rel="noopener" href="https://support.typoraio.cn/zh/Markdown-Reference/#%E5%9D%97%E5%85%83%E7%B4%A0">此链接</a> 将跳转到标题 <code>块元素</code>处。 要查看如何编写，请移动光标或按住 <code>⌘</code> 键单击以将元素展开为 Markdown 源代码。</p>
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p>参考样式链接使用第二组方括号，在其中放置您选择的标签以标识链接：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">This is [an example][id] reference-style link.</span><br><span class="line"></span><br><span class="line">然后，在文档中的任何位置，您可以单独定义链接标签，如下所示：</span><br><span class="line"></span><br><span class="line">[id]: http://example.com/  &quot;Optional Title Here&quot;</span><br></pre></td></tr></table></figure>
+
+<p>在typora中，它们将呈现为：</p>
+<p>This is <a target="_blank" rel="noopener" href="http://example.com/">an example</a> reference-style link.</p>
+<p>隐式链接名称快捷方式允许您省略链接的名称，在这种情况下，链接文本本身将用作名称。只需使用一组空的方括号，例如，将“Google”一词链接到google.com网站，您只需写下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[Google][]</span><br><span class="line">然后定义链接：</span><br><span class="line"></span><br><span class="line">[Google]: http://google.com/</span><br></pre></td></tr></table></figure>
+
+<p>在typora中单击链接将其展开以进行编辑，command + 单击将在 Web 浏览器中打开超链接。</p>
+<h3 id="URL网址"><a href="#URL网址" class="headerlink" title="URL网址"></a>URL网址</h3><p>Typora允许您将 URL 作为链接插入，用 <code>&lt;</code>括号括起来<code>&gt;</code>。</p>
+<p><code>&lt;i@typora.io&gt;</code> 成为 <a href="mailto:&#x69;&#x40;&#116;&#x79;&#112;&#111;&#x72;&#97;&#46;&#x69;&#x6f;">i@typora.io</a>.</p>
+<p>Typora也将自动链接标准URL。例如： <a target="_blank" rel="noopener" href="http://www.google.com/">www.google.com</a>.</p>
+<h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><p>图像与链接类似， 但在链接语法之前需要添加额外的 <code>!</code> 字符。 图像语法如下所示：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">![替代文字](/path/to/img.jpg)</span><br><span class="line"></span><br><span class="line">![替代文字](/path/to/img.jpg &quot;可选标题&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>您可以使用拖放操作从图像文件或浏览器来插入图像。并通过单击图像修改 markdown 源代码。如果图像在拖放时与当前编辑文档位于同一目录或子目录中，则将使用相对路径。</p>
+<h3 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h3><p>教程来自知乎：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/40810821">https://zhuanlan.zhihu.com/p/40810821</a></p>
+<p>Typora可以直接在markdown中画流程图，而且语法简洁易懂</p>
+<ul>
+<li>sequence</li>
+</ul>
+<p>语言选择sequence即可生成流程图</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">李雷 -&gt; 韩梅梅: Hello 梅梅, How are you?</span><br><span class="line">Note right of 韩梅梅: 韩梅梅心想</span><br><span class="line">韩梅梅 --&gt; 李雷: I&#x27;m fine, thanks, and you?</span><br></pre></td></tr></table></figure>
+
+<svg width="460.78125" height="247.416" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="overflow: hidden; position: relative; left: -0.0336056px; top: -0.972681px; max-width: 100%; height: auto;" version="1.1">
+ <desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël 2.2.0</desc>
+ <defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+  <path style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" id="raphael-marker-block" d="m5,0l-5,2.5l5,2.5l0,-5z" stroke-linecap="round"/>
+  <marker style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" refY="2.5" refX="2.5" orient="auto" markerWidth="5" markerHeight="5" id="raphael-marker-endblock55-objehh4q">
+   <use id="svg_1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="currentColor" transform="rotate(180 2.5,2.5) scale(1) " xlink:href="#raphael-marker-block"/>
+  </marker>
+  <marker style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" refY="2.5" refX="2.5" orient="auto" markerWidth="5" markerHeight="5" id="raphael-marker-endblock55-objo2myt">
+   <use id="svg_2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="currentColor" transform="rotate(180 2.5,2.5) scale(1) " xlink:href="#raphael-marker-block"/>
+  </marker>
+ </defs>
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="619" width="1292" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <rect id="svg_3" stroke-width="2" stroke="currentColor" fill="none" height="35.484375" width="52.28125" y="20" x="10"/>
+  <rect id="svg_4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" height="15.484375" width="32.28125" y="30" x="20"/>
+  <text id="svg_5" fill="currentColor" font-size="16px" font-family="Andale Mono, monospace" text-anchor="middle" y="37.742188" x="36.140625">
+   <tspan id="svg_6" dy="5.71875">李雷</tspan>
+  </text>
+  <rect id="svg_7" stroke-width="2" stroke="currentColor" fill="none" height="35.484375" width="52.28125" y="191.9375" x="10"/>
+  <rect id="svg_8" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" height="15.484375" width="32.28125" y="201.9375" x="20"/>
+  <text id="svg_9" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: "Andale Mono", monospace; font-size: 16px;" fill="currentColor" font-size="16px" font-family="Andale Mono, monospace" text-anchor="middle" y="209.679688" x="36.140625">
+   <tspan id="svg_10" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.71875">李雷</tspan>
+  </text>
+  <path id="svg_11" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" stroke-width="2" d="m36.14063,55.48438l0,136.45312" stroke="currentColor" fill="var(--bg-color)"/>
+  <rect id="svg_12" stroke-width="2" stroke="currentColor" fill="none" height="35.484375" width="68.40625" y="20" x="231.6875"/>
+  <rect id="svg_13" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" height="15.484375" width="48.40625" y="30" x="241.6875"/>
+  <text id="svg_14" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: "Andale Mono", monospace; font-size: 16px;" fill="currentColor" font-size="16px" font-family="Andale Mono, monospace" text-anchor="middle" y="37.742188" x="265.890625">
+   <tspan id="svg_15" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.71875">韩梅梅</tspan>
+  </text>
+  <rect id="svg_16" stroke-width="2" stroke="currentColor" fill="none" height="35.484375" width="68.40625" y="191.9375" x="231.6875"/>
+  <rect id="svg_17" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" height="15.484375" width="48.40625" y="201.9375" x="241.6875"/>
+  <text id="svg_18" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: "Andale Mono", monospace; font-size: 16px;" fill="currentColor" font-size="16px" font-family="Andale Mono, monospace" text-anchor="middle" y="209.679688" x="265.890625">
+   <tspan id="svg_19" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.71875">韩梅梅</tspan>
+  </text>
+  <path id="svg_20" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" stroke-width="2" d="m265.89063,55.48438l0,136.45312" stroke="currentColor" fill="var(--bg-color)"/>
+  <rect id="svg_21" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" height="15.484375" width="193.625" y="72.734375" x="54.203125"/>
+  <text id="svg_22" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: "Andale Mono", monospace; font-size: 16px;" fill="currentColor" font-size="16px" font-family="Andale Mono, monospace" text-anchor="middle" y="80.484375" x="151.015625">
+   <tspan id="svg_23" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.710938">Hello 梅梅, How are you?</tspan>
+  </text>
+  <path id="svg_24" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" marker-end="url(#raphael-marker-endblock55-objehh4q)" stroke-width="2" d="m36.14063,90.96875c0,0 191.19018,0 224.75115,0" stroke="currentColor" fill="var(--bg-color)"/>
+  <rect id="svg_25" stroke-width="2" stroke="currentColor" fill="none" height="25.484375" width="90.6875" y="110.96875" x="285.890625"/>
+  <rect id="svg_26" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" height="15.484375" width="80.6875" y="115.96875" x="290.890625"/>
+  <text id="svg_27" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: "Andale Mono", monospace; font-size: 16px;" fill="currentColor" font-size="16px" font-family="Andale Mono, monospace" text-anchor="middle" y="123.710938" x="331.234375">
+   <tspan id="svg_28" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.71875">韩梅梅心想</tspan>
+  </text>
+  <rect id="svg_29" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="none" height="15.484375" width="209.75" y="153.703125" x="46.140625"/>
+  <text id="svg_30" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: "Andale Mono", monospace; font-size: 16px;" fill="currentColor" font-size="16px" font-family="Andale Mono, monospace" text-anchor="middle" y="161.453125" x="151.015625">
+   <tspan id="svg_31" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.710938">I'm fine, thanks, and you?</tspan>
+  </text>
+  <path id="svg_32" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" stroke-dasharray="6,2" marker-end="url(#raphael-marker-endblock55-objo2myt)" stroke-width="2" d="m265.89063,171.9375c0,0 -191.19019,0 -224.75116,0" stroke="currentColor" fill="var(--bg-color)"/>
+ </g>
+</svg>
+
+
+<ul>
+<li>flowchart</li>
+</ul>
+<p>对于Flowchart,语法选择flow</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">st=&gt;start: 闹钟响起</span><br><span class="line">op=&gt;operation: 与床板分离</span><br><span class="line">cond=&gt;condition: 分离成功?</span><br><span class="line">e=&gt;end: 快乐的一天</span><br><span class="line"></span><br><span class="line">st-&gt;op-&gt;cond</span><br><span class="line">cond(yes)-&gt;e</span><br><span class="line">cond(no)-&gt;op</span><br></pre></td></tr></table></figure>
+
+
+<svg width="175.8203125" height="408.509765625" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet" style="overflow: hidden; position: relative; left: -0.0378136px; top: -0.976878px;" version="1.1">
+ <desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël 2.2.0</desc>
+ <defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+  <path style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" id="raphael-marker-block" d="m5,0l-5,2.5l5,2.5l0,-5z" stroke-linecap="round"/>
+  <marker style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" refY="1.5" refX="1.5" orient="auto" markerWidth="3" markerHeight="3" id="raphael-marker-endblock33-objrngqv">
+   <use id="svg_1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="currentColor" stroke-width="1.6667" transform="rotate(180 1.5,1.5) scale(0.6000000238418579) " xlink:href="#raphael-marker-block"/>
+  </marker>
+  <marker style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" refY="1.5" refX="1.5" orient="auto" markerWidth="3" markerHeight="3" id="raphael-marker-endblock33-objfsd5j">
+   <use id="svg_2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="currentColor" stroke-width="1.6667" transform="rotate(180 1.5,1.5) scale(0.6000000238418579) " xlink:href="#raphael-marker-block"/>
+  </marker>
+  <marker style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" refY="1.5" refX="1.5" orient="auto" markerWidth="3" markerHeight="3" id="raphael-marker-endblock33-obj05jvn">
+   <use id="svg_3" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="currentColor" stroke-width="1.6667" transform="rotate(180 1.5,1.5) scale(0.6000000238418579) " xlink:href="#raphael-marker-block"/>
+  </marker>
+  <marker style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" refY="1.5" refX="1.5" orient="auto" markerWidth="3" markerHeight="3" id="raphael-marker-endblock33-objyoquh">
+   <use id="svg_4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" fill="currentColor" stroke-width="1.6667" transform="rotate(180 1.5,1.5) scale(0.6000000238418579) " xlink:href="#raphael-marker-block"/>
+  </marker>
+ </defs>
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="618" width="517" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <rect transform="matrix(1,0,0,1,38.668,23.377) " id="st" class="flowchart" stroke-width="3" stroke="currentColor" fill="none" ry="20" rx="20" height="36.15625" width="76.484375" y="0" x="0"/>
+  <text transform="matrix(1,0,0,1,38.668,23.377) " class="flowchartt" id="stt" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 14px;" fill="currentColor" font-size="14px" font-family=""Arial"" text-anchor="start" y="18.078125" x="10">
+   <tspan id="svg_5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.703125">闹钟响起</tspan>
+  </text>
+  <rect transform="matrix(1,0,0,1,31.6133,132.9102) " id="op" class="flowchart" stroke-width="3" stroke="currentColor" fill="none" height="36.15625" width="90.59375" y="0" x="0"/>
+  <text transform="matrix(1,0,0,1,31.6133,132.9102) " class="flowchartt" id="opt" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 14px;" fill="currentColor" font-size="14px" font-family=""Arial"" text-anchor="start" y="18.078125" x="10">
+   <tspan id="svg_6" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.703125">与床板分离</tspan>
+  </text>
+  <path class="flowchart" id="cond" stroke-width="3" d="m41.45508,242.79394l-35.45508,17.72754l70.91016,35.45508l70.91015,-35.45508l-70.91015,-35.45508l-70.91016,35.45508" stroke="currentColor" fill="none"/>
+  <text transform="matrix(1,0,0,1,6,225.0664) " class="flowchartt" id="condt" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 14px;" fill="currentColor" font-size="14px" font-family=""Arial"" text-anchor="start" y="35.455078" x="40.455078">
+   <tspan id="svg_7" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.705078">分离成功?</tspan>
+  </text>
+  <rect transform="matrix(1,0,0,1,31.6133,369.3535) " id="e" class="flowchart" stroke-width="3" stroke="currentColor" fill="none" ry="20" rx="20" height="36.15625" width="90.59375" y="0" x="0"/>
+  <text transform="matrix(1,0,0,1,31.6133,369.3535) " class="flowchartt" id="et" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 14px;" fill="currentColor" font-size="14px" font-family=""Arial"" text-anchor="start" y="18.078125" x="10">
+   <tspan id="svg_8" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.703125">快乐的一天</tspan>
+  </text>
+  <path id="svg_9" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" marker-end="url(#raphael-marker-endblock33-objrngqv)" stroke-width="3" d="m76.91016,59.5332c0,0 0,52.90527 0,68.86985" stroke="currentColor" fill="none"/>
+  <path id="svg_10" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" marker-end="url(#raphael-marker-endblock33-objfsd5j)" stroke-width="3" d="m76.91016,169.06641c0,0 0,38.20077 0,51.50016" stroke="currentColor" fill="none"/>
+  <path id="svg_11" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" marker-end="url(#raphael-marker-endblock33-obj05jvn)" stroke-width="3" d="m76.91016,295.97656c0,0 0,52.90527 0,68.86985" stroke="currentColor" fill="none"/>
+  <text id="svg_12" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 14px;" fill="currentColor" font-size="14px" font-family=""Arial"" text-anchor="start" y="305.976563" x="81.910156">
+   <tspan id="svg_13" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.703125">yes</tspan>
+  </text>
+  <path id="svg_14" marker-end="url(#raphael-marker-endblock33-objyoquh)" stroke-width="3" d="m147.82031,260.52148c0,0 25,-10 25,-10c0,0 0,-152.61132 0,-152.61132c0,0 -95.91015,0 -95.91015,0c0,0 0,21.04307 0,30.49601" stroke="currentColor" fill="none"/>
+  <text id="svg_15" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: Arial; font-size: 14px;" fill="currentColor" font-size="14px" font-family=""Arial"" text-anchor="start" y="250.521484" x="152.820313">
+   <tspan id="svg_16" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="4.708984">no</tspan>
+  </text>
+ </g>
+</svg>
+
+
+
+
+<ul>
+<li>gantt</li>
+</ul>
+<p>除了Sequence和Flowchart两类图之外，Mermaid还提供一种叫做gantt的图。插入下面的代码，然后语法选mermaid就会自动渲染成gantt图了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">gantt</span><br><span class="line">        dateFormat  YYYY-MM-DD</span><br><span class="line">        title 快乐的生活</span><br><span class="line">        section 吃一把鸡就学习</span><br><span class="line">        学习            :done,    des1, 2014-01-06,2014-01-09</span><br><span class="line">        疯狂学习               :active,  des2, 2014-01-09, 3d</span><br><span class="line">        继续疯狂学习               :         des3, after des2, 5d</span><br><span class="line">        吃鸡！               :         des4, after des3, 4d</span><br><span class="line">        section 具体内容</span><br><span class="line">        学习Python :crit, done, 2014-01-06,72h</span><br><span class="line">        学习C++          :crit, done, after des1, 2d</span><br><span class="line">        学习Lisp             :crit, active, 3d</span><br><span class="line">        学习图形学        :crit, 4d</span><br><span class="line">        跳伞           :2d</span><br><span class="line">        打枪                      :2d</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><svg id="mermaidChart0" width="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 624 340" height="340" style="max-width: 624px;"><style>#mermaidChart0{font-family:sans-serif;font-size:16px;fill:#333;}#mermaidChart0 .error-icon{fill:#552222;}#mermaidChart0 .error-text{fill:#552222;stroke:#552222;}#mermaidChart0 .edge-thickness-normal{stroke-width:2px;}#mermaidChart0 .edge-thickness-thick{stroke-width:3.5px;}#mermaidChart0 .edge-pattern-solid{stroke-dasharray:0;}#mermaidChart0 .edge-pattern-dashed{stroke-dasharray:3;}#mermaidChart0 .edge-pattern-dotted{stroke-dasharray:2;}#mermaidChart0 .marker{fill:#333333;}#mermaidChart0 .marker.cross{stroke:#333333;}#mermaidChart0 svg{font-family:sans-serif;font-size:16px;}#mermaidChart0 .mermaid-main-font{font-family:”trebuchet ms”,verdana,arial;font-family:var(–mermaid-font-family);}#mermaidChart0 .section{stroke:none;opacity:0.2;}#mermaidChart0 .section0{fill:rgba(102,102,255,0.49);}#mermaidChart0 .section2{fill:#fff400;}#mermaidChart0 .section1,#mermaidChart0 .section3{fill:white;opacity:0.2;}#mermaidChart0 .sectionTitle0{fill:#333;}#mermaidChart0 .sectionTitle1{fill:#333;}#mermaidChart0 .sectionTitle2{fill:#333;}#mermaidChart0 .sectionTitle3{fill:#333;}#mermaidChart0 .sectionTitle{text-anchor:start;font-size:11px;text-height:14px;font-family:’trebuchet ms’,verdana,arial;font-family:var(–mermaid-font-family);}#mermaidChart0 .grid .tick{stroke:lightgrey;opacity:0.8;shape-rendering:crispEdges;}#mermaidChart0 .grid .tick text{font-family:sans-serif;fill:#333;}#mermaidChart0 .grid path{stroke-width:0;}#mermaidChart0 .today{fill:none;stroke:red;stroke-width:2px;}#mermaidChart0 .task{stroke-width:2;}#mermaidChart0 .taskText{text-anchor:middle;font-family:’trebuchet ms’,verdana,arial;font-family:var(–mermaid-font-family);}#mermaidChart0 .taskText:not([font-size]){font-size:11px;}#mermaidChart0 .taskTextOutsideRight{fill:black;text-anchor:start;font-size:11px;font-family:’trebuchet ms’,verdana,arial;font-family:var(–mermaid-font-family);}#mermaidChart0 .taskTextOutsideLeft{fill:black;text-anchor:end;font-size:11px;}#mermaidChart0 .task.clickable{cursor:pointer;}#mermaidChart0 .taskText.clickable{cursor:pointer;fill:#003163 !important;font-weight:bold;}#mermaidChart0 .taskTextOutsideLeft.clickable{cursor:pointer;fill:#003163 !important;font-weight:bold;}#mermaidChart0 .taskTextOutsideRight.clickable{cursor:pointer;fill:#003163 !important;font-weight:bold;}#mermaidChart0 .taskText0,#mermaidChart0 .taskText1,#mermaidChart0 .taskText2,#mermaidChart0 .taskText3{fill:white;}#mermaidChart0 .task0,#mermaidChart0 .task1,#mermaidChart0 .task2,#mermaidChart0 .task3{fill:#8a90dd;stroke:#534fbc;}#mermaidChart0 .taskTextOutside0,#mermaidChart0 .taskTextOutside2{fill:black;}#mermaidChart0 .taskTextOutside1,#mermaidChart0 .taskTextOutside3{fill:black;}#mermaidChart0 .active0,#mermaidChart0 .active1,#mermaidChart0 .active2,#mermaidChart0 .active3{fill:#bfc7ff;stroke:#534fbc;}#mermaidChart0 .activeText0,#mermaidChart0 .activeText1,#mermaidChart0 .activeText2,#mermaidChart0 .activeText3{fill:black !important;}#mermaidChart0 .done0,#mermaidChart0 .done1,#mermaidChart0 .done2,#mermaidChart0 .done3{stroke:grey;fill:lightgrey;stroke-width:2;}#mermaidChart0 .doneText0,#mermaidChart0 .doneText1,#mermaidChart0 .doneText2,#mermaidChart0 .doneText3{fill:black !important;}#mermaidChart0 .crit0,#mermaidChart0 .crit1,#mermaidChart0 .crit2,#mermaidChart0 .crit3{stroke:#ff8888;fill:red;stroke-width:2;}#mermaidChart0 .activeCrit0,#mermaidChart0 .activeCrit1,#mermaidChart0 .activeCrit2,#mermaidChart0 .activeCrit3{stroke:#ff8888;fill:#bfc7ff;stroke-width:2;}#mermaidChart0 .doneCrit0,#mermaidChart0 .doneCrit1,#mermaidChart0 .doneCrit2,#mermaidChart0 .doneCrit3{stroke:#ff8888;fill:lightgrey;stroke-width:2;cursor:pointer;shape-rendering:crispEdges;}#mermaidChart0 .milestone{-webkit-transform:rotate(45deg) scale(0.8,0.8);-ms-transform:rotate(45deg) scale(0.8,0.8);transform:rotate(45deg) scale(0.8,0.8);}#mermaidChart0 .milestoneText{font-style:italic;}#mermaidChart0 .doneCritText0,#mermaidChart0 .doneCritText1,#mermaidChart0 .doneCritText2,#mermaidChart0 .doneCritText3{fill:black !important;}#mermaidChart0 .activeCritText0,#mermaidChart0 .activeCritText1,#mermaidChart0 .activeCritText2,#mermaidChart0 .activeCritText3{fill:black !important;}#mermaidChart0 .titleText{text-anchor:middle;font-size:18px;fill:var(–text-color);font-family:’trebuchet ms’,verdana,arial;font-family:var(–mermaid-font-family);}#mermaidChart0:root{–mermaid-font-family:sans-serif;}#mermaidChart0:root{–mermaid-alt-font-family:sans-serif;}#mermaidChart0 gantt{fill:apa;}</style><g></g><g class="grid" transform="translate(75, 290)" fill="none" font-size="10" font-family="sans-serif" text-anchor="middle"><path class="domain" stroke="currentColor" d="M0.5,-255V0.5H529.5V-255"></path><g class="tick" opacity="1" transform="translate(33.5,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">2014-01-07</text></g><g class="tick" opacity="1" transform="translate(99.5,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">2014-01-09</text></g><g class="tick" opacity="1" transform="translate(165.5,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">2014-01-11</text></g><g class="tick" opacity="1" transform="translate(231.5,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">2014-01-13</text></g><g class="tick" opacity="1" transform="translate(298.5,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">2014-01-15</text></g><g class="tick" opacity="1" transform="translate(364.5,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">2014-01-17</text></g><g class="tick" opacity="1" transform="translate(430.5,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">2014-01-19</text></g><g class="tick" opacity="1" transform="translate(496.5,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">2014-01-21</text></g></g><g><rect x="0" y="48" width="614" height="24" class="section section0"></rect><rect x="0" y="144" width="614" height="24" class="section section1"></rect><rect x="0" y="72" width="614" height="24" class="section section0"></rect><rect x="0" y="168" width="614" height="24" class="section section1"></rect><rect x="0" y="192" width="614" height="24" class="section section1"></rect><rect x="0" y="96" width="614" height="24" class="section section0"></rect><rect x="0" y="216" width="614" height="24" class="section section1"></rect><rect x="0" y="120" width="614" height="24" class="section section0"></rect><rect x="0" y="240" width="614" height="24" class="section section1"></rect><rect x="0" y="264" width="614" height="24" class="section section1"></rect></g><g><rect id="des1" rx="3" ry="3" x="75" y="50" width="99" height="20" transform-origin="124.5px 60px" class="task done0 "></rect><rect id="task1" rx="3" ry="3" x="75" y="146" width="99" height="20" transform-origin="124.5px 84px" class="task doneCrit1 "></rect><rect id="des2" rx="3" ry="3" x="174" y="74" width="99" height="20" transform-origin="223.5px 108px" class="task active0 "></rect><rect id="task2" rx="3" ry="3" x="174" y="170" width="66" height="20" transform-origin="207px 132px" class="task doneCrit1 "></rect><rect id="task3" rx="3" ry="3" x="240" y="194" width="100" height="20" transform-origin="290px 156px" class="task activeCrit1 "></rect><rect id="des3" rx="3" ry="3" x="273" y="98" width="166" height="20" transform-origin="356px 180px" class="task task0 "></rect><rect id="task4" rx="3" ry="3" x="340" y="218" width="132" height="20" transform-origin="406px 204px" class="task crit1 "></rect><rect id="des4" rx="3" ry="3" x="439" y="122" width="132" height="20" transform-origin="505px 228px" class="task task0 "></rect><rect id="task5" rx="3" ry="3" x="472" y="242" width="66" height="20" transform-origin="505px 252px" class="task task1 "></rect><rect id="task6" rx="3" ry="3" x="538" y="266" width="66" height="20" transform-origin="571px 276px" class="task task1 "></rect><text id="des1-text" font-size="11" x="124.5" y="63.5" text-height="20" class=" taskText taskText0  doneText0 width-21.515625">学习            </text><text id="task1-text" font-size="11" x="124.5" y="159.5" text-height="20" class=" taskText taskText1  doneCritText1 width-57.8125">学习Python </text><text id="des2-text" font-size="11" x="223.5" y="87.5" text-height="20" class=" taskText taskText0 activeText0 width-43.015625">疯狂学习               </text><text id="task2-text" font-size="11" x="207" y="183.5" text-height="20" class=" taskText taskText1  doneCritText1 width-45.03125">学习C++          </text><text id="task3-text" font-size="11" x="290" y="207.5" text-height="20" class=" taskText taskText1 activeCritText1 critText1 width-41">学习Lisp             </text><text id="des3-text" font-size="11" x="356" y="111.5" text-height="20" class=" taskText taskText0  width-64.53125">继续疯狂学习               </text><text id="task4-text" font-size="11" x="406" y="231.5" text-height="20" class=" taskText taskText1  critText1 width-53.78125">学习图形学        </text><text id="des4-text" font-size="11" x="505" y="135.5" text-height="20" class=" taskText taskText0  width-32.265625">吃鸡！               </text><text id="task5-text" font-size="11" x="505" y="255.5" text-height="20" class=" taskText taskText1  width-21.515625">跳伞           </text><text id="task6-text" font-size="11" x="571" y="279.5" text-height="20" class=" taskText taskText1  width-21.515625">打枪                      </text></g><g><text dy="0em" x="10" y="98" class="sectionTitle sectionTitle0"><tspan alignment-baseline="central" x="10">吃一把鸡就学习</tspan></text><text dy="0em" x="10" y="218" class="sectionTitle sectionTitle1"><tspan alignment-baseline="central" x="10">具体内容</tspan></text></g><g class="today"><line x1="100579" x2="100579" y1="25" y2="315" class="today"></line></g><text x="312" y="25" class="titleText">快乐的生活</text></svg></p>
+<h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><p>您可以使用HTML来设置纯 Markdown 不支持的内容，例如， <code>&lt;span style=&quot;color:red&quot;&gt;this text is red&lt;/span&gt;</code> 用于添加红色文本。</p>
+</div></section><div id="reward-container"><span class="hty-icon-button button-glow" id="reward-button" title="打赏" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === &quot;none&quot;) ? &quot;block&quot; : &quot;none&quot;;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-hand-coin-line"></use></svg></span><div id="reward-comment">I'm so cute. Please give me money.</div><div id="qr" style="display:none;"><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F02%2F18%2F20240218151158.jpg"><img loading="lazy" src="https://luren-1310495826.cos.ap-beijing.myqcloud.com/blog/2024%2F02%2F18%2F20240218151158.jpg" alt="支付宝" title="支付宝"></a><div><span style="color:#00A3EE"><span class="icon iconify" data-icon="ri:alipay-line"></span></span></div></div><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://s3.bmp.ovh/imgs/2022/03/1018089fdf3cd065.png"><img loading="lazy" src="https://s3.bmp.ovh/imgs/2022/03/1018089fdf3cd065.png" alt="QQ 支付" title="QQ 支付"></a><div><span style="color:#12B7F5"><span class="icon iconify" data-icon="ri:qq-line"></span></span></div></div><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://s3.bmp.ovh/imgs/2022/03/08ce21ed009e0f80.png"><img loading="lazy" src="https://s3.bmp.ovh/imgs/2022/03/08ce21ed009e0f80.png" alt="微信支付" title="微信支付"></a><div><span style="color:#2DC100"><span class="icon iconify" data-icon="ri:wechat-pay-line"></span></span></div></div></div></div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>LuRen</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="http://hexo.zhiyun.fun/posts/1bd41834/" title="Typora基本用法">http://hexo.zhiyun.fun/posts/1bd41834/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><span class="icon iconify" data-icon="ri:creative-commons-line"></span><span class="icon iconify" data-icon="ri:creative-commons-by-line"></span><span class="icon iconify" data-icon="ri:creative-commons-nc-line"></span><span class="icon iconify" data-icon="ri:creative-commons-sa-line"></span></a> 许可协议。</li></ul><script>document.addEventListener('copy', function (event) {
+  const clipboardData = event.clipboardData || window.clipboardData;
+  if (!clipboardData) { return; }
+  const text = window.getSelection().toString();
+  if (text) {
+    event.preventDefault();
+    clipboardData.setData('text/plain', text + '\n\n本文作者：LuRen\n本文链接：http://hexo.zhiyun.fun/posts/1bd41834/\n版权声明：本博客所有文章除特别声明外，均默认采用 CC BY-NC-SA 4.0 许可协议。');
+  }
+});</script></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/posts/2f165d3c/" rel="prev" title="个人博客的搭建"><span class="icon iconify" data-icon="ri:arrow-left-s-line"></span><span class="post-nav-text">个人博客的搭建</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/posts/4a17b156/" rel="next" title="Hello World"><span class="post-nav-text">Hello World</span><span class="icon iconify" data-icon="ri:arrow-right-s-line"></span></a></div></div></div><div class="hty-card" id="comment"><div class="comment-tooltip text-center"><span>不要与我交流，我什么都不会。</span><br><a class="hty-button hty-button--raised" id="github-discussions" target="_blank" rel="noopener" href="https://github.com/weaving-dreams/hexo.zhiyun.fun/discussions/new">GitHub Discussions</a></div><div id="waline"></div><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@waline/client@v2/dist/waline.css"><script>window.CONFIG.waline.config.path = "/posts/1bd41834/"</script><div class="js-Pjax"><script src="/js/comments/waline.js" type="module" defer></script></div></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2022 – 2025 </span><span class="with-love" id="animate"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></span><span class="author"> LuRen</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v7.3.0</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.10.11</span></div><div class="live-time"><span>本博客已萌萌哒地运行</span><span id="display_live_time"></span><span class="moe-text">(●'◡'●)</span><script>function blog_live_time() {
+  setTimeout(blog_live_time, 1000);
+  const start = new Date('2022-03-09T00:00:00');
+  const now = new Date();
+  const timeDiff = (now.getTime() - start.getTime());
+  const msPerMinute = 60 * 1000;
+  const msPerHour = 60 * msPerMinute;
+  const msPerDay = 24 * msPerHour;
+  const passDay = Math.floor(timeDiff / msPerDay);
+  const passHour = Math.floor((timeDiff % msPerDay) / 60 / 60 / 1000);
+  const passMinute = Math.floor((timeDiff % msPerHour) / 60 / 1000);
+  const passSecond = Math.floor((timeDiff % msPerMinute) / 1000);
+  display_live_time.innerHTML = ` ${passDay} 天 ${passHour} 小时 ${passMinute} 分 ${passSecond} 秒`;
+}
+blog_live_time();
+</script></div><div id="busuanzi"><span id="busuanzi_container_site_uv" title="总访客量"><span><span class="icon iconify" data-icon="ri:user-line"></span></span><span id="busuanzi_value_site_uv"></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv" title="总访问量"><span><span class="icon iconify" data-icon="ri:eye-line"></span></span><span id="busuanzi_value_site_pv"></span></span><script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></footer></div><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><span class="icon iconify" data-icon="ri:arrow-up-s-line"></span><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a><a class="popup-trigger hty-icon-button icon-search" id="search" href="javascript:;" title="搜索"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:search-line"></span></span></a><script>window.addEventListener("DOMContentLoaded", () => {
+  // Handle and trigger popup window
+  document.querySelector(".popup-trigger").addEventListener("click", () => {
+    document.querySelector(".popup").classList.add("show");
+    setTimeout(() => {
+      document.querySelector(".search-input").focus();
+    }, 100);
+  });
+
+  // Monitor main search box
+  const onPopupClose = () => {
+    document.querySelector(".popup").classList.remove("show");
+  };
+
+  document.querySelector(".popup-btn-close").addEventListener("click", () => {
+    onPopupClose();
+  });
+
+  window.addEventListener("keyup", event => {
+    if (event.key === "Escape") {
+      onPopupClose();
+    }
+  });
+});
+</script><script src="https://fastly.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js"></script><script src="/js/search/local-search.js" defer type="module"></script><div class="popup search-popup"><div class="search-header"><span class="popup-btn-close close-icon hty-icon-button"><span class="icon iconify" data-icon="ri:close-line"></span></span></div><div class="search-input-container"><input class="search-input" id="local-search-input" type="text" placeholder="搜索..." value=""></div><div class="search-result-container"></div></div><script>function initMourn() {
+  const date = new Date();
+  const today = (date.getMonth() + 1) + "-" + date.getDate()
+  const mourn_days = ["4-4","9-18"]
+  if (mourn_days.includes(today)) {
+    document.documentElement.style.filter = "grayscale(1)";
+  }
+}
+initMourn();</script><script src="https://fastly.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script><script>const images = [...document.querySelectorAll('.markdown-body img')]
+mediumZoom(images)</script><style>.medium-zoom-image {
+  z-index: 99;
+}</style></body></html>
