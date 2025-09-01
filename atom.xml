@@ -323,7 +323,7 @@
         
         
     <summary type="html">&lt;p&gt;1.查看所有容器,包括未运行的&lt;/p&gt;
-&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span</summary>
+&lt;pre&gt;&lt;code class=&quot;highlight plaintext&quot;&gt;docker ps</summary>
         
       
     
@@ -428,7 +428,8 @@
         
         
     <summary type="html">&lt;p&gt;DNS黑名单&lt;/p&gt;
-&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span</summary>
+&lt;pre&gt;&lt;code class=&quot;highlight plaintext&quot;&gt;名称 ：GOODBYEADS
+网址：</summary>
         
       
     

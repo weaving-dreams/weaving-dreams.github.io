@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="LuRen"><meta name="copyright" content="LuRen"><meta name="generator" content="Hexo 7.3.0"><meta name="theme" content="hexo-theme-yun"><title>Typora基本用法 | 圥忈的小站</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/star-markdown-css@0.4.1/dist/yun/yun-markdown.min.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/prism-theme-vars/base.css"><script src="https://fastly.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>function initScrollReveal() {
+<!DOCTYPE html><html lang="zh-CN"><head><!-- hexo injector head_begin start --><link href="https://cdn.jsdelivr.net/npm/hexo-widget-tree@0.2.3/css/index.css" rel="stylesheet"/><!-- hexo injector head_begin end --><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="LuRen"><meta name="copyright" content="LuRen"><meta name="generator" content="Hexo 7.3.0"><meta name="theme" content="hexo-theme-yun"><title>Typora基本用法 | 圥忈的小站</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/star-markdown-css@0.4.1/dist/yun/yun-markdown.min.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/prism-theme-vars/base.css"><script src="https://fastly.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>function initScrollReveal() {
   [".post-card",".markdown-body img"].forEach((target)=> {
     ScrollReveal().reveal(target);
   })
@@ -27,7 +27,11 @@ document.addEventListener("pjax:success", initScrollReveal);
   const setting = localStorage.getItem('darken-mode') || 'auto'
   if (setting === 'dark' || (prefersDark && setting !== 'light'))
     document.documentElement.classList.toggle('dark', true)
-})()</script></head><body><script src="https://code.iconify.design/2/2.1.1/iconify.min.js"></script><script>// Define global variable
+})()</script><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head><body><script src="https://code.iconify.design/2/2.1.1/iconify.min.js"></script><script>// Define global variable
 IconifyProviders = {
   // Empty prefix: overwrite default API provider configuration
   '': {
@@ -50,17 +54,31 @@ IconifyProviders = {
 <p>公式块：Ctrl+Shift+I  		     引用：Ctrl+Shift+Q          </p>
 <p>标题： Ctrl + 1（一级标题）；Ctrl + 2（二级标题） – 以此类推</p>
 <h2 id="引用文字"><a href="#引用文字" class="headerlink" title="引用文字"></a>引用文字</h2><p>Markdown 使用电子邮件样式&gt;字符进行块引用。它们表示为：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; 这是一个有两段的块引用。这是第一段。</span><br><span class="line">&gt;</span><br><span class="line">&gt; 这是第二段。Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&gt; 这是另一个只有一个段落的块引用。有三个空行分隔两个块引用。</span><br></pre></td></tr></table></figure>
+<pre><code class="highlight plaintext">&gt; 这是一个有两段的块引用。这是第一段。
+&gt;
+&gt; 这是第二段。Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.
+
+
+
+&gt; 这是另一个只有一个段落的块引用。有三个空行分隔两个块引用。</code></pre>
 
 <p>在typora中，只需输入’&gt;’后跟引用内容即可生成块引用。Typora将为您插入正确的“&gt;”或换行符。通过添加额外级别的“&gt;”允许在块引用内嵌入另一个块引用。</p>
 <h2 id="元素列表"><a href="#元素列表" class="headerlink" title="元素列表"></a>元素列表</h2><h3 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h3><p>使用 *   +   -  都可以创建一个无序列表</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* AAA</span><br><span class="line">+ BBB</span><br><span class="line">- CCC</span><br></pre></td></tr></table></figure>
+<pre><code class="highlight plaintext">* AAA
++ BBB
+- CCC</code></pre>
 
 <h3 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h3><p>使用 1. 2. 3. 创建有序列表</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. AAA</span><br><span class="line">2. BBB</span><br><span class="line">3. CCC</span><br></pre></td></tr></table></figure>
+<pre><code class="highlight plaintext">1. AAA
+2. BBB
+3. CCC</code></pre>
 
 <h3 id="任务列表"><a href="#任务列表" class="headerlink" title="任务列表"></a>任务列表</h3><p>任务列表是标记为[ ]或[x]（未完成或完成）的项目的列表。例如：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- [ ] 这是一个任务列表项</span><br><span class="line">- [ ] 需要在前面使用列表的语法</span><br><span class="line">- [ ] normal **formatting**, @mentions, #1234 refs</span><br><span class="line">- [ ] 未完成</span><br><span class="line">- [x] 完成</span><br></pre></td></tr></table></figure>
+<pre><code class="highlight plaintext">- [ ] 这是一个任务列表项
+- [ ] 需要在前面使用列表的语法
+- [ ] normal **formatting**, @mentions, #1234 refs
+- [ ] 未完成
+- [x] 完成</code></pre>
 
 <p>您可以通过单击项目前面的复选框来更改完成&#x2F;未完成状态。</p>
 <h2 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h2><p>在Typora中插入程序代码的方式有两种：使用反引号 &#96;（~ 键）、使用缩进（Tab）。</p>
@@ -70,20 +88,29 @@ IconifyProviders = {
 <li><p>插入多行代码输入3个反引号（&#96;） + 回车，并在后面选择一个语言名称即可实现语法高亮。</p>
 </li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;hell oword&quot;</span>)</span><br></pre></td></tr></table></figure>
+<pre><code class="highlight python"><span class="built_in">print</span>(<span class="string">&quot;hell oword&quot;</span>)</code></pre>
 
 <h2 id="数学公式块"><a href="#数学公式块" class="headerlink" title="数学公式块"></a>数学公式块</h2><p>您可以使用 MathJax 渲染 LaTeX 数学表达式。</p>
 <p>输入 $$, 然后按“return”键将触发一个接受Tex &#x2F; LaTex源代码的输入区域。以下是一个例子： </p>
 <p><img src="https://s3.bmp.ovh/imgs/2022/03/33ed0e61febfaa79.png" loading="lazy"></p>
 <p>在 markdown 源文件中，数学公式块是由’$$’标记包装的 LaTeX 表达式：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">\mathbf&#123;V&#125;_1 \times \mathbf&#123;V&#125;_2 =  \begin&#123;vmatrix&#125; </span><br><span class="line">\mathbf&#123;i&#125; &amp; \mathbf&#123;j&#125; &amp; \mathbf&#123;k&#125; \\</span><br><span class="line">\frac&#123;\partial X&#125;&#123;\partial u&#125; &amp;  \frac&#123;\partial Y&#125;&#123;\partial u&#125; &amp; 0 \\</span><br><span class="line">\frac&#123;\partial X&#125;&#123;\partial v&#125; &amp;  \frac&#123;\partial Y&#125;&#123;\partial v&#125; &amp; 0 \\</span><br><span class="line">\end&#123;vmatrix&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+<pre><code class="highlight plaintext">$$
+\mathbf&#123;V&#125;_1 \times \mathbf&#123;V&#125;_2 =  \begin&#123;vmatrix&#125; 
+\mathbf&#123;i&#125; &amp; \mathbf&#123;j&#125; &amp; \mathbf&#123;k&#125; \\
+\frac&#123;\partial X&#125;&#123;\partial u&#125; &amp;  \frac&#123;\partial Y&#125;&#123;\partial u&#125; &amp; 0 \\
+\frac&#123;\partial X&#125;&#123;\partial v&#125; &amp;  \frac&#123;\partial Y&#125;&#123;\partial v&#125; &amp; 0 \\
+\end&#123;vmatrix&#125;
+$$</code></pre>
 
 <p>LeTeX表达式参考连接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/ViatorSun/article/details/82826664#:~:text=%E7%9A%84LaTex%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%BA%20%24x_i%5E2%24%20%E3%80%82.%20LaTex%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%AD%E7%9A%84%E4%B8%8A%E4%B8%8B%E6%A0%87%E5%8F%AF%E4%BB%A5%E5%8F%A0%E5%8A%A0%E7%9A%84%EF%BC%8C%E5%B0%B1%E6%AF%94%E5%A6%82.%20x%20%20y%20,x_%20%7B2i%7D%5E%20%7B2%2Bb%7D.%20x2i2%2Bb.%20%E2%80%8B.%20%E7%9A%84LaTex%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%BA%24x_%20%7B2i%7D%5E%20%7B2%2Bb%7D%24%E3%80%82.">超详细 LaTex数学公式</a>   <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39679367/article/details/84729452">LaTeX：公式常用字符和表达式</a></p>
 <h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><p>输入 <code>| First Header | Second Header |</code> 并按下 <code>return</code> 键将创建一个包含两列的表。</p>
 <p>创建表后，焦点在该表上将弹出一个表格工具栏，您可以在其中调整表格，对齐或删除表格。您还可以使用上下文菜单来复制和添加&#x2F;删除列&#x2F;行。</p>
 <p>可以跳过以下描述，因为表格的 markdown 源代码是由typora自动生成的。</p>
 <p>在 markdown 源代码中，它们看起来像这样：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">| First Header  | Second Header |</span><br><span class="line">| ------------- | ------------- |</span><br><span class="line">| Content Cell  | Content Cell  |</span><br><span class="line">| Content Cell  | Content Cell  |</span><br></pre></td></tr></table></figure>
+<pre><code class="highlight plaintext">| First Header  | Second Header |
+| ------------- | ------------- |
+| Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  |</code></pre>
 
 <p>您还可以在表格中包括内联 Markdown 语法，例如链接，粗体，斜体或删除线。</p>
 <ul>
@@ -98,7 +125,9 @@ IconifyProviders = {
 <li>为了美观，可以使用空格对齐不同行的单元格，并在左右两侧都使用 | 来标记单元格边界</li>
 <li>为了使 Markdown 更清晰，| 和 - 两侧需要至少有一个空格（最左侧和最右侧的 | 外就不需要了）</li>
 </ul>
-<h2 id="脚注"><a href="#脚注" class="headerlink" title="脚注"></a>脚注</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">您可以像这样创建脚注[^footnote].</span><br><span class="line"></span><br><span class="line">[^footnote]: Here is the *text* of the **footnote**.</span><br></pre></td></tr></table></figure>
+<h2 id="脚注"><a href="#脚注" class="headerlink" title="脚注"></a>脚注</h2><pre><code class="highlight plaintext">您可以像这样创建脚注[^footnote].
+
+[^footnote]: Here is the *text* of the **footnote**.</code></pre>
 
 <p>将产生：</p>
 <p>您可以像这样创建脚注<a target="_blank" rel="noopener" href="https://support.typoraio.cn/zh/Markdown-Reference/#fn:footnote">1</a>.</p>
@@ -120,7 +149,9 @@ IconifyProviders = {
 <h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p>Markdown 支持两种类型的链接：内联和引用。</p>
 <p>在这两种样式中，链接文本都写在[方括号]内。</p>
 <p>要创建内联链接，请在链接文本的结束方括号后立即使用一组常规括号。在常规括号内，输入URL地址，以及可选的用引号括起来的链接标题。例如：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">This is [an example](http://example.com/ &quot;Title&quot;) inline link.</span><br><span class="line"></span><br><span class="line">[This link](http://example.net/) has no title attribute.</span><br></pre></td></tr></table></figure>
+<pre><code class="highlight plaintext">This is [an example](http://example.com/ &quot;Title&quot;) inline link.
+
+[This link](http://example.net/) has no title attribute.</code></pre>
 
 <p>将产生：</p>
 <p>This is <a target="_blank" rel="noopener" href="http://example.com/%22Title%22">an example</a> inline link. (<code>&lt;p&gt;This is &lt;a href=&quot;http://example.com/&quot; title=&quot;Title&quot;&gt;</code>)</p>
@@ -128,19 +159,28 @@ IconifyProviders = {
 <h4 id="内部链接"><a href="#内部链接" class="headerlink" title="内部链接"></a>内部链接</h4><p><strong>您可以将常规括号内的 href 设置为文档内的某一个标题</strong>，这将创建一个书签，允许您在单击后跳转到该部分。例如：</p>
 <p>Command(在Windows上：Ctrl) + 单击 <a target="_blank" rel="noopener" href="https://support.typoraio.cn/zh/Markdown-Reference/#%E5%9D%97%E5%85%83%E7%B4%A0">此链接</a> 将跳转到标题 <code>块元素</code>处。 要查看如何编写，请移动光标或按住 <code>⌘</code> 键单击以将元素展开为 Markdown 源代码。</p>
 <h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p>参考样式链接使用第二组方括号，在其中放置您选择的标签以标识链接：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">This is [an example][id] reference-style link.</span><br><span class="line"></span><br><span class="line">然后，在文档中的任何位置，您可以单独定义链接标签，如下所示：</span><br><span class="line"></span><br><span class="line">[id]: http://example.com/  &quot;Optional Title Here&quot;</span><br></pre></td></tr></table></figure>
+<pre><code class="highlight plaintext">This is [an example][id] reference-style link.
+
+然后，在文档中的任何位置，您可以单独定义链接标签，如下所示：
+
+[id]: http://example.com/  &quot;Optional Title Here&quot;</code></pre>
 
 <p>在typora中，它们将呈现为：</p>
 <p>This is <a target="_blank" rel="noopener" href="http://example.com/">an example</a> reference-style link.</p>
 <p>隐式链接名称快捷方式允许您省略链接的名称，在这种情况下，链接文本本身将用作名称。只需使用一组空的方括号，例如，将“Google”一词链接到google.com网站，您只需写下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[Google][]</span><br><span class="line">然后定义链接：</span><br><span class="line"></span><br><span class="line">[Google]: http://google.com/</span><br></pre></td></tr></table></figure>
+<pre><code class="highlight plaintext">[Google][]
+然后定义链接：
+
+[Google]: http://google.com/</code></pre>
 
 <p>在typora中单击链接将其展开以进行编辑，command + 单击将在 Web 浏览器中打开超链接。</p>
 <h3 id="URL网址"><a href="#URL网址" class="headerlink" title="URL网址"></a>URL网址</h3><p>Typora允许您将 URL 作为链接插入，用 <code>&lt;</code>括号括起来<code>&gt;</code>。</p>
-<p><code>&lt;i@typora.io&gt;</code> 成为 <a href="mailto:&#x69;&#64;&#x74;&#x79;&#x70;&#x6f;&#x72;&#x61;&#46;&#105;&#111;">i@typora.io</a>.</p>
+<p><code>&lt;i@typora.io&gt;</code> 成为 <a href="mailto:&#105;&#64;&#116;&#x79;&#112;&#x6f;&#114;&#97;&#46;&#x69;&#x6f;">i@typora.io</a>.</p>
 <p>Typora也将自动链接标准URL。例如： <a target="_blank" rel="noopener" href="http://www.google.com/">www.google.com</a>.</p>
 <h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><p>图像与链接类似， 但在链接语法之前需要添加额外的 <code>!</code> 字符。 图像语法如下所示：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">![替代文字](/path/to/img.jpg)</span><br><span class="line"></span><br><span class="line">![替代文字](/path/to/img.jpg &quot;可选标题&quot;)</span><br></pre></td></tr></table></figure>
+<pre><code class="highlight plaintext">![替代文字](/path/to/img.jpg)
+
+![替代文字](/path/to/img.jpg &quot;可选标题&quot;)</code></pre>
 
 <p>您可以使用拖放操作从图像文件或浏览器来插入图像。并通过单击图像修改 markdown 源代码。如果图像在拖放时与当前编辑文档位于同一目录或子目录中，则将使用相对路径。</p>
 <h3 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h3><p>教程来自知乎：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/40810821">https://zhuanlan.zhihu.com/p/40810821</a></p>
@@ -149,7 +189,9 @@ IconifyProviders = {
 <li>sequence</li>
 </ul>
 <p>语言选择sequence即可生成流程图</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">李雷 -&gt; 韩梅梅: Hello 梅梅, How are you?</span><br><span class="line">Note right of 韩梅梅: 韩梅梅心想</span><br><span class="line">韩梅梅 --&gt; 李雷: I&#x27;m fine, thanks, and you?</span><br></pre></td></tr></table></figure>
+<pre><code class="highlight plaintext">李雷 -&gt; 韩梅梅: Hello 梅梅, How are you?
+Note right of 韩梅梅: 韩梅梅心想
+韩梅梅 --&gt; 李雷: I&#x27;m fine, thanks, and you?</code></pre>
 
 <svg width="460.78125" height="247.416" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="overflow: hidden; position: relative; left: -0.0336056px; top: -0.972681px; max-width: 100%; height: auto;" version="1.1">
  <desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël 2.2.0</desc>
@@ -213,7 +255,14 @@ IconifyProviders = {
 <li>flowchart</li>
 </ul>
 <p>对于Flowchart,语法选择flow</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">st=&gt;start: 闹钟响起</span><br><span class="line">op=&gt;operation: 与床板分离</span><br><span class="line">cond=&gt;condition: 分离成功?</span><br><span class="line">e=&gt;end: 快乐的一天</span><br><span class="line"></span><br><span class="line">st-&gt;op-&gt;cond</span><br><span class="line">cond(yes)-&gt;e</span><br><span class="line">cond(no)-&gt;op</span><br></pre></td></tr></table></figure>
+<pre><code class="highlight plaintext">st=&gt;start: 闹钟响起
+op=&gt;operation: 与床板分离
+cond=&gt;condition: 分离成功?
+e=&gt;end: 快乐的一天
+
+st-&gt;op-&gt;cond
+cond(yes)-&gt;e
+cond(no)-&gt;op</code></pre>
 
 
 <svg width="175.8203125" height="408.509765625" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet" style="overflow: hidden; position: relative; left: -0.0378136px; top: -0.976878px;" version="1.1">
@@ -275,7 +324,22 @@ IconifyProviders = {
 <li>gantt</li>
 </ul>
 <p>除了Sequence和Flowchart两类图之外，Mermaid还提供一种叫做gantt的图。插入下面的代码，然后语法选mermaid就会自动渲染成gantt图了。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">gantt</span><br><span class="line">        dateFormat  YYYY-MM-DD</span><br><span class="line">        title 快乐的生活</span><br><span class="line">        section 吃一把鸡就学习</span><br><span class="line">        学习            :done,    des1, 2014-01-06,2014-01-09</span><br><span class="line">        疯狂学习               :active,  des2, 2014-01-09, 3d</span><br><span class="line">        继续疯狂学习               :         des3, after des2, 5d</span><br><span class="line">        吃鸡！               :         des4, after des3, 4d</span><br><span class="line">        section 具体内容</span><br><span class="line">        学习Python :crit, done, 2014-01-06,72h</span><br><span class="line">        学习C++          :crit, done, after des1, 2d</span><br><span class="line">        学习Lisp             :crit, active, 3d</span><br><span class="line">        学习图形学        :crit, 4d</span><br><span class="line">        跳伞           :2d</span><br><span class="line">        打枪                      :2d</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code class="highlight plaintext">gantt
+        dateFormat  YYYY-MM-DD
+        title 快乐的生活
+        section 吃一把鸡就学习
+        学习            :done,    des1, 2014-01-06,2014-01-09
+        疯狂学习               :active,  des2, 2014-01-09, 3d
+        继续疯狂学习               :         des3, after des2, 5d
+        吃鸡！               :         des4, after des3, 4d
+        section 具体内容
+        学习Python :crit, done, 2014-01-06,72h
+        学习C++          :crit, done, after des1, 2d
+        学习Lisp             :crit, active, 3d
+        学习图形学        :crit, 4d
+        跳伞           :2d
+        打枪                      :2d
+</code></pre>
 
 <p><svg id="mermaidChart0" width="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 624 340" height="340" style="max-width: 624px;"><style>#mermaidChart0{font-family:sans-serif;font-size:16px;fill:#333;}#mermaidChart0 .error-icon{fill:#552222;}#mermaidChart0 .error-text{fill:#552222;stroke:#552222;}#mermaidChart0 .edge-thickness-normal{stroke-width:2px;}#mermaidChart0 .edge-thickness-thick{stroke-width:3.5px;}#mermaidChart0 .edge-pattern-solid{stroke-dasharray:0;}#mermaidChart0 .edge-pattern-dashed{stroke-dasharray:3;}#mermaidChart0 .edge-pattern-dotted{stroke-dasharray:2;}#mermaidChart0 .marker{fill:#333333;}#mermaidChart0 .marker.cross{stroke:#333333;}#mermaidChart0 svg{font-family:sans-serif;font-size:16px;}#mermaidChart0 .mermaid-main-font{font-family:”trebuchet ms”,verdana,arial;font-family:var(–mermaid-font-family);}#mermaidChart0 .section{stroke:none;opacity:0.2;}#mermaidChart0 .section0{fill:rgba(102,102,255,0.49);}#mermaidChart0 .section2{fill:#fff400;}#mermaidChart0 .section1,#mermaidChart0 .section3{fill:white;opacity:0.2;}#mermaidChart0 .sectionTitle0{fill:#333;}#mermaidChart0 .sectionTitle1{fill:#333;}#mermaidChart0 .sectionTitle2{fill:#333;}#mermaidChart0 .sectionTitle3{fill:#333;}#mermaidChart0 .sectionTitle{text-anchor:start;font-size:11px;text-height:14px;font-family:’trebuchet ms’,verdana,arial;font-family:var(–mermaid-font-family);}#mermaidChart0 .grid .tick{stroke:lightgrey;opacity:0.8;shape-rendering:crispEdges;}#mermaidChart0 .grid .tick text{font-family:sans-serif;fill:#333;}#mermaidChart0 .grid path{stroke-width:0;}#mermaidChart0 .today{fill:none;stroke:red;stroke-width:2px;}#mermaidChart0 .task{stroke-width:2;}#mermaidChart0 .taskText{text-anchor:middle;font-family:’trebuchet ms’,verdana,arial;font-family:var(–mermaid-font-family);}#mermaidChart0 .taskText:not([font-size]){font-size:11px;}#mermaidChart0 .taskTextOutsideRight{fill:black;text-anchor:start;font-size:11px;font-family:’trebuchet ms’,verdana,arial;font-family:var(–mermaid-font-family);}#mermaidChart0 .taskTextOutsideLeft{fill:black;text-anchor:end;font-size:11px;}#mermaidChart0 .task.clickable{cursor:pointer;}#mermaidChart0 .taskText.clickable{cursor:pointer;fill:#003163 !important;font-weight:bold;}#mermaidChart0 .taskTextOutsideLeft.clickable{cursor:pointer;fill:#003163 !important;font-weight:bold;}#mermaidChart0 .taskTextOutsideRight.clickable{cursor:pointer;fill:#003163 !important;font-weight:bold;}#mermaidChart0 .taskText0,#mermaidChart0 .taskText1,#mermaidChart0 .taskText2,#mermaidChart0 .taskText3{fill:white;}#mermaidChart0 .task0,#mermaidChart0 .task1,#mermaidChart0 .task2,#mermaidChart0 .task3{fill:#8a90dd;stroke:#534fbc;}#mermaidChart0 .taskTextOutside0,#mermaidChart0 .taskTextOutside2{fill:black;}#mermaidChart0 .taskTextOutside1,#mermaidChart0 .taskTextOutside3{fill:black;}#mermaidChart0 .active0,#mermaidChart0 .active1,#mermaidChart0 .active2,#mermaidChart0 .active3{fill:#bfc7ff;stroke:#534fbc;}#mermaidChart0 .activeText0,#mermaidChart0 .activeText1,#mermaidChart0 .activeText2,#mermaidChart0 .activeText3{fill:black !important;}#mermaidChart0 .done0,#mermaidChart0 .done1,#mermaidChart0 .done2,#mermaidChart0 .done3{stroke:grey;fill:lightgrey;stroke-width:2;}#mermaidChart0 .doneText0,#mermaidChart0 .doneText1,#mermaidChart0 .doneText2,#mermaidChart0 .doneText3{fill:black !important;}#mermaidChart0 .crit0,#mermaidChart0 .crit1,#mermaidChart0 .crit2,#mermaidChart0 .crit3{stroke:#ff8888;fill:red;stroke-width:2;}#mermaidChart0 .activeCrit0,#mermaidChart0 .activeCrit1,#mermaidChart0 .activeCrit2,#mermaidChart0 .activeCrit3{stroke:#ff8888;fill:#bfc7ff;stroke-width:2;}#mermaidChart0 .doneCrit0,#mermaidChart0 .doneCrit1,#mermaidChart0 .doneCrit2,#mermaidChart0 .doneCrit3{stroke:#ff8888;fill:lightgrey;stroke-width:2;cursor:pointer;shape-rendering:crispEdges;}#mermaidChart0 .milestone{-webkit-transform:rotate(45deg) scale(0.8,0.8);-ms-transform:rotate(45deg) scale(0.8,0.8);transform:rotate(45deg) scale(0.8,0.8);}#mermaidChart0 .milestoneText{font-style:italic;}#mermaidChart0 .doneCritText0,#mermaidChart0 .doneCritText1,#mermaidChart0 .doneCritText2,#mermaidChart0 .doneCritText3{fill:black !important;}#mermaidChart0 .activeCritText0,#mermaidChart0 .activeCritText1,#mermaidChart0 .activeCritText2,#mermaidChart0 .activeCritText3{fill:black !important;}#mermaidChart0 .titleText{text-anchor:middle;font-size:18px;fill:var(–text-color);font-family:’trebuchet ms’,verdana,arial;font-family:var(–mermaid-font-family);}#mermaidChart0:root{–mermaid-font-family:sans-serif;}#mermaidChart0:root{–mermaid-alt-font-family:sans-serif;}#mermaidChart0 gantt{fill:apa;}</style><g></g><g class="grid" transform="translate(75, 290)" fill="none" font-size="10" font-family="sans-serif" text-anchor="middle"><path class="domain" stroke="currentColor" d="M0.5,-255V0.5H529.5V-255"></path><g class="tick" opacity="1" transform="translate(33.5,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">2014-01-07</text></g><g class="tick" opacity="1" transform="translate(99.5,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">2014-01-09</text></g><g class="tick" opacity="1" transform="translate(165.5,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">2014-01-11</text></g><g class="tick" opacity="1" transform="translate(231.5,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">2014-01-13</text></g><g class="tick" opacity="1" transform="translate(298.5,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">2014-01-15</text></g><g class="tick" opacity="1" transform="translate(364.5,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">2014-01-17</text></g><g class="tick" opacity="1" transform="translate(430.5,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">2014-01-19</text></g><g class="tick" opacity="1" transform="translate(496.5,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">2014-01-21</text></g></g><g><rect x="0" y="48" width="614" height="24" class="section section0"></rect><rect x="0" y="144" width="614" height="24" class="section section1"></rect><rect x="0" y="72" width="614" height="24" class="section section0"></rect><rect x="0" y="168" width="614" height="24" class="section section1"></rect><rect x="0" y="192" width="614" height="24" class="section section1"></rect><rect x="0" y="96" width="614" height="24" class="section section0"></rect><rect x="0" y="216" width="614" height="24" class="section section1"></rect><rect x="0" y="120" width="614" height="24" class="section section0"></rect><rect x="0" y="240" width="614" height="24" class="section section1"></rect><rect x="0" y="264" width="614" height="24" class="section section1"></rect></g><g><rect id="des1" rx="3" ry="3" x="75" y="50" width="99" height="20" transform-origin="124.5px 60px" class="task done0 "></rect><rect id="task1" rx="3" ry="3" x="75" y="146" width="99" height="20" transform-origin="124.5px 84px" class="task doneCrit1 "></rect><rect id="des2" rx="3" ry="3" x="174" y="74" width="99" height="20" transform-origin="223.5px 108px" class="task active0 "></rect><rect id="task2" rx="3" ry="3" x="174" y="170" width="66" height="20" transform-origin="207px 132px" class="task doneCrit1 "></rect><rect id="task3" rx="3" ry="3" x="240" y="194" width="100" height="20" transform-origin="290px 156px" class="task activeCrit1 "></rect><rect id="des3" rx="3" ry="3" x="273" y="98" width="166" height="20" transform-origin="356px 180px" class="task task0 "></rect><rect id="task4" rx="3" ry="3" x="340" y="218" width="132" height="20" transform-origin="406px 204px" class="task crit1 "></rect><rect id="des4" rx="3" ry="3" x="439" y="122" width="132" height="20" transform-origin="505px 228px" class="task task0 "></rect><rect id="task5" rx="3" ry="3" x="472" y="242" width="66" height="20" transform-origin="505px 252px" class="task task1 "></rect><rect id="task6" rx="3" ry="3" x="538" y="266" width="66" height="20" transform-origin="571px 276px" class="task task1 "></rect><text id="des1-text" font-size="11" x="124.5" y="63.5" text-height="20" class=" taskText taskText0  doneText0 width-21.515625">学习            </text><text id="task1-text" font-size="11" x="124.5" y="159.5" text-height="20" class=" taskText taskText1  doneCritText1 width-57.8125">学习Python </text><text id="des2-text" font-size="11" x="223.5" y="87.5" text-height="20" class=" taskText taskText0 activeText0 width-43.015625">疯狂学习               </text><text id="task2-text" font-size="11" x="207" y="183.5" text-height="20" class=" taskText taskText1  doneCritText1 width-45.03125">学习C++          </text><text id="task3-text" font-size="11" x="290" y="207.5" text-height="20" class=" taskText taskText1 activeCritText1 critText1 width-41">学习Lisp             </text><text id="des3-text" font-size="11" x="356" y="111.5" text-height="20" class=" taskText taskText0  width-64.53125">继续疯狂学习               </text><text id="task4-text" font-size="11" x="406" y="231.5" text-height="20" class=" taskText taskText1  critText1 width-53.78125">学习图形学        </text><text id="des4-text" font-size="11" x="505" y="135.5" text-height="20" class=" taskText taskText0  width-32.265625">吃鸡！               </text><text id="task5-text" font-size="11" x="505" y="255.5" text-height="20" class=" taskText taskText1  width-21.515625">跳伞           </text><text id="task6-text" font-size="11" x="571" y="279.5" text-height="20" class=" taskText taskText1  width-21.515625">打枪                      </text></g><g><text dy="0em" x="10" y="98" class="sectionTitle sectionTitle0"><tspan alignment-baseline="central" x="10">吃一把鸡就学习</tspan></text><text dy="0em" x="10" y="218" class="sectionTitle sectionTitle1"><tspan alignment-baseline="central" x="10">具体内容</tspan></text></g><g class="today"><line x1="100579" x2="100579" y1="25" y2="315" class="today"></line></g><text x="312" y="25" class="titleText">快乐的生活</text></svg></p>
 <h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><p>您可以使用HTML来设置纯 Markdown 不支持的内容，例如， <code>&lt;span style=&quot;color:red&quot;&gt;this text is red&lt;/span&gt;</code> 用于添加红色文本。</p>
@@ -337,4 +401,183 @@ blog_live_time();
 initMourn();</script><script src="https://fastly.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script><script>const images = [...document.querySelectorAll('.markdown-body img')]
 mediumZoom(images)</script><style>.medium-zoom-image {
   z-index: 99;
-}</style></body></html>
+}</style><!-- hexo injector body_end start --><script src="https://cdn.jsdelivr.net/npm/hexo-widget-tree@0.2.3/js/index.js"></script><div id="widget-tree">
+      <ul>
+      <li class="tree-list-item">
+        <i class="toggle-post-icon gg-folder-add"></i>
+        <a class="tree-list-link" href="/categories/%E5%85%B6%E4%BB%96/">
+          其他
+        </a>
+      <span class="tree-list-count">5</span><ul class="tree-list-children">
+      <li class="tree-list-item">
+        <i class="toggle-post-icon gg-folder-add"></i>
+        <a class="tree-list-link" href="/categories/%E5%85%B6%E4%BB%96/%E5%9B%9E%E5%BF%86/">
+          回忆
+        </a>
+      <span class="tree-list-count">3</span><ul class="tree-list-children"><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/622a5765/" title="2022年度总结"><i class="post-icon gg-file-document"></i>2022年度总结</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/bfbc8ee0/" title="2023年度总结"><i class="post-icon gg-file-document"></i>2023年度总结</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/2a97d34c/" title="缘起心动，探索前行--2024年终总结"><i class="post-icon gg-file-document"></i>缘起心动，探索前行--2024年终总结</a></li></ul></li>
+      <li class="tree-list-item">
+        <i class="toggle-post-icon gg-folder-add"></i>
+        <a class="tree-list-link" href="/categories/%E5%85%B6%E4%BB%96/%E6%9D%82%E8%B0%88/">
+          杂谈
+        </a>
+      <span class="tree-list-count">1</span><ul class="tree-list-children"><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/a442a205/" title="整理几个实用电脑软件"><i class="post-icon gg-file-document"></i>整理几个实用电脑软件</a></li></ul></li>
+      <li class="tree-list-item">
+        <i class="toggle-post-icon gg-folder-add"></i>
+        <a class="tree-list-link" href="/categories/%E5%85%B6%E4%BB%96/%E9%97%B2%E6%9A%87%E8%AE%B0%E5%BD%95/">
+          闲暇记录
+        </a>
+      <span class="tree-list-count">1</span><ul class="tree-list-children"><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/b65bf92/" title="记录一次电脑拆机换键盘过程"><i class="post-icon gg-file-document"></i>记录一次电脑拆机换键盘过程</a></li></ul></li></ul></li>
+      <li class="tree-list-item">
+        <i class="toggle-post-icon gg-folder-add"></i>
+        <a class="tree-list-link" href="/categories/%E5%AD%A6%E4%B9%A0/">
+          学习
+        </a>
+      <span class="tree-list-count">51</span><ul class="tree-list-children">
+      <li class="tree-list-item">
+        <i class="toggle-post-icon gg-folder-add"></i>
+        <a class="tree-list-link" href="/categories/%E5%AD%A6%E4%B9%A0/C%E8%AF%AD%E8%A8%80/">
+          C语言
+        </a>
+      <span class="tree-list-count">8</span><ul class="tree-list-children"><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/bcabe79d/" title="C语言2016-2022程序设计题"><i class="post-icon gg-file-document"></i>C语言2016-2022程序设计题</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/62cd3fe2/" title="C语言打卡练习"><i class="post-icon gg-file-document"></i>C语言打卡练习</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/42614cd0/" title="C语言的自动类型转换"><i class="post-icon gg-file-document"></i>C语言的自动类型转换</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/c67a5273/" title="C语言简单练习"><i class="post-icon gg-file-document"></i>C语言简单练习</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/1c5b0de3/" title="C语言练习-2"><i class="post-icon gg-file-document"></i>C语言练习-2</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/228717dc/" title="C语言运算符优先级表详解"><i class="post-icon gg-file-document"></i>C语言运算符优先级表详解</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/bfe43f2e/" title="VS Code C语言开发环境配置"><i class="post-icon gg-file-document"></i>VS Code C语言开发环境配置</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/e39903eb/" title="c语言练习-3"><i class="post-icon gg-file-document"></i>c语言练习-3</a></li></ul></li>
+      <li class="tree-list-item">
+        <i class="toggle-post-icon gg-folder-add"></i>
+        <a class="tree-list-link" href="/categories/%E5%AD%A6%E4%B9%A0/eNSP/">
+          eNSP
+        </a>
+      <span class="tree-list-count">2</span><ul class="tree-list-children">
+      <li class="tree-list-item">
+        <i class="toggle-post-icon gg-folder-add"></i>
+        <a class="tree-list-link" href="/categories/%E5%AD%A6%E4%B9%A0/eNSP/WLAN%E5%92%8C%E5%AE%89%E5%85%A8/">
+          WLAN和安全
+        </a>
+      <span class="tree-list-count">1</span><ul class="tree-list-children"><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/50b45d5b/" title="AC双热机备份"><i class="post-icon gg-file-document"></i>AC双热机备份</a></li></ul></li></ul></li>
+      <li class="tree-list-item">
+        <i class="toggle-post-icon gg-folder-add"></i>
+        <a class="tree-list-link" href="/categories/%E5%AD%A6%E4%B9%A0/web%E5%AE%89%E5%85%A8/">
+          web安全
+        </a>
+      <span class="tree-list-count">10</span><ul class="tree-list-children">
+      <li class="tree-list-item">
+        <i class="toggle-post-icon gg-folder-add"></i>
+        <a class="tree-list-link" href="/categories/%E5%AD%A6%E4%B9%A0/web%E5%AE%89%E5%85%A8/DVWA/">
+          DVWA
+        </a>
+      <span class="tree-list-count">4</span><ul class="tree-list-children"><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/50a54441/" title="DVWA-SQL注入Medium and High"><i class="post-icon gg-file-document"></i>DVWA-SQL注入Medium and High</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/4161e8ef/" title="dvwa--CSRF"><i class="post-icon gg-file-document"></i>dvwa--CSRF</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/cb7e67e1/" title="dvwa--SQL注入(low)"><i class="post-icon gg-file-document"></i>dvwa--SQL注入(low)</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/75e4ecec/" title="dvwa--盲注"><i class="post-icon gg-file-document"></i>dvwa--盲注</a></li></ul></li>
+      <li class="tree-list-item">
+        <i class="toggle-post-icon gg-folder-add"></i>
+        <a class="tree-list-link" href="/categories/%E5%AD%A6%E4%B9%A0/web%E5%AE%89%E5%85%A8/Pikachu/">
+          Pikachu
+        </a>
+      <span class="tree-list-count">6</span><ul class="tree-list-children"><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/96f58941/" title="PiKachu--XSS"><i class="post-icon gg-file-document"></i>PiKachu--XSS</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/546fe1af/" title="Pikachu--CSRF"><i class="post-icon gg-file-document"></i>Pikachu--CSRF</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/22ddbd5a/" title="Pikachu--SQL注入(一)"><i class="post-icon gg-file-document"></i>Pikachu--SQL注入(一)</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/49a53027/" title="Pikachu-SQL注入（三）"><i class="post-icon gg-file-document"></i>Pikachu-SQL注入（三）</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/8764d02d/" title="Pikachu--SQL注入（二）"><i class="post-icon gg-file-document"></i>Pikachu--SQL注入（二）</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/95e7ce5d/" title="Pikachu--暴力破解"><i class="post-icon gg-file-document"></i>Pikachu--暴力破解</a></li></ul></li></ul></li>
+      <li class="tree-list-item">
+        <i class="toggle-post-icon gg-folder-add"></i>
+        <a class="tree-list-link" href="/categories/%E5%AD%A6%E4%B9%A0/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/">
+          网络基础
+        </a>
+      <span class="tree-list-count">3</span><ul class="tree-list-children"><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/bd3dc348/" title="IPv4编址及子网划分"><i class="post-icon gg-file-document"></i>IPv4编址及子网划分</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/13c75e65/" title="Windows常用网络命令"><i class="post-icon gg-file-document"></i>Windows常用网络命令</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/63b0beec/" title="如何判断两台主机IP是否在同一网段"><i class="post-icon gg-file-document"></i>如何判断两台主机IP是否在同一网段</a></li></ul></li>
+      <li class="tree-list-item">
+        <i class="toggle-post-icon gg-folder-add"></i>
+        <a class="tree-list-link" href="/categories/%E5%AD%A6%E4%B9%A0/blender/">
+          blender
+        </a>
+      <span class="tree-list-count">6</span><ul class="tree-list-children"><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/b8d69325/" title="blender基础教程第一章--基础教程"><i class="post-icon gg-file-document"></i>blender基础教程第一章--基础教程</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/260750c1/" title="blender基础教程第三章——材质篇"><i class="post-icon gg-file-document"></i>blender基础教程第三章——材质篇</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/65bc2d57/" title="blender基础教程第五章——场景灯光篇"><i class="post-icon gg-file-document"></i>blender基础教程第五章——场景灯光篇</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/88c07ffd/" title="blender基础教程第二章-建模篇"><i class="post-icon gg-file-document"></i>blender基础教程第二章-建模篇</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/711b5e75/" title="blender基础教程第六章——动画篇"><i class="post-icon gg-file-document"></i>blender基础教程第六章——动画篇</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/c23831ab/" title="blender基础教程第四章——粒子篇"><i class="post-icon gg-file-document"></i>blender基础教程第四章——粒子篇</a></li></ul></li>
+      <li class="tree-list-item">
+        <i class="toggle-post-icon gg-folder-add"></i>
+        <a class="tree-list-link" href="/categories/%E5%AD%A6%E4%B9%A0/%E5%B7%A5%E5%85%B7%E7%94%A8%E6%B3%95/">
+          工具用法
+        </a>
+      <span class="tree-list-count">1</span><ul class="tree-list-children"><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/15042a92/" title="sqlmap简单用法"><i class="post-icon gg-file-document"></i>sqlmap简单用法</a></li></ul></li>
+      <li class="tree-list-item">
+        <i class="toggle-post-icon gg-folder-add"></i>
+        <a class="tree-list-link" href="/categories/%E5%AD%A6%E4%B9%A0/%E5%BE%AE%E6%9C%BA%E5%8E%9F%E7%90%86/">
+          微机原理
+        </a>
+      <span class="tree-list-count">15</span><ul class="tree-list-children"><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/7b4326b4/" title="微处理器一"><i class="post-icon gg-file-document"></i>微处理器一</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/40c3081d/" title="微处理器二"><i class="post-icon gg-file-document"></i>微处理器二</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/ac776871/" title="微机原理基础一"><i class="post-icon gg-file-document"></i>微机原理基础一</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/68f4f1d9/" title="微机原理基础三"><i class="post-icon gg-file-document"></i>微机原理基础三</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/24269dc7/" title="微机原理基础二"><i class="post-icon gg-file-document"></i>微机原理基础二</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/bf1bf027/" title="微机原理基础四"><i class="post-icon gg-file-document"></i>微机原理基础四</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/97f746d8/" title="微机原理基绪论"><i class="post-icon gg-file-document"></i>微机原理基绪论</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/1980576a/" title="微机原理第1~2章简答题"><i class="post-icon gg-file-document"></i>微机原理第1~2章简答题</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/11e33926/" title="微机原理第3~4章简答题"><i class="post-icon gg-file-document"></i>微机原理第3~4章简答题</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/175b6484/" title="微机原理第七章"><i class="post-icon gg-file-document"></i>微机原理第七章</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/46db1732/" title="微机原理第六章简答题"><i class="post-icon gg-file-document"></i>微机原理第六章简答题</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/4df7fcd1/" title="微机原理简答题-模拟卷"><i class="post-icon gg-file-document"></i>微机原理简答题-模拟卷</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/2b3dbb70/" title="微机原理简答题一"><i class="post-icon gg-file-document"></i>微机原理简答题一</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/828edb5f/" title="微机原理第五章简答题"><i class="post-icon gg-file-document"></i>微机原理第五章简答题</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/51b8a12a/" title="输入输出与中断"><i class="post-icon gg-file-document"></i>输入输出与中断</a></li></ul></li>
+      <li class="tree-list-item">
+        <i class="toggle-post-icon gg-folder-add"></i>
+        <a class="tree-list-link" href="/categories/%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6/">
+          数学
+        </a>
+      <span class="tree-list-count">6</span><ul class="tree-list-children"><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/c9fdf34f/" title="第一章 函数极限、连续"><i class="post-icon gg-file-document"></i>第一章 函数极限、连续</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/31632a35/" title="第七章无穷极数"><i class="post-icon gg-file-document"></i>第七章无穷极数</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/9317a53e/" title="第三章一元函数积分学"><i class="post-icon gg-file-document"></i>第三章一元函数积分学</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/49fcf5b4/" title="第九章  线性代数"><i class="post-icon gg-file-document"></i>第九章  线性代数</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/331e3d96/" title="第二章一元函数微分学"><i class="post-icon gg-file-document"></i>第二章一元函数微分学</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/822e84da/" title="第八章常微分方程"><i class="post-icon gg-file-document"></i>第八章常微分方程</a></li></ul></li></ul></li>
+      <li class="tree-list-item">
+        <i class="toggle-post-icon gg-folder-add"></i>
+        <a class="tree-list-link" href="/categories/%E6%95%99%E7%A8%8B/">
+          教程
+        </a>
+      <span class="tree-list-count">36</span><ul class="tree-list-children">
+      <li class="tree-list-item">
+        <i class="toggle-post-icon gg-folder-add"></i>
+        <a class="tree-list-link" href="/categories/%E6%95%99%E7%A8%8B/%E7%BE%A4%E6%99%96/">
+          群晖
+        </a>
+      <span class="tree-list-count">5</span><ul class="tree-list-children"><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/c7183004/" title="AdGuard Home基本配置"><i class="post-icon gg-file-document"></i>AdGuard Home基本配置</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/aac2bef8/" title="Docker管理工具Portainer忘记admin登录密码怎么办?"><i class="post-icon gg-file-document"></i>Docker管理工具Portainer忘记admin登录密码怎么办?</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/a6e2f235/" title="docker容器固定IP地址"><i class="post-icon gg-file-document"></i>docker容器固定IP地址</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/9b939317/" title="群晖套件安装Jellyfin"><i class="post-icon gg-file-document"></i>群晖套件安装Jellyfin</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/ec07b845/" title="群晖安装青龙面板"><i class="post-icon gg-file-document"></i>群晖安装青龙面板</a></li></ul></li>
+      <li class="tree-list-item">
+        <i class="toggle-post-icon gg-folder-add"></i>
+        <a class="tree-list-link" href="/categories/%E6%95%99%E7%A8%8B/Linux/">
+          Linux
+        </a>
+      <span class="tree-list-count">13</span><ul class="tree-list-children"><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/c734c1de/" title="CentOS 7 安装教程"><i class="post-icon gg-file-document"></i>CentOS 7 安装教程</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/71556fb/" title="CentOS7加密grub"><i class="post-icon gg-file-document"></i>CentOS7加密grub</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/8b4f8dc5/" title="Deepin检查更新失败"><i class="post-icon gg-file-document"></i>Deepin检查更新失败</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/5e07eda7/" title="Kali-Linux设置为中文"><i class="post-icon gg-file-document"></i>Kali-Linux设置为中文</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/c93a9c5d/" title="Ubuntu基于Nginx部署WordPress"><i class="post-icon gg-file-document"></i>Ubuntu基于Nginx部署WordPress</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/7fa7a97b/" title="Ubuntu安装Typecho博客"><i class="post-icon gg-file-document"></i>Ubuntu安装Typecho博客</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/b314a8d9/" title="Ubuntu环境下安装部署Nginx"><i class="post-icon gg-file-document"></i>Ubuntu环境下安装部署Nginx</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/b394315b/" title="centos7安装PHP5"><i class="post-icon gg-file-document"></i>centos7安装PHP5</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/89dea71d/" title="kali-Linux安装搜狗输入法"><i class="post-icon gg-file-document"></i>kali-Linux安装搜狗输入法</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/2753dfc5/" title="kali-Linux更改镜像源"><i class="post-icon gg-file-document"></i>kali-Linux更改镜像源</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/65134606/" title="linux修改ssh默认端口"><i class="post-icon gg-file-document"></i>linux修改ssh默认端口</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/1f1dc0da/" title="卡里安装pycharm后创建快捷方式"><i class="post-icon gg-file-document"></i>卡里安装pycharm后创建快捷方式</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/89cdd3f5/" title="青龙面板安装教程"><i class="post-icon gg-file-document"></i>青龙面板安装教程</a></li></ul></li>
+      <li class="tree-list-item">
+        <i class="toggle-post-icon gg-folder-add"></i>
+        <a class="tree-list-link" href="/categories/%E6%95%99%E7%A8%8B/%E5%8D%9A%E5%AE%A2/">
+          博客
+        </a>
+      <span class="tree-list-count">9</span><ul class="tree-list-children"><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/3ba3be9/" title="Hexo版本升级指南"><i class="post-icon gg-file-document"></i>Hexo版本升级指南</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/1bd41834/" title="Typora基本用法"><i class="post-icon gg-file-document"></i>Typora基本用法</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/4366275/" title="Waline评论区又换地方部署了"><i class="post-icon gg-file-document"></i>Waline评论区又换地方部署了</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/5b3b1c7f/" title="hexo博客上使用waline评论系统"><i class="post-icon gg-file-document"></i>hexo博客上使用waline评论系统</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/2f165d3c/" title="个人博客的搭建"><i class="post-icon gg-file-document"></i>个人博客的搭建</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/3af3bbd6/" title="利用腾讯云搭建自己的图床"><i class="post-icon gg-file-document"></i>利用腾讯云搭建自己的图床</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/90cb059e/" title="图片设置防盗链后部分图片不能显示"><i class="post-icon gg-file-document"></i>图片设置防盗链后部分图片不能显示</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/f40349ac/" title="LaTex数学公式大全"><i class="post-icon gg-file-document"></i>LaTex数学公式大全</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/26ea2038/" title="文章加密测试"><i class="post-icon gg-file-document"></i>文章加密测试</a></li></ul></li>
+      <li class="tree-list-item">
+        <i class="toggle-post-icon gg-folder-add"></i>
+        <a class="tree-list-link" href="/categories/%E6%95%99%E7%A8%8B/%E5%B7%A5%E5%85%B7%E6%B1%89%E5%8C%96/">
+          工具汉化
+        </a>
+      <span class="tree-list-count">2</span><ul class="tree-list-children"><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/d334592a/" title="Suite汉化教程"><i class="post-icon gg-file-document"></i>Suite汉化教程</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/29ab9ab2/" title="fiddler汉化"><i class="post-icon gg-file-document"></i>fiddler汉化</a></li></ul></li>
+      <li class="tree-list-item">
+        <i class="toggle-post-icon gg-folder-add"></i>
+        <a class="tree-list-link" href="/categories/%E6%95%99%E7%A8%8B/%E7%A0%B4%E8%A7%A3/">
+          破解
+        </a>
+      <span class="tree-list-count">1</span><ul class="tree-list-children"><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/97fee53e/" title="Typora破解"><i class="post-icon gg-file-document"></i>Typora破解</a></li></ul></li>
+      <li class="tree-list-item">
+        <i class="toggle-post-icon gg-folder-add"></i>
+        <a class="tree-list-link" href="/categories/%E6%95%99%E7%A8%8B/%E5%85%B6%E4%BB%96/">
+          其他
+        </a>
+      <span class="tree-list-count">3</span><ul class="tree-list-children"><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/83ecd2a4/" title="VScode简单配置"><i class="post-icon gg-file-document"></i>VScode简单配置</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/4b7a36ad/" title="流程图(flowchart)语法学习"><i class="post-icon gg-file-document"></i>流程图(flowchart)语法学习</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/698e4806/" title="爱奇艺自动签到"><i class="post-icon gg-file-document"></i>爱奇艺自动签到</a></li></ul></li>
+      <li class="tree-list-item">
+        <i class="toggle-post-icon gg-folder-add"></i>
+        <a class="tree-list-link" href="/categories/%E6%95%99%E7%A8%8B/Windows/">
+          Windows
+        </a>
+      <span class="tree-list-count">3</span><ul class="tree-list-children"><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/713fab12/" title="Windows安全中心打不开点击没反应"><i class="post-icon gg-file-document"></i>Windows安全中心打不开点击没反应</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/db22bfb1/" title="免费安装hevc拓展"><i class="post-icon gg-file-document"></i>免费安装hevc拓展</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/8dc48be7/" title="如何彻底关闭Hyper-V"><i class="post-icon gg-file-document"></i>如何彻底关闭Hyper-V</a></li></ul></li></ul></li>
+      <li class="tree-list-item">
+        <i class="toggle-post-icon gg-folder-add"></i>
+        <a class="tree-list-link" href="/categories/%E5%B0%8F%E8%AF%B4/">
+          小说
+        </a>
+      <span class="tree-list-count">2</span><ul class="tree-list-children">
+      <li class="tree-list-item">
+        <i class="toggle-post-icon gg-folder-add"></i>
+        <a class="tree-list-link" href="/categories/%E5%B0%8F%E8%AF%B4/%E6%91%98%E6%8A%84/">
+          摘抄
+        </a>
+      <span class="tree-list-count">2</span><ul class="tree-list-children"><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/4b648fc6/" title="《云边有个小卖部》摘抄"><i class="post-icon gg-file-document"></i>《云边有个小卖部》摘抄</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/7d0fc3d8/" title="《天堂旅行团》摘抄"><i class="post-icon gg-file-document"></i>《天堂旅行团》摘抄</a></li></ul></li></ul></li>
+      <li class="tree-list-item">
+        <i class="toggle-post-icon gg-folder-add"></i>
+        <a class="tree-list-link" href="/categories/%E7%9F%A5%E4%B9%8E/">
+          知乎
+        </a>
+      <span class="tree-list-count">7</span><ul class="tree-list-children"><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/83ad47c1/" title="不要相信那个魔术师"><i class="post-icon gg-file-document"></i>不要相信那个魔术师</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/f7704cfc/" title="你的讯号"><i class="post-icon gg-file-document"></i>你的讯号</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/2923e863/" title="整天泡网吧打游戏的人，他们的经济来源是什么？"><i class="post-icon gg-file-document"></i>整天泡网吧打游戏的人，他们的经济来源是什么？</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/f9b74ab5/" title="血之花"><i class="post-icon gg-file-document"></i>血之花</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/46a8dea7/" title="辛守村那些事"><i class="post-icon gg-file-document"></i>辛守村那些事</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/bf92c8b4/" title="送米人"><i class="post-icon gg-file-document"></i>送米人</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/2b291a94/" title="雨莲天尊"><i class="post-icon gg-file-document"></i>雨莲天尊</a></li></ul></li>
+      <li class="tree-list-item">
+        <i class="toggle-post-icon gg-folder-add"></i>
+        <a class="tree-list-link" href="/categories/%E4%B8%93%E6%A0%8F/">
+          专栏
+        </a>
+      <span class="tree-list-count">2</span><ul class="tree-list-children">
+      <li class="tree-list-item">
+        <i class="toggle-post-icon gg-folder-add"></i>
+        <a class="tree-list-link" href="/categories/%E4%B8%93%E6%A0%8F/%E9%85%8D%E7%BD%AE%E4%B9%A0%E6%83%AF/">
+          配置习惯
+        </a>
+      <span class="tree-list-count">2</span><ul class="tree-list-children"><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/62d66f1a/" title="我的博客插件"><i class="post-icon gg-file-document"></i>我的博客插件</a></li><li class="tree-list-item"><a class="tree-list-post-link" href="/posts/3bccf97f/" title="浏览器常用插件"><i class="post-icon gg-file-document"></i>浏览器常用插件</a></li></ul></li></ul></li></ul>
+        <div id="widget-tree-button">
+          <i class="gg-chevron-right"></i>
+        </div>
+      </div><!-- hexo injector body_end end --></body></html>
